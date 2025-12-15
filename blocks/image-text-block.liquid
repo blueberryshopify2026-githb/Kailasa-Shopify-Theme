@@ -1,0 +1,117 @@
+{% schema %}
+{
+  "name": "Image Text Block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tab_name",
+      "label": "Tab Name",
+      "default": "About"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "image-text", "label": "Image Left, Text Right" },
+        { "value": "text-image", "label": "Text Left, Image Right" }
+      ],
+      "default": "image-text"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "richtext",
+      "id": "text_content",
+      "label": "Text Content",
+      "default": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Content Typography"
+    },
+    {
+      "type": "select",
+      "id": "content_font_family",
+      "label": "Content Font Family",
+      "options": [
+        { "value": "inherit", "label": "Use Section Font" },
+        { "value": "system-ui, sans-serif", "label": "System UI" },
+        { "value": "Gilroy, sans-serif", "label": "Gilroy" },
+        { "value": "Montserrat, sans-serif", "label": "Montserrat" },
+        { "value": "Arial, sans-serif", "label": "Arial" },
+        { "value": "Helvetica, sans-serif", "label": "Helvetica" },
+        { "value": "Verdana, sans-serif", "label": "Verdana" },
+        { "value": "Tahoma, sans-serif", "label": "Tahoma" },
+        { "value": "Impact, sans-serif", "label": "Impact" },
+        { "value": "Calibri, sans-serif", "label": "Calibri" },
+        { "value": "Georgia, serif", "label": "Georgia" },
+        { "value": "Times, serif", "label": "Times" },
+        { "value": "Garamond, serif", "label": "Garamond" },
+        { "value": "Palatino, serif", "label": "Palatino" },
+        { "value": "Consolas, monospace", "label": "Consolas" },
+        { "value": "Monaco, monospace", "label": "Monaco" },
+        { "value": "cursive", "label": "Cursive" },
+        { "value": "fantasy", "label": "Fantasy" }
+      ],
+      "default": "inherit"
+    },
+    {
+      "type": "range",
+      "id": "content_font_weight",
+      "label": "Content Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "content_font_style",
+      "label": "Content Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "content_font_size_desktop",
+      "label": "Content Font Size (Desktop)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "content_font_size_mobile",
+      "label": "Content Font Size (Mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "content_text_color",
+      "label": "Content Text Color",
+      "default": "#181818"
+    }
+  ]
+}
+{% endschema %}

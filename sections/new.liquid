@@ -1,0 +1,1142 @@
+{% comment %}
+  Luxury Skincare Doctor Endorsement Section
+  60% left main card, 40% right cascading cards with doctor details
+{% endcomment %}
+
+<section class="doctor-endorsement-section">
+  <div class="container">
+    <div class="endorsement-layout">
+      <!-- Left Side: Main Hero Card (60%) -->
+      <div class="hero-section">
+        <div class="hero-card" id="mainHeroCard">
+          {% assign current_block = section.blocks.first %}
+          {% if current_block.settings.doctor_image %}
+            <img
+              src="{{ current_block.settings.doctor_image | image_url: width: 800, height: 600 }}"
+              alt="{{ current_block.settings.doctor_name }}"
+              class="doctor-image"
+              width="800"
+              height="600"
+              loading="lazy"
+              id="mainDoctorImage"
+            >
+          {% else %}
+            <div class="placeholder-content" id="mainPlaceholder">
+              <div class="placeholder-icon">👩‍⚕️</div>
+            </div>
+          {% endif %}
+
+          <!-- Main Card Overlay Content -->
+          <div class="main-card-overlay-content">
+            <div class="main-doctor-info">
+              <h3 class="main-doctor-name" id="mainDoctorName">
+                {{ current_block.settings.doctor_name | default: 'Dr. Sarah Johnson' }}
+              </h3>
+              <p class="main-doctor-specialty" id="mainDoctorSpecialty">
+                {{ current_block.settings.specialty | default: 'Dermatologist' }}
+              </p>
+
+              {% if current_block.settings.rating %}
+                <div class="main-rating" id="mainRating">
+                  {% assign rating = current_block.settings.rating | times: 1 %}
+                  {% for i in (1..5) %}
+                    <span class="star {% if i <= rating %}filled{% endif %}">★</span>
+                  {% endfor %}
+                  <span class="rating-text">({{ current_block.settings.rating }}/5)</span>
+                </div>
+              {% endif %}
+
+              {% if current_block.settings.quote %}
+                <blockquote class="main-doctor-quote" id="mainDoctorQuote">
+                  "{{ current_block.settings.quote }}"
+                </blockquote>
+              {% endif %}
+
+              {% if current_block.settings.experience %}
+                <p class="main-experience" id="mainExperience">{{ current_block.settings.experience }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Cascading Cards -->
+      <div class="cascading-cards-section">
+        <div class="cards-stack" id="cardsStack">
+          {% for block in section.blocks limit: 4 %}
+            <div class="doctor-card" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              {% if block.settings.doctor_image %}
+                <img
+                  src="{{ block.settings.doctor_image | image_url: width: 400, height: 300 }}"
+                  alt="{{ block.settings.doctor_name }}"
+                  class="card-bg-image"
+                  width="400"
+                  height="300"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="card-placeholder">👩‍⚕️</div>
+              {% endif %}
+
+              <div class="card-overlay-content">
+                <div class="doctor-info">
+                  <h3 class="doctor-name">{{ block.settings.doctor_name | default: 'Dr. Name' }}</h3>
+                  <p class="doctor-specialty">{{ block.settings.specialty | default: 'Specialty' }}</p>
+
+                  {% if block.settings.rating %}
+                    <div class="rating">
+                      {% assign rating = block.settings.rating | times: 1 %}
+                      {% for i in (1..5) %}
+                        <span class="star {% if i <= rating %}filled{% endif %}">★</span>
+                      {% endfor %}
+                      <span class="rating-text">({{ block.settings.rating }}/5)</span>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.quote %}
+                    <blockquote class="doctor-quote">"{{ block.settings.quote }}"</blockquote>
+                  {% endif %}
+
+                  {% if block.settings.experience %}
+                    <p class="experience">{{ block.settings.experience }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="cta-section">
+      <div class="cta-pill">
+        <span class="current-doctor-name" id="currentDoctorName">
+          {{- section.blocks.first.settings.doctor_name | default: 'Dr. Sarah Johnson' -}}
+        </span>
+        <button class="cta-button" onclick="nextCard()" aria-label="Next doctor">
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .doctor-endorsement-section {
+    padding: 80px 0;
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    margin-left: 10%; /* 10% left margin */
+  }
+
+  .endorsement-layout {
+    display: grid;
+    grid-template-columns: 70% 30%; /* Increased left side by 10%, reduced right side */
+    gap: 10px; /* Further reduced gap */
+    align-items: flex-start;
+    margin-bottom: 60px;
+  }
+
+  /* Hero Section (60%) */
+  .hero-section {
+    width: 100%;
+  }
+
+  .hero-card {
+    background: #000000;
+    border-radius: 32px;
+    aspect-ratio: 5.5/3; /* Reduced height by 10% (wider aspect ratio) */
+    overflow: hidden;
+    position: relative;
+  }
+
+  .doctor-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 32px;
+  }
+
+  .placeholder-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .placeholder-icon {
+    font-size: 4rem;
+    opacity: 0.7;
+  }
+
+  /* Main Card Overlay Content - Professional Medical UI */
+  .main-card-overlay-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.9) 100%);
+    padding: 32px 28px 24px;
+    color: #ffffff;
+    backdrop-filter: blur(2px);
+  }
+
+  .main-doctor-info {
+    text-align: left;
+  }
+
+  .main-doctor-name {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin: 0 0 1px 0;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    line-height: 1.05;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .main-doctor-specialty {
+    font-size: 0.95rem;
+    color: #00d4aa;
+    margin: 0 0 6px 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    opacity: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  .main-rating {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 8px;
+  }
+
+  .main-rating .star {
+    font-size: 1.2rem;
+    color: #333;
+    transition: color 0.2s ease;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  }
+
+  .main-rating .star.filled {
+    color: #ffd700;
+    filter: drop-shadow(0 1px 3px rgba(255, 215, 0, 0.4));
+  }
+
+  .main-rating .rating-text {
+    font-size: 0.85rem;
+    color: #e8e8e8;
+    margin-left: 6px;
+    font-weight: 500;
+    opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  .main-doctor-quote {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-style: italic;
+    margin: 0 0 6px 0;
+    color: #ffffff;
+    opacity: 0.95;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .main-doctor-quote::before {
+    content: '"';
+    font-size: 1.6em;
+    color: #00d4aa;
+    opacity: 0.7;
+    margin-right: 2px;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  .main-experience {
+    font-size: 0.8rem;
+    color: #d0d0d0;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 500;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Cascading Cards Section (40%) */
+  .cascading-cards-section {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: {{ section.settings.right_card_vertical_gap | default: 5 }}px;
+    padding-bottom: {{ section.settings.right_card_vertical_gap | default: 5 }}px;
+  }
+
+  .cards-stack {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .doctor-card {
+    position: absolute;
+    border-radius: {{ section.settings.right_card_border_radius | default: 32 }}px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: {{ section.settings.right_card_width | default: 70 }}%; /* Adjustable width */
+    aspect-ratio: {{ section.settings.right_card_aspect_width | default: 2 }}/{{ section.settings.right_card_aspect_height | default: 3 }}; /* Much taller cards */
+  }
+
+  .doctor-card:hover {
+    /* No hover effects - only click interactions */
+    cursor: pointer;
+  }
+
+  .doctor-card .card-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .doctor-card .card-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 3rem;
+    opacity: 0.7;
+  }
+
+  .doctor-card .card-overlay-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.95) 100%);
+    padding: 20px 16px 16px;
+    color: #ffffff;
+  }
+
+  .doctor-card .doctor-info {
+    text-align: left;
+  }
+
+  .doctor-card .doctor-name {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 2px 0;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    line-height: 1.1;
+  }
+
+  .doctor-card .doctor-specialty {
+    font-size: 0.7rem;
+    color: #00bcd4;
+    margin: 0 0 6px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .doctor-card .rating {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    margin-bottom: 6px;
+  }
+
+  .doctor-card .star {
+    font-size: 0.75rem;
+    color: #333;
+  }
+
+  .doctor-card .star.filled {
+    color: #ffd700;
+  }
+
+  .doctor-card .rating-text {
+    font-size: 0.6rem;
+    color: #cccccc;
+    margin-left: 3px;
+    font-weight: 500;
+  }
+
+  .doctor-card .doctor-quote {
+    font-size: 0.65rem;
+    line-height: 1.2;
+    font-style: italic;
+    margin: 0 0 4px 0;
+    color: #ffffff;
+    opacity: 0.95;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .doctor-card .experience {
+    font-size: 0.55rem;
+    color: #cccccc;
+    margin: 0;
+    line-height: 1.1;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    display: flex;
+    justify-content: flex-start; /* Align to left side (below main card) */
+    margin-top: 20px;
+    padding-left: calc(70% / 2 - 120px); /* Center below the main card */
+  }
+
+  .cta-pill {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 50px;
+    padding: 6px 6px 6px 16px; /* Smaller padding */
+    gap: 12px; /* Smaller gap */
+    transition: all 0.3s ease;
+  }
+
+  .cta-pill:hover {
+    border-color: #00bcd4;
+    transform: translateY(-2px);
+  }
+
+  .current-doctor-name {
+    font-size: 0.85rem; /* Smaller font */
+    font-weight: 500;
+    color: #1a1a1a;
+    letter-spacing: 0.01em;
+  }
+
+  .cta-button {
+    width: 32px; /* Smaller button */
+    height: 32px; /* Smaller button */
+    background: #000000;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: #00bcd4;
+    transform: scale(1.05);
+  }
+
+  .arrow-icon {
+    width: 14px; /* Smaller arrow */
+    height: 14px; /* Smaller arrow */
+    color: #ffffff;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .doctor-endorsement-section {
+      padding: 60px 0;
+    }
+
+    .container {
+      padding: 0 20px;
+      margin-left: 5%;
+    }
+
+    .endorsement-layout {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .cta-section {
+      justify-content: center; /* Center on mobile */
+      padding-left: 0;
+    }
+
+    .hero-card {
+      border-radius: 24px;
+    }
+
+    .main-card-overlay-content {
+      padding: 40px 24px 24px;
+    }
+
+    .main-doctor-name {
+      font-size: 1.5rem;
+    }
+
+    .doctor-card {
+      border-radius: 24px;
+    }
+
+    .doctor-card {
+      width: 80%; /* Slightly larger on mobile for better visibility */
+    }
+
+    .cta-pill {
+      padding: 5px 5px 5px 16px;
+    }
+
+    .current-doctor-name {
+      font-size: 0.8rem;
+    }
+
+    .cta-button {
+      width: 28px;
+      height: 28px;
+    }
+
+    .arrow-icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      margin-left: 2%;
+    }
+
+    .main-doctor-name {
+      font-size: 1.3rem;
+    }
+
+    .doctor-card {
+      /* No max-width restriction on mobile */
+    }
+  }
+</style>
+<script>
+  let currentIndex = 0;
+  let doctorCards = [];
+  let isAnimating = false;
+
+  function updateMainCard(cardData) {
+    const mainImage = document.getElementById('mainDoctorImage');
+    const mainPlaceholder = document.getElementById('mainPlaceholder');
+    const mainName = document.getElementById('mainDoctorName');
+    const mainSpecialty = document.getElementById('mainDoctorSpecialty');
+    const mainRating = document.getElementById('mainRating');
+    const mainQuote = document.getElementById('mainDoctorQuote');
+    const mainExperience = document.getElementById('mainExperience');
+    const currentDoctorName = document.getElementById('currentDoctorName');
+
+    const cardImage = cardData.querySelector('.card-bg-image');
+    const cardPlaceholder = cardData.querySelector('.card-placeholder');
+
+    if (cardImage) {
+      mainImage.src = cardImage.src;
+      mainImage.alt = cardImage.alt;
+      mainImage.style.display = 'block';
+      if (mainPlaceholder) mainPlaceholder.style.display = 'none';
+    } else {
+      mainImage.style.display = 'none';
+      if (mainPlaceholder) mainPlaceholder.style.display = 'flex';
+    }
+
+    const name = cardData.querySelector('.doctor-name')?.textContent || '';
+    const specialty = cardData.querySelector('.doctor-specialty')?.textContent || '';
+    const rating = cardData.querySelector('.rating')?.innerHTML || '';
+    const quote = cardData.querySelector('.doctor-quote')?.textContent || '';
+    const experience = cardData.querySelector('.experience')?.textContent || '';
+
+    mainName.textContent = name;
+    mainSpecialty.textContent = specialty;
+    if (mainRating) mainRating.innerHTML = rating;
+    if (mainQuote) mainQuote.textContent = quote;
+    if (mainExperience) mainExperience.textContent = experience;
+    currentDoctorName.textContent = name;
+  }
+
+  function updateDisplay(animate = false) {
+    if (doctorCards.length === 0) return;
+
+    if (animate) {
+      // Always use slide animation for consistency
+      animateCardSlide();
+    } else {
+      // Static positioning (initial load)
+      updateMainCard(doctorCards[currentIndex]);
+      positionCardsStatic();
+    }
+  }
+
+  function positionCardsStatic() {
+    // Hide all cards first
+    doctorCards.forEach((card) => {
+      card.style.display = 'none';
+      card.style.width = '{{ section.settings.right_card_width | default: 70 }}%'; // Reset to right card width
+    });
+
+    // Show and position other doctors (not current) in cascading effect
+    let cascadeIndex = 0;
+    doctorCards.forEach((card, index) => {
+      if (index !== currentIndex) {
+        card.style.display = 'block';
+
+        // Apply flashcard stack effect - show more of each card behind
+        const translateY = cascadeIndex * 8;
+        const translateX = cascadeIndex * 40;
+        const widthScale = 1 - cascadeIndex * 0.08;
+        const opacity = 1;
+        const zIndex = 10 - cascadeIndex;
+
+        card.style.transform = `translateY(${translateY}px) translateX(${translateX}px) scaleX(${widthScale})`;
+        card.style.opacity = opacity;
+        card.style.zIndex = zIndex;
+        card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+
+        cascadeIndex++;
+      }
+    });
+  }
+
+  function animateCardSlide() {
+    // Arrow click - slide animation (right to left)
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const newMainCard = doctorCards[currentIndex];
+    const heroCard = document.getElementById('mainHeroCard');
+    const heroSection = document.querySelector('.hero-section');
+
+    // Disable interactions
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+      ctaButton.style.pointerEvents = 'none';
+      ctaButton.style.opacity = '0.8';
+    }
+    doctorCards.forEach((card) => {
+      card.style.pointerEvents = 'none';
+    });
+
+    // Create sliding cards
+    const incomingCard = newMainCard.cloneNode(true);
+    incomingCard.style.position = 'absolute';
+    incomingCard.style.top = heroCard.offsetTop + 'px';
+    incomingCard.style.left = heroCard.offsetLeft + heroCard.offsetWidth + 30 + 'px';
+    incomingCard.style.width = heroCard.offsetWidth + 'px';
+    incomingCard.style.height = heroCard.offsetHeight + 'px';
+    incomingCard.style.aspectRatio = '5.5/3';
+    incomingCard.style.zIndex = '1001';
+    incomingCard.style.borderRadius = '32px';
+    incomingCard.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    incomingCard.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.25)';
+
+    const outgoingCard = heroCard.cloneNode(true);
+    outgoingCard.style.position = 'absolute';
+    outgoingCard.style.top = heroCard.offsetTop + 'px';
+    outgoingCard.style.left = heroCard.offsetLeft + 'px';
+    outgoingCard.style.width = heroCard.offsetWidth + 'px';
+    outgoingCard.style.height = heroCard.offsetHeight + 'px';
+    outgoingCard.style.aspectRatio = '5.5/3';
+    outgoingCard.style.zIndex = '999';
+    outgoingCard.style.borderRadius = '32px';
+    outgoingCard.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    outgoingCard.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.25)';
+
+    heroSection.appendChild(incomingCard);
+    heroSection.appendChild(outgoingCard);
+    heroCard.style.opacity = '0';
+
+    // Start slide animation
+    setTimeout(() => {
+      incomingCard.style.left = heroCard.offsetLeft + 'px';
+      outgoingCard.style.left = heroCard.offsetLeft - heroCard.offsetWidth - 30 + 'px';
+      outgoingCard.style.opacity = '0.7';
+    }, 60);
+
+    // Complete animation
+    setTimeout(() => {
+      updateMainCard(newMainCard);
+      heroCard.style.opacity = '1';
+
+      if (incomingCard.parentNode) incomingCard.parentNode.removeChild(incomingCard);
+      if (outgoingCard.parentNode) outgoingCard.parentNode.removeChild(outgoingCard);
+
+      positionCardsStatic();
+
+      if (ctaButton) {
+        ctaButton.style.pointerEvents = 'auto';
+        ctaButton.style.opacity = '1';
+      }
+      doctorCards.forEach((card) => {
+        card.style.pointerEvents = 'auto';
+      });
+
+      isAnimating = false;
+    }, 860);
+  }
+
+  function animateCardMove(clickedCardIndex) {
+    // Card click - smooth move animation
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const clickedCard = doctorCards[clickedCardIndex];
+    const heroCard = document.getElementById('mainHeroCard');
+
+    // Disable interactions
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+      ctaButton.style.pointerEvents = 'none';
+      ctaButton.style.opacity = '0.8';
+    }
+    doctorCards.forEach((card) => {
+      card.style.pointerEvents = 'none';
+    });
+
+    // Get positions
+    const heroRect = heroCard.getBoundingClientRect();
+    const cardRect = clickedCard.getBoundingClientRect();
+    const deltaX = heroRect.left - cardRect.left;
+    const deltaY = heroRect.top - cardRect.top;
+
+    // Animate the clicked card to main position
+    clickedCard.style.zIndex = '1000';
+    clickedCard.style.transition = 'all 1.2s cubic-bezier(0.23, 1, 0.32, 1)'; // Very smooth easing
+    clickedCard.style.transform = `translateX(${deltaX}px) translateY(${deltaY}px) scale(1.4)`;
+    clickedCard.style.aspectRatio = '5.5/3';
+
+    // Fade main card content
+    const mainCardOverlay = document.querySelector('.main-card-overlay-content');
+    if (mainCardOverlay) {
+      mainCardOverlay.style.transition = 'opacity 0.4s ease';
+      mainCardOverlay.style.opacity = '0.3';
+    }
+
+    // Hide other cards temporarily
+    doctorCards.forEach((card, index) => {
+      if (index !== clickedCardIndex) {
+        card.style.transition = 'opacity 0.6s ease';
+        card.style.opacity = '0.3';
+      }
+    });
+
+    // Complete animation
+    setTimeout(() => {
+      // Update main card
+      updateMainCard(clickedCard);
+      currentIndex = clickedCardIndex;
+
+      // Reset clicked card
+      clickedCard.style.transform = '';
+      clickedCard.style.aspectRatio = '';
+      clickedCard.style.zIndex = '';
+      clickedCard.style.transition = '';
+
+      // Restore main card content
+      if (mainCardOverlay) {
+        mainCardOverlay.style.opacity = '1';
+      }
+
+      // Reposition all cards
+      positionCardsStatic();
+
+      // Restore interactions
+      if (ctaButton) {
+        ctaButton.style.pointerEvents = 'auto';
+        ctaButton.style.opacity = '1';
+      }
+      doctorCards.forEach((card) => {
+        card.style.pointerEvents = 'auto';
+        card.style.opacity = '1';
+      });
+
+      isAnimating = false;
+    }, 1250);
+  }
+
+  function nextCard() {
+    if (doctorCards.length === 0) return;
+    // Infinite loop - cycle through all cards
+    const nextIndex = (currentIndex + 1) % doctorCards.length;
+    currentIndex = nextIndex;
+    updateDisplay(true); // Use slide animation
+  }
+
+  function goToCard(targetIndex) {
+    if (doctorCards.length === 0 || targetIndex === currentIndex) return;
+    currentIndex = targetIndex;
+    updateDisplay(true); // Use same slide animation as arrow
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function () {
+    doctorCards = Array.from(document.querySelectorAll('.doctor-card'));
+
+    // Add click handlers to cards
+    doctorCards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        goToCard(index);
+      });
+    });
+
+    if (doctorCards.length > 0) {
+      updateDisplay(false); // No animation on initial load
+    }
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', function () {
+    updateDisplay();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Doctor Endorsement",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Doctor Endorsements",
+      "info": "Optional section title"
+    },
+
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "left_margin",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "label": "Left margin",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "cards_gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap between main and side cards",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Main Card Settings"
+    },
+    {
+      "type": "range",
+      "id": "main_card_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Main card border radius",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "main_card_overlay_color",
+      "label": "Main card overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "main_card_overlay_opacity",
+      "min": 0.3,
+      "max": 1,
+      "step": 0.1,
+      "label": "Main card overlay opacity",
+      "default": 0.9
+    },
+    {
+      "type": "header",
+      "content": "Right Side Cards Settings"
+    },
+    {
+      "type": "range",
+      "id": "right_card_width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Right cards width",
+      "default": 70,
+      "info": "Width of right side cards relative to their container"
+    },
+    {
+      "type": "range",
+      "id": "right_card_aspect_width",
+      "min": 1,
+      "max": 5,
+      "step": 0.5,
+      "label": "Right cards aspect ratio - width",
+      "default": 2,
+      "info": "Width part of aspect ratio (width/height)"
+    },
+    {
+      "type": "range",
+      "id": "right_card_aspect_height",
+      "min": 1,
+      "max": 5,
+      "step": 0.5,
+      "label": "Right cards aspect ratio - height",
+      "default": 3,
+      "info": "Height part of aspect ratio (width/height)"
+    },
+    {
+      "type": "range",
+      "id": "right_card_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Right cards border radius",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "right_card_vertical_gap",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical gap from main card",
+      "default": 5,
+      "info": "Gap between right cards and main card height"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "main_doctor_name_size",
+      "min": 1.2,
+      "max": 3,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Main doctor name size",
+      "default": 1.8
+    },
+    {
+      "type": "range",
+      "id": "main_specialty_size",
+      "min": 0.8,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Main specialty size",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "main_quote_size",
+      "min": 0.8,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Main quote size",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "specialty_color",
+      "label": "Specialty text color",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star rating color",
+      "default": "#ffd700"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Main text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_text_color",
+      "label": "Secondary text color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_color",
+      "label": "CTA button hover color",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "color",
+      "id": "cta_border_color",
+      "label": "CTA pill border color",
+      "default": "#e5e5e5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "doctor",
+      "name": "Doctor Profile",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Doctor Information"
+        },
+        {
+          "type": "text",
+          "id": "doctor_name",
+          "label": "Doctor Name",
+          "default": "Dr. Sarah Johnson"
+        },
+        {
+          "type": "text",
+          "id": "specialty",
+          "label": "Medical Specialty",
+          "default": "Dermatologist"
+        },
+        {
+          "type": "image_picker",
+          "id": "doctor_image",
+          "label": "Doctor Photo"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 0.1,
+          "label": "Rating",
+          "default": 5,
+          "info": "Doctor rating out of 5 stars"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Doctor Quote/Testimonial",
+          "default": "I recommend this skincare line to all my patients for its proven results and gentle formulation.",
+          "info": "What the doctor says about your product"
+        },
+        {
+          "type": "textarea",
+          "id": "experience",
+          "label": "Experience & Credentials",
+          "default": "15+ years experience • Board Certified • Harvard Medical School",
+          "info": "Doctor's experience, certifications, education"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Doctor Endorsement",
+      "blocks": [
+        {
+          "type": "doctor",
+          "settings": {
+            "doctor_name": "Dr. Sarah Johnson",
+            "specialty": "Dermatologist",
+            "rating": 5,
+            "quote": "I recommend this skincare line to all my patients for its proven results and gentle formulation.",
+            "experience": "15+ years experience • Board Certified • Harvard Medical School"
+          }
+        },
+        {
+          "type": "doctor",
+          "settings": {
+            "doctor_name": "Dr. Michael Chen",
+            "specialty": "Cosmetic Surgeon",
+            "rating": 4.9,
+            "quote": "The anti-aging properties of these products are remarkable. I've seen incredible transformations.",
+            "experience": "12+ years experience • Board Certified • Johns Hopkins"
+          }
+        },
+        {
+          "type": "doctor",
+          "settings": {
+            "doctor_name": "Dr. Emily Rodriguez",
+            "specialty": "Aesthetic Medicine",
+            "rating": 5,
+            "quote": "This is the only skincare line I trust for my most discerning patients.",
+            "experience": "10+ years experience • Board Certified • Mayo Clinic"
+          }
+        },
+        {
+          "type": "doctor",
+          "settings": {
+            "doctor_name": "Dr. James Wilson",
+            "specialty": "Plastic Surgeon",
+            "rating": 4.8,
+            "quote": "Outstanding results with minimal irritation. Perfect for post-procedure care.",
+            "experience": "18+ years experience • Board Certified • Stanford Medical"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

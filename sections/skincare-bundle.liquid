@@ -271,7 +271,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    text-align: var(--panel-text-align, left);
+    text-align: left;
   }
 
   .panel-title {
@@ -280,7 +280,7 @@
     color: #1a1a1a;
     margin: 0;
     line-height: 1.2;
-    text-align: var(--panel-text-align, left);
+    text-align: left;
   }
 
   .panel-description {
@@ -292,14 +292,16 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-align: var(--panel-text-align, left);
+    text-align: left;
   }
 
   .panel-actions {
     margin-top: 10px;
     display: flex;
     gap: 12px;
-    justify-content: var(--panel-text-align, flex-start);
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .panel-add-to-cart {
@@ -313,15 +315,15 @@
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    text-align: left;
+    display: block;
     white-space: nowrap;
+    width: auto;
+    margin: 0;
   }
 
   .panel-add-to-cart:hover {
-    background: #00B8CC;
+    background: #ffffff;
     transform: translateY(-1px);
   }
 
@@ -336,11 +338,12 @@
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
-    text-align: center;
+    text-align: left;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     white-space: nowrap;
+    align-self: flex-start;
   }
 
   .panel-learn-more:hover {
@@ -482,31 +485,14 @@
       {% endif %}
 
       <!-- Product Hotspots -->
-      {% comment %} Debug: Count total blocks {% endcomment %}
-      <div style="position: absolute; top: 10px; left: 10px; background: red; color: white; padding: 5px; z-index: 9999;">
-        Total Blocks: {{ section.blocks.size }}
-      </div>
-      
       {% for block in section.blocks %}
-        {% comment %} Debug: Show hotspot info {% endcomment %}
-        {% assign x_pos = block.settings.hotspot_x | default: 50 %}
-        {% assign y_pos = block.settings.hotspot_y | default: 50 %}
-        
         <div class="product-hotspot" 
              data-product-id="{{ block.id }}"
-             data-debug-x="{{ x_pos }}"
-             data-debug-y="{{ y_pos }}"
-             style="left: {{ x_pos }}%; top: {{ y_pos }}%; border: 2px solid red; background: rgba(255,0,0,0.3);">
+             style="left: {{ block.settings.hotspot_x | default: 50 }}%; top: {{ block.settings.hotspot_y | default: 50 }}%;">
           <div class="hotspot-dot"></div>
-          
-          <!-- Debug info -->
-          <div style="position: absolute; top: 25px; left: 0; background: black; color: white; padding: 2px; font-size: 10px; white-space: nowrap;">
-            {{ forloop.index }}: {{ x_pos }}%, {{ y_pos }}%
-          </div>
             
             <div class="product-info-panel position-{{ block.settings.panel_position }}" 
-                 id="panel-{{ block.id }}"
-                 style="--panel-text-align: {{ block.settings.panel_text_alignment }};">
+                 id="panel-{{ block.id }}">
               <div class="panel-content">
                 <div class="panel-image-container">
                   {% if block.settings.hotspot_image %}

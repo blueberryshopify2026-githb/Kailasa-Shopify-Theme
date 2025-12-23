@@ -9,10 +9,82 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "disabled": true,
-      "settings": {}
+    "cellular_harmony_hero_fX8tmh": {
+      "type": "cellular-harmony-hero",
+      "blocks": {
+        "feature_cnfKde": {
+          "type": "feature",
+          "settings": {
+            "icon": "led-mask",
+            "title": "Photon Youth™ Pro LED Mask",
+            "subtitle": "Biophotonic Amplification"
+          }
+        },
+        "feature_DA39jg": {
+          "type": "feature",
+          "settings": {
+            "icon": "supplement",
+            "title": "Aura Inner Glow™",
+            "subtitle": "Internal Fortification"
+          }
+        },
+        "feature_qKPjKw": {
+          "type": "feature",
+          "settings": {
+            "icon": "skincare",
+            "title": "CellSync™ Skincare",
+            "subtitle": "Topical Regeneration"
+          }
+        }
+      },
+      "block_order": [
+        "feature_cnfKde",
+        "feature_DA39jg",
+        "feature_qKPjKw"
+      ],
+      "name": "Cellular Harmony Hero",
+      "settings": {
+        "title": "<p>introducing <strong>Cellular</strong><br/><strong>Harmony™</strong></p>",
+        "subtitle": "Restore firmness, smooth fine lines, and revive your natural glow with science backed anti-aging therapy.",
+        "hero_image": "shopify://shop_images/Capture.jpg",
+        "show_image_divider": true,
+        "primary_cta_text": "Cellular Harmony™ Protocol",
+        "primary_cta_url": "",
+        "primary_cta_bg": "#ffffff",
+        "primary_cta_text_color": "#000000",
+        "secondary_cta_text": "Take Regeneration Audit",
+        "secondary_cta_url": "",
+        "secondary_cta_bg": "#4fffff",
+        "secondary_cta_text_color": "#333333",
+        "title_font": "Montserrat",
+        "title_size": 48,
+        "title_weight": "700",
+        "title_style": "normal",
+        "subtitle_font": "Montserrat",
+        "subtitle_size": 18,
+        "subtitle_weight": "400",
+        "subtitle_style": "normal",
+        "feature_font": "Montserrat",
+        "feature_title_size": 18,
+        "feature_title_weight": "700",
+        "feature_title_style": "normal",
+        "feature_subtitle_size": 15,
+        "feature_subtitle_weight": "400",
+        "feature_subtitle_style": "normal",
+        "plus_size": 20,
+        "plus_color": "rgba(255, 255, 255, 0.6)",
+        "plus_line_length": 10,
+        "plus_line_width": 1.5,
+        "image_width": 500,
+        "image_height": 500,
+        "image_fit": "cover",
+        "image_border_radius": 0,
+        "section_padding_top": 20,
+        "section_padding_bottom": 20,
+        "section_padding_left": 40,
+        "background_color": "#000000",
+        "text_color": "#ffffff"
+      }
     },
     "skincare_bundle_VLW7E9": {
       "type": "skincare-bundle",
@@ -178,7 +250,7 @@
         "cta_font_size": 16,
         "bundle_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png",
         "products_background": "#f8f9fa",
-        "hotspot_color": "#4FFFFF"
+        "hotspot_color": "#4fffff"
       }
     },
     "new_7fMnep": {
@@ -259,7 +331,7 @@
     }
   },
   "order": [
-    "main",
+    "cellular_harmony_hero_fX8tmh",
     "skincare_bundle_VLW7E9",
     "new_7fMnep"
   ]

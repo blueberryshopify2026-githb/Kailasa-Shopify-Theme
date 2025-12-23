@@ -9,86 +9,6 @@
  */
 {
   "sections": {
-    "cellular_harmony_hero_fX8tmh": {
-      "type": "cellular-harmony-hero",
-      "blocks": {
-        "feature_cnfKde": {
-          "type": "feature",
-          "settings": {
-            "custom_icon": "shopify://shop_images/output-onlinepngtools.png",
-            "icon": "led-mask",
-            "title": "Photon Youth™ Pro LED Mask",
-            "subtitle": "Biophotonic Amplification"
-          }
-        },
-        "feature_DA39jg": {
-          "type": "feature",
-          "settings": {
-            "custom_icon": "shopify://shop_images/output-onlinepngtools_3.png",
-            "icon": "supplement",
-            "title": "Aura Inner Glow™",
-            "subtitle": "Internal Fortification"
-          }
-        },
-        "feature_qKPjKw": {
-          "type": "feature",
-          "settings": {
-            "custom_icon": "shopify://shop_images/output-onlinepngtools_6.png",
-            "icon": "skincare",
-            "title": "CellSync™ Skincare",
-            "subtitle": "Topical Regeneration"
-          }
-        }
-      },
-      "block_order": [
-        "feature_cnfKde",
-        "feature_DA39jg",
-        "feature_qKPjKw"
-      ],
-      "name": "Cellular Harmony Hero",
-      "settings": {
-        "title": "<p>introducing <strong>Cellular</strong><br/><strong>Harmony™</strong></p>",
-        "subtitle": "Restore firmness, smooth fine lines, and revive your natural glow with science backed anti-aging therapy.",
-        "hero_image": "shopify://shop_images/Capture.jpg",
-        "show_image_divider": false,
-        "primary_cta_text": "Cellular Harmony™ Protocol",
-        "primary_cta_url": "shopify://products/kailasa-shilajit-gummies",
-        "primary_cta_bg": "#ffffff",
-        "primary_cta_text_color": "#000000",
-        "secondary_cta_text": "Take Regeneration Audit",
-        "secondary_cta_url": "",
-        "secondary_cta_bg": "#4fffff",
-        "secondary_cta_text_color": "#333333",
-        "title_font": "Montserrat",
-        "title_size": 46,
-        "title_weight": "700",
-        "title_style": "normal",
-        "subtitle_font": "Montserrat",
-        "subtitle_size": 18,
-        "subtitle_weight": "400",
-        "subtitle_style": "normal",
-        "feature_font": "Montserrat",
-        "feature_title_size": 18,
-        "feature_title_weight": "700",
-        "feature_title_style": "normal",
-        "feature_subtitle_size": 15,
-        "feature_subtitle_weight": "400",
-        "feature_subtitle_style": "normal",
-        "plus_size": 26,
-        "plus_color": "#f8f9fa",
-        "plus_line_length": 14,
-        "plus_line_width": 3,
-        "image_width": 500,
-        "image_height": 500,
-        "image_fit": "contain",
-        "image_border_radius": 0,
-        "section_padding_top": 20,
-        "section_padding_bottom": 20,
-        "section_padding_left": 40,
-        "background_color": "#000000",
-        "text_color": "#ffffff"
-      }
-    },
     "skincare_bundle_VLW7E9": {
       "type": "skincare-bundle",
       "blocks": {
@@ -331,11 +251,167 @@
         "cta_hover_color": "#00bcd4",
         "cta_border_color": "#e5e5e5"
       }
+    },
+    "tab_section_3ybbnx": {
+      "type": "tab-section",
+      "blocks": {
+        "image_text_block_EFeDia": {
+          "type": "image-text-block",
+          "settings": {
+            "tab_name": "About",
+            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
+          }
+        },
+        "ingredient_block_GU7cfp": {
+          "type": "ingredient-block",
+          "settings": {
+            "tab_name": "Ingredients",
+            "layout": "ingredients-image",
+            "main_image_alt": "Product ingredients",
+            "ingredients_title": "KEY INGREDIENTS",
+            "ingredient_image_size": 60,
+            "font_family": "Montserrat, sans-serif",
+            "section_title_font_size": 14,
+            "section_title_color": "#999999",
+            "ingredient_title_font_size": 16,
+            "ingredient_title_color": "#333333",
+            "ingredient_desc_font_size": 13,
+            "ingredient_desc_color": "#888888",
+            "ingredient_title_1": "Glycolic Acid",
+            "ingredient_description_1": "An AHA from sugarcane, it exfoliates, brightens, reduces wrinkles, fades hyperpigmentation, and prevents blackheads. It boosts cell renewal but increases sun sensitivity, so sunscreen is essential.",
+            "ingredient_title_2": "",
+            "ingredient_description_2": "",
+            "ingredient_title_3": "",
+            "ingredient_description_3": "",
+            "ingredient_title_4": "",
+            "ingredient_description_4": "",
+            "ingredient_title_5": "",
+            "ingredient_description_5": "",
+            "ingredient_title_6": "",
+            "ingredient_description_6": "",
+            "ingredient_title_7": "",
+            "ingredient_description_7": "",
+            "ingredient_title_8": "",
+            "ingredient_description_8": "",
+            "ingredient_title_9": "",
+            "ingredient_description_9": "",
+            "ingredient_title_10": "",
+            "ingredient_description_10": ""
+          }
+        },
+        "faq_block_kPRnra": {
+          "type": "faq-block",
+          "settings": {
+            "tab_name": "FAQ",
+            "layout": "image-faq",
+            "faq_bg_color": "#FFFFFF",
+            "question_text_color": "#181818",
+            "answer_text_color": "#666666",
+            "border_color": "#E0E0E0",
+            "faq_max_height": 400,
+            "faq1_question": "How many times should I use this?",
+            "faq1_answer": "<p>Use this product once daily in the evening. Start with 2-3 times per week and gradually increase frequency as your skin builds tolerance.</p>",
+            "faq2_question": "I already use an exfoliating scrub, should I continue with that after I use this cleanser?",
+            "faq2_answer": "<p>It's recommended to avoid using other exfoliating products when starting this treatment to prevent over-exfoliation.</p>",
+            "faq3_question": "Will this make me break out?",
+            "faq3_answer": "<p>Some initial purging may occur as your skin adjusts. This is normal and should subside within 2-4 weeks of consistent use.</p>",
+            "faq4_question": "How long until I see results on my face?",
+            "faq4_answer": "<p>Most users see visible improvements within 4-6 weeks of consistent use. Results may vary depending on skin type and condition.</p>",
+            "faq5_question": "Can we use it on Acne Prone Skin?",
+            "faq5_answer": "<p>Yes, this product is suitable for acne-prone skin. However, start slowly and monitor your skin's response.</p>",
+            "faq6_question": "Is this good for Dry Skin?",
+            "faq6_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>",
+            "faq7_question": "",
+            "faq7_answer": "",
+            "faq8_question": "",
+            "faq8_answer": "",
+            "faq9_question": "",
+            "faq9_answer": "",
+            "faq10_question": "",
+            "faq10_answer": "",
+            "faq11_question": "",
+            "faq11_answer": "",
+            "faq12_question": "",
+            "faq12_answer": "",
+            "faq13_question": "",
+            "faq13_answer": "",
+            "faq14_question": "",
+            "faq14_answer": "",
+            "faq15_question": "",
+            "faq15_answer": ""
+          }
+        },
+        "image_text_block_zJamzz": {
+          "type": "image-text-block",
+          "settings": {
+            "tab_name": "About",
+            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_block_EFeDia",
+        "ingredient_block_GU7cfp",
+        "faq_block_kPRnra",
+        "image_text_block_zJamzz"
+      ],
+      "name": "Tab Section",
+      "settings": {
+        "title": "Photon Youth™ Pro LED Mask",
+        "background_color": "#FFFFFF",
+        "text_color": "#181818",
+        "border_color": "#4FFFFF",
+        "border_width": 2,
+        "inner_tab_active_bg": "#181818",
+        "inner_tab_active_text": "#FFFFFF",
+        "inner_tab_active_dot": "#4FFFFF",
+        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_inactive_text": "#181818",
+        "inner_tab_hover_bg": "#181818",
+        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_border_color": "#181818",
+        "inner_tab_border_width": 1,
+        "title_font_family": "Montserrat, sans-serif",
+        "title_font_weight": 800,
+        "title_font_style": "normal",
+        "title_font_size_desktop": 50,
+        "title_font_size_mobile": 24,
+        "tab_font_family": "Montserrat, sans-serif",
+        "tab_font_weight": 500,
+        "tab_font_style": "normal",
+        "tab_font_size_desktop": 16,
+        "tab_font_size_mobile": 14,
+        "height_desktop": 120,
+        "title_padding_desktop": 20,
+        "arrow_padding_desktop": 45,
+        "arrow_size_desktop": 70,
+        "arrow_stroke_desktop": 3,
+        "height_mobile": 60,
+        "title_padding_mobile": 20,
+        "arrow_padding_mobile": 20,
+        "arrow_size_mobile": 18,
+        "arrow_stroke_mobile": 2,
+        "arrow_style": "stroke"
+      }
     }
   },
   "order": [
-    "cellular_harmony_hero_fX8tmh",
     "skincare_bundle_VLW7E9",
-    "new_7fMnep"
+    "new_7fMnep",
+    "tab_section_3ybbnx"
   ]
 }

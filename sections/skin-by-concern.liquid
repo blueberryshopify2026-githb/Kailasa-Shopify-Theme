@@ -1,0 +1,1792 @@
+<style>
+  .skin-by-concern-section {
+    padding: 0;
+    background: #ffffff;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 80px; /* Add space from previous section */
+  }
+
+  .skin-by-concern-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Full Width Tab Navigation */
+  .concern-tabs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: white;
+  }
+
+  .concern-tab {
+    background: white;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 16px;
+    padding: 14px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 140px;
+  }
+
+  .concern-tab:hover:not(.active) {
+    background: #000;
+    color: white;
+    border-color: #000;
+  }
+
+  .concern-tab.active {
+    background: #000;
+    color: white;
+    border-color: #000;
+    z-index: 2;
+  }
+
+  .concern-tab.active::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #00E0FF;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Main Content Layout */
+  .concern-content {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    gap: 0;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  /* Before/After Image Section - Sticky within section */
+  .before-after-section {
+    width: 50%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    position: sticky;
+    top: 60px;
+    background: white;
+    z-index: 10;
+    align-self: flex-start;
+  }
+
+  .before-after-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: pan-x;
+    cursor: ew-resize;
+  }
+
+  .before-after-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* After image - always fully visible as base layer */
+  .after-image {
+    z-index: 1;
+  }
+
+  /* Before image - clipped to show only left portion up to divider */
+  .before-image {
+    z-index: 2;
+    clip-path: inset(0 50% 0 0);
+    will-change: clip-path;
+    transform: translateZ(0);
+  }
+
+  .slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    cursor: ew-resize;
+    transform: translateX(-50%);
+    z-index: 10;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    transition: background 0.2s ease;
+  }
+
+  .slider-handle:hover {
+    background: rgba(255, 255, 255, 1);
+    width: 4px;
+  }
+
+  .slider-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px solid #00E0FF;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: ew-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    z-index: 11;
+    transition: all 0.2s ease;
+  }
+
+  .slider-button:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: #00B8CC;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .slider-button::before,
+  .slider-button::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background: #00E0FF;
+  }
+
+  .slider-button::before {
+    transform: rotate(45deg) translateX(-2px);
+  }
+
+  .slider-button::after {
+    transform: rotate(-45deg) translateX(-2px);
+  }
+
+  .image-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .label-left {
+    font-weight: 600;
+  }
+
+  .label-right {
+    font-weight: 600;
+    text-align: right;
+  }
+
+  /* Products Section */
+  .products-section {
+    width: 50%;
+    background: #ffffff;
+    padding: 0;
+    position: relative;
+    min-height: calc(100vh - 60px);
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+  .products-section::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Sticky Title and Description */
+  .products-header {
+    margin-top: 0;
+    padding-top: 30px;
+    position: sticky;
+    top: 60px;
+    background: white;
+    z-index: 50;
+    padding-bottom: 10px;
+    {% comment %} border-bottom: 1px solid rgba(0, 0, 0, 0.1); {% endcomment %}
+    flex-shrink: 0;
+    /* Ensure header is not affected by transforms */
+    transform: none !important;
+    will-change: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* Add white mask above the header */
+    background: white;
+    /* Extend the background upward */
+    padding-top: 20px;
+  }
+
+  /* Create a large white mask above the header */
+  .products-header::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: white;
+    z-index: 51;
+  }
+
+  .products-title {
+    font-size:35px;
+    font-weight: 900;
+    color: #333333;
+    margin-bottom: 3px;
+    line-height: 1.1;
+  }
+
+  .products-description {
+    font-size: 17px;
+    color: #666666;
+    line-height: 1.3;
+    margin-top: 8px;
+    {% comment %} margin-bottom: 0; {% endcomment %}
+    {% comment %} padding-bottom: 25px {% endcomment %}
+  }
+
+  /* Products Container with padding */
+  .products-content {
+    padding: 20px 15px 40px 15px;
+    position: relative;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Hide scrollbar while keeping scroll functionality */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    /* Prevent any transforms from being applied */
+    transform: none !important;
+  }
+
+  /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+  .products-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Remove scroll indicators - they're causing visual clutter */
+
+  .products-scroll-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .products-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.6s ease;
+    align-items: stretch;
+    justify-items: stretch;
+    height: 460px;
+    flex-shrink: 0;
+    padding: 10px;
+    position: relative;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .products-row.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  .product-card {
+    background: var(--tile-bg-color, #ffffff);
+    padding: 50px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+    max-height: 420px;
+    display: flex;
+     padding: 25px 15px 40px 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: var(--tile-radius, 16px);
+    position: relative;
+    overflow: visible;
+    box-shadow: 5px 5px 10px rgba(204, 226, 226, 0.77);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 24px rgba(204, 226, 226, 0.77);
+  }
+
+
+
+  .product-code {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+
+  .product-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+
+
+  .product-header {
+    margin-top: 15px;
+    flex-shrink: 0;
+  }
+
+
+  .product-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--tile-text-color, #ffffff);
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    text-transform: none;
+    letter-spacing: 0;
+    text-align: center;
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .product-image {
+    width: 100%;
+    height: 300px;
+    max-width: 300px;
+    object-fit: contain;
+    object-position: center;
+    margin: 10px auto;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    box-sizing: border-box;
+    flex: 1;
+    min-height: 200px;
+    display: block;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .product-footer {
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .product-button {
+    {% comment %} background: rgba(0, 0, 0, 0.9); {% endcomment %}
+    background: #4FFFFF;
+    color: rgba(0, 0, 0, 0.9);
+    padding: 10px 34px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .product-button:hover {
+    background: cyan;
+    color: #000000;
+    transform: translateY(-2px);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .product-price {
+    font-size: 13px;
+    font-weight: 400;
+    color: black;
+    margin: 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .product-subtitle {
+    display: none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .product-rating {
+    display: none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Hidden content for other concerns */
+  .concern-data {
+    display: none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .concern-data.active {
+    display: block;
+  }
+
+  /* Ensure section ends after last product */
+  .products-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .products-scroll-container:after {
+    content: '';
+    display: block;
+    height: 40px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .skin-by-concern-section {
+      min-height: auto;
+      margin-top: 0;
+    }
+
+    .skin-by-concern-container {
+      padding: 0;
+    }
+
+
+    .concern-tabs {
+      position: sticky;
+      top: 0;
+      margin-bottom: 0;
+      overflow-x: auto;
+      padding: 0 12px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .concern-tab {
+      padding: 12px 20px;
+      font-size: 14px;
+      min-width: 120px;
+      flex: none;
+      border-radius: 16px;
+    }
+
+
+    .concern-content {
+      flex-direction: column;
+      min-height: auto;
+      margin-top: 0;
+    }
+
+
+    .before-after-section {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    padding: 20px;
+    top: 0;
+    left: 0;
+    }
+
+    .before-after-container {
+      height: 40vh;
+      min-height: 250px;
+      max-height: 350px;
+    }
+
+    .products-section {
+      position: relative;
+      width: 100%;
+      min-height: 60vh;
+      max-height: 60vh;
+      overflow: visible;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .products-title {
+      font-size: 24px;
+    }
+
+    .products-header {
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 50;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      /* Ensure header is not affected by transforms */
+      transform: none !important;
+      will-change: auto;
+      /* Add white mask to hide content behind */
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
+      padding-left: 12px;
+      padding-right: 12px;
+      /* Add white mask above the header */
+      background: white;
+      /* Extend the background upward */
+      padding-top: 25px;
+    }
+
+    /* Create a large white mask above the header for mobile */
+    .products-header::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: white;
+      z-index: 51;
+    }
+
+    .products-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      /* Hide scrollbar while keeping scroll functionality */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+    }
+
+    /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+    .products-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .products-content {
+      padding: 1px 12px 40px 12px;
+    }
+
+    .products-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      height: auto;
+      padding: 5px 2px;
+    }
+
+    .product-card {
+      max-width: none;
+      padding: 8px;
+      max-height: 320px;
+    }
+
+    .product-image {
+      height: 160px;
+    }
+
+  }
+
+  @media (max-width: 480px) {
+    .concern-tab {
+      padding: 10px 12px;
+      font-size: 13px;
+      min-width: 100px;
+    }
+
+    .before-after-container {
+      height: 35vh;
+      min-height: 200px;
+      max-height: 280px;
+    }
+
+    .product-image {
+      height: 140px;
+    }
+  }
+
+</style>
+
+<div
+  class="skin-by-concern-section full-width"
+  id="skin-by-concern-{{ section.id }}"
+  style="--tile-bg-color: {{ section.settings.tile_bg_color | default: '#ffffff' }}; --tile-text-color: {{ section.settings.tile_text_color | default: '#000000' }}; --tile-radius: {{ section.settings.tile_radius | default: 16 }}px;"
+>
+  <div class="skin-by-concern-container">
+    <!-- Full Width Tab Navigation -->
+    <div class="concern-tabs">
+      <div
+        class="concern-tab active"
+        data-concern="dullness"
+        onclick="return switchConcern('dullness', '{{ section.id }}')"
+      >
+        Dullness
+      </div>
+      <div class="concern-tab" data-concern="wrinkles" onclick="return switchConcern('wrinkles', '{{ section.id }}')">
+        Wrinkles
+      </div>
+      <div class="concern-tab" data-concern="undereye" onclick="return switchConcern('undereye', '{{ section.id }}')">
+        Undereye
+      </div>
+      <div
+        class="concern-tab"
+        data-concern="anti-aging"
+        onclick="return switchConcern('anti-aging', '{{ section.id }}')"
+      >
+        Anti-aging
+      </div>
+      <div class="concern-tab" data-concern="sunburn" onclick="return switchConcern('sunburn', '{{ section.id }}')">
+        Sunburn
+      </div>
+      <div class="concern-tab" data-concern="acne" onclick="return switchConcern('acne', '{{ section.id }}')">Acne</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="concern-content">
+      <!-- Sticky Before/After Image Section -->
+      <div class="before-after-section">
+        <div class="before-after-container" id="before-after-container-{{ section.id }}">
+          <img
+            src="{% if section.settings.dullness_before_image %}{{ section.settings.dullness_before_image | image_url: width: 500, height: 400 }}{% else %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666'%3EBefore Image%3C/text%3E%3C/svg%3E{% endif %}"
+            alt="Before"
+            class="before-after-image before-image"
+            id="before-image-{{ section.id }}"
+            width="500"
+            height="400"
+          >
+          <img
+            src="{% if section.settings.dullness_after_image %}{{ section.settings.dullness_after_image | image_url: width: 500, height: 400 }}{% else %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23e8f8ff'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666'%3EAfter Image%3C/text%3E%3C/svg%3E{% endif %}"
+            alt="After"
+            class="before-after-image after-image"
+            id="after-image-{{ section.id }}"
+            width="500"
+            height="400"
+          >
+          <div class="slider-handle" id="slider-handle-{{ section.id }}">
+            <div class="slider-button"></div>
+          </div>
+        </div>
+        <div class="image-labels">
+          <div class="label-left">Day 1</div>
+          <div class="label-right">After 4 Weeks of FIRM + BRIGHT</div>
+        </div>
+      </div>
+
+      <!-- Scrollable Products Section -->
+      <div class="products-section">
+        <!-- Sticky Header -->
+        <div class="products-header">
+          <h2 class="products-title" id="products-title-{{ section.id }}">Recommended Products</h2>
+          <p class="products-description" id="products-description-{{ section.id }}">
+            Discover our curated selection of products specifically designed to address your skin concerns and achieve
+            visible results.
+          </p>
+        </div>
+
+        <!-- Products Content -->
+        <div class="products-content">
+          <!-- Dullness Products -->
+          <div class="concern-data active" data-concern="dullness">
+            <div class="products-scroll-container" id="products-dullness-{{ section.id }}">
+              <!-- Products will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Wrinkles Products -->
+          <div class="concern-data" data-concern="wrinkles">
+            <div class="products-scroll-container" id="products-wrinkles-{{ section.id }}">
+              <!-- Products will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Undereye Products -->
+          <div class="concern-data" data-concern="undereye">
+            <div class="products-scroll-container" id="products-undereye-{{ section.id }}">
+              <!-- Products will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Anti-aging Products -->
+          <div class="concern-data" data-concern="anti-aging">
+            <div class="products-scroll-container" id="products-anti-aging-{{ section.id }}">
+              <!-- Products will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Sunburn Products -->
+          <div class="concern-data" data-concern="sunburn">
+            <div class="products-scroll-container" id="products-sunburn-{{ section.id }}">
+              <!-- Products will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Acne Products -->
+          <div class="concern-data" data-concern="acne">
+            <div class="products-scroll-container" id="products-acne-{{ section.id }}">
+              <!-- Products will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Product data for each concern (using Shopify product handles)
+  const concernData = {
+    'dullness': {
+      title: '{{ section.settings.dullness_title | default: "Brighten Dull Skin" }}',
+      description: '{{ section.settings.dullness_description | default: "Revitalize your complexion with our powerful brightening formulas that restore radiance and luminosity to tired, dull skin." }}',
+      beforeImage: '{{ section.settings.dullness_before_image | image_url: width: 500, height: 400 }}',
+      afterImage: '{{ section.settings.dullness_after_image | image_url: width: 500, height: 400 }}',
+      products: [
+        {% for block in section.blocks %}
+          {% if block.settings.concern == 'dullness' and block.settings.product %}
+            {
+              id: '{{ block.settings.product.id }}',
+              title: '{{ block.settings.product.title }}',
+              image: '{{ block.settings.product.featured_image | image_url: width: 200, height: 200 }}',
+              customImage: '{% if block.settings.custom_image %}{{ block.settings.custom_image | image_url: width: 200, height: 200 }}{% endif %}',
+              price: '{{ block.settings.product.price | money }}',
+              comparePrice: '{{ block.settings.product.compare_at_price | money }}',
+              url: '{{ block.settings.product.url }}',
+              subtitle: '{{ block.settings.custom_subtitle | default: block.settings.product.metafields.custom.subtitle }}',
+              rating: '{{ block.settings.custom_rating | default: "4.5" }}',
+              reviews: '{{ block.settings.custom_reviews | default: "1,234" }}',
+              code: '{{ block.settings.product_code | default: "NEW" }}',
+              isNew: {{ block.settings.show_new_badge | default: true }}
+            },
+          {% endif %}
+        {% endfor %}
+      ]
+    },
+    'wrinkles': {
+      title: '{{ section.settings.wrinkles_title | default: "Smooth Fine Lines" }}',
+      description: '{{ section.settings.wrinkles_description | default: "Target visible signs of aging with our advanced anti-wrinkle treatments that help smooth and firm your skin." }}',
+      beforeImage: '{{ section.settings.wrinkles_before_image | image_url: width: 500, height: 400 }}',
+      afterImage: '{{ section.settings.wrinkles_after_image | image_url: width: 500, height: 400 }}',
+      products: [
+        {% for block in section.blocks %}
+          {% if block.settings.concern == 'wrinkles' and block.settings.product %}
+            {
+              id: '{{ block.settings.product.id }}',
+              title: '{{ block.settings.product.title }}',
+              image: '{{ block.settings.product.featured_image | image_url: width: 200, height: 200 }}',
+              customImage: '{% if block.settings.custom_image %}{{ block.settings.custom_image | image_url: width: 200, height: 200 }}{% endif %}',
+              price: '{{ block.settings.product.price | money }}',
+              comparePrice: '{{ block.settings.product.compare_at_price | money }}',
+              url: '{{ block.settings.product.url }}',
+              subtitle: '{{ block.settings.custom_subtitle | default: block.settings.product.metafields.custom.subtitle }}',
+              rating: '{{ block.settings.custom_rating | default: "4.5" }}',
+              reviews: '{{ block.settings.custom_reviews | default: "1,234" }}',
+              code: '{{ block.settings.product_code | default: "NEW" }}',
+              isNew: {{ block.settings.show_new_badge | default: true }}
+            },
+          {% endif %}
+        {% endfor %}
+      ]
+    },
+    'undereye': {
+      title: '{{ section.settings.undereye_title | default: "Refresh Under Eyes" }}',
+      description: '{{ section.settings.undereye_description | default: "Diminish dark circles, puffiness, and fine lines around the delicate eye area with our specialized treatments." }}',
+      beforeImage: '{{ section.settings.undereye_before_image | image_url: width: 500, height: 400 }}',
+      afterImage: '{{ section.settings.undereye_after_image | image_url: width: 500, height: 400 }}',
+      products: [
+        {% for block in section.blocks %}
+          {% if block.settings.concern == 'undereye' and block.settings.product %}
+            {
+              id: '{{ block.settings.product.id }}',
+              title: '{{ block.settings.product.title }}',
+              image: '{{ block.settings.product.featured_image | image_url: width: 200, height: 200 }}',
+              customImage: '{% if block.settings.custom_image %}{{ block.settings.custom_image | image_url: width: 200, height: 200 }}{% endif %}',
+              price: '{{ block.settings.product.price | money }}',
+              comparePrice: '{{ block.settings.product.compare_at_price | money }}',
+              url: '{{ block.settings.product.url }}',
+              subtitle: '{{ block.settings.custom_subtitle | default: block.settings.product.metafields.custom.subtitle }}',
+              rating: '{{ block.settings.custom_rating | default: "4.5" }}',
+              reviews: '{{ block.settings.custom_reviews | default: "1,234" }}',
+              code: '{{ block.settings.product_code | default: "NEW" }}',
+              isNew: {{ block.settings.show_new_badge | default: true }}
+            },
+          {% endif %}
+        {% endfor %}
+      ]
+    },
+    'anti-aging': {
+      title: '{{ section.settings.anti_aging_title | default: "Combat Aging Signs" }}',
+      description: '{{ section.settings.anti_aging_description | default: "Turn back time with our comprehensive anti-aging solutions that promote youthful, resilient skin." }}',
+      beforeImage: '{{ section.settings.anti_aging_before_image | image_url: width: 500, height: 400 }}',
+      afterImage: '{{ section.settings.anti_aging_after_image | image_url: width: 500, height: 400 }}',
+      products: [
+        {% for block in section.blocks %}
+          {% if block.settings.concern == 'anti-aging' and block.settings.product %}
+            {
+              id: '{{ block.settings.product.id }}',
+              title: '{{ block.settings.product.title }}',
+              image: '{{ block.settings.product.featured_image | image_url: width: 200, height: 200 }}',
+              customImage: '{% if block.settings.custom_image %}{{ block.settings.custom_image | image_url: width: 200, height: 200 }}{% endif %}',
+              price: '{{ block.settings.product.price | money }}',
+              comparePrice: '{{ block.settings.product.compare_at_price | money }}',
+              url: '{{ block.settings.product.url }}',
+              subtitle: '{{ block.settings.custom_subtitle | default: block.settings.product.metafields.custom.subtitle }}',
+              rating: '{{ block.settings.custom_rating | default: "4.5" }}',
+              reviews: '{{ block.settings.custom_reviews | default: "1,234" }}',
+              code: '{{ block.settings.product_code | default: "NEW" }}',
+              isNew: {{ block.settings.show_new_badge | default: true }}
+            },
+          {% endif %}
+        {% endfor %}
+      ]
+    },
+    'sunburn': {
+      title: '{{ section.settings.sunburn_title | default: "Soothe Sun Damage" }}',
+      description: '{{ section.settings.sunburn_description | default: "Repair and protect sun-damaged skin with our healing formulas that restore and prevent further damage." }}',
+      beforeImage: '{{ section.settings.sunburn_before_image | image_url: width: 500, height: 400 }}',
+      afterImage: '{{ section.settings.sunburn_after_image | image_url: width: 500, height: 400 }}',
+      products: [
+        {% for block in section.blocks %}
+          {% if block.settings.concern == 'sunburn' and block.settings.product %}
+            {
+              id: '{{ block.settings.product.id }}',
+              title: '{{ block.settings.product.title }}',
+              image: '{{ block.settings.product.featured_image | image_url: width: 200, height: 200 }}',
+              customImage: '{% if block.settings.custom_image %}{{ block.settings.custom_image | image_url: width: 200, height: 200 }}{% endif %}',
+              price: '{{ block.settings.product.price | money }}',
+              comparePrice: '{{ block.settings.product.compare_at_price | money }}',
+              url: '{{ block.settings.product.url }}',
+              subtitle: '{{ block.settings.custom_subtitle | default: block.settings.product.metafields.custom.subtitle }}',
+              rating: '{{ block.settings.custom_rating | default: "4.5" }}',
+              reviews: '{{ block.settings.custom_reviews | default: "1,234" }}',
+              code: '{{ block.settings.product_code | default: "NEW" }}',
+              isNew: {{ block.settings.show_new_badge | default: true }}
+            },
+          {% endif %}
+        {% endfor %}
+      ]
+    },
+    'acne': {
+      title: '{{ section.settings.acne_title | default: "Clear Acne & Blemishes" }}',
+      description: '{{ section.settings.acne_description | default: "Achieve clearer, healthier skin with our targeted acne treatments that reduce breakouts and prevent future blemishes." }}',
+      beforeImage: '{{ section.settings.acne_before_image | image_url: width: 500, height: 400 }}',
+      afterImage: '{{ section.settings.acne_after_image | image_url: width: 500, height: 400 }}',
+      products: [
+        {% for block in section.blocks %}
+          {% if block.settings.concern == 'acne' and block.settings.product %}
+            {
+              id: '{{ block.settings.product.id }}',
+              title: '{{ block.settings.product.title }}',
+              image: '{{ block.settings.product.featured_image | image_url: width: 200, height: 200 }}',
+              customImage: '{% if block.settings.custom_image %}{{ block.settings.custom_image | image_url: width: 200, height: 200 }}{% endif %}',
+              price: '{{ block.settings.product.price | money }}',
+              comparePrice: '{{ block.settings.product.compare_at_price | money }}',
+              url: '{{ block.settings.product.url }}',
+              subtitle: '{{ block.settings.custom_subtitle | default: block.settings.product.metafields.custom.subtitle }}',
+              rating: '{{ block.settings.custom_rating | default: "4.5" }}',
+              reviews: '{{ block.settings.custom_reviews | default: "1,234" }}',
+              code: '{{ block.settings.product_code | default: "NEW" }}',
+              isNew: {{ block.settings.show_new_badge | default: true }}
+            },
+          {% endif %}
+        {% endfor %}
+      ]
+    }
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Global variables
+  let isSliding = false;
+  let currentConcern = 'dullness';
+  let currentProductRows = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Switch concern function
+  function switchConcern(concern, sectionId, event) {
+    // Prevent default behavior and event bubbling if event is provided
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+   
+    currentConcern = concern;
+   
+    // Update active tab
+    const tabs = document.querySelectorAll(`#skin-by-concern-${sectionId} .concern-tab`);
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+      if (tab.dataset.concern === concern) {
+        tab.classList.add('active');
+      }
+    });
+
+    // Update images
+    updateImages(concern, sectionId);
+   
+    // Update products header
+    updateProductsHeader(concern, sectionId);
+   
+    // Show/hide concern data
+    const concernDataElements = document.querySelectorAll(`#skin-by-concern-${sectionId} .concern-data`);
+    concernDataElements.forEach(element => {
+      element.classList.remove('active');
+      if (element.dataset.concern === concern) {
+        element.classList.add('active');
+      }
+    });
+
+    // NO SCROLLING - Stay in current position to avoid navigation to hero section
+    // Just update the content without any scroll behavior
+   
+    // Update products
+    updateProducts(concern, sectionId);
+   
+    // Return false to prevent any default link behavior
+    return false;
+  }
+
+  // Update before/after images
+  function updateImages(concern, sectionId) {
+    const data = concernData[concern];
+    const beforeImg = document.getElementById(`before-image-${sectionId}`);
+    const afterImg = document.getElementById(`after-image-${sectionId}`);
+   
+    // Use placeholder images if no images are set
+    const defaultBefore = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666'%3EBefore Image%3C/text%3E%3C/svg%3E";
+    const defaultAfter = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23e8f8ff'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666'%3EAfter Image%3C/text%3E%3C/svg%3E";
+   
+    if (data.beforeImage && data.beforeImage !== '' && !data.beforeImage.includes('undefined')) {
+      beforeImg.src = data.beforeImage;
+    } else {
+      beforeImg.src = defaultBefore;
+    }
+   
+    if (data.afterImage && data.afterImage !== '' && !data.afterImage.includes('undefined')) {
+      afterImg.src = data.afterImage;
+    } else {
+      afterImg.src = defaultAfter;
+    }
+  }
+
+  // Update products title and description
+  function updateProductsHeader(concern, sectionId) {
+    const data = concernData[concern];
+    const titleElement = document.getElementById(`products-title-${sectionId}`);
+    const descriptionElement = document.getElementById(`products-description-${sectionId}`);
+   
+    if (titleElement && data.title) {
+      titleElement.textContent = data.title;
+    }
+   
+    if (descriptionElement && data.description) {
+      descriptionElement.textContent = data.description;
+    }
+  }
+
+  // Update products with scroll animation
+  function updateProducts(concern, sectionId) {
+    const data = concernData[concern];
+    const container = document.getElementById(`products-${concern}-${sectionId}`);
+   
+    if (!container) return;
+   
+    // Clean up previous scroll handlers
+    const sectionElement = document.getElementById(`skin-by-concern-${sectionId}`);
+    if (sectionElement._scrollHandler) {
+      window.removeEventListener('scroll', sectionElement._scrollHandler);
+    }
+    if (sectionElement._sectionObserver) {
+      sectionElement._sectionObserver.disconnect();
+    }
+   
+    // No need to reset transforms since we're not using them
+   
+    container.innerHTML = '';
+    currentProductRows = [];
+   
+    // Get only actual products - no placeholders
+    let products = data.products && data.products.length > 0 ? data.products : [];
+   
+    // If no products are configured, don't show any products
+    if (products.length === 0) {
+      container.innerHTML = '<div style="padding: 40px; text-align: center; color: #666;">No products configured for this concern.</div>';
+      return;
+    }
+   
+    // Create rows with 2 products each for scrolling - ensure all products are accessible
+    currentProductRows = [];
+   
+    for (let i = 0; i < products.length; i += 2) {
+      const row = document.createElement('div');
+      row.className = 'products-row';
+     
+      const productsInRow = products.slice(i, i + 2);
+     
+      productsInRow.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        if (product.url && product.url !== '#') {
+          productCard.onclick = () => window.location.href = product.url;
+        }
+       
+        const stars = '★'.repeat(Math.floor(parseFloat(product.rating))) +
+                     (parseFloat(product.rating) % 1 >= 0.5 ? '☆' : '');
+       
+        // Get custom image/video or fallback to product image
+        const customMedia = product.customImage || product.image;
+        const productCode = product.code || 'NEW';
+        const isNew = product.isNew !== false;
+       
+        productCard.innerHTML = `
+          <div class="product-code">${productCode}</div>
+          <div class="product-content">
+            <div class="product-header">
+              <div class="product-title">${product.title}</div>
+            </div>
+            <img src="${customMedia}" alt="${product.title}" class="product-image" width="220" height="220">
+            <div class="product-footer">
+              <div class="product-button">Shop Now</div>
+              <div class="product-price">${product.price ? `Starting at ${product.price} per month` : ''}</div>
+            </div>
+          </div>
+        `;
+       
+        row.appendChild(productCard);
+      });
+     
+      container.appendChild(row);
+      currentProductRows.push(row);
+    }
+   
+    // Initialize scroll animation for the products
+    initializeScrollAnimation(sectionId);
+  }
+
+  // Initialize scroll animation for products with enhanced scroll behavior
+  function initializeScrollAnimation(sectionId) {
+    const sectionElement = document.getElementById(`skin-by-concern-${sectionId}`);
+    const productsSection = document.querySelector(`#skin-by-concern-${sectionId} .products-section`);
+    const beforeAfterSection = document.querySelector(`#skin-by-concern-${sectionId} .before-after-section`);
+   
+    if (!productsSection || !sectionElement || !beforeAfterSection) return;
+   
+    // Simple intersection observer for product rows visibility
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+   
+    // Observe all product rows
+    currentProductRows.forEach(row => {
+      observer.observe(row);
+    });
+   
+    // Store reference for cleanup
+    sectionElement._sectionObserver = observer;
+  }
+
+  // Initialize slider functionality
+  function initializeSlider(sectionId) {
+    const container = document.getElementById(`before-after-container-${sectionId}`);
+    const handle = document.getElementById(`slider-handle-${sectionId}`);
+    const beforeImage = document.getElementById(`before-image-${sectionId}`);
+    const afterImage = document.getElementById(`after-image-${sectionId}`);
+   
+    if (!container || !handle || !beforeImage || !afterImage) return;
+
+    let isSliding = false;
+
+    function updateSlider(percentage) {
+      // Clamp percentage between 0 and 100
+      percentage = Math.max(0, Math.min(100, percentage));
+     
+      // Update handle position immediately
+      handle.style.left = percentage + '%';
+     
+      // Clip the before image to show only the left portion up to the divider
+      // Using inset: top right bottom left
+      const rightInset = (100 - percentage) + '%';
+      beforeImage.style.clipPath = `inset(0 ${rightInset} 0 0)`;
+    }
+
+    function getPercentageFromEvent(clientX) {
+      const rect = container.getBoundingClientRect();
+      const x = clientX - rect.left;
+      return (x / rect.width) * 100;
+    }
+
+    function handleMove(clientX) {
+      if (!isSliding) return;
+      const percentage = getPercentageFromEvent(clientX);
+      updateSlider(percentage);
+    }
+
+    // Mouse events
+    handle.addEventListener('mousedown', (e) => {
+      isSliding = true;
+      e.preventDefault();
+      e.stopPropagation();
+      document.body.style.cursor = 'ew-resize';
+    });
+
+    // Allow clicking anywhere on the container to move the slider
+    container.addEventListener('mousedown', (e) => {
+      if (e.target === container || e.target.classList.contains('before-after-image')) {
+        isSliding = true;
+        const percentage = getPercentageFromEvent(e.clientX);
+        updateSlider(percentage);
+        e.preventDefault();
+        document.body.style.cursor = 'ew-resize';
+      }
+    });
+
+
+    document.addEventListener('mousemove', (e) => {
+      if (isSliding) {
+        handleMove(e.clientX);
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+
+    document.addEventListener('mouseup', () => {
+      if (isSliding) {
+        isSliding = false;
+        document.body.style.cursor = '';
+      }
+    });
+
+    // Touch events for mobile
+    let touchStartX = 0;
+
+    handle.addEventListener('touchstart', (e) => {
+      isSliding = true;
+      touchStartX = e.touches[0].clientX;
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    container.addEventListener('touchstart', (e) => {
+      if (e.target === container || e.target.classList.contains('before-after-image')) {
+        isSliding = true;
+        touchStartX = e.touches[0].clientX;
+        const percentage = getPercentageFromEvent(e.touches[0].clientX);
+        updateSlider(percentage);
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      if (isSliding && e.touches.length > 0) {
+        handleMove(e.touches[0].clientX);
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => {
+      if (isSliding) {
+        isSliding = false;
+      }
+    });
+
+    // Prevent context menu on long press
+    container.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+
+    // Initialize at 50%
+    updateSlider(50);
+  }
+
+  // Initialize tab event listeners to prevent navigation issues
+  function initializeTabListeners(sectionId) {
+    const tabs = document.querySelectorAll(`#skin-by-concern-${sectionId} .concern-tab`);
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const concern = this.dataset.concern;
+        switchConcern(concern, sectionId);
+        return false;
+      });
+    });
+  }
+
+  // Initialize tab positioning within section
+  function initializeTabPositioning(sectionId) {
+    const sectionElement = document.getElementById(`skin-by-concern-${sectionId}`);
+    const tabsElement = sectionElement.querySelector('.concern-tabs');
+   
+    if (!sectionElement || !tabsElement) return;
+   
+    // Tabs are already sticky within the section via CSS
+    // Just ensure they stay visible when section is in view
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+          // Section is visible - ensure tabs are visible
+          tabsElement.style.opacity = '1';
+          tabsElement.style.visibility = 'visible';
+        } else if (entry.intersectionRatio < 0.05) {
+          // Section is barely visible - fade out tabs
+          tabsElement.style.opacity = '0';
+          tabsElement.style.visibility = 'hidden';
+        }
+      });
+    }, {
+      threshold: [0.05, 0.1, 0.9],
+      rootMargin: '0px'
+    });
+   
+    sectionObserver.observe(sectionElement);
+  }
+  // Initialize everything when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionId = '{{ section.id }}';
+   
+    // Initialize slider
+    initializeSlider(sectionId);
+   
+    // Initialize tab listeners
+    initializeTabListeners(sectionId);
+   
+    // Initialize tab positioning
+    initializeTabPositioning(sectionId);
+   
+    // Load initial content
+    switchConcern('dullness', sectionId);
+  });
+
+  // Also initialize if DOM is already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      const sectionId = '{{ section.id }}';
+      initializeSlider(sectionId);
+      initializeTabListeners(sectionId);
+      initializeTabPositioning(sectionId);
+      switchConcern('dullness', sectionId);
+    });
+  } else {
+    const sectionId = '{{ section.id }}';
+    initializeSlider(sectionId);
+    initializeTabListeners(sectionId);
+    initializeTabPositioning(sectionId);
+    switchConcern('dullness', sectionId);
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Skin by Concern",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Dullness Concern"
+    },
+    {
+      "type": "image_picker",
+      "id": "dullness_before_image",
+      "label": "Dullness Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "dullness_after_image",
+      "label": "Dullness After Image"
+    },
+    {
+      "type": "text",
+      "id": "dullness_title",
+      "label": "Dullness Title",
+      "default": "Brighten Dull Skin"
+    },
+    {
+      "type": "textarea",
+      "id": "dullness_description",
+      "label": "Dullness Description",
+      "default": "Revitalize your complexion with our powerful brightening formulas that restore radiance and luminosity to tired, dull skin."
+    },
+    {
+      "type": "header",
+      "content": "Wrinkles Concern"
+    },
+    {
+      "type": "image_picker",
+      "id": "wrinkles_before_image",
+      "label": "Wrinkles Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "wrinkles_after_image",
+      "label": "Wrinkles After Image"
+    },
+    {
+      "type": "text",
+      "id": "wrinkles_title",
+      "label": "Wrinkles Title",
+      "default": "Smooth Fine Lines"
+    },
+    {
+      "type": "textarea",
+      "id": "wrinkles_description",
+      "label": "Wrinkles Description",
+      "default": "Target visible signs of aging with our advanced anti-wrinkle treatments that help smooth and firm your skin."
+    },
+    {
+      "type": "header",
+      "content": "Undereye Concern"
+    },
+    {
+      "type": "image_picker",
+      "id": "undereye_before_image",
+      "label": "Undereye Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "undereye_after_image",
+      "label": "Undereye After Image"
+    },
+    {
+      "type": "text",
+      "id": "undereye_title",
+      "label": "Undereye Title",
+      "default": "Refresh Under Eyes"
+    },
+    {
+      "type": "textarea",
+      "id": "undereye_description",
+      "label": "Undereye Description",
+      "default": "Diminish dark circles, puffiness, and fine lines around the delicate eye area with our specialized treatments."
+    },
+    {
+      "type": "header",
+      "content": "Anti-aging Concern"
+    },
+    {
+      "type": "image_picker",
+      "id": "anti_aging_before_image",
+      "label": "Anti-aging Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "anti_aging_after_image",
+      "label": "Anti-aging After Image"
+    },
+    {
+      "type": "text",
+      "id": "anti_aging_title",
+      "label": "Anti-aging Title",
+      "default": "Combat Aging Signs"
+    },
+    {
+      "type": "textarea",
+      "id": "anti_aging_description",
+      "label": "Anti-aging Description",
+      "default": "Turn back time with our comprehensive anti-aging solutions that promote youthful, resilient skin."
+    },
+    {
+      "type": "header",
+      "content": "Sunburn Concern"
+    },
+    {
+      "type": "image_picker",
+      "id": "sunburn_before_image",
+      "label": "Sunburn Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "sunburn_after_image",
+      "label": "Sunburn After Image"
+    },
+    {
+      "type": "text",
+      "id": "sunburn_title",
+      "label": "Sunburn Title",
+      "default": "Soothe Sun Damage"
+    },
+    {
+      "type": "textarea",
+      "id": "sunburn_description",
+      "label": "Sunburn Description",
+      "default": "Repair and protect sun-damaged skin with our healing formulas that restore and prevent further damage."
+    },
+    {
+      "type": "header",
+      "content": "Acne Concern"
+    },
+    {
+      "type": "image_picker",
+      "id": "acne_before_image",
+      "label": "Acne Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "acne_after_image",
+      "label": "Acne After Image"
+    },
+    {
+      "type": "text",
+      "id": "acne_title",
+      "label": "Acne Title",
+      "default": "Clear Acne & Blemishes"
+    },
+    {
+      "type": "textarea",
+      "id": "acne_description",
+      "label": "Acne Description",
+      "default": "Achieve clearer, healthier skin with our targeted acne treatments that reduce breakouts and prevent future blemishes."
+    },
+    {
+      "type": "header",
+      "content": "Product Tile Styling"
+    },
+    {
+      "type": "color",
+      "id": "tile_bg_color",
+      "label": "Tile Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tile_text_color",
+      "label": "Tile Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "tile_radius",
+      "label": "Tile Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "select",
+          "id": "concern",
+          "label": "Concern Category",
+          "options": [
+            {
+              "value": "dullness",
+              "label": "Dullness"
+            },
+            {
+              "value": "wrinkles",
+              "label": "Wrinkles"
+            },
+            {
+              "value": "undereye",
+              "label": "Undereye"
+            },
+            {
+              "value": "anti-aging",
+              "label": "Anti-aging"
+            },
+            {
+              "value": "sunburn",
+              "label": "Sunburn"
+            },
+            {
+              "value": "acne",
+              "label": "Acne"
+            }
+          ],
+          "default": "dullness"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "text",
+          "id": "custom_subtitle",
+          "label": "Custom Subtitle",
+          "info": "Override product subtitle (optional)"
+        },
+        {
+          "type": "text",
+          "id": "custom_rating",
+          "label": "Custom Rating",
+          "default": "4.5",
+          "info": "Product rating (e.g., 4.5)"
+        },
+        {
+          "type": "text",
+          "id": "custom_reviews",
+          "label": "Custom Reviews Count",
+          "default": "1,234",
+          "info": "Number of reviews (e.g., 1,234)"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Product Image/Video",
+          "info": "Override the product's default image with a custom one"
+        },
+        {
+          "type": "text",
+          "id": "product_code",
+          "label": "Product Code",
+          "default": "NEW",
+          "info": "Product code to display (e.g., AM-02™, PM-02™)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_new_badge",
+          "label": "Show 'New' Badge",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skin by Concern"
+    }
+  ]
+}
+{% endschema %}

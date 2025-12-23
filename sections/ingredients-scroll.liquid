@@ -1,0 +1,2246 @@
+<style>
+  .ingredients-scroll-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    overflow: hidden;
+  }
+
+
+  .ingredients-scroll-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+
+  /* Header Styles */
+  .ingredients-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0;
+    width: 100%;
+  }
+
+
+  .ingredients-title {
+    margin: 0 0 20px 0;
+    color: #333;
+    line-height: 1.2;
+  }
+
+
+  .ingredients-description {
+    margin: 0 auto;
+    max-width: 600px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+
+  /* Carousel Container */
+  .ingredients-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 50px;
+    height: 460px; /* Fixed height to prevent button jumping */
+  }
+
+
+  .ingredients-container {
+    flex: 1;
+    overflow: visible;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 460px; /* Fixed height to prevent button jumping */
+  }
+
+
+  /* Left and right spacers for equal proportions */
+  .carousel-spacer {
+    flex: 1.5; /* Each side takes 1.5 parts */
+  }
+
+
+  .ingredients-track {
+    display: flex;
+    gap: 40px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center;
+    height: 420px; /* Fixed height to prevent layout shifts */
+  }
+
+
+  /* Navigation Buttons - Simple like reference */
+  .carousel-nav {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+    align-self: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .carousel-nav:hover {
+    background: #333;
+    border-color: #333;
+    color: white;
+    transform: scale(1.05);
+  }
+
+
+  .carousel-nav:active {
+    transform: scale(0.95);
+  }
+
+
+  /* Side Cards - Small, grayscale like reference */
+  .ingredient-card {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 16px;
+    overflow: hidden;
+    opacity: 1;
+    filter: grayscale(1);
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    align-self: flex-end;
+  }
+
+
+  .ingredient-card:hover {
+    filter: grayscale(0.7);
+    transform: scale(1.05);
+  }
+
+
+  .ingredient-card:active {
+    transform: scale(0.95);
+  }
+
+
+  /* Center Active Card - Large and colorful like reference */
+  .ingredient-card.active {
+    width: 400px !important;
+    height: 400px !important;
+    opacity: 1 !important;
+    filter: grayscale(0) !important;
+    transform: scale(1) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important;
+    z-index: 10;
+    border-radius: 20px;
+    align-self: flex-end !important;
+    margin-bottom: 0 !important;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+  }
+
+
+  .ingredient-card.active:hover {
+    transform: scale(1) !important;
+    filter: grayscale(0) !important;
+  }
+
+
+  .ingredient-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+
+  .ingredient-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+
+  /* Remove image hover effect - only frost glass should have hover */
+
+
+  .placeholder-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+  }
+
+
+  /* Frost Glass Overlay - Positioned at top like reference */
+  .ingredient-auto-info {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: white;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    z-index: 5;
+  }
+
+
+  /* Show frost glass by default on active card */
+  .ingredients-track .ingredient-card.active .ingredient-auto-info {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 15 !important;
+  }
+
+  /* Hide frost glass on non-active cards */
+  .ingredients-track .ingredient-card:not(.active) .ingredient-auto-info {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+
+  .auto-info-header h3 {
+    margin: 0 0 6px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    font-family: 'Gilroy', sans-serif;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .ingredient-subtitle {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    font-family: 'Gilroy', sans-serif;
+  }
+
+
+  /* Full Info on Hover */
+  .ingredient-hover-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    flex-direction: column;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    z-index: 5;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+
+  /* Show full description when frost glass is hovered */
+  .ingredient-card.active .ingredient-hover-info.show-details {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    z-index: 25 !important;
+    pointer-events: auto !important;
+  }
+
+
+  .hover-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+  }
+
+
+  .hover-info-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    font-family: 'Gilroy', sans-serif;
+  }
+
+
+  .close-hover {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+  }
+
+
+  .close-hover:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+
+  .hover-info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+
+  .ingredient-full-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex: 1;
+  }
+
+
+  .ingredient-full-desc p {
+    margin: 0 0 10px 0;
+  }
+
+
+  .ingredient-full-desc p:last-child {
+    margin-bottom: 0;
+  }
+
+
+  .studies-info {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 15px;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+
+  .studies-info p {
+    margin: 0;
+    font-size: 11px;
+    color: #b0b0b0;
+    font-style: italic;
+  }
+
+
+  /* Responsive Design */
+ 
+  /* Large tablets and small desktops */
+  @media (max-width: 1024px) {
+    .ingredients-scroll-section {
+      padding: 70px 0;
+    }
+
+
+    .ingredients-carousel {
+      padding: 0 30px;
+    }
+
+
+    .ingredient-card {
+      width: 140px;
+      height: 140px;
+    }
+
+
+    .ingredient-card.active {
+      width: 350px !important;
+      height: 350px !important;
+    }
+
+
+    .ingredients-track {
+      gap: 30px;
+    }
+  }
+
+
+  /* Tablets */
+  @media (max-width: 768px) {
+    .ingredients-scroll-section {
+      padding: 60px 0;
+    }
+
+
+    .ingredients-scroll-section .container {
+      padding: 0 15px;
+    }
+
+
+    .ingredients-header {
+      margin-bottom: 30px;
+    }
+
+
+    .ingredients-title {
+      font-size: 32px !important;
+      margin-bottom: 15px;
+    }
+
+
+    .ingredients-description {
+      font-size: 14px !important;
+      max-width: 500px;
+    }
+
+
+    .ingredients-carousel {
+      padding: 0 15px;
+      height: 280px;
+    }
+
+
+    .ingredients-container {
+      height: 280px;
+    }
+
+
+    .ingredients-track {
+      height: 280px;
+      gap: 15px;
+      padding: 40px 0 20px 0;
+    }
+
+
+    .ingredient-card {
+      width: 100px;
+      height: 100px;
+    }
+
+
+    .ingredient-card.active {
+      width: 200px !important;
+      height: 200px !important;
+    }
+
+
+    .carousel-nav {
+      width: 44px;
+      height: 44px;
+    }
+
+
+    .ingredient-hover-info {
+      padding: 15px;
+    }
+
+
+    .hover-info-header h3 {
+      font-size: 16px;
+    }
+
+
+    .ingredient-full-desc {
+      font-size: 12px;
+    }
+
+
+    .auto-info-header h3 {
+      font-size: 16px;
+    }
+
+
+    .ingredient-auto-info {
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      padding: 15px;
+    }
+
+
+    .ingredient-subtitle {
+      font-size: 13px;
+    }
+  }
+
+
+  /* Small mobile devices */
+  @media (max-width: 480px) {
+    .ingredients-scroll-section {
+      padding: 50px 0;
+    }
+
+
+    .ingredients-scroll-section .container {
+      padding: 0 10px;
+    }
+
+
+    .ingredients-header {
+      margin-bottom: 25px;
+    }
+
+
+    .ingredients-title {
+      font-size: 28px !important;
+      margin-bottom: 12px;
+    }
+
+
+    .ingredients-description {
+      font-size: 13px !important;
+      max-width: 400px;
+    }
+
+
+    .ingredients-carousel {
+      gap: 10px;
+      padding: 0 10px;
+      height: 220px;
+    }
+
+
+    .ingredients-container {
+      height: 220px;
+    }
+
+
+    .ingredients-track {
+      height: 220px;
+      gap: 10px;
+      padding: 30px 0 20px 0;
+    }
+
+
+    .ingredient-card {
+      width: 80px;
+      height: 80px;
+    }
+
+
+    .ingredient-card.active {
+      width: 160px !important;
+      height: 160px !important;
+    }
+
+
+    .carousel-nav {
+      width: 40px;
+      height: 40px;
+    }
+
+
+    .ingredient-auto-info {
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+
+    .auto-info-header h3 {
+      font-size: 14px;
+    }
+
+
+    .ingredient-subtitle {
+      font-size: 11px;
+    }
+
+
+    .ingredient-hover-info {
+      padding: 12px;
+    }
+
+
+    .hover-info-header h3 {
+      font-size: 14px;
+    }
+
+
+    .ingredient-full-desc {
+      font-size: 11px;
+    }
+  }
+
+
+  /* Extra small mobile devices */
+  @media (max-width: 360px) {
+    .ingredients-scroll-section {
+      padding: 40px 0;
+    }
+
+
+    .ingredients-title {
+      font-size: 24px !important;
+    }
+
+
+    .ingredients-description {
+      font-size: 12px !important;
+    }
+
+
+    .ingredients-carousel {
+      padding: 0 5px;
+      height: 200px;
+    }
+
+
+    .ingredients-container {
+      height: 200px;
+    }
+
+
+    .ingredients-track {
+      height: 200px;
+      gap: 8px;
+      padding: 25px 0 15px 0;
+    }
+
+
+    .ingredient-card {
+      width: 70px;
+      height: 70px;
+    }
+
+
+    .ingredient-card.active {
+      width: 140px !important;
+      height: 140px !important;
+    }
+
+
+    .carousel-nav {
+      width: 36px;
+      height: 36px;
+    }
+
+
+    .ingredient-auto-info {
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      padding: 8px;
+    }
+
+
+    .auto-info-header h3 {
+      font-size: 12px;
+    }
+
+
+    .ingredient-subtitle {
+      font-size: 10px;
+    }
+  }
+
+
+  /* View Supplement Facts Button Container */
+  .supplement-facts-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 0 20px;
+  }
+
+
+  /* View Supplement Facts Button */
+  .supplement-facts-button {
+    width: 100%;
+    max-width: 500px;
+    padding: 16px 32px;
+    background: transparent;
+    border: 2px solid #333;
+    border-radius: 50px;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+  }
+
+
+  .supplement-facts-button:hover {
+    background: #333;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+
+  .supplement-facts-button:active {
+    transform: translateY(0);
+  }
+
+
+  @media (max-width: 1024px) {
+    .supplement-facts-container {
+      margin-top: 25px;
+      padding: 0 30px;
+    }
+
+
+    .supplement-facts-button {
+      padding: 15px 30px;
+      font-size: 15px;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .supplement-facts-container {
+      margin-top: 30px;
+      padding: 0 15px;
+    }
+
+
+    .supplement-facts-button {
+      padding: 14px 28px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+  }
+
+
+  @media (max-width: 480px) {
+    .supplement-facts-container {
+      margin-top: 25px;
+      padding: 0 10px;
+    }
+
+
+    .supplement-facts-button {
+      padding: 12px 24px;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+  }
+
+
+  @media (max-width: 360px) {
+    .supplement-facts-container {
+      margin-top: 20px;
+      padding: 0 5px;
+    }
+
+
+    .supplement-facts-button {
+      padding: 10px 20px;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+    }
+  }
+
+
+  /* Supplement Facts Modal */
+  .supplement-facts-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+
+
+  .supplement-facts-modal.active {
+    display: flex;
+  }
+
+
+  .supplement-facts-content {
+    background: #2a2a2a;
+    color: white;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 85vh;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Gilroy', sans-serif;
+  }
+
+
+  .supplement-facts-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+  }
+
+
+  .supplement-facts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 15px;
+  }
+
+
+  .supplement-facts-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    color: white;
+  }
+
+
+  .modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+
+  .supplement-facts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+
+  .supplement-facts-table th,
+  .supplement-facts-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+    font-size: 14px;
+  }
+
+
+  .supplement-facts-table th {
+    font-weight: 600;
+    background: #333;
+    color: #ccc;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+
+  .supplement-facts-table td:last-child {
+    text-align: right;
+  }
+
+
+  .supplement-facts-serving {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #444;
+  }
+
+
+  .supplement-facts-serving p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+
+  .supplement-facts-notes {
+    font-size: 12px;
+    color: #ccc;
+    line-height: 1.4;
+    margin-top: 15px;
+  }
+
+
+  .supplement-facts-notes ul {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+
+
+  .supplement-facts-notes li {
+    margin-bottom: 5px;
+  }
+
+
+  @media (max-width: 1024px) {
+    .supplement-facts-modal {
+      padding: 15px;
+    }
+
+
+    .supplement-facts-content {
+      padding: 25px;
+      max-width: 500px;
+    }
+
+
+    .supplement-facts-title {
+      font-size: 22px;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .supplement-facts-modal {
+      padding: 10px;
+    }
+
+
+    .supplement-facts-content {
+      padding: 20px;
+      margin: 5px;
+      max-width: 450px;
+    }
+
+
+    .supplement-facts-title {
+      font-size: 20px;
+    }
+
+
+    .supplement-facts-table th,
+    .supplement-facts-table td {
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+
+    .supplement-facts-serving p {
+      font-size: 13px;
+    }
+
+
+    .supplement-facts-notes {
+      font-size: 11px;
+    }
+  }
+
+
+  @media (max-width: 480px) {
+    .supplement-facts-content {
+      padding: 15px;
+      margin: 0;
+      max-width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+
+    .supplement-facts-title {
+      font-size: 18px;
+    }
+
+
+    .supplement-facts-table th,
+    .supplement-facts-table td {
+      padding: 5px 6px;
+      font-size: 12px;
+    }
+
+
+    .supplement-facts-serving p {
+      font-size: 12px;
+    }
+
+
+    .supplement-facts-notes {
+      font-size: 10px;
+    }
+
+
+    .modal-close {
+      font-size: 20px;
+    }
+  }
+
+
+  @media (max-width: 360px) {
+    .supplement-facts-content {
+      padding: 12px;
+    }
+
+
+    .supplement-facts-title {
+      font-size: 16px;
+    }
+
+
+    .supplement-facts-table th,
+    .supplement-facts-table td {
+      padding: 4px 5px;
+      font-size: 11px;
+    }
+
+
+    .supplement-facts-serving p {
+      font-size: 11px;
+    }
+
+
+    .supplement-facts-notes {
+      font-size: 9px;
+    }
+  }
+</style>
+
+
+<div class="ingredients-scroll-section full-width" id="ingredients-scroll-{{ section.id }}">
+  <div class="container">
+    <!-- Header Section -->
+    <div class="ingredients-header">
+      <h2
+        class="ingredients-title"
+        style="font-family: {{ section.settings.title_font }}, sans-serif; font-size: {{ section.settings.title_size }}px; font-weight: {{ section.settings.title_weight }};"
+      >
+        {{ section.settings.title | default: 'The inner workings of strength & recovery' }}
+      </h2>
+      <p
+        class="ingredients-description"
+        style="font-family: {{ section.settings.description_font }}, sans-serif; font-size: {{ section.settings.description_size }}px; font-weight: {{ section.settings.description_weight }};"
+      >
+        {{
+          section.settings.description
+          | default: 'Crafted to perfection through rigorous clinical research, rooted in nature and backed by science.'
+        }}
+      </p>
+    </div>
+
+
+    <!-- Ingredients Carousel -->
+    <div class="ingredients-carousel">
+      <div class="carousel-spacer"></div>
+
+
+      <button class="carousel-nav prev" onclick="moveCarousel(-1, '{{ section.id }}')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+
+      <div class="ingredients-container">
+        <div class="ingredients-track" id="track-{{ section.id }}">
+          <!-- 10 clone sets at the beginning for truly infinite left scroll -->
+          {% for i in (1..10) %}
+            {% for block in section.blocks %}
+              <div
+                class="ingredient-card clone-card"
+                data-original-index="{{ forloop.index0 }}"
+                data-clone-set="{{ i }}"
+                onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
+              >
+                <div class="ingredient-image">
+                  {% if block.settings.image %}
+                    <img
+                      src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
+                      alt="{{ block.settings.name }}"
+                      loading="lazy"
+                      width="400"
+                      height="400"
+                    >
+                  {% else %}
+                    <div class="placeholder-image"></div>
+                  {% endif %}
+                </div>
+
+
+                <!-- Auto Info Display (always visible on center card) -->
+                <div class="ingredient-auto-info">
+                  <div class="auto-info-header">
+                    <h3>{{ block.settings.name }}</h3>
+                    {% if block.settings.subtitle %}
+                      <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+
+                <!-- Full Info on Hover -->
+                <div class="ingredient-hover-info">
+                  <div class="hover-info-header">
+                    <h3>{{ block.settings.name }}</h3>
+                    {% if block.settings.subtitle %}
+                      <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                    {% endif %}
+                    <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="hover-info-content">
+                    <div class="ingredient-full-desc">
+                      {{ block.settings.full_description }}
+                    </div>
+                    {% if block.settings.studies_count %}
+                      <div class="studies-info">
+                        <p>
+                          There are {{ block.settings.studies_count }} studies on {{ block.settings.name | downcase }} and
+                          counting.
+                        </p>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endfor %}
+
+
+          <!-- Second set of clones at the beginning -->
+          {% for block in section.blocks %}
+            <div
+              class="ingredient-card clone-card"
+              data-original-index="{{ forloop.index0 }}"
+              onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
+            >
+              <div class="ingredient-image">
+                {% if block.settings.image %}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
+                    alt="{{ block.settings.name }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="placeholder-image"></div>
+                {% endif %}
+              </div>
+
+
+              <!-- Auto Info Display (always visible on center card) -->
+              <div class="ingredient-auto-info">
+                <div class="auto-info-header">
+                  <h3>{{ block.settings.name }}</h3>
+                  {% if block.settings.subtitle %}
+                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+                </div>
+              </div>
+
+
+              <!-- Full Info on Hover -->
+              <div class="ingredient-hover-info">
+                <div class="hover-info-header">
+                  <h3>{{ block.settings.name }}</h3>
+                  {% if block.settings.subtitle %}
+                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+                  <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="hover-info-content">
+                  <div class="ingredient-full-desc">
+                    {{ block.settings.full_description }}
+                  </div>
+                  {% if block.settings.studies_count %}
+                    <div class="studies-info">
+                      <p>
+                        There are {{ block.settings.studies_count }} studies on {{ block.settings.name | downcase }} and
+                        counting.
+                      </p>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+
+          <!-- Third set of clones at the beginning -->
+          {% for block in section.blocks %}
+            <div
+              class="ingredient-card clone-card"
+              data-original-index="{{ forloop.index0 }}"
+              onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
+            >
+              <div class="ingredient-image">
+                {% if block.settings.image %}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
+                    alt="{{ block.settings.name }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="placeholder-image"></div>
+                {% endif %}
+              </div>
+
+
+              <!-- Auto Info Display (always visible on center card) -->
+              <div class="ingredient-auto-info">
+                <div class="auto-info-header">
+                  <h3>{{ block.settings.name }}</h3>
+                  {% if block.settings.subtitle %}
+                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+                </div>
+              </div>
+
+
+              <!-- Full Info on Hover -->
+              <div class="ingredient-hover-info">
+                <div class="hover-info-header">
+                  <h3>{{ block.settings.name }}</h3>
+                  {% if block.settings.subtitle %}
+                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+                  <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="hover-info-content">
+                  <div class="ingredient-full-desc">
+                    {{ block.settings.full_description }}
+                  </div>
+                  {% if block.settings.studies_count %}
+                    <div class="studies-info">
+                      <p>
+                        There are {{ block.settings.studies_count }} studies on {{ block.settings.name | downcase }} and
+                        counting.
+                      </p>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+
+          <!-- Original cards -->
+          {% for block in section.blocks %}
+            <div
+              class="ingredient-card original-card"
+              data-index="{{ forloop.index0 }}"
+              onclick="selectIngredientByClick({{ forloop.index0 }}, '{{ section.id }}')"
+            >
+              <div class="ingredient-image">
+                {% if block.settings.image %}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
+                    alt="{{ block.settings.name }}"
+                    loading="lazy"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="placeholder-image"></div>
+                {% endif %}
+              </div>
+
+
+              <!-- Auto Info Display (always visible on center card) -->
+              <div class="ingredient-auto-info">
+                <div class="auto-info-header">
+                  <h3>{{ block.settings.name }}</h3>
+                  {% if block.settings.subtitle %}
+                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+                </div>
+              </div>
+
+
+              <!-- Full Info on Hover -->
+              <div class="ingredient-hover-info">
+                <div class="hover-info-header">
+                  <h3>{{ block.settings.name }}</h3>
+                  {% if block.settings.subtitle %}
+                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                  {% endif %}
+                  <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="hover-info-content">
+                  <div class="ingredient-full-desc">
+                    {{ block.settings.full_description }}
+                  </div>
+                  {% if block.settings.studies_count %}
+                    <div class="studies-info">
+                      <p>
+                        There are {{ block.settings.studies_count }} studies on {{ block.settings.name | downcase }} and
+                        counting.
+                      </p>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+
+          <!-- 10 clone sets at the end for truly infinite right scroll -->
+          {% for i in (1..10) %}
+            {% for block in section.blocks %}
+              <div
+                class="ingredient-card clone-card"
+                data-original-index="{{ forloop.index0 }}"
+                data-clone-set="{{ i }}"
+                onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
+              >
+                <div class="ingredient-image">
+                  {% if block.settings.image %}
+                    <img
+                      src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
+                      alt="{{ block.settings.name }}"
+                      loading="lazy"
+                      width="400"
+                      height="400"
+                    >
+                  {% else %}
+                    <div class="placeholder-image"></div>
+                  {% endif %}
+                </div>
+
+
+                <!-- Auto Info Display (always visible on center card) -->
+                <div class="ingredient-auto-info">
+                  <div class="auto-info-header">
+                    <h3>{{ block.settings.name }}</h3>
+                    {% if block.settings.subtitle %}
+                      <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+
+                <!-- Full Info on Hover -->
+                <div class="ingredient-hover-info">
+                  <div class="hover-info-header">
+                    <h3>{{ block.settings.name }}</h3>
+                    {% if block.settings.subtitle %}
+                      <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
+                    {% endif %}
+                    <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="hover-info-content">
+                    <div class="ingredient-full-desc">
+                      {{ block.settings.full_description }}
+                    </div>
+                    {% if block.settings.studies_count %}
+                      <div class="studies-info">
+                        <p>
+                          There are {{ block.settings.studies_count }} studies on {{ block.settings.name | downcase }} and
+                          counting.
+                        </p>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+
+
+      <button class="carousel-nav next" onclick="moveCarousel(1, '{{ section.id }}')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+
+      <div class="carousel-spacer"></div>
+    </div>
+
+
+    <!-- View Supplement Facts Button -->
+    <div class="supplement-facts-container">
+      <button class="supplement-facts-button" onclick="viewSupplementFacts()">View Supplement Facts</button>
+    </div>
+
+
+    <!-- Supplement Facts Modal -->
+    <div class="supplement-facts-modal" id="supplement-facts-modal">
+      <div class="supplement-facts-content">
+        <div class="supplement-facts-header">
+          <h2 class="supplement-facts-title">Supplement Facts</h2>
+          <button class="modal-close" onclick="closeSupplementFacts()">&times;</button>
+        </div>
+
+
+        <!-- Option 1: Custom Image (if uploaded) -->
+        {% if section.settings.supplement_facts_image %}
+          <img
+            src="{{ section.settings.supplement_facts_image | image_url: width: 600 }}"
+            alt="Supplement Facts"
+            class="supplement-facts-image"
+            width="600"
+            height="auto"
+          >
+        {% else %}
+          <!-- Option 2: Default Table (reduced content) -->
+          <div class="supplement-facts-serving">
+            <p><strong>Serving Size:</strong> 1 Scoop (15g)</p>
+            <p><strong>Servings Per Container:</strong> 30</p>
+          </div>
+
+
+          <table class="supplement-facts-table">
+            <thead>
+              <tr>
+                <th>Ingredients</th>
+                <th>Amount Per Serving</th>
+                <th>Daily Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Calories</td>
+                <td>20</td>
+                <td>*</td>
+              </tr>
+              <tr>
+                <td>Total Carbohydrate</td>
+                <td>1g</td>
+                <td>*</td>
+              </tr>
+              <tr>
+                <td>Protein</td>
+                <td>1g</td>
+                <td>*</td>
+              </tr>
+              <tr>
+                <td>Vitamin C</td>
+                <td>120mg</td>
+                <td>100%</td>
+              </tr>
+              <tr>
+                <td>Vitamin B6</td>
+                <td>5mg</td>
+                <td>294%</td>
+              </tr>
+              <tr>
+                <td>Vitamin B12</td>
+                <td>15μg</td>
+                <td>625%</td>
+              </tr>
+              <tr>
+                <td>Hydrolyzed Collagen</td>
+                <td>15000mg</td>
+                <td>**</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <div class="supplement-facts-notes">
+            <p><strong>*</strong> Daily value not established.</p>
+            <p><strong>**</strong> Percent daily values based on 2,000 calorie diet.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Global variables for this section
+  window.ingredientsScrollData = window.ingredientsScrollData || {};
+
+
+  function initializeIngredientsScroll(sectionId) {
+    const originalBlocksCount = parseInt('{{ section.blocks.size }}');
+    // With 10 clone sets at beginning + 1 original set + 10 clone sets at end = 21 total sets
+    // Start in the middle of the original set (11th set, which is index 10 * originalBlocksCount)
+    const currentIndex = (10 * originalBlocksCount) + Math.floor(originalBlocksCount / 2);
+
+
+    // Store data for this section
+    window.ingredientsScrollData[sectionId] = {
+      originalBlocksCount: originalBlocksCount,
+      currentIndex: currentIndex,
+      previousIndex: currentIndex,
+      isTransitioning: false,
+      totalSets: 21, // 10 clone sets + 1 original + 10 clone sets
+      cloneSetsBeforeOriginal: 10,
+      cloneSetsAfterOriginal: 10,
+    };
+
+
+    const track = document.getElementById('track-' + sectionId);
+    const cards = track.querySelectorAll('.ingredient-card');
+
+
+    if (cards.length === 0) return;
+
+
+    // Set initial position without animation
+    track.style.transition = 'none';
+
+
+    // Force initial active state
+    cards.forEach((card, i) => {
+      if (i === currentIndex) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+
+
+    // Wait for layout to settle, then center the active card properly
+    setTimeout(() => {
+      // Use the centerCard function for consistent centering
+      centerCard(currentIndex, sectionId, false);
+    }, 200);
+  }
+
+
+  function selectIngredient(index, sectionId, animate = true) {
+    const track = document.getElementById('track-' + sectionId);
+    const cards = track.querySelectorAll('.ingredient-card');
+
+
+    if (index < 0 || index >= cards.length) return;
+
+
+    const data = window.ingredientsScrollData[sectionId];
+
+
+    // Prevent rapid successive calls that could cause flickering
+    if (data.currentIndex === index && animate) return;
+
+
+    // Store previous index before updating
+    const previousIndex = data.currentIndex;
+    data.previousIndex = previousIndex;
+
+
+    // Update active class immediately for smooth conveyor belt effect
+    cards.forEach((card, i) => {
+      if (i === index) {
+        card.classList.add('active');
+        
+        // Show frost glass on active card
+        const frostGlass = card.querySelector('.ingredient-auto-info');
+        if (frostGlass) {
+          frostGlass.style.opacity = '1';
+          frostGlass.style.visibility = 'visible';
+          frostGlass.style.pointerEvents = 'auto';
+        }
+        
+        // Hide any open hover info
+        const hoverInfo = card.querySelector('.ingredient-hover-info');
+        if (hoverInfo) {
+          hoverInfo.classList.remove('show-details');
+        }
+      } else {
+        card.classList.remove('active');
+        
+        // Hide frost glass on inactive cards
+        const frostGlass = card.querySelector('.ingredient-auto-info');
+        if (frostGlass) {
+          frostGlass.style.opacity = '0';
+          frostGlass.style.visibility = 'hidden';
+          frostGlass.style.pointerEvents = 'none';
+        }
+        
+        // Hide any open hover info
+        const hoverInfo = card.querySelector('.ingredient-hover-info');
+        if (hoverInfo) {
+          hoverInfo.classList.remove('show-details');
+        }
+      }
+    });
+
+
+    // Update current index
+    data.currentIndex = index;
+
+
+    // Center the selected card with smooth sliding
+    centerCard(index, sectionId, animate);
+
+
+    // Refresh hover behavior after card selection
+    if (sectionId === '{{ section.id }}') {
+      setTimeout(setupFrostGlassHover, 100);
+    }
+  }
+
+
+  function selectIngredientClone(originalIndex, sectionId) {
+    // Use the same logic as regular click - find closest instance
+    selectIngredientByClick(originalIndex, sectionId);
+  }
+
+
+  // Enhanced click handler for infinite loop behavior
+  function selectIngredientByClick(targetIndex, sectionId) {
+    const data = window.ingredientsScrollData[sectionId];
+    if (data.isTransitioning) return;
+
+
+    const track = document.getElementById('track-' + sectionId);
+    const cards = track.querySelectorAll('.ingredient-card');
+    const originalBlocksCount = data.originalBlocksCount;
+    const currentIndex = data.currentIndex;
+   
+    // Find the closest instance of the target ingredient to the current position
+    const targetInstances = [];
+   
+    // Find all instances of this ingredient (original + clones)
+    cards.forEach((card, index) => {
+      const cardIndex = card.dataset.index || card.dataset.originalIndex;
+      if (parseInt(cardIndex) === targetIndex) {
+        targetInstances.push(index);
+      }
+    });
+   
+    // Find the closest instance to current position
+    let closestIndex = targetInstances[0];
+    let minDistance = Math.abs(targetInstances[0] - currentIndex);
+   
+    targetInstances.forEach(instanceIndex => {
+      const distance = Math.abs(instanceIndex - currentIndex);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = instanceIndex;
+      }
+    });
+   
+    // Select the closest instance
+    selectIngredient(closestIndex, sectionId, true);
+  }
+
+
+  function centerCard(index, sectionId, animate = true) {
+    const track = document.getElementById('track-' + sectionId);
+    const cards = track.querySelectorAll('.ingredient-card');
+    const container = track.parentElement;
+
+
+    if (cards.length === 0) return;
+
+
+    // Get the actual card being centered
+    const activeCard = cards[index];
+    if (!activeCard) return;
+
+
+    const data = window.ingredientsScrollData[sectionId];
+
+
+    // Always calculate exact center position for smooth infinite loop
+    const containerWidth = container.offsetWidth;
+    const containerCenter = containerWidth / 2;
+
+
+    const sideCardWidth = 160; // Side card width
+    const activeCardWidth = 400; // Active card width
+    const gap = 40; // Gap between cards
+
+
+    // Calculate position to center the active card perfectly
+    let totalWidthBefore = 0;
+
+
+    // Add width of all cards before the active card (using side card width)
+    for (let i = 0; i < index; i++) {
+      totalWidthBefore += sideCardWidth + gap;
+    }
+
+
+    // Add half of the ACTIVE card width to get to its center
+    totalWidthBefore += activeCardWidth / 2;
+
+
+    // Calculate the transform needed to center the active card
+    const targetTransform = containerCenter - totalWidthBefore;
+
+
+    if (!animate) {
+      track.style.transition = 'none';
+    } else {
+      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }
+
+
+    track.style.transform = `translateX(${targetTransform}px)`;
+
+
+    if (!animate) {
+      setTimeout(() => {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }, 50);
+    }
+
+
+    // Store the previous index for future movements
+    data.previousIndex = index;
+
+
+    // Check if we need to handle infinite loop repositioning for truly endless scrolling
+    if (animate) {
+      setTimeout(() => {
+        if (!data.isTransitioning) {
+          handleInfiniteLoopRepositioning(index, sectionId);
+        }
+      }, 650);
+    } else {
+      // For immediate positioning, check after a short delay
+      setTimeout(() => {
+        if (!data.isTransitioning) {
+          handleInfiniteLoopRepositioning(index, sectionId);
+        }
+      }, 100);
+    }
+  }
+
+
+  // Dynamic infinite loop repositioning for truly endless scrolling
+  function handleInfiniteLoopRepositioning(currentIndex, sectionId) {
+    const data = window.ingredientsScrollData[sectionId];
+    const track = document.getElementById('track-' + sectionId);
+    const originalBlocksCount = data.originalBlocksCount;
+    const totalCards = data.totalSets * originalBlocksCount;
+   
+    // Only reposition if we're not transitioning
+    if (data.isTransitioning) return;
+   
+    // Define safe zones - reposition when getting close to edges
+    const safeZoneSize = 3 * originalBlocksCount; // 3 sets worth of buffer
+    const leftEdge = safeZoneSize;
+    const rightEdge = totalCards - safeZoneSize;
+   
+    // If we're getting too close to the left edge, jump to equivalent position on the right
+    if (currentIndex <= leftEdge) {
+      const equivalentIndex = currentIndex + (10 * originalBlocksCount); // Jump 10 sets forward
+      seamlessReposition(equivalentIndex, sectionId);
+    }
+    // If we're getting too close to the right edge, jump to equivalent position on the left
+    else if (currentIndex >= rightEdge) {
+      const equivalentIndex = currentIndex - (10 * originalBlocksCount); // Jump 10 sets backward
+      seamlessReposition(equivalentIndex, sectionId);
+    }
+  }
+
+
+  // Seamless repositioning without visual interruption
+  function seamlessReposition(newIndex, sectionId) {
+    const data = window.ingredientsScrollData[sectionId];
+    const track = document.getElementById('track-' + sectionId);
+    const cards = track.querySelectorAll('.ingredient-card');
+   
+    // Temporarily disable transitions
+    track.style.transition = 'none';
+   
+    // Update active states
+    cards.forEach((card, i) => {
+      if (i === newIndex) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+   
+    // Update current index
+    data.currentIndex = newIndex;
+   
+    // Center the card without animation
+    centerCard(newIndex, sectionId, false);
+   
+    // Re-enable transitions after a brief delay
+    setTimeout(() => {
+      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }, 50);
+  }
+
+
+  function moveCarousel(direction, sectionId) {
+    const data = window.ingredientsScrollData[sectionId];
+    if (data.isTransitioning) return;
+
+
+    data.isTransitioning = true;
+
+
+    const track = document.getElementById('track-' + sectionId);
+    const cards = track.querySelectorAll('.ingredient-card');
+    const currentIndex = data.currentIndex;
+    const originalBlocksCount = data.originalBlocksCount;
+
+
+    // Calculate new index with proper infinite loop handling
+    let newIndex = currentIndex + direction;
+
+
+    // Handle infinite loop by wrapping around smoothly
+    if (newIndex < 0) {
+      newIndex = cards.length - 1;
+    } else if (newIndex >= cards.length) {
+      newIndex = 0;
+    }
+
+
+    // Move to the new card
+    selectIngredient(newIndex, sectionId, true);
+
+
+    setTimeout(() => {
+      data.isTransitioning = false;
+    }, 700);
+  }
+
+
+  // Hover info is now handled by CSS - no JavaScript needed
+
+
+  // Initialize on load with multiple fallbacks
+  function initializeWhenReady() {
+    if (document.getElementById('track-{{ section.id }}')) {
+      initializeIngredientsScroll('{{ section.id }}');
+
+
+      // Hover behavior is now handled entirely by CSS
+    } else {
+      // Retry if element not found
+      setTimeout(initializeWhenReady, 100);
+    }
+  }
+
+
+  // Multiple initialization attempts
+  document.addEventListener('DOMContentLoaded', initializeWhenReady);
+
+
+  // Fallback for when DOMContentLoaded already fired
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWhenReady);
+  } else {
+    initializeWhenReady();
+  }
+
+
+  // Additional fallback
+  setTimeout(initializeWhenReady, 500);
+
+
+  // Force centering function with proper calculation
+  function forceCenterActiveCard() {
+    const track = document.getElementById('track-{{ section.id }}');
+    if (track) {
+      const activeCard = track.querySelector('.ingredient-card.active');
+      if (activeCard) {
+        const data = window.ingredientsScrollData['{{ section.id }}'];
+        if (data) {
+          // Use the centerCard function for consistency
+          centerCard(data.currentIndex, '{{ section.id }}', false);
+        }
+      }
+    }
+  }
+
+
+  // Force center multiple times to ensure it works
+  setTimeout(forceCenterActiveCard, 1000);
+  setTimeout(forceCenterActiveCard, 2000);
+
+
+  // Add frost glass specific hover behavior
+  function setupFrostGlassHover() {
+    // Target ALL ingredient cards, not just active ones
+    const ingredientCards = document.querySelectorAll('#ingredients-scroll-{{ section.id }} .ingredient-card');
+
+
+    ingredientCards.forEach((card) => {
+      const frostGlass = card.querySelector('.ingredient-auto-info');
+      const hoverInfo = card.querySelector('.ingredient-hover-info');
+
+
+      if (frostGlass && hoverInfo) {
+        // Remove any existing listeners to prevent duplicates
+        frostGlass.removeEventListener('mouseenter', frostGlass._hoverEnter);
+        card.removeEventListener('mouseleave', card._hoverLeave);
+        hoverInfo.removeEventListener('mouseenter', hoverInfo._hoverEnter);
+
+
+        // Add new listeners and store references for removal
+        frostGlass._hoverEnter = function () {
+          // Only show details if this card is active
+          if (card.classList.contains('active')) {
+            hoverInfo.classList.add('show-details');
+          }
+        };
+
+
+        card._hoverLeave = function () {
+          hoverInfo.classList.remove('show-details');
+        };
+
+
+        hoverInfo._hoverEnter = function () {
+          // Only show details if this card is active
+          if (card.classList.contains('active')) {
+            this.classList.add('show-details');
+          }
+        };
+
+
+        frostGlass.addEventListener('mouseenter', frostGlass._hoverEnter);
+        card.addEventListener('mouseleave', card._hoverLeave);
+        hoverInfo.addEventListener('mouseenter', hoverInfo._hoverEnter);
+      }
+    });
+  }
+
+
+  // Setup frost glass hover after initialization
+  setTimeout(setupFrostGlassHover, 1000);
+
+
+  // Add window resize handler to maintain centering
+  let resizeTimeout;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const data = window.ingredientsScrollData['{{ section.id }}'];
+      if (data && data.currentIndex !== undefined) {
+        centerCard(data.currentIndex, '{{ section.id }}', false);
+      }
+    }, 250);
+  });
+
+
+  // Close hover info function
+  function closeHoverInfo(sectionId) {
+    console.log('Closing hover info for section:', sectionId);
+    
+    // Find all hover info overlays in this section and hide them
+    const section = document.getElementById('ingredients-scroll-' + sectionId);
+    if (section) {
+      const hoverInfos = section.querySelectorAll('.ingredient-hover-info');
+      hoverInfos.forEach(hoverInfo => {
+        hoverInfo.classList.remove('show-details');
+      });
+      
+      // Make sure the frost glass is visible on the active card
+      const activeCard = section.querySelector('.ingredient-card.active');
+      if (activeCard) {
+        const frostGlass = activeCard.querySelector('.ingredient-auto-info');
+        if (frostGlass) {
+          frostGlass.style.opacity = '1';
+          frostGlass.style.visibility = 'visible';
+        }
+      }
+      
+      console.log('✅ Hover info closed, frost glass restored');
+    }
+  }
+
+  // View Supplement Facts button function
+  function viewSupplementFacts() {
+    const modal = document.getElementById('supplement-facts-modal');
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+  }
+
+
+  // Close Supplement Facts modal function
+  function closeSupplementFacts() {
+    const modal = document.getElementById('supplement-facts-modal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
+  }
+
+
+  // Close modal when clicking outside the content
+  document.addEventListener('click', function (event) {
+    const modal = document.getElementById('supplement-facts-modal');
+    if (modal && event.target === modal) {
+      closeSupplementFacts();
+    }
+  });
+
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      closeSupplementFacts();
+    }
+  });
+</script>
+
+
+{% schema %}
+{
+  "name": "Ingredients Scroll",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "image_picker",
+      "id": "supplement_facts_image",
+      "label": "Supplement Facts Image",
+      "info": "Upload your own supplement facts image. If no image is uploaded, a default table will be shown."
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The inner workings of strength & recovery"
+    },
+    {
+      "type": "select",
+      "id": "title_font",
+      "label": "Title Font",
+      "options": [
+        {
+          "value": "Gilroy",
+          "label": "Gilroy"
+        },
+        {
+          "value": "Arial",
+          "label": "Arial"
+        },
+        {
+          "value": "Helvetica",
+          "label": "Helvetica"
+        }
+      ],
+      "default": "Gilroy"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        },
+        {
+          "value": "800",
+          "label": "Extra Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Crafted to perfection through rigorous clinical research, rooted in nature and backed by science."
+    },
+    {
+      "type": "select",
+      "id": "description_font",
+      "label": "Description Font",
+      "options": [
+        {
+          "value": "Gilroy",
+          "label": "Gilroy"
+        },
+        {
+          "value": "Arial",
+          "label": "Arial"
+        },
+        {
+          "value": "Helvetica",
+          "label": "Helvetica"
+        }
+      ],
+      "default": "Gilroy"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "description_weight",
+      "label": "Description Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        }
+      ],
+      "default": "400"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Ingredient Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Ingredient Name",
+          "default": "Vitamin B12"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Ingredient Subtitle",
+          "default": "Methylcobalamin"
+        },
+        {
+          "type": "richtext",
+          "id": "full_description",
+          "label": "Full Description",
+          "default": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>"
+        },
+        {
+          "type": "number",
+          "id": "studies_count",
+          "label": "Number of Studies",
+          "default": 967
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredients Scroll",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Collagen",
+            "subtitle": "Type I & III"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "name": "Vitamin C",
+            "subtitle": "Ascorbic Acid"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+

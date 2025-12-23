@@ -1,0 +1,742 @@
+<style>
+  .comparison-table-section {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .container {
+    width: 100%;
+    margin-top: 110px;
+    padding: 0;
+  }
+
+  .comparison-table-title {
+    margin: 0 0 20px 0;
+    padding: 0;
+    line-height: 1.2;
+
+  }
+
+  .comparison-table-wrapper {
+    width: 100%;
+    height: 70vh;
+    max-height: 70vh;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .comparison-table-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .comparison-table-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .comparison-table-body {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .comparison-table-body::-webkit-scrollbar {
+    display: none;
+  }
+
+  .comparison-table-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+    min-height: 60px;
+    align-items: stretch;
+  }
+
+  .comparison-cell {
+    padding: 16px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-right: 1px solid #e0e0e0;
+    min-height: 60px;
+    box-sizing: border-box;
+    height: 100%;
+  }
+
+  .comparison-cell:last-child {
+    border-right: none;
+  }
+
+  .ingredient-cell {
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 500;
+  }
+
+  .cellular-harmony-cell {
+    background-color: #d3ffff;
+  }
+
+  .header-cell {
+    font-weight: 600;
+    background-color: #f8f9fa;
+    {% comment %} border-bottom: 2px solid #e0e0e0; {% endcomment %}
+  }
+
+  .cellular-harmony-cell.header-cell {
+    background-color: #b8f5f5;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon-wrapper svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cell-text {
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .row-divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 0;
+    }
+
+    .comparison-table-wrapper {
+      height: 65vh;
+      max-height: 65vh;
+    }
+
+    .comparison-table-row {
+      grid-template-columns: 1.5fr 1fr 0.8fr 0.8fr 0.8fr;
+      min-height: 50px;
+    }
+
+    .comparison-cell {
+      padding: 12px 8px;
+      min-height: 50px;
+      font-size: 12px;
+    }
+
+    .ingredient-cell {
+      padding-left: 12px;
+    }
+
+    .icon-wrapper {
+      width: 20px;
+      height: 20px;
+    }
+
+    .icon-wrapper svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .comparison-table-title {
+      font-size: 24px !important;
+      margin-bottom: 15px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .comparison-table-row {
+      grid-template-columns: 1.2fr 0.8fr 0.6fr 0.6fr 0.6fr;
+      min-height: 45px;
+    }
+
+    .comparison-cell {
+      padding: 10px 6px;
+      min-height: 45px;
+      font-size: 11px;
+    }
+
+    .ingredient-cell {
+      padding-left: 10px;
+    }
+
+    .comparison-table-title {
+      font-size: 20px !important;
+      margin-bottom: 10px;
+    }
+
+    .comparison-table-wrapper {
+      height: 40vh;
+      max-height: 40vh;
+    }
+  }
+
+  /* Hover effects for better UX */
+  .data-row:hover {
+    background-color: #f8f9fa;
+  }
+
+  .data-row:hover .cellular-harmony-cell {
+    background-color: #c0f7f7;
+  }
+
+  /* Ensure proper text wrapping */
+  .comparison-cell span {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Fix for very long ingredient names */
+  .ingredient-cell span {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* Accessibility improvements */
+  .icon-wrapper {
+    cursor: default;
+  }
+
+  .comparison-table-section * {
+    box-sizing: border-box;
+  }
+
+  /* Print styles */
+  @media print {
+    .comparison-table-wrapper {
+      max-height: none;
+      box-shadow: none;
+      border: 1px solid #000;
+    }
+
+    .comparison-table-body {
+      overflow: visible;
+    }
+  }
+</style>
+
+<div
+  class="comparison-table-section full-width"
+  style="  padding: 0;"
+>
+  <div class="container">
+    {% if section.settings.section_heading != blank %}
+      <h2
+        class="comparison-table-title"
+        style="
+          font-family: {{ section.settings.title_font_family.family }}, {{ section.settings.title_font_family.fallback_families }};
+          font-weight: {{ section.settings.title_font_family.weight | default: 400 }};
+          font-style: {{ section.settings.title_font_family.style | default: 'normal' }};
+          font-size: {{ section.settings.title_font_size }}px;
+          text-align: center;
+          margin-bottom: 20px;
+          color: #000;
+        "
+      >
+        {{ section.settings.section_heading }}
+      </h2>
+    {% endif %}
+
+    <div class="comparison-table-wrapper">
+      <div class="comparison-table-container">
+        <!-- Header Row -->
+        <div class="comparison-table-header">
+          <div class="comparison-table-row header-row">
+            <div class="comparison-cell ingredient-cell">
+              <span
+                style="
+                  font-family: {{ section.settings.column_heading_font_family.family }}, {{ section.settings.column_heading_font_family.fallback_families }};
+                  font-weight: {{ section.settings.column_heading_font_family.weight | default: 400 }};
+                  font-style: {{ section.settings.column_heading_font_family.style | default: 'normal' }};
+                  font-size: {{ section.settings.column_heading_font_size }}px;
+                "
+              ></span>
+            </div>
+            <div class="comparison-cell cellular-harmony-cell header-cell">
+              <span
+                style="
+                  font-family: {{ section.settings.column_heading_font_family.family }}, {{ section.settings.column_heading_font_family.fallback_families }};
+                  font-weight: {{ section.settings.column_heading_font_family.weight | default: 400 }};
+                  font-style: {{ section.settings.column_heading_font_family.style | default: 'normal' }};
+                  font-size: {{ section.settings.column_heading_font_size }}px;
+                "
+              >
+                {{- section.settings.column_1_title -}}
+              </span>
+            </div>
+            <div class="comparison-cell supplements-cell header-cell">
+              <span
+                style="
+                  font-family: {{ section.settings.column_heading_font_family.family }}, {{ section.settings.column_heading_font_family.fallback_families }};
+                  font-weight: {{ section.settings.column_heading_font_family.weight | default: 400 }};
+                  font-style: {{ section.settings.column_heading_font_family.style | default: 'normal' }};
+                  font-size: {{ section.settings.column_heading_font_size }}px;
+                "
+              >
+                {{- section.settings.column_2_title -}}
+              </span>
+            </div>
+            <div class="comparison-cell skincare-cell header-cell">
+              <span
+                style="
+                  font-family: {{ section.settings.column_heading_font_family.family }}, {{ section.settings.column_heading_font_family.fallback_families }};
+                  font-weight: {{ section.settings.column_heading_font_family.weight | default: 400 }};
+                  font-style: {{ section.settings.column_heading_font_family.style | default: 'normal' }};
+                  font-size: {{ section.settings.column_heading_font_size }}px;
+                "
+              >
+                {{- section.settings.column_3_title -}}
+              </span>
+            </div>
+            <div class="comparison-cell mask-cell header-cell">
+              <span
+                style="
+                  font-family: {{ section.settings.column_heading_font_family.family }}, {{ section.settings.column_heading_font_family.fallback_families }};
+                  font-weight: {{ section.settings.column_heading_font_family.weight | default: 400 }};
+                  font-style: {{ section.settings.column_heading_font_family.style | default: 'normal' }};
+                  font-size: {{ section.settings.column_heading_font_size }}px;
+                "
+              >
+                {{- section.settings.column_4_title -}}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="comparison-table-body">
+          {% for block in section.blocks %}
+            <div class="comparison-table-row data-row" {{ block.shopify_attributes }}>
+              <!-- Ingredient Name Column -->
+              <div class="comparison-cell ingredient-cell">
+                <span
+                  style="
+                    font-family: {{ section.settings.ingredient_font_family.family }}, {{ section.settings.ingredient_font_family.fallback_families }};
+                    font-weight: {{ section.settings.ingredient_font_family.weight | default: 400 }};
+                    font-style: {{ section.settings.ingredient_font_family.style | default: 'normal' }};
+                    font-size: {{ section.settings.ingredient_font_size }}px;
+                  "
+                >
+                  {{- block.settings.ingredient_name -}}
+                </span>
+              </div>
+
+              <!-- Cellular Harmony Column -->
+              <div class="comparison-cell cellular-harmony-cell">
+                {% if block.settings.cellular_harmony_type == 'text' %}
+                  <span
+                    class="cell-text"
+                    style="
+                      font-family: {{ section.settings.cell_text_font_family.family }}, {{ section.settings.cell_text_font_family.fallback_families }};
+                      font-weight: {{ section.settings.cell_text_font_family.weight | default: 400 }};
+                      font-style: {{ section.settings.cell_text_font_family.style | default: 'normal' }};
+                      font-size: {{ section.settings.cell_text_font_size }}px;
+                    "
+                  >
+                    {{- block.settings.cellular_harmony_text -}}
+                  </span>
+                {% elsif block.settings.cellular_harmony_type == 'check' %}
+                  <div class="icon-wrapper cyan-check">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="10" fill="#00BCD4"/>
+                      <path d="M6 10L9 13L14 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- Supplements Column -->
+              <div class="comparison-cell supplements-cell">
+                {% if block.settings.supplements_type == 'text' %}
+                  <span
+                    class="cell-text"
+                    style="
+                      font-family: {{ section.settings.cell_text_font_family.family }}, {{ section.settings.cell_text_font_family.fallback_families }};
+                      font-weight: {{ section.settings.cell_text_font_family.weight | default: 400 }};
+                      font-style: {{ section.settings.cell_text_font_family.style | default: 'normal' }};
+                      font-size: {{ section.settings.cell_text_font_size }}px;
+                    "
+                  >
+                    {{- block.settings.supplements_text -}}
+                  </span>
+                {% elsif block.settings.supplements_type == 'check' %}
+                  <div class="icon-wrapper black-check">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="10" fill="#000"/>
+                      <path d="M6 10L9 13L14 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                {% elsif block.settings.supplements_type == 'cross' %}
+                  <div class="icon-wrapper gray-cross">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="10" fill="#999"/>
+                      <path d="M7 7L13 13M13 7L7 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- Skincare Column -->
+              <div class="comparison-cell skincare-cell">
+                {% if block.settings.skincare_type == 'text' %}
+                  <span
+                    class="cell-text"
+                    style="
+                      font-family: {{ section.settings.cell_text_font_family.family }}, {{ section.settings.cell_text_font_family.fallback_families }};
+                      font-weight: {{ section.settings.cell_text_font_family.weight | default: 400 }};
+                      font-style: {{ section.settings.cell_text_font_family.style | default: 'normal' }};
+                      font-size: {{ section.settings.cell_text_font_size }}px;
+                    "
+                  >
+                    {{- block.settings.skincare_text -}}
+                  </span>
+                {% elsif block.settings.skincare_type == 'check' %}
+                  <div class="icon-wrapper black-check">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="10" fill="#000"/>
+                      <path d="M6 10L9 13L14 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                {% elsif block.settings.skincare_type == 'cross' %}
+                  <div class="icon-wrapper gray-cross">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="10" fill="#999"/>
+                      <path d="M7 7L13 13M13 7L7 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- Mask Column -->
+              <div class="comparison-cell mask-cell">
+                {% if block.settings.mask_type == 'text' %}
+                  <span
+                    class="cell-text"
+                    style="
+                      font-family: {{ section.settings.cell_text_font_family.family }}, {{ section.settings.cell_text_font_family.fallback_families }};
+                      font-weight: {{ section.settings.cell_text_font_family.weight | default: 400 }};
+                      font-style: {{ section.settings.cell_text_font_family.style | default: 'normal' }};
+                      font-size: {{ section.settings.cell_text_font_size }}px;
+                    "
+                  >
+                    {{- block.settings.mask_text -}}
+                  </span>
+                {% elsif block.settings.mask_type == 'check' %}
+                  <div class="icon-wrapper black-check">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="10" fill="#000"/>
+                      <path d="M6 10L9 13L14 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                {% elsif block.settings.mask_type == 'cross' %}
+                  <div class="icon-wrapper gray-cross">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="10" fill="#999"/>
+                      <path d="M7 7L13 13M13 7L7 13" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            {% unless forloop.last %}
+              <div class="row-divider"></div>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "tag": "section",
+  "class": "comparison-table-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Cellular Harmony Advantage"
+    },
+    {
+      "type": "header",
+      "content": "Column Headers"
+    },
+    {
+      "type": "text",
+      "id": "column_1_title",
+      "label": "Column 1 Title (Cellular Harmony)",
+      "default": "Cellular Harmony"
+    },
+    {
+      "type": "text",
+      "id": "column_2_title",
+      "label": "Column 2 Title (Supplements)",
+      "default": "Supplements"
+    },
+    {
+      "type": "text",
+      "id": "column_3_title",
+      "label": "Column 3 Title (Skincare)",
+      "default": "Skincare"
+    },
+    {
+      "type": "text",
+      "id": "column_4_title",
+      "label": "Column 4 Title (Mask)",
+      "default": "Mask"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Main Title"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font_family",
+      "label": "Title Font Family",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title Font Size",
+      "min": 16,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Column Headings"
+    },
+    {
+      "type": "font_picker",
+      "id": "column_heading_font_family",
+      "label": "Column Heading Font Family",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "range",
+      "id": "column_heading_font_size",
+      "label": "Column Heading Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Ingredient Names"
+    },
+    {
+      "type": "font_picker",
+      "id": "ingredient_font_family",
+      "label": "Ingredient Font Family",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "range",
+      "id": "ingredient_font_size",
+      "label": "Ingredient Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 15,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Cell Text"
+    },
+    {
+      "type": "font_picker",
+      "id": "cell_text_font_family",
+      "label": "Cell Text Font Family",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "range",
+      "id": "cell_text_font_size",
+      "label": "Cell Text Font Size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient_row",
+      "name": "Ingredient Row",
+      "limit": 40,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Ingredient Information"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_name",
+          "label": "Ingredient Name",
+          "placeholder": "Enter ingredient name"
+        },
+        {
+          "type": "header",
+          "content": "Cellular Harmony Column"
+        },
+        {
+          "type": "select",
+          "id": "cellular_harmony_type",
+          "label": "Cellular Harmony Display Type",
+          "options": [
+            { "value": "text", "label": "Text" },
+            { "value": "check", "label": "Cyan Check Icon" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "textarea",
+          "id": "cellular_harmony_text",
+          "label": "Cellular Harmony Text",
+          "info": "Only shown when 'Text' is selected above"
+        },
+        {
+          "type": "header",
+          "content": "Supplements Column"
+        },
+        {
+          "type": "select",
+          "id": "supplements_type",
+          "label": "Supplements Display Type",
+          "options": [
+            { "value": "text", "label": "Text" },
+            { "value": "check", "label": "Black Check Icon" },
+            { "value": "cross", "label": "Gray Cross Icon" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "textarea",
+          "id": "supplements_text",
+          "label": "Supplements Text",
+          "info": "Only shown when 'Text' is selected above"
+        },
+        {
+          "type": "header",
+          "content": "Skincare Column"
+        },
+        {
+          "type": "select",
+          "id": "skincare_type",
+          "label": "Skincare Display Type",
+          "options": [
+            { "value": "text", "label": "Text" },
+            { "value": "check", "label": "Black Check Icon" },
+            { "value": "cross", "label": "Gray Cross Icon" }
+          ],
+          "default": "cross"
+        },
+        {
+          "type": "textarea",
+          "id": "skincare_text",
+          "label": "Skincare Text",
+          "info": "Only shown when 'Text' is selected above"
+        },
+        {
+          "type": "header",
+          "content": "Mask Column"
+        },
+        {
+          "type": "select",
+          "id": "mask_type",
+          "label": "Mask Display Type",
+          "options": [
+            { "value": "text", "label": "Text" },
+            { "value": "check", "label": "Black Check Icon" },
+            { "value": "cross", "label": "Gray Cross Icon" }
+          ],
+          "default": "cross"
+        },
+        {
+          "type": "textarea",
+          "id": "mask_text",
+          "label": "Mask Text",
+          "info": "Only shown when 'Text' is selected above"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table",
+      "blocks": [
+        {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "supplements_type": "check",
+            "skincare_type": "cross",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "mask_type": "check"
+          }
+        },
+        {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "mask_type": "check"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

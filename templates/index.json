@@ -15,6 +15,7 @@
         "feature_cnfKde": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/output-onlinepngtools.png",
             "icon": "led-mask",
             "title": "Photon Youth™ Pro LED Mask",
             "subtitle": "Biophotonic Amplification"
@@ -23,6 +24,7 @@
         "feature_DA39jg": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/output-onlinepngtools_3.png",
             "icon": "supplement",
             "title": "Aura Inner Glow™",
             "subtitle": "Internal Fortification"
@@ -31,6 +33,7 @@
         "feature_qKPjKw": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/output-onlinepngtools_6.png",
             "icon": "skincare",
             "title": "CellSync™ Skincare",
             "subtitle": "Topical Regeneration"
@@ -57,7 +60,7 @@
         "secondary_cta_bg": "#4fffff",
         "secondary_cta_text_color": "#333333",
         "title_font": "Montserrat",
-        "title_size": 48,
+        "title_size": 56,
         "title_weight": "700",
         "title_style": "normal",
         "subtitle_font": "Montserrat",

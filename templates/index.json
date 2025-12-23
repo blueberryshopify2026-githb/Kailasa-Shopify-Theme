@@ -211,8 +211,9 @@
       ],
       "name": "Cellular Harmony Hero",
       "settings": {
-        "title": "<p>introducing <strong>Cellular</strong><br><strong>Harmony™</strong></p>",
+        "title": "<p>introducing <strong>Cellular</strong><br/><strong>Harmony™</strong></p>",
         "subtitle": "Restore firmness, smooth fine lines, and revive your natural glow with science backed anti-aging therapy.",
+        "hero_image": "shopify://shop_images/Capture.jpg",
         "show_image_divider": true,
         "primary_cta_text": "Cellular Harmony™ Protocol",
         "primary_cta_url": "",

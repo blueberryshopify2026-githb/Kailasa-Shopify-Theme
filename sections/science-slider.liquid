@@ -1,0 +1,3696 @@
+{% comment %}
+  Science Slider Section - Full Screen Slider
+  Clean, focused design for molecular science showcase
+{% endcomment %}
+
+<section class="science-slider-section">
+  <div class="slider-container">
+    <div class="slides-wrapper" id="slidesWrapper">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="slide" data-slide="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            {% if block.type == 'molecular_standard' %}
+              <div class="slide-content molecular-slide">
+                <div class="slide-layout">
+                  <div class="left-panel">
+                    <h1 class="main-title">{{ block.settings.main_title | default: 'THE MOLECULAR<br>STANDARD.' }}</h1>
+
+                    <div class="slide-header">
+                      <h2 class="slide-subtitle">{{ block.settings.subtitle | default: 'The Molecular Standard.' }}</h2>
+                    </div>
+
+                    <p class="description">
+                      {{
+                        block.settings.description
+                        | default: 'Harnessing South Korea patented fermentation technology skin elasticity at a cellular level.'
+                      }}
+                    </p>
+
+                    <div class="feature-boxes">
+                      <div class="feature-box">
+                        <h4>{{ block.settings.feature_1_title | default: 'PDRN:' }}</h4>
+                        <p>{{ block.settings.feature_1_desc | default: 'DNA-based rejuvenation.' }}</p>
+                      </div>
+
+                      <div class="feature-box">
+                        <h4>{{ block.settings.feature_2_title | default: 'SNAIL MUCIN' }}</h4>
+                        <p>{{ block.settings.feature_2_desc | default: 'Advanced barrier repair' }}</p>
+                      </div>
+                    </div>
+
+                    <div class="molecular-icons">
+                      <!-- Icons Row -->
+                      <div class="icons-row">
+                        <div class="icon-container">
+                          {% if block.settings.icon_1_image %}
+                            <img
+                              src="{{ block.settings.icon_1_image | image_url: width: 80 }}"
+                              alt="{{ block.settings.icon_1_title }}"
+                              width="80"
+                              height="80"
+                              class="molecular-icon"
+                            >
+                          {% else %}
+                            <div class="icon-placeholder pdrn-icon"></div>
+                          {% endif %}
+                        </div>
+
+                        <div class="icon-container">
+                          {% if block.settings.icon_2_image %}
+                            <img
+                              src="{{ block.settings.icon_2_image | image_url: width: 80 }}"
+                              alt="{{ block.settings.icon_2_title }}"
+                              width="80"
+                              height="80"
+                              class="molecular-icon"
+                            >
+                          {% else %}
+                            <div class="icon-placeholder ceramides-icon"></div>
+                          {% endif %}
+                        </div>
+
+                        <div class="icon-container">
+                          {% if block.settings.icon_3_image %}
+                            <img
+                              src="{{ block.settings.icon_3_image | image_url: width: 80 }}"
+                              alt="{{ block.settings.icon_3_title }}"
+                              width="80"
+                              height="80"
+                              class="molecular-icon"
+                            >
+                          {% else %}
+                            <div class="icon-placeholder peptides-icon"></div>
+                          {% endif %}
+                        </div>
+                      </div>
+
+                      <!-- Titles Row -->
+                      <div class="titles-row">
+                        <h5 class="icon-title">{{ block.settings.icon_1_title | default: 'PDRN' }}</h5>
+                        <h5 class="icon-title">{{ block.settings.icon_2_title | default: 'CERAMIDES' }}</h5>
+                        <h5 class="icon-title">{{ block.settings.icon_3_title | default: 'PEPTIDES' }}</h5>
+                      </div>
+
+                      <!-- Descriptions Row -->
+                      <div class="descriptions-row">
+                        <p class="icon-desc">{{ block.settings.icon_1_desc | default: 'DNA-based rejuvenation.' }}</p>
+                        <p class="icon-desc">
+                          {{ block.settings.icon_2_desc | default: 'Barrier strength and protration' }}
+                        </p>
+                        <p class="icon-desc">
+                          {{ block.settings.icon_3_desc | default: 'Collagen synthesis and elasticity' }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="right-panel">
+                    {% if block.settings.media_type == 'video' and block.settings.background_video %}
+                      <video autoplay muted loop class="background-video" width="600" height="400">
+                        <source src="{{ block.settings.background_video | asset_url }}" type="video/mp4">
+                      </video>
+                    {% elsif block.settings.background_image %}
+                      <img
+                        src="{{ block.settings.background_image | image_url: width: 600 }}"
+                        alt="Molecular background"
+                        class="background-image"
+                        width="600"
+                        height="400"
+                      >
+                    {% else %}
+                      <div class="molecular-background">
+                        <div class="molecular-pattern"></div>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+            {% elsif block.type == 'clinical_dossier' %}
+              <div class="slide-content clinical-slide">
+                <div
+                  class="clinical-layout"
+                  style="grid-template-columns: {{ block.settings.left_ratio | default: 60 }}% {{ block.settings.right_ratio | default: 40 }}%;"
+                >
+                  <!-- Left Side - Image Display -->
+                  <div class="clinical-left">
+                    <div class="image-display-area">
+                      <div class="clinical-image-container" id="clinicalImageContainer">
+                        {% for i in (1..6) %}
+                          {% assign card_image = 'card_' | append: i | append: '_image' %}
+                          {% if block.settings[card_image] %}
+                            <img
+                              src="{{ block.settings[card_image] | image_url: width: 500 }}"
+                              alt="Card {{ i }} image"
+                              class="clinical-image card-image-{{ i }}"
+                              width="500"
+                              height="400"
+                              style="display: {% if i == 1 %}block{% else %}none{% endif %}; object-fit: {{ block.settings.image_fit | default: 'cover' }};"
+                            >
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Cyan Divider Line -->
+                  {% if block.settings.show_divider %}
+                    <div
+                      class="clinical-divider"
+                      style="background-color: {{ block.settings.divider_color | default: '#00bcd4' }}; left: {{ block.settings.left_ratio | default: 60 }}%;"
+                    ></div>
+                  {% endif %}
+
+                  <!-- Right Side - Content and Cards -->
+                  <div class="clinical-right">
+                    <div class="right-content">
+                      <div class="right-header">
+                        <h2 class="molecular-title">
+                          {{ block.settings.right_title | default: 'THE MOLECULAR FOUNDATIONS' }}
+                        </h2>
+                        <p class="molecular-subtitle">
+                          {{
+                            block.settings.right_subtitle
+                            | default: 'Beyond the surface. We engineer the architecture.'
+                          }}
+                        </p>
+                      </div>
+
+                      <!-- Interactive Cards -->
+                      <div class="clinical-cards">
+                        {% for i in (1..6) %}
+                          {% assign card_title = 'card_' | append: i | append: '_title' %}
+                          {% assign card_subtitle = 'card_' | append: i | append: '_subtitle' %}
+
+                          <div
+                            class="clinical-card"
+                            data-card="{{ i }}"
+                            onmouseover="showCardImage({{ i }})"
+                            onclick="showCardImage({{ i }})"
+                            style="border-radius: {{ block.settings.card_border_radius | default: 25 }}px;"
+                          >
+                            <div class="card-content">
+                              <div class="card-left">
+                                <div class="card-text">
+                                  <h3 class="card-title">{{ block.settings[card_title] | default: 'Card title' }}</h3>
+                                  <p class="card-subtitle">
+                                    {{ block.settings[card_subtitle] | default: 'Card description text' }}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {% elsif block.type == 'technology_showcase' %}
+              <div class="slide-content technology-slide">
+                <div class="technology-split-layout">
+                  <!-- Left 60% - Image with Points -->
+                  <div class="technology-image-section">
+                    {% if block.settings.main_image %}
+                      <img
+                        src="{{ block.settings.main_image | image_url: width: 1200 }}"
+                        alt="{{ block.settings.main_title }}"
+                        class="technology-bg-image"
+                        width="1200"
+                        height="800"
+                      >
+                    {% else %}
+                      <div class="technology-bg-placeholder">
+                        <p>Upload your main background image</p>
+                      </div>
+                    {% endif %}
+
+                    <!-- Overlay Points on Image -->
+                    <div class="technology-points-overlay">
+                      <div
+                        class="overlay-point point-1"
+                        data-point="1"
+                        style="top: {{ block.settings.point_1_top | default: 45 }}%; left: {{ block.settings.point_1_left | default: 30 }}%;"
+                        onmouseover="highlightPoint(1)"
+                        onmouseout="unhighlightPoint(1)"
+                        onclick="selectPoint(1)"
+                      >
+                        <span class="point-number">1</span>
+                      </div>
+
+                      <div
+                        class="overlay-point point-2"
+                        data-point="2"
+                        style="top: {{ block.settings.point_2_top | default: 70 }}%; left: {{ block.settings.point_2_left | default: 70 }}%;"
+                        onmouseover="highlightPoint(2)"
+                        onmouseout="unhighlightPoint(2)"
+                        onclick="selectPoint(2)"
+                      >
+                        <span class="point-number">2</span>
+                      </div>
+
+                      <div
+                        class="overlay-point point-3"
+                        data-point="3"
+                        style="top: {{ block.settings.point_3_top | default: 95 }}%; left: {{ block.settings.point_3_left | default: 25 }}%;"
+                        onmouseover="highlightPoint(3)"
+                        onmouseout="unhighlightPoint(3)"
+                        onclick="selectPoint(3)"
+                      >
+                        <span class="point-number">3</span>
+                      </div>
+
+                      <!-- Arrow Lines -->
+                      {% if block.settings.show_arrows != false %}
+                        <div class="arrow-lines">
+                          <div
+                            class="arrow-line line-1"
+                            data-line="1"
+                            style="width: {{ block.settings.arrow_1_width | default: 60 }}%; top: {{ block.settings.point_1_top | default: 45 }}%; left: calc({{ block.settings.point_1_left | default: 30 }}% + 20px);"
+                          ></div>
+                          <div
+                            class="arrow-line line-2"
+                            data-line="2"
+                            style="width: {{ block.settings.arrow_2_width | default: 40 }}%; top: {{ block.settings.point_2_top | default: 70 }}%; left: calc({{ block.settings.point_2_left | default: 70 }}% + 20px);"
+                          ></div>
+                          <div
+                            class="arrow-line line-3"
+                            data-line="3"
+                            style="width: {{ block.settings.arrow_3_width | default: 60 }}%; top: {{ block.settings.point_3_top | default: 95 }}%; left: calc({{ block.settings.point_3_left | default: 25 }}% + 20px);"
+                          ></div>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <!-- Right 40% - Content Area -->
+                  <div class="technology-content-section">
+                    <!-- Main Title -->
+                    <div class="content-header">
+                      <h1 class="technology-main-title">
+                        {{ block.settings.main_title | default: 'Derm proven retinol with patented technology' }}
+                      </h1>
+                    </div>
+
+                    <!-- Structured Content List -->
+                    <div class="content-list">
+                      <!-- Point 1 Content -->
+                      <div
+                        class="content-item item-1"
+                        data-content="1"
+                        onmouseover="highlightPoint(1)"
+                        onmouseout="unhighlightPoint(1)"
+                        onclick="selectPoint(1)"
+                      >
+                        <div class="content-number">1.</div>
+                        <div class="content-text">
+                          <h3 class="point-title">
+                            {{ block.settings.point_1_title | default: 'Derm proven retinol' }}
+                          </h3>
+                          <p class="point-description">
+                            {{ block.settings.point_1_description | default: 'Helps to fade lines and wrinkles' }}
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Point 2 Content -->
+                      <div
+                        class="content-item item-2"
+                        data-content="2"
+                        onmouseover="highlightPoint(2)"
+                        onmouseout="unhighlightPoint(2)"
+                        onclick="selectPoint(2)"
+                      >
+                        <div class="content-number">2.</div>
+                        <div class="content-text">
+                          <h3 class="point-title">
+                            {{ block.settings.point_2_title | default: 'Peptides' }}
+                          </h3>
+                          <p class="point-description">
+                            {{
+                              block.settings.point_2_description
+                              | default: 'Helps improve skin firmness and elasticity'
+                            }}
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Point 3 Content -->
+                      <div
+                        class="content-item item-3"
+                        data-content="3"
+                        onmouseover="highlightPoint(3)"
+                        onmouseout="unhighlightPoint(3)"
+                        onclick="selectPoint(3)"
+                      >
+                        <div class="content-number">3.</div>
+                        <div class="content-text">
+                          <h3 class="point-title">
+                            {{ block.settings.point_3_title | default: 'Soothing Complex' }}
+                          </h3>
+                          <p class="point-description">
+                            {{
+                              block.settings.point_3_description
+                              | default: 'Helps nourish skin and minimize irritation'
+                            }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {% elsif block.type == 'korean_beauty_showcase' %}
+              <div class="slide-content korean-beauty-slide">
+                <div class="korean-beauty-layout">
+                  <!-- Background Image -->
+                  <div class="korean-beauty-background">
+                    {% if block.settings.background_image %}
+                      <img
+                        src="{{ block.settings.background_image | image_url: width: 1920 }}"
+                        alt="{{ block.settings.main_heading }}"
+                        class="korean-bg-image"
+                        width="1920"
+                        height="1080"
+                        style="opacity: {{ block.settings.background_opacity | default: 1 }};"
+                      >
+                    {% else %}
+                      <div class="korean-bg-placeholder">
+                        <p>Upload your background image</p>
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  <!-- Overlay Content -->
+                  <div class="korean-beauty-overlay">
+                    <!-- Main Content -->
+                    <div class="korean-content-area">
+                      <h1
+                        class="korean-main-heading"
+                        style="
+                          font-size: {{ block.settings.main_heading_size | default: 48 }}px;
+                          color: {{ block.settings.main_heading_color | default: '#000000' }};
+                          text-align: {{ block.settings.main_heading_alignment | default: 'left' }};
+                          font-weight: {{ block.settings.main_heading_weight | default: 700 }};
+                        "
+                        id="koreanMainHeading"
+                        data-default-heading="{{ block.settings.default_main_heading | default: 'Where Korean beauty meets Precision' }}"
+                      >
+                        {{ block.settings.default_main_heading | default: 'Where Korean beauty meets Precision' }}
+                      </h1>
+                      <p
+                        class="korean-subheading"
+                        style="
+                          font-size: {{ block.settings.subheading_size | default: 18 }}px;
+                          color: {{ block.settings.subheading_color | default: '#000000' }};
+                          text-align: {{ block.settings.subheading_alignment | default: 'left' }};
+                          font-weight: {{ block.settings.subheading_weight | default: 400 }};
+                        "
+                        id="koreanSubheading"
+                        data-default-subheading="{{ block.settings.default_subheading | default: 'Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.' }}"
+                      >
+                        {{
+                          block.settings.default_subheading
+                          | default: 'Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.'
+                        }}
+                      </p>
+                    </div>
+
+                    <!-- Interactive Icons Section -->
+                    <div class="korean-icons-section">
+                      <div
+                        class="icons-container"
+                        style="
+                          background: rgba(255, 255, 255, {{ block.settings.glass_opacity | default: 0.2 }});
+                          backdrop-filter: blur({{ block.settings.glass_blur | default: 10 }}px);
+                          width: {{ block.settings.glass_width | default: 800 }}px;
+                          height: {{ block.settings.glass_height | default: 120 }}px;
+                          border-radius: {{ block.settings.glass_border_radius | default: 20 }}px;
+                          padding: {{ block.settings.glass_padding_vertical | default: 30 }}px {{ block.settings.glass_padding_horizontal | default: 40 }}px;
+                        "
+                      >
+                        <!-- Icon 1 -->
+                        <div
+                          class="korean-icon-item"
+                          data-icon="1"
+                          onmouseover="activateIcon(1)"
+                          onmouseout="deactivateIcon(1)"
+                          onclick="selectIcon(1)"
+                        >
+                          {% if block.settings.icon_1_image %}
+                            <img
+                              src="{{ block.settings.icon_1_image | image_url: width: 60 }}"
+                              alt="{{ block.settings.icon_1_title }}"
+                              class="icon-image"
+                              width="60"
+                              height="60"
+                            >
+                          {% else %}
+                            <div class="icon-placeholder">
+                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                                <path d="M15 20l5 5 10-10" stroke="currentColor" stroke-width="2" fill="none"/>
+                              </svg>
+                            </div>
+                          {% endif %}
+                          <span
+                            class="icon-title"
+                            style="
+                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                              color: {{ block.settings.icon_title_color | default: '#000000' }};
+                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                            "
+                          >
+                            {{ block.settings.icon_1_title | default: 'Repair' }}
+                          </span>
+                          <div
+                            class="icon-underline"
+                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                          ></div>
+                        </div>
+
+                        <!-- Icon 2 -->
+                        <div
+                          class="korean-icon-item"
+                          data-icon="2"
+                          onmouseover="activateIcon(2)"
+                          onmouseout="deactivateIcon(2)"
+                          onclick="selectIcon(2)"
+                        >
+                          {% if block.settings.icon_2_image %}
+                            <img
+                              src="{{ block.settings.icon_2_image | image_url: width: 60 }}"
+                              alt="{{ block.settings.icon_2_title }}"
+                              class="icon-image"
+                              width="60"
+                              height="60"
+                            >
+                          {% else %}
+                            <div class="icon-placeholder">
+                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <path d="M20 5l5 10h10l-8 6 3 10-10-7-10 7 3-10-8-6h10z" stroke="currentColor" stroke-width="2" fill="none"/>
+                              </svg>
+                            </div>
+                          {% endif %}
+                          <span
+                            class="icon-title"
+                            style="
+                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                              color: {{ block.settings.icon_title_color | default: '#000000' }};
+                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                            "
+                          >
+                            {{ block.settings.icon_2_title | default: 'Renew' }}
+                          </span>
+                          <div
+                            class="icon-underline"
+                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                          ></div>
+                        </div>
+
+                        <!-- Icon 3 -->
+                        <div
+                          class="korean-icon-item"
+                          data-icon="3"
+                          onmouseover="activateIcon(3)"
+                          onmouseout="deactivateIcon(3)"
+                          onclick="selectIcon(3)"
+                        >
+                          {% if block.settings.icon_3_image %}
+                            <img
+                              src="{{ block.settings.icon_3_image | image_url: width: 60 }}"
+                              alt="{{ block.settings.icon_3_title }}"
+                              class="icon-image"
+                              width="60"
+                              height="60"
+                            >
+                          {% else %}
+                            <div class="icon-placeholder">
+                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="20" cy="20" r="8" stroke="currentColor" stroke-width="2"/>
+                              </svg>
+                            </div>
+                          {% endif %}
+                          <span
+                            class="icon-title"
+                            style="
+                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                              color: {{ block.settings.icon_title_color | default: '#000000' }};
+                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                            "
+                          >
+                            {{ block.settings.icon_3_title | default: 'Protect' }}
+                          </span>
+                          <div
+                            class="icon-underline"
+                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                          ></div>
+                        </div>
+
+                        <!-- Icon 4 -->
+                        <div
+                          class="korean-icon-item"
+                          data-icon="4"
+                          onmouseover="activateIcon(4)"
+                          onmouseout="deactivateIcon(4)"
+                          onclick="selectIcon(4)"
+                        >
+                          {% if block.settings.icon_4_image %}
+                            <img
+                              src="{{ block.settings.icon_4_image | image_url: width: 60 }}"
+                              alt="{{ block.settings.icon_4_title }}"
+                              class="icon-image"
+                              width="60"
+                              height="60"
+                            >
+                          {% else %}
+                            <div class="icon-placeholder">
+                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <path d="M10 20c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M15 20l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/>
+                              </svg>
+                            </div>
+                          {% endif %}
+                          <span
+                            class="icon-title"
+                            style="
+                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                              color: {{ block.settings.icon_title_color | default: '#000000' }};
+                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                            "
+                          >
+                            {{ block.settings.icon_4_title | default: 'Repair' }}
+                          </span>
+                          <div
+                            class="icon-underline"
+                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                          ></div>
+                        </div>
+
+                        <!-- Icon 5 -->
+                        <div
+                          class="korean-icon-item"
+                          data-icon="5"
+                          onmouseover="activateIcon(5)"
+                          onmouseout="deactivateIcon(5)"
+                          onclick="selectIcon(5)"
+                        >
+                          {% if block.settings.icon_5_image %}
+                            <img
+                              src="{{ block.settings.icon_5_image | image_url: width: 60 }}"
+                              alt="{{ block.settings.icon_5_title }}"
+                              class="icon-image"
+                              width="60"
+                              height="60"
+                            >
+                          {% else %}
+                            <div class="icon-placeholder">
+                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                <path d="M20 5v30M5 20h30" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="2" fill="none"/>
+                              </svg>
+                            </div>
+                          {% endif %}
+                          <span
+                            class="icon-title"
+                            style="
+                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                              color: {{ block.settings.icon_title_color | default: '#000000' }};
+                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                            "
+                          >
+                            {{ block.settings.icon_5_title | default: 'Renew' }}
+                          </span>
+                          <div
+                            class="icon-underline"
+                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hidden Content Data for JavaScript -->
+                    <div class="korean-content-data" style="display: none;">
+                      <div data-content="1">
+                        <span class="content-heading">
+                          {{- block.settings.icon_1_heading | default: 'Advanced Repair Technology' -}}
+                        </span>
+                        <span class="content-subheading">
+                          {{-
+                            block.settings.icon_1_subheading
+                            | default: 'Cellular regeneration and DNA repair mechanisms'
+                          -}}
+                        </span>
+                      </div>
+                      <div data-content="2">
+                        <span class="content-heading">
+                          {{- block.settings.icon_2_heading | default: 'Renewal Complex' -}}
+                        </span>
+                        <span class="content-subheading">
+                          {{-
+                            block.settings.icon_2_subheading
+                            | default: 'Advanced skin renewal and rejuvenation formulas'
+                          -}}
+                        </span>
+                      </div>
+                      <div data-content="3">
+                        <span class="content-heading">
+                          {{- block.settings.icon_3_heading | default: 'Protection Shield' -}}
+                        </span>
+                        <span class="content-subheading">
+                          {{-
+                            block.settings.icon_3_subheading
+                            | default: 'Barrier protection and environmental defense'
+                          -}}
+                        </span>
+                      </div>
+                      <div data-content="4">
+                        <span class="content-heading">
+                          {{- block.settings.icon_4_heading | default: 'Deep Repair' -}}
+                        </span>
+                        <span class="content-subheading">
+                          {{- block.settings.icon_4_subheading | default: 'Intensive repair and restoration therapy' -}}
+                        </span>
+                      </div>
+                      <div data-content="5">
+                        <span class="content-heading">
+                          {{- block.settings.icon_5_heading | default: 'Complete Renewal' -}}
+                        </span>
+                        <span class="content-subheading">
+                          {{- block.settings.icon_5_subheading | default: 'Total skin renewal and transformation' -}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <!-- Default content when no blocks are added -->
+        <div class="slide">
+          <div class="slide-content molecular-slide">
+            <div class="slide-layout">
+              <div class="left-panel">
+                <h1 class="main-title">
+                  THE MOLECULAR<br>
+                  STANDARD.
+                </h1>
+                <div class="slide-header">
+                  <h2 class="slide-subtitle">The Molecular Standard.</h2>
+                </div>
+                <p class="description">
+                  Harnessing South Korea patented fermentation technology skin elasticity at a cellular level.
+                </p>
+                <div class="feature-boxes">
+                  <div class="feature-box">
+                    <h4>PDRN:</h4>
+                    <p>DNA-based rejuvenation.</p>
+                  </div>
+                  <div class="feature-box">
+                    <h4>SNAIL MUCIN</h4>
+                    <p>Advanced barrier repair</p>
+                  </div>
+                </div>
+                <div class="molecular-icons">
+                  <div class="icons-row">
+                    <div class="icon-container"><div class="icon-placeholder pdrn-icon"></div></div>
+                    <div class="icon-container"><div class="icon-placeholder ceramides-icon"></div></div>
+                    <div class="icon-container"><div class="icon-placeholder peptides-icon"></div></div>
+                  </div>
+                  <div class="titles-row">
+                    <h5 class="icon-title">PDRN</h5>
+                    <h5 class="icon-title">CERAMIDES</h5>
+                    <h5 class="icon-title">PEPTIDES</h5>
+                  </div>
+                  <div class="descriptions-row">
+                    <p class="icon-desc">DNA-based rejuvenation.</p>
+                    <p class="icon-desc">Barrier strength and protration</p>
+                    <p class="icon-desc">Collagen synthesis and elasticity</p>
+                  </div>
+                </div>
+              </div>
+              <div class="right-panel">
+                <div class="molecular-background">
+                  <div class="molecular-pattern"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Navigation Arrows -->
+    {% if section.blocks.size > 1 %}
+      <div class="slider-navigation">
+        <button class="nav-arrow nav-prev" onclick="previousSlide()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="nav-arrow nav-next" onclick="nextSlide()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .science-slider-section {
+    background: {{ section.settings.background_color | default: '#f8f9fa' }};
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    margin: {{ section.settings.section_margin_top | default: 0 }}px 0 {{ section.settings.section_margin_bottom | default: 0 }}px 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .slider-container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    padding: 0;
+  }
+
+  .slides-wrapper {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+  }
+
+  .slide {
+    min-width: 100%;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .slide-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Molecular Slide Styles */
+  .molecular-slide .slide-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .left-panel {
+    background: #ffffff;
+    padding: 40px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .right-panel {
+    background: #e8f8f5;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .main-title {
+    font-size: clamp(2.2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 20px 0;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+
+  .slide-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .slide-subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    color: {{ section.settings.accent_color | default: '#00bcd4' }};
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .description {
+    font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  .feature-boxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0 30px 0;
+  }
+
+  .feature-box {
+    background: #D3FFFF;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .feature-box h4 {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 8px 0;
+  }
+
+  .feature-box p {
+    font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+    color: #333333;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .molecular-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .icons-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: start;
+  }
+
+  .titles-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+  }
+
+  .descriptions-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+  }
+
+  .icon-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .molecular-icon {
+    width: clamp(60px, 8vw, 70px);
+    height: clamp(60px, 8vw, 70px);
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .icon-placeholder {
+    width: clamp(60px, 8vw, 70px);
+    height: clamp(60px, 8vw, 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.4rem, 2vw, 1.6rem);
+    border-radius: 8px;
+  }
+
+  .pdrn-icon {
+    background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+    color: white;
+  }
+
+  .ceramides-icon {
+    background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+    color: white;
+  }
+
+  .peptides-icon {
+    background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+    color: white;
+  }
+
+  .icon-title {
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+
+  .icon-desc {
+    font-size: {{ section.settings.icon_desc_font_size | default: 14 }}px;
+    color: {{ section.settings.icon_desc_color | default: '#00bcd4' }};
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .background-image,
+  .background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .molecular-background {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e8f8f5 0%, #b2dfdb 100%);
+    position: relative;
+  }
+
+  .molecular-pattern {
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0, 188, 212, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 80% 70%, rgba(0, 188, 212, 0.1) 1px, transparent 1px),
+      radial-gradient(circle at 40% 80%, rgba(0, 188, 212, 0.1) 1.5px, transparent 1.5px);
+    background-size: 50px 50px, 30px 30px, 40px 40px;
+  }
+
+  /* Medical Grade Slide Styles */
+  .medical-grade-slide {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .medical-header-top {
+    padding: 60px 80px 30px 80px;
+    background: #ffffff;
+    text-align: center;
+  }
+
+  .medical-main-title {
+    font-size: clamp(2.5rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 15px 0;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+  }
+
+  .medical-subtitle-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .medical-subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    color: #666666;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .medical-grid-layout {
+    flex: 1;
+    padding: 20px 40px 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+    width: 100%;
+    max-width: 1400px;
+    height: 600px;
+    border: 2px solid #e0e0e0;
+  }
+
+  .grid-item {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .grid-text-content {
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid-text-content p {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .grid-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+  }
+
+  .placeholder-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #999;
+  }
+
+  /* Special grid item positioning for the layout */
+  .grid-item-2 {
+    background: #ffffff;
+  }
+
+  .grid-item-5 {
+    background: #ffffff;
+  }
+
+  .grid-item-8 {
+    background: #ffffff;
+  }
+
+  /* Ceramide Slide Styles */
+  .ceramide-slide {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .ceramide-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    width: 100%;
+    height: 95vh;
+  }
+
+  .ceramide-left {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ceramide-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ceramide-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ceramide-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder-text {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 600;
+  }
+
+  .ceramide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .overlay-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .overlay-top {
+    text-align: left;
+  }
+
+  .overlay-middle {
+    text-align: right;
+    align-self: flex-end;
+    margin-right: 60px;
+  }
+
+  .overlay-bottom {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .overlay-title {
+    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .overlay-subtitle {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    color: #666666;
+    margin: 0 0 5px 0;
+    line-height: 1.3;
+  }
+
+  .overlay-description {
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    color: #666666;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .label-item {
+    text-align: right;
+  }
+
+  .label-text {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 700;
+    color: #000000;
+    display: block;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+
+  .label-desc {
+    font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+    color: #666666;
+    margin: 0 0 3px 0;
+  }
+
+  .label-extra {
+    font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+    color: #666666;
+    margin: 0;
+  }
+
+  .main-question {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .copyright {
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    color: #999999;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .ceramide-right {
+    background: #ffffff;
+    padding: 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .right-content {
+    max-width: 500px;
+    width: 100%;
+  }
+
+
+
+  .content-text {
+    text-align: left;
+  }
+
+  .content-title {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    font-weight: 600;
+    color: #000000;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+  }
+
+  .content-description {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    color: #333333;
+    margin: 0 0 20px 0;
+    line-height: 1.5;
+  }
+
+  .detailed-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid {{ section.settings.accent_color | default: '#00bcd4' }};
+  }
+
+  .detailed-text {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    color: #555555;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Clinical Dossier Slide Styles */
+  .clinical-slide {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .clinical-layout {
+    display: grid;
+    gap: 0;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+
+  .clinical-left {
+    background: #f8f9fa;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .image-display-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .clinical-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .clinical-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+
+  .clinical-divider {
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    transition: left 0.3s ease;
+  }
+
+  .clinical-right {
+    background: #ffffff;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .right-header {
+    margin-bottom: 30px;
+  }
+
+  .molecular-title {
+    font-size: {{ section.settings.main_title_size | default: 40 }}px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 8px 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .molecular-subtitle {
+    font-size: {{ section.settings.subtitle_size | default: 18 }}px;
+    color: #666666;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .clinical-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: none;
+    overflow-y: visible;
+    width: 100%;
+  }
+
+  .clinical-card {
+    background: {{ section.settings.card_background_color | default: '#f8f9fa' }};
+    border: 1px solid {{ section.settings.card_border_color | default: '#e0e0e0' }};
+    padding: {{ section.settings.card_padding_vertical | default: 12 }}px {{ section.settings.card_padding_horizontal | default: 16 }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: {{ section.settings.card_min_height | default: 45 }}px;
+    max-height: {{ section.settings.card_max_height | default: 60 }}px;
+    border-radius: {{ section.settings.card_border_radius | default: 8 }}px;
+    width: {{ section.settings.card_width | default: 100 }}%;
+    box-sizing: border-box;
+  }
+
+  .clinical-card:hover {
+    background: #d3ffff;
+    border-color: #d3ffff;
+    transform: translateX(5px);
+  }
+
+  .clinical-card:hover .card-title,
+  .clinical-card:hover .card-subtitle {
+    color: #000000;
+  }
+
+  .clinical-card.active {
+    background: {{ section.settings.accent_color | default: '#00bcd4' }};
+    border-color: {{ section.settings.accent_color | default: '#00bcd4' }};
+  }
+
+  .clinical-card.active .card-title,
+  .clinical-card.active .card-subtitle {
+    color: #ffffff;
+  }
+
+  .card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .card-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .card-icon {
+    font-size: {{ section.settings.card_title_size | default: 16 }}px;
+    font-weight: 700;
+    color: {{ section.settings.accent_color | default: '#00bcd4' }};
+    min-width: 30px;
+    flex-shrink: 0;
+  }
+
+  .card-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-title {
+    font-size: {{ section.settings.card_title_size | default: 16 }}px;
+    font-weight: 700;
+    color: {{ section.settings.card_text_color | default: '#000000' }};
+    margin: 0 0 3px 0;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+    word-wrap: break-word;
+  }
+
+  .card-subtitle {
+    font-size: {{ section.settings.card_subtitle_size | default: 13 }}px;
+    color: {{ section.settings.card_text_color | default: '#666666' }};
+    margin: 0;
+    line-height: 1.3;
+    text-transform: none;
+    word-wrap: break-word;
+  }
+
+  /* Responsive layout adjustments */
+  .clinical-layout {
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    gap: 0;
+    position: relative;
+  }
+
+  .clinical-left {
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .clinical-right {
+    background: #ffffff;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* Technology Showcase Slide Styles - 60/40 Split Layout */
+  .technology-slide {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .technology-split-layout {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    width: 100%;
+    height: 100vh;
+    gap: 0;
+  }
+
+  .technology-image-section {
+    position: relative;
+    overflow: hidden;
+    background: #f8f9fa;
+  }
+
+  .technology-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .technology-bg-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .technology-points-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .overlay-point {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    z-index: 15;
+  }
+
+  .overlay-point:hover {
+    background: #00bcd4;
+    transform: scale(1.1);
+  }
+
+  .overlay-point.active {
+    background: #00bcd4;
+    transform: scale(1.2);
+  }
+
+  .point-number {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .overlay-point:hover .point-number,
+  .overlay-point.active .point-number {
+    color: #000000;
+  }
+
+  .arrow-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .arrow-line {
+    position: absolute;
+    height: 2px;
+    background: #000000;
+    transition: all 0.3s ease;
+    transform-origin: left center;
+  }
+
+  .arrow-line::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid #000000;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+  .line-1 {
+    width: 60%;
+    top: 45%;
+    left: calc(30% + 20px);
+    transform: translateY(-50%);
+  }
+
+  .line-2 {
+    width: 40%;
+    top: 70%;
+    left: calc(70% + 20px);
+    transform: translateY(-50%);
+  }
+
+  .line-3 {
+    width: 60%;
+    top: 95%;
+    left: calc(25% + 20px);
+    transform: translateY(-50%);
+  }
+
+  .technology-content-section {
+    background: #ffffff;
+    padding: 0 40px 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .content-header {
+    margin: 0 0 40px 0;
+    padding: 0;
+  }
+
+  .technology-main-title {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: left;
+    padding-top: 0;
+  }
+
+  .content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 0;
+    height: 100%;
+    justify-content: space-evenly;
+    padding-top: 20px;
+  }
+
+  .content-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 20px 0;
+    position: relative;
+  }
+
+  .content-item.item-1 {
+    margin-top: 0;
+  }
+
+  .content-item.item-2 {
+    margin-top: 20px;
+  }
+
+  .content-item.item-3 {
+    margin-top: 10px;
+  }
+
+  .content-item:hover {
+    transform: translateX(5px);
+  }
+
+  .content-item.highlighted {
+    transform: translateX(5px);
+  }
+
+  .content-number {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #000000;
+    min-width: 30px;
+    transition: all 0.3s ease;
+  }
+
+  .content-text {
+    flex: 1;
+  }
+
+  .point-title {
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+    transition: all 0.3s ease;
+  }
+
+  .point-description {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    color: #666666;
+    margin: 0;
+    line-height: 1.4;
+    transition: all 0.3s ease;
+  }
+
+  .content-item:hover .content-number,
+  .content-item.highlighted .content-number {
+    color: #00bcd4;
+  }
+
+  .content-item:hover .point-title,
+  .content-item.highlighted .point-title {
+    color: #00bcd4;
+  }
+
+  .content-item:hover .point-description,
+  .content-item.highlighted .point-description {
+    color: #00bcd4;
+  }
+
+  /* Korean Beauty Showcase Slide Styles */
+  .korean-beauty-slide {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .korean-beauty-layout {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .korean-beauty-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .korean-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+
+  .korean-bg-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .korean-beauty-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px;
+  }
+
+  .korean-content-area {
+    max-width: 600px;
+    transition: all 0.5s ease;
+  }
+
+  .korean-main-heading {
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    transition: all 0.5s ease;
+  }
+
+  .korean-subheading {
+    margin: 0;
+    line-height: 1.5;
+    max-width: 500px;
+    transition: all 0.5s ease;
+  }
+
+  .korean-icons-section {
+    align-self: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .icons-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .korean-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 10px;
+  }
+
+  .korean-icon-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .korean-icon-item:hover .icon-underline {
+    width: 100%;
+  }
+
+  .korean-icon-item:hover .icon-title {
+    color: var(--underline-color, #00bcd4);
+  }
+
+  .korean-icon-item.active .icon-underline {
+    width: 100%;
+  }
+
+  .korean-icon-item.active .icon-title {
+    color: var(--underline-color, #00bcd4);
+  }
+
+  .icon-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+
+  .icon-placeholder {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.3s ease;
+  }
+
+  .korean-icon-item:hover .icon-placeholder {
+    color: var(--underline-color, #00bcd4);
+  }
+
+  .icon-title {
+    text-align: center;
+    transition: all 0.3s ease;
+    margin: 0;
+  }
+
+  .icon-underline {
+    width: 0;
+    height: 2px;
+    transition: all 0.3s ease;
+    margin-top: 4px;
+  }
+
+  .korean-content-data {
+    display: none;
+  }
+    transition: all 0.3s ease;
+  }
+
+  .korean-icon-item:hover .icon-placeholder {
+    color: #00bcd4;
+  }
+
+  .icon-title {
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin: 0;
+  }
+
+  .icon-underline {
+    width: 0;
+    height: 2px;
+    background: transparent;
+    transition: all 0.3s ease;
+    margin-top: 4px;
+  }
+
+  .slider-navigation {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+  }
+
+  .nav-arrow {
+    width: {{ section.settings.nav_arrow_width | default: 50 }}px;
+    height: {{ section.settings.nav_arrow_height | default: 50 }}px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+  }
+
+  .nav-arrow:hover {
+    background: #D3FFFF;
+    border-color: #D3FFFF;
+    color: #000000;
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    .science-slider-section {
+      min-height: 100vh;
+      height: 100vh;
+      padding: 0;
+    }
+
+    .slide {
+      height: 100vh;
+      padding: 0;
+    }
+
+    .molecular-slide .slide-layout {
+      grid-template-columns: 1fr;
+      height: 100vh;
+    }
+
+    .ceramide-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .ceramide-overlay {
+      padding: 20px;
+    }
+
+    .ceramide-right {
+      padding: 40px 20px;
+    }
+
+
+
+    .medical-header-top {
+      padding: 40px 20px 20px 20px;
+    }
+
+    .medical-grid-layout {
+      padding: 15px 20px 40px 20px;
+    }
+
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      height: 600px;
+      gap: 1px;
+    }
+
+    .grid-item-2,
+    .grid-item-5,
+    .grid-item-8 {
+      background: #ffffff;
+    }
+
+    .clinical-layout {
+      grid-template-columns: 1fr !important;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .clinical-left {
+      padding: 20px;
+      min-height: 300px;
+    }
+
+    .clinical-right {
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .right-header {
+      margin-bottom: 20px;
+    }
+
+    .molecular-title {
+      font-size: calc({{ section.settings.main_title_size | default: 40 }}px * 0.8);
+      text-align: center;
+    }
+
+    .molecular-subtitle {
+      font-size: calc({{ section.settings.subtitle_size | default: 18 }}px * 0.9);
+      text-align: center;
+    }
+
+    .clinical-divider {
+      display: none;
+    }
+
+    .clinical-cards {
+      gap: 8px;
+    }
+
+    .clinical-card {
+      width: 100% !important;
+      min-height: calc({{ section.settings.card_min_height | default: 45 }}px * 0.9);
+      max-height: calc({{ section.settings.card_max_height | default: 60 }}px * 0.9);
+      padding: calc({{ section.settings.card_padding_vertical | default: 12 }}px * 0.8) calc({{ section.settings.card_padding_horizontal | default: 16 }}px * 0.8);
+    }
+
+    .card-title {
+      font-size: calc({{ section.settings.card_title_size | default: 16 }}px * 0.9);
+    }
+
+    .card-subtitle {
+      font-size: calc({{ section.settings.card_subtitle_size | default: 13 }}px * 0.9);
+    }
+
+    .main-title {
+      font-size: 2.5rem;
+    }
+
+    .slide-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .feature-boxes {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .icons-row,
+    .titles-row,
+    .descriptions-row {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .left-panel {
+      padding: 40px 30px;
+    }
+
+    .icon-title {
+      font-size: 0.9rem;
+    }
+
+    .icon-desc {
+      font-size: 0.8rem;
+    }
+
+    /* Technology Slide Mobile Styles */
+    .technology-split-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100vh;
+    }
+
+    .technology-image-section {
+      order: 1;
+    }
+
+    .technology-content-section {
+      order: 2;
+      padding: 0 20px 40px 20px;
+      justify-content: flex-start;
+    }
+
+    .content-header {
+      margin: 0 0 20px 0;
+      padding: 0;
+    }
+
+    .technology-main-title {
+      font-size: 1.8rem;
+      text-align: center;
+      padding-top: 0;
+    }
+
+    .content-list {
+      gap: 15px;
+      margin-top: 0;
+      justify-content: flex-start;
+      padding-top: 10px;
+    }
+
+    .content-item {
+      gap: 12px;
+      padding: 15px 0;
+    }
+
+    .content-item.item-1,
+    .content-item.item-2,
+    .content-item.item-3 {
+      margin-top: 0;
+    }
+
+    .content-number {
+      font-size: 1.2rem;
+      min-width: 25px;
+    }
+
+    .point-title {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .point-description {
+      font-size: 0.95rem;
+    }
+
+    .overlay-point {
+      width: 35px;
+      height: 35px;
+    }
+
+    .point-number {
+      font-size: 1rem;
+    }
+
+    .arrow-line {
+      display: none;
+    }
+
+    /* Korean Beauty Showcase Mobile Styles */
+    .korean-beauty-overlay {
+      padding: 30px 20px;
+      justify-content: space-around;
+    }
+
+    .korean-content-area {
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .korean-main-heading {
+      font-size: 32px !important;
+      text-align: center !important;
+    }
+
+    .korean-subheading {
+      font-size: 16px !important;
+      text-align: center !important;
+      max-width: 100%;
+    }
+
+    .icons-container {
+      width: 90% !important;
+      height: auto !important;
+      padding: 20px 15px !important;
+      gap: 20px !important;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .korean-icon-item {
+      flex: 0 0 auto;
+      min-width: 80px;
+    }
+
+    .icon-image,
+    .icon-placeholder {
+      width: 40px;
+      height: 40px;
+    }
+
+    .icon-title {
+      font-size: 14px !important;
+    }
+      justify-content: space-around;
+    }
+
+    .korean-content-area {
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .korean-main-heading {
+      font-size: 34px !important;
+    }
+
+    .korean-subheading {
+      font-size: 16px !important;
+      max-width: 100%;
+    }
+
+    .icons-container {
+      padding: 20px 15px;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .korean-icon-item {
+      gap: 8px;
+      padding: 8px;
+    }
+
+    .icon-image,
+    .icon-placeholder {
+      width: 50px;
+      height: 50px;
+    }
+
+    .icon-title {
+      font-size: 14px !important;
+    }
+  }
+  }
+</style>
+
+<script>
+  let currentSlide = 0;
+  let totalSlides = 0;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const slidesWrapper = document.getElementById('slidesWrapper');
+
+    if (!slidesWrapper) return;
+
+    totalSlides = document.querySelectorAll('.slide').length;
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') {
+        previousSlide();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
+      }
+    });
+
+    // Initialize first slide
+    goToSlide(0);
+  });
+
+  function showCardImage(cardNumber) {
+    // Hide all images
+    const images = document.querySelectorAll('.clinical-image');
+    images.forEach((img) => (img.style.display = 'none'));
+
+    // Show selected image
+    const selectedImage = document.querySelector(`.card-image-${cardNumber}`);
+    if (selectedImage) {
+      selectedImage.style.display = 'block';
+      // Hide default placeholder
+      const placeholder = document.getElementById('defaultPlaceholder');
+      if (placeholder) placeholder.style.display = 'none';
+    } else {
+      // Show default placeholder if no image
+      const placeholder = document.getElementById('defaultPlaceholder');
+      if (placeholder) placeholder.style.display = 'flex';
+    }
+
+    // Update active card state
+    const cards = document.querySelectorAll('.clinical-card');
+    cards.forEach((card) => card.classList.remove('active'));
+
+    const activeCard = document.querySelector(`[data-card="${cardNumber}"]`);
+    if (activeCard) activeCard.classList.add('active');
+  }
+
+  function goToSlide(slideIndex) {
+    if (slideIndex < 0 || slideIndex >= totalSlides) return;
+
+    currentSlide = slideIndex;
+    const slidesWrapper = document.getElementById('slidesWrapper');
+    const translateX = -slideIndex * 100;
+
+    slidesWrapper.style.transform = `translateX(${translateX}%)`;
+  }
+
+  function nextSlide() {
+    const nextIndex = (currentSlide + 1) % totalSlides;
+    goToSlide(nextIndex);
+  }
+
+  function previousSlide() {
+    const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+    goToSlide(prevIndex);
+  }
+
+  // Alias for backward compatibility
+  function prevSlide() {
+    previousSlide();
+  }
+
+  // Technology Showcase Interactive Functions
+  function highlightPoint(pointNumber) {
+    // Highlight the overlay point
+    const overlayPoint = document.querySelector(`.overlay-point.point-${pointNumber}`);
+    if (overlayPoint) {
+      overlayPoint.classList.add('active');
+    }
+
+    // Highlight the corresponding content item
+    const contentItem = document.querySelector(`.content-item.item-${pointNumber}`);
+    if (contentItem) {
+      contentItem.classList.add('highlighted');
+    }
+  }
+
+  function unhighlightPoint(pointNumber) {
+    // Remove highlight from overlay point
+    const overlayPoint = document.querySelector(`.overlay-point.point-${pointNumber}`);
+    if (overlayPoint) {
+      overlayPoint.classList.remove('active');
+    }
+
+    // Remove highlight from content item
+    const contentItem = document.querySelector(`.content-item.item-${pointNumber}`);
+    if (contentItem) {
+      contentItem.classList.remove('highlighted');
+    }
+  }
+
+  function selectPoint(pointNumber) {
+    // Remove active state from all points
+    document.querySelectorAll('.overlay-point').forEach((point) => {
+      point.classList.remove('active');
+    });
+    document.querySelectorAll('.content-item').forEach((item) => {
+      item.classList.remove('highlighted');
+    });
+
+    // Add active state to selected point
+    highlightPoint(pointNumber);
+  }
+
+  // Add hover functionality to content points
+  document.addEventListener('DOMContentLoaded', function () {
+    const contentPoints = document.querySelectorAll('.content-point');
+
+    contentPoints.forEach((point, index) => {
+      const pointNumber = index + 1;
+
+      point.addEventListener('mouseenter', function () {
+        highlightPoint(pointNumber);
+      });
+
+      point.addEventListener('mouseleave', function () {
+        unhighlightPoint(pointNumber);
+      });
+
+      point.addEventListener('click', function () {
+        selectPoint(pointNumber);
+      });
+    });
+  });
+
+  // Korean Beauty Showcase Interactive Functions
+  function activateIcon(iconNumber) {
+    const iconItem = document.querySelector(`.korean-icon-item[data-icon="${iconNumber}"]`);
+    if (iconItem) {
+      iconItem.classList.add('active');
+
+      // Change content on hover with smoother transition
+      const contentData = document.querySelector(`.korean-content-data [data-content="${iconNumber}"]`);
+      if (contentData) {
+        const heading = contentData.querySelector('.content-heading').textContent;
+        const subheading = contentData.querySelector('.content-subheading').textContent;
+
+        const mainHeading = document.getElementById('koreanMainHeading');
+        const subHeadingElement = document.getElementById('koreanSubheading');
+
+        if (mainHeading && subHeadingElement) {
+          // Smoother fade out
+          mainHeading.style.transition = 'opacity 0.4s ease-in-out';
+          subHeadingElement.style.transition = 'opacity 0.4s ease-in-out';
+
+          mainHeading.style.opacity = '0';
+          subHeadingElement.style.opacity = '0';
+
+          setTimeout(() => {
+            mainHeading.textContent = heading;
+            subHeadingElement.textContent = subheading;
+
+            // Smoother fade in
+            setTimeout(() => {
+              mainHeading.style.opacity = '1';
+              subHeadingElement.style.opacity = '1';
+            }, 50);
+          }, 400);
+        }
+      }
+    }
+  }
+
+  function deactivateIcon(iconNumber) {
+    const iconItem = document.querySelector(`.korean-icon-item[data-icon="${iconNumber}"]`);
+    if (iconItem) {
+      iconItem.classList.remove('active');
+
+      // Reset to original content with smoother transition
+      const mainHeading = document.getElementById('koreanMainHeading');
+      const subHeadingElement = document.getElementById('koreanSubheading');
+
+      if (mainHeading && subHeadingElement) {
+        const originalHeading =
+          mainHeading.getAttribute('data-original') ||
+          mainHeading.getAttribute('data-default-heading') ||
+          'Where Korean beauty meets Precision';
+        const originalSubheading =
+          subHeadingElement.getAttribute('data-original') ||
+          subHeadingElement.getAttribute('data-default-subheading') ||
+          'Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.';
+
+        // Smoother fade out
+        mainHeading.style.transition = 'opacity 0.4s ease-in-out';
+        subHeadingElement.style.transition = 'opacity 0.4s ease-in-out';
+
+        mainHeading.style.opacity = '0';
+        subHeadingElement.style.opacity = '0';
+
+        setTimeout(() => {
+          mainHeading.textContent = originalHeading;
+          subHeadingElement.textContent = originalSubheading;
+
+          // Smoother fade in
+          setTimeout(() => {
+            mainHeading.style.opacity = '1';
+            subHeadingElement.style.opacity = '1';
+          }, 50);
+        }, 400);
+      }
+    }
+  }
+
+  function selectIcon(iconNumber) {
+    // Remove active state from all icons
+    document.querySelectorAll('.korean-icon-item').forEach((item) => {
+      item.classList.remove('active');
+    });
+
+    // Add active state to selected icon
+    activateIcon(iconNumber);
+
+    // Keep the content changed permanently until another icon is selected
+    console.log(`Icon ${iconNumber} selected`);
+  }
+
+  // Store original content on page load
+  document.addEventListener('DOMContentLoaded', function () {
+    const mainHeading = document.getElementById('koreanMainHeading');
+    const subHeadingElement = document.getElementById('koreanSubheading');
+
+    if (mainHeading && subHeadingElement) {
+      mainHeading.setAttribute('data-original', mainHeading.textContent);
+      subHeadingElement.setAttribute('data-original', subHeadingElement.textContent);
+
+      // Store default values from theme settings
+      mainHeading.setAttribute('data-default-heading', mainHeading.textContent);
+      subHeadingElement.setAttribute('data-default-subheading', subHeadingElement.textContent);
+    }
+  });
+</script>
+{% schema %}
+{
+  "name": "Science Slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Top Margin",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Bottom Margin",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Cyan)",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "color",
+      "id": "icon_desc_color",
+      "label": "Icon Description Color",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Arrows"
+    },
+    {
+      "type": "range",
+      "id": "nav_arrow_width",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Arrow Button Width",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "nav_arrow_height",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Arrow Button Height",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "icon_desc_font_size",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Description Font Size",
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "molecular_standard",
+      "name": "Molecular Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Main Title"
+        },
+        {
+          "type": "richtext",
+          "id": "main_title",
+          "label": "Main Title (Large Black)",
+          "default": "<p>THE MOLECULAR<br>STANDARD.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Slide Header"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle (Cyan)",
+          "default": "The Molecular Standard."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Harnessing South Korea patented fermentation technology skin elasticity at a cellular level."
+        },
+        {
+          "type": "header",
+          "content": "Feature Boxes"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_title",
+          "label": "Feature Box 1 Title",
+          "default": "PDRN:"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_desc",
+          "label": "Feature Box 1 Description",
+          "default": "DNA-based rejuvenation."
+        },
+        {
+          "type": "text",
+          "id": "feature_2_title",
+          "label": "Feature Box 2 Title",
+          "default": "SNAIL MUCIN"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_desc",
+          "label": "Feature Box 2 Description",
+          "default": "Advanced barrier repair"
+        },
+        {
+          "type": "header",
+          "content": "Molecular Icons"
+        },
+        {
+          "type": "text",
+          "id": "icon_1_title",
+          "label": "Icon 1 Title",
+          "default": "PDRN"
+        },
+        {
+          "type": "text",
+          "id": "icon_1_desc",
+          "label": "Icon 1 Description",
+          "default": "DNA-based rejuvenation."
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1_image",
+          "label": "Icon 1 Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_2_title",
+          "label": "Icon 2 Title",
+          "default": "CERAMIDES"
+        },
+        {
+          "type": "text",
+          "id": "icon_2_desc",
+          "label": "Icon 2 Description",
+          "default": "Barrier strength and protration"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2_image",
+          "label": "Icon 2 Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_3_title",
+          "label": "Icon 3 Title",
+          "default": "PEPTIDES"
+        },
+        {
+          "type": "text",
+          "id": "icon_3_desc",
+          "label": "Icon 3 Description",
+          "default": "Collagen synthesis and elasticity"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3_image",
+          "label": "Icon 3 Image"
+        },
+        {
+          "type": "header",
+          "content": "Background Media"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Background Media Type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "url",
+          "id": "background_video",
+          "label": "Background Video URL"
+        }
+      ]
+    },
+    {
+      "type": "clinical_dossier",
+      "name": "Clinical Dossier",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Layout Settings"
+        },
+        {
+          "type": "range",
+          "id": "left_ratio",
+          "min": 40,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Left Side Width",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "right_ratio",
+          "min": 20,
+          "max": 60,
+          "step": 5,
+          "unit": "%",
+          "label": "Right Side Width",
+          "default": 40
+        },
+        {
+          "type": "color",
+          "id": "divider_color",
+          "label": "Divider Line Color",
+          "default": "#00bcd4"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_divider",
+          "label": "Show Divider Line",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Left Side Content"
+        },
+        {
+          "type": "text",
+          "id": "left_title",
+          "label": "Left Title",
+          "default": "THE CLINICAL DOSSIER"
+        },
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Image Fit Style",
+          "options": [
+            { "value": "contain", "label": "Contain (fit within bounds)" },
+            { "value": "cover", "label": "Cover (fill completely)" },
+            { "value": "fill", "label": "Fill (stretch to fit)" }
+          ],
+          "default": "contain"
+        },
+        {
+          "type": "header",
+          "content": "Right Side Content"
+        },
+        {
+          "type": "text",
+          "id": "right_title",
+          "label": "Right Title",
+          "default": "THE MOLECULAR FOUNDATIONS"
+        },
+        {
+          "type": "textarea",
+          "id": "right_subtitle",
+          "label": "Right Subtitle",
+          "default": "Beyond the surface. We engineer the architecture."
+        },
+        {
+          "type": "header",
+          "content": "Typography Settings"
+        },
+        {
+          "type": "range",
+          "id": "main_title_size",
+          "min": 20,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Main Title Font Size",
+          "default": 40,
+          "info": "Size of the main heading (THE MOLECULAR FOUNDATIONS)"
+        },
+        {
+          "type": "range",
+          "id": "subtitle_size",
+          "min": 14,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Subtitle Font Size",
+          "default": 18,
+          "info": "Size of the subtitle text"
+        },
+        {
+          "type": "range",
+          "id": "card_title_size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Title Font Size",
+          "default": 16,
+          "info": "Size of button title text (Exosomes, Peptides, etc.)"
+        },
+        {
+          "type": "range",
+          "id": "card_subtitle_size",
+          "min": 10,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Subtitle Font Size",
+          "default": 13,
+          "info": "Size of button subtitle text"
+        },
+        {
+          "type": "header",
+          "content": "Card Styling"
+        },
+        {
+          "type": "range",
+          "id": "card_border_radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Card Border Radius",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "card_min_height",
+          "min": 30,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Card Minimum Height",
+          "default": 45
+        },
+        {
+          "type": "range",
+          "id": "card_max_height",
+          "min": 40,
+          "max": 120,
+          "step": 5,
+          "unit": "px",
+          "label": "Card Maximum Height",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "card_padding_vertical",
+          "min": 5,
+          "max": 25,
+          "step": 1,
+          "unit": "px",
+          "label": "Card Vertical Padding",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "card_padding_horizontal",
+          "min": 8,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "label": "Card Horizontal Padding",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "card_width",
+          "min": 40,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Card Width",
+          "default": 80,
+          "info": "Adjust the width of the buttons (100% = full width)"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "card_background_color",
+          "label": "Card Background Color",
+          "default": "#f8f9fa"
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card Border Color",
+          "default": "#e0e0e0"
+        },
+        {
+          "type": "color",
+          "id": "card_hover_color",
+          "label": "Card Hover Background Color",
+          "default": "#D3FFFF"
+        },
+        {
+          "type": "color",
+          "id": "card_text_color",
+          "label": "Card Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Card 1"
+        },
+        {
+          "type": "text",
+          "id": "card_1_number",
+          "label": "Card 1 Number",
+          "default": "01/"
+        },
+        {
+          "type": "text",
+          "id": "card_1_title",
+          "label": "Card 1 Title",
+          "default": "Exosomes"
+        },
+        {
+          "type": "text",
+          "id": "card_1_subtitle",
+          "label": "Card 1 Subtitle",
+          "default": "Targeted Intercellular Signaling"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_1_image",
+          "label": "Card 1 Image"
+        },
+        {
+          "type": "header",
+          "content": "Card 2"
+        },
+        {
+          "type": "text",
+          "id": "card_2_number",
+          "label": "Card 2 Number",
+          "default": "02/"
+        },
+        {
+          "type": "text",
+          "id": "card_2_title",
+          "label": "Card 2 Title",
+          "default": "Scientific Mechanism"
+        },
+        {
+          "type": "text",
+          "id": "card_2_subtitle",
+          "label": "Card 2 Subtitle",
+          "default": "< 500 Da (Low Molecular Weight)"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_2_image",
+          "label": "Card 2 Image"
+        },
+        {
+          "type": "header",
+          "content": "Card 3"
+        },
+        {
+          "type": "text",
+          "id": "card_3_number",
+          "label": "Card 3 Number",
+          "default": "03/"
+        },
+        {
+          "type": "text",
+          "id": "card_3_title",
+          "label": "Card 3 Title",
+          "default": "Lipid Matrix"
+        },
+        {
+          "type": "text",
+          "id": "card_3_subtitle",
+          "label": "Card 3 Subtitle",
+          "default": "Targeted Extracellular Signaling"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_3_image",
+          "label": "Card 3 Image"
+        },
+        {
+          "type": "header",
+          "content": "Card 4"
+        },
+        {
+          "type": "text",
+          "id": "card_4_number",
+          "label": "Card 4 Number",
+          "default": "04/"
+        },
+        {
+          "type": "text",
+          "id": "card_4_title",
+          "label": "Card 4 Title",
+          "default": "Peptides"
+        },
+        {
+          "type": "text",
+          "id": "card_4_subtitle",
+          "label": "Card 4 Subtitle",
+          "default": "< 500 Da (Low Molecular Weight)"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_4_image",
+          "label": "Card 4 Image"
+        },
+        {
+          "type": "header",
+          "content": "Card 5"
+        },
+        {
+          "type": "text",
+          "id": "card_5_number",
+          "label": "Card 5 Number",
+          "default": "05/"
+        },
+        {
+          "type": "text",
+          "id": "card_5_title",
+          "label": "Card 5 Title",
+          "default": "Snail Mucin"
+        },
+        {
+          "type": "text",
+          "id": "card_5_subtitle",
+          "label": "Card 5 Subtitle",
+          "default": "Proprietary Blend the a Melting"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_5_image",
+          "label": "Card 5 Image"
+        },
+        {
+          "type": "header",
+          "content": "Card 6"
+        },
+        {
+          "type": "text",
+          "id": "card_6_number",
+          "label": "Card 6 Number",
+          "default": "06/"
+        },
+        {
+          "type": "text",
+          "id": "card_6_title",
+          "label": "Card 6 Title",
+          "default": "Ceramides"
+        },
+        {
+          "type": "text",
+          "id": "card_6_subtitle",
+          "label": "Card 6 Subtitle",
+          "default": "Uncharted Stainless Screening"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_6_image",
+          "label": "Card 6 Image"
+        }
+      ]
+    },
+    {
+      "type": "technology_showcase",
+      "name": "Technology Showcase",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Main Content"
+        },
+        {
+          "type": "text",
+          "id": "main_title",
+          "label": "Main Title",
+          "default": "Derm proven retinol with patented technology"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Background Image",
+          "info": "Upload the main background image for the technology showcase"
+        },
+        {
+          "type": "header",
+          "content": "Point 1 Settings"
+        },
+        {
+          "type": "text",
+          "id": "point_1_title",
+          "label": "Point 1 Title",
+          "default": "Derm proven retinol"
+        },
+        {
+          "type": "textarea",
+          "id": "point_1_description",
+          "label": "Point 1 Description",
+          "default": "Helps to fade lines and wrinkles"
+        },
+        {
+          "type": "range",
+          "id": "point_1_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Point 1 Position from Top",
+          "default": 45,
+          "info": "Position the numbered point on the image (0% = top, 100% = bottom)"
+        },
+        {
+          "type": "range",
+          "id": "point_1_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Point 1 Position from Left",
+          "default": 30,
+          "info": "Position the numbered point on the image (0% = left, 100% = right)"
+        },
+        {
+          "type": "header",
+          "content": "Point 2 Settings"
+        },
+        {
+          "type": "text",
+          "id": "point_2_title",
+          "label": "Point 2 Title",
+          "default": "Peptides"
+        },
+        {
+          "type": "textarea",
+          "id": "point_2_description",
+          "label": "Point 2 Description",
+          "default": "Helps improve skin firmness and elasticity"
+        },
+        {
+          "type": "range",
+          "id": "point_2_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Point 2 Position from Top",
+          "default": 70,
+          "info": "Position the numbered point on the image (0% = top, 100% = bottom)"
+        },
+        {
+          "type": "range",
+          "id": "point_2_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Point 2 Position from Left",
+          "default": 70,
+          "info": "Position the numbered point on the image (0% = left, 100% = right)"
+        },
+        {
+          "type": "header",
+          "content": "Point 3 Settings"
+        },
+        {
+          "type": "text",
+          "id": "point_3_title",
+          "label": "Point 3 Title",
+          "default": "Soothing Complex"
+        },
+        {
+          "type": "textarea",
+          "id": "point_3_description",
+          "label": "Point 3 Description",
+          "default": "Helps nourish skin and minimize irritation"
+        },
+        {
+          "type": "range",
+          "id": "point_3_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Point 3 Position from Top",
+          "default": 95,
+          "info": "Position the numbered point on the image (0% = top, 100% = bottom)"
+        },
+        {
+          "type": "range",
+          "id": "point_3_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Point 3 Position from Left",
+          "default": 25,
+          "info": "Position the numbered point on the image (0% = left, 100% = right)"
+        },
+        {
+          "type": "header",
+          "content": "Arrow Settings"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_arrows",
+          "label": "Show Arrow Lines",
+          "default": true,
+          "info": "Display connecting lines from points to content"
+        },
+        {
+          "type": "range",
+          "id": "arrow_1_width",
+          "min": 20,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Arrow 1 Width",
+          "default": 60,
+          "info": "Length of the arrow line from point 1"
+        },
+        {
+          "type": "range",
+          "id": "arrow_2_width",
+          "min": 20,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Arrow 2 Width",
+          "default": 40,
+          "info": "Length of the arrow line from point 2"
+        },
+        {
+          "type": "range",
+          "id": "arrow_3_width",
+          "min": 20,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Arrow 3 Width",
+          "default": 60,
+          "info": "Length of the arrow line from point 3"
+        }
+      ]
+    },
+    {
+      "type": "korean_beauty_showcase",
+      "name": "Korean Beauty Showcase",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Default Content Settings"
+        },
+        {
+          "type": "text",
+          "id": "default_main_heading",
+          "label": "Default Main Heading",
+          "default": "Where Korean beauty meets Precision",
+          "info": "This text will be shown when no icon is hovered or selected"
+        },
+        {
+          "type": "textarea",
+          "id": "default_subheading",
+          "label": "Default Subheading",
+          "default": "Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.",
+          "info": "This text will be shown when no icon is hovered or selected"
+        },
+        {
+          "type": "header",
+          "content": "Background Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image",
+          "info": "Upload the main background image for the slide"
+        },
+        {
+          "type": "range",
+          "id": "background_opacity",
+          "min": 0.1,
+          "max": 1,
+          "step": 0.1,
+          "label": "Background Image Opacity",
+          "default": 1,
+          "info": "Adjust the visibility of the background image"
+        },
+        {
+          "type": "header",
+          "content": "Main Heading Settings"
+        },
+        {
+          "type": "range",
+          "id": "main_heading_size",
+          "min": 24,
+          "max": 72,
+          "step": 2,
+          "unit": "px",
+          "label": "Main Heading Font Size",
+          "default": 48
+        },
+        {
+          "type": "color",
+          "id": "main_heading_color",
+          "label": "Main Heading Color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Subheading Settings"
+        },
+        {
+          "type": "range",
+          "id": "subheading_size",
+          "min": 14,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "label": "Subheading Font Size",
+          "default": 18
+        },
+        {
+          "type": "color",
+          "id": "subheading_color",
+          "label": "Subheading Color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Frosted Glass Container Settings"
+        },
+        {
+          "type": "range",
+          "id": "glass_width",
+          "min": 400,
+          "max": 1200,
+          "step": 50,
+          "unit": "px",
+          "label": "Glass Container Width",
+          "default": 800
+        },
+        {
+          "type": "range",
+          "id": "glass_height",
+          "min": 80,
+          "max": 200,
+          "step": 10,
+          "unit": "px",
+          "label": "Glass Container Height",
+          "default": 120
+        },
+        {
+          "type": "range",
+          "id": "glass_opacity",
+          "min": 0.1,
+          "max": 0.5,
+          "step": 0.1,
+          "label": "Glass Background Opacity",
+          "default": 0.2
+        },
+        {
+          "type": "range",
+          "id": "glass_blur",
+          "min": 5,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Glass Blur Effect",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Icon Settings"
+        },
+        {
+          "type": "range",
+          "id": "icon_title_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Icon Title Font Size",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "underline_color",
+          "label": "Hover Underline Color",
+          "default": "#00bcd4"
+        },
+        {
+          "type": "header",
+          "content": "Icon 1 Settings"
+        },
+        {
+          "type": "text",
+          "id": "icon_1_title",
+          "label": "Icon 1 Title",
+          "default": "Repair"
+        },
+        {
+          "type": "text",
+          "id": "icon_1_heading",
+          "label": "Icon 1 Main Heading (on hover/click)",
+          "default": "Advanced Repair Technology"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_1_subheading",
+          "label": "Icon 1 Subheading (on hover/click)",
+          "default": "Cellular regeneration and DNA repair mechanisms"
+        },
+        {
+          "type": "header",
+          "content": "Icon 2 Settings"
+        },
+        {
+          "type": "text",
+          "id": "icon_2_title",
+          "label": "Icon 2 Title",
+          "default": "Renew"
+        },
+        {
+          "type": "text",
+          "id": "icon_2_heading",
+          "label": "Icon 2 Main Heading (on hover/click)",
+          "default": "Renewal Complex"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_2_subheading",
+          "label": "Icon 2 Subheading (on hover/click)",
+          "default": "Advanced skin renewal and rejuvenation formulas"
+        },
+        {
+          "type": "header",
+          "content": "Icon 3 Settings"
+        },
+        {
+          "type": "text",
+          "id": "icon_3_title",
+          "label": "Icon 3 Title",
+          "default": "Protect"
+        },
+        {
+          "type": "text",
+          "id": "icon_3_heading",
+          "label": "Icon 3 Main Heading (on hover/click)",
+          "default": "Protection Shield"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_3_subheading",
+          "label": "Icon 3 Subheading (on hover/click)",
+          "default": "Barrier protection and environmental defense"
+        },
+        {
+          "type": "header",
+          "content": "Icon 4 Settings"
+        },
+        {
+          "type": "text",
+          "id": "icon_4_title",
+          "label": "Icon 4 Title",
+          "default": "Repair"
+        },
+        {
+          "type": "text",
+          "id": "icon_4_heading",
+          "label": "Icon 4 Main Heading (on hover/click)",
+          "default": "Deep Repair"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_4_subheading",
+          "label": "Icon 4 Subheading (on hover/click)",
+          "default": "Intensive repair and restoration therapy"
+        },
+        {
+          "type": "header",
+          "content": "Icon 5 Settings"
+        },
+        {
+          "type": "text",
+          "id": "icon_5_title",
+          "label": "Icon 5 Title",
+          "default": "Renew"
+        },
+        {
+          "type": "text",
+          "id": "icon_5_heading",
+          "label": "Icon 5 Main Heading (on hover/click)",
+          "default": "Complete Renewal"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_5_subheading",
+          "label": "Icon 5 Subheading (on hover/click)",
+          "default": "Total skin renewal and transformation"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Science Slider",
+      "blocks": [
+        {
+          "type": "molecular_standard",
+          "settings": {
+            "subtitle": "The Molecular Standard.",
+            "main_title": "<p>THE MOLECULAR<br>STANDARD.</p>",
+            "description": "Harnessing South Korea patented fermentation technology skin elasticity at a cellular level.",
+            "feature_1_title": "PDRN:",
+            "feature_1_desc": "DNA-based rejuvenation.",
+            "feature_2_title": "SNAIL MUCIN",
+            "feature_2_desc": "Advanced barrier repair",
+            "icon_1_title": "PDRN",
+            "icon_1_desc": "DNA-based rejuvenation.",
+            "icon_2_title": "CERAMIDES",
+            "icon_2_desc": "Barrier strength and protration",
+            "icon_3_title": "PEPTIDES",
+            "icon_3_desc": "Collagen synthesis and elasticity"
+          }
+        },
+        {
+          "type": "clinical_dossier",
+          "settings": {
+            "left_title": "THE CLINICAL DOSSIER",
+            "right_title": "THE MOLECULAR FOUNDATIONS",
+            "right_subtitle": "Beyond the surface. We engineer the architecture.",
+
+            "card_1_title": "Exosomes",
+            "card_1_subtitle": "Targeted Intercellular Signaling",
+
+            "card_2_title": "Scientific Mechanism",
+            "card_2_subtitle": "< 500 Da (Low Molecular Weight)",
+
+            "card_3_title": "Lipid Matrix",
+            "card_3_subtitle": "Targeted Extracellular Signaling",
+
+            "card_4_title": "Peptides",
+            "card_4_subtitle": "< 500 Da (Low Molecular Weight)",
+
+            "card_5_title": "Snail Mucin",
+            "card_5_subtitle": "Proprietary Blend the a Melting",
+
+            "card_6_title": "Ceramides",
+            "card_6_subtitle": "Uncharted Stainless Screening",
+            "card_border_radius": 8,
+            "card_min_height": 45,
+            "card_max_height": 60,
+            "card_padding_vertical": 12,
+            "card_padding_horizontal": 16,
+            "card_width": 100,
+            "main_title_size": 40,
+            "subtitle_size": 18,
+            "card_title_size": 16,
+            "card_subtitle_size": 13
+          }
+        },
+        {
+          "type": "technology_showcase",
+          "settings": {
+            "main_title": "Derm proven retinol with patented technology",
+            "point_1_title": "Derm proven retinol",
+            "point_1_description": "Helps to fade lines and wrinkles",
+            "point_1_top": 45,
+            "point_1_left": 30,
+            "point_2_title": "Peptides",
+            "point_2_description": "Helps improve skin firmness and elasticity",
+            "point_2_top": 70,
+            "point_2_left": 70,
+            "point_3_title": "Soothing Complex",
+            "point_3_description": "Helps nourish skin and minimize irritation",
+            "point_3_top": 95,
+            "point_3_left": 25,
+            "show_arrows": true,
+            "arrow_1_width": 60,
+            "arrow_2_width": 40,
+            "arrow_3_width": 60
+          }
+        },
+        {
+          "type": "korean_beauty_showcase",
+          "settings": {
+            "default_main_heading": "Where Korean beauty meets Precision",
+            "default_subheading": "Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.",
+            "main_heading_size": 48,
+            "subheading_size": 18,
+            "glass_opacity": 0.2,
+            "glass_blur": 10,
+            "icon_title_size": 16,
+            "icon_1_title": "Repair",
+            "icon_1_heading": "Advanced Repair Technology",
+            "icon_1_subheading": "Cellular regeneration and DNA repair mechanisms",
+            "icon_2_title": "Renew",
+            "icon_2_heading": "Renewal Complex",
+            "icon_2_subheading": "Advanced skin renewal and rejuvenation formulas",
+            "icon_3_title": "Protect",
+            "icon_3_heading": "Protection Shield",
+            "icon_3_subheading": "Barrier protection and environmental defense",
+            "icon_4_title": "Repair",
+            "icon_4_heading": "Deep Repair",
+            "icon_4_subheading": "Intensive repair and restoration therapy",
+            "icon_5_title": "Renew",
+            "icon_5_heading": "Complete Renewal",
+            "icon_5_subheading": "Total skin renewal and transformation"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

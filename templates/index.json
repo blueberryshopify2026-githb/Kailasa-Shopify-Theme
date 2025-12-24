@@ -475,8 +475,10 @@
             "ingredient_description_9": "",
             "ingredient_title_10": "",
             "ingredient_description_10": "",
+            "usage_image": "shopify://shop_images/pexels-mhajrinvincible-19483328.jpg",
             "usage_layout": "image-text",
             "usage_text_content": "<p>Add your usage instructions here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "faq_image": "shopify://shop_images/pexels-cottonbro-6635922.jpg",
             "faq_layout": "image-faq",
             "faq_bg_color": "#ffffff",
             "question_text_color": "#181818",
@@ -495,14 +497,14 @@
             "faq5_answer": "<p>Yes, this product is suitable for acne-prone skin. However, start slowly and monitor your skin's response.</p>",
             "faq6_question": "Is this good for Dry Skin?",
             "faq6_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>",
-            "faq7_question": "",
-            "faq7_answer": "",
-            "faq8_question": "",
-            "faq8_answer": "",
-            "faq9_question": "",
-            "faq9_answer": "",
-            "faq10_question": "",
-            "faq10_answer": ""
+            "faq7_question": "Is this good for Dry Skin?",
+            "faq7_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>",
+            "faq8_question": "Is this good for Dry Skin?",
+            "faq8_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>",
+            "faq9_question": "Is this good for Dry Skin?",
+            "faq9_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>",
+            "faq10_question": "Is this good for Dry Skin?",
+            "faq10_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>"
           }
         }
       },

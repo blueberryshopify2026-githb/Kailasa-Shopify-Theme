@@ -1221,9 +1221,9 @@
             "ingredient_name": "Vitamins",
             "cellular_harmony_type": "text",
             "cellular_harmony_text": "Cellular Harmony Display Type",
-            "supplements_type": "check",
+            "supplements_type": "cross",
             "supplements_text": "",
-            "skincare_type": "cross",
+            "skincare_type": "check",
             "skincare_text": "",
             "mask_type": "text",
             "mask_text": "Ingredient Description"
@@ -1237,9 +1237,9 @@
             "cellular_harmony_text": "",
             "supplements_type": "check",
             "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
+            "skincare_type": "check",
+            "skincare_text": "Skincare Display Type",
+            "mask_type": "cross",
             "mask_text": "Ingredient Description"
           }
         },

@@ -1215,6 +1215,132 @@
             "mask_text": "Ingredient Description"
           }
         },
+        "ingredient_row_YH7ifw": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_4wLttV": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_9YWDJp": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_RFh4PX": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_DhYEhe": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_aWfCkd": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_Vp39Te": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_GyLPLM": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_GHmYci": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
         "ingredient_row_7fVWL6": {
           "type": "ingredient_row",
           "settings": {
@@ -1228,116 +1354,20 @@
             "mask_type": "check",
             "mask_text": ""
           }
-        },
-        "ingredient_row_Jp4HTp": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_HqMqf3": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_cLCmBM": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_kCBiDR": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_8WaCRp": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_etNELC": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_Bt8QJf": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
         }
       },
       "block_order": [
         "ingredient_row_WUftbF",
-        "ingredient_row_7fVWL6",
-        "ingredient_row_Jp4HTp",
-        "ingredient_row_HqMqf3",
-        "ingredient_row_cLCmBM",
-        "ingredient_row_kCBiDR",
-        "ingredient_row_8WaCRp",
-        "ingredient_row_etNELC",
-        "ingredient_row_Bt8QJf"
+        "ingredient_row_YH7ifw",
+        "ingredient_row_4wLttV",
+        "ingredient_row_9YWDJp",
+        "ingredient_row_RFh4PX",
+        "ingredient_row_DhYEhe",
+        "ingredient_row_aWfCkd",
+        "ingredient_row_Vp39Te",
+        "ingredient_row_GyLPLM",
+        "ingredient_row_GHmYci",
+        "ingredient_row_7fVWL6"
       ],
       "name": "Comparison Table",
       "settings": {

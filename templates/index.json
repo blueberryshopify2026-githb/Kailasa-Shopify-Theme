@@ -752,6 +752,220 @@
         "exfoliate_cta_text": "Learn more",
         "exfoliate_cta_link": ""
       }
+    },
+    "comparison_table_GcFcXU": {
+      "type": "comparison-table",
+      "blocks": {
+        "ingredient_row_WUftbF": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_7fVWL6": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_xttqpc": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_row_WUftbF",
+        "ingredient_row_7fVWL6",
+        "ingredient_row_xttqpc"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n4",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n4",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
+      }
+    },
+    "science_slider_3iUgPg": {
+      "type": "science-slider",
+      "blocks": {
+        "molecular_standard_gWeWJW": {
+          "type": "molecular_standard",
+          "settings": {
+            "main_title": "<p>THE MOLECULAR<br/>STANDARD.</p>",
+            "subtitle": "The Molecular Standard.",
+            "description": "Harnessing South Korea patented fermentation technology skin elasticity at a cellular level.",
+            "feature_1_title": "PDRN:",
+            "feature_1_desc": "DNA-based rejuvenation.",
+            "feature_2_title": "SNAIL MUCIN",
+            "feature_2_desc": "Advanced barrier repair",
+            "icon_1_title": "PDRN",
+            "icon_1_desc": "DNA-based rejuvenation.",
+            "icon_1_image": "shopify://shop_images/sheet.png",
+            "icon_2_title": "CERAMIDES",
+            "icon_2_desc": "Barrier strength and protration",
+            "icon_2_image": "shopify://shop_images/skincare.png",
+            "icon_3_title": "PEPTIDES",
+            "icon_3_desc": "Collagen synthesis and elasticity",
+            "icon_3_image": "shopify://shop_images/skincare-routine.png",
+            "media_type": "image",
+            "background_image": "shopify://shop_images/179f3fbaed6ca404eeee0fe58ea2be75.jpg",
+            "background_video": ""
+          }
+        },
+        "clinical_dossier_J9tLmr": {
+          "type": "clinical_dossier",
+          "settings": {
+            "left_ratio": 60,
+            "right_ratio": 40,
+            "divider_color": "#00bcd4",
+            "show_divider": true,
+            "left_title": "THE CLINICAL DOSSIER",
+            "image_fit": "contain",
+            "right_title": "THE MOLECULAR FOUNDATIONS",
+            "right_subtitle": "Beyond the surface. We engineer the architecture.",
+            "main_title_size": 40,
+            "subtitle_size": 18,
+            "card_title_size": 16,
+            "card_subtitle_size": 13,
+            "card_border_radius": 8,
+            "card_min_height": 45,
+            "card_max_height": 60,
+            "card_padding_vertical": 12,
+            "card_padding_horizontal": 16,
+            "card_width": 100,
+            "card_background_color": "#f8f9fa",
+            "card_border_color": "#e0e0e0",
+            "card_hover_color": "#D3FFFF",
+            "card_text_color": "#000000",
+            "card_1_number": "01/",
+            "card_1_title": "Exosomes",
+            "card_1_subtitle": "Targeted Intercellular Signaling",
+            "card_2_number": "02/",
+            "card_2_title": "Scientific Mechanism",
+            "card_2_subtitle": "< 500 Da (Low Molecular Weight)",
+            "card_3_number": "03/",
+            "card_3_title": "Lipid Matrix",
+            "card_3_subtitle": "Targeted Extracellular Signaling",
+            "card_4_number": "04/",
+            "card_4_title": "Peptides",
+            "card_4_subtitle": "< 500 Da (Low Molecular Weight)",
+            "card_5_number": "05/",
+            "card_5_title": "Snail Mucin",
+            "card_5_subtitle": "Proprietary Blend the a Melting",
+            "card_6_number": "06/",
+            "card_6_title": "Ceramides",
+            "card_6_subtitle": "Uncharted Stainless Screening"
+          }
+        },
+        "technology_showcase_AtLCgh": {
+          "type": "technology_showcase",
+          "settings": {
+            "main_title": "Derm proven retinol with patented technology",
+            "point_1_title": "Derm proven retinol",
+            "point_1_description": "Helps to fade lines and wrinkles",
+            "point_1_top": 45,
+            "point_1_left": 30,
+            "point_2_title": "Peptides",
+            "point_2_description": "Helps improve skin firmness and elasticity",
+            "point_2_top": 70,
+            "point_2_left": 70,
+            "point_3_title": "Soothing Complex",
+            "point_3_description": "Helps nourish skin and minimize irritation",
+            "point_3_top": 95,
+            "point_3_left": 25,
+            "show_arrows": true,
+            "arrow_1_width": 60,
+            "arrow_2_width": 40,
+            "arrow_3_width": 60
+          }
+        },
+        "korean_beauty_showcase_MBr8MQ": {
+          "type": "korean_beauty_showcase",
+          "settings": {
+            "default_main_heading": "Where Korean beauty meets Precision",
+            "default_subheading": "Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.",
+            "background_opacity": 1,
+            "main_heading_size": 48,
+            "main_heading_color": "#000000",
+            "subheading_size": 18,
+            "subheading_color": "#000000",
+            "glass_width": 800,
+            "glass_height": 120,
+            "glass_opacity": 0.2,
+            "glass_blur": 10,
+            "icon_title_size": 16,
+            "underline_color": "#00bcd4",
+            "icon_1_title": "Repair",
+            "icon_1_heading": "Advanced Repair Technology",
+            "icon_1_subheading": "Cellular regeneration and DNA repair mechanisms",
+            "icon_2_title": "Renew",
+            "icon_2_heading": "Renewal Complex",
+            "icon_2_subheading": "Advanced skin renewal and rejuvenation formulas",
+            "icon_3_title": "Protect",
+            "icon_3_heading": "Protection Shield",
+            "icon_3_subheading": "Barrier protection and environmental defense",
+            "icon_4_title": "Repair",
+            "icon_4_heading": "Deep Repair",
+            "icon_4_subheading": "Intensive repair and restoration therapy",
+            "icon_5_title": "Renew",
+            "icon_5_heading": "Complete Renewal",
+            "icon_5_subheading": "Total skin renewal and transformation"
+          }
+        }
+      },
+      "block_order": [
+        "molecular_standard_gWeWJW",
+        "clinical_dossier_J9tLmr",
+        "technology_showcase_AtLCgh",
+        "korean_beauty_showcase_MBr8MQ"
+      ],
+      "name": "Science Slider",
+      "settings": {
+        "section_margin_top": 0,
+        "section_margin_bottom": 0,
+        "background_color": "#f8f9fa",
+        "accent_color": "#00bcd4",
+        "icon_desc_color": "#00bcd4",
+        "nav_arrow_width": 50,
+        "nav_arrow_height": 50,
+        "icon_desc_font_size": 14
+      }
     }
   },
   "order": [
@@ -760,6 +974,8 @@
     "multi_tab_section_Wg9YxK",
     "tab_section_83Upbp",
     "skincare_bundle_VLW7E9",
-    "routine_tabs_section_bhkHzy"
+    "routine_tabs_section_bhkHzy",
+    "comparison_table_GcFcXU",
+    "science_slider_3iUgPg"
   ]
 }

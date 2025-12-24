@@ -91,6 +91,7 @@
       "blocks": {
         "image_text_block_EFeDia": {
           "type": "image-text-block",
+          "name": "About",
           "settings": {
             "tab_name": "About",
             "image": "shopify://shop_images/ChatGPT_Image_Jul_28_2025_11_41_44_AM.png",
@@ -149,6 +150,22 @@
             "ingredient_description_10": ""
           }
         },
+        "image_text_block_zJamzz": {
+          "type": "image-text-block",
+          "name": "Usage",
+          "settings": {
+            "tab_name": "Usage",
+            "image": "shopify://shop_images/pexels-polina-kovaleva-5927888.jpg",
+            "text_content": "<b>Add your content here.</b>This text will appear alongside the image in a 50-50 layout.",
+            "layout": "text-image",
+            "content_font_family": "Montserrat, sans-serif",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
+          }
+        },
         "faq_block_kPRnra": {
           "type": "faq-block",
           "settings": {
@@ -191,27 +208,13 @@
             "faq15_question": "",
             "faq15_answer": ""
           }
-        },
-        "image_text_block_zJamzz": {
-          "type": "image-text-block",
-          "settings": {
-            "tab_name": "About",
-            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
-            "layout": "image-text",
-            "content_font_family": "inherit",
-            "content_font_weight": 400,
-            "content_font_style": "normal",
-            "content_font_size_desktop": 16,
-            "content_font_size_mobile": 14,
-            "content_text_color": "#181818"
-          }
         }
       },
       "block_order": [
         "image_text_block_EFeDia",
         "ingredient_block_GU7cfp",
-        "faq_block_kPRnra",
-        "image_text_block_zJamzz"
+        "image_text_block_zJamzz",
+        "faq_block_kPRnra"
       ],
       "name": "Tab Section",
       "settings": {

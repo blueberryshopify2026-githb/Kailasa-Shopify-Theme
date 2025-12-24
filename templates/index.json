@@ -899,6 +899,85 @@
         "icon_desc_font_size": 14
       }
     },
+    "new_Y9DAka": {
+      "type": "new",
+      "blocks": {
+        "doctor_pFiGcr": {
+          "type": "doctor",
+          "settings": {
+            "doctor_name": "Dr. Sarah Johnson",
+            "specialty": "Dermatologist",
+            "doctor_image": "shopify://shop_images/pexels-anna-keibalo-620756389-17891771.jpg",
+            "rating": 5,
+            "quote": "I recommend this skincare line to all my patients for its proven results and gentle formulation.",
+            "experience": "15+ years experience • Board Certified • Harvard Medical School"
+          }
+        },
+        "doctor_URh8HC": {
+          "type": "doctor",
+          "settings": {
+            "doctor_name": "Dr. Michael Chen",
+            "specialty": "Cosmetic Surgeon",
+            "doctor_image": "shopify://shop_images/pexels-shkrabaanthony-6749777_1.jpg",
+            "rating": 4.9,
+            "quote": "The anti-aging properties of these products are remarkable. I've seen incredible transformations.",
+            "experience": "12+ years experience • Board Certified • Johns Hopkins"
+          }
+        },
+        "doctor_NLCt69": {
+          "type": "doctor",
+          "settings": {
+            "doctor_name": "Dr. Emily Rodriguez",
+            "specialty": "Aesthetic Medicine",
+            "doctor_image": "shopify://shop_images/images_1.jpg",
+            "rating": 5,
+            "quote": "This is the only skincare line I trust for my most discerning patients.",
+            "experience": "10+ years experience • Board Certified • Mayo Clinic"
+          }
+        },
+        "doctor_pT7Ncx": {
+          "type": "doctor",
+          "settings": {
+            "doctor_name": "Dr. James Wilson",
+            "specialty": "Plastic Surgeon",
+            "doctor_image": "shopify://shop_images/about-us_dr-obagi_1.webp",
+            "rating": 4.8,
+            "quote": "Outstanding results with minimal irritation. Perfect for post-procedure care.",
+            "experience": "18+ years experience • Board Certified • Stanford Medical"
+          }
+        }
+      },
+      "block_order": [
+        "doctor_pFiGcr",
+        "doctor_URh8HC",
+        "doctor_NLCt69",
+        "doctor_pT7Ncx"
+      ],
+      "name": "Doctor Endorsement",
+      "settings": {
+        "section_title": "Doctor Endorsements",
+        "left_margin": 10,
+        "cards_gap": 20,
+        "main_card_border_radius": 32,
+        "main_card_overlay_color": "#000000",
+        "main_card_overlay_opacity": 0.9,
+        "right_card_width": 70,
+        "right_card_aspect_width": 2,
+        "right_card_aspect_height": 3,
+        "right_card_border_radius": 32,
+        "right_card_vertical_gap": 5,
+        "main_doctor_name_size": 1.8,
+        "main_specialty_size": 1,
+        "main_quote_size": 1,
+        "specialty_color": "#00bcd4",
+        "star_color": "#ffd700",
+        "text_color": "#ffffff",
+        "secondary_text_color": "#cccccc",
+        "cta_bg_color": "#000000",
+        "cta_hover_color": "#00bcd4",
+        "cta_border_color": "#e5e5e5"
+      }
+    },
     "comparison_table_GcFcXU": {
       "type": "comparison-table",
       "blocks": {
@@ -1006,6 +1085,7 @@
     "skincare_bundle_VLW7E9",
     "routine_tabs_section_bhkHzy",
     "science_slider_3iUgPg",
+    "new_Y9DAka",
     "comparison_table_GcFcXU"
   ]
 }

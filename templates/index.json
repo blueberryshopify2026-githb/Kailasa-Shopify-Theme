@@ -324,8 +324,8 @@
           "name": "Usage",
           "settings": {
             "tab_name": "Usage",
-            "image": "shopify://shop_images/pexels-polina-kovaleva-5927888.jpg",
-            "text_content": "<b>Add your content here.</b>This text will appear alongside the image in a 50-50 layout.",
+            "image": "shopify://shop_images/pexels-ron-lach-8140903.jpg",
+            "text_content": "Add your content here.This text will appear alongside the image in a 50-50 layout.",
             "layout": "text-image",
             "content_font_family": "Montserrat, sans-serif",
             "content_font_weight": 400,
@@ -339,7 +339,7 @@
           "type": "faq-block",
           "settings": {
             "tab_name": "FAQ",
-            "image": "shopify://shop_images/pexels-tima-miroshnichenko-5407206.jpg",
+            "image": "shopify://shop_images/552ffdc9a43bee1310855a2576e27211.jpg",
             "layout": "image-faq",
             "faq_bg_color": "#ffffff",
             "question_text_color": "#181818",

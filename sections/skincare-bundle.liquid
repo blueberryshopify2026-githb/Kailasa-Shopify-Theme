@@ -10,7 +10,7 @@
     background: {{ section.settings.section_background }};
     position: relative;
     overflow: hidden;
-    min-height: 600px;
+    min-height: 800px;
   }
 
   .skincare-bundle-container {
@@ -21,12 +21,12 @@
     grid-template-columns: 25% 75%;
     gap: 40px;
     align-items: center;
-    min-height: 600px;
+    min-height: 800px;
   }
 
   /* Left Content Area (25%) */
   .bundle-content {
-    padding: 40px 20px;
+    {% comment %} padding: 40px 20px; {% endcomment %}
     display: flex;
     flex-direction: column;
     justify-content: {{ section.settings.content_vertical_alignment }};
@@ -101,10 +101,10 @@
   /* Right Product Area (75%) */
   .bundle-products {
     position: relative;
-    height: 600px;
+    height: 800px;
     background: {{ section.settings.products_background }};
     border-radius: 0;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
   }
 
@@ -179,6 +179,7 @@
   .product-info-panel {
     position: absolute;
     width: 320px;
+    height: 260px;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
@@ -229,6 +230,7 @@
     margin-right: 40px;
     top: 50%;
     transform: translateY(-50%) translateX(15px) scale(0.9);
+    max-width: 280px;
   }
 
   .product-info-panel.position-left.show {
@@ -240,23 +242,51 @@
     margin-left: 40px;
     top: 50%;
     transform: translateY(-50%) translateX(-15px) scale(0.9);
+    max-width: 280px;
   }
 
   .product-info-panel.position-right.show {
     transform: translateY(-50%) translateX(0) scale(1);
   }
 
+  /* Ensure panels don't overflow container */
+  .product-info-panel.position-top,
+  .product-info-panel.position-bottom {
+    max-width: 320px;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px) scale(0.9);
+  }
+
+  .product-info-panel.position-top.show,
+  .product-info-panel.position-bottom.show {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  /* Adjust positioning for hotspots near edges */
+  .product-hotspot[style*="left: 9"][style*="%"] .product-info-panel.position-top,
+  .product-hotspot[style*="left: 9"][style*="%"] .product-info-panel.position-bottom {
+    left: 160px;
+    transform: translateX(0) translateY(15px) scale(0.9);
+  }
+
+  .product-hotspot[style*="left: 9"][style*="%"] .product-info-panel.position-top.show,
+  .product-hotspot[style*="left: 9"][style*="%"] .product-info-panel.position-bottom.show {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+
   /* Panel Content */
   .panel-content {
-    padding: 24px;
+    padding: 20px;
     display: flex;
-    gap: 20px;
+    gap: 16px;
     align-items: flex-start;
+    height: 100%;
+    box-sizing: border-box;
   }
 
   .panel-image {
-    width: 140px;
-    height: 180px;
+    width: 120px;
+    height: 150px;
     border-radius: 12px;
     object-fit: cover;
     flex-shrink: 0;
@@ -270,12 +300,14 @@
     flex-basis: 60%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     text-align: left;
+    height: 100%;
+    justify-content: space-between;
   }
 
   .panel-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: #1a1a1a;
     margin: 0;
@@ -284,7 +316,7 @@
   }
 
   .panel-description {
-    font-size: 14px;
+    font-size: 13px;
     color: #4a4a4a;
     line-height: 1.4;
     margin: 0;
@@ -293,10 +325,11 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-align: left;
+    flex: 1;
   }
 
   .panel-actions {
-    margin-top: 10px;
+    margin-top: 8px;
     display: flex;
     gap: 12px;
     justify-content: flex-start;
@@ -308,9 +341,9 @@
     background: {{ section.settings.hotspot_color }};
     color: #1a1a1a;
     border: none;
-    border-radius: 25px;
-    padding: 12px 24px;
-    font-size: 14px;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -712,19 +745,32 @@
         const containerWidth = containerRect.width;
         const containerHeight = containerRect.height;
         
+        // Panel dimensions (approximate)
+        const panelWidth = 320;
+        const panelHeight = 200;
+        
         // Remove existing position classes
         panel.classList.remove('position-top', 'position-bottom', 'position-left', 'position-right');
         
-        // Prefer top/bottom positioning for better UX
-        if (centerY < containerHeight * 0.4) {
-          panel.classList.add('position-bottom');
-        } else if (centerY > containerHeight * 0.6) {
-          panel.classList.add('position-top');
-        } else if (centerX < containerWidth * 0.5) {
-          panel.classList.add('position-right');
-        } else {
-          panel.classList.add('position-left');
+        // Smart positioning to keep panel within bounds
+        let position = 'bottom'; // default
+        
+        // Check if panel would go outside right edge
+        if (centerX + panelWidth/2 > containerWidth - 20) {
+          position = 'left';
         }
+        // Check if panel would go outside left edge  
+        else if (centerX - panelWidth/2 < 20) {
+          position = 'right';
+        }
+        // Check vertical positioning
+        else if (centerY < containerHeight * 0.4) {
+          position = 'bottom';
+        } else if (centerY > containerHeight * 0.6) {
+          position = 'top';
+        }
+        
+        panel.classList.add(`position-${position}`);
       });
     }
 

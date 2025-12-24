@@ -694,7 +694,7 @@
       "settings": {
         "section_background_color": "#ffffff",
         "section_padding_top": 10,
-        "section_padding_bottom": 0,
+        "section_padding_bottom": 35,
         "section_title": "Your Daily Routine",
         "section_description": "Discover the perfect skincare routine tailored to your needs with our expertly curated products.",
         "header_alignment": "center",
@@ -803,7 +803,7 @@
             "card_width": 100,
             "card_background_color": "#f8f9fa",
             "card_border_color": "#e0e0e0",
-            "card_hover_color": "#D3FFFF",
+            "card_hover_color": "#d3ffff",
             "card_text_color": "#000000",
             "card_1_number": "01/",
             "card_1_title": "Exosomes",

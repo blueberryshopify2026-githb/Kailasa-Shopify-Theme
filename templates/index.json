@@ -409,6 +409,179 @@
         "arrow_style": "stroke"
       }
     },
+    "multi_tab_section_Wg9YxK": {
+      "type": "multi-tab-section",
+      "blocks": {
+        "multi_tab_block_Knxx4N": {
+          "type": "multi_tab_block",
+          "settings": {
+            "product_name": "Cleanser",
+            "about_layout": "image-text",
+            "about_text_content": "<p>Add your about content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "ingredients_layout": "ingredients-image",
+            "ingredients_title": "KEY INGREDIENTS",
+            "ingredient_bg_color": "#ffffff",
+            "ingredient_image_size": 60,
+            "font_family": "Montserrat, sans-serif",
+            "section_title_font_size": 14,
+            "section_title_color": "#999999",
+            "ingredient_title_font_size": 16,
+            "ingredient_title_color": "#333333",
+            "ingredient_desc_font_size": 13,
+            "ingredient_desc_color": "#888888",
+            "ingredient_title_1": "Glycolic Acid",
+            "ingredient_description_1": "An AHA from sugarcane, it exfoliates, brightens, reduces wrinkles, fades hyperpigmentation, and prevents blackheads.",
+            "ingredient_title_2": "",
+            "ingredient_description_2": "",
+            "ingredient_title_3": "",
+            "ingredient_description_3": "",
+            "ingredient_title_4": "",
+            "ingredient_description_4": "",
+            "ingredient_title_5": "",
+            "ingredient_description_5": "",
+            "ingredient_title_6": "",
+            "ingredient_description_6": "",
+            "ingredient_title_7": "",
+            "ingredient_description_7": "",
+            "ingredient_title_8": "",
+            "ingredient_description_8": "",
+            "ingredient_title_9": "",
+            "ingredient_description_9": "",
+            "ingredient_title_10": "",
+            "ingredient_description_10": "",
+            "usage_layout": "image-text",
+            "usage_text_content": "<p>Add your usage instructions here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "faq_layout": "image-faq",
+            "faq_bg_color": "#FFFFFF",
+            "question_text_color": "#181818",
+            "answer_text_color": "#666666",
+            "faq_border_color": "#E0E0E0",
+            "faq_max_height": 400,
+            "faq1_question": "How many times should I use this?",
+            "faq1_answer": "<p>Use this product once daily in the evening. Start with 2-3 times per week and gradually increase frequency as your skin builds tolerance.</p>",
+            "faq2_question": "I already use an exfoliating scrub, should I continue with that after I use this cleanser?",
+            "faq2_answer": "<p>It's recommended to avoid using other exfoliating products when starting this treatment to prevent over-exfoliation.</p>",
+            "faq3_question": "Will this make me break out?",
+            "faq3_answer": "<p>Some initial purging may occur as your skin adjusts. This is normal and should subside within 2-4 weeks of consistent use.</p>",
+            "faq4_question": "How long until I see results on my face?",
+            "faq4_answer": "<p>Most users see visible improvements within 4-6 weeks of consistent use. Results may vary depending on skin type and condition.</p>",
+            "faq5_question": "Can we use it on Acne Prone Skin?",
+            "faq5_answer": "<p>Yes, this product is suitable for acne-prone skin. However, start slowly and monitor your skin's response.</p>",
+            "faq6_question": "Is this good for Dry Skin?",
+            "faq6_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>",
+            "faq7_question": "",
+            "faq7_answer": "",
+            "faq8_question": "",
+            "faq8_answer": "",
+            "faq9_question": "",
+            "faq9_answer": "",
+            "faq10_question": "",
+            "faq10_answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "multi_tab_block_Knxx4N"
+      ],
+      "name": "Multi Tab Section",
+      "settings": {
+        "title": "Multi Product Tabs",
+        "background_color": "#FFFFFF",
+        "text_color": "#181818",
+        "border_color": "#4FFFFF",
+        "border_width": 2,
+        "inner_tab_active_bg": "#181818",
+        "inner_tab_active_text": "#FFFFFF",
+        "inner_tab_active_dot": "#4FFFFF",
+        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_inactive_text": "#181818",
+        "inner_tab_hover_bg": "#181818",
+        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_border_color": "#181818",
+        "inner_tab_border_width": 1,
+        "title_font_family": "Montserrat, sans-serif",
+        "title_font_weight": 800,
+        "title_font_style": "normal",
+        "title_font_size_desktop": 50,
+        "title_font_size_mobile": 24,
+        "tab_font_family": "Montserrat, sans-serif",
+        "tab_font_weight": 500,
+        "tab_font_style": "normal",
+        "tab_font_size_desktop": 16,
+        "tab_font_size_mobile": 14,
+        "height_desktop": 120,
+        "title_padding_desktop": 20,
+        "arrow_padding_desktop": 45,
+        "arrow_size_desktop": 70,
+        "arrow_stroke_desktop": 3,
+        "height_mobile": 60,
+        "title_padding_mobile": 20,
+        "arrow_padding_mobile": 20,
+        "arrow_size_mobile": 18,
+        "arrow_stroke_mobile": 2,
+        "arrow_style": "stroke"
+      }
+    },
+    "tab_section_83Upbp": {
+      "type": "tab-section",
+      "blocks": {
+        "image_text_block_qJRqP6": {
+          "type": "image-text-block",
+          "settings": {
+            "tab_name": "About",
+            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_block_qJRqP6"
+      ],
+      "name": "Tab Section",
+      "settings": {
+        "title": "Photon Youth™ Pro LED Mask",
+        "background_color": "#FFFFFF",
+        "text_color": "#181818",
+        "border_color": "#4FFFFF",
+        "border_width": 2,
+        "inner_tab_active_bg": "#181818",
+        "inner_tab_active_text": "#FFFFFF",
+        "inner_tab_active_dot": "#4FFFFF",
+        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_inactive_text": "#181818",
+        "inner_tab_hover_bg": "#181818",
+        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_border_color": "#181818",
+        "inner_tab_border_width": 1,
+        "title_font_family": "Montserrat, sans-serif",
+        "title_font_weight": 800,
+        "title_font_style": "normal",
+        "title_font_size_desktop": 50,
+        "title_font_size_mobile": 24,
+        "tab_font_family": "Montserrat, sans-serif",
+        "tab_font_weight": 500,
+        "tab_font_style": "normal",
+        "tab_font_size_desktop": 16,
+        "tab_font_size_mobile": 14,
+        "height_desktop": 120,
+        "title_padding_desktop": 20,
+        "arrow_padding_desktop": 45,
+        "arrow_size_desktop": 70,
+        "arrow_stroke_desktop": 3,
+        "height_mobile": 60,
+        "title_padding_mobile": 20,
+        "arrow_padding_mobile": 20,
+        "arrow_size_mobile": 18,
+        "arrow_stroke_mobile": 2,
+        "arrow_style": "stroke"
+      }
+    },
     "routine_tabs_section_bhkHzy": {
       "type": "routine-tabs-section",
       "blocks": {
@@ -507,231 +680,6 @@
             "icon_type": "sun",
             "icon_color": "#000000"
           }
-        },
-        "product_AyF9rf": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "1",
-            "step_label": "Cleanser",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_wMePVt": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "2",
-            "step_label": "Toner",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_AEdqh4": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "3",
-            "step_label": "Serum",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_zLKz97": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "4",
-            "step_label": "Moisturizer",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_ajQ9Yh": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "5",
-            "step_label": "Night Treatment",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_VmpYaX": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm_light",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "1",
-            "step_label": "Cleanser",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_6fbDXx": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm_light",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "2",
-            "step_label": "Toner",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_Ja94X3": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm_light",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "3",
-            "step_label": "Light Serum",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_CcjiLy": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm_light",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "4",
-            "step_label": "Light Therapy",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_6zNaNe": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm_light",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "5",
-            "step_label": "Moisturizer",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_jgJKhK": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "pm_light",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "6",
-            "step_label": "Night Treatment",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_3bccgg": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "exfoliate",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "1",
-            "step_label": "Cleanser",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_J36Vg3": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "exfoliate",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "2",
-            "step_label": "Exfoliant",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_xgHLQ6": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "exfoliate",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "3",
-            "step_label": "Serum",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
-        },
-        "product_XgR9Ew": {
-          "type": "product",
-          "settings": {
-            "tab_selector": "exfoliate",
-            "product": "",
-            "custom_product_name": "",
-            "step_number": "4",
-            "step_label": "Moisturizer",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
-          }
         }
       },
       "block_order": [
@@ -740,22 +688,7 @@
         "product_6CHcyn",
         "product_AN9gzG",
         "product_Wm7kTh",
-        "product_RVpwFr",
-        "product_AyF9rf",
-        "product_wMePVt",
-        "product_AEdqh4",
-        "product_zLKz97",
-        "product_ajQ9Yh",
-        "product_VmpYaX",
-        "product_6fbDXx",
-        "product_Ja94X3",
-        "product_CcjiLy",
-        "product_6zNaNe",
-        "product_jgJKhK",
-        "product_3bccgg",
-        "product_J36Vg3",
-        "product_xgHLQ6",
-        "product_XgR9Ew"
+        "product_RVpwFr"
       ],
       "name": "Routine Tabs Section",
       "settings": {
@@ -825,6 +758,8 @@
     "skincare_bundle_VLW7E9",
     "cellular_harmony_hero_MRNndQ",
     "tab_section_3ybbnx",
+    "multi_tab_section_Wg9YxK",
+    "tab_section_83Upbp",
     "routine_tabs_section_bhkHzy"
   ]
 }

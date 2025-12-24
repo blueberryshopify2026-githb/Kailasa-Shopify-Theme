@@ -753,74 +753,6 @@
         "exfoliate_cta_link": ""
       }
     },
-    "comparison_table_GcFcXU": {
-      "type": "comparison-table",
-      "blocks": {
-        "ingredient_row_WUftbF": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
-          }
-        },
-        "ingredient_row_7fVWL6": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
-            "cellular_harmony_type": "text",
-            "cellular_harmony_text": "Ingredient Description Color here",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_xttqpc": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Minerals",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description Color here",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "ingredient_row_WUftbF",
-        "ingredient_row_7fVWL6",
-        "ingredient_row_xttqpc"
-      ],
-      "name": "Comparison Table",
-      "settings": {
-        "section_heading": "Cellular Harmony Advantage",
-        "column_1_title": "Cellular Harmony",
-        "column_2_title": "Supplements",
-        "column_3_title": "Skincare",
-        "column_4_title": "Mask",
-        "title_font_family": "montserrat_n4",
-        "title_font_size": 60,
-        "column_heading_font_family": "montserrat_n4",
-        "column_heading_font_size": 16,
-        "ingredient_font_family": "montserrat_n4",
-        "ingredient_font_size": 15,
-        "cell_text_font_family": "montserrat_n4",
-        "cell_text_font_size": 12
-      }
-    },
     "science_slider_3iUgPg": {
       "type": "science-slider",
       "blocks": {
@@ -966,6 +898,104 @@
         "nav_arrow_height": 50,
         "icon_desc_font_size": 14
       }
+    },
+    "comparison_table_GcFcXU": {
+      "type": "comparison-table",
+      "blocks": {
+        "ingredient_row_zn6wDz": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_rzLLcH": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_WUftbF": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_7fVWL6": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_xttqpc": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_row_zn6wDz",
+        "ingredient_row_rzLLcH",
+        "ingredient_row_WUftbF",
+        "ingredient_row_7fVWL6",
+        "ingredient_row_xttqpc"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n4",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n4",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
+      }
     }
   },
   "order": [
@@ -975,7 +1005,7 @@
     "tab_section_83Upbp",
     "skincare_bundle_VLW7E9",
     "routine_tabs_section_bhkHzy",
-    "comparison_table_GcFcXU",
-    "science_slider_3iUgPg"
+    "science_slider_3iUgPg",
+    "comparison_table_GcFcXU"
   ]
 }

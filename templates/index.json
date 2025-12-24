@@ -560,8 +560,8 @@
       "name": "Skincare Bundle",
       "settings": {
         "section_background": "#ffffff",
-        "section_padding_top": 40,
-        "section_padding_bottom": 30,
+        "section_padding_top": 30,
+        "section_padding_bottom": 0,
         "bundle_title": "The Ultimate Skincare Bundle",
         "bundle_description": "Everything your skin needs, perfectly layered for healthy, radiant results.",
         "content_alignment": "left",

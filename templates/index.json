@@ -1556,6 +1556,246 @@
     "routine_tabs_section_bhkHzy": {
       "type": "routine-tabs-section",
       "blocks": {
+        "product_7MiBxX": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_YYnzTh": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_qqMH8m": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_MVDMbY": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_6aBRwz": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_bUQPed": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_MAMJLN": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_cTtDwL": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_WATJFd": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_nkYjAF": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_H9pDVn": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_DQcVhq": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_4EMiWD": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_KzU6Qr": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_GCDxN7": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
         "product_RgrnaY": {
           "type": "product",
           "settings": {
@@ -1654,6 +1894,21 @@
         }
       },
       "block_order": [
+        "product_7MiBxX",
+        "product_YYnzTh",
+        "product_qqMH8m",
+        "product_MVDMbY",
+        "product_6aBRwz",
+        "product_bUQPed",
+        "product_MAMJLN",
+        "product_cTtDwL",
+        "product_WATJFd",
+        "product_nkYjAF",
+        "product_H9pDVn",
+        "product_DQcVhq",
+        "product_4EMiWD",
+        "product_KzU6Qr",
+        "product_GCDxN7",
         "product_RgrnaY",
         "product_tnJtYA",
         "product_6CHcyn",

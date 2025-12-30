@@ -2258,6 +2258,22 @@
             "panel_position": "left",
             "panel_text_alignment": "left"
           }
+        },
+        "product_hotspot_gbTGez": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Product Name",
+            "product_description": "Brief description of the product benefits.",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 70,
+            "hotspot_y": 50,
+            "panel_position": "top",
+            "panel_text_alignment": "left"
+          }
         }
       },
       "block_order": [
@@ -2268,7 +2284,8 @@
         "product_hotspot_Y4mw4X",
         "product_hotspot_TYH6zb",
         "product_hotspot_pggrqH",
-        "product_hotspot_yKqjyW"
+        "product_hotspot_yKqjyW",
+        "product_hotspot_gbTGez"
       ],
       "name": "Skincare Bundle",
       "settings": {

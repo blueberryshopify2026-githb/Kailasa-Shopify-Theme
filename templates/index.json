@@ -2237,8 +2237,8 @@
             "custom_price": "",
             "product_link": "",
             "add_to_cart_link": "",
-            "hotspot_x": 65,
-            "hotspot_y": 42,
+            "hotspot_x": 56,
+            "hotspot_y": 61,
             "panel_position": "top",
             "panel_text_alignment": "left"
           }
@@ -2253,8 +2253,8 @@
             "custom_price": "",
             "product_link": "",
             "add_to_cart_link": "",
-            "hotspot_x": 85,
-            "hotspot_y": 38,
+            "hotspot_x": 63,
+            "hotspot_y": 58,
             "panel_position": "left",
             "panel_text_alignment": "left"
           }

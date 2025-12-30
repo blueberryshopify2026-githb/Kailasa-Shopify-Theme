@@ -220,6 +220,7 @@
         "technology_showcase_AtLCgh",
         "korean_beauty_showcase_MBr8MQ"
       ],
+      "disabled": true,
       "name": "Science Slider",
       "settings": {
         "section_margin_top": 0,

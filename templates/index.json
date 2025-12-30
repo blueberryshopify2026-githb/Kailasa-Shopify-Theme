@@ -220,6 +220,7 @@
         "technology_showcase_AtLCgh",
         "korean_beauty_showcase_MBr8MQ"
       ],
+      "disabled": true,
       "name": "Science Slider",
       "settings": {
         "section_margin_top": 0,
@@ -1518,7 +1519,6 @@
         "product_fhLmwp",
         "product_rd743b"
       ],
-      "disabled": true,
       "name": "Skin by Concern",
       "settings": {
         "dullness_before_image": "shopify://shop_images/pexels-polina-kovaleva-5927890.jpg",

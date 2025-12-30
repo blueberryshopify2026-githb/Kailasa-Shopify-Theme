@@ -1547,6 +1547,79 @@
         "tile_radius": 16
       }
     },
+    "ingredients_scroll_zJRqWh": {
+      "type": "ingredients-scroll",
+      "blocks": {
+        "ingredient_CiUBPk": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/pexels-marek-piwnicki-3907296-18266096.jpg",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_rt6DMK": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/pexels-eva-bronzini-6104096.jpg",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_MyXyfB": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/pexels-eva-bronzini-6085951.jpg",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_dcBtcr": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/pexels-mhajrinvincible-19483328.jpg",
+            "name": "Collagen",
+            "subtitle": "Type I & III",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_K9AynE": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_29_2025_04_10_44_PM.png",
+            "name": "Vitamin C",
+            "subtitle": "Ascorbic Acid",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_CiUBPk",
+        "ingredient_rt6DMK",
+        "ingredient_MyXyfB",
+        "ingredient_dcBtcr",
+        "ingredient_K9AynE"
+      ],
+      "name": "Ingredients Scroll",
+      "settings": {
+        "title": "The inner workings of strength & recovery",
+        "title_font": "Gilroy",
+        "title_size": 48,
+        "title_weight": "600",
+        "description": "Crafted to perfection through rigorous clinical research, rooted in nature and backed by science.",
+        "description_font": "Gilroy",
+        "description_size": 16,
+        "description_weight": "400"
+      }
+    },
     "new_fgNH6c": {
       "type": "new",
       "blocks": {
@@ -2418,6 +2491,7 @@
     "tab_section_CmUbdP",
     "multi_tab_section_Wg9YxK",
     "skin_by_concern_PikCHr",
+    "ingredients_scroll_zJRqWh",
     "new_fgNH6c",
     "routine_tabs_section_bhkHzy",
     "skincare_bundle_VLW7E9",

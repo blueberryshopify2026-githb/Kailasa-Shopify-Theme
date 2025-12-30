@@ -2274,6 +2274,38 @@
             "panel_position": "top",
             "panel_text_alignment": "left"
           }
+        },
+        "product_hotspot_W4wUAW": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Product Name",
+            "product_description": "Brief description of the product benefits.",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 77,
+            "hotspot_y": 70,
+            "panel_position": "top",
+            "panel_text_alignment": "left"
+          }
+        },
+        "product_hotspot_fPRthV": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Product Name",
+            "product_description": "Brief description of the product benefits.",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 90,
+            "hotspot_y": 55,
+            "panel_position": "top",
+            "panel_text_alignment": "left"
+          }
         }
       },
       "block_order": [
@@ -2285,7 +2317,9 @@
         "product_hotspot_TYH6zb",
         "product_hotspot_pggrqH",
         "product_hotspot_yKqjyW",
-        "product_hotspot_gbTGez"
+        "product_hotspot_gbTGez",
+        "product_hotspot_W4wUAW",
+        "product_hotspot_fPRthV"
       ],
       "name": "Skincare Bundle",
       "settings": {

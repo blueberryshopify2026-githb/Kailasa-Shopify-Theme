@@ -1344,359 +1344,286 @@
         "arrow_style": "stroke"
       }
     },
-    "comparison_table_GcFcXU": {
-      "type": "comparison-table",
+    "skin_by_concern_PikCHr": {
+      "type": "skin-by-concern",
       "blocks": {
-        "ingredient_row_WUftbF": {
-          "type": "ingredient_row",
+        "product_pPDNee": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "undereye",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_YH7ifw": {
-          "type": "ingredient_row",
+        "product_MX4Kfq": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "text",
-            "cellular_harmony_text": "Cellular Harmony Display Type",
-            "supplements_type": "cross",
-            "supplements_text": "",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "undereye",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_4wLttV": {
-          "type": "ingredient_row",
+        "product_9Bcn6B": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "check",
-            "skincare_text": "Skincare Display Type",
-            "mask_type": "cross",
-            "mask_text": "Ingredient Description"
+            "concern": "undereye",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_9YWDJp": {
-          "type": "ingredient_row",
+        "product_zEzqCw": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "text",
-            "supplements_text": "Supplements Display Type",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "undereye",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_RFh4PX": {
-          "type": "ingredient_row",
+        "product_nGbJHG": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "wrinkles",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_DhYEhe": {
-          "type": "ingredient_row",
+        "product_LEef6f": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "wrinkles",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_aWfCkd": {
-          "type": "ingredient_row",
+        "product_AXTDBb": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "wrinkles",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_Vp39Te": {
-          "type": "ingredient_row",
+        "product_QHDxpA": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "wrinkles",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_GyLPLM": {
-          "type": "ingredient_row",
+        "product_yi3yf3": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "dullness",
+            "product": "kailasa-shilajit-gummies",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_GHmYci": {
-          "type": "ingredient_row",
+        "product_GFNiwN": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "concern": "dullness",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         },
-        "ingredient_row_7fVWL6": {
-          "type": "ingredient_row",
+        "product_fhLmwp": {
+          "type": "product",
           "settings": {
-            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
-            "cellular_harmony_type": "text",
-            "cellular_harmony_text": "Ingredient Description Color here",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
+            "concern": "dullness",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
+          }
+        },
+        "product_rd743b": {
+          "type": "product",
+          "settings": {
+            "concern": "dullness",
+            "product": "kailasa-creatine-powder",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
+            "product_code": "NEW",
+            "show_new_badge": true
           }
         }
       },
       "block_order": [
-        "ingredient_row_WUftbF",
-        "ingredient_row_YH7ifw",
-        "ingredient_row_4wLttV",
-        "ingredient_row_9YWDJp",
-        "ingredient_row_RFh4PX",
-        "ingredient_row_DhYEhe",
-        "ingredient_row_aWfCkd",
-        "ingredient_row_Vp39Te",
-        "ingredient_row_GyLPLM",
-        "ingredient_row_GHmYci",
-        "ingredient_row_7fVWL6"
+        "product_pPDNee",
+        "product_MX4Kfq",
+        "product_9Bcn6B",
+        "product_zEzqCw",
+        "product_nGbJHG",
+        "product_LEef6f",
+        "product_AXTDBb",
+        "product_QHDxpA",
+        "product_yi3yf3",
+        "product_GFNiwN",
+        "product_fhLmwp",
+        "product_rd743b"
       ],
-      "name": "Comparison Table",
+      "name": "Skin by Concern",
       "settings": {
-        "section_heading": "Cellular Harmony Advantage",
-        "column_1_title": "Cellular Harmony",
-        "column_2_title": "Supplements",
-        "column_3_title": "Skincare",
-        "column_4_title": "Mask",
-        "title_font_family": "montserrat_n7",
-        "title_font_size": 60,
-        "column_heading_font_family": "montserrat_n7",
-        "column_heading_font_size": 16,
-        "ingredient_font_family": "montserrat_n4",
-        "ingredient_font_size": 15,
-        "cell_text_font_family": "montserrat_n4",
-        "cell_text_font_size": 12
+        "dullness_before_image": "shopify://shop_images/pexels-polina-kovaleva-5927890.jpg",
+        "dullness_after_image": "shopify://shop_images/pexels-polina-kovaleva-5927888.jpg",
+        "dullness_title": "Brighten Dull Skin",
+        "dullness_description": "Revitalize your complexion with our powerful brightening formulas that restore radiance and luminosity to tired, dull skin.",
+        "wrinkles_before_image": "shopify://shop_images/before.jpg",
+        "wrinkles_after_image": "shopify://shop_images/aftrer.jpg",
+        "wrinkles_title": "Smooth Fine Lines",
+        "wrinkles_description": "Target visible signs of aging with our advanced anti-wrinkle treatments that help smooth and firm your skin.",
+        "undereye_before_image": "shopify://shop_images/pexels-cottonbro-6635922.jpg",
+        "undereye_after_image": "shopify://shop_images/pexels-ron-lach-8140903.jpg",
+        "undereye_title": "Refresh Under Eyes",
+        "undereye_description": "Diminish dark circles, puffiness, and fine lines around the delicate eye area with our specialized treatments.",
+        "anti_aging_before_image": "shopify://shop_images/179f3fbaed6ca404eeee0fe58ea2be75.jpg",
+        "anti_aging_after_image": "shopify://shop_images/1ae2984c020e6f6b27a44ecc0df84861_35c15f3f-c539-4651-902d-5d0296e65f91.jpg",
+        "anti_aging_title": "Combat Aging Signs",
+        "anti_aging_description": "Turn back time with our comprehensive anti-aging solutions that promote youthful, resilient skin.",
+        "sunburn_before_image": "shopify://shop_images/ChatGPT_Image_Dec_12_2025_03_18_03_PM.png",
+        "sunburn_title": "Soothe Sun Damage",
+        "sunburn_description": "Repair and protect sun-damaged skin with our healing formulas that restore and prevent further damage.",
+        "acne_before_image": "shopify://shop_images/ChatGPT_Image_Dec_12_2025_03_38_08_PM.png",
+        "acne_title": "Clear Acne & Blemishes",
+        "acne_description": "Achieve clearer, healthier skin with our targeted acne treatments that reduce breakouts and prevent future blemishes.",
+        "tile_bg_color": "#ffffff",
+        "tile_text_color": "#000000",
+        "tile_radius": 16
       }
     },
-    "skincare_bundle_VLW7E9": {
-      "type": "skincare-bundle",
+    "new_fgNH6c": {
+      "type": "new",
       "blocks": {
-        "product_hotspot_NGaJeE": {
-          "type": "product_hotspot",
+        "doctor_WheQLW": {
+          "type": "doctor",
           "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Skin Detox Capsules",
-            "product_description": "Detoxifies & revitalizes from within",
-            "custom_price": "",
-            "product_link": "",
-            "add_to_cart_link": "",
-            "hotspot_x": 15,
-            "hotspot_y": 20,
-            "panel_position": "bottom",
-            "panel_text_alignment": "left"
+            "doctor_name": "Dr. Sarah Johnson",
+            "specialty": "Dermatologist",
+            "doctor_image": "shopify://shop_images/download.jpg",
+            "rating": 5,
+            "quote": "I recommend this skincare line to all my patients for its proven results and gentle formulation.",
+            "experience": "15+ years experience • Board Certified • Harvard Medical School"
           }
         },
-        "product_hotspot_NrH4Gp": {
-          "type": "product_hotspot",
+        "doctor_DmFTnh": {
+          "type": "doctor",
           "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Hydrating Eye Cream",
-            "product_description": "Firms & hydrates delicate eye area",
-            "custom_price": "",
-            "product_link": "",
-            "add_to_cart_link": "",
-            "hotspot_x": 35,
-            "hotspot_y": 15,
-            "panel_position": "bottom",
-            "panel_text_alignment": "left"
+            "doctor_name": "Dr. Michael Chen",
+            "specialty": "Cosmetic Surgeon",
+            "doctor_image": "shopify://shop_images/pexels-tima-miroshnichenko-5407206.jpg",
+            "rating": 4.9,
+            "quote": "The anti-aging properties of these products are remarkable. I've seen incredible transformations.",
+            "experience": "12+ years experience • Board Certified • Johns Hopkins"
           }
         },
-        "product_hotspot_cYRwgV": {
-          "type": "product_hotspot",
+        "doctor_Hd9jaW": {
+          "type": "doctor",
           "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Radiance Drops",
-            "product_description": "Brightens & evens out skin tone",
-            "custom_price": "",
-            "product_link": "",
-            "add_to_cart_link": "",
-            "hotspot_x": 55,
-            "hotspot_y": 18,
-            "panel_position": "bottom",
-            "panel_text_alignment": "left"
+            "doctor_name": "Dr. Emily Rodriguez",
+            "specialty": "Aesthetic Medicine",
+            "doctor_image": "shopify://shop_images/pexels-tima-miroshnichenko-8376277.jpg",
+            "rating": 5,
+            "quote": "This is the only skincare line I trust for my most discerning patients.",
+            "experience": "10+ years experience • Board Certified • Mayo Clinic"
           }
         },
-        "product_hotspot_3JVm4G": {
-          "type": "product_hotspot",
+        "doctor_4hwHjJ": {
+          "type": "doctor",
           "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Brightening Mist",
-            "product_description": "Refreshes & boosts radiance",
-            "custom_price": "",
-            "product_link": "",
-            "add_to_cart_link": "",
-            "hotspot_x": 75,
-            "hotspot_y": 22,
-            "panel_position": "bottom",
-            "panel_text_alignment": "left"
-          }
-        },
-        "product_hotspot_Y4mw4X": {
-          "type": "product_hotspot",
-          "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Eye Renewal Cream",
-            "product_description": "Reduces puffiness & dark circles",
-            "custom_price": "",
-            "product_link": "",
-            "add_to_cart_link": "",
-            "hotspot_x": 25,
-            "hotspot_y": 45,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
-          }
-        },
-        "product_hotspot_TYH6zb": {
-          "type": "product_hotspot",
-          "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Hydrating Serum",
-            "product_description": "Boosts moisture & strengthens skin barrier",
-            "custom_price": "",
-            "product_link": "",
-            "add_to_cart_link": "",
-            "hotspot_x": 45,
-            "hotspot_y": 40,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
-          }
-        },
-        "product_hotspot_pggrqH": {
-          "type": "product_hotspot",
-          "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Daily Cleanser",
-            "product_description": "Gently purifies & revitalizes",
-            "custom_price": "",
-            "product_link": "",
-            "add_to_cart_link": "",
-            "hotspot_x": 65,
-            "hotspot_y": 42,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
-          }
-        },
-        "product_hotspot_yKqjyW": {
-          "type": "product_hotspot",
-          "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Firming Moisturizer",
-            "product_description": "Lifts & firms for youthful glow",
-            "custom_price": "",
-            "product_link": "",
-            "add_to_cart_link": "",
-            "hotspot_x": 85,
-            "hotspot_y": 38,
-            "panel_position": "left",
-            "panel_text_alignment": "left"
+            "doctor_name": "Dr. James Wilson",
+            "specialty": "Plastic Surgeon",
+            "doctor_image": "shopify://shop_images/about-us_dr-obagi_1.webp",
+            "rating": 4.8,
+            "quote": "Outstanding results with minimal irritation. Perfect for post-procedure care.",
+            "experience": "18+ years experience • Board Certified • Stanford Medical"
           }
         }
       },
       "block_order": [
-        "product_hotspot_NGaJeE",
-        "product_hotspot_NrH4Gp",
-        "product_hotspot_cYRwgV",
-        "product_hotspot_3JVm4G",
-        "product_hotspot_Y4mw4X",
-        "product_hotspot_TYH6zb",
-        "product_hotspot_pggrqH",
-        "product_hotspot_yKqjyW"
+        "doctor_WheQLW",
+        "doctor_DmFTnh",
+        "doctor_Hd9jaW",
+        "doctor_4hwHjJ"
       ],
-      "name": "Skincare Bundle",
+      "name": "Doctor Endorsement",
       "settings": {
-        "section_background": "#ffffff",
-        "section_padding_top": 30,
-        "section_padding_bottom": 0,
-        "bundle_title": "The Ultimate Skincare Bundle",
-        "bundle_description": "Everything your skin needs, perfectly layered for healthy, radiant results.",
-        "content_alignment": "left",
-        "content_vertical_alignment": "center",
-        "title_font_size": 42,
-        "title_color": "#1a1a1a",
-        "description_font_size": 16,
-        "description_color": "#666666",
-        "cta_text": "Explore the full routine →",
-        "cta_link": "",
-        "cta_bg_color": "#1a1a1a",
-        "cta_hover_color": "#333333",
-        "cta_text_color": "#ffffff",
-        "cta_border_radius": 8,
-        "cta_font_size": 16,
-        "bundle_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png",
-        "products_background": "#f8f9fa",
-        "hotspot_color": "#4fffff"
+        "section_title": "Doctor Endorsements",
+        "left_margin": 10,
+        "cards_gap": 20,
+        "main_card_border_radius": 32,
+        "main_card_overlay_color": "#000000",
+        "main_card_overlay_opacity": 0.9,
+        "right_card_width": 70,
+        "right_card_aspect_width": 2,
+        "right_card_aspect_height": 3,
+        "right_card_border_radius": 32,
+        "right_card_vertical_gap": 5,
+        "main_doctor_name_size": 1.8,
+        "main_specialty_size": 1,
+        "main_quote_size": 1,
+        "specialty_color": "#00bcd4",
+        "star_color": "#ffd700",
+        "text_color": "#ffffff",
+        "secondary_text_color": "#cccccc",
+        "cta_bg_color": "#000000",
+        "cta_hover_color": "#00bcd4",
+        "cta_border_color": "#e5e5e5"
       }
     },
     "routine_tabs_section_bhkHzy": {
@@ -2065,8 +1992,8 @@
       "name": "Routine Tabs Section",
       "settings": {
         "section_background_color": "#ffffff",
-        "section_padding_top": 10,
-        "section_padding_bottom": 50,
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
         "section_title": "Your Daily Routine",
         "section_description": "Discover the perfect skincare routine tailored to your needs with our expertly curated products.",
         "header_alignment": "center",
@@ -2128,286 +2055,359 @@
         "exfoliate_cta_link": ""
       }
     },
-    "skin_by_concern_PikCHr": {
-      "type": "skin-by-concern",
+    "skincare_bundle_VLW7E9": {
+      "type": "skincare-bundle",
       "blocks": {
-        "product_pPDNee": {
-          "type": "product",
+        "product_hotspot_NGaJeE": {
+          "type": "product_hotspot",
           "settings": {
-            "concern": "undereye",
+            "show_hotspot": true,
             "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
+            "product_title": "Skin Detox Capsules",
+            "product_description": "Detoxifies & revitalizes from within",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 15,
+            "hotspot_y": 20,
+            "panel_position": "bottom",
+            "panel_text_alignment": "left"
           }
         },
-        "product_MX4Kfq": {
-          "type": "product",
+        "product_hotspot_NrH4Gp": {
+          "type": "product_hotspot",
           "settings": {
-            "concern": "undereye",
+            "show_hotspot": true,
             "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
+            "product_title": "Hydrating Eye Cream",
+            "product_description": "Firms & hydrates delicate eye area",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 35,
+            "hotspot_y": 15,
+            "panel_position": "bottom",
+            "panel_text_alignment": "left"
           }
         },
-        "product_9Bcn6B": {
-          "type": "product",
+        "product_hotspot_cYRwgV": {
+          "type": "product_hotspot",
           "settings": {
-            "concern": "undereye",
+            "show_hotspot": true,
             "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
+            "product_title": "Radiance Drops",
+            "product_description": "Brightens & evens out skin tone",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 55,
+            "hotspot_y": 18,
+            "panel_position": "bottom",
+            "panel_text_alignment": "left"
           }
         },
-        "product_zEzqCw": {
-          "type": "product",
+        "product_hotspot_3JVm4G": {
+          "type": "product_hotspot",
           "settings": {
-            "concern": "undereye",
+            "show_hotspot": true,
             "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
+            "product_title": "Brightening Mist",
+            "product_description": "Refreshes & boosts radiance",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 75,
+            "hotspot_y": 22,
+            "panel_position": "bottom",
+            "panel_text_alignment": "left"
           }
         },
-        "product_nGbJHG": {
-          "type": "product",
+        "product_hotspot_Y4mw4X": {
+          "type": "product_hotspot",
           "settings": {
-            "concern": "wrinkles",
+            "show_hotspot": true,
             "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
+            "product_title": "Eye Renewal Cream",
+            "product_description": "Reduces puffiness & dark circles",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 25,
+            "hotspot_y": 45,
+            "panel_position": "top",
+            "panel_text_alignment": "left"
           }
         },
-        "product_LEef6f": {
-          "type": "product",
+        "product_hotspot_TYH6zb": {
+          "type": "product_hotspot",
           "settings": {
-            "concern": "wrinkles",
+            "show_hotspot": true,
             "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
+            "product_title": "Hydrating Serum",
+            "product_description": "Boosts moisture & strengthens skin barrier",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 45,
+            "hotspot_y": 40,
+            "panel_position": "top",
+            "panel_text_alignment": "left"
           }
         },
-        "product_AXTDBb": {
-          "type": "product",
+        "product_hotspot_pggrqH": {
+          "type": "product_hotspot",
           "settings": {
-            "concern": "wrinkles",
+            "show_hotspot": true,
             "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
+            "product_title": "Daily Cleanser",
+            "product_description": "Gently purifies & revitalizes",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 65,
+            "hotspot_y": 42,
+            "panel_position": "top",
+            "panel_text_alignment": "left"
           }
         },
-        "product_QHDxpA": {
-          "type": "product",
+        "product_hotspot_yKqjyW": {
+          "type": "product_hotspot",
           "settings": {
-            "concern": "wrinkles",
+            "show_hotspot": true,
             "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
-          }
-        },
-        "product_yi3yf3": {
-          "type": "product",
-          "settings": {
-            "concern": "dullness",
-            "product": "kailasa-shilajit-gummies",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
-          }
-        },
-        "product_GFNiwN": {
-          "type": "product",
-          "settings": {
-            "concern": "dullness",
-            "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
-          }
-        },
-        "product_fhLmwp": {
-          "type": "product",
-          "settings": {
-            "concern": "dullness",
-            "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
-          }
-        },
-        "product_rd743b": {
-          "type": "product",
-          "settings": {
-            "concern": "dullness",
-            "product": "kailasa-creatine-powder",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "custom_image": "shopify://shop_images/cut-removebg-preview.png",
-            "product_code": "NEW",
-            "show_new_badge": true
+            "product_title": "Firming Moisturizer",
+            "product_description": "Lifts & firms for youthful glow",
+            "custom_price": "",
+            "product_link": "",
+            "add_to_cart_link": "",
+            "hotspot_x": 85,
+            "hotspot_y": 38,
+            "panel_position": "left",
+            "panel_text_alignment": "left"
           }
         }
       },
       "block_order": [
-        "product_pPDNee",
-        "product_MX4Kfq",
-        "product_9Bcn6B",
-        "product_zEzqCw",
-        "product_nGbJHG",
-        "product_LEef6f",
-        "product_AXTDBb",
-        "product_QHDxpA",
-        "product_yi3yf3",
-        "product_GFNiwN",
-        "product_fhLmwp",
-        "product_rd743b"
+        "product_hotspot_NGaJeE",
+        "product_hotspot_NrH4Gp",
+        "product_hotspot_cYRwgV",
+        "product_hotspot_3JVm4G",
+        "product_hotspot_Y4mw4X",
+        "product_hotspot_TYH6zb",
+        "product_hotspot_pggrqH",
+        "product_hotspot_yKqjyW"
       ],
-      "name": "Skin by Concern",
+      "name": "Skincare Bundle",
       "settings": {
-        "dullness_before_image": "shopify://shop_images/pexels-polina-kovaleva-5927890.jpg",
-        "dullness_after_image": "shopify://shop_images/pexels-polina-kovaleva-5927888.jpg",
-        "dullness_title": "Brighten Dull Skin",
-        "dullness_description": "Revitalize your complexion with our powerful brightening formulas that restore radiance and luminosity to tired, dull skin.",
-        "wrinkles_before_image": "shopify://shop_images/before.jpg",
-        "wrinkles_after_image": "shopify://shop_images/aftrer.jpg",
-        "wrinkles_title": "Smooth Fine Lines",
-        "wrinkles_description": "Target visible signs of aging with our advanced anti-wrinkle treatments that help smooth and firm your skin.",
-        "undereye_before_image": "shopify://shop_images/pexels-cottonbro-6635922.jpg",
-        "undereye_after_image": "shopify://shop_images/pexels-ron-lach-8140903.jpg",
-        "undereye_title": "Refresh Under Eyes",
-        "undereye_description": "Diminish dark circles, puffiness, and fine lines around the delicate eye area with our specialized treatments.",
-        "anti_aging_before_image": "shopify://shop_images/179f3fbaed6ca404eeee0fe58ea2be75.jpg",
-        "anti_aging_after_image": "shopify://shop_images/1ae2984c020e6f6b27a44ecc0df84861_35c15f3f-c539-4651-902d-5d0296e65f91.jpg",
-        "anti_aging_title": "Combat Aging Signs",
-        "anti_aging_description": "Turn back time with our comprehensive anti-aging solutions that promote youthful, resilient skin.",
-        "sunburn_before_image": "shopify://shop_images/ChatGPT_Image_Dec_12_2025_03_18_03_PM.png",
-        "sunburn_title": "Soothe Sun Damage",
-        "sunburn_description": "Repair and protect sun-damaged skin with our healing formulas that restore and prevent further damage.",
-        "acne_before_image": "shopify://shop_images/ChatGPT_Image_Dec_12_2025_03_38_08_PM.png",
-        "acne_title": "Clear Acne & Blemishes",
-        "acne_description": "Achieve clearer, healthier skin with our targeted acne treatments that reduce breakouts and prevent future blemishes.",
-        "tile_bg_color": "#ffffff",
-        "tile_text_color": "#000000",
-        "tile_radius": 16
+        "section_background": "#ffffff",
+        "section_padding_top": 30,
+        "section_padding_bottom": 0,
+        "bundle_title": "The Ultimate Skincare Bundle",
+        "bundle_description": "Everything your skin needs, perfectly layered for healthy, radiant results.",
+        "content_alignment": "left",
+        "content_vertical_alignment": "center",
+        "title_font_size": 42,
+        "title_color": "#1a1a1a",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "cta_text": "Explore the full routine →",
+        "cta_link": "",
+        "cta_bg_color": "#1a1a1a",
+        "cta_hover_color": "#333333",
+        "cta_text_color": "#ffffff",
+        "cta_border_radius": 8,
+        "cta_font_size": 16,
+        "bundle_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png",
+        "products_background": "#f8f9fa",
+        "hotspot_color": "#4fffff"
       }
     },
-    "new_fgNH6c": {
-      "type": "new",
+    "comparison_table_GcFcXU": {
+      "type": "comparison-table",
       "blocks": {
-        "doctor_WheQLW": {
-          "type": "doctor",
+        "ingredient_row_WUftbF": {
+          "type": "ingredient_row",
           "settings": {
-            "doctor_name": "Dr. Sarah Johnson",
-            "specialty": "Dermatologist",
-            "doctor_image": "shopify://shop_images/download.jpg",
-            "rating": 5,
-            "quote": "I recommend this skincare line to all my patients for its proven results and gentle formulation.",
-            "experience": "15+ years experience • Board Certified • Harvard Medical School"
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
           }
         },
-        "doctor_DmFTnh": {
-          "type": "doctor",
+        "ingredient_row_YH7ifw": {
+          "type": "ingredient_row",
           "settings": {
-            "doctor_name": "Dr. Michael Chen",
-            "specialty": "Cosmetic Surgeon",
-            "doctor_image": "shopify://shop_images/pexels-tima-miroshnichenko-5407206.jpg",
-            "rating": 4.9,
-            "quote": "The anti-aging properties of these products are remarkable. I've seen incredible transformations.",
-            "experience": "12+ years experience • Board Certified • Johns Hopkins"
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Cellular Harmony Display Type",
+            "supplements_type": "cross",
+            "supplements_text": "",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
           }
         },
-        "doctor_Hd9jaW": {
-          "type": "doctor",
+        "ingredient_row_4wLttV": {
+          "type": "ingredient_row",
           "settings": {
-            "doctor_name": "Dr. Emily Rodriguez",
-            "specialty": "Aesthetic Medicine",
-            "doctor_image": "shopify://shop_images/pexels-tima-miroshnichenko-8376277.jpg",
-            "rating": 5,
-            "quote": "This is the only skincare line I trust for my most discerning patients.",
-            "experience": "10+ years experience • Board Certified • Mayo Clinic"
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "check",
+            "skincare_text": "Skincare Display Type",
+            "mask_type": "cross",
+            "mask_text": "Ingredient Description"
           }
         },
-        "doctor_4hwHjJ": {
-          "type": "doctor",
+        "ingredient_row_9YWDJp": {
+          "type": "ingredient_row",
           "settings": {
-            "doctor_name": "Dr. James Wilson",
-            "specialty": "Plastic Surgeon",
-            "doctor_image": "shopify://shop_images/about-us_dr-obagi_1.webp",
-            "rating": 4.8,
-            "quote": "Outstanding results with minimal irritation. Perfect for post-procedure care.",
-            "experience": "18+ years experience • Board Certified • Stanford Medical"
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Supplements Display Type",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_RFh4PX": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_DhYEhe": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_aWfCkd": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_Vp39Te": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_GyLPLM": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_GHmYci": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_7fVWL6": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
           }
         }
       },
       "block_order": [
-        "doctor_WheQLW",
-        "doctor_DmFTnh",
-        "doctor_Hd9jaW",
-        "doctor_4hwHjJ"
+        "ingredient_row_WUftbF",
+        "ingredient_row_YH7ifw",
+        "ingredient_row_4wLttV",
+        "ingredient_row_9YWDJp",
+        "ingredient_row_RFh4PX",
+        "ingredient_row_DhYEhe",
+        "ingredient_row_aWfCkd",
+        "ingredient_row_Vp39Te",
+        "ingredient_row_GyLPLM",
+        "ingredient_row_GHmYci",
+        "ingredient_row_7fVWL6"
       ],
-      "name": "Doctor Endorsement",
+      "name": "Comparison Table",
       "settings": {
-        "section_title": "Doctor Endorsements",
-        "left_margin": 10,
-        "cards_gap": 20,
-        "main_card_border_radius": 32,
-        "main_card_overlay_color": "#000000",
-        "main_card_overlay_opacity": 0.9,
-        "right_card_width": 70,
-        "right_card_aspect_width": 2,
-        "right_card_aspect_height": 3,
-        "right_card_border_radius": 32,
-        "right_card_vertical_gap": 5,
-        "main_doctor_name_size": 1.8,
-        "main_specialty_size": 1,
-        "main_quote_size": 1,
-        "specialty_color": "#00bcd4",
-        "star_color": "#ffd700",
-        "text_color": "#ffffff",
-        "secondary_text_color": "#cccccc",
-        "cta_bg_color": "#000000",
-        "cta_hover_color": "#00bcd4",
-        "cta_border_color": "#e5e5e5"
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n7",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n7",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
       }
     }
   },

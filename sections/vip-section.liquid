@@ -1,0 +1,466 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+.vip-section {
+  padding: 0;
+  background-color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+}
+
+.vip-container {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.vip-content {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  height: 100vh;
+}
+
+.vip-text-content {
+  flex: 0 0 55%;
+  padding: 80px 60px 80px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vip-image-content {
+  flex: 0 0 45%;
+  padding: 0;
+  margin: 0;
+}
+
+.vip-title {
+  color: #2c2c2c;
+  line-height: 1.2;
+  margin: 0 0 20px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.vip-subtitle {
+  color: #666666;
+  line-height: 1.5;
+  margin: 0 0 30px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.vip-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.vip-point {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 16px;
+  color: #2c2c2c;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.vip-point::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2c2c2c;
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.vip-point:hover {
+  transform: translateX(5px);
+  font-size: 1.1em;
+  color: #000000;
+}
+
+.vip-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #2c2c2c;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: auto;
+  max-width: 270px;
+}
+
+.vip-button:hover {
+  background-color: #4fffff;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+.vip-button .button-arrow {
+  transition: all 0.3s ease;
+}
+
+.vip-button:hover .button-arrow {
+  transform: translateX(3px);
+}
+
+.vip-image-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.vip-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.vip-image.active {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .vip-section {
+    min-height: auto;
+  }
+  
+  .vip-container {
+    height: auto;
+  }
+  
+  .vip-content {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .vip-text-content {
+    flex: none;
+    padding: 40px 20px;
+  }
+  
+  .vip-image-content {
+    flex: none;
+    width: 100%;
+  }
+  
+  .vip-image-container {
+    height: 60vh;
+  }
+  
+  .vip-title {
+    font-size: 32px !important;
+  }
+  
+  .vip-subtitle {
+    font-size: 16px !important;
+  }
+  
+  .vip-point {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .vip-container {
+    padding: 0 15px;
+  }
+  
+  .vip-title {
+    font-size: 28px !important;
+  }
+  
+  .vip-button {
+    padding: 14px 28px;
+    font-size: 14px;
+  }
+}
+</style>
+
+<div class="vip-section full-width">
+  <div class="vip-container">
+    <div class="vip-content">
+      <div class="vip-text-content">
+        <h2 class="vip-title" style="font-size: {{ section.settings.title_font_size }}px; font-weight: {{ section.settings.title_font_weight }};">
+          {{ section.settings.title }}
+        </h2>
+        
+        <p class="vip-subtitle" style="font-size: {{ section.settings.subtitle_font_size }}px; font-weight: {{ section.settings.subtitle_font_weight }};">
+          {{ section.settings.subtitle }}
+        </p>
+        
+        <ul class="vip-points">
+          {% for block in section.blocks %}
+            {% if block.type == 'point' %}
+              <li class="vip-point" 
+                  data-point-index="{{ forloop.index0 }}"
+                  style="font-size: {{ section.settings.points_font_size }}px; font-weight: {{ section.settings.points_font_weight }};">
+                {{ block.settings.point_text }}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        
+        <a href="{{ section.settings.button_link }}" class="vip-button">
+          <span class="button-text">{{ section.settings.button_text }}</span>
+          <svg class="button-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      
+      <div class="vip-image-content">
+        <div class="vip-image-container">
+          {% if section.settings.default_image %}
+            <img id="vip-main-image" 
+                 src="{{ section.settings.default_image | image_url }}" 
+                 alt="{{ section.settings.default_image.alt | default: 'VIP Section Image' }}"
+                 width="{{ section.settings.default_image.width | default: 600 }}"
+                 height="{{ section.settings.default_image.height | default: 500 }}"
+                 class="vip-image active">
+          {% endif %}
+          
+          {% for block in section.blocks %}
+            {% if block.type == 'point' and block.settings.point_image %}
+              <img src="{{ block.settings.point_image | image_url }}" 
+                   alt="{{ block.settings.point_image.alt | default: block.settings.point_text }}"
+                   width="{{ block.settings.point_image.width | default: 600 }}"
+                   height="{{ block.settings.point_image.height | default: 500 }}"
+                   class="vip-image hover-image"
+                   data-point="{{ forloop.index0 }}">
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const points = document.querySelectorAll('.vip-point');
+  const images = document.querySelectorAll('.vip-image');
+  const defaultImage = document.getElementById('vip-main-image');
+  
+  // Set default image as active
+  if (defaultImage) {
+    defaultImage.classList.add('active');
+  }
+  
+  points.forEach((point, index) => {
+    point.addEventListener('mouseenter', function() {
+      // Hide all images
+      images.forEach(img => img.classList.remove('active'));
+      
+      // Show corresponding hover image
+      const hoverImage = document.querySelector(`[data-point="${index}"]`);
+      if (hoverImage) {
+        hoverImage.classList.add('active');
+      }
+    });
+    
+    point.addEventListener('mouseleave', function() {
+      // Hide all images
+      images.forEach(img => img.classList.remove('active'));
+      
+      // Show default image
+      if (defaultImage) {
+        defaultImage.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "VIP Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Designed to Support Your Busy Lifestyle"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We formulated AG1 Next Gen to support your health with advanced nutrition in every scoop.* It's a match if you:"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Get Started"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_image",
+      "label": "Default Image"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "font_family",
+      "label": "Font Family",
+      "default": "montserrat_n4"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title Font Size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "label": "Subtitle Font Size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "subtitle_font_weight",
+      "label": "Subtitle Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "points_font_size",
+      "label": "Points Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "points_font_weight",
+      "label": "Points Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "point_text",
+          "label": "Point Text",
+          "default": "Want an easy way to support your daily nutrition"
+        },
+        {
+          "type": "image_picker",
+          "id": "point_image",
+          "label": "Point Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "VIP Section",
+      "blocks": [
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "Want an easy way to support your daily nutrition"
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "Are juggling a busy life and need nutrition that keeps up"
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "Care about improving gut health and digestion"
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "Are getting back into fitness and want to support your energy levels"
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "Are on GLP-1s and want additional nutritional support"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,604 @@
+{% comment %}
+  Professional Panel Section - Carousel with professional testimonials
+  Features: Background image with X/Y positioning, professional card with quote, navigation arrows
+{% endcomment %}
+
+<style>
+  .professional-panel-section {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    width: 100%;
+    min-height: 120vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: {{ section.settings.section_bg_color | default: '#ffffff' }};
+  }
+
+  /* Background Image Layer */
+  .background-image-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease, background-position 0.3s ease;
+    background-size: auto 120%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  .background-image-layer.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .professional-panel-container {
+    max-width: 1400px;
+    width: 100%;
+    padding: 80px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+    min-height: 600px;
+  }
+
+  /* Professional Card */
+  .professional-card {
+    background: {{ section.settings.card_bg_color | default: '#000000' }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: 60px 40px;
+    max-width: 550px;
+    width: 100%;
+    min-height: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+
+  .professional-card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 60px 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .professional-card-content.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .professional-name {
+    font-size: {{ section.settings.name_font_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.name_color | default: '#ffffff' }};
+    margin: 0;
+    line-height: 1.2;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .professional-designation {
+    font-size: {{ section.settings.designation_font_size }}px;
+    font-weight: 100;
+    color: {{ section.settings.designation_color | default: '#4FFFFF' }};
+    margin: -30px 0 0 0;
+    line-height: 1.3;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .professional-quote {
+    font-size: {{ section.settings.quote_font_size }}px;
+    font-style: italic;
+    color: {{ section.settings.quote_color | default: '#ffffff' }};
+    line-height: 1.6;
+    margin: 20px 0 0 0;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .quote-mark {
+    color: {{ section.settings.quote_mark_color | default: '#4FFFFF' }};
+    font-size: 32px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline;
+  }
+
+  .quote-mark.opening {
+    position: relative;
+    top: -8px;
+    margin-right: 2px;
+  }
+
+  .quote-mark.closing {
+    position: relative;
+    top: -8px;
+    margin-left: 2px;
+  }
+
+  .professional-cta {
+    background: transparent;
+    color: {{ section.settings.cta_text_color | default: '#ffffff' }};
+    border: 2px solid {{ section.settings.cta_border_color | default: '#4FFFFF' }};
+    border-radius: {{ section.settings.cta_border_radius }}px;
+    padding: 14px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.cta_font_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .professional-cta:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Navigation Arrows */
+  .carousel-navigation {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 60px;
+    bottom: 70px;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: {{ section.settings.arrow_bg_color | default: '#000000' }};
+    border: 2px solid {{ section.settings.arrow_border_color | default: '#4FFFFF' }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-arrow:hover {
+    background: {{ section.settings.arrow_border_color | default: '#4FFFFF' }};
+    transform: scale(1.1);
+  }
+
+  .carousel-arrow svg {
+    width: 24px;
+    height: 24px;
+    fill: {{ section.settings.arrow_color | default: '#4FFFFF' }};
+    transition: fill 0.3s ease;
+  }
+
+  .carousel-arrow:hover svg {
+    fill: #000000;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .professional-panel-container {
+      flex-direction: column;
+      padding: 40px 30px;
+    }
+
+    .carousel-navigation {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .professional-card {
+      padding: 40px 30px;
+      max-width: 100%;
+    }
+
+    .professional-name {
+      font-size: {{ section.settings.name_font_size | minus: 6 }}px;
+    }
+
+    .professional-quote {
+      font-size: {{ section.settings.quote_font_size | minus: 2 }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .professional-panel-container {
+      padding: 30px 20px;
+    }
+
+    .professional-card {
+      padding: 30px 20px;
+    }
+
+    .professional-name {
+      font-size: {{ section.settings.name_font_size | minus: 10 }}px;
+    }
+
+    .carousel-arrow {
+      width: 40px;
+      height: 40px;
+    }
+
+    .carousel-arrow svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
+
+<section class="professional-panel-section" id="professional-panel">
+  <!-- Background Image Layers -->
+  {% for block in section.blocks %}
+    {% if block.type == 'professional' and block.settings.background_image %}
+      <div class="background-image-layer {% if forloop.first %}active{% endif %}" 
+           data-slide="{{ forloop.index0 }}"
+           data-pos-x="{{ block.settings.bg_position_x | default: 50 }}"
+           data-pos-y="{{ block.settings.bg_position_y | default: 50 }}"
+           style="background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}'); background-position: {{ block.settings.bg_position_x | default: 50 }}% {{ block.settings.bg_position_y | default: 50 }}%;">
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <div class="professional-panel-container">
+    <!-- Professional Card - Single stable card -->
+    <div class="professional-card">
+      {% for block in section.blocks %}
+        {% if block.type == 'professional' %}
+          <div class="professional-card-content {% if forloop.first %}active{% endif %}" 
+               data-slide="{{ forloop.index0 }}"
+               {{ block.shopify_attributes }}>
+            <h2 class="professional-name">{{ block.settings.name }}</h2>
+            <p class="professional-designation">{{ block.settings.designation }}</p>
+            <p class="professional-quote">
+              <span class="quote-mark opening">"</span>{{ block.settings.quote }}<span class="quote-mark closing">"</span>
+            </p>
+            {% if block.settings.cta_text != blank %}
+              <a href="{{ block.settings.cta_link }}" class="professional-cta">
+                {{ block.settings.cta_text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Navigation Arrows -->
+    {% if section.blocks.size > 1 %}
+      <div class="carousel-navigation">
+        <button class="carousel-arrow carousel-prev" onclick="changeSlide(-1)" aria-label="Previous">
+          <svg viewBox="0 0 24 24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        <button class="carousel-arrow carousel-next" onclick="changeSlide(1)" aria-label="Next">
+          <svg viewBox="0 0 24 24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+let currentSlide = 0;
+const slideContents = document.querySelectorAll('.professional-card-content');
+const bgLayers = document.querySelectorAll('.background-image-layer');
+const totalSlides = slideContents.length;
+
+// Initialize background positions on load
+document.addEventListener('DOMContentLoaded', function() {
+  updateBackgroundPositions();
+});
+
+// Listen for Shopify theme editor changes
+if (window.Shopify && window.Shopify.designMode) {
+  document.addEventListener('shopify:section:load', function() {
+    updateBackgroundPositions();
+  });
+  
+  document.addEventListener('shopify:block:select', function() {
+    updateBackgroundPositions();
+  });
+  
+  document.addEventListener('shopify:block:deselect', function() {
+    updateBackgroundPositions();
+  });
+}
+
+function updateBackgroundPositions() {
+  const bgLayers = document.querySelectorAll('.background-image-layer');
+  bgLayers.forEach((layer) => {
+    const posX = layer.getAttribute('data-pos-x') || 50;
+    const posY = layer.getAttribute('data-pos-y') || 50;
+    layer.style.backgroundPosition = `${posX}% ${posY}%`;
+  });
+}
+
+function changeSlide(direction) {
+  // Remove active class from current content and background
+  slideContents[currentSlide].classList.remove('active');
+  if (bgLayers[currentSlide]) {
+    bgLayers[currentSlide].classList.remove('active');
+  }
+  
+  // Calculate new slide index (loop around)
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+  
+  // Add active class to new content and background
+  slideContents[currentSlide].classList.add('active');
+  if (bgLayers[currentSlide]) {
+    bgLayers[currentSlide].classList.add('active');
+  }
+}
+
+// Optional: Auto-advance slides every 7 seconds
+// Uncomment the lines below to enable auto-play
+// setInterval(() => {
+//   changeSlide(1);
+// }, 7000);
+</script>
+
+{% schema %}
+{
+  "name": "Professional Panel",
+  "tag": "section",
+  "class": "professional-panel-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff",
+      "info": "Background color behind the image"
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Text Styling"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Name Font Size",
+      "default": 44
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Name Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "designation_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Designation Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "designation_color",
+      "label": "Designation Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "range",
+      "id": "quote_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Quote Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "quote_mark_color",
+      "label": "Quote Marks Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button Styling"
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_border_color",
+      "label": "CTA Border Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "CTA Border Radius",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Navigation Arrows"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_color",
+      "label": "Arrow Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_border_color",
+      "label": "Arrow Border Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Icon Color",
+      "default": "#4FFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "professional",
+      "name": "Professional",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image",
+          "info": "Background image for this slide"
+        },
+        {
+          "type": "range",
+          "id": "bg_position_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Background Horizontal Position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "bg_position_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Background Vertical Position",
+          "default": 50
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Professional Name",
+          "default": "Belinda Tan, MD, PhD"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "label": "Designation",
+          "default": "Scientific Advisor"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Button Text",
+          "default": "SKINBOOSTER SERUM"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Professional Panel",
+      "blocks": [
+        {
+          "type": "professional",
+          "settings": {
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

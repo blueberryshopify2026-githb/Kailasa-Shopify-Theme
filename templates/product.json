@@ -9,12 +9,66 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "product",
+    "product_buy_box": {
+      "type": "product-buy-box",
+      "blocks": {
+        "variant_1": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "VIP Club Membership",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$49 USD"
+          }
+        },
+        "variant_2": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Subscribe and Save",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_price": "$79 USD"
+          }
+        },
+        "variant_3": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Buy one time",
+            "variant_price": "$99 USD"
+          }
+        },
+        "media_1": {
+          "type": "media",
+          "settings": {
+            "media_type": "image"
+          }
+        },
+        "media_2": {
+          "type": "media",
+          "settings": {
+            "media_type": "image"
+          }
+        },
+        "media_3": {
+          "type": "media",
+          "settings": {
+            "media_type": "image"
+          }
+        }
+      },
+      "block_order": [
+        "variant_1",
+        "variant_2",
+        "variant_3",
+        "media_1",
+        "media_2",
+        "media_3"
+      ],
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "product_buy_box"
   ]
 }

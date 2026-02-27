@@ -230,7 +230,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    background: #f9f9f9;
   }
 
   .routine-product-image {
@@ -241,6 +241,15 @@
     object-fit: contain;
     margin-bottom: 0px;
     border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  /* Dynamic image sizing using CSS custom properties */
+  .routine-product-card[data-image-width][data-image-height] .routine-product-image {
+    width: calc(var(--image-width, 100) * 1%);
+    height: calc(var(--image-height, 100) * 1%);
+    max-width: calc(var(--image-width, 100) * 1%);
+    max-height: calc(var(--image-height, 100) * 1%);
   }
 
   .routine-product-header {
@@ -419,7 +428,11 @@
               {% if block.settings.product %}
                 <a href="{{ block.settings.product.url }}" class="routine-product-link">
               {% endif %}
-                <div class="routine-product-card" {{ block.shopify_attributes }}>
+                <div class="routine-product-card" 
+                     {{ block.shopify_attributes }}
+                     data-image-width="{{ block.settings.image_width | default: 100 }}"
+                     data-image-height="{{ block.settings.image_height | default: 100 }}"
+                     style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
                   <div class="routine-product-header">
                     <div class="routine-step-label" style="background: {{ block.settings.step_label_bg }}; color: {{ block.settings.step_label_text }};">
                       step: {{ block.settings.step_number }} {{ block.settings.step_label }}
@@ -442,13 +455,15 @@
                            alt="{{ block.settings.product.title | default: 'Product' }}" 
                            width="300" 
                            height="300"
-                           class="routine-product-image">
+                           class="routine-product-image"
+                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
                     {% elsif block.settings.product.featured_image %}
                       <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
                            alt="{{ block.settings.product.title | default: 'Product' }}" 
                            width="300" 
                            height="300"
-                           class="routine-product-image">
+                           class="routine-product-image"
+                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
                     {% else %}
                       <div class="routine-product-placeholder">
                         <p>No Image</p>
@@ -510,7 +525,10 @@
             {% if block.settings.product %}
               <a href="{{ block.settings.product.url }}" class="routine-product-link">
             {% endif %}
-            <div class="routine-product-card" {{ block.shopify_attributes }}>
+            <div class="routine-product-card" 
+                 {{ block.shopify_attributes }}
+                 data-image-width="{{ block.settings.image_width | default: 100 }}"
+                 data-image-height="{{ block.settings.image_height | default: 100 }}">
               <div class="routine-product-header">
                 <div class="routine-step-label" style="background: {{ block.settings.step_label_bg }}; color: {{ block.settings.step_label_text }};">
                   step: {{ block.settings.step_number }} {{ block.settings.step_label }}
@@ -602,7 +620,10 @@
             {% if block.settings.product %}
               <a href="{{ block.settings.product.url }}" class="routine-product-link">
             {% endif %}
-            <div class="routine-product-card" {{ block.shopify_attributes }}>
+            <div class="routine-product-card" 
+                 {{ block.shopify_attributes }}
+                 data-image-width="{{ block.settings.image_width | default: 100 }}"
+                 data-image-height="{{ block.settings.image_height | default: 100 }}">
               <div class="routine-product-header">
                 <div class="routine-step-label" style="background: {{ block.settings.step_label_bg }}; color: {{ block.settings.step_label_text }};">
                   step: {{ block.settings.step_number }} {{ block.settings.step_label }}
@@ -694,7 +715,10 @@
             {% if block.settings.product %}
               <a href="{{ block.settings.product.url }}" class="routine-product-link">
             {% endif %}
-            <div class="routine-product-card" {{ block.shopify_attributes }}>
+            <div class="routine-product-card" 
+                 {{ block.shopify_attributes }}
+                 data-image-width="{{ block.settings.image_width | default: 100 }}"
+                 data-image-height="{{ block.settings.image_height | default: 100 }}">
               <div class="routine-product-header">
                 <div class="routine-step-label" style="background: {{ block.settings.step_label_bg }}; color: {{ block.settings.step_label_text }};">
                   step: {{ block.settings.step_number }} {{ block.settings.step_label }}
@@ -772,6 +796,33 @@
         if (targetContent) {
           targetContent.classList.add('active');
         }
+      });
+    });
+
+    // Apply dynamic image sizing
+    function applyImageSizing() {
+      const productCards = document.querySelectorAll('.routine-product-card[data-image-width][data-image-height]');
+      
+      productCards.forEach(card => {
+        const imageWidth = card.dataset.imageWidth || 100;
+        const imageHeight = card.dataset.imageHeight || 100;
+        const image = card.querySelector('.routine-product-image');
+        
+        if (image) {
+          image.style.width = `${imageWidth}%`;
+          image.style.height = `${imageHeight}%`;
+          image.style.maxWidth = `${imageWidth}%`;
+          image.style.maxHeight = `${imageHeight}%`;
+        }
+      });
+    }
+
+    // Apply sizing on load and when tabs change
+    applyImageSizing();
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        setTimeout(applyImageSizing, 100); // Small delay to ensure content is visible
       });
     });
   });
@@ -1371,6 +1422,32 @@
           "type": "image_picker",
           "id": "product_image",
           "label": "Product Image (Optional - overrides product image)"
+        },
+        {
+          "type": "header",
+          "content": "Image Size Controls"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 30,
+          "max": 150,
+          "step": 5,
+          "unit": "%",
+          "label": "Image Width",
+          "default": 100,
+          "info": "Control the width of the product image (30% - 150%)"
+        },
+        {
+          "type": "range",
+          "id": "image_height",
+          "min": 10,
+          "max": 250,
+          "step": 5,
+          "unit": "%",
+          "label": "Image Height",
+          "default": 100,
+          "info": "Control the height of the product image (10% - 250%)"
         },
         {
           "type": "richtext",

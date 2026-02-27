@@ -1,0 +1,657 @@
+{% comment %}
+  Hero Section - 60:40 split with text/buttons and image with circular thumbnails
+  Features: Auto-rotating content blocks, clickable circles, cyan highlight
+{% endcomment %}
+
+<style>
+  .circle-hero-section {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.section_bg_color | default: '#000000' }};
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .circle-hero-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+    gap: 0;
+    align-items: start;
+  }
+
+  /* Left Side - Text Content */
+  .circle-hero-content {
+    padding-right: 60px;
+    padding-top: 80px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .circle-hero-title {
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.title_color | default: '#ffffff' }};
+    line-height: 1.1;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    height: 200px;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .circle-hero-description {
+    font-size: {{ section.settings.description_font_size }}px;
+    color: {{ section.settings.description_color | default: '#ffffff' }};
+    line-height: 1.6;
+    margin: 24px 0 0 0;
+    font-family: 'Montserrat', sans-serif;
+    height: 120px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .circle-hero-buttons {
+    margin-top: 40px;
+  }
+
+  .circle-hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 450px;
+  }
+
+  .circle-hero-btn {
+    padding: 12px 36px;
+    border-radius: {{ section.settings.button_border_radius }}px;
+    font-size: {{ section.settings.button_font_size }}px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    border: 2px solid transparent;
+    text-align: center;
+  }
+
+  .circle-hero-btn span {
+    grid-column: 2;
+  }
+
+  .circle-hero-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    flex-shrink: 0;
+    grid-column: 3;
+    justify-self: end;
+  }
+
+  .circle-hero-btn-primary {
+    background: {{ section.settings.primary_btn_bg | default: '#ffffff' }};
+    color: {{ section.settings.primary_btn_text | default: '#000000' }};
+    border-color: {{ section.settings.primary_btn_bg | default: '#ffffff' }};
+  }
+
+  .circle-hero-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+  }
+
+  .circle-hero-btn-secondary {
+    background: {{ section.settings.secondary_btn_bg | default: '#4FFFFF' }};
+    color: {{ section.settings.secondary_btn_text | default: '#000000' }};
+    border-color: {{ section.settings.secondary_btn_bg | default: '#4FFFFF' }};
+  }
+
+  .circle-hero-btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 255, 255, 0.3);
+  }
+
+  .circle-hero-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* Right Side - Image with Circles */
+  .circle-hero-image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    {% comment %} align-self: center; {% endcomment %}
+    height: 100vh;
+    
+  }
+
+  .circle-hero-main-image {
+    width: 700px;
+    max-width: 800px;
+    height: 850px;
+    max-height: 90vh;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    overflow: visible;
+    position: relative;
+  }
+
+  .circle-hero-image-item {
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .circle-hero-image-item.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .circle-hero-image-item img,
+  .circle-hero-image-item video {
+    width: 100%;
+    height: 100%;
+    max-height: 90vh;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Circular Thumbnails */
+  .circle-hero-circles {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 3;
+  }
+
+  .circle-hero-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer !important;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    background: #ffffff;
+    z-index: 10;
+    user-select: none;
+  }
+
+  .circle-hero-circle * {
+    cursor: pointer !important;
+  }
+
+  .circle-hero-circle.active {
+    border-color: {{ section.settings.active_circle_color | default: '#4FFFFF' }};
+    transform: scale(1.1);
+    box-shadow: 0 0 20px {{ section.settings.active_circle_color | default: '#4FFFFF' }};
+    z-index: 11;
+  }
+
+  .circle-hero-circle:hover:not(.active) {
+    transform: scale(1.05);
+    border-color: rgba(79, 255, 255, 0.5);
+    z-index: 11;
+  }
+
+  .circle-hero-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .circle-hero-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .circle-hero-content {
+      padding-right: 0;
+    }
+
+    .circle-hero-circles {
+      position: relative;
+      left: 0;
+      top: 0;
+      transform: none;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .circle-hero-circle {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .circle-hero-section {
+      padding: 40px 20px;
+    }
+
+    .circle-hero-title {
+      font-size: {{ section.settings.title_font_size | minus: 10 }}px;
+    }
+
+    .circle-hero-description {
+      font-size: {{ section.settings.description_font_size | minus: 2 }}px;
+    }
+
+    .circle-hero-buttons {
+      max-width: 100%;
+    }
+
+    .circle-hero-circle {
+      width: 50px;
+      height: 50px;
+    }
+  }
+</style>
+
+<section class="circle-hero-section">
+  <div class="circle-hero-container">
+    <!-- Left Side: Text Content -->
+    <div class="circle-hero-content">
+      <h1 class="circle-hero-title" id="circle-hero-title">{{ section.blocks.first.settings.title }}</h1>
+      <p class="circle-hero-description" id="circle-hero-description">{{ section.blocks.first.settings.description }}</p>
+      
+      <div class="circle-hero-buttons">
+        {% if section.settings.button_1_text != blank %}
+          <a href="{{ section.settings.button_1_link }}" class="circle-hero-btn circle-hero-btn-primary">
+            <span>{{ section.settings.button_1_text }}</span>
+            <svg viewBox="0 0 24 24">
+              <path d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/>
+            </svg>
+          </a>
+        {% endif %}
+        
+        {% if section.settings.button_2_text != blank %}
+          <a href="{{ section.settings.button_2_link }}" class="circle-hero-btn circle-hero-btn-secondary">
+            <span>{{ section.settings.button_2_text }}</span>
+            <svg viewBox="0 0 24 24">
+              <path d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Right Side: Image with Circles -->
+    <div class="circle-hero-image-container">
+      <!-- Main Image/Video Display -->
+      <div class="circle-hero-main-image">
+        {% for block in section.blocks %}
+          {% if block.type == 'content_block' %}
+            <div class="circle-hero-image-item {% if forloop.first %}active{% endif %}" 
+                 data-block-id="{{ forloop.index0 }}"
+                 data-title="{{ block.settings.title }}"
+                 data-description="{{ block.settings.description }}">
+              {% if block.settings.media_type == 'video' and block.settings.video_url != blank %}
+                <video autoplay loop muted playsinline>
+                  <source src="{{ block.settings.video_url }}" type="video/mp4">
+                </video>
+              {% elsif block.settings.main_image %}
+                <img src="{{ block.settings.main_image | image_url: width: 800 }}" 
+                     alt="{{ block.settings.title }}"
+                     width="800"
+                     height="800">
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        <!-- Circular Thumbnails -->
+        <div class="circle-hero-circles">
+          {% for block in section.blocks %}
+            {% if block.type == 'content_block' %}
+              <div class="circle-hero-circle {% if forloop.first %}active{% endif %}" 
+                   data-block-id="{{ forloop.index0 }}"
+                   onclick="switchCircleContent({{ forloop.index0 }})"
+                   {{ block.shopify_attributes }}>
+                {% if block.settings.thumbnail_image %}
+                  <img src="{{ block.settings.thumbnail_image | image_url: width: 160 }}" 
+                       alt="{{ block.settings.title }}"
+                       width="160"
+                       height="160">
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+let currentCircleBlock = 0;
+const totalCircleBlocks = {{ section.blocks.size }};
+let circleAutoRotateInterval;
+let isHovering = false;
+
+function switchCircleContent(blockId) {
+  // Clear auto-rotate when manually clicking
+  clearInterval(circleAutoRotateInterval);
+  
+  // Remove active class from all
+  document.querySelectorAll('.circle-hero-circle').forEach(circle => {
+    circle.classList.remove('active');
+  });
+  document.querySelectorAll('.circle-hero-image-item').forEach(item => {
+    item.classList.remove('active');
+  });
+
+  // Add active class to selected
+  const selectedCircle = document.querySelector(`.circle-hero-circle[data-block-id="${blockId}"]`);
+  const selectedImage = document.querySelector(`.circle-hero-image-item[data-block-id="${blockId}"]`);
+  
+  if (selectedCircle) selectedCircle.classList.add('active');
+  if (selectedImage) {
+    selectedImage.classList.add('active');
+    
+    // Update title and description
+    const title = selectedImage.getAttribute('data-title');
+    const description = selectedImage.getAttribute('data-description');
+    
+    const titleEl = document.getElementById('circle-hero-title');
+    const descEl = document.getElementById('circle-hero-description');
+    
+    if (titleEl) titleEl.textContent = title;
+    if (descEl) descEl.textContent = description;
+    
+    // Play video if it's a video
+    const video = selectedImage.querySelector('video');
+    if (video) {
+      video.play();
+    }
+  }
+
+  currentCircleBlock = blockId;
+  
+  // Restart auto-rotate only if not hovering
+  if (!isHovering) {
+    startCircleAutoRotate();
+  }
+}
+
+function circleAutoRotate() {
+  currentCircleBlock = (currentCircleBlock + 1) % totalCircleBlocks;
+  switchCircleContent(currentCircleBlock);
+}
+
+function startCircleAutoRotate() {
+  clearInterval(circleAutoRotateInterval);
+  circleAutoRotateInterval = setInterval(circleAutoRotate, 7000); // 7 seconds
+}
+
+function stopCircleAutoRotate() {
+  clearInterval(circleAutoRotateInterval);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  startCircleAutoRotate();
+  
+  // Add hover listeners to all circles
+  const circles = document.querySelectorAll('.circle-hero-circle');
+  circles.forEach(circle => {
+    circle.addEventListener('mouseenter', function() {
+      isHovering = true;
+      stopCircleAutoRotate();
+    });
+    
+    circle.addEventListener('mouseleave', function() {
+      isHovering = false;
+      startCircleAutoRotate();
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "tag": "section",
+  "class": "circle-hero-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Text Styling"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 32,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 56
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 14,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Button 1 (Primary)"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Cellular Harmony™ Protocol"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_bg",
+      "label": "Button 1 Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "primary_btn_text",
+      "label": "Button 1 Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Button 2 (Secondary)"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "Take Regeneration Audit"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_bg",
+      "label": "Button 2 Background",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "secondary_btn_text",
+      "label": "Button 2 Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Button Styling"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "active_circle_color",
+      "label": "Active Circle Border Color",
+      "default": "#4FFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Daily Essentials for Nutrition and Digestive"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity."
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video" }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image",
+          "info": "Large image shown on the right"
+        },
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "Direct video file URL (MP4)"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_image",
+          "label": "Thumbnail Image",
+          "info": "Small circular thumbnail"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section",
+      "blocks": [
+        {
+          "type": "content_block"
+        },
+        {
+          "type": "content_block"
+        },
+        {
+          "type": "content_block"
+        },
+        {
+          "type": "content_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

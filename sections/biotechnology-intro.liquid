@@ -1,0 +1,773 @@
+{% comment %}
+  Biotechnology Introduction Section
+  Full width section with optional background image and overlaid content
+  Title at top, 60% left content area with 40% right image area
+{% endcomment %}
+
+<section
+  class="biotechnology-intro-section full-width" 
+  style="
+    {% if section.settings.full_section_bg_image %}
+      background-image: url('{{ section.settings.full_section_bg_image | image_url: width: 1920 }}');
+      background-size: {{ section.settings.full_bg_size | default: 'cover' }};
+      background-position: {{ section.settings.full_bg_position | default: 'center' }};
+      background-repeat: no-repeat;
+    {% else %}
+      background-color: {{ section.settings.section_bg_color | default: '#ffffff' }};
+    {% endif %}
+  "
+>
+  <!-- Optional overlay for better text readability -->
+  {% if section.settings.full_section_bg_image and section.settings.show_overlay %}
+    <div
+      class="section-overlay"
+      style="
+        background-color: {{ section.settings.overlay_color | default: 'rgba(0,0,0,0.3)' }};
+        opacity: {{ section.settings.overlay_opacity | default: 0.3 }};
+      "
+    ></div>
+  {% endif %}
+
+  <div class="biotech-container">
+    <div class="biotech-layout">
+      <!-- Left 50% - Content Area with Title and Features -->
+      <div
+        class="biotech-content-area"
+        style="background-color: {{ section.settings.content_bg_color | default: 'transparent' }};"
+      >
+        <!-- Main Title -->
+        <h1
+          class="biotech-main-title"
+          style="
+            color: {{ section.settings.main_title_color | default: '#000000' }};
+            font-size: {{ section.settings.main_title_size | default: 48 }}px;
+            font-weight: {{ section.settings.main_title_weight | default: 700 }};
+            line-height: {{ section.settings.main_title_line_height | default: 1.2 }};
+            margin-bottom: {{ section.settings.title_features_gap | default: 40 }}px;
+          "
+        >
+          {{ section.settings.main_title | default: 'Introduction to<br>Biotechnology and<br>Transforming' }}
+        </h1>
+
+        <!-- Feature Items -->
+        <div class="biotech-features">
+          {% for block in section.blocks %}
+            {% if block.type == 'feature_item' %}
+              <div
+                class="biotech-feature-item"
+                style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: {{ section.settings.feature_gap | default: 20 }}px;
+                  margin-bottom: {{ section.settings.feature_margin_bottom | default: 12 }}px;
+                "
+                {{ block.shopify_attributes }}
+              >
+                <!-- Feature Icon -->
+                <div class="feature-icon-wrapper">
+                  {% if block.settings.feature_icon %}
+                    <img
+                      src="{{ block.settings.feature_icon | image_url: width: 80 }}"
+                      alt="{{ block.settings.feature_title }}"
+                      class="feature-icon"
+                      width="{{ section.settings.icon_size | default: 40 }}"
+                      height="{{ section.settings.icon_size | default: 40 }}"
+                      style="
+                        width: {{ section.settings.icon_size | default: 40 }}px;
+                        height: {{ section.settings.icon_size | default: 40 }}px;
+                        object-fit: contain;
+                      "
+                    >
+                  {% else %}
+                    <div
+                      class="feature-icon-placeholder"
+                      style="
+                        width: {{ section.settings.icon_size | default: 40 }}px;
+                        height: {{ section.settings.icon_size | default: 40 }}px;
+                        background-color: {{ section.settings.icon_placeholder_bg | default: '#00bcd4' }};
+                        border-radius: {{ section.settings.icon_border_radius | default: 50 }}%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: {{ section.settings.icon_placeholder_color | default: '#ffffff' }};
+                        font-size: {{ section.settings.icon_placeholder_font_size | default: 12 }}px;
+                      "
+                    >
+                      {{ forloop.index }}
+                    </div>
+                  {% endif %}
+                </div>
+
+                <!-- Feature Content -->
+                <div class="feature-content">
+                  <h3
+                    class="feature-title"
+                    style="
+                      color: {{ section.settings.feature_title_color | default: '#000000' }};
+                      font-size: {{ section.settings.feature_title_size | default: 14 }}px;
+                      font-weight: {{ section.settings.feature_title_weight | default: 600 }};
+                      margin-bottom: {{ section.settings.feature_title_margin_bottom | default: 8 }}px;
+                    "
+                  >
+                    {{ block.settings.feature_title | default: 'Real-Time Analysis' }}
+                  </h3>
+                  <p
+                    class="feature-description"
+                    style="
+                      color: {{ section.settings.feature_desc_color | default: '#666666' }};
+                      font-size: {{ section.settings.feature_desc_size | default: 12 }}px;
+                      line-height: {{ section.settings.feature_desc_line_height | default: 1.5 }};
+                      margin: 0;
+                    "
+                  >
+                    {{
+                      block.settings.feature_description
+                      | default: 'Fast, actionable insights without long wait times.'
+                    }}
+                  </p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Right 50% - Image Area (Full Height, No Margins/Padding) -->
+      <div
+        class="biotech-image-area"
+        style="
+          {% if section.settings.full_section_bg_image %}
+            background: transparent;
+          {% else %}
+            background-color: {{ section.settings.image_bg_color | default: 'transparent' }};
+          {% endif %}
+          position: relative;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;
+        "
+      >
+        {% unless section.settings.full_section_bg_image %}
+          {% if section.settings.background_image %}
+            <img
+              src="{{ section.settings.background_image | image_url: width: 800 }}"
+              alt="Biotechnology background"
+              class="biotech-bg-image"
+              width="800"
+              height="600"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: {{ section.settings.image_fit | default: 'cover' }};
+                object-position: {{ section.settings.image_position | default: 'center' }};
+                opacity: {{ section.settings.image_opacity | default: 1 }};
+              "
+            >
+          {% else %}
+            <div
+              class="biotech-image-placeholder"
+              style="
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: {{ section.settings.placeholder_bg_color | default: 'transparent' }};
+              "
+            >
+              <p
+                style="
+                  color: {{ section.settings.placeholder_text_color | default: '#999999' }};
+                  font-size: {{ section.settings.placeholder_text_size | default: 18 }}px;
+                  text-align: center;
+                "
+              >
+                {{ section.settings.placeholder_text | default: 'Upload your background image' }}
+              </p>
+            </div>
+          {% endif %}
+        {% endunless %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+  .biotechnology-intro-section {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: pink;
+  }
+
+  .section-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .biotech-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .biotech-main-title {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .biotech-layout {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  .biotech-content-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 60px 40px 60px 60px !important;
+  }
+
+  .biotech-features {
+    max-width: 500px;
+  }
+
+  .biotech-feature-item {
+    /* Clean feature item styling */
+  }
+
+  .feature-icon-wrapper {
+    flex-shrink: 0;
+  }
+
+  .feature-content {
+    flex: 1;
+  }
+
+  .feature-title {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .feature-description {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .biotech-image-area {
+    position: relative;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .biotechnology-intro-section {
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .biotech-layout {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .biotech-content-area {
+      order: 2;
+      padding: 20px !important;
+    }
+
+    .biotech-image-area {
+      order: 1;
+      min-height: 300px;
+    }
+
+    .biotech-main-title {
+      font-size: 32px !important;
+      padding: 20px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .biotech-feature-item {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .biotech-main-title {
+      font-size: 28px !important;
+      padding: 15px !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Biotechnology",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Full Section Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "full_section_bg_image",
+      "label": "Full Section Background Image",
+      "info": "This will be the background for the entire section"
+    },
+    {
+      "type": "select",
+      "id": "full_bg_size",
+      "label": "Background Size",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "auto", "label": "Auto" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "full_bg_position",
+      "label": "Background Position",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" },
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff",
+      "info": "Used when no background image is set"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show Overlay",
+      "default": false,
+      "info": "Add overlay for better text readability over background image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "rgba(0,0,0,0.3)"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0.1,
+      "max": 0.8,
+      "step": 0.1,
+      "label": "Overlay Opacity",
+      "default": 0.3
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content Background Color",
+      "default": "transparent",
+      "info": "Background for the left content area only"
+    },
+    {
+      "type": "color",
+      "id": "image_bg_color",
+      "label": "Image Area Background Color",
+      "default": "transparent",
+      "info": "Background for the right image area only"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Content Vertical Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_padding_horizontal",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Content Horizontal Padding",
+      "default": 30
+    },
+
+    {
+      "type": "header",
+      "content": "Main Title Settings"
+    },
+    {
+      "type": "textarea",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "Introduction to<br>Biotechnology and<br>Transforming",
+      "info": "Use <br> for line breaks"
+    },
+    {
+      "type": "color",
+      "id": "main_title_color",
+      "label": "Main Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "main_title_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Main Title Font Size",
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "main_title_weight",
+      "label": "Main Title Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "main_title_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Main Title Line Height",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "main_title_margin_bottom",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Main Title Bottom Margin",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "title_features_gap",
+      "min": 10,
+      "max": 180,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap Between Title and Features",
+      "default": 140
+    },
+    {
+      "type": "header",
+      "content": "Feature Items Settings"
+    },
+    {
+      "type": "range",
+      "id": "feature_gap",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap Between Icon and Text",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "feature_margin_bottom",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Space Between Features",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "icon_placeholder_bg",
+      "label": "Icon Placeholder Background",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "color",
+      "id": "icon_placeholder_color",
+      "label": "Icon Placeholder Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "icon_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Icon Border Radius",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icon_placeholder_font_size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Placeholder Font Size",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Feature Title Settings"
+    },
+    {
+      "type": "color",
+      "id": "feature_title_color",
+      "label": "Feature Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "feature_title_size",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature Title Font Size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "feature_title_weight",
+      "label": "Feature Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "feature_title_margin_bottom",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature Title Bottom Margin",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Feature Description Settings"
+    },
+    {
+      "type": "color",
+      "id": "feature_desc_color",
+      "label": "Feature Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "feature_desc_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "feature_desc_line_height",
+      "min": 1.2,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Feature Description Line Height",
+      "default": 1.5
+    },
+    {
+      "type": "header",
+      "content": "Background Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" },
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "image_opacity",
+      "min": 0.1,
+      "max": 1.0,
+      "step": 0.1,
+      "label": "Image Opacity",
+      "default": 1.0
+    },
+    {
+      "type": "header",
+      "content": "Image Placeholder Settings"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_bg_color",
+      "label": "Placeholder Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_text_color",
+      "label": "Placeholder Text Color",
+      "default": "#999999"
+    },
+    {
+      "type": "range",
+      "id": "placeholder_text_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Placeholder Text Size",
+      "default": 18
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Placeholder Text",
+      "default": "Upload your background image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_item",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_icon",
+          "label": "Feature Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title",
+          "default": "Real-Time Analysis"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_description",
+          "label": "Feature Description",
+          "default": "Fast, actionable insights without long wait times."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Biotechnology Introduction",
+      "blocks": [
+        {
+          "type": "feature_item",
+          "settings": {
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        },
+        {
+          "type": "feature_item",
+          "settings": {
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

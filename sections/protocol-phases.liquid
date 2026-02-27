@@ -1,0 +1,2032 @@
+{% comment %}
+  Protocol Phases Section - 5 Phase Protocol Display
+  Scroll-activated content with left sidebar progression
+  White, Cyan, and Black color scheme
+{% endcomment %}
+
+<section class="protocol-phases" id="protocol-phases">
+  <!-- Main Title -->
+  <div class="protocol-header">
+    <h1 class="protocol-title">
+      <span class="title-black">{{ section.settings.title_black | default: 'THE 360° SKIN' }}</span>
+      <span class="title-cyan">{{ section.settings.title_cyan | default: 'LONGEVITY PROTOCOL' }}</span>
+      <sup class="trademark">{{ section.settings.trademark | default: '™' }}</sup>
+    </h1>
+  </div>
+
+  <div class="protocol-container">
+    <!-- Left Sidebar -->
+    <div class="phases-sidebar">
+      <div class="sidebar-track">
+        <div class="progress-line" id="progress-line"></div>
+      </div>
+
+      {% for block in section.blocks %}
+        {% if block.type == 'phase_item' %}
+          <div class="phase-item" data-phase="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <div class="phase-number">
+              {{ block.settings.phase_number | default: forloop.index | prepend: '0' }}
+            </div>
+            <div class="phase-content">
+              <h3 class="phase-title">{{ block.settings.phase_title | default: 'Phase Title' }}</h3>
+              <p class="phase-subtitle">{{ block.settings.phase_subtitle | default: 'Phase Description' }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Right Content Area -->
+    <div class="content-area">
+      {% for block in section.blocks %}
+        {% if block.type == 'phase_item' %}
+          <div class="phase-content-panel" data-phase="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            {% if forloop.first %}
+              <!-- Phase 1: Image left, Features right -->
+              <div class="phase-one-layout">
+                <!-- Left: Main Content Image -->
+                {% if block.settings.main_image %}
+                  <div class="phase-one-image">
+                    <img
+                      src="{{ block.settings.main_image | image_url: width: 600 }}"
+                      alt="{{ block.settings.content_title }}"
+                      width="600"
+                      height="400"
+                    >
+                  </div>
+                {% endif %}
+
+                <!-- Right: Header + Features List -->
+                <div class="phase-one-content">
+                  <!-- Phase Header -->
+                  <div class="phase-one-header">
+                    <span class="phase-label-right">{{ block.settings.phase_label | default: 'PHASE I' }}</span>
+                    <h2 class="content-title-right">
+                      {{ block.settings.content_title | default: 'Internal Optimization' }}
+                    </h2>
+                    <span class="content-subtitle-right">
+                      {{- block.settings.content_subtitle | default: 'Cellular Longevity Layer' -}}
+                    </span>
+                  </div>
+
+                  <!-- Features List -->
+                  <div class="features-list-right"></div>
+                  {% if block.settings.feature_1_icon and block.settings.feature_1_title %}
+                    <div class="feature-item">
+                      <div class="feature-icon">
+                        <img
+                          src="{{ block.settings.feature_1_icon | image_url: width: 40 }}"
+                          alt="Feature 1"
+                          width="40"
+                          height="40"
+                        >
+                      </div>
+                      <div class="feature-text">
+                        <h4>{{ block.settings.feature_1_title }}</h4>
+                        <p>{{ block.settings.feature_1_desc }}</p>
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.feature_2_icon and block.settings.feature_2_title %}
+                    <div class="feature-item">
+                      <div class="feature-icon">
+                        <img
+                          src="{{ block.settings.feature_2_icon | image_url: width: 40 }}"
+                          alt="Feature 2"
+                          width="40"
+                          height="40"
+                        >
+                      </div>
+                      <div class="feature-text">
+                        <h4>{{ block.settings.feature_2_title }}</h4>
+                        <p>{{ block.settings.feature_2_desc }}</p>
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.feature_3_icon and block.settings.feature_3_title %}
+                    <div class="feature-item">
+                      <div class="feature-icon">
+                        <img
+                          src="{{ block.settings.feature_3_icon | image_url: width: 40 }}"
+                          alt="Feature 3"
+                          width="40"
+                          height="40"
+                        >
+                      </div>
+                      <div class="feature-text">
+                        <h4>{{ block.settings.feature_3_title }}</h4>
+                        <p>{{ block.settings.feature_3_desc }}</p>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+              </div>
+
+              <!-- Phase 1: Stats and Description below with 10px gap -->
+              <div class="phase-one-bottom">
+                <!-- Stats/Results for phase 1 -->
+                {% if block.settings.stat_number %}
+                  <div class="slide-stats-section">
+                    <div class="stat-highlight">
+                      <span class="stat-number">{{ block.settings.stat_number }}</span>
+                      <span class="stat-label">{{ block.settings.stat_label }}</span>
+                    </div>
+                    {% if block.settings.stat_description %}
+                      <p class="stat-description">{{ block.settings.stat_description }}</p>
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                <!-- Bottom Text for phase 1 -->
+                {% if block.settings.bottom_text %}
+                  <div class="slide-bottom-content">
+                    <p>{{ block.settings.bottom_text }}</p>
+                  </div>
+                {% endif %}
+              </div>
+
+            {% else %}
+              <!-- Phase Header for phases 2-6 -->
+              <div
+                class="content-header"
+                style="text-align: {{ block.settings.header_alignment | default: 'center' }};"
+              >
+                <span class="phase-label">{{ block.settings.phase_label | default: 'PHASE I' }}</span>
+                <h2 class="content-title">{{ block.settings.content_title | default: 'Content Title' }}</h2>
+                <span class="content-subtitle">
+                  {{- block.settings.content_subtitle | default: 'Content Subtitle' -}}
+                </span>
+              </div>
+
+              <!-- Phases 2-6: Image placeholder then text description -->
+              <div class="other-phases-layout">
+                <!-- Image Placeholder -->
+                {% if block.settings.main_image %}
+                  <div
+                    class="phase-image-container"
+                    style="text-align: {{ block.settings.image_alignment | default: 'center' }};"
+                  >
+                    <img
+                      src="{{ block.settings.main_image | image_url: width: 600 }}"
+                      alt="{{ block.settings.content_title }}"
+                      width="{{ block.settings.phase_image_width | default: 500 }}"
+                      height="{{ block.settings.phase_image_height | default: 350 }}"
+                    >
+                  </div>
+                {% else %}
+                  <div
+                    class="image-placeholder"
+                    style="text-align: {{ block.settings.image_alignment | default: 'center' }};"
+                  >
+                    <div class="placeholder-box">
+                      <span>Upload Image</span>
+                    </div>
+                  </div>
+                {% endif %}
+
+                <!-- Text Description Box -->
+                {% if block.settings.phase_description %}
+                  <div
+                    class="phase-description-box"
+                    style="text-align: {{ block.settings.text_alignment | default: 'center' }};"
+                  >
+                    <p>{{ block.settings.phase_description }}</p>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+  .protocol-phases {
+    background: {{ section.settings.bg_color | default: '#ffffff' }};
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+  }
+
+  /* Header */
+  .protocol-header {
+    text-align: center;
+    margin-bottom: {{ section.settings.header_margin | default: 60 }}px;
+    padding: 0 20px;
+  }
+
+  .protocol-title {
+    font-size: {{ section.settings.title_size | default: 48 }}px;
+    font-weight: {{ section.settings.title_weight | default: 700 }};
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .title-black {
+    color: {{ section.settings.black_color | default: '#000000' }};
+  }
+
+  .title-cyan {
+    color: {{ section.settings.cyan_color | default: '#00ffff' }};
+  }
+
+  .trademark {
+    font-size: 0.6em;
+    color: {{ section.settings.black_color | default: '#000000' }};
+  }
+
+  /* Individual Phase Sections */
+  .phase-section {
+    height: 120vh;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+    padding: {{ section.settings.section_padding | default: 40 }}px 0;
+    box-sizing: border-box;
+  }
+
+  /* Main Container */
+  .protocol-container {
+    display: flex;
+    max-width: {{ section.settings.max_width | default: 1400 }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: {{ section.settings.container_gap | default: 60 }}px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+
+  /* Left Sidebar */
+  .phases-sidebar {
+    flex: 0 0 {{ section.settings.sidebar_width | default: 280 }}px;
+    position: relative;
+    height: fit-content;
+    min-height: {{ section.settings.sidebar_min_height | default: 550 }}px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-track {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: {{ section.settings.track_color | default: '#e0e0e0' }};
+  }
+
+  .progress-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: {{ section.settings.progress_color | default: '#00ffff' }};
+    transition: height 0.3s ease;
+  }
+
+  .phase-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: {{ section.settings.phase_spacing | default: 25 }}px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .phase-item.active {
+    background: {{ section.settings.active_phase_bg | default: '#d3ffff' }};
+    padding: 15px;
+    border-radius: {{ section.settings.active_phase_radius | default: 15 }}px;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .phase-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: {{ section.settings.number_bg | default: '#f0f0f0' }};
+    color: {{ section.settings.number_color | default: '#666666' }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: {{ section.settings.number_size | default: 18 }}px;
+    font-weight: 600;
+    margin-right: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .phase-item.active .phase-number {
+    background: {{ section.settings.active_number_bg | default: '#44ffff' }};
+    color: {{ section.settings.active_number_color | default: '#000000' }};
+  }
+
+  .phase-content h3 {
+    font-size: {{ section.settings.phase_title_size | default: 18 }}px;
+    font-weight: 600;
+    color: {{ section.settings.phase_title_color | default: '#000000' }};
+    margin: 0 0 5px 0;
+  }
+
+  .phase-content p {
+    font-size: {{ section.settings.phase_subtitle_size | default: 14 }}px;
+    color: {{ section.settings.phase_subtitle_color | default: '#666666' }};
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Right Content Area */
+  .content-area {
+    flex: 1;
+    position: relative;
+  }
+
+  .phase-content-panel {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .phase-content-panel.active {
+    display: block;
+    opacity: 1;
+  }
+
+  /* Content Header - Same for all phases */
+  .content-header {
+    margin-bottom: {{ section.settings.content_spacing | default: 40 }}px;
+  }
+
+  .phase-label {
+    font-size: {{ section.settings.label_size | default: 14 }}px;
+    color: {{ section.settings.label_color | default: '#666666' }};
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .content-title {
+    font-size: {{ section.settings.content_title_size | default: 36 }}px;
+    font-weight: {{ section.settings.content_title_weight | default: 700 }};
+    color: {{ section.settings.content_title_color | default: '#000000' }};
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+  }
+
+  .content-subtitle {
+    font-size: {{ section.settings.content_subtitle_size | default: 16 }}px;
+    color: {{ section.settings.content_subtitle_color | default: '#00ffff' }};
+    font-weight: 500;
+  }
+
+  /* Phase 1 Layout - Centered image left, content right */
+  .phase-one-layout {
+    display: flex;
+    gap: {{ section.settings.phase_one_gap | default: 60 }}px;
+    margin-bottom: {{ section.settings.phase_one_margin | default: 10 }}px;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .phase-one-image {
+    flex: 0 0 {{ section.settings.phase_one_image_width | default: 40 }}%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .phase-one-image img {
+    width: {{ section.settings.phase_one_img_width | default: 350 }}px;
+    height: {{ section.settings.phase_one_image_height | default: 400 }}px;
+    object-fit: cover;
+    border-radius: {{ section.settings.image_radius | default: 15 }}px;
+  }
+
+  .phase-one-content {
+    flex: 1;
+    max-width: {{ section.settings.phase_one_content_width | default: 450 }}px;
+  }
+
+  /* Phase 1 Header Styles */
+  .phase-one-header {
+    margin-bottom: {{ section.settings.phase_one_header_margin | default: 30 }}px;
+    text-align: left;
+  }
+
+  .phase-label-right {
+    font-size: {{ section.settings.label_size | default: 14 }}px;
+    color: {{ section.settings.label_color | default: '#666666' }};
+    font-weight: 500;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .content-title-right {
+    font-size: {{ section.settings.content_title_size | default: 36 }}px;
+    font-weight: {{ section.settings.content_title_weight | default: 700 }};
+    color: {{ section.settings.content_title_color | default: '#000000' }};
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+  }
+
+  .content-subtitle-right {
+    font-size: {{ section.settings.content_subtitle_size | default: 16 }}px;
+    color: {{ section.settings.content_subtitle_color | default: '#00ffff' }};
+    font-weight: 500;
+  }
+
+  /* Phase 1 Features */
+  .features-list-right {
+    margin-top: {{ section.settings.features_top_margin | default: 20 }}px;
+  }
+
+  .phase-one-bottom {
+    margin-top: {{ section.settings.phase_one_bottom_gap | default: 10 }}px;
+  }
+
+  /* Features List */
+  .content-main {
+    display: flex;
+    gap: {{ section.settings.main_content_gap | default: 40 }}px;
+    margin-bottom: {{ section.settings.features_spacing | default: 40 }}px;
+    align-items: flex-start;
+  }
+
+  .features-section {
+    flex: 1;
+  }
+
+  .features-list {
+    margin-bottom: 0;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: {{ section.settings.feature_spacing | default: 25 }}px;
+  }
+
+  .feature-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: {{ section.settings.icon_bg | default: '#f0f8ff' }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+  }
+
+  .feature-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .feature-text h4 {
+    font-size: {{ section.settings.feature_title_size | default: 16 }}px;
+    font-weight: 600;
+    color: {{ section.settings.feature_title_color | default: '#000000' }};
+    margin: 0 0 5px 0;
+  }
+
+  .feature-text p {
+    font-size: {{ section.settings.feature_desc_size | default: 14 }}px;
+    color: {{ section.settings.feature_desc_color | default: '#666666' }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Other Phases Layout - Full width image with gaps */
+  .other-phases-layout {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.other_phases_gap | default: 30 }}px;
+  }
+
+  .phase-image-full {
+    margin: 0 {{ section.settings.full_image_side_gap | default: 10 }}px;
+    margin-bottom: {{ section.settings.image_bottom_margin | default: 20 }}px;
+  }
+
+  .phase-image-full img {
+    width: 100%;
+    height: {{ section.settings.other_phase_image_height | default: 300 }}px;
+    object-fit: cover;
+    border-radius: {{ section.settings.image_radius | default: 15 }}px;
+  }
+
+  .image-placeholder-full {
+    margin: 0 {{ section.settings.full_image_side_gap | default: 10 }}px;
+    margin-bottom: {{ section.settings.image_bottom_margin | default: 20 }}px;
+  }
+
+  .placeholder-box-full {
+    width: 100%;
+    height: {{ section.settings.other_phase_image_height | default: 300 }}px;
+    border: 2px dashed {{ section.settings.placeholder_border | default: '#cccccc' }};
+    border-radius: {{ section.settings.image_radius | default: 15 }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: {{ section.settings.placeholder_bg | default: '#f9f9f9' }};
+    color: {{ section.settings.placeholder_text_color | default: '#666666' }};
+    font-size: {{ section.settings.placeholder_text_size | default: 16 }}px;
+  }
+
+  .phase-description-box {
+    background: {{ section.settings.description_bg | default: '#f8f8f8' }};
+    padding: {{ section.settings.description_padding | default: 20 }}px;
+    border-radius: {{ section.settings.description_radius | default: 10 }}px;
+    margin-bottom: {{ section.settings.description_margin | default: 20 }}px;
+  }
+
+  .phase-description-box p {
+    font-size: {{ section.settings.description_text_size | default: 16 }}px;
+    color: {{ section.settings.description_text_color | default: '#333333' }};
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Main Image */
+  .main-image {
+    flex: 0 0 {{ section.settings.image_width | default: 35 }}%;
+    text-align: center;
+    margin-top: {{ section.settings.image_top_offset | default: -80 }}px;
+  }
+
+  .main-image img {
+    width: {{ section.settings.image_fixed_width | default: 400 }}px;
+    height: {{ section.settings.image_fixed_height | default: 400 }}px;
+    object-fit: cover;
+    border-radius: {{ section.settings.image_radius | default: 15 }}px;
+  }
+
+  /* Simple content layout for phases 2-6 */
+  .simple-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: {{ section.settings.simple_content_margin | default: 40 }}px;
+  }
+
+  .center-image {
+    text-align: center;
+  }
+
+  .center-image img {
+    width: {{ section.settings.center_image_width | default: 500 }}px;
+    height: {{ section.settings.center_image_height | default: 350 }}px;
+    object-fit: cover;
+    border-radius: {{ section.settings.image_radius | default: 15 }}px;
+  }
+
+  /* Stats Section */
+  .stats-section, .slide-stats-section {
+    background: {{ section.settings.stats_bg | default: '#f8f8f8' }};
+    padding: {{ section.settings.stats_padding | default: 30 }}px;
+    border-radius: {{ section.settings.stats_radius | default: 15 }}px;
+    margin-bottom: {{ section.settings.stats_spacing | default: 30 }}px;
+    text-align: center;
+  }
+
+  .slide-stats-section {
+    margin-top: {{ section.settings.slide_stats_margin | default: 30 }}px;
+  }
+
+  .stat-highlight {
+    margin-bottom: 15px;
+  }
+
+  .stat-number {
+    font-size: {{ section.settings.stat_number_size | default: 48 }}px;
+    font-weight: 700;
+    color: {{ section.settings.stat_number_color | default: '#00ffff' }};
+    display: block;
+  }
+
+  .stat-label {
+    font-size: {{ section.settings.stat_label_size | default: 16 }}px;
+    color: {{ section.settings.stat_label_color | default: '#000000' }};
+    font-weight: 500;
+  }
+
+  .stat-description {
+    font-size: {{ section.settings.stat_desc_size | default: 14 }}px;
+    color: {{ section.settings.stat_desc_color | default: '#666666' }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Bottom Content */
+  .bottom-content, .slide-bottom-content {
+    font-size: {{ section.settings.bottom_text_size | default: 16 }}px;
+    color: {{ section.settings.bottom_text_color | default: '#333333' }};
+    line-height: 1.6;
+    margin-top: {{ section.settings.slide_bottom_margin | default: 20 }}px;
+  }
+
+  .bottom-content p, .slide-bottom-content p {
+    margin: 0;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .protocol-container {
+      flex-direction: column;
+      gap: {{ section.settings.mobile_gap | default: 40 }}px;
+    }
+
+    .phases-sidebar {
+      flex: none;
+      display: flex;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .sidebar-track {
+      display: none;
+    }
+
+    .phase-item {
+      flex-shrink: 0;
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+
+    .protocol-title {
+      font-size: {{ section.settings.mobile_title_size | default: 32 }}px;
+    }
+
+    .content-title {
+      font-size: {{ section.settings.mobile_content_title | default: 28 }}px;
+    }
+
+    .content-main {
+      flex-direction: column;
+      gap: {{ section.settings.mobile_content_gap | default: 30 }}px;
+    }
+
+    .main-image {
+      flex: none;
+      order: -1;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const phaseItems = document.querySelectorAll('.phase-item');
+    const contentPanels = document.querySelectorAll('.phase-content-panel');
+    const progressLine = document.getElementById('progress-line');
+    const section = document.getElementById('protocol-phases');
+    let currentPhase = 0;
+    let allPhasesCompleted = false;
+
+    function showPhase(index) {
+      // Prevent rapid changes
+      if (index === currentPhase) return;
+
+      // Update sidebar
+      phaseItems.forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+
+      // Update content
+      contentPanels.forEach((panel, i) => {
+        panel.classList.toggle('active', i === index);
+      });
+
+      // Update progress line
+      const progress = ((index + 1) / phaseItems.length) * 100;
+      progressLine.style.height = progress + '%';
+
+      currentPhase = index;
+
+      // Check if all phases completed
+      if (index === phaseItems.length - 1) {
+        allPhasesCompleted = true;
+      }
+    }
+
+    // Throttle function to prevent excessive calls
+    function throttle(func, limit) {
+      let inThrottle;
+      return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+          func.apply(context, args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
+        }
+      }
+    }
+
+    // Click handlers for phase items
+    phaseItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        showPhase(index);
+      });
+    });
+
+    // Scroll-based activation with optimized 6-phase distribution
+    function handleScroll() {
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+
+      // Only calculate when section is properly in viewport
+      if (rect.top <= 0 && rect.bottom >= windowHeight) {
+        const scrolledDistance = Math.abs(rect.top);
+        const totalScrollDistance = sectionHeight - windowHeight;
+
+        if (totalScrollDistance > 0) {
+          // More precise scroll progress calculation for 6 phases
+          const scrollProgress = Math.min(1, scrolledDistance / totalScrollDistance);
+
+          // Calculate phase with better distribution for 6 phases
+          let newPhase;
+
+          // More precise phase calculation to ensure all 6 phases are reachable
+          if (scrollProgress < 0.12) {
+            newPhase = 0; // Phase 1
+          } else if (scrollProgress < 0.28) {
+            newPhase = 1; // Phase 2
+          } else if (scrollProgress < 0.44) {
+            newPhase = 2; // Phase 3
+          } else if (scrollProgress < 0.6) {
+            newPhase = 3; // Phase 4
+          } else if (scrollProgress < 0.8) {
+            newPhase = 4; // Phase 5
+          } else {
+            newPhase = 5; // Phase 6
+          }
+
+          const clampedPhase = Math.max(0, Math.min(phaseItems.length - 1, newPhase));
+
+          // Only change if different from current phase
+          if (clampedPhase !== currentPhase) {
+            showPhase(clampedPhase);
+          }
+        }
+      }
+    }
+
+    // Create throttled version of scroll handler
+    const throttledScrollHandler = throttle(handleScroll, 100);
+
+    // Auto-advance phases
+    {% if section.settings.auto_advance %}
+      let autoInterval = setInterval(() => {
+        const nextPhase = (currentPhase + 1) % phaseItems.length;
+        showPhase(nextPhase);
+      }, {{ section.settings.auto_duration | default: 5000 }});
+
+      // Pause on hover
+      const container = document.querySelector('.protocol-container');
+      container.addEventListener('mouseenter', () => clearInterval(autoInterval));
+      container.addEventListener('mouseleave', () => {
+        autoInterval = setInterval(() => {
+          const nextPhase = (currentPhase + 1) % phaseItems.length;
+          showPhase(nextPhase);
+        }, {{ section.settings.auto_duration | default: 5000 }});
+      });
+    {% endif %}
+
+    // Enable scroll activation if setting is enabled
+    {% if section.settings.scroll_activation %}
+      window.addEventListener('scroll', throttledScrollHandler);
+    {% endif %}
+
+    // Initialize first phase
+    showPhase(0);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Protocol Phases",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 10,
+      "max": 80,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_min_height",
+      "min": 100,
+      "max": 140,
+      "step": 5,
+      "unit": "vh",
+      "label": "Section Min Height",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 1200,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Max Container Width",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "container_gap",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Container Gap",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Main Title"
+    },
+    {
+      "type": "text",
+      "id": "title_black",
+      "label": "Black Title Text",
+      "default": "THE 360° SKIN"
+    },
+    {
+      "type": "text",
+      "id": "title_cyan",
+      "label": "Cyan Title Text",
+      "default": "LONGEVITY PROTOCOL"
+    },
+    {
+      "type": "text",
+      "id": "trademark",
+      "label": "Trademark Symbol",
+      "default": "™"
+    },
+    {
+      "type": "color",
+      "id": "black_color",
+      "label": "Black Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cyan_color",
+      "label": "Cyan Text Color",
+      "default": "#00ffff"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 32,
+      "max": 72,
+      "step": 4,
+      "unit": "px",
+      "label": "Title Size",
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "header_margin",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Header Bottom Margin",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Left Sidebar"
+    },
+    {
+      "type": "range",
+      "id": "sidebar_width",
+      "min": 240,
+      "max": 320,
+      "step": 20,
+      "unit": "px",
+      "label": "Sidebar Width",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "sidebar_min_height",
+      "min": 450,
+      "max": 700,
+      "step": 25,
+      "unit": "px",
+      "label": "Sidebar Min Height",
+      "default": 550
+    },
+    {
+      "type": "color",
+      "id": "track_color",
+      "label": "Progress Track Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "progress_color",
+      "label": "Progress Line Color",
+      "default": "#00ffff"
+    },
+    {
+      "type": "range",
+      "id": "phase_spacing",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Phase Item Spacing",
+      "default": 25
+    },
+    {
+      "type": "color",
+      "id": "number_bg",
+      "label": "Phase Number Background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "Phase Number Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "active_number_bg",
+      "label": "Active Number Background",
+      "default": "#44ffff"
+    },
+    {
+      "type": "color",
+      "id": "active_number_color",
+      "label": "Active Number Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "active_phase_bg",
+      "label": "Active Phase Background",
+      "default": "#d3ffff"
+    },
+    {
+      "type": "range",
+      "id": "active_phase_radius",
+      "min": 5,
+      "max": 25,
+      "step": 5,
+      "unit": "px",
+      "label": "Active Phase Border Radius",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "number_size",
+      "min": 14,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Phase Number Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "phase_title_size",
+      "min": 14,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Phase Title Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "phase_title_color",
+      "label": "Phase Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "phase_subtitle_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Phase Subtitle Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "phase_subtitle_color",
+      "label": "Phase Subtitle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Content Area"
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "min": 30,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Content Section Spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Phase Label Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Phase Label Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "content_title_size",
+      "min": 28,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Content Title Size",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "content_title_weight",
+      "label": "Content Title Weight",
+      "options": [
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "content_title_color",
+      "label": "Content Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "content_subtitle_size",
+      "min": 14,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Content Subtitle Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "content_subtitle_color",
+      "label": "Content Subtitle Color",
+      "default": "#00ffff"
+    },
+    {
+      "type": "header",
+      "content": "Phase 1 Layout"
+    },
+    {
+      "type": "range",
+      "id": "phase_one_gap",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Phase 1 Image to Content Gap",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "phase_one_image_width",
+      "min": 30,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Phase 1 Image Container Width",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "phase_one_img_width",
+      "min": 250,
+      "max": 450,
+      "step": 25,
+      "unit": "px",
+      "label": "Phase 1 Image Width",
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "phase_one_image_height",
+      "min": 300,
+      "max": 500,
+      "step": 25,
+      "unit": "px",
+      "label": "Phase 1 Image Height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "phase_one_content_width",
+      "min": 350,
+      "max": 550,
+      "step": 25,
+      "unit": "px",
+      "label": "Phase 1 Content Max Width",
+      "default": 450
+    },
+    {
+      "type": "range",
+      "id": "phase_one_header_margin",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Phase 1 Header Bottom Margin",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "features_top_margin",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Features Top Margin",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "phase_one_bottom_gap",
+      "min": 5,
+      "max": 25,
+      "step": 5,
+      "unit": "px",
+      "label": "Phase 1 Stats Gap",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Other Phases Layout"
+    },
+    {
+      "type": "range",
+      "id": "other_phases_gap",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Other Phases Content Gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "full_image_side_gap",
+      "min": 5,
+      "max": 25,
+      "step": 5,
+      "unit": "px",
+      "label": "Full Image Side Gaps",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "other_phase_image_height",
+      "min": 200,
+      "max": 400,
+      "step": 25,
+      "unit": "px",
+      "label": "Other Phases Image Height",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "image_bottom_margin",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Image Bottom Margin",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "placeholder_width",
+      "min": 300,
+      "max": 700,
+      "step": 25,
+      "unit": "px",
+      "label": "Placeholder Width",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "placeholder_height",
+      "min": 200,
+      "max": 500,
+      "step": 25,
+      "unit": "px",
+      "label": "Placeholder Height",
+      "default": 350
+    },
+    {
+      "type": "color",
+      "id": "placeholder_border",
+      "label": "Placeholder Border Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_bg",
+      "label": "Placeholder Background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_text_color",
+      "label": "Placeholder Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "placeholder_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Placeholder Text Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_bg",
+      "label": "Description Box Background",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "range",
+      "id": "description_padding",
+      "min": 15,
+      "max": 35,
+      "step": 5,
+      "unit": "px",
+      "label": "Description Box Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "description_radius",
+      "min": 5,
+      "max": 20,
+      "step": 5,
+      "unit": "px",
+      "label": "Description Box Radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "description_margin",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Description Box Margin",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "description_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Description Text Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_text_color",
+      "label": "Description Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Features"
+    },
+    {
+      "type": "range",
+      "id": "main_content_gap",
+      "min": 30,
+      "max": 80,
+      "step": 10,
+      "unit": "px",
+      "label": "Features to Image Gap",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "features_spacing",
+      "min": 30,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Features Section Spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "feature_spacing",
+      "min": 15,
+      "max": 35,
+      "step": 5,
+      "unit": "px",
+      "label": "Feature Item Spacing",
+      "default": 25
+    },
+    {
+      "type": "color",
+      "id": "icon_bg",
+      "label": "Feature Icon Background",
+      "default": "#f0f8ff"
+    },
+    {
+      "type": "range",
+      "id": "feature_title_size",
+      "min": 14,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Feature Title Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "feature_title_color",
+      "label": "Feature Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "feature_desc_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Feature Description Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "feature_desc_color",
+      "label": "Feature Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 30,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Container Width",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "image_fixed_width",
+      "min": 300,
+      "max": 600,
+      "step": 25,
+      "unit": "px",
+      "label": "Image Fixed Width",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_fixed_height",
+      "min": 300,
+      "max": 500,
+      "step": 25,
+      "unit": "px",
+      "label": "Image Fixed Height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_top_offset",
+      "min": -120,
+      "max": 0,
+      "step": 10,
+      "unit": "px",
+      "label": "Image Top Alignment",
+      "default": -80
+    },
+    {
+      "type": "range",
+      "id": "image_spacing",
+      "min": 30,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Image Bottom Spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Stats Section"
+    },
+    {
+      "type": "color",
+      "id": "stats_bg",
+      "label": "Stats Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "range",
+      "id": "stats_padding",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Stats Padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "stats_radius",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Stats Border Radius",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "stats_spacing",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Stats Bottom Spacing",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "slide_stats_margin",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Slide Stats Top Margin",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "slide_bottom_margin",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Slide Bottom Content Margin",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "stat_number_size",
+      "min": 36,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "label": "Stat Number Size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "stat_number_color",
+      "label": "Stat Number Color",
+      "default": "#00ffff"
+    },
+    {
+      "type": "range",
+      "id": "stat_label_size",
+      "min": 14,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Stat Label Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "stat_label_color",
+      "label": "Stat Label Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "stat_desc_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Stat Description Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "stat_desc_color",
+      "label": "Stat Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Content"
+    },
+    {
+      "type": "range",
+      "id": "bottom_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Text Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "bottom_text_color",
+      "label": "Bottom Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "scroll_activation",
+      "label": "Enable Scroll Activation",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_advance",
+      "label": "Enable Auto Advance",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "auto_duration",
+      "min": 3000,
+      "max": 8000,
+      "step": 500,
+      "unit": "ms",
+      "label": "Auto Advance Duration",
+      "default": 5000
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "min": 30,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Container Gap",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "min": 24,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Title Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_title",
+      "min": 24,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Content Title Size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_gap",
+      "min": 20,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Content Gap",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "phase_item",
+      "name": "Phase",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Phase Sidebar"
+        },
+        {
+          "type": "text",
+          "id": "phase_number",
+          "label": "Phase Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "phase_title",
+          "label": "Phase Title",
+          "default": "Internal Optimization"
+        },
+        {
+          "type": "text",
+          "id": "phase_subtitle",
+          "label": "Phase Subtitle",
+          "default": "Phase Description"
+        },
+        {
+          "type": "header",
+          "content": "Phase Header"
+        },
+        {
+          "type": "select",
+          "id": "header_alignment",
+          "label": "Header Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "text",
+          "id": "phase_label",
+          "label": "Phase Label",
+          "default": "PHASE I"
+        },
+        {
+          "type": "text",
+          "id": "content_title",
+          "label": "Content Title",
+          "default": "Internal Optimization"
+        },
+        {
+          "type": "text",
+          "id": "content_subtitle",
+          "label": "Content Subtitle",
+          "default": "Cellular Longevity Layer"
+        },
+        {
+          "type": "header",
+          "content": "Phase Content (2-6 only)"
+        },
+        {
+          "type": "select",
+          "id": "image_alignment",
+          "label": "Image Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "phase_image_width",
+          "min": 300,
+          "max": 700,
+          "step": 25,
+          "unit": "px",
+          "label": "Phase Image Width",
+          "default": 500
+        },
+        {
+          "type": "range",
+          "id": "phase_image_height",
+          "min": 200,
+          "max": 500,
+          "step": 25,
+          "unit": "px",
+          "label": "Phase Image Height",
+          "default": 350
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "richtext",
+          "id": "phase_description",
+          "label": "Phase Description Text",
+          "default": "<p>Phase description content goes here.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Feature 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_1_icon",
+          "label": "Feature 1 Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_1_title",
+          "label": "Feature 1 Title",
+          "default": "Liposomal Nutrient Transport"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_1_desc",
+          "label": "Feature 1 Description",
+          "default": "Encapsulated actives enhance cellular uptake and bioavailability."
+        },
+        {
+          "type": "header",
+          "content": "Feature 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_2_icon",
+          "label": "Feature 2 Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_2_title",
+          "label": "Feature 2 Title",
+          "default": "Mitochondrial Energy Support"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_2_desc",
+          "label": "Feature 2 Description",
+          "default": "Optimizes ATP production to improve dermal vitality."
+        },
+        {
+          "type": "header",
+          "content": "Feature 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_3_icon",
+          "label": "Feature 3 Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_3_title",
+          "label": "Feature 3 Title",
+          "default": "Oxidative Stress Defense"
+        },
+        {
+          "type": "textarea",
+          "id": "feature_3_desc",
+          "label": "Feature 3 Description",
+          "default": "Reduces free radical accumulation at the cellular level."
+        },
+        {
+          "type": "header",
+          "content": "Main Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Content Image"
+        },
+        {
+          "type": "header",
+          "content": "Statistics"
+        },
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Stat Number",
+          "default": "+150%"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat Label",
+          "default": "Increase in Cellular Vitality"
+        },
+        {
+          "type": "textarea",
+          "id": "stat_description",
+          "label": "Stat Description",
+          "default": "Double-blind, placebo-controlled 4-week clinical study"
+        },
+        {
+          "type": "header",
+          "content": "Bottom Content"
+        },
+        {
+          "type": "richtext",
+          "id": "bottom_text",
+          "label": "Bottom Text",
+          "default": "<p><strong>The Lipid Matrix Philosophy™</strong><br>We do not treat the surface alone. We restore cellular harmony through lipid-layer architecture, mitochondrial support, and regenerative signaling —aligning internal biology.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Protocol Phases",
+      "blocks": [
+        {
+          "type": "phase_item",
+          "settings": {
+            "phase_number": "01",
+            "phase_title": "Internal Optimization",
+            "phase_subtitle": "Cellular Enhancement",
+            "phase_label": "PHASE I",
+            "content_title": "Internal Optimization",
+            "content_subtitle": "Cellular Longevity Layer",
+            "feature_1_title": "Liposomal Nutrient Transport",
+            "feature_1_desc": "Encapsulated actives enhance cellular uptake and bioavailability.",
+            "feature_2_title": "Mitochondrial Energy Support",
+            "feature_2_desc": "Optimizes ATP production to improve dermal vitality.",
+            "feature_3_title": "Oxidative Stress Defense",
+            "feature_3_desc": "Reduces free radical accumulation at the cellular level."
+          }
+        },
+        {
+          "type": "phase_item",
+          "settings": {
+            "phase_number": "02",
+            "phase_title": "Barrier Reconstitution",
+            "phase_subtitle": "Protective Layer Repair",
+            "phase_label": "PHASE II",
+            "content_title": "Barrier Reconstitution",
+            "content_subtitle": "Protective Barrier Enhancement",
+            "feature_1_title": "Lipid Matrix Restoration",
+            "feature_1_desc": "Rebuilds the skin's natural protective barrier.",
+            "feature_2_title": "Ceramide Complex Integration",
+            "feature_2_desc": "Strengthens intercellular connections.",
+            "feature_3_title": "Moisture Retention Optimization",
+            "feature_3_desc": "Enhances skin's ability to retain hydration."
+          }
+        },
+        {
+          "type": "phase_item",
+          "settings": {
+            "phase_number": "03",
+            "phase_title": "Cellular Preparation",
+            "phase_subtitle": "Regenerative Priming",
+            "phase_label": "PHASE III",
+            "content_title": "Cellular Preparation",
+            "content_subtitle": "Regenerative Foundation",
+            "feature_1_title": "Stem Cell Activation",
+            "feature_1_desc": "Stimulates natural cellular renewal processes.",
+            "feature_2_title": "Collagen Synthesis Boost",
+            "feature_2_desc": "Enhances structural protein production.",
+            "feature_3_title": "Growth Factor Optimization",
+            "feature_3_desc": "Maximizes cellular communication pathways."
+          }
+        },
+        {
+          "type": "phase_item",
+          "settings": {
+            "phase_number": "04",
+            "phase_title": "Regenerative Activation",
+            "phase_subtitle": "Renewal Acceleration",
+            "phase_label": "PHASE IV",
+            "content_title": "Regenerative Activation",
+            "content_subtitle": "Advanced Renewal System",
+            "feature_1_title": "Peptide Complex Delivery",
+            "feature_1_desc": "Targeted signaling for tissue regeneration.",
+            "feature_2_title": "Elastin Fiber Reconstruction",
+            "feature_2_desc": "Restores skin elasticity and firmness.",
+            "feature_3_title": "Cellular Turnover Enhancement",
+            "feature_3_desc": "Accelerates natural skin renewal cycles."
+          }
+        },
+        {
+          "type": "phase_item",
+          "settings": {
+            "phase_number": "05",
+            "phase_title": "Longevity Integration",
+            "phase_subtitle": "Sustained Enhancement",
+            "phase_label": "PHASE V",
+            "content_title": "Longevity Integration",
+            "content_subtitle": "Long-term Optimization",
+            "feature_1_title": "Telomere Protection",
+            "feature_1_desc": "Preserves cellular aging mechanisms.",
+            "feature_2_title": "DNA Repair Enhancement",
+            "feature_2_desc": "Supports natural damage correction.",
+            "feature_3_title": "Longevity Gene Activation",
+            "feature_3_desc": "Optimizes cellular lifespan pathways."
+          }
+        },
+        {
+          "type": "phase_item",
+          "settings": {
+            "phase_number": "06",
+            "phase_title": "Matrix Stabilization",
+            "phase_subtitle": "Structural Reinforcement",
+            "phase_label": "PHASE VI",
+            "content_title": "Matrix Stabilization",
+            "content_subtitle": "Advanced Structural Support",
+            "feature_1_title": "Extracellular Matrix Strengthening",
+            "feature_1_desc": "Reinforces skin's structural foundation.",
+            "feature_2_title": "Cross-linking Optimization",
+            "feature_2_desc": "Enhances protein network stability.",
+            "feature_3_title": "Dermal Architecture Support",
+            "feature_3_desc": "Maintains optimal skin structure integrity."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

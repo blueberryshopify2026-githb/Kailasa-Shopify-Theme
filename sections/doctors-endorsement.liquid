@@ -63,7 +63,7 @@
       <!-- Right Side: Cascading Cards -->
       <div class="cascading-cards-section">
         <div class="cards-stack" id="cardsStack">
-          {% for block in section.blocks limit: 4 %}
+          {% for block in section.blocks limit: 5 %}
             <div class="doctor-card" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
               {% if block.settings.doctor_image %}
                 <img
@@ -135,25 +135,25 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
-    margin-left: 10%; /* 10% left margin */
+    margin-left: {{ section.settings.left_margin | default: 10 }}%; /* Adjustable left margin */
   }
 
   .endorsement-layout {
     display: grid;
     grid-template-columns: 70% 30%; /* Increased left side by 10%, reduced right side */
-    gap: 10px; /* Further reduced gap */
+    gap: {{ section.settings.cards_gap | default: 20 }}px; /* Adjustable gap */
     align-items: flex-start;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
   }
 
   /* Hero Section (60%) */
   .hero-section {
     width: 100%;
+    margin-left: {{ section.settings.main_card_left_position | default: 0 }}%; /* Additional left positioning */
   }
 
   .hero-card {
-    background: #000000;
-    border-radius: 32px;
+    border-radius: {{ section.settings.main_card_border_radius | default: 32 }}px;
     aspect-ratio: 5.5/3; /* Reduced height by 10% (wider aspect ratio) */
     overflow: hidden;
     position: relative;
@@ -179,10 +179,7 @@
     bottom: 0;
   }
 
-  .placeholder-icon {
-    font-size: 4rem;
-    opacity: 0.7;
-  }
+
 
   /* Main Card Overlay Content - Professional Medical UI */
   .main-card-overlay-content {
@@ -190,10 +187,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.9) 100%);
+    /* background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, {{ section.settings.main_card_overlay_opacity | default: 0.9 }}) 100%); */
     padding: 32px 28px 24px;
-    color: #ffffff;
-    backdrop-filter: blur(2px);
+    color: {{ section.settings.text_color | default: '#ffffff' }};
+
   }
 
   .main-doctor-info {
@@ -207,37 +204,36 @@
     letter-spacing: -0.02em;
     color: #ffffff;
     line-height: 1.05;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
   }
 
   .main-doctor-specialty {
-    font-size: 0.95rem;
-    color: #00d4aa;
+    font-size: {{ section.settings.main_specialty_size | default: 0.95 }}rem;
+    color: {{ section.settings.specialty_color | default: '#00d4aa' }};
     margin: 0 0 6px 0;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.2px;
     opacity: 1;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); */
   }
 
   .main-rating {
     display: flex;
     align-items: center;
-    gap: 3px;
-    margin-bottom: 8px;
+    gap: 2px;
+    margin-bottom: 5px;
   }
 
   .main-rating .star {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #333;
     transition: color 0.2s ease;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+
   }
 
   .main-rating .star.filled {
-    color: #ffd700;
+    color: {{ section.settings.star_color | default: '#ffd700' }};
     filter: drop-shadow(0 1px 3px rgba(255, 215, 0, 0.4));
   }
 
@@ -247,7 +243,6 @@
     margin-left: 6px;
     font-weight: 500;
     opacity: 0.95;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   }
 
   .main-doctor-quote {
@@ -258,7 +253,7 @@
     color: #ffffff;
     opacity: 0.95;
     font-weight: 400;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); */
     font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
   }
 
@@ -279,7 +274,7 @@
     line-height: 1.2;
     font-weight: 500;
     opacity: 0.9;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
   }
 
   /* Cascading Cards Section (40%) */
@@ -327,7 +322,6 @@
   .doctor-card .card-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
     position: absolute;
     top: 0;
     left: 0;
@@ -344,9 +338,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.95) 100%);
+    /* background: linear-gradient(transparent, rgba(0, 0, 0, {{ section.settings.right_card_overlay_opacity | default: 0.8 }}) 30%, rgba(0, 0, 0, {{ section.settings.right_card_overlay_opacity | default: 0.8 }}) 100%); */
     padding: 20px 16px 16px;
-    color: #ffffff;
+    color: {{ section.settings.text_color | default: '#ffffff' }};
   }
 
   .doctor-card .doctor-info {
@@ -364,11 +358,12 @@
 
   .doctor-card .doctor-specialty {
     font-size: 0.7rem;
-    color: #00bcd4;
+    color: {{ section.settings.specialty_color | default: '#00bcd4' }};
     margin: 0 0 6px 0;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+  }
   }
 
   .doctor-card .rating {
@@ -384,7 +379,7 @@
   }
 
   .doctor-card .star.filled {
-    color: #ffd700;
+    color: {{ section.settings.star_color | default: '#ffd700' }};
   }
 
   .doctor-card .rating-text {
@@ -423,23 +418,24 @@
   .cta-section {
     display: flex;
     justify-content: flex-start; /* Align to left side (below main card) */
-    margin-top: 20px;
+    /* margin-top: {{ section.settings.cta_button_gap | default: 5 }}px; Adjustable gap */
     padding-left: calc(70% / 2 - 120px); /* Center below the main card */
+
   }
 
   .cta-pill {
     display: flex;
     align-items: center;
     background: #ffffff;
-    border: 1px solid #e5e5e5;
+    border: 1px solid {{ section.settings.cta_border_color | default: '#e5e5e5' }};
     border-radius: 50px;
     padding: 6px 6px 6px 16px; /* Smaller padding */
-    gap: 12px; /* Smaller gap */
+    gap: 5px;
     transition: all 0.3s ease;
   }
 
   .cta-pill:hover {
-    border-color: #00bcd4;
+    border-color: {{ section.settings.specialty_color | default: '#00bcd4' }};
     transform: translateY(-2px);
   }
 
@@ -453,7 +449,7 @@
   .cta-button {
     width: 32px; /* Smaller button */
     height: 32px; /* Smaller button */
-    background: #000000;
+    background: {{ section.settings.cta_bg_color | default: '#000000' }};
     border: none;
     border-radius: 50%;
     display: flex;
@@ -464,7 +460,7 @@
   }
 
   .cta-button:hover {
-    background: #00bcd4;
+    background: {{ section.settings.cta_hover_color | default: '#00bcd4' }};
     transform: scale(1.05);
   }
 
@@ -482,13 +478,17 @@
 
     .container {
       padding: 0 20px;
-      margin-left: 5%;
+      margin-left: {{ section.settings.left_margin | times: 0.5 | default: 5 }}%; /* Half the left margin on mobile */
     }
 
     .endorsement-layout {
       grid-template-columns: 1fr;
-      gap: 20px;
-      margin-bottom: 40px;
+      gap: {{ section.settings.cards_gap | default: 20 }}px;
+      margin-bottom: 20px;
+    }
+
+    .hero-section {
+      margin-left: 0; /* Reset additional positioning on mobile */
     }
 
     .cta-section {
@@ -497,7 +497,7 @@
     }
 
     .hero-card {
-      border-radius: 24px;
+      border-radius: {{ section.settings.main_card_border_radius | times: 0.75 | default: 24 }}px; /* 75% of desktop radius */
     }
 
     .main-card-overlay-content {
@@ -509,7 +509,7 @@
     }
 
     .doctor-card {
-      border-radius: 24px;
+      border-radius: {{ section.settings.right_card_border_radius | times: 0.75 | default: 24 }}px; /* 75% of desktop radius */
     }
 
     .doctor-card {
@@ -526,7 +526,7 @@
 
     .cta-button {
       width: 28px;
-      height: 28px;
+      height: 20px;
     }
 
     .arrow-icon {
@@ -537,7 +537,7 @@
 
   @media (max-width: 480px) {
     .container {
-      margin-left: 2%;
+      margin-left: {{ section.settings.left_margin | times: 0.2 | default: 2 }}%; /* Even smaller left margin on small mobile */
     }
 
     .main-doctor-name {
@@ -620,11 +620,11 @@
         // Apply flashcard stack effect - show more of each card behind
         const translateY = cascadeIndex * 8;
         const translateX = cascadeIndex * 40;
-        const widthScale = 1 - cascadeIndex * 0.08;
+        // Remove width scaling to maintain consistent card width
         const opacity = 1;
         const zIndex = 10 - cascadeIndex;
 
-        card.style.transform = `translateY(${translateY}px) translateX(${translateX}px) scaleX(${widthScale})`;
+        card.style.transform = `translateY(${translateY}px) translateX(${translateX}px)`;
         card.style.opacity = opacity;
         card.style.zIndex = zIndex;
         card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -856,17 +856,41 @@
       "step": 1,
       "unit": "%",
       "label": "Left margin",
-      "default": 10
+      "default": 10,
+      "info": "Space on the left side of the main card"
+    },
+    {
+      "type": "range",
+      "id": "main_card_left_position",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "%",
+      "label": "Main card left position",
+      "default": 0,
+      "info": "Additional left spacing for the main card"
     },
     {
       "type": "range",
       "id": "cards_gap",
       "min": 10,
-      "max": 60,
+      "max": 100,
       "step": 5,
       "unit": "px",
       "label": "Gap between main and side cards",
-      "default": 20
+      "default": 40,
+      "info": "Horizontal space between main card and right cards"
+    },
+    {
+      "type": "range",
+      "id": "cta_button_gap",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "CTA button gap from main card",
+      "default": 5,
+      "info": "Vertical space between main card and CTA button below"
     },
     {
       "type": "header",
@@ -891,11 +915,22 @@
     {
       "type": "range",
       "id": "main_card_overlay_opacity",
-      "min": 0.3,
+      "min": 0.0,
       "max": 1,
       "step": 0.1,
       "label": "Main card overlay opacity",
-      "default": 0.9
+      "default": 0.1,
+      "info": "Controls the darkness of the overlay on main card (lower = less dark)"
+    },
+    {
+      "type": "range",
+      "id": "right_card_overlay_opacity",
+      "min": 0.1,
+      "max": 1,
+      "step": 0.1,
+      "label": "Right cards overlay opacity",
+      "default": 0.1,
+      "info": "Controls the darkness of the overlay on right cards (lower = less dark)"
     },
     {
       "type": "header",

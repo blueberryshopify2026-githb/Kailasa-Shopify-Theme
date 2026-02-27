@@ -3,123 +3,331 @@
   Clean, focused design for molecular science showcase
 {% endcomment %}
 
-<section class="science-slider-section">
+<section
+  class="science-slider-section"
+  style="display: block !important; visibility: visible !important; opacity: 1 !important;"
+>
   <div class="slider-container">
     <div class="slides-wrapper" id="slidesWrapper">
       {% if section.blocks.size > 0 %}
         {% for block in section.blocks %}
           <div class="slide" data-slide="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
-            {% if block.type == 'molecular_standard' %}
+            {% if block.type == 'molecular_slide' %}
               <div class="slide-content molecular-slide">
-                <div class="slide-layout">
-                  <div class="left-panel">
-                    <h1 class="main-title">{{ block.settings.main_title | default: 'THE MOLECULAR<br>STANDARD.' }}</h1>
+                <div class="molecular-layout">
+                  <!-- Left 50% - Content -->
+                  <div
+                    class="molecular-left"
+                    style="background-color: {{ block.settings.left_panel_bg_color | default: '#ffffff' }};"
+                  >
+                    <div class="molecular-content">
+                      <!-- Main Title -->
+                      <h1
+                        class="molecular-main-title"
+                        style="
+                          color: {{ block.settings.main_title_color | default: '#000000' }};
+                          font-size: {{ block.settings.main_title_size | default: 42 }}px;
+                          font-weight: {{ block.settings.main_title_weight | default: 700 }};
+                          line-height: {{ block.settings.main_title_line_height | default: 1.1 }};
+                          margin-bottom: {{ block.settings.main_title_margin_bottom | default: 20 }}px;
+                        "
+                      >
+                        {{ block.settings.main_title | default: 'THE MOLECULAR<br>STANDARD' }}
+                      </h1>
 
-                    <div class="slide-header">
-                      <h2 class="slide-subtitle">{{ block.settings.subtitle | default: 'The Molecular Standard.' }}</h2>
-                    </div>
+                      <!-- Subtitle -->
+                      <h2
+                        class="molecular-subtitle"
+                        style="
+                          color: {{ block.settings.subtitle_color | default: '#00bcd4' }};
+                          font-size: {{ block.settings.subtitle_size | default: 20 }}px;
+                          font-weight: {{ block.settings.subtitle_weight | default: 600 }};
+                          margin-bottom: {{ block.settings.subtitle_margin_bottom | default: 15 }}px;
+                        "
+                      >
+                        {{ block.settings.subtitle | default: 'The Molecular Standard' }}
+                      </h2>
 
-                    <p class="description">
-                      {{
-                        block.settings.description
-                        | default: 'Harnessing South Korea patented fermentation technology skin elasticity at a cellular level.'
-                      }}
-                    </p>
+                      <!-- Description -->
+                      <p
+                        class="molecular-description"
+                        style="
+                          color: {{ block.settings.description_color | default: '#666666' }};
+                          font-size: {{ block.settings.description_size | default: 16 }}px;
+                          line-height: {{ block.settings.description_line_height | default: 1.5 }};
+                          margin-bottom: {{ block.settings.description_margin_bottom | default: 30 }}px;
+                        "
+                      >
+                        {{
+                          block.settings.description
+                          | default: 'Harnessing South Korea patented fermentation technology skin elasticity at a cellular level.'
+                        }}
+                      </p>
 
-                    <div class="feature-boxes">
-                      <div class="feature-box">
-                        <h4>{{ block.settings.feature_1_title | default: 'PDRN:' }}</h4>
-                        <p>{{ block.settings.feature_1_desc | default: 'DNA-based rejuvenation.' }}</p>
-                      </div>
-
-                      <div class="feature-box">
-                        <h4>{{ block.settings.feature_2_title | default: 'SNAIL MUCIN' }}</h4>
-                        <p>{{ block.settings.feature_2_desc | default: 'Advanced barrier repair' }}</p>
-                      </div>
-                    </div>
-
-                    <div class="molecular-icons">
-                      <!-- Icons Row -->
-                      <div class="icons-row">
-                        <div class="icon-container">
-                          {% if block.settings.icon_1_image %}
-                            <img
-                              src="{{ block.settings.icon_1_image | image_url: width: 80 }}"
-                              alt="{{ block.settings.icon_1_title }}"
-                              width="80"
-                              height="80"
-                              class="molecular-icon"
-                            >
-                          {% else %}
-                            <div class="icon-placeholder pdrn-icon"></div>
-                          {% endif %}
+                      <!-- Feature Boxes -->
+                      <div
+                        class="molecular-feature-boxes"
+                        style="
+                          gap: {{ block.settings.feature_boxes_gap | default: 15 }}px;
+                          margin-bottom: {{ block.settings.feature_boxes_margin_bottom | default: 40 }}px;
+                        "
+                      >
+                        <div
+                          class="molecular-feature-box"
+                          style="
+                            background-color: {{ block.settings.feature_box_bg_color | default: '#D3FFFF' }};
+                            padding: {{ block.settings.feature_box_padding | default: 16 }}px;
+                            border-radius: {{ block.settings.feature_box_border_radius | default: 8 }}px;
+                          "
+                        >
+                          <h4
+                            class="feature-title"
+                            style="
+                              color: {{ block.settings.feature_box_text_color | default: '#000000' }};
+                              font-size: {{ block.settings.feature_title_size | default: 14 }}px;
+                              font-weight: {{ block.settings.feature_title_weight | default: 700 }};
+                              margin-bottom: {{ block.settings.feature_title_margin_bottom | default: 8 }}px;
+                            "
+                          >
+                            {{ block.settings.feature_1_title | default: 'PDRN:' }}
+                          </h4>
+                          <p
+                            class="feature-desc"
+                            style="
+                              color: {{ block.settings.feature_box_text_color | default: '#000000' }};
+                              font-size: {{ block.settings.feature_desc_size | default: 12 }}px;
+                              margin: 0;
+                            "
+                          >
+                            {{ block.settings.feature_1_desc | default: 'DNA-based rejuvenation.' }}
+                          </p>
                         </div>
 
-                        <div class="icon-container">
-                          {% if block.settings.icon_2_image %}
-                            <img
-                              src="{{ block.settings.icon_2_image | image_url: width: 80 }}"
-                              alt="{{ block.settings.icon_2_title }}"
-                              width="80"
-                              height="80"
-                              class="molecular-icon"
-                            >
-                          {% else %}
-                            <div class="icon-placeholder ceramides-icon"></div>
-                          {% endif %}
-                        </div>
-
-                        <div class="icon-container">
-                          {% if block.settings.icon_3_image %}
-                            <img
-                              src="{{ block.settings.icon_3_image | image_url: width: 80 }}"
-                              alt="{{ block.settings.icon_3_title }}"
-                              width="80"
-                              height="80"
-                              class="molecular-icon"
-                            >
-                          {% else %}
-                            <div class="icon-placeholder peptides-icon"></div>
-                          {% endif %}
+                        <div
+                          class="molecular-feature-box"
+                          style="
+                            background-color: {{ block.settings.feature_box_bg_color | default: '#D3FFFF' }};
+                            padding: {{ block.settings.feature_box_padding | default: 16 }}px;
+                            border-radius: {{ block.settings.feature_box_border_radius | default: 8 }}px;
+                          "
+                        >
+                          <h4
+                            class="feature-title"
+                            style="
+                              color: {{ block.settings.feature_box_text_color | default: '#000000' }};
+                              font-size: {{ block.settings.feature_title_size | default: 14 }}px;
+                              font-weight: {{ block.settings.feature_title_weight | default: 700 }};
+                              margin-bottom: {{ block.settings.feature_title_margin_bottom | default: 8 }}px;
+                            "
+                          >
+                            {{ block.settings.feature_2_title | default: 'SNAIL MUCIN' }}
+                          </h4>
+                          <p
+                            class="feature-desc"
+                            style="
+                              color: {{ block.settings.feature_box_text_color | default: '#000000' }};
+                              font-size: {{ block.settings.feature_desc_size | default: 12 }}px;
+                              margin: 0;
+                            "
+                          >
+                            {{ block.settings.feature_2_desc | default: 'Advanced barrier repair' }}
+                          </p>
                         </div>
                       </div>
 
-                      <!-- Titles Row -->
-                      <div class="titles-row">
-                        <h5 class="icon-title">{{ block.settings.icon_1_title | default: 'PDRN' }}</h5>
-                        <h5 class="icon-title">{{ block.settings.icon_2_title | default: 'CERAMIDES' }}</h5>
-                        <h5 class="icon-title">{{ block.settings.icon_3_title | default: 'PEPTIDES' }}</h5>
-                      </div>
+                      <!-- Molecular Icons Section -->
+                      <div class="molecular-icons-section">
+                        <!-- Icons Row -->
+                        <div
+                          class="molecular-icons-row"
+                          style="
+                            gap: {{ block.settings.icons_gap | default: 30 }}px;
+                            margin-bottom: {{ block.settings.icons_margin_bottom | default: 15 }}px;
+                          "
+                        >
+                          <div class="molecular-icon-item">
+                            {% if block.settings.icon_1_image %}
+                              <img
+                                src="{{ block.settings.icon_1_image | image_url: width: 60 }}"
+                                alt="{{ block.settings.icon_1_title }}"
+                                class="molecular-icon"
+                                width="60"
+                                height="60"
+                                style="width: {{ block.settings.icon_size | default: 60 }}px; height: {{ block.settings.icon_size | default: 60 }}px;"
+                              >
+                            {% else %}
+                              <div
+                                class="molecular-icon-placeholder pdrn-icon"
+                                style="
+                                  width: {{ block.settings.icon_size | default: 60 }}px;
+                                  height: {{ block.settings.icon_size | default: 60 }}px;
+                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#00bcd4' }};
+                                  color: {{ block.settings.icon_placeholder_color | default: '#ffffff' }};
+                                "
+                              ></div>
+                            {% endif %}
+                          </div>
 
-                      <!-- Descriptions Row -->
-                      <div class="descriptions-row">
-                        <p class="icon-desc">{{ block.settings.icon_1_desc | default: 'DNA-based rejuvenation.' }}</p>
-                        <p class="icon-desc">
-                          {{ block.settings.icon_2_desc | default: 'Barrier strength and protration' }}
-                        </p>
-                        <p class="icon-desc">
-                          {{ block.settings.icon_3_desc | default: 'Collagen synthesis and elasticity' }}
-                        </p>
+                          <div class="molecular-icon-item">
+                            {% if block.settings.icon_2_image %}
+                              <img
+                                src="{{ block.settings.icon_2_image | image_url: width: 60 }}"
+                                alt="{{ block.settings.icon_2_title }}"
+                                class="molecular-icon"
+                                width="60"
+                                height="60"
+                                style="width: {{ block.settings.icon_size | default: 60 }}px; height: {{ block.settings.icon_size | default: 60 }}px;"
+                              >
+                            {% else %}
+                              <div
+                                class="molecular-icon-placeholder ceramides-icon"
+                                style="
+                                  width: {{ block.settings.icon_size | default: 60 }}px;
+                                  height: {{ block.settings.icon_size | default: 60 }}px;
+                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#00bcd4' }};
+                                  color: {{ block.settings.icon_placeholder_color | default: '#ffffff' }};
+                                "
+                              ></div>
+                            {% endif %}
+                          </div>
+
+                          <div class="molecular-icon-item">
+                            {% if block.settings.icon_3_image %}
+                              <img
+                                src="{{ block.settings.icon_3_image | image_url: width: 60 }}"
+                                alt="{{ block.settings.icon_3_title }}"
+                                class="molecular-icon"
+                                width="60"
+                                height="60"
+                                style="width: {{ block.settings.icon_size | default: 60 }}px; height: {{ block.settings.icon_size | default: 60 }}px;"
+                              >
+                            {% else %}
+                              <div
+                                class="molecular-icon-placeholder peptides-icon"
+                                style="
+                                  width: {{ block.settings.icon_size | default: 60 }}px;
+                                  height: {{ block.settings.icon_size | default: 60 }}px;
+                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#00bcd4' }};
+                                  color: {{ block.settings.icon_placeholder_color | default: '#ffffff' }};
+                                "
+                              ></div>
+                            {% endif %}
+                          </div>
+                        </div>
+
+                        <!-- Titles Row -->
+                        <div
+                          class="molecular-titles-row"
+                          style="
+                            gap: {{ block.settings.icons_gap | default: 30 }}px;
+                            margin-bottom: {{ block.settings.titles_margin_bottom | default: 10 }}px;
+                          "
+                        >
+                          <h5
+                            class="molecular-icon-title"
+                            style="
+                              color: {{ block.settings.icon_title_color | default: '#000000' }};
+                              font-size: {{ block.settings.icon_title_size | default: 14 }}px;
+                              font-weight: {{ block.settings.icon_title_weight | default: 700 }};
+                              text-align: center;
+                            "
+                          >
+                            {{ block.settings.icon_1_title | default: 'PDRN' }}
+                          </h5>
+                          <h5
+                            class="molecular-icon-title"
+                            style="
+                              color: {{ block.settings.icon_title_color | default: '#000000' }};
+                              font-size: {{ block.settings.icon_title_size | default: 14 }}px;
+                              font-weight: {{ block.settings.icon_title_weight | default: 700 }};
+                              text-align: center;
+                            "
+                          >
+                            {{ block.settings.icon_2_title | default: 'CERAMIDES' }}
+                          </h5>
+                          <h5
+                            class="molecular-icon-title"
+                            style="
+                              color: {{ block.settings.icon_title_color | default: '#000000' }};
+                              font-size: {{ block.settings.icon_title_size | default: 14 }}px;
+                              font-weight: {{ block.settings.icon_title_weight | default: 700 }};
+                              text-align: center;
+                            "
+                          >
+                            {{ block.settings.icon_3_title | default: 'PEPTIDES' }}
+                          </h5>
+                        </div>
+
+                        <!-- Descriptions Row -->
+                        <div
+                          class="molecular-descriptions-row"
+                          style="gap: {{ block.settings.icons_gap | default: 30 }}px;"
+                        >
+                          <p
+                            class="molecular-icon-desc"
+                            style="
+                              color: {{ block.settings.icon_desc_color | default: '#00bcd4' }};
+                              font-size: {{ block.settings.icon_desc_size | default: 12 }}px;
+                              text-align: center;
+                              line-height: {{ block.settings.icon_desc_line_height | default: 1.4 }};
+                            "
+                          >
+                            {{ block.settings.icon_1_desc | default: 'DNA-based rejuvenation.' }}
+                          </p>
+                          <p
+                            class="molecular-icon-desc"
+                            style="
+                              color: {{ block.settings.icon_desc_color | default: '#00bcd4' }};
+                              font-size: {{ block.settings.icon_desc_size | default: 12 }}px;
+                              text-align: center;
+                              line-height: {{ block.settings.icon_desc_line_height | default: 1.4 }};
+                            "
+                          >
+                            {{ block.settings.icon_2_desc | default: 'Barrier strength and protration' }}
+                          </p>
+                          <p
+                            class="molecular-icon-desc"
+                            style="
+                              color: {{ block.settings.icon_desc_color | default: '#00bcd4' }};
+                              font-size: {{ block.settings.icon_desc_size | default: 12 }}px;
+                              text-align: center;
+                              line-height: {{ block.settings.icon_desc_line_height | default: 1.4 }};
+                            "
+                          >
+                            {{ block.settings.icon_3_desc | default: 'Collagen synthesis and elasticity' }}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div class="right-panel">
-                    {% if block.settings.media_type == 'video' and block.settings.background_video %}
-                      <video autoplay muted loop class="background-video" width="600" height="400">
-                        <source src="{{ block.settings.background_video | asset_url }}" type="video/mp4">
-                      </video>
-                    {% elsif block.settings.background_image %}
+                  <!-- Right 50% - Image -->
+                  <div
+                    class="molecular-right"
+                    style="background-color: {{ block.settings.right_panel_bg_color | default: '#e8f8f5' }};"
+                  >
+                    {% if block.settings.background_image %}
                       <img
-                        src="{{ block.settings.background_image | image_url: width: 600 }}"
+                        src="{{ block.settings.background_image | image_url: width: 800 }}"
                         alt="Molecular background"
-                        class="background-image"
-                        width="600"
-                        height="400"
+                        class="molecular-bg-image"
+                        width="800"
+                        height="600"
+                        style="
+                          object-fit: {{ block.settings.image_fit | default: 'cover' }};
+                          opacity: {{ block.settings.image_opacity | default: 1 }};
+                        "
                       >
                     {% else %}
-                      <div class="molecular-background">
-                        <div class="molecular-pattern"></div>
+                      <div class="molecular-image-placeholder">
+                        <p
+                          style="
+                            color: {{ block.settings.placeholder_text_color | default: '#666666' }};
+                            font-size: {{ block.settings.placeholder_text_size | default: 18 }}px;
+                          "
+                        >
+                          {{ block.settings.placeholder_text | default: 'Upload your background image' }}
+                        </p>
                       </div>
                     {% endif %}
                   </div>
@@ -187,7 +395,11 @@
                             data-card="{{ i }}"
                             onmouseover="showCardImage({{ i }})"
                             onclick="showCardImage({{ i }})"
-                            style="border-radius: {{ block.settings.card_border_radius | default: 25 }}px;"
+                            style="
+                              border-radius: {{ block.settings.card_border_radius | default: 25 }}px;
+                              width: {{ block.settings.card_width | default: 80 }}%;
+                              max-width: {{ block.settings.card_max_width | default: 400 }}px;
+                            "
                           >
                             <div class="card-content">
                               <div class="card-left">
@@ -378,259 +590,286 @@
                       >
                     {% else %}
                       <div class="korean-bg-placeholder">
-                        <p>Upload your background image</p>
+                       
                       </div>
                     {% endif %}
                   </div>
 
                   <!-- Overlay Content -->
                   <div class="korean-beauty-overlay">
-                    <!-- Main Content -->
-                    <div class="korean-content-area">
-                      <h1
-                        class="korean-main-heading"
-                        style="
-                          font-size: {{ block.settings.main_heading_size | default: 48 }}px;
-                          color: {{ block.settings.main_heading_color | default: '#000000' }};
-                          text-align: {{ block.settings.main_heading_alignment | default: 'left' }};
-                          font-weight: {{ block.settings.main_heading_weight | default: 700 }};
-                        "
-                        id="koreanMainHeading"
-                        data-default-heading="{{ block.settings.default_main_heading | default: 'Where Korean beauty meets Precision' }}"
-                      >
-                        {{ block.settings.default_main_heading | default: 'Where Korean beauty meets Precision' }}
-                      </h1>
-                      <p
-                        class="korean-subheading"
-                        style="
-                          font-size: {{ block.settings.subheading_size | default: 18 }}px;
-                          color: {{ block.settings.subheading_color | default: '#000000' }};
-                          text-align: {{ block.settings.subheading_alignment | default: 'left' }};
-                          font-weight: {{ block.settings.subheading_weight | default: 400 }};
-                        "
-                        id="koreanSubheading"
-                        data-default-subheading="{{ block.settings.default_subheading | default: 'Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.' }}"
-                      >
-                        {{
-                          block.settings.default_subheading
-                          | default: 'Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.'
-                        }}
-                      </p>
-                    </div>
-
                     <!-- Interactive Icons Section -->
-                    <div class="korean-icons-section">
+                    <div
+                      class="korean-icons-section"
+                      style="margin-top: calc({{ block.settings.icons_margin_top | default: 5 }}% - 10%);"
+                    >
+                      <!-- Frosted Glass Background with Text Inside -->
                       <div
                         class="icons-container"
                         style="
                           background: rgba(255, 255, 255, {{ block.settings.glass_opacity | default: 0.2 }});
                           backdrop-filter: blur({{ block.settings.glass_blur | default: 10 }}px);
-                          width: {{ block.settings.glass_width | default: 800 }}px;
-                          height: {{ block.settings.glass_height | default: 120 }}px;
+                          width: {{ block.settings.glass_width | default: 900 }}px;
+                          height: {{ block.settings.glass_height | default: 280 }}px;
                           border-radius: {{ block.settings.glass_border_radius | default: 20 }}px;
-                          padding: {{ block.settings.glass_padding_vertical | default: 30 }}px {{ block.settings.glass_padding_horizontal | default: 40 }}px;
+                          box-sizing: border-box;
+                          display: flex;
+                          flex-direction: column;
+                          justify-content: space-between;
+                          align-items: center;
+                          position: relative;
+                          padding: 30px 20px 20px 20px;
+                          overflow: visible;
                         "
                       >
-                        <!-- Icon 1 -->
+                        <!-- Text Content Inside Glass -->
                         <div
-                          class="korean-icon-item"
-                          data-icon="1"
-                          onmouseover="activateIcon(1)"
-                          onmouseout="deactivateIcon(1)"
-                          onclick="selectIcon(1)"
+                          class="glass-text-content"
+                          style="
+                            text-align: {{ block.settings.text_alignment | default: 'center' }};
+                            width: 100%;
+                          "
                         >
-                          {% if block.settings.icon_1_image %}
-                            <img
-                              src="{{ block.settings.icon_1_image | image_url: width: 60 }}"
-                              alt="{{ block.settings.icon_1_title }}"
-                              class="icon-image"
-                              width="60"
-                              height="60"
-                            >
-                          {% else %}
-                            <div class="icon-placeholder">
-                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
-                                <path d="M15 20l5 5 10-10" stroke="currentColor" stroke-width="2" fill="none"/>
-                              </svg>
-                            </div>
-                          {% endif %}
-                          <span
-                            class="icon-title"
+                          <h1
+                            class="korean-main-heading"
                             style="
-                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
-                              color: {{ block.settings.icon_title_color | default: '#000000' }};
-                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                              font-size: {{ block.settings.main_heading_size | default: 48 }}px;
+                              color: {{ block.settings.main_heading_color | default: '#000000' }};
+                              font-weight: {{ block.settings.main_heading_weight | default: 700 }};
+                              margin: 0 0 5px 0;
                             "
+                            id="koreanMainHeading"
+                            data-default-heading="{{ block.settings.icon_1_heading | default: 'Advanced Repair Technology' }}"
                           >
-                            {{ block.settings.icon_1_title | default: 'Repair' }}
-                          </span>
-                          <div
-                            class="icon-underline"
-                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
-                          ></div>
+                            {{ block.settings.icon_1_heading | default: 'Advanced Repair Technology' }}
+                          </h1>
+                          <p
+                            class="korean-subheading"
+                            style="
+                              font-size: {{ block.settings.subheading_size | default: 18 }}px;
+                              color: {{ block.settings.subheading_color | default: '#000000' }};
+                              font-weight: {{ block.settings.subheading_weight | default: 400 }};
+                              margin: 0;
+                            "
+                            id="koreanSubheading"
+                            data-default-subheading="{{ block.settings.icon_1_subheading | default: 'Cellular regeneration and DNA repair mechanisms' }}"
+                          >
+                            {{
+                              block.settings.icon_1_subheading
+                              | default: 'Cellular regeneration and DNA repair mechanisms'
+                            }}
+                          </p>
                         </div>
 
-                        <!-- Icon 2 -->
+                        <!-- Icons positioned at bottom of glass -->
                         <div
-                          class="korean-icon-item"
-                          data-icon="2"
-                          onmouseover="activateIcon(2)"
-                          onmouseout="deactivateIcon(2)"
-                          onclick="selectIcon(2)"
+                          class="icons-wrapper"
+                          style="gap: {{ block.settings.icon_gap | default: 60 }}px;"
                         >
-                          {% if block.settings.icon_2_image %}
-                            <img
-                              src="{{ block.settings.icon_2_image | image_url: width: 60 }}"
-                              alt="{{ block.settings.icon_2_title }}"
-                              class="icon-image"
-                              width="60"
-                              height="60"
-                            >
-                          {% else %}
-                            <div class="icon-placeholder">
-                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M20 5l5 10h10l-8 6 3 10-10-7-10 7 3-10-8-6h10z" stroke="currentColor" stroke-width="2" fill="none"/>
-                              </svg>
-                            </div>
-                          {% endif %}
-                          <span
-                            class="icon-title"
-                            style="
-                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
-                              color: {{ block.settings.icon_title_color | default: '#000000' }};
-                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
-                            "
-                          >
-                            {{ block.settings.icon_2_title | default: 'Renew' }}
-                          </span>
+                          <!-- Icon 1 -->
                           <div
-                            class="icon-underline"
-                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
-                          ></div>
-                        </div>
+                            class="korean-icon-item active"
+                            data-icon="1"
+                            onmouseover="activateIcon(1)"
+                            onmouseout="deactivateIcon(1)"
+                            onclick="selectIcon(1)"
+                          >
+                            {% if block.settings.icon_1_image %}
+                              <img
+                                src="{{ block.settings.icon_1_image | image_url: width: 60 }}"
+                                alt="{{ block.settings.icon_1_title }}"
+                                class="icon-image"
+                                width="60"
+                                height="60"
+                              >
+                            {% else %}
+                              <div class="icon-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                  <rect x="8" y="8" width="24" height="24" rx="4" stroke="currentColor" stroke-width="2"/>
+                                  <path d="M16 20h8M20 16v8" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                              </div>
+                            {% endif %}
+                            <span
+                              class="icon-title"
+                              style="
+                                font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                                color: {{ block.settings.icon_title_color | default: '#000000' }};
+                                font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                              "
+                            >
+                              {{ block.settings.icon_1_title | default: 'Repair' }}
+                            </span>
+                            <div
+                              class="icon-underline"
+                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                            ></div>
+                          </div>
 
-                        <!-- Icon 3 -->
-                        <div
-                          class="korean-icon-item"
-                          data-icon="3"
-                          onmouseover="activateIcon(3)"
-                          onmouseout="deactivateIcon(3)"
-                          onclick="selectIcon(3)"
-                        >
-                          {% if block.settings.icon_3_image %}
-                            <img
-                              src="{{ block.settings.icon_3_image | image_url: width: 60 }}"
-                              alt="{{ block.settings.icon_3_title }}"
-                              class="icon-image"
-                              width="60"
-                              height="60"
-                            >
-                          {% else %}
-                            <div class="icon-placeholder">
-                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="20" cy="20" r="8" stroke="currentColor" stroke-width="2"/>
-                              </svg>
-                            </div>
-                          {% endif %}
-                          <span
-                            class="icon-title"
-                            style="
-                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
-                              color: {{ block.settings.icon_title_color | default: '#000000' }};
-                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
-                            "
-                          >
-                            {{ block.settings.icon_3_title | default: 'Protect' }}
-                          </span>
+                          <!-- Icon 2 -->
                           <div
-                            class="icon-underline"
-                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
-                          ></div>
-                        </div>
+                            class="korean-icon-item"
+                            data-icon="2"
+                            onmouseover="activateIcon(2)"
+                            onmouseout="deactivateIcon(2)"
+                            onclick="selectIcon(2)"
+                          >
+                            {% if block.settings.icon_2_image %}
+                              <img
+                                src="{{ block.settings.icon_2_image | image_url: width: 60 }}"
+                                alt="{{ block.settings.icon_2_title }}"
+                                class="icon-image"
+                                width="60"
+                                height="60"
+                              >
+                            {% else %}
+                              <div class="icon-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                  <circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="2"/>
+                                  <path d="M20 12v16M12 20h16" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                              </div>
+                            {% endif %}
+                            <span
+                              class="icon-title"
+                              style="
+                                font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                                color: {{ block.settings.icon_title_color | default: '#000000' }};
+                                font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                              "
+                            >
+                              {{ block.settings.icon_2_title | default: 'Renew' }}
+                            </span>
+                            <div
+                              class="icon-underline"
+                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                            ></div>
+                          </div>
 
-                        <!-- Icon 4 -->
-                        <div
-                          class="korean-icon-item"
-                          data-icon="4"
-                          onmouseover="activateIcon(4)"
-                          onmouseout="deactivateIcon(4)"
-                          onclick="selectIcon(4)"
-                        >
-                          {% if block.settings.icon_4_image %}
-                            <img
-                              src="{{ block.settings.icon_4_image | image_url: width: 60 }}"
-                              alt="{{ block.settings.icon_4_title }}"
-                              class="icon-image"
-                              width="60"
-                              height="60"
-                            >
-                          {% else %}
-                            <div class="icon-placeholder">
-                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M10 20c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                <path d="M15 20l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/>
-                              </svg>
-                            </div>
-                          {% endif %}
-                          <span
-                            class="icon-title"
-                            style="
-                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
-                              color: {{ block.settings.icon_title_color | default: '#000000' }};
-                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
-                            "
-                          >
-                            {{ block.settings.icon_4_title | default: 'Repair' }}
-                          </span>
+                          <!-- Icon 3 -->
                           <div
-                            class="icon-underline"
-                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
-                          ></div>
-                        </div>
+                            class="korean-icon-item"
+                            data-icon="3"
+                            onmouseover="activateIcon(3)"
+                            onmouseout="deactivateIcon(3)"
+                            onclick="selectIcon(3)"
+                          >
+                            {% if block.settings.icon_3_image %}
+                              <img
+                                src="{{ block.settings.icon_3_image | image_url: width: 60 }}"
+                                alt="{{ block.settings.icon_3_title }}"
+                                class="icon-image"
+                                width="60"
+                                height="60"
+                              >
+                            {% else %}
+                              <div class="icon-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                  <path d="M20 8L32 20L20 32L8 20L20 8Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                  <circle cx="20" cy="20" r="4" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                              </div>
+                            {% endif %}
+                            <span
+                              class="icon-title"
+                              style="
+                                font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                                color: {{ block.settings.icon_title_color | default: '#000000' }};
+                                font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                              "
+                            >
+                              {{ block.settings.icon_3_title | default: 'Protect' }}
+                            </span>
+                            <div
+                              class="icon-underline"
+                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                            ></div>
+                          </div>
 
-                        <!-- Icon 5 -->
-                        <div
-                          class="korean-icon-item"
-                          data-icon="5"
-                          onmouseover="activateIcon(5)"
-                          onmouseout="deactivateIcon(5)"
-                          onclick="selectIcon(5)"
-                        >
-                          {% if block.settings.icon_5_image %}
-                            <img
-                              src="{{ block.settings.icon_5_image | image_url: width: 60 }}"
-                              alt="{{ block.settings.icon_5_title }}"
-                              class="icon-image"
-                              width="60"
-                              height="60"
-                            >
-                          {% else %}
-                            <div class="icon-placeholder">
-                              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                                <path d="M20 5v30M5 20h30" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="2" fill="none"/>
-                              </svg>
-                            </div>
-                          {% endif %}
-                          <span
-                            class="icon-title"
-                            style="
-                              font-size: {{ block.settings.icon_title_size | default: 16 }}px;
-                              color: {{ block.settings.icon_title_color | default: '#000000' }};
-                              font-weight: {{ block.settings.icon_title_weight | default: 600 }};
-                            "
-                          >
-                            {{ block.settings.icon_5_title | default: 'Renew' }}
-                          </span>
+                          <!-- Icon 4 -->
                           <div
-                            class="icon-underline"
-                            style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
-                          ></div>
+                            class="korean-icon-item"
+                            data-icon="4"
+                            onmouseover="activateIcon(4)"
+                            onmouseout="deactivateIcon(4)"
+                            onclick="selectIcon(4)"
+                          >
+                            {% if block.settings.icon_4_image %}
+                              <img
+                                src="{{ block.settings.icon_4_image | image_url: width: 60 }}"
+                                alt="{{ block.settings.icon_4_title }}"
+                                class="icon-image"
+                                width="60"
+                                height="60"
+                              >
+                            {% else %}
+                              <div class="icon-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                  <rect x="10" y="10" width="20" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                                  <path d="M15 18l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                              </div>
+                            {% endif %}
+                            <span
+                              class="icon-title"
+                              style="
+                                font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                                color: {{ block.settings.icon_title_color | default: '#000000' }};
+                                font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                              "
+                            >
+                              {{ block.settings.icon_4_title | default: 'Enhance' }}
+                            </span>
+                            <div
+                              class="icon-underline"
+                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                            ></div>
+                          </div>
+
+                          <!-- Icon 5 -->
+                          <div
+                            class="korean-icon-item"
+                            data-icon="5"
+                            onmouseover="activateIcon(5)"
+                            onmouseout="deactivateIcon(5)"
+                            onclick="selectIcon(5)"
+                          >
+                            {% if block.settings.icon_5_image %}
+                              <img
+                                src="{{ block.settings.icon_5_image | image_url: width: 60 }}"
+                                alt="{{ block.settings.icon_5_title }}"
+                                class="icon-image"
+                                width="60"
+                                height="60"
+                              >
+                            {% else %}
+                              <div class="icon-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                  <path d="M8 20L20 8L32 20L20 32L8 20Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                  <path d="M16 20L20 16L24 20L20 24L16 20Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                              </div>
+                            {% endif %}
+                            <span
+                              class="icon-title"
+                              style="
+                                font-size: {{ block.settings.icon_title_size | default: 16 }}px;
+                                color: {{ block.settings.icon_title_color | default: '#000000' }};
+                                font-weight: {{ block.settings.icon_title_weight | default: 600 }};
+                              "
+                            >
+                              {{ block.settings.icon_5_title | default: 'Transform' }}
+                            </span>
+                            <div
+                              class="icon-underline"
+                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                            ></div>
+                          </div>
                         </div>
+                        <!-- Close icons-wrapper -->
                       </div>
+                      <!-- Close icons-container -->
                     </div>
+                    <!-- Close korean-icons-section -->
 
                     <!-- Hidden Content Data for JavaScript -->
                     <div class="korean-content-data" style="display: none;">
@@ -687,13 +926,363 @@
                   </div>
                 </div>
               </div>
+
+            {% elsif block.type == 'ingredient_showcase' %}
+              <div class="slide-content ingredient-slide">
+                <div class="ingredient-layout">
+                  <!-- Ingredient Cards Stack -->
+                  <div class="ingredient-cards-stack">
+                    <!-- Card 1 - FIRM -->
+                    <div
+                      class="ingredient-card"
+                      style="background-color: {{ block.settings.card_1_bg_color | default: '#f5f5f5' }};"
+                    >
+                      <div class="ingredient-card-left">
+                        {% if block.settings.card_1_image %}
+                          <img
+                            src="{{ block.settings.card_1_image | image_url: width: 400 }}"
+                            alt="{{ block.settings.card_1_ingredient_name }}"
+                            class="ingredient-card-image"
+                            width="400"
+                            height="200"
+                            style="object-fit: {{ block.settings.image_fit | default: 'cover' }};"
+                          >
+                        {% else %}
+                          <div class="ingredient-card-placeholder">
+                            <p>Upload ingredient image</p>
+                          </div>
+                        {% endif %}
+                      </div>
+
+                      <div class="ingredient-card-center">
+                        <div class="vertical-text-container">
+                          <h2
+                            class="vertical-text"
+                            style="
+                              font-size: {{ block.settings.vertical_text_size | default: 20 }}px;
+                              color: {{ block.settings.vertical_text_color | default: '#666666' }};
+                              font-weight: {{ block.settings.vertical_text_weight | default: 300 }};
+                              letter-spacing: {{ block.settings.vertical_letter_spacing | default: 3 }}px;
+                            "
+                          >
+                            {{ block.settings.card_1_vertical_text | default: 'FIRM' }}
+                          </h2>
+                        </div>
+                      </div>
+
+                      <div
+                        class="ingredient-card-right"
+                        style="background-color: {{ block.settings.card_1_right_bg_color | default: '#D3FFFF' }};"
+                      >
+                        <div class="ingredient-content">
+                          <h1
+                            class="ingredient-title"
+                            style="
+                              font-size: {{ block.settings.title_size | default: 26 }}px;
+                              color: {{ block.settings.title_color | default: '#000000' }};
+                              font-weight: {{ block.settings.title_weight | default: 700 }};
+                              text-align: left;
+                              margin-bottom: {{ block.settings.title_margin_bottom | default: 10 }}px;
+                            "
+                          >
+                            {{ block.settings.card_1_ingredient_name | default: 'RETINYL PALMITATE' }}
+                          </h1>
+
+                          <div
+                            class="ingredient-underline"
+                            style="
+                              width: {{ block.settings.underline_width | default: 80 }}px;
+                              height: {{ block.settings.underline_height | default: 3 }}px;
+                              background-color: {{ block.settings.underline_color | default: '#000000' }};
+                              margin: 0 0 {{ block.settings.underline_margin_bottom | default: 10 }}px 0;
+                            "
+                          ></div>
+
+                          <div class="ingredient-benefits">
+                            {% if block.settings.card_1_benefit_1 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 12 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: {{ block.settings.benefit_spacing | default: 8 }}px;
+                                "
+                              >
+                                • {{ block.settings.card_1_benefit_1 | default: 'Boosts collagen renewal' }}
+                              </p>
+                            {% endif %}
+                            {% if block.settings.card_1_benefit_2 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: {{ block.settings.benefit_spacing | default: 8 }}px;
+                                "
+                              >
+                                • {{ block.settings.card_1_benefit_2 | default: 'Smooths fine lines & texture' }}
+                              </p>
+                            {% endif %}
+                            {% if block.settings.card_1_benefit_3 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: 0;
+                                "
+                              >
+                                • {{ block.settings.card_1_benefit_3 | default: 'Supports firm, lifted appearance' }}
+                              </p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Card 2 - RESTORE -->
+                    <div
+                      class="ingredient-card"
+                      style="background-color: {{ block.settings.card_2_bg_color | default: '#f5f5f5' }};"
+                    >
+                      <div class="ingredient-card-left">
+                        {% if block.settings.card_2_image %}
+                          <img
+                            src="{{ block.settings.card_2_image | image_url: width: 400 }}"
+                            alt="{{ block.settings.card_2_ingredient_name }}"
+                            class="ingredient-card-image"
+                            width="400"
+                            height="200"
+                            style="object-fit: {{ block.settings.image_fit | default: 'cover' }};"
+                          >
+                        {% else %}
+                          <div class="ingredient-card-placeholder">
+                            <p>Upload ingredient image</p>
+                          </div>
+                        {% endif %}
+                      </div>
+
+                      <div class="ingredient-card-center">
+                        <div class="vertical-text-container">
+                          <h2
+                            class="vertical-text"
+                            style="
+                              font-size: {{ block.settings.vertical_text_size | default: 20 }}px;
+                              color: {{ block.settings.vertical_text_color | default: '#666666' }};
+                              font-weight: {{ block.settings.vertical_text_weight | default: 300 }};
+                              letter-spacing: {{ block.settings.vertical_letter_spacing | default: 3 }}px;
+                            "
+                          >
+                            {{ block.settings.card_2_vertical_text | default: 'RESTORE' }}
+                          </h2>
+                        </div>
+                      </div>
+
+                      <div
+                        class="ingredient-card-right"
+                        style="background-color: {{ block.settings.card_2_right_bg_color | default: '#D3FFFF' }};"
+                      >
+                        <div class="ingredient-content">
+                          <h1
+                            class="ingredient-title"
+                            style="
+                              font-size: {{ block.settings.title_size | default: 26 }}px;
+                              color: {{ block.settings.title_color | default: '#000000' }};
+                              font-weight: {{ block.settings.title_weight | default: 700 }};
+                              text-align: left;
+                              margin-bottom: {{ block.settings.title_margin_bottom | default: 10 }}px;
+                            "
+                          >
+                            {{ block.settings.card_2_ingredient_name | default: 'NIACINAMIDE' }}
+                          </h1>
+
+                          <div
+                            class="ingredient-underline"
+                            style="
+                              width: {{ block.settings.underline_width | default: 80 }}px;
+                              height: {{ block.settings.underline_height | default: 3 }}px;
+                              background-color: {{ block.settings.underline_color | default: '#000000' }};
+                              margin: 0 0 {{ block.settings.underline_margin_bottom | default: 10 }}px 0;
+                            "
+                          ></div>
+
+                          <div class="ingredient-benefits">
+                            {% if block.settings.card_2_benefit_1 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: {{ block.settings.benefit_spacing | default: 4 }}px;
+                                "
+                              >
+                                • {{ block.settings.card_2_benefit_1 | default: 'Strengthens skin barrier' }}
+                              </p>
+                            {% endif %}
+                            {% if block.settings.card_2_benefit_2 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: {{ block.settings.benefit_spacing | default: 4 }}px;
+                                "
+                              >
+                                • {{ block.settings.card_2_benefit_2 | default: 'Minimizes pores' }}
+                              </p>
+                            {% endif %}
+                            {% if block.settings.card_2_benefit_3 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: 0;
+                                "
+                              >
+                                • {{ block.settings.card_2_benefit_3 | default: 'Keeps skin hydrated and balanced' }}
+                              </p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Card 3 - BRIGHTEN -->
+                    <div
+                      class="ingredient-card"
+                      style="background-color: {{ block.settings.card_3_bg_color | default: '#f5f5f5' }};"
+                    >
+                      <div class="ingredient-card-left">
+                        {% if block.settings.card_3_image %}
+                          <img
+                            src="{{ block.settings.card_3_image | image_url: width: 400 }}"
+                            alt="{{ block.settings.card_3_ingredient_name }}"
+                            class="ingredient-card-image"
+                            width="400"
+                            height="200"
+                            style="object-fit: {{ block.settings.image_fit | default: 'cover' }};"
+                          >
+                        {% else %}
+                          <div class="ingredient-card-placeholder">
+                            <p>Upload ingredient image</p>
+                          </div>
+                        {% endif %}
+                      </div>
+
+                      <div class="ingredient-card-center">
+                        <div class="vertical-text-container">
+                          <h2
+                            class="vertical-text"
+                            style="
+                              font-size: {{ block.settings.vertical_text_size | default: 20 }}px;
+                              color: {{ block.settings.vertical_text_color | default: '#666666' }};
+                              font-weight: {{ block.settings.vertical_text_weight | default: 300 }};
+                              letter-spacing: {{ block.settings.vertical_letter_spacing | default: 3 }}px;
+                            "
+                          >
+                            {{ block.settings.card_3_vertical_text | default: 'BRIGHTEN' }}
+                          </h2>
+                        </div>
+                      </div>
+
+                      <div
+                        class="ingredient-card-right"
+                        style="background-color: {{ block.settings.card_3_right_bg_color | default: '#D3FFFF' }};"
+                      >
+                        <div class="ingredient-content">
+                          <h1
+                            class="ingredient-title"
+                            style="
+                              font-size: {{ block.settings.title_size | default: 26 }}px;
+                              color: {{ block.settings.title_color | default: '#000000' }};
+                              font-weight: {{ block.settings.title_weight | default: 700 }};
+                              text-align: left;
+                              margin-bottom: {{ block.settings.title_margin_bottom | default: 10 }}px;
+                            "
+                          >
+                            {{ block.settings.card_3_ingredient_name | default: 'VITAMIN C (ETHYL ASCORBIC ACID)' }}
+                          </h1>
+
+                          <div
+                            class="ingredient-underline"
+                            style="
+                              width: {{ block.settings.underline_width | default: 80 }}px;
+                              height: {{ block.settings.underline_height | default: 3 }}px;
+                              background-color: {{ block.settings.underline_color | default: '#000000' }};
+                              margin: 0 0 {{ block.settings.underline_margin_bottom | default: 10 }}px 0;
+                            "
+                          ></div>
+
+                          <div class="ingredient-benefits">
+                            {% if block.settings.card_3_benefit_1 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: {{ block.settings.benefit_spacing | default: 4 }}px;
+                                "
+                              >
+                                • {{ block.settings.card_3_benefit_1 | default: 'Enhances radiance & glow' }}
+                              </p>
+                            {% endif %}
+                            {% if block.settings.card_3_benefit_2 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: {{ block.settings.benefit_spacing | default: 8 }}px;
+                                "
+                              >
+                                • {{ block.settings.card_3_benefit_2 | default: 'Reduces dullness and uneven tone' }}
+                              </p>
+                            {% endif %}
+                            {% if block.settings.card_3_benefit_3 != blank %}
+                              <p
+                                class="benefit-item"
+                                style="
+                                  font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
+                                  color: {{ block.settings.benefit_text_color | default: '#666666' }};
+                                  font-weight: {{ block.settings.benefit_text_weight | default: 400 }};
+                                  text-align: left;
+                                  margin-bottom: 0;
+                                "
+                              >
+                                • {{ block.settings.card_3_benefit_3 | default: 'Boosts natural luminosity' }}
+                              </p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             {% endif %}
           </div>
         {% endfor %}
       {% else %}
         <!-- Default content when no blocks are added -->
-        <div class="slide">
-          <div class="slide-content molecular-slide">
+        <div class="slide" style="display: block !important; visibility: visible !important;">
+          <div class="slide-content molecular-slide" style="display: flex !important; visibility: visible !important;">
             <div class="slide-layout">
               <div class="left-panel">
                 <h1 class="main-title">
@@ -716,28 +1305,27 @@
                     <p>Advanced barrier repair</p>
                   </div>
                 </div>
-                <div class="molecular-icons">
-                  <div class="icons-row">
-                    <div class="icon-container"><div class="icon-placeholder pdrn-icon"></div></div>
-                    <div class="icon-container"><div class="icon-placeholder ceramides-icon"></div></div>
-                    <div class="icon-container"><div class="icon-placeholder peptides-icon"></div></div>
-                  </div>
-                  <div class="titles-row">
-                    <h5 class="icon-title">PDRN</h5>
-                    <h5 class="icon-title">CERAMIDES</h5>
-                    <h5 class="icon-title">PEPTIDES</h5>
-                  </div>
-                  <div class="descriptions-row">
-                    <p class="icon-desc">DNA-based rejuvenation.</p>
-                    <p class="icon-desc">Barrier strength and protration</p>
-                    <p class="icon-desc">Collagen synthesis and elasticity</p>
-                  </div>
+                <div class="molecular-icons"></div>
+                <div class="icons-row">
+                  <div class="icon-container"><div class="icon-placeholder pdrn-icon"></div></div>
+                  <div class="icon-container"><div class="icon-placeholder ceramides-icon"></div></div>
+                  <div class="icon-container"><div class="icon-placeholder peptides-icon"></div></div>
+                </div>
+                <div class="titles-row">
+                  <h5 class="icon-title">PDRN</h5>
+                  <h5 class="icon-title">CERAMIDES</h5>
+                  <h5 class="icon-title">PEPTIDES</h5>
+                </div>
+                <div class="descriptions-row">
+                  <p class="icon-desc">DNA-based rejuvenation.</p>
+                  <p class="icon-desc">Barrier strength and protration</p>
+                  <p class="icon-desc">Collagen synthesis and elasticity</p>
                 </div>
               </div>
-              <div class="right-panel">
-                <div class="molecular-background">
-                  <div class="molecular-pattern"></div>
-                </div>
+            </div>
+            <div class="right-panel">
+              <div class="image-placeholder">
+                <p>Upload your background image</p>
               </div>
             </div>
           </div>
@@ -746,40 +1334,44 @@
     </div>
 
     <!-- Navigation Arrows -->
-    {% if section.blocks.size > 1 %}
-      <div class="slider-navigation">
-        <button class="nav-arrow nav-prev" onclick="previousSlide()">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button class="nav-arrow nav-next" onclick="nextSlide()">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    {% endif %}
+    <div class="slider-navigation">
+      <button class="nav-arrow nav-prev" onclick="previousSlide()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="nav-arrow nav-next" onclick="nextSlide()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </section>
 
 <style>
+  /* Global overflow fix */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
   .science-slider-section {
-    background: {{ section.settings.background_color | default: '#f8f9fa' }};
-    min-height: 100vh;
-    height: 100vh;
-    display: flex;
+    background: {{ section.settings.background_color | default: '#f8f9fa' }} !important;
+    min-height: 95vh !important;
+    height: 95vh !important;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
     padding: 0;
-    margin: {{ section.settings.section_margin_top | default: 0 }}px 0 {{ section.settings.section_margin_bottom | default: 0 }}px 0;
+    margin: 0;
     width: 100vw;
+    max-width: 100vw;
+    box-sizing: border-box;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .slider-container {
@@ -788,47 +1380,294 @@
     margin: 0;
     position: relative;
     padding: 0;
+    overflow: hidden;
   }
 
   .slides-wrapper {
     display: flex;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     height: 100%;
+    width: 500vw; /* Default for 5 slides, will be updated by JavaScript */
+    overflow: hidden;
   }
 
   .slide {
-    min-width: 100%;
+    min-width: 100vw;
+    max-width: 100vw;
+    width: 100vw;
     padding: 0;
-    height: 100vh;
+    height: 95vh;
+    display: flex !important;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .slide-content {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden !important;
+    box-sizing: border-box;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+    justify-content: center;
+  }
+
+  /* Molecular Slide Styles - 50/50 Layout */
+  .molecular-slide {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
   }
 
-  .slide-content {
+  .molecular-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
+    height: 100vh;
+    gap: 0;
+    overflow: hidden;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  .molecular-left {
+    padding: 20px 50px 40px 20px;
+    display: flex;
+    flex-direction: column;2
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
     height: 100%;
+    box-sizing: border-box;
+  }
+
+  .molecular-content {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .molecular-main-title {
+    font-size: clamp(2.2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: left;
+  }
+
+  .molecular-subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    color: #00bcd4;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    text-align: left;
+  }
+
+  .molecular-description {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    color: #666666;
+    margin: 0 0 25px 0;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .molecular-feature-boxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+    width: 120%
+  }
+
+  .molecular-feature-box {
+    background: #D3FFFF;
+    padding: 25px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  .feature-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+  }
+
+  .feature-desc {
+    font-size: 16px;
+    color: #666666;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .molecular-icons-section {
+    width: 100%;
+  }
+
+  .molecular-icons-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 20px;
+  }
+
+  .molecular-icon-item {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    flex: 0 0 auto;
+    width: 120px;
+  }
+
+  .molecular-icon {
+
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .molecular-icon-placeholder {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    background: #00bcd4;
+    color: white;
+  }
+
+  .pdrn-icon::after {
+    content: "DNA";
+  }
+
+  .ceramides-icon::after {
+    content: "CER";
+  }
+
+  .peptides-icon::after {
+    content: "PEP";
+  }
+
+  .molecular-titles-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 80px;
+    margin-bottom: 8px;
+  }
+
+  .molecular-titles-row.align-center {
     justify-content: center;
   }
 
-  /* Molecular Slide Styles */
-  .molecular-slide .slide-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    height: 100vh;
+  .molecular-titles-row.align-right {
+    justify-content: flex-end;
+  }
+
+  .molecular-icon-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+    width: 120px;
+    flex: 0 0 120px;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .molecular-descriptions-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 80px;
+  }
+
+  .molecular-descriptions-row.align-center {
+    justify-content: center;
+  }
+
+  .molecular-descriptions-row.align-right {
+    justify-content: flex-end;
+  }
+
+  .molecular-icon-desc {
+    font-size: 14px;
+    color: #00bcd4;
+    margin: 0;
+    line-height: 1.3;
+    text-align: left;
+    width: 120px;
+    flex: 0 0 120px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: none;
+    max-height: 3.4em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .molecular-right {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .molecular-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .molecular-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 
   .left-panel {
-    background: #ffffff;
-    padding: 40px 35px;
-    display: flex;
+    background: #ffffff !important;
+    padding: 35px 30px;
+    display: flex !important;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
     overflow: hidden;
     height: 100%;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-align: left;
   }
 
   .right-panel {
@@ -837,13 +1676,29 @@
     overflow: hidden;
   }
 
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
   .main-title {
-    font-size: clamp(2.2rem, 3.5vw, 2.8rem);
-    font-weight: 700;
-    color: #000000;
-    margin: 0 0 20px 0;
+    font-size: clamp(2.2rem, 3.5vw, 2.8rem) !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+    margin: 0 0 20px 0 !important;
     line-height: 0.9;
     letter-spacing: -0.02em;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-align: left !important;
   }
 
   .slide-header {
@@ -864,13 +1719,16 @@
     color: #666;
     margin-bottom: 20px;
     line-height: 1.4;
+    text-align: left !important;
   }
 
   .feature-boxes {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin: 20px 0 30px 0;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   .feature-box {
@@ -880,51 +1738,56 @@
   }
 
   .feature-box h4 {
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    font-size: clamp(1.5rem, 1.5vw, 1.1rem);
     font-weight: 700;
     color: #000000;
     margin: 0 0 8px 0;
   }
 
   .feature-box p {
-    font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+    font-size: clamp(0.95rem, 1.2vw, 0.9rem);
     color: #333333;
     margin: 0;
     line-height: 1.3;
   }
 
   .molecular-icons {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     margin-top: 15px;
+    visibility: visible !important;
   }
 
   .icons-row {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-items: start;
+    gap: 30px;
+    justify-items: flex-start;
+    visibility: visible !important;
   }
 
   .titles-row {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 30px;
     text-align: left;
+    visibility: visible !important;
   }
 
   .descriptions-row {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 30px;
     text-align: left;
+    visibility: visible !important;
   }
 
   .icon-container {
-    display: flex;
+    display: flex !important;
     justify-content: flex-start;
     align-items: center;
+    visibility: visible !important;
   }
 
   .molecular-icon {
@@ -945,18 +1808,45 @@
   }
 
   .pdrn-icon {
-    background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+    background: #00bcd4;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .pdrn-icon::after {
+    content: "DNA";
   }
 
   .ceramides-icon {
-    background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+    background: #00bcd4;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .ceramides-icon::after {
+    content: "CER";
   }
 
   .peptides-icon {
-    background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+    background: #00bcd4;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .peptides-icon::after {
+    content: "PEP";
   }
 
   .icon-title {
@@ -1333,6 +2223,9 @@
     width: 100%;
     height: 100vh;
     position: relative;
+    overflow: hidden !important;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   .clinical-left {
@@ -1414,6 +2307,7 @@
     max-height: none;
     overflow-y: visible;
     width: 100%;
+    align-items: flex-start;
   }
 
   .clinical-card {
@@ -1427,8 +2321,8 @@
     min-height: {{ section.settings.card_min_height | default: 45 }}px;
     max-height: {{ section.settings.card_max_height | default: 60 }}px;
     border-radius: {{ section.settings.card_border_radius | default: 8 }}px;
-    width: {{ section.settings.card_width | default: 100 }}%;
     box-sizing: border-box;
+    margin: 0;
   }
 
   .clinical-card:hover {
@@ -1538,6 +2432,9 @@
     width: 100%;
     height: 100vh;
     gap: 0;
+    overflow: hidden !important;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   .technology-image-section {
@@ -1697,7 +2594,7 @@
   .content-item {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
+    gap: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     padding: 20px 0;
@@ -1768,7 +2665,7 @@
     color: #00bcd4;
   }
 
-  /* Korean Beauty Showcase Slide Styles */
+  /* Korean Beauty Showcase - Slide-Specific Styles */
   .korean-beauty-slide {
     background: #ffffff;
     width: 100%;
@@ -1781,7 +2678,9 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    overflow: hidden !important;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   .korean-beauty-background {
@@ -1812,7 +2711,7 @@
     font-weight: 600;
   }
 
-  .korean-beauty-overlay {
+  .korean-beauty-slide .korean-beauty-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -1821,135 +2720,334 @@
     z-index: 10;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 60px;
-  }
-
-  .korean-content-area {
-    max-width: 600px;
-    transition: all 0.5s ease;
-  }
-
-  .korean-main-heading {
-    margin: 0 0 20px 0;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    transition: all 0.5s ease;
-  }
-
-  .korean-subheading {
-    margin: 0;
-    line-height: 1.5;
-    max-width: 500px;
-    transition: all 0.5s ease;
-  }
-
-  .korean-icons-section {
-    align-self: center;
-    width: 100%;
-    display: flex;
     justify-content: center;
-  }
-
-  .icons-container {
-    display: flex;
-    gap: 40px;
     align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
+    padding: 60px;
+    padding-bottom: 120px;
+  }
+
+  .korean-beauty-slide .korean-icons-section {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+  }
+
+  .korean-beauty-slide .icons-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    width: 900px;
+    height: 280px;
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px 20px 20px;
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 auto;
   }
 
-  .korean-icon-item {
+  .korean-beauty-slide .glass-text-content {
+    text-align: center;
+    width: 100%;
+  }
+
+  .korean-beauty-slide .korean-main-heading {
+    font-size: 48px;
+    color: #000000;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .korean-beauty-slide .korean-subheading {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+    max-width: 100%;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .korean-beauty-slide .icons-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .korean-beauty-slide .korean-icon-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
     padding: 10px;
   }
 
-  .korean-icon-item:hover {
+  .korean-beauty-slide .korean-icon-item:hover {
     transform: translateY(-5px);
   }
 
-  .korean-icon-item:hover .icon-underline {
+  .korean-beauty-slide .korean-icon-item:hover .icon-underline {
     width: 100%;
   }
 
-  .korean-icon-item:hover .icon-title {
-    color: var(--underline-color, #00bcd4);
+  .korean-beauty-slide .korean-icon-item:hover .icon-title {
+    color: #00bcd4;
   }
 
-  .korean-icon-item.active .icon-underline {
+  .korean-beauty-slide .korean-icon-item.active .icon-underline {
     width: 100%;
   }
 
-  .korean-icon-item.active .icon-title {
-    color: var(--underline-color, #00bcd4);
+  .korean-beauty-slide .korean-icon-item.active .icon-title {
+    color: #00bcd4;
   }
 
-  .icon-image {
-    width: 60px;
-    height: 60px;
+  .korean-beauty-slide .icon-image {
+    width: 50px;
+    height: 50px;
     object-fit: contain;
     transition: all 0.3s ease;
   }
 
-  .icon-placeholder {
-    width: 60px;
-    height: 60px;
+  .korean-beauty-slide .icon-placeholder {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+
+  .korean-beauty-slide .korean-icon-item:hover .icon-placeholder {
+    color: #00bcd4;
+  }
+
+  .korean-beauty-slide .icon-title {
+    font-size: 16px;
+    color: #000000;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin: 0;
+  }
+
+  .korean-beauty-slide .icon-underline {
+    width: 0;
+    height: 2px;
+    background-color: #00bcd4;
+    transition: all 0.3s ease;
+    margin-top: 2px;
+  }
+
+  .korean-beauty-slide .korean-content-data {
+    display: none;
+  }
+
+  /* Ingredient Showcase Slide Styles */
+  .ingredient-slide {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Ingredient Showcase - Original 3-Column Layout */
+  .ingredient-layout {
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden !important;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  .ingredient-cards-stack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .ingredient-card {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    width: 100%;
+    height: calc((100% - 44px) / 3);
+    gap: 0;
+    border-bottom: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .ingredient-card:last-child {
+    border-bottom: none;
+  }
+
+  .ingredient-card-left {
+    background: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ingredient-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ingredient-card-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #666;
-    transition: all 0.3s ease;
-  }
-
-  .korean-icon-item:hover .icon-placeholder {
-    color: var(--underline-color, #00bcd4);
-  }
-
-  .icon-title {
-    text-align: center;
-    transition: all 0.3s ease;
-    margin: 0;
-  }
-
-  .icon-underline {
-    width: 0;
-    height: 2px;
-    transition: all 0.3s ease;
-    margin-top: 4px;
-  }
-
-  .korean-content-data {
-    display: none;
-  }
-    transition: all 0.3s ease;
-  }
-
-  .korean-icon-item:hover .icon-placeholder {
-    color: #00bcd4;
-  }
-
-  .icon-title {
+    font-size: 1.2rem;
     font-weight: 600;
-    color: #000000;
-    text-align: center;
-    transition: all 0.3s ease;
-    margin: 0;
   }
 
-  .icon-underline {
-    width: 0;
-    height: 2px;
-    background: transparent;
-    transition: all 0.3s ease;
-    margin-top: 4px;
+  .ingredient-card-center {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .vertical-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 20px;
+    color: #666666;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin: 0;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .ingredient-card-right {
+    background: #D3FFFF;
+    padding: 30px 20px 30px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .ingredient-content {
+    max-width: 100%;
+    width: 100%;
+    text-align: left;
+    padding-left: 0;
+    box-sizing: border-box;
+  }
+
+  .ingredient-title {
+    font-size: 26px;
+    color: #000000;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+
+  .ingredient-underline {
+    width: 80px;
+    height: 3px;
+    background-color: #000000;
+    margin: 0 0 30px 0;
+  }
+
+  .ingredient-benefits {
+    text-align: left;
+  }
+
+  .benefit-item {
+    font-size: 16px;
+    color: #666666;
+    font-weight: 400;
+    text-align: left;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .benefit-item:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .ingredient-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto 1fr;
+    }
+
+    .ingredient-card {
+      grid-template-columns: 1fr;
+      grid-template-rows: 200px auto 1fr;
+      height: auto;
+      min-height: 400px;
+    }
+
+    .ingredient-card-center {
+      order: 2;
+      padding: 20px 0;
+    }
+
+    .vertical-text-container {
+      transform: rotate(0deg);
+    }
+
+    .vertical-text {
+      writing-mode: horizontal-tb;
+      font-size: 20px;
+      letter-spacing: 3px;
+    }
+
+    .ingredient-card-right {
+      order: 3;
+      padding: 40px 20px;
+    }
+
+    .ingredient-content {
+      text-align: center;
+    }
   }
 
   .slider-navigation {
@@ -1963,25 +3061,27 @@
   }
 
   .nav-arrow {
-    width: {{ section.settings.nav_arrow_width | default: 50 }}px;
-    height: {{ section.settings.nav_arrow_height | default: 50 }}px;
+    width: {{ section.settings.nav_arrow_width | default: 60 }}px;
+    height: {{ section.settings.nav_arrow_height | default: 60 }}px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid #00bcd4;
+    background: rgba(255, 255, 255, 0.9);
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000000;
+    color: #00bcd4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .nav-arrow:hover {
-    background: #D3FFFF;
-    border-color: #D3FFFF;
+    background: #d3ffff;
+    border-color: #d3ffff;
     color: #000000;
     transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(211, 255, 255, 0.3);
   }
 
   @media (max-width: 768px) {
@@ -1996,9 +3096,66 @@
       padding: 0;
     }
 
-    .molecular-slide .slide-layout {
-      grid-template-columns: 1fr;
+    .molecular-slide {
       height: 100vh;
+      padding: 0;
+    }
+
+    .molecular-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      height: 100vh;
+    }
+
+    .molecular-left {
+      padding: 30px 20px;
+      justify-content: flex-start;
+    }
+
+    .molecular-content {
+      max-width: 100%;
+    }
+
+    .molecular-main-title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    .molecular-subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .molecular-description {
+      font-size: 0.9rem;
+      margin-bottom: 25px;
+    }
+
+    .molecular-feature-boxes {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .molecular-icons-row,
+    .molecular-titles-row,
+    .molecular-descriptions-row {
+      gap: 20px;
+    }
+
+    .molecular-icon,
+    .molecular-icon-placeholder {
+      width: 50px;
+      height: 50px;
+    }
+
+    .molecular-icon-title,
+    .molecular-icon-desc {
+      flex: 0 0 50px;
+    }
+
+    .molecular-right {
+      min-height: 300px;
     }
 
     .ceramide-layout {
@@ -2075,10 +3232,10 @@
     }
 
     .clinical-card {
-      width: 100% !important;
       min-height: calc({{ section.settings.card_min_height | default: 45 }}px * 0.9);
       max-height: calc({{ section.settings.card_max_height | default: 60 }}px * 0.9);
       padding: calc({{ section.settings.card_padding_vertical | default: 12 }}px * 0.8) calc({{ section.settings.card_padding_horizontal | default: 16 }}px * 0.8);
+      margin: 0;
     }
 
     .card-title {
@@ -2219,6 +3376,15 @@
     .icons-container {
       width: 90% !important;
       height: auto !important;
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .icons-wrapper {
       padding: 20px 15px !important;
       gap: 20px !important;
       flex-wrap: wrap;
@@ -2292,6 +3458,12 @@
 
     totalSlides = document.querySelectorAll('.slide').length;
 
+    // Ensure we have at least 1 slide (default content)
+    if (totalSlides === 0) totalSlides = 1;
+
+    // Set slides wrapper width to prevent overflow
+    slidesWrapper.style.width = totalSlides * 100 + 'vw';
+
     // Keyboard navigation
     document.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft') {
@@ -2303,6 +3475,9 @@
 
     // Initialize first slide
     goToSlide(0);
+
+    // Debug log
+    console.log('Science Slider initialized with', totalSlides, 'slides');
   });
 
   function showCardImage(cardNumber) {
@@ -2332,23 +3507,49 @@
   }
 
   function goToSlide(slideIndex) {
-    if (slideIndex < 0 || slideIndex >= totalSlides) return;
+    if (totalSlides === 0) return;
 
-    currentSlide = slideIndex;
     const slidesWrapper = document.getElementById('slidesWrapper');
-    const translateX = -slideIndex * 100;
+    if (!slidesWrapper) return;
 
-    slidesWrapper.style.transform = `translateX(${translateX}%)`;
+    // Handle infinite loop logic
+    if (slideIndex >= totalSlides) {
+      // Going forward past last slide - jump to first without animation
+      currentSlide = 0;
+      slidesWrapper.style.transition = 'none';
+      slidesWrapper.style.transform = `translateX(0vw)`;
+
+      // Re-enable transition after a brief moment
+      setTimeout(() => {
+        slidesWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }, 50);
+    } else if (slideIndex < 0) {
+      // Going backward past first slide - jump to last without animation
+      currentSlide = totalSlides - 1;
+      slidesWrapper.style.transition = 'none';
+      slidesWrapper.style.transform = `translateX(-${(totalSlides - 1) * 100}vw)`;
+
+      // Re-enable transition after a brief moment
+      setTimeout(() => {
+        slidesWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }, 50);
+    } else {
+      // Normal slide transition
+      currentSlide = slideIndex;
+      const translateX = -slideIndex * 100;
+      slidesWrapper.style.transform = `translateX(${translateX}vw)`;
+    }
+
+    // Debug log
+    console.log('Going to slide', currentSlide, 'translateX:', -currentSlide * 100 + 'vw');
   }
 
   function nextSlide() {
-    const nextIndex = (currentSlide + 1) % totalSlides;
-    goToSlide(nextIndex);
+    goToSlide(currentSlide + 1);
   }
 
   function previousSlide() {
-    const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-    goToSlide(prevIndex);
+    goToSlide(currentSlide - 1);
   }
 
   // Alias for backward compatibility
@@ -2420,10 +3621,20 @@
   });
 
   // Korean Beauty Showcase Interactive Functions
+  let currentSelectedIcon = 1; // Track the currently selected icon (default to first)
+  let isHovering = false; // Track if user is currently hovering
+
   function activateIcon(iconNumber) {
     const iconItem = document.querySelector(`.korean-icon-item[data-icon="${iconNumber}"]`);
     if (iconItem) {
+      // Remove active class from all icons first
+      document.querySelectorAll('.korean-icon-item').forEach((item) => {
+        item.classList.remove('active');
+      });
+
+      // Add active class to current icon
       iconItem.classList.add('active');
+      isHovering = true;
 
       // Change content on hover with smoother transition
       const contentData = document.querySelector(`.korean-content-data [data-content="${iconNumber}"]`);
@@ -2435,9 +3646,12 @@
         const subHeadingElement = document.getElementById('koreanSubheading');
 
         if (mainHeading && subHeadingElement) {
+          // Get transition speed from settings or use default
+          const transitionSpeed = parseFloat(mainHeading.getAttribute('data-transition-speed') || '0.8');
+
           // Smoother fade out
-          mainHeading.style.transition = 'opacity 0.4s ease-in-out';
-          subHeadingElement.style.transition = 'opacity 0.4s ease-in-out';
+          mainHeading.style.transition = `opacity 0.3s ease-in-out`;
+          subHeadingElement.style.transition = `opacity 0.3s ease-in-out`;
 
           mainHeading.style.opacity = '0';
           subHeadingElement.style.opacity = '0';
@@ -2451,53 +3665,69 @@
               mainHeading.style.opacity = '1';
               subHeadingElement.style.opacity = '1';
             }, 50);
-          }, 400);
+          }, 150);
         }
       }
     }
   }
 
   function deactivateIcon(iconNumber) {
-    const iconItem = document.querySelector(`.korean-icon-item[data-icon="${iconNumber}"]`);
-    if (iconItem) {
-      iconItem.classList.remove('active');
+    isHovering = false;
 
-      // Reset to original content with smoother transition
-      const mainHeading = document.getElementById('koreanMainHeading');
-      const subHeadingElement = document.getElementById('koreanSubheading');
+    // Only reset if we're not hovering and this isn't the currently selected icon
+    setTimeout(() => {
+      if (!isHovering) {
+        // Remove active class from all icons
+        document.querySelectorAll('.korean-icon-item').forEach((item) => {
+          item.classList.remove('active');
+        });
 
-      if (mainHeading && subHeadingElement) {
-        const originalHeading =
-          mainHeading.getAttribute('data-original') ||
-          mainHeading.getAttribute('data-default-heading') ||
-          'Where Korean beauty meets Precision';
-        const originalSubheading =
-          subHeadingElement.getAttribute('data-original') ||
-          subHeadingElement.getAttribute('data-default-subheading') ||
-          'Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.';
+        // Reactivate the currently selected icon
+        const selectedIcon = document.querySelector(`.korean-icon-item[data-icon="${currentSelectedIcon}"]`);
+        if (selectedIcon) {
+          selectedIcon.classList.add('active');
+        }
 
-        // Smoother fade out
-        mainHeading.style.transition = 'opacity 0.4s ease-in-out';
-        subHeadingElement.style.transition = 'opacity 0.4s ease-in-out';
+        // Reset to the currently selected icon's content
+        const contentData = document.querySelector(`.korean-content-data [data-content="${currentSelectedIcon}"]`);
+        if (contentData) {
+          const heading = contentData.querySelector('.content-heading').textContent;
+          const subheading = contentData.querySelector('.content-subheading').textContent;
 
-        mainHeading.style.opacity = '0';
-        subHeadingElement.style.opacity = '0';
+          const mainHeading = document.getElementById('koreanMainHeading');
+          const subHeadingElement = document.getElementById('koreanSubheading');
 
-        setTimeout(() => {
-          mainHeading.textContent = originalHeading;
-          subHeadingElement.textContent = originalSubheading;
+          if (mainHeading && subHeadingElement) {
+            // Get transition speed from settings or use default
+            const transitionSpeed = parseFloat(mainHeading.getAttribute('data-transition-speed') || '0.8');
 
-          // Smoother fade in
-          setTimeout(() => {
-            mainHeading.style.opacity = '1';
-            subHeadingElement.style.opacity = '1';
-          }, 50);
-        }, 400);
+            // Smoother fade out
+            mainHeading.style.transition = `opacity 0.3s ease-in-out`;
+            subHeadingElement.style.transition = `opacity 0.3s ease-in-out`;
+
+            mainHeading.style.opacity = '0';
+            subHeadingElement.style.opacity = '0';
+
+            setTimeout(() => {
+              mainHeading.textContent = heading;
+              subHeadingElement.textContent = subheading;
+
+              // Smoother fade in
+              setTimeout(() => {
+                mainHeading.style.opacity = '1';
+                subHeadingElement.style.opacity = '1';
+              }, 50);
+            }, 150);
+          }
+        }
       }
-    }
+    }, 100); // Small delay to allow for quick hover transitions
   }
 
   function selectIcon(iconNumber) {
+    // Update the currently selected icon
+    currentSelectedIcon = iconNumber;
+
     // Remove active state from all icons
     document.querySelectorAll('.korean-icon-item').forEach((item) => {
       item.classList.remove('active');
@@ -2506,11 +3736,10 @@
     // Add active state to selected icon
     activateIcon(iconNumber);
 
-    // Keep the content changed permanently until another icon is selected
-    console.log(`Icon ${iconNumber} selected`);
+    console.log(`Icon ${iconNumber} selected and set as current`);
   }
 
-  // Store original content on page load
+  // Store original content on page load and initialize first icon as active
   document.addEventListener('DOMContentLoaded', function () {
     const mainHeading = document.getElementById('koreanMainHeading');
     const subHeadingElement = document.getElementById('koreanSubheading');
@@ -2522,6 +3751,14 @@
       // Store default values from theme settings
       mainHeading.setAttribute('data-default-heading', mainHeading.textContent);
       subHeadingElement.setAttribute('data-default-subheading', subHeadingElement.textContent);
+
+      // Store transition speed
+      mainHeading.setAttribute('data-transition-speed', '0.8');
+
+      // Initialize first icon as selected (not just active)
+      setTimeout(() => {
+        selectIcon(1); // This will set icon 1 as the current selected icon
+      }, 100);
     }
   });
 </script>
@@ -2618,9 +3855,25 @@
   ],
   "blocks": [
     {
-      "type": "molecular_standard",
+      "type": "molecular_slide",
       "name": "Molecular Slide",
       "settings": [
+        {
+          "type": "header",
+          "content": "Layout Settings"
+        },
+        {
+          "type": "color",
+          "id": "left_panel_bg_color",
+          "label": "Left Panel Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "right_panel_bg_color",
+          "label": "Right Panel Background Color",
+          "default": "#e8f8f5"
+        },
         {
           "type": "header",
           "content": "Main Title"
@@ -2628,24 +3881,142 @@
         {
           "type": "richtext",
           "id": "main_title",
-          "label": "Main Title (Large Black)",
-          "default": "<p>THE MOLECULAR<br>STANDARD.</p>"
+          "label": "Main Title",
+          "default": "<p>THE MOLECULAR<br>STANDARD</p>"
+        },
+        {
+          "type": "color",
+          "id": "main_title_color",
+          "label": "Main Title Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "main_title_size",
+          "min": 24,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Main Title Font Size",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "main_title_weight",
+          "min": 300,
+          "max": 900,
+          "step": 100,
+          "label": "Main Title Font Weight",
+          "default": 700
+        },
+        {
+          "type": "range",
+          "id": "main_title_line_height",
+          "min": 0.8,
+          "max": 1.5,
+          "step": 0.1,
+          "label": "Main Title Line Height",
+          "default": 1.1
+        },
+        {
+          "type": "range",
+          "id": "main_title_margin_bottom",
+          "min": 2,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Main Title Bottom Margin",
+          "default": 4
         },
         {
           "type": "header",
-          "content": "Slide Header"
+          "content": "Subtitle"
         },
         {
           "type": "text",
           "id": "subtitle",
-          "label": "Subtitle (Cyan)",
-          "default": "The Molecular Standard."
+          "label": "Subtitle",
+          "default": "The Molecular Standard"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color",
+          "label": "Subtitle Color",
+          "default": "#00bcd4"
+        },
+        {
+          "type": "range",
+          "id": "subtitle_size",
+          "min": 16,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "label": "Subtitle Font Size",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "subtitle_weight",
+          "min": 300,
+          "max": 900,
+          "step": 100,
+          "label": "Subtitle Font Weight",
+          "default": 600
+        },
+        {
+          "type": "range",
+          "id": "subtitle_margin_bottom",
+          "min": 10,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Subtitle Bottom Margin",
+          "default": 10
+        },
+        {
+          "type": "header",
+          "content": "Description"
         },
         {
           "type": "textarea",
           "id": "description",
           "label": "Description",
           "default": "Harnessing South Korea patented fermentation technology skin elasticity at a cellular level."
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "description_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Description Font Size",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "description_line_height",
+          "min": 1.2,
+          "max": 2.0,
+          "step": 0.1,
+          "label": "Description Line Height",
+          "default": 1.5
+        },
+        {
+          "type": "range",
+          "id": "description_margin_bottom",
+          "min": 20,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Description Bottom Margin",
+          "default": 26
         },
         {
           "type": "header",
@@ -2674,6 +4045,103 @@
           "id": "feature_2_desc",
           "label": "Feature Box 2 Description",
           "default": "Advanced barrier repair"
+        },
+        {
+          "type": "color",
+          "id": "feature_box_bg_color",
+          "label": "Feature Box Background Color",
+          "default": "#D3FFFF"
+        },
+        {
+          "type": "color",
+          "id": "feature_box_text_color",
+          "label": "Feature Box Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "feature_desc_color",
+          "label": "Feature Description Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "feature_box_padding",
+          "min": 10,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Feature Box Padding",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "feature_box_border_radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Feature Box Border Radius",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "feature_boxes_gap",
+          "min": 10,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Gap Between Feature Boxes",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "feature_boxes_margin_bottom",
+          "min": 20,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Feature Boxes Bottom Margin",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "feature_title_size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Feature Title Font Size",
+          "default": 17
+        },
+        {
+          "type": "range",
+          "id": "feature_title_weight",
+          "min": 400,
+          "max": 900,
+          "step": 100,
+          "label": "Feature Title Font Weight",
+          "default": 700
+        },
+        {
+          "type": "range",
+          "id": "feature_title_margin_bottom",
+          "min": 4,
+          "max": 15,
+          "step": 1,
+          "unit": "px",
+          "label": "Feature Title Bottom Margin",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "feature_desc_size",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "label": "Feature Description Font Size",
+          "default": 14
         },
         {
           "type": "header",
@@ -2731,24 +4199,110 @@
           "label": "Icon 3 Image"
         },
         {
-          "type": "header",
-          "content": "Background Media"
+          "type": "range",
+          "id": "icon_size",
+          "min": 40,
+          "max": 120,
+          "step": 5,
+          "unit": "px",
+          "label": "Icon Size",
+          "default": 80
         },
         {
-          "type": "select",
-          "id": "media_type",
-          "label": "Background Media Type",
-          "options": [
-            {
-              "value": "image",
-              "label": "Image"
-            },
-            {
-              "value": "video",
-              "label": "Video"
-            }
-          ],
-          "default": "image"
+          "type": "color",
+          "id": "icon_placeholder_bg",
+          "label": "Icon Placeholder Background Color",
+          "default": "#00bcd4"
+        },
+        {
+          "type": "color",
+          "id": "icon_placeholder_color",
+          "label": "Icon Placeholder Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "icons_gap",
+          "min": 15,
+          "max": 120,
+          "step": 5,
+          "unit": "px",
+          "label": "Gap Between Icons",
+          "default": 80
+        },
+        {
+          "type": "range",
+          "id": "icons_margin_bottom",
+          "min": 10,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Icons Bottom Margin",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "icon_title_color",
+          "label": "Icon Title Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "icon_title_size",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Icon Title Font Size",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "icon_title_weight",
+          "min": 400,
+          "max": 900,
+          "step": 100,
+          "label": "Icon Title Font Weight",
+          "default": 700
+        },
+        {
+          "type": "range",
+          "id": "titles_margin_bottom",
+          "min": 5,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Titles Bottom Margin",
+          "default": 15
+        },
+        {
+          "type": "color",
+          "id": "icon_desc_color",
+          "label": "Icon Description Color",
+          "default": "#00bcd4"
+        },
+        {
+          "type": "range",
+          "id": "icon_desc_size",
+          "min": 10,
+          "max": 18,
+          "step": 1,
+          "unit": "px",
+          "label": "Icon Description Font Size",
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "icon_desc_line_height",
+          "min": 1.2,
+          "max": 2.0,
+          "step": 0.1,
+          "label": "Icon Description Line Height",
+          "default": 1.6
+        },
+        {
+          "type": "header",
+          "content": "Background Image"
         },
         {
           "type": "image_picker",
@@ -2756,9 +4310,46 @@
           "label": "Background Image"
         },
         {
-          "type": "url",
-          "id": "background_video",
-          "label": "Background Video URL"
+          "type": "select",
+          "id": "image_fit",
+          "label": "Image Fit Style",
+          "options": [
+            { "value": "contain", "label": "Contain (fit within bounds)" },
+            { "value": "cover", "label": "Cover (fill completely)" },
+            { "value": "fill", "label": "Fill (stretch to fit)" }
+          ],
+          "default": "cover"
+        },
+        {
+          "type": "range",
+          "id": "image_opacity",
+          "min": 0.1,
+          "max": 1,
+          "step": 0.1,
+          "label": "Image Opacity",
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "placeholder_text",
+          "label": "Placeholder Text",
+          "default": "Upload your background image"
+        },
+        {
+          "type": "color",
+          "id": "placeholder_text_color",
+          "label": "Placeholder Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "placeholder_text_size",
+          "min": 14,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Placeholder Text Size",
+          "default": 18
         }
       ]
     },
@@ -2951,6 +4542,17 @@
           "label": "Card Width",
           "default": 80,
           "info": "Adjust the width of the buttons (100% = full width)"
+        },
+        {
+          "type": "range",
+          "id": "card_max_width",
+          "min": 200,
+          "max": 600,
+          "step": 20,
+          "unit": "px",
+          "label": "Card Maximum Width",
+          "default": 400,
+          "info": "Maximum width of the buttons in pixels"
         },
         {
           "type": "header",
@@ -3348,6 +4950,51 @@
         },
         {
           "type": "header",
+          "content": "Content Layout Settings"
+        },
+        {
+          "type": "range",
+          "id": "content_max_width",
+          "min": 40,
+          "max": 80,
+          "step": 5,
+          "unit": "%",
+          "label": "Content Area Width",
+          "default": 60,
+          "info": "Width of the text content area"
+        },
+        {
+          "type": "range",
+          "id": "content_padding_vertical",
+          "min": 20,
+          "max": 100,
+          "step": 10,
+          "unit": "px",
+          "label": "Content Vertical Padding",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "content_padding_horizontal",
+          "min": 20,
+          "max": 100,
+          "step": 10,
+          "unit": "px",
+          "label": "Content Horizontal Padding",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "transition_speed",
+          "min": 0.3,
+          "max": 2.0,
+          "step": 0.1,
+          "label": "Text Transition Speed (seconds)",
+          "default": 0.8,
+          "info": "Speed of text fade transition on hover"
+        },
+        {
+          "type": "header",
           "content": "Background Settings"
         },
         {
@@ -3418,17 +5065,28 @@
           "step": 50,
           "unit": "px",
           "label": "Glass Container Width",
-          "default": 800
+          "default": 900
         },
         {
           "type": "range",
           "id": "glass_height",
-          "min": 80,
-          "max": 200,
+          "min": 120,
+          "max": 350,
           "step": 10,
           "unit": "px",
           "label": "Glass Container Height",
-          "default": 120
+          "default": 280
+        },
+        {
+          "type": "range",
+          "id": "icons_margin_top",
+          "min": -10,
+          "max": 20,
+          "step": 1,
+          "unit": "%",
+          "label": "Icons Container Position",
+          "default": 5,
+          "info": "Move icons container up (negative) or down (positive) from center"
         },
         {
           "type": "range",
@@ -3451,6 +5109,51 @@
         },
         {
           "type": "header",
+          "content": "Text Inside Glass Settings"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "text_icon_gap",
+          "min": 15,
+          "max": 60,
+          "step": 5,
+          "unit": "px",
+          "label": "Gap Between Text and Icons",
+          "default": 40,
+          "info": "Space between the text content and icons inside the glass"
+        },
+        {
+          "type": "range",
+          "id": "icon_gap",
+          "min": 20,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Gap Between Icons",
+          "default": 60
+        },
+        {
+          "type": "header",
           "content": "Icon Settings"
         },
         {
@@ -3468,6 +5171,35 @@
           "id": "underline_color",
           "label": "Hover Underline Color",
           "default": "#00bcd4"
+        },
+        {
+          "type": "header",
+          "content": "Icon Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1_image",
+          "label": "Icon 1 Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2_image",
+          "label": "Icon 2 Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3_image",
+          "label": "Icon 3 Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_4_image",
+          "label": "Icon 4 Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_5_image",
+          "label": "Icon 5 Image"
         },
         {
           "type": "header",
@@ -3580,6 +5312,354 @@
           "default": "Total skin renewal and transformation"
         }
       ]
+    },
+    {
+      "type": "ingredient_showcase",
+      "name": "Ingredient Showcase",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Global Settings"
+        },
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Image Fit Style",
+          "options": [
+            { "value": "contain", "label": "Contain (fit within bounds)" },
+            { "value": "cover", "label": "Cover (fill completely)" },
+            { "value": "fill", "label": "Fill (stretch to fit)" }
+          ],
+          "default": "cover"
+        },
+        {
+          "type": "range",
+          "id": "vertical_text_size",
+          "min": 16,
+          "max": 52,
+          "step": 2,
+          "unit": "px",
+          "label": "Vertical Text Font Size",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "vertical_text_color",
+          "label": "Vertical Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "select",
+          "id": "vertical_text_weight",
+          "label": "Vertical Text Font Weight",
+          "options": [
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi Bold" },
+            { "value": "700", "label": "Bold" }
+          ],
+          "default": "300"
+        },
+        {
+          "type": "range",
+          "id": "vertical_letter_spacing",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Vertical Text Letter Spacing",
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "min": 24,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Title Font Size",
+          "default": 26
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "title_weight",
+          "label": "Title Font Weight",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi Bold" },
+            { "value": "700", "label": "Bold" },
+            { "value": "800", "label": "Extra Bold" }
+          ],
+          "default": "700"
+        },
+        {
+          "type": "select",
+          "id": "title_alignment",
+          "label": "Title Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "range",
+          "id": "title_margin_bottom",
+          "min": 10,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Title Bottom Margin",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "underline_width",
+          "min": 40,
+          "max": 120,
+          "step": 5,
+          "unit": "px",
+          "label": "Underline Width",
+          "default": 80
+        },
+        {
+          "type": "range",
+          "id": "underline_height",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "unit": "px",
+          "label": "Underline Height",
+          "default": 2
+        },
+        {
+          "type": "color",
+          "id": "underline_color",
+          "label": "Underline Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "underline_margin_bottom",
+          "min": 5,
+          "max": 50,
+          "step": 5,
+          "unit": "px",
+          "label": "Underline Bottom Margin",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "benefit_text_size",
+          "min": 9,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Benefits Font Size",
+          "default": 13
+        },
+        {
+          "type": "color",
+          "id": "benefit_text_color",
+          "label": "Benefits Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "select",
+          "id": "benefit_text_weight",
+          "label": "Benefits Font Weight",
+          "options": [
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Medium" },
+            { "value": "600", "label": "Semi Bold" }
+          ],
+          "default": "400"
+        },
+        {
+          "type": "select",
+          "id": "benefit_alignment",
+          "label": "Benefits Text Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "range",
+          "id": "benefit_spacing",
+          "min": 2,
+          "max": 20,
+          "step": 2,
+          "unit": "px",
+          "label": "Spacing Between Benefits",
+          "default": 4
+        },
+        {
+          "type": "header",
+          "content": "Card 1 - FIRM"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_1_image",
+          "label": "Card 1 Image"
+        },
+        {
+          "type": "text",
+          "id": "card_1_vertical_text",
+          "label": "Card 1 Vertical Text",
+          "default": "FIRM"
+        },
+        {
+          "type": "text",
+          "id": "card_1_ingredient_name",
+          "label": "Card 1 Ingredient Name",
+          "default": "Retinyl Palmitate"
+        },
+        {
+          "type": "color",
+          "id": "card_1_bg_color",
+          "label": "Card 1 Background Color",
+          "default": "#f5f5f5"
+        },
+        {
+          "type": "color",
+          "id": "card_1_right_bg_color",
+          "label": "Card 1 Right Side Background Color",
+          "default": "#e8f4f8"
+        },
+        {
+          "type": "text",
+          "id": "card_1_benefit_1",
+          "label": "Card 1 Benefit 1",
+          "default": "Boosts collagen renewal"
+        },
+        {
+          "type": "text",
+          "id": "card_1_benefit_2",
+          "label": "Card 1 Benefit 2",
+          "default": "Smooths fine lines & texture"
+        },
+        {
+          "type": "text",
+          "id": "card_1_benefit_3",
+          "label": "Card 1 Benefit 3",
+          "default": "Supports firm, lifted appearance"
+        },
+        {
+          "type": "header",
+          "content": "Card 2 - RESTORE"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_2_image",
+          "label": "Card 2 Image"
+        },
+        {
+          "type": "text",
+          "id": "card_2_vertical_text",
+          "label": "Card 2 Vertical Text",
+          "default": "RESTORE"
+        },
+        {
+          "type": "text",
+          "id": "card_2_ingredient_name",
+          "label": "Card 2 Ingredient Name",
+          "default": "Niacinamide"
+        },
+        {
+          "type": "color",
+          "id": "card_2_bg_color",
+          "label": "Card 2 Background Color",
+          "default": "#f5f5f5"
+        },
+        {
+          "type": "color",
+          "id": "card_2_right_bg_color",
+          "label": "Card 2 Right Side Background Color",
+          "default": "#e8f4f8"
+        },
+        {
+          "type": "text",
+          "id": "card_2_benefit_1",
+          "label": "Card 2 Benefit 1",
+          "default": "Strengthens skin barrier"
+        },
+        {
+          "type": "text",
+          "id": "card_2_benefit_2",
+          "label": "Card 2 Benefit 2",
+          "default": "Minimizes pores"
+        },
+        {
+          "type": "text",
+          "id": "card_2_benefit_3",
+          "label": "Card 2 Benefit 3",
+          "default": "Keeps skin hydrated and balanced"
+        },
+        {
+          "type": "header",
+          "content": "Card 3 - BRIGHTEN"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_3_image",
+          "label": "Card 3 Image"
+        },
+        {
+          "type": "text",
+          "id": "card_3_vertical_text",
+          "label": "Card 3 Vertical Text",
+          "default": "BRIGHTEN"
+        },
+        {
+          "type": "text",
+          "id": "card_3_ingredient_name",
+          "label": "Card 3 Ingredient Name",
+          "default": "Vitamin C (Ethyl Ascorbic Acid)"
+        },
+        {
+          "type": "color",
+          "id": "card_3_bg_color",
+          "label": "Card 3 Background Color",
+          "default": "#f5f5f5"
+        },
+        {
+          "type": "color",
+          "id": "card_3_right_bg_color",
+          "label": "Card 3 Right Side Background Color",
+          "default": "#e8f4f8"
+        },
+        {
+          "type": "text",
+          "id": "card_3_benefit_1",
+          "label": "Card 3 Benefit 1",
+          "default": "Enhances radiance & glow"
+        },
+        {
+          "type": "text",
+          "id": "card_3_benefit_2",
+          "label": "Card 3 Benefit 2",
+          "default": "Reduces dullness and uneven tone"
+        },
+        {
+          "type": "text",
+          "id": "card_3_benefit_3",
+          "label": "Card 3 Benefit 3",
+          "default": "Boosts natural luminosity"
+        }
+      ]
     }
   ],
   "presets": [
@@ -3587,7 +5667,7 @@
       "name": "Science Slider",
       "blocks": [
         {
-          "type": "molecular_standard",
+          "type": "molecular_slide",
           "settings": {
             "subtitle": "The Molecular Standard.",
             "main_title": "<p>THE MOLECULAR<br>STANDARD.</p>",
@@ -3633,7 +5713,8 @@
             "card_max_height": 60,
             "card_padding_vertical": 12,
             "card_padding_horizontal": 16,
-            "card_width": 100,
+            "card_width": 80,
+            "card_max_width": 400,
             "main_title_size": 40,
             "subtitle_size": 18,
             "card_title_size": 16,
@@ -3667,8 +5748,18 @@
           "settings": {
             "default_main_heading": "Where Korean beauty meets Precision",
             "default_subheading": "Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.",
+            "content_max_width": 60,
+            "content_padding_vertical": 60,
+            "content_padding_horizontal": 60,
+            "transition_speed": 0.8,
             "main_heading_size": 48,
             "subheading_size": 18,
+            "glass_width": 900,
+            "glass_height": 280,
+            "icons_margin_top": 5,
+            "text_alignment": "center",
+            "text_icon_gap": 40,
+            "icon_gap": 60,
             "glass_opacity": 0.2,
             "glass_blur": 10,
             "icon_title_size": 16,
@@ -3681,12 +5772,50 @@
             "icon_3_title": "Protect",
             "icon_3_heading": "Protection Shield",
             "icon_3_subheading": "Barrier protection and environmental defense",
-            "icon_4_title": "Repair",
-            "icon_4_heading": "Deep Repair",
-            "icon_4_subheading": "Intensive repair and restoration therapy",
-            "icon_5_title": "Renew",
-            "icon_5_heading": "Complete Renewal",
-            "icon_5_subheading": "Total skin renewal and transformation"
+            "icon_4_title": "Enhance",
+            "icon_4_heading": "Deep Enhancement",
+            "icon_4_subheading": "Intensive enhancement and restoration therapy",
+            "icon_5_title": "Transform",
+            "icon_5_heading": "Complete Transformation",
+            "icon_5_subheading": "Total skin transformation and renewal"
+          }
+        },
+        {
+          "type": "ingredient_showcase",
+          "settings": {
+            "card_1_ingredient_name": "RETINYL PALMITATE",
+            "card_1_vertical_text": "FIRM",
+            "card_1_benefit_1": "Boosts collagen renewal",
+            "card_1_benefit_2": "Smooths fine lines & texture",
+            "card_2_ingredient_name": "NIACINAMIDE",
+            "card_2_vertical_text": "RESTORE",
+            "card_2_benefit_1": "Strengthens skin barrier",
+            "card_2_benefit_2": "Minimizes pores",
+            "card_3_ingredient_name": "VITAMIN C (ETHYL ASCORBIC ACID)",
+            "card_3_vertical_text": "BRIGHTEN",
+            "card_3_benefit_1": "Enhances radiance & glow",
+            "card_3_benefit_2": "Reduces dullness and uneven tone",
+            "vertical_text_size": 20,
+            "vertical_text_color": "#666666",
+            "vertical_text_weight": "300",
+            "vertical_letter_spacing": 3,
+            "card_1_right_bg_color": "#e8f4f8",
+            "card_2_right_bg_color": "#e8f4f8",
+            "card_3_right_bg_color": "#e8f4f8",
+            "title_size": 26,
+            "title_color": "#000000",
+            "title_weight": "700",
+            "title_alignment": "right",
+            "title_margin_bottom": 10,
+            "underline_width": 80,
+            "underline_height": 3,
+            "underline_color": "#000000",
+            "underline_margin_bottom": 10,
+            "benefit_text_size": 13,
+            "benefit_text_color": "#666666",
+            "benefit_text_weight": "400",
+            "benefit_alignment": "right",
+            "benefit_spacing": 4
           }
         }
       ]

@@ -9,227 +9,71 @@
  */
 {
   "sections": {
-    "cellular_harmony_hero_MRNndQ": {
-      "type": "cellular-harmony-hero",
+    "hero_section_aVX4A6": {
+      "type": "hero-section",
       "blocks": {
-        "feature_WaKXgq": {
-          "type": "feature",
+        "content_block_8f6DJR": {
+          "type": "content_block",
           "settings": {
-            "icon": "led-mask",
-            "title": "Photon Youth™ Pro LED Mask",
-            "subtitle": "Biophotonic Amplification"
-          }
-        },
-        "feature_N9n9jy": {
-          "type": "feature",
-          "settings": {
-            "icon": "supplement",
-            "title": "Aura Inner Glow™",
-            "subtitle": "Internal Fortification"
-          }
-        },
-        "feature_VpCmB6": {
-          "type": "feature",
-          "settings": {
-            "icon": "skincare",
-            "title": "CellSync™ Skincare",
-            "subtitle": "Topical Regeneration"
-          }
-        }
-      },
-      "block_order": [
-        "feature_WaKXgq",
-        "feature_N9n9jy",
-        "feature_VpCmB6"
-      ],
-      "name": "Cellular Harmony Hero",
-      "settings": {
-        "title": "<p>introducing <strong>Cellular</strong><br/><strong>Harmony™</strong></p>",
-        "subtitle": "Restore firmness, smooth fine lines, and revive your natural glow with science backed anti-aging therapy.",
-        "hero_image": "shopify://shop_images/Capture.jpg",
-        "show_image_divider": true,
-        "primary_cta_text": "Cellular Harmony™ Protocol",
-        "primary_cta_url": "",
-        "primary_cta_bg": "#ffffff",
-        "primary_cta_text_color": "#000000",
-        "secondary_cta_text": "Take Regeneration Audit",
-        "secondary_cta_url": "",
-        "secondary_cta_bg": "#4fffff",
-        "secondary_cta_text_color": "#333333",
-        "title_font": "Montserrat",
-        "title_size": 48,
-        "title_weight": "700",
-        "title_style": "normal",
-        "subtitle_font": "Montserrat",
-        "subtitle_size": 18,
-        "subtitle_weight": "400",
-        "subtitle_style": "normal",
-        "feature_font": "Montserrat",
-        "feature_title_size": 18,
-        "feature_title_weight": "700",
-        "feature_title_style": "normal",
-        "feature_subtitle_size": 15,
-        "feature_subtitle_weight": "400",
-        "feature_subtitle_style": "normal",
-        "plus_size": 20,
-        "plus_color": "#ffffff99",
-        "plus_line_length": 10,
-        "plus_line_width": 1.5,
-        "image_width": 500,
-        "image_height": 500,
-        "image_fit": "cover",
-        "image_border_radius": 0,
-        "section_padding_top": 20,
-        "section_padding_bottom": 20,
-        "section_padding_left": 40,
-        "background_color": "#000000",
-        "text_color": "#ffffff"
-      }
-    },
-    "science_slider_3iUgPg": {
-      "type": "science-slider",
-      "blocks": {
-        "molecular_standard_gWeWJW": {
-          "type": "molecular_standard",
-          "settings": {
-            "main_title": "<p>THE MOLECULAR<br/>STANDARD.</p>",
-            "subtitle": "The Molecular Standard.",
-            "description": "Harnessing South Korea patented fermentation technology skin elasticity at a cellular level.",
-            "feature_1_title": "PDRN:",
-            "feature_1_desc": "DNA-based rejuvenation.",
-            "feature_2_title": "SNAIL MUCIN",
-            "feature_2_desc": "Advanced barrier repair",
-            "icon_1_title": "PDRN",
-            "icon_1_desc": "DNA-based rejuvenation.",
-            "icon_1_image": "shopify://shop_images/sheet.png",
-            "icon_2_title": "CERAMIDES",
-            "icon_2_desc": "Barrier strength and protration",
-            "icon_2_image": "shopify://shop_images/skincare.png",
-            "icon_3_title": "PEPTIDES",
-            "icon_3_desc": "Collagen synthesis and elasticity",
-            "icon_3_image": "shopify://shop_images/skincare-routine.png",
+            "title": "Daily Essentials for Nutrition and Digestive",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
             "media_type": "image",
-            "background_image": "shopify://shop_images/179f3fbaed6ca404eeee0fe58ea2be75.jpg",
-            "background_video": ""
+            "video_url": ""
           }
         },
-        "clinical_dossier_J9tLmr": {
-          "type": "clinical_dossier",
+        "content_block_7FrtPh": {
+          "type": "content_block",
           "settings": {
-            "left_ratio": 60,
-            "right_ratio": 40,
-            "divider_color": "#00bcd4",
-            "show_divider": true,
-            "left_title": "THE CLINICAL DOSSIER",
-            "image_fit": "contain",
-            "right_title": "THE MOLECULAR FOUNDATIONS",
-            "right_subtitle": "Beyond the surface. We engineer the architecture.",
-            "main_title_size": 40,
-            "subtitle_size": 18,
-            "card_title_size": 16,
-            "card_subtitle_size": 13,
-            "card_border_radius": 8,
-            "card_min_height": 45,
-            "card_max_height": 60,
-            "card_padding_vertical": 12,
-            "card_padding_horizontal": 16,
-            "card_width": 100,
-            "card_background_color": "#f8f9fa",
-            "card_border_color": "#e0e0e0",
-            "card_hover_color": "#d3ffff",
-            "card_text_color": "#000000",
-            "card_1_number": "01/",
-            "card_1_title": "Exosomes",
-            "card_1_subtitle": "Targeted Intercellular Signaling",
-            "card_2_number": "02/",
-            "card_2_title": "Scientific Mechanism",
-            "card_2_subtitle": "< 500 Da (Low Molecular Weight)",
-            "card_3_number": "03/",
-            "card_3_title": "Lipid Matrix",
-            "card_3_subtitle": "Targeted Extracellular Signaling",
-            "card_4_number": "04/",
-            "card_4_title": "Peptides",
-            "card_4_subtitle": "< 500 Da (Low Molecular Weight)",
-            "card_5_number": "05/",
-            "card_5_title": "Snail Mucin",
-            "card_5_subtitle": "Proprietary Blend the a Melting",
-            "card_6_number": "06/",
-            "card_6_title": "Ceramides",
-            "card_6_subtitle": "Uncharted Stainless Screening"
+            "title": "Daily Essentials for Nutrition and Digestive",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
+            "media_type": "image",
+            "video_url": ""
           }
         },
-        "technology_showcase_AtLCgh": {
-          "type": "technology_showcase",
+        "content_block_UrQViw": {
+          "type": "content_block",
           "settings": {
-            "main_title": "Derm proven retinol with patented technology",
-            "point_1_title": "Derm proven retinol",
-            "point_1_description": "Helps to fade lines and wrinkles",
-            "point_1_top": 45,
-            "point_1_left": 30,
-            "point_2_title": "Peptides",
-            "point_2_description": "Helps improve skin firmness and elasticity",
-            "point_2_top": 70,
-            "point_2_left": 70,
-            "point_3_title": "Soothing Complex",
-            "point_3_description": "Helps nourish skin and minimize irritation",
-            "point_3_top": 95,
-            "point_3_left": 25,
-            "show_arrows": true,
-            "arrow_1_width": 60,
-            "arrow_2_width": 40,
-            "arrow_3_width": 60
+            "title": "Daily Essentials for Nutrition and Digestive",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
+            "media_type": "image",
+            "video_url": ""
           }
         },
-        "korean_beauty_showcase_MBr8MQ": {
-          "type": "korean_beauty_showcase",
+        "content_block_mbgAaw": {
+          "type": "content_block",
           "settings": {
-            "default_main_heading": "Where Korean beauty meets Precision",
-            "default_subheading": "Our formulations are built on decades of Korean dermatological research focusing on cellular repair, barrier health, and long-term skin resilience.",
-            "background_opacity": 1,
-            "main_heading_size": 48,
-            "main_heading_color": "#000000",
-            "subheading_size": 18,
-            "subheading_color": "#000000",
-            "glass_width": 800,
-            "glass_height": 120,
-            "glass_opacity": 0.2,
-            "glass_blur": 10,
-            "icon_title_size": 16,
-            "underline_color": "#00bcd4",
-            "icon_1_title": "Repair",
-            "icon_1_heading": "Advanced Repair Technology",
-            "icon_1_subheading": "Cellular regeneration and DNA repair mechanisms",
-            "icon_2_title": "Renew",
-            "icon_2_heading": "Renewal Complex",
-            "icon_2_subheading": "Advanced skin renewal and rejuvenation formulas",
-            "icon_3_title": "Protect",
-            "icon_3_heading": "Protection Shield",
-            "icon_3_subheading": "Barrier protection and environmental defense",
-            "icon_4_title": "Repair",
-            "icon_4_heading": "Deep Repair",
-            "icon_4_subheading": "Intensive repair and restoration therapy",
-            "icon_5_title": "Renew",
-            "icon_5_heading": "Complete Renewal",
-            "icon_5_subheading": "Total skin renewal and transformation"
+            "title": "Daily Essentials for Nutrition and Digestive",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
+            "media_type": "image",
+            "video_url": ""
           }
         }
       },
       "block_order": [
-        "molecular_standard_gWeWJW",
-        "clinical_dossier_J9tLmr",
-        "technology_showcase_AtLCgh",
-        "korean_beauty_showcase_MBr8MQ"
+        "content_block_8f6DJR",
+        "content_block_7FrtPh",
+        "content_block_UrQViw",
+        "content_block_mbgAaw"
       ],
-      "name": "Science Slider",
+      "name": "Hero Section",
       "settings": {
-        "section_margin_top": 0,
-        "section_margin_bottom": 0,
-        "background_color": "#f8f9fa",
-        "accent_color": "#00bcd4",
-        "icon_desc_color": "#00bcd4",
-        "nav_arrow_width": 50,
-        "nav_arrow_height": 50,
-        "icon_desc_font_size": 14
+        "section_bg_color": "#000000",
+        "title_font_size": 56,
+        "title_color": "#ffffff",
+        "description_font_size": 18,
+        "description_color": "#ffffff",
+        "button_1_text": "Cellular Harmony™ Protocol",
+        "button_1_link": "",
+        "primary_btn_bg": "#ffffff",
+        "primary_btn_text": "#000000",
+        "button_2_text": "Take Regeneration Audit",
+        "button_2_link": "",
+        "secondary_btn_bg": "#4FFFFF",
+        "secondary_btn_text": "#000000",
+        "button_font_size": 16,
+        "button_border_radius": 50,
+        "image_border_radius": 24,
+        "active_circle_color": "#4FFFFF"
       }
     },
     "tab_section_3ybbnx": {
@@ -1597,82 +1441,6 @@
         "description_weight": "400"
       }
     },
-    "new_fgNH6c": {
-      "type": "new",
-      "blocks": {
-        "doctor_WheQLW": {
-          "type": "doctor",
-          "settings": {
-            "doctor_name": "Dr. Sarah Johnson",
-            "specialty": "Dermatologist",
-            "rating": 5,
-            "quote": "I recommend this skincare line to all my patients for its proven results and gentle formulation.",
-            "experience": "15+ years experience • Board Certified • Harvard Medical School"
-          }
-        },
-        "doctor_DmFTnh": {
-          "type": "doctor",
-          "settings": {
-            "doctor_name": "Dr. Michael Chen",
-            "specialty": "Cosmetic Surgeon",
-            "doctor_image": "shopify://shop_images/pexels-tima-miroshnichenko-5407206.jpg",
-            "rating": 4.9,
-            "quote": "The anti-aging properties of these products are remarkable. I've seen incredible transformations.",
-            "experience": "12+ years experience • Board Certified • Johns Hopkins"
-          }
-        },
-        "doctor_Hd9jaW": {
-          "type": "doctor",
-          "settings": {
-            "doctor_name": "Dr. Emily Rodriguez",
-            "specialty": "Aesthetic Medicine",
-            "rating": 5,
-            "quote": "This is the only skincare line I trust for my most discerning patients.",
-            "experience": "10+ years experience • Board Certified • Mayo Clinic"
-          }
-        },
-        "doctor_4hwHjJ": {
-          "type": "doctor",
-          "settings": {
-            "doctor_name": "Dr. James Wilson",
-            "specialty": "Plastic Surgeon",
-            "rating": 4.8,
-            "quote": "Outstanding results with minimal irritation. Perfect for post-procedure care.",
-            "experience": "18+ years experience • Board Certified • Stanford Medical"
-          }
-        }
-      },
-      "block_order": [
-        "doctor_WheQLW",
-        "doctor_DmFTnh",
-        "doctor_Hd9jaW",
-        "doctor_4hwHjJ"
-      ],
-      "name": "Doctor Endorsement",
-      "settings": {
-        "section_title": "Doctor Endorsements",
-        "left_margin": 10,
-        "cards_gap": 20,
-        "main_card_border_radius": 32,
-        "main_card_overlay_color": "#000000",
-        "main_card_overlay_opacity": 0.9,
-        "right_card_width": 70,
-        "right_card_aspect_width": 2,
-        "right_card_aspect_height": 3,
-        "right_card_border_radius": 32,
-        "right_card_vertical_gap": 5,
-        "main_doctor_name_size": 1.8,
-        "main_specialty_size": 1,
-        "main_quote_size": 1,
-        "specialty_color": "#00bcd4",
-        "star_color": "#ffd700",
-        "text_color": "#ffffff",
-        "secondary_text_color": "#cccccc",
-        "cta_bg_color": "#000000",
-        "cta_hover_color": "#00bcd4",
-        "cta_border_color": "#e5e5e5"
-      }
-    },
     "routine_tabs_section_bhkHzy": {
       "type": "routine-tabs-section",
       "blocks": {
@@ -1682,6 +1450,8 @@
             "tab_selector": "pm",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1698,6 +1468,8 @@
             "tab_selector": "pm",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1714,6 +1486,8 @@
             "tab_selector": "pm",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1730,6 +1504,8 @@
             "tab_selector": "exfoliate",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1746,6 +1522,8 @@
             "tab_selector": "exfoliate",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1762,6 +1540,8 @@
             "tab_selector": "exfoliate",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1778,6 +1558,8 @@
             "tab_selector": "exfoliate",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1794,6 +1576,8 @@
             "tab_selector": "exfoliate",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1810,6 +1594,8 @@
             "tab_selector": "pm_light",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1826,6 +1612,8 @@
             "tab_selector": "pm_light",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1842,6 +1630,8 @@
             "tab_selector": "pm_light",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1858,6 +1648,8 @@
             "tab_selector": "pm_light",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1874,6 +1666,8 @@
             "tab_selector": "pm_light",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1890,6 +1684,8 @@
             "tab_selector": "pm",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1906,6 +1702,8 @@
             "tab_selector": "pm",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1922,6 +1720,8 @@
             "tab_selector": "am",
             "product": "",
             "product_image": "shopify://shop_images/fef-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "<p><strong>T40 — Moisturising + Vitamin E</strong></p>",
             "step_number": "1",
             "step_label": "Cleanser",
@@ -1938,6 +1738,8 @@
             "tab_selector": "am",
             "product": "kailasa-creatine-powder",
             "product_image": "shopify://shop_images/927fd5ddc719d09541b0bc5704a9ac7d.jpg",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "<p><strong>T40 — Moisturising + Vitamin E</strong></p>",
             "step_number": "2",
             "step_label": "Toner",
@@ -1954,6 +1756,8 @@
             "tab_selector": "am",
             "product": "kailasa-kids-gummies-1",
             "product_image": "shopify://shop_images/cut-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "<p><strong>T40 — Moisturising + Vitamin E</strong></p>",
             "step_number": "3",
             "step_label": "Serum",
@@ -1970,6 +1774,8 @@
             "tab_selector": "am",
             "product": "kailasa-kids-gummies",
             "product_image": "shopify://shop_images/cut-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "<p><strong>T40 — Moisturising + Vitamin E</strong></p>",
             "step_number": "4",
             "step_label": "Moisturizer",
@@ -1986,6 +1792,8 @@
             "tab_selector": "am",
             "product": "",
             "product_image": "shopify://shop_images/cut-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "<p><strong>T40 — Moisturising + Vitamin E</strong></p>",
             "step_number": "5",
             "step_label": "Sunscreen",
@@ -2002,6 +1810,8 @@
             "tab_selector": "am",
             "product": "",
             "product_image": "shopify://shop_images/cut-removebg-preview.png",
+            "image_width": 100,
+            "image_height": 100,
             "custom_product_name": "<p><strong>T40 — Moisturising + Vitamin E</strong></p>",
             "step_number": "6",
             "step_label": "Treatment",
@@ -2112,11 +1922,9 @@
             "product_description": "Detoxifies & revitalizes from within",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 10,
             "hotspot_y": 46,
-            "panel_position": "bottom",
-            "panel_text_alignment": "left"
+            "panel_position": "bottom"
           }
         },
         "product_hotspot_NrH4Gp": {
@@ -2128,11 +1936,9 @@
             "product_description": "Firms & hydrates delicate eye area",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 17,
             "hotspot_y": 55,
-            "panel_position": "bottom",
-            "panel_text_alignment": "left"
+            "panel_position": "bottom"
           }
         },
         "product_hotspot_cYRwgV": {
@@ -2144,11 +1950,9 @@
             "product_description": "Brightens & evens out skin tone",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 22,
             "hotspot_y": 49,
-            "panel_position": "bottom",
-            "panel_text_alignment": "left"
+            "panel_position": "bottom"
           }
         },
         "product_hotspot_3JVm4G": {
@@ -2160,11 +1964,9 @@
             "product_description": "Refreshes & boosts radiance",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 28,
             "hotspot_y": 60,
-            "panel_position": "bottom",
-            "panel_text_alignment": "left"
+            "panel_position": "bottom"
           }
         },
         "product_hotspot_Y4mw4X": {
@@ -2176,11 +1978,9 @@
             "product_description": "Reduces puffiness & dark circles",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 35,
             "hotspot_y": 45,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
+            "panel_position": "top"
           }
         },
         "product_hotspot_TYH6zb": {
@@ -2192,11 +1992,9 @@
             "product_description": "Boosts moisture & strengthens skin barrier",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 45,
             "hotspot_y": 40,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
+            "panel_position": "top"
           }
         },
         "product_hotspot_pggrqH": {
@@ -2208,11 +2006,9 @@
             "product_description": "Gently purifies & revitalizes",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 56,
             "hotspot_y": 61,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
+            "panel_position": "top"
           }
         },
         "product_hotspot_yKqjyW": {
@@ -2224,11 +2020,9 @@
             "product_description": "Lifts & firms for youthful glow",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 63,
             "hotspot_y": 58,
-            "panel_position": "left",
-            "panel_text_alignment": "left"
+            "panel_position": "left"
           }
         },
         "product_hotspot_gbTGez": {
@@ -2240,11 +2034,9 @@
             "product_description": "Brief description of the product benefits.",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 70,
             "hotspot_y": 50,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
+            "panel_position": "top"
           }
         },
         "product_hotspot_W4wUAW": {
@@ -2256,11 +2048,9 @@
             "product_description": "Brief description of the product benefits.",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 77,
             "hotspot_y": 70,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
+            "panel_position": "top"
           }
         },
         "product_hotspot_fPRthV": {
@@ -2272,11 +2062,9 @@
             "product_description": "Brief description of the product benefits.",
             "custom_price": "",
             "product_link": "",
-            "add_to_cart_link": "",
             "hotspot_x": 90,
             "hotspot_y": 55,
-            "panel_position": "top",
-            "panel_text_alignment": "left"
+            "panel_position": "top"
           }
         }
       },
@@ -2508,14 +2296,12 @@
     }
   },
   "order": [
-    "cellular_harmony_hero_MRNndQ",
-    "science_slider_3iUgPg",
+    "hero_section_aVX4A6",
     "tab_section_3ybbnx",
     "tab_section_CmUbdP",
     "multi_tab_section_Wg9YxK",
     "skin_by_concern_PikCHr",
     "ingredients_scroll_zJRqWh",
-    "new_fgNH6c",
     "routine_tabs_section_bhkHzy",
     "skincare_bundle_VLW7E9",
     "comparison_table_GcFcXU"

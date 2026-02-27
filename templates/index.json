@@ -2558,21 +2558,27 @@
         "slide_item_jbUEcA": {
           "type": "slide_item",
           "settings": {
+            "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
             "left_fit": "cover",
+            "right_image": "shopify://shop_images/1f3e47a0ece8474dad4a76f020802069_eb5541f2-65a4-4151-8320-6c9da2938009.jpg",
             "right_fit": "cover"
           }
         },
         "slide_item_JWqKwm": {
           "type": "slide_item",
           "settings": {
+            "left_image": "shopify://shop_images/Ectoin_and_niacinamide_work_together_to_strengthen_the_skin_barrier_ectoin_locks_in_moisture_while_niacinamide_enhances_ceramide_and_elastin_production_for_healthier_skin.jpg",
             "left_fit": "cover",
+            "right_image": "shopify://shop_images/107a5a06d659a8909679ab9450709f91.jpg",
             "right_fit": "cover"
           }
         },
         "slide_item_hHFeTH": {
           "type": "slide_item",
           "settings": {
+            "left_image": "shopify://shop_images/8ec79ac5c65272ab9bad3a993e04c149.jpg",
             "left_fit": "cover",
+            "right_image": "shopify://shop_images/ChatGPT_Image_Feb_19_2026_11_42_11_AM_634c50b6-b548-4e58-9adb-f6dd398d2c2d.png",
             "right_fit": "cover"
           }
         }

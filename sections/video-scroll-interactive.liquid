@@ -1,0 +1,644 @@
+{% comment %}
+  Video Scroll Interactive Section
+  Left: Auto-playing videos that change on scroll
+  Right: Text content with vertical progress bar and scroll activation
+{% endcomment %}
+
+<section class="video-scroll-section" id="videoScrollSection">
+  <div class="video-scroll-container">
+    <!-- Left 50% - Video/Image Area -->
+    <div class="video-area">
+      {% for block in section.blocks %}
+        {% if block.type == 'video_text_item' %}
+          <div
+            class="video-item"
+            data-index="{{ forloop.index0 }}"
+            style="display: {% if forloop.first %}block{% else %}none{% endif %};"
+            {{ block.shopify_attributes }}
+          >
+            <div class="media-container">
+              {% if block.settings.video_file %}
+                <video
+                  class="section-video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                >
+                  <source src="{{ block.settings.video_file }}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              {% elsif block.settings.image_file %}
+                <img
+                  src="{{ block.settings.image_file | image_url: width: 600 }}"
+                  alt="{{ block.settings.text_title }}"
+                  class="section-image"
+                  width="600"
+                  height="400"
+                >
+              {% else %}
+                <div class="media-placeholder">
+                  <p>Upload video or image</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Right 50% - Text Content with Progress Bar -->
+    <div class="content-area">
+      <!-- Vertical Progress Bar -->
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- Text Items -->
+      <div class="text-items-container">
+        {% for block in section.blocks %}
+          {% if block.type == 'video_text_item' %}
+            <div
+              class="text-item {% if forloop.first %}active{% endif %}"
+              data-index="{{ forloop.index0 }}"
+              style="
+                padding: {{ section.settings.text_padding | default: 30 }}px;
+                margin-bottom: {{ section.settings.text_margin_bottom | default: 20 }}px;
+                border-radius: {{ section.settings.text_border_radius | default: 12 }}px;
+                border: {{ section.settings.text_border_width | default: 2 }}px solid transparent;
+                transition: all 0.3s ease;
+              "
+              {{ block.shopify_attributes }}
+            >
+              <h3
+                class="text-title"
+                style="
+                  color: {{ section.settings.title_color | default: '#000000' }};
+                  font-size: {{ section.settings.title_size | default: 24 }}px;
+                  font-weight: {{ section.settings.title_weight | default: 600 }};
+                  margin-bottom: {{ section.settings.title_margin_bottom | default: 15 }}px;
+                  font-family: 'Montserrat', sans-serif;
+                "
+              >
+                {{
+                  block.settings.text_title
+                  | default: 'Designed to give your body the nutrients it needs to feel well and live well.'
+                }}
+              </h3>
+
+              {% if block.settings.text_description %}
+                <p
+                  class="text-description"
+                  style="
+                    color: {{ section.settings.description_color | default: '#666666' }};
+                    font-size: {{ section.settings.description_size | default: 16 }}px;
+                    line-height: {{ section.settings.description_line_height | default: 1.5 }};
+                    margin: 0;
+                    font-family: 'Montserrat', sans-serif;
+                  "
+                >
+                  {{ block.settings.text_description }}
+                </p>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+  .video-scroll-section {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .video-scroll-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100vh;
+    width: 100%;
+  }
+
+  /* Video Area */
+  .video-area {
+    position: relative;
+    overflow: hidden;
+    background: {{ section.settings.video_area_bg | default: '#f8f8f8' }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {{ section.settings.video_area_padding | default: 60 }}px;
+  }
+
+  .video-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+  }
+
+  .media-container {
+    width: 100%;
+    height: {{ section.settings.media_height | default: 400 }}px;
+    border-radius: {{ section.settings.media_border_radius | default: 20 }}px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background: #fff;
+  }
+
+  .section-video,
+  .section-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .media-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    color: #666;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Content Area */
+  .content-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background: {{ section.settings.content_bg_color | default: '#ffffff' }};
+  }
+
+  /* Progress Bar */
+  .progress-bar-container {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 200px;
+    background: #e0e0e0;
+    border-radius: 2px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 0%;
+    background: {{ section.settings.progress_bar_color | default: '#00bcd4' }};
+    border-radius: 2px;
+    transition: height 0.3s ease;
+  }
+
+  /* Text Items */
+  .text-items-container {
+    flex: 1;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: {{ section.settings.media_height | default: 400 }}px;
+  }
+
+  .text-item {
+    opacity: 0.4;
+    transition: all 0.5s ease;
+  }
+
+  .text-item.active {
+    opacity: 1;
+    background-color: {{ section.settings.active_bg_color | default: '#d3ffff' }};
+    border-color: {{ section.settings.active_border_color | default: '#00bcd4' }} !important;
+  }
+
+  .text-item.active:hover {
+    border-color: {{ section.settings.hover_border_color | default: '#00bcd4' }} !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .video-scroll-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 50% 50%;
+    }
+
+    .video-area {
+      padding: 30px;
+    }
+
+    .video-item {
+      width: 90%;
+    }
+
+    .content-area {
+      padding: 30px 20px;
+    }
+
+    .progress-bar-container {
+      right: 10px;
+      height: 150px;
+    }
+
+    .text-item {
+      padding: 20px !important;
+      margin-bottom: 15px !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const section = document.getElementById('videoScrollSection');
+    const textItems = section.querySelectorAll('.text-item');
+    const videoItems = section.querySelectorAll('.video-item');
+    const progressBar = document.getElementById('progressBar');
+
+    let currentIndex = 0;
+    let isScrolling = false;
+
+    // Initialize
+    updateActiveStates(0);
+
+    // Scroll event handler
+    section.addEventListener('wheel', function (e) {
+      e.preventDefault();
+
+      if (isScrolling) return;
+      isScrolling = true;
+
+      if (e.deltaY > 0) {
+        // Scroll down
+        if (currentIndex < textItems.length - 1) {
+          currentIndex++;
+        }
+      } else {
+        // Scroll up
+        if (currentIndex > 0) {
+          currentIndex--;
+        }
+      }
+
+      updateActiveStates(currentIndex);
+
+      setTimeout(() => {
+        isScrolling = false;
+      }, 500);
+    });
+
+    // Touch events for mobile
+    let touchStartY = 0;
+    section.addEventListener('touchstart', function (e) {
+      touchStartY = e.touches[0].clientY;
+    });
+
+    section.addEventListener('touchend', function (e) {
+      if (isScrolling) return;
+
+      const touchEndY = e.changedTouches[0].clientY;
+      const diff = touchStartY - touchEndY;
+
+      if (Math.abs(diff) > 50) {
+        isScrolling = true;
+
+        if (diff > 0) {
+          // Swipe up
+          if (currentIndex < textItems.length - 1) {
+            currentIndex++;
+          }
+        } else {
+          // Swipe down
+          if (currentIndex > 0) {
+            currentIndex--;
+          }
+        }
+
+        updateActiveStates(currentIndex);
+
+        setTimeout(() => {
+          isScrolling = false;
+        }, 500);
+      }
+    });
+
+    // Click events for text items
+    textItems.forEach((item, index) => {
+      item.addEventListener('click', function () {
+        if (currentIndex !== index) {
+          currentIndex = index;
+          updateActiveStates(currentIndex);
+        }
+      });
+    });
+
+    function updateActiveStates(index) {
+      // Update text items
+      textItems.forEach((item, i) => {
+        if (i === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+
+      // Update videos
+      videoItems.forEach((video, i) => {
+        if (i === index) {
+          video.style.display = 'block';
+          const videoElement = video.querySelector('video');
+          if (videoElement) {
+            videoElement.play();
+          }
+        } else {
+          video.style.display = 'none';
+          const videoElement = video.querySelector('video');
+          if (videoElement) {
+            videoElement.pause();
+          }
+        }
+      });
+
+      // Update progress bar
+      const progress = ((index + 1) / textItems.length) * 100;
+      progressBar.style.height = progress + '%';
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Video Scroll Interactive",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "video_area_bg",
+      "label": "Video Area Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "range",
+      "id": "video_area_padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Video Area Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "media_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Media Border Radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "media_height",
+      "min": 300,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Media Height",
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "progress_bar_color",
+      "label": "Progress Bar Color",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "header",
+      "content": "Text Item Settings"
+    },
+    {
+      "type": "range",
+      "id": "text_padding",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Text Item Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "text_margin_bottom",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Text Item Bottom Margin",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "text_border_radius",
+      "min": 0,
+      "max": 25,
+      "step": 5,
+      "unit": "px",
+      "label": "Text Item Border Radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "text_border_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Item Border Width",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "active_bg_color",
+      "label": "Active Background Color",
+      "default": "#d3ffff"
+    },
+    {
+      "type": "color",
+      "id": "active_border_color",
+      "label": "Active Border Color",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "color",
+      "id": "hover_bg_color",
+      "label": "Hover Background Color",
+      "default": "#d3ffff"
+    },
+    {
+      "type": "color",
+      "id": "hover_border_color",
+      "label": "Hover Border Color",
+      "default": "#00bcd4"
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "min": 5,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Bottom Margin",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Description Settings"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 1.2,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Description Line Height",
+      "default": 1.5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_text_item",
+      "name": "Video & Text Item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Media Settings"
+        },
+        {
+          "type": "url",
+          "id": "video_file",
+          "label": "Video File URL",
+          "info": "Upload video to Files section first, then paste the URL here"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_file",
+          "label": "Upload Image (Alternative to video)"
+        },
+        {
+          "type": "header",
+          "content": "Text Content"
+        },
+        {
+          "type": "textarea",
+          "id": "text_title",
+          "label": "Title",
+          "default": "Designed to give your body the nutrients it needs to feel well and live well."
+        },
+        {
+          "type": "textarea",
+          "id": "text_description",
+          "label": "Description (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Scroll Interactive",
+      "blocks": [
+        {
+          "type": "video_text_item",
+          "settings": {
+            "text_title": "Designed to give your body the nutrients it needs to feel well and live well."
+          }
+        },
+        {
+          "type": "video_text_item",
+          "settings": {
+            "text_title": "Developed with health experts using the latest research."
+          }
+        },
+        {
+          "type": "video_text_item",
+          "settings": {
+            "text_title": "Driven by a passion to make quality nutrition accessible to all."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

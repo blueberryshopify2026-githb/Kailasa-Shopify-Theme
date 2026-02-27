@@ -10,23 +10,23 @@
     background: {{ section.settings.section_background }};
     position: relative;
     overflow: hidden;
-    min-height: 800px;
+    min-height: 600px;
   }
 
   .skincare-bundle-container {
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 20% 80%;
     gap: 40px;
     align-items: center;
-    min-height: 800px;
+    min-height: 600px;
   }
 
   /* Left Content Area (25%) */
   .bundle-content {
-    {% comment %} padding: 40px 20px; {% endcomment %}
+    padding: 40px 0px;
     display: flex;
     flex-direction: column;
     justify-content: {{ section.settings.content_vertical_alignment }};
@@ -65,7 +65,7 @@
     color: {{ section.settings.cta_text_color }};
     border: none;
     border-radius: {{ section.settings.cta_border_radius }}px;
-    padding: 16px 32px;
+    padding: 14px 25px;
     font-size: {{ section.settings.cta_font_size }}px;
     font-weight: 600;
     text-decoration: none;
@@ -101,10 +101,10 @@
   /* Right Product Area (75%) */
   .bundle-products {
     position: relative;
-    height: 800px;
+    height: 600px;
     background: {{ section.settings.products_background }};
     border-radius: 0;
-    overflow: visible;
+    overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
   }
 
@@ -178,8 +178,7 @@
   /* Glassmorphism Info Panel */
   .product-info-panel {
     position: absolute;
-    width: 320px;
-    height: 260px;
+    width: 310px;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
@@ -207,7 +206,7 @@
     bottom: 100%;
     margin-bottom: 40px;
     left: 50%;
-    transform: translateX(-50%) translateY(15px) scale(0.9);
+    transform: translateX(-60%) translateY(15px) scale(0.9);
   }
 
   .product-info-panel.position-top.show {
@@ -222,7 +221,7 @@
   }
 
   .product-info-panel.position-bottom.show {
-    transform: translateX(-50%) translateY(0) scale(1);
+    transform: translateX(-60%) translateY(0) scale(1);
   }
 
   .product-info-panel.position-left {
@@ -230,7 +229,6 @@
     margin-right: 40px;
     top: 50%;
     transform: translateY(-50%) translateX(15px) scale(0.9);
-    max-width: 280px;
   }
 
   .product-info-panel.position-left.show {
@@ -242,51 +240,23 @@
     margin-left: 40px;
     top: 50%;
     transform: translateY(-50%) translateX(-15px) scale(0.9);
-    max-width: 280px;
   }
 
   .product-info-panel.position-right.show {
     transform: translateY(-50%) translateX(0) scale(1);
   }
 
-  /* Ensure panels don't overflow container */
-  .product-info-panel.position-top,
-  .product-info-panel.position-bottom {
-    max-width: 320px;
-    left: 50%;
-    transform: translateX(-50%) translateY(15px) scale(0.9);
-  }
-
-  .product-info-panel.position-top.show,
-  .product-info-panel.position-bottom.show {
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-
-  /* Adjust positioning for hotspots near edges */
-  .product-hotspot[style*="left: 9"][style*="%"] .product-info-panel.position-top,
-  .product-hotspot[style*="left: 9"][style*="%"] .product-info-panel.position-bottom {
-    left: 160px;
-    transform: translateX(0) translateY(15px) scale(0.9);
-  }
-
-  .product-hotspot[style*="left: 9"][style*="%"] .product-info-panel.position-top.show,
-  .product-hotspot[style*="left: 9"][style*="%"] .product-info-panel.position-bottom.show {
-    transform: translateX(0) translateY(0) scale(1);
-  }
-
   /* Panel Content */
   .panel-content {
-    padding: 20px;
+    padding: 24px;
     display: flex;
-    gap: 16px;
+    gap: 20px;
     align-items: flex-start;
-    height: 100%;
-    box-sizing: border-box;
   }
 
   .panel-image {
-    width: 120px;
-    height: 150px;
+    width: 140px;
+    height: 180px;
     border-radius: 12px;
     object-fit: cover;
     flex-shrink: 0;
@@ -300,14 +270,12 @@
     flex-basis: 60%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     text-align: left;
-    height: 100%;
-    justify-content: space-between;
   }
 
   .panel-title {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     color: #1a1a1a;
     margin: 0;
@@ -316,7 +284,7 @@
   }
 
   .panel-description {
-    font-size: 13px;
+    font-size: 14px;
     color: #4a4a4a;
     line-height: 1.4;
     margin: 0;
@@ -325,62 +293,34 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-align: left;
-    flex: 1;
   }
 
   .panel-actions {
-    margin-top: 8px;
-    display: flex;
-    gap: 12px;
-    justify-content: flex-start;
-    align-items: flex-start;
+    margin-top: 10px;
+    display: block;
     width: 100%;
   }
 
-  .panel-add-to-cart {
+  .panel-learn-more {
     background: {{ section.settings.hotspot_color }};
     color: #1a1a1a;
     border: none;
-    border-radius: 20px;
-    padding: 8px 20px;
-    font-size: 13px;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
-    text-align: left;
+    text-align: center;
     display: block;
     white-space: nowrap;
-    width: auto;
     margin: 0;
-  }
-
-  .panel-add-to-cart:hover {
-    background: #ffffff;
-    transform: translateY(-1px);
-  }
-
-  .panel-learn-more {
-    background: transparent;
-    color: #1a1a1a;
-    border: 1px solid rgba(26, 26, 26, 0.2);
-    border-radius: 16px;
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    text-align: left;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    white-space: nowrap;
-    align-self: flex-start;
+    width: fit-content;
   }
 
   .panel-learn-more:hover {
-    background: rgba(26, 26, 26, 0.05);
+    background: #ffffff;
     transform: translateY(-1px);
   }
 
@@ -568,11 +508,11 @@
                   
                   <div class="panel-actions">
                     {% if block.settings.product_link != blank %}
-                      <a href="{{ block.settings.product_link }}" class="panel-add-to-cart">Learn more</a>
+                      <a href="{{ block.settings.product_link }}" class="panel-learn-more">Learn more</a>
                     {% elsif block.settings.product %}
-                      <a href="{{ block.settings.product.url }}" class="panel-add-to-cart">Learn more</a>
+                      <a href="{{ block.settings.product.url }}" class="panel-learn-more">Learn more</a>
                     {% else %}
-                      <a href="#" class="panel-add-to-cart">Learn more</a>
+                      <a href="#" class="panel-learn-more">Learn more</a>
                     {% endif %}
                   </div>
                 </div>
@@ -729,56 +669,6 @@
       if (!e.target.closest('.product-hotspot')) {
         hideAllPanels();
       }
-    });
-
-    // Handle responsive panel positioning
-    function adjustPanelPositions() {
-      hotspots.forEach(hotspot => {
-        const panel = hotspot.querySelector('.product-info-panel');
-        if (!panel) return;
-        
-        const rect = hotspot.getBoundingClientRect();
-        const containerRect = hotspot.closest('.bundle-products').getBoundingClientRect();
-        
-        const centerX = rect.left + rect.width / 2 - containerRect.left;
-        const centerY = rect.top + rect.height / 2 - containerRect.top;
-        const containerWidth = containerRect.width;
-        const containerHeight = containerRect.height;
-        
-        // Panel dimensions (approximate)
-        const panelWidth = 320;
-        const panelHeight = 200;
-        
-        // Remove existing position classes
-        panel.classList.remove('position-top', 'position-bottom', 'position-left', 'position-right');
-        
-        // Smart positioning to keep panel within bounds
-        let position = 'bottom'; // default
-        
-        // Check if panel would go outside right edge
-        if (centerX + panelWidth/2 > containerWidth - 20) {
-          position = 'left';
-        }
-        // Check if panel would go outside left edge  
-        else if (centerX - panelWidth/2 < 20) {
-          position = 'right';
-        }
-        // Check vertical positioning
-        else if (centerY < containerHeight * 0.4) {
-          position = 'bottom';
-        } else if (centerY > containerHeight * 0.6) {
-          position = 'top';
-        }
-        
-        panel.classList.add(`position-${position}`);
-      });
-    }
-
-    // Initial positioning and resize handling
-    adjustPanelPositions();
-    
-    window.addEventListener('resize', function() {
-      adjustPanelPositions();
     });
 
     // Handle escape key to close panels
@@ -1045,12 +935,6 @@
           "label": "Product Link"
         },
         {
-          "type": "url",
-          "id": "add_to_cart_link",
-          "label": "Custom Add to Cart Link",
-          "info": "Use if no product is selected"
-        },
-        {
           "type": "range",
           "id": "hotspot_x",
           "min": 0,
@@ -1093,26 +977,6 @@
             }
           ],
           "default": "top"
-        },
-        {
-          "type": "select",
-          "id": "panel_text_alignment",
-          "label": "Panel Text Alignment",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ],
-          "default": "left"
         }
       ]
     }

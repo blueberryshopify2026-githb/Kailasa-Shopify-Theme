@@ -1,0 +1,957 @@
+{% comment %}
+  Medical Team Section - Infinite carousel with center focus card and polaroid side cards
+{% endcomment %}
+
+<style>
+  .medical-team-section {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.section_bg_color | default: '#000000' }};
+    padding: 20px 0;
+    overflow: hidden;
+  }
+
+  .medical-team-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header */
+  .medical-team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 40px;
+    background: transparent;
+  }
+
+  .medical-team-title-wrapper {
+    flex: 1;
+    background: transparent;
+  }
+
+  .medical-team-title {
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: 800;
+    color: {{ section.settings.title_color | default: '#ffffff' }};
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: transparent !important;
+    text-align: left;
+  }
+
+  .medical-team-title .highlight {
+    color: {{ section.settings.highlight_color | default: '#4FFFFF' }};
+    background: transparent !important;
+    background-color: transparent !important;
+    font-size: inherit;
+    font-weight: 800;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .medical-team-title .highlight::before,
+  .medical-team-title .highlight::after {
+    display: none;
+  }
+
+  .medical-team-description {
+    flex: 1;
+    font-size: {{ section.settings.description_font_size }}px;
+    color: {{ section.settings.description_color | default: '#ffffff' }};
+    line-height: 1.6;
+    margin: -40px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Carousel */
+  .medical-team-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 50px;
+    height: 600px;
+    min-height: 600px;
+  }
+
+  .medical-team-track-container {
+    flex: 1;
+    overflow: visible;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    {% comment %} background: green; {% endcomment %}
+  }
+
+  .medical-team-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center;
+    height: 560px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .medical-team-track.initialized {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Navigation Buttons */
+  .medical-team-nav {
+    background: {{ section.settings.nav_bg_color | default: '#000000' }};
+    border: 2px solid {{ section.settings.nav_border_color | default: '#4FFFFF' }};
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+
+  .medical-team-nav:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px {{ section.settings.nav_border_color | default: '#4FFFFF' }};
+  }
+
+  .medical-team-nav svg {
+    width: 24px;
+    height: 24px;
+    stroke: {{ section.settings.nav_icon_color | default: '#4FFFFF' }};
+  }
+
+  /* Side Cards - Polaroid Style */
+  .medical-team-card {
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px 20px 30px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 240px;
+    height: 320px;
+    opacity: 0.8;
+    filter: grayscale(0.2);
+    align-self: center;
+  }
+
+  .medical-team-card:hover {
+    opacity: 0.9;
+    transform: translateY(-5px);
+  }
+
+  .side-card-image {
+    width: 100%;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background: #f0f0f0;
+  }
+
+  .side-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .side-card-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    margin: 0 0 5px 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .side-card-designation {
+    font-size: 12px;
+    color: #666666;
+    text-align: center;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Center Active Card - Full Image with Frosted Glass */
+  .medical-team-card.active {
+    width: 420px !important;
+    height: 520px !important;
+    opacity: 1 !important;
+    filter: grayscale(0) !important;
+    transform: scale(1) !important;
+    z-index: 10 !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5) !important;
+    background: #000000 !important;
+    padding: 0 !important;
+    align-self: center !important;
+    margin-bottom: 0 !important;
+  }
+
+  .medical-team-card.active:hover {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+  }
+
+  .medical-team-card.active .side-card-image,
+  .medical-team-card.active .side-card-name,
+  .medical-team-card.active .side-card-designation {
+    display: none !important;
+  }
+  
+  .medical-team-card.active .center-card-image {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .medical-team-card.active .center-card-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .center-card-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+  }
+
+  .center-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Frosted Glass Overlay */
+  .center-card-frost {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+  }
+
+  .medical-team-card.active .center-card-frost {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .center-card-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .center-card-designation {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .center-card-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .center-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .medical-team-header {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .medical-team-card.active {
+      width: 420px !important;
+      height: 520px !important;
+    }
+
+    .medical-team-card.side-card {
+      width: 220px;
+    }
+
+    .side-card-image {
+      height: 220px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .medical-team-section {
+      padding: 60px 15px;
+    }
+
+    .medical-team-header {
+      margin-bottom: 40px;
+    }
+
+    .medical-team-title {
+      font-size: {{ section.settings.title_font_size | minus: 10 }}px;
+    }
+
+    .medical-team-description {
+      font-size: {{ section.settings.description_font_size | minus: 2 }}px;
+    }
+
+    .medical-team-carousel {
+      gap: 15px;
+    }
+
+    .medical-team-card.active {
+      width: 320px !important;
+      height: 420px !important;
+    }
+
+    .medical-team-card.side-card {
+      width: 180px;
+    }
+
+    .side-card-image {
+      height: 180px;
+    }
+
+    .side-card-name {
+      font-size: 14px;
+    }
+
+    .side-card-designation {
+      font-size: 12px;
+    }
+
+    .center-card-frost {
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      padding: 20px;
+    }
+
+    .center-card-name {
+      font-size: 22px;
+    }
+
+    .center-card-designation {
+      font-size: 14px;
+    }
+
+    .medical-team-nav {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .medical-team-carousel {
+      gap: 10px;
+    }
+
+    .medical-team-card.active {
+      width: 260px !important;
+      height: 340px !important;
+    }
+
+    .medical-team-card.side-card {
+      width: 140px;
+    }
+
+    .side-card-image {
+      height: 140px;
+    }
+
+    .side-card-name {
+      font-size: 13px;
+    }
+
+    .side-card-designation {
+      font-size: 11px;
+    }
+
+    .center-card-frost {
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      padding: 15px;
+    }
+
+    .center-card-name {
+      font-size: 18px;
+    }
+
+    .center-card-designation {
+      font-size: 12px;
+    }
+
+    .medical-team-nav {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>
+
+<section class="medical-team-section full-width">
+  <div class="medical-team-container">
+    <!-- Header -->
+    <div class="medical-team-header">
+      <div class="medical-team-title-wrapper">
+        <h2 class="medical-team-title">
+          {{ section.settings.title_part1 | default: 'MEET OUR SPECIALISED' }}
+          <span class="highlight">{{ section.settings.title_part2 | default: 'MEDICAL TEAM' }}</span>
+        </h2>
+      </div>
+      <p class="medical-team-description">
+        {{ section.settings.description | default: 'The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world' }}
+      </p>
+    </div>
+
+    <!-- Carousel -->
+    <div class="medical-team-carousel">
+      <button class="medical-team-nav prev" onclick="moveMedicalTeam(-1, '{{ section.id }}')">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="medical-team-track-container">
+        <div class="medical-team-track" id="medical-track-{{ section.id }}">
+          <!-- Clone sets before for infinite loop -->
+          {% assign card_index = 0 %}
+          {% for i in (1..100) %}
+            {% for block in section.blocks %}
+              <div class="medical-team-card clone-card" 
+                   data-original-index="{{ forloop.index0 }}"
+                   data-card-index="{{ card_index }}"
+                   data-image-url="{{ block.settings.image | image_url: width: 900 }}"
+                   data-name="{{ block.settings.name }}"
+                   data-designation="{{ block.settings.designation }}"
+                   onclick="handleCardClick(this, '{{ section.id }}')">
+                <div class="side-card-image">
+                  {% if block.settings.image %}
+                    <img src="{{ block.settings.image | image_url: width: 560 }}" 
+                         alt="{{ block.settings.name }}"
+                         width="560"
+                         height="560"
+                         loading="lazy">
+                  {% endif %}
+                </div>
+                <h3 class="side-card-name">{{ block.settings.name }}</h3>
+                <p class="side-card-designation">{{ block.settings.designation }}</p>
+              </div>
+              {% assign card_index = card_index | plus: 1 %}
+            {% endfor %}
+          {% endfor %}
+
+          <!-- Original cards -->
+          {% for block in section.blocks %}
+            <div class="medical-team-card original-card {% if forloop.first %}active{% endif %}" 
+                 data-index="{{ forloop.index0 }}"
+                 data-card-index="{{ card_index }}"
+                 data-image-url="{{ block.settings.image | image_url: width: 900 }}"
+                 data-name="{{ block.settings.name }}"
+                 data-designation="{{ block.settings.designation }}"
+                 onclick="handleCardClick(this, '{{ section.id }}')">
+              
+              {% if forloop.first %}
+                <!-- Center Active Card -->
+                <div class="center-card-image">
+                  {% if block.settings.image %}
+                    <img src="{{ block.settings.image | image_url: width: 900 }}" 
+                         alt="{{ block.settings.name }}"
+                         width="900"
+                         height="1100">
+                  {% endif %}
+                  <div class="center-card-frost">
+                    <h3 class="center-card-name">{{ block.settings.name }}</h3>
+                    <p class="center-card-designation">{{ block.settings.designation }}</p>
+                  </div>
+                </div>
+              {% else %}
+                <!-- Side Polaroid Card -->
+                <div class="side-card-image">
+                  {% if block.settings.image %}
+                    <img src="{{ block.settings.image | image_url: width: 560 }}" 
+                         alt="{{ block.settings.name }}"
+                         width="560"
+                         height="560"
+                         loading="lazy">
+                  {% endif %}
+                </div>
+                <h3 class="side-card-name">{{ block.settings.name }}</h3>
+                <p class="side-card-designation">{{ block.settings.designation }}</p>
+              {% endif %}
+            </div>
+            {% assign card_index = card_index | plus: 1 %}
+          {% endfor %}
+
+          <!-- Clone sets after for infinite loop -->
+          {% for i in (1..3) %}
+            {% for block in section.blocks %}
+              <div class="medical-team-card clone-card" 
+                   data-original-index="{{ forloop.index0 }}"
+                   data-card-index="{{ card_index }}"
+                   data-image-url="{{ block.settings.image | image_url: width: 900 }}"
+                   data-name="{{ block.settings.name }}"
+                   data-designation="{{ block.settings.designation }}"
+                   onclick="handleCardClick(this, '{{ section.id }}')">
+                <div class="side-card-image">
+                  {% if block.settings.image %}
+                    <img src="{{ block.settings.image | image_url: width: 560 }}" 
+                         alt="{{ block.settings.name }}"
+                         width="560"
+                         height="560"
+                         loading="lazy">
+                  {% endif %}
+                </div>
+                <h3 class="side-card-name">{{ block.settings.name }}</h3>
+                <p class="side-card-designation">{{ block.settings.designation }}</p>
+              </div>
+              {% assign card_index = card_index | plus: 1 %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <button class="medical-team-nav next" onclick="moveMedicalTeam(1, '{{ section.id }}')">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+// Medical Team Carousel - Exact copy of ingredients logic
+window.medicalTeamData = window.medicalTeamData || {};
+
+function initializeMedicalTeam(sectionId) {
+  const originalBlocksCount = parseInt('{{ section.blocks.size }}');
+  // Start at the first card of the original set (after 3 clone sets)
+  const currentIndex = 3 * originalBlocksCount;
+
+  window.medicalTeamData[sectionId] = {
+    originalBlocksCount: originalBlocksCount,
+    currentIndex: currentIndex,
+    previousIndex: currentIndex,
+    isTransitioning: false
+  };
+
+  const track = document.getElementById(`medical-track-${sectionId}`);
+  const cards = track.querySelectorAll('.medical-team-card');
+
+  if (cards.length === 0) return;
+
+  track.style.transition = 'none';
+
+  // Update all cards to their initial state
+  cards.forEach((card, i) => {
+    const imageUrl = card.getAttribute('data-image-url') || '';
+    const name = card.getAttribute('data-name') || 'Name';
+    const designation = card.getAttribute('data-designation') || 'Designation';
+    
+    if (i === currentIndex) {
+      // Initial active card - full image with frosted glass
+      card.innerHTML = `
+        <div class="center-card-image">
+          <img src="${imageUrl}" alt="${name}" width="420" height="520" style="display: block;">
+          <div class="center-card-frost">
+            <h3 class="center-card-name">${name}</h3>
+            <p class="center-card-designation">${designation}</p>
+          </div>
+        </div>
+      `;
+      card.classList.add('active');
+    } else {
+      // All other cards - polaroid style
+      card.innerHTML = `
+        <div class="side-card-image">
+          <img src="${imageUrl}" alt="${name}" width="240" height="220">
+        </div>
+        <h3 class="side-card-name">${name}</h3>
+        <p class="side-card-designation">${designation}</p>
+      `;
+      card.classList.remove('active');
+    }
+  });
+
+  // Position immediately without delay
+  centerMedicalCard(currentIndex, sectionId, false);
+  
+  // Show the track after positioning
+  setTimeout(() => {
+    track.classList.add('initialized');
+  }, 100);
+}
+
+function selectMedicalCard(index, sectionId, animate = true) {
+  const track = document.getElementById(`medical-track-${sectionId}`);
+  const cards = track.querySelectorAll('.medical-team-card');
+
+  // Remove the boundary check to allow infinite looping
+  // if (index < 0 || index >= cards.length) return;
+
+  const data = window.medicalTeamData[sectionId];
+  if (data.currentIndex === index && animate) return;
+
+  const previousIndex = data.currentIndex;
+  const blocks = {{ section.blocks | json }};
+
+  // STEP 1: Update ALL card content to their FINAL state BEFORE animation
+  cards.forEach((card, i) => {
+    const imageUrl = card.getAttribute('data-image-url') || '';
+    const name = card.getAttribute('data-name') || 'Name';
+    const designation = card.getAttribute('data-designation') || 'Designation';
+    
+    if (i === index) {
+      // New active card - full image with frosted glass
+      card.innerHTML = `
+        <div class="center-card-image">
+          <img src="${imageUrl}" alt="${name}" width="420" height="520" style="display: block;">
+          <div class="center-card-frost">
+            <h3 class="center-card-name">${name}</h3>
+            <p class="center-card-designation">${designation}</p>
+          </div>
+        </div>
+      `;
+      card.classList.add('active');
+    } else {
+      // All other cards - polaroid style
+      card.innerHTML = `
+        <div class="side-card-image">
+          <img src="${imageUrl}" alt="${name}" width="240" height="220">
+        </div>
+        <h3 class="side-card-name">${name}</h3>
+        <p class="side-card-designation">${designation}</p>
+      `;
+      card.classList.remove('active');
+    }
+  });
+
+  data.currentIndex = index;
+  
+  // STEP 2: Start slide animation after content is ready
+  setTimeout(() => {
+    centerMedicalCard(index, sectionId, animate);
+  }, 50);
+}
+
+function centerMedicalCard(index, sectionId, animate = true) {
+  const track = document.getElementById(`medical-track-${sectionId}`);
+  const cards = track.querySelectorAll('.medical-team-card');
+  const container = track.parentElement;
+
+  if (cards.length === 0) return;
+
+  const activeCard = cards[index];
+  if (!activeCard) return;
+
+  const data = window.medicalTeamData[sectionId];
+
+  const containerWidth = container.offsetWidth;
+  const containerCenter = containerWidth / 2;
+
+  const sideCardWidth = 240;
+  const activeCardWidth = 420;
+  const gap = 30;
+
+  let totalWidthBefore = 0;
+
+  for (let i = 0; i < index; i++) {
+    totalWidthBefore += sideCardWidth + gap;
+  }
+
+  totalWidthBefore += activeCardWidth / 2;
+
+  const targetTransform = containerCenter - totalWidthBefore;
+
+  if (!animate) {
+    track.style.transition = 'none';
+  } else {
+    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+  }
+
+  track.style.transform = `translateX(${targetTransform}px)`;
+
+  if (!animate) {
+    setTimeout(() => {
+      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }, 50);
+  }
+
+  data.previousIndex = index;
+}
+
+function moveMedicalTeam(direction, sectionId) {
+  const data = window.medicalTeamData[sectionId];
+  if (data.isTransitioning) return;
+
+  data.isTransitioning = true;
+
+  const track = document.getElementById(`medical-track-${sectionId}`);
+  const cards = track.querySelectorAll('.medical-team-card');
+  const totalCards = cards.length;
+  const originalBlocksCount = data.originalBlocksCount;
+
+  let newIndex = data.currentIndex + direction;
+  
+  // Define boundaries
+  const firstCloneSetStart = 0;
+  const firstCloneSetEnd = (3 * originalBlocksCount) - 1;
+  const originalSetStart = 3 * originalBlocksCount;
+  const originalSetEnd = originalSetStart + originalBlocksCount - 1;
+  const lastCloneSetStart = originalSetEnd + 1;
+  const lastCloneSetEnd = totalCards - 1;
+
+  // Check if we're at boundaries and need to loop
+  let needsLoop = false;
+  let jumpToIndex = newIndex;
+
+  // Moving right: if we go past the end of the first clone set after originals
+  if (newIndex > originalSetEnd + originalBlocksCount) {
+    needsLoop = true;
+    // Calculate position within the pattern
+    const positionInSet = (newIndex - originalSetStart) % originalBlocksCount;
+    jumpToIndex = originalSetStart + positionInSet;
+  }
+  // Moving left: if we go before the last clone set before originals
+  else if (newIndex < originalSetStart - originalBlocksCount) {
+    needsLoop = true;
+    // Calculate position within the pattern
+    const positionInSet = ((newIndex - originalSetStart) % originalBlocksCount + originalBlocksCount) % originalBlocksCount;
+    jumpToIndex = originalSetStart + positionInSet;
+  }
+
+  // Perform the slide
+  selectMedicalCard(newIndex, sectionId, true);
+
+  if (needsLoop) {
+    // After animation completes, jump to equivalent position
+    setTimeout(() => {
+      track.style.transition = 'none';
+      selectMedicalCard(jumpToIndex, sectionId, false);
+      
+      setTimeout(() => {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        data.isTransitioning = false;
+      }, 50);
+    }, 600);
+  } else {
+    setTimeout(() => {
+      data.isTransitioning = false;
+    }, 650);
+  }
+}
+
+function handleCardClick(cardElement, sectionId) {
+  const data = window.medicalTeamData[sectionId];
+  if (data.isTransitioning) return;
+
+  // Find the index of the clicked card in the NodeList
+  const track = document.getElementById(`medical-track-${sectionId}`);
+  const cards = track.querySelectorAll('.medical-team-card');
+  const clickedIndex = Array.from(cards).indexOf(cardElement);
+
+  if (clickedIndex === -1) return;
+
+  data.isTransitioning = true;
+  selectMedicalCard(clickedIndex, sectionId, true);
+
+  setTimeout(() => {
+    data.isTransitioning = false;
+  }, 650);
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  initializeMedicalTeam('{{ section.id }}');
+});
+</script>
+
+{% schema %}
+{
+  "name": "Medical Team",
+  "tag": "section",
+  "class": "medical-team-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title_part1",
+      "label": "Title Part 1",
+      "default": "MEET OUR SPECIALISED"
+    },
+    {
+      "type": "text",
+      "id": "title_part2",
+      "label": "Title Part 2 (Highlighted)",
+      "default": "MEDICAL TEAM"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 32,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "color",
+      "id": "nav_bg_color",
+      "label": "Navigation Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "nav_border_color",
+      "label": "Navigation Border",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "nav_icon_color",
+      "label": "Navigation Icon Color",
+      "default": "#4FFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Member Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Dr. John Doe, MD"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "label": "Designation",
+          "default": "Clinical Advisor"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Medical Team",
+      "blocks": [
+        {
+          "type": "team_member"
+        },
+        {
+          "type": "team_member"
+        },
+        {
+          "type": "team_member"
+        },
+        {
+          "type": "team_member"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

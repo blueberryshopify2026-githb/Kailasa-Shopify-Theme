@@ -2506,6 +2506,7 @@
             "benefit_text_weight": "400",
             "benefit_alignment": "right",
             "benefit_spacing": 4,
+            "card_1_image": "shopify://shop_images/image_1.png",
             "card_1_vertical_text": "FIRM",
             "card_1_ingredient_name": "RETINYL PALMITATE",
             "card_1_bg_color": "#f5f5f5",
@@ -2513,6 +2514,7 @@
             "card_1_benefit_1": "Boosts collagen renewal",
             "card_1_benefit_2": "Smooths fine lines & texture",
             "card_1_benefit_3": "Supports firm, lifted appearance",
+            "card_2_image": "shopify://shop_images/download_21.jpg",
             "card_2_vertical_text": "RESTORE",
             "card_2_ingredient_name": "NIACINAMIDE",
             "card_2_bg_color": "#f5f5f5",
@@ -2520,6 +2522,7 @@
             "card_2_benefit_1": "Strengthens skin barrier",
             "card_2_benefit_2": "Minimizes pores",
             "card_2_benefit_3": "Keeps skin hydrated and balanced",
+            "card_3_image": "shopify://shop_images/c51371404cd5576409c2d4d3d2e862e7_1.jpg",
             "card_3_vertical_text": "BRIGHTEN",
             "card_3_ingredient_name": "VITAMIN C (ETHYL ASCORBIC ACID)",
             "card_3_bg_color": "#f5f5f5",
@@ -2548,6 +2551,73 @@
         "nav_arrow_height": 50,
         "icon_desc_font_size": 14
       }
+    },
+    "dual_container_slider_fP9ERg": {
+      "type": "dual-container-slider",
+      "blocks": {
+        "slide_item_jbUEcA": {
+          "type": "slide_item",
+          "settings": {
+            "left_fit": "cover",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_JWqKwm": {
+          "type": "slide_item",
+          "settings": {
+            "left_fit": "cover",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_hHFeTH": {
+          "type": "slide_item",
+          "settings": {
+            "left_fit": "cover",
+            "right_fit": "cover"
+          }
+        }
+      },
+      "block_order": [
+        "slide_item_jbUEcA",
+        "slide_item_JWqKwm",
+        "slide_item_hHFeTH"
+      ],
+      "name": "Dual Container Slider",
+      "settings": {
+        "bg_color": "#000000",
+        "section_height": 600,
+        "section_padding": 40,
+        "slide_height": 400,
+        "white_text": "BUILD ON BIOLOGY.",
+        "cyan_text": "GUIDED BY SCIENCE",
+        "white_color": "#ffffff",
+        "cyan_color": "#00ffff",
+        "title_size": 48,
+        "title_weight": "700",
+        "heading_padding": 30,
+        "left_bg": "#f8f8f8",
+        "right_bg": "#f8f8f8",
+        "border_radius": 20,
+        "gap": 20,
+        "side_padding": 10,
+        "placeholder_color": "#666666",
+        "placeholder_size": 14,
+        "dot_active": "#00ffff",
+        "dot_inactive": "#666666",
+        "dot_size": 12,
+        "dot_gap": 10,
+        "indicators_padding": 20,
+        "auto_slide": true,
+        "auto_duration": 5000,
+        "mobile_section_height": 500,
+        "mobile_section_padding": 30,
+        "mobile_slide_height": 350,
+        "mobile_title_size": 28,
+        "mobile_gap": 15,
+        "mobile_box_height": 150,
+        "mobile_heading_padding": 20,
+        "mobile_side_padding": 15
+      }
     }
   },
   "order": [
@@ -2560,6 +2630,7 @@
     "routine_tabs_section_bhkHzy",
     "skincare_bundle_VLW7E9",
     "comparison_table_GcFcXU",
-    "science_slider_GHrxFn"
+    "science_slider_GHrxFn",
+    "dual_container_slider_fP9ERg"
   ]
 }

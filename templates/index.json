@@ -3680,6 +3680,7 @@
         "phase_item_VJpFiA",
         "phase_item_PxY8G7"
       ],
+      "disabled": true,
       "name": "Protocol Phases",
       "settings": {
         "bg_color": "#ffffff",

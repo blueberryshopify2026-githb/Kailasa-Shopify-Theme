@@ -3368,6 +3368,13 @@
             "point_image": "shopify://shop_images/download_27.jpg"
           }
         },
+        "point_DjKYR9": {
+          "type": "point",
+          "settings": {
+            "point_text": "Are on GLP-1s and want additional nutritional support",
+            "point_image": "shopify://shop_images/download_26.jpg"
+          }
+        },
         "point_bzCLBy": {
           "type": "point",
           "settings": {
@@ -3381,21 +3388,14 @@
             "point_text": "Are getting back into fitness and want to support your energy levels",
             "point_image": "shopify://shop_images/Omorovicza_Queen_Essence_3_4_oz.jpg"
           }
-        },
-        "point_DjKYR9": {
-          "type": "point",
-          "settings": {
-            "point_text": "Are on GLP-1s and want additional nutritional support",
-            "point_image": "shopify://shop_images/download_26.jpg"
-          }
         }
       },
       "block_order": [
         "point_9hQRWR",
         "point_jgekRe",
+        "point_DjKYR9",
         "point_bzCLBy",
-        "point_JttzhV",
-        "point_DjKYR9"
+        "point_JttzhV"
       ],
       "name": "VIP Section",
       "settings": {

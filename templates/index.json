@@ -2864,6 +2864,45 @@
         "border_width": 2,
         "border_color": "#000000"
       }
+    },
+    "lifestyle_section_EFC46F": {
+      "type": "lifestyle-section",
+      "blocks": {
+        "text_block_qxXw7f": {
+          "type": "text_block",
+          "settings": {
+            "position_x": 20,
+            "position_y": 30,
+            "title": "WHY OUR SKINCARE IS DIFFERENT",
+            "item1_heading": "MINIMAL INGREDIENTS",
+            "item1_description": "Formulated with only functional actives. No unnecessary additives.",
+            "item2_heading": "MAXIMUM EFFICACY",
+            "item2_description": "Efficacy proven through controlled clinical studies. Results before aesthetics.",
+            "item3_heading": "NO MARKETING NOISE",
+            "item3_description": "No fragrance. No fillers. No hype. Science over sensation."
+          }
+        },
+        "image_block_qTWmHJ": {
+          "type": "image_block",
+          "settings": {
+            "position_x": 80,
+            "position_y": 70,
+            "caption": "RETINAL 0.1%",
+            "description": "Accelerates cell turnover + boosts collagen FINE-LINE REDUCTION, IMPROVED ELASTICITY"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_qxXw7f",
+        "image_block_qTWmHJ"
+      ],
+      "name": "Lifestyle Section",
+      "settings": {
+        "background_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg",
+        "section_bg_color": "#f5f5f5",
+        "section_height": 120,
+        "highlight_color": "#4FFFFF"
+      }
     }
   },
   "order": [
@@ -2880,6 +2919,7 @@
     "dual_container_slider_fP9ERg",
     "product_infographic_EFadXU",
     "dot_line_section_KFqCcJ",
-    "ingredients_banner_KNtyNW"
+    "ingredients_banner_KNtyNW",
+    "lifestyle_section_EFC46F"
   ]
 }

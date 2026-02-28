@@ -2907,14 +2907,6 @@
     "medical_team_hihAtj": {
       "type": "medical-team",
       "blocks": {
-        "team_member_KDaW6b": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-shkrabaanthony-5215024.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
         "team_member_haKnGy": {
           "type": "team_member",
           "settings": {
@@ -2949,7 +2941,6 @@
         }
       },
       "block_order": [
-        "team_member_KDaW6b",
         "team_member_haKnGy",
         "team_member_YyrkVX",
         "team_member_UQpadz",

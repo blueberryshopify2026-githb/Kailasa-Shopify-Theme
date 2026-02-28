@@ -240,10 +240,78 @@
         "cta_hover_color": "#00bcd4",
         "cta_border_color": "#e5e5e5"
       }
+    },
+    "filter_by_concerns_AhDYph": {
+      "type": "filter-by-concerns",
+      "blocks": {
+        "concern_iMNMQe": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Acne",
+            "image_1": "shopify://shop_images/Ectoin_and_niacinamide_work_together_to_strengthen_the_skin_barrier_ectoin_locks_in_moisture_while_niacinamide_enhances_ceramide_and_elastin_production_for_healthier_skin.jpg",
+            "image_2": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "image_3": "shopify://shop_images/image_1.png",
+            "image_4": "shopify://shop_images/179f3fbaed6ca404eeee0fe58ea2be75.jpg",
+            "image_5": "shopify://shop_images/927fd5ddc719d09541b0bc5704a9ac7d.jpg"
+          }
+        },
+        "concern_L3BjV4": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Dryness"
+          }
+        },
+        "concern_QVHcp8": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Wrinkles/fine lines"
+          }
+        },
+        "concern_xGJgJa": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Hyperpigmentation"
+          }
+        },
+        "concern_gAWirc": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Sensitivity"
+          }
+        },
+        "concern_7K93Mb": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Enlarged Pores"
+          }
+        },
+        "concern_UiXNwG": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Oily Skin"
+          }
+        }
+      },
+      "block_order": [
+        "concern_iMNMQe",
+        "concern_L3BjV4",
+        "concern_QVHcp8",
+        "concern_xGJgJa",
+        "concern_gAWirc",
+        "concern_7K93Mb",
+        "concern_UiXNwG"
+      ],
+      "name": "Filter by Concerns",
+      "settings": {
+        "button_text": "Know More",
+        "image_height": 500,
+        "image_gap": 20
+      }
     }
   },
   "order": [
     "product_buy_box",
-    "doctors_endorsement_ryA7tH"
+    "doctors_endorsement_ryA7tH",
+    "filter_by_concerns_AhDYph"
   ]
 }

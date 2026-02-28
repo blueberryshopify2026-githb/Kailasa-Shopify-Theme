@@ -50,17 +50,6 @@
             "image": "shopify://shop_images/ChatGPT_Image_Feb_6_2026_03_16_02_PM.png"
           }
         },
-        "variant_D9tDQY": {
-          "type": "variant",
-          "settings": {
-            "variant_name": "VIP Club Membership",
-            "variant_detail_1": "Free SCI Travel Packs",
-            "variant_detail_2": "Easily edit, skip or cancel anytime",
-            "variant_detail_3": "0-Day Money Back Guarantee",
-            "variant_detail_4": "Delivered every 30 days",
-            "variant_price": "$49 USD"
-          }
-        },
         "variant_1": {
           "type": "variant",
           "settings": {
@@ -128,7 +117,6 @@
         "title_NPBd9L",
         "description_z4KUd4",
         "product_image_keNdLJ",
-        "variant_D9tDQY",
         "variant_1",
         "variant_2",
         "variant_3",

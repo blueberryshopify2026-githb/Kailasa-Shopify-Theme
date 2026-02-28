@@ -2786,6 +2786,64 @@
         "button_active_border_color": "#00d4ff",
         "button_active_hover_background": "rgba(0,0,0,0)"
       }
+    },
+    "dot_line_section_KFqCcJ": {
+      "type": "dot-line-section",
+      "blocks": {
+        "media_block_THQYM6": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 1",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "background_image": "shopify://shop_images/Le_Fluide_14_Substantific.jpg",
+            "image_url": "",
+            "video_url": ""
+          }
+        },
+        "media_block_KAbdze": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 2",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "background_image": "shopify://shop_images/Federico_Berardi___Oeuvre_n-2381.jpg",
+            "image_url": "",
+            "video_url": ""
+          }
+        },
+        "media_block_q4UpzH": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 3",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "video",
+            "image_url": "https://cdn.shopify.com/videos/c/o/v/12ae8aa90d6c432c8967c5b6550c99a3.mp4",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_block_THQYM6",
+        "media_block_KAbdze",
+        "media_block_q4UpzH"
+      ],
+      "name": "Dot Line Section",
+      "settings": {
+        "dot_color": "#4FFFFF",
+        "description_title_color": "#ffffff",
+        "description_text_color": "#ffffff",
+        "dot_label_color": "#ffffff",
+        "glass_background_color": "#ffffff",
+        "glass_border_color": "#ffffff",
+        "glass_opacity": 8,
+        "glass_blur": 12,
+        "auto_advance": false,
+        "auto_advance_delay": 5000
+      }
     }
   },
   "order": [
@@ -2800,6 +2858,7 @@
     "comparison_table_GcFcXU",
     "science_slider_GHrxFn",
     "dual_container_slider_fP9ERg",
-    "product_infographic_EFadXU"
+    "product_infographic_EFadXU",
+    "dot_line_section_KFqCcJ"
   ]
 }

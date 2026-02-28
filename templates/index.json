@@ -3779,6 +3779,83 @@
         "mobile_content_title": 28,
         "mobile_content_gap": 30
       }
+    },
+    "biotechnology_intro_ePfpEa": {
+      "type": "biotechnology-intro",
+      "blocks": {
+        "feature_item_CpKJTj": {
+          "type": "feature_item",
+          "settings": {
+            "feature_icon": "shopify://shop_images/cream_1.png",
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        },
+        "feature_item_yCFYBg": {
+          "type": "feature_item",
+          "settings": {
+            "feature_icon": "shopify://shop_images/sheet.png",
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        },
+        "feature_item_GgRBhX": {
+          "type": "feature_item",
+          "settings": {
+            "feature_icon": "shopify://shop_images/skincare.png",
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_CpKJTj",
+        "feature_item_yCFYBg",
+        "feature_item_GgRBhX"
+      ],
+      "name": "Biotechnology Introduction",
+      "settings": {
+        "full_section_bg_image": "shopify://shop_images/8ec79ac5c65272ab9bad3a993e04c149.jpg",
+        "full_bg_size": "cover",
+        "full_bg_position": "center",
+        "section_bg_color": "#ffffff",
+        "show_overlay": false,
+        "overlay_color": "rgba(0,0,0,0.3)",
+        "overlay_opacity": 0.3,
+        "content_bg_color": "transparent",
+        "image_bg_color": "transparent",
+        "content_padding": 20,
+        "content_padding_horizontal": 30,
+        "main_title": "Introduction to<br>Biotechnology and<br>Transforming",
+        "main_title_color": "#000000",
+        "main_title_size": 48,
+        "main_title_weight": "700",
+        "main_title_line_height": 1.2,
+        "main_title_margin_bottom": 20,
+        "title_features_gap": 140,
+        "feature_gap": 20,
+        "feature_margin_bottom": 20,
+        "icon_size": 40,
+        "icon_placeholder_bg": "#00bcd4",
+        "icon_placeholder_color": "#ffffff",
+        "icon_border_radius": 50,
+        "icon_placeholder_font_size": 24,
+        "feature_title_color": "#000000",
+        "feature_title_size": 12,
+        "feature_title_weight": "600",
+        "feature_title_margin_bottom": 8,
+        "feature_desc_color": "#666666",
+        "feature_desc_size": 16,
+        "feature_desc_line_height": 1.5,
+        "background_image": "shopify://shop_images/e2cd32528b3c7d10f871717fa217a735.jpg",
+        "image_fit": "cover",
+        "image_position": "center",
+        "image_opacity": 1,
+        "placeholder_bg_color": "#f5f5f5",
+        "placeholder_text_color": "#999999",
+        "placeholder_text_size": 18,
+        "placeholder_text": "Upload your background image"
+      }
     }
   },
   "order": [
@@ -3805,6 +3882,7 @@
     "video_scroll_interactive_emfAFB",
     "vip_section_B4NXcX",
     "result_timeline_8mq7kC",
-    "protocol_phases_Kz4zNi"
+    "protocol_phases_Kz4zNi",
+    "biotechnology_intro_ePfpEa"
   ]
 }

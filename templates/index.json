@@ -2961,6 +2961,145 @@
         "nav_border_color": "#4FFFFF",
         "nav_icon_color": "#4FFFFF"
       }
+    },
+    "product_buy_box_JiCNNw": {
+      "type": "product-buy-box",
+      "blocks": {
+        "star_rating_GjHhy7": {
+          "type": "star_rating",
+          "settings": {
+            "rating": "5",
+            "show_count": true,
+            "review_count": "231 Reviews"
+          }
+        },
+        "review_text_e9UwaG": {
+          "type": "review_text",
+          "settings": {
+            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
+          }
+        },
+        "review_author_3Dnwcq": {
+          "type": "review_author",
+          "settings": {
+            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
+          }
+        },
+        "title_TJq4Qf": {
+          "type": "title",
+          "settings": {
+            "title": "Photon Youth™ Pro LED Mask"
+          }
+        },
+        "description_q9BNF9": {
+          "type": "description",
+          "settings": {
+            "description": "The light feels gentle and relaxing, not harsh or heating, and it fits comfortably on the face. Over time, my skin has started to look more \"alive\"—that healthy glow"
+          }
+        },
+        "product_image_wAghRV": {
+          "type": "product_image",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg.png"
+          }
+        },
+        "variant_wQqyc8": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "VIP Club Membership",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$49 USD"
+          }
+        },
+        "variant_4GeeBz": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Subscribe and Save",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$79 USD"
+          }
+        },
+        "variant_rGCPfp": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Buy one time",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$99 USD"
+          }
+        },
+        "media_UChx9P": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_image": "shopify://shop_images/download_26.jpg",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        },
+        "media_Grtrdn": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_image": "shopify://shop_images/download_29.jpg",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        },
+        "media_kXn9yq": {
+          "type": "media",
+          "settings": {
+            "media_type": "video",
+            "media_alt": "Product image",
+            "media_video_url": "https://cdn.shopify.com/videos/c/o/v/12ae8aa90d6c432c8967c5b6550c99a3.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_GjHhy7",
+        "review_text_e9UwaG",
+        "review_author_3Dnwcq",
+        "title_TJq4Qf",
+        "description_q9BNF9",
+        "product_image_wAghRV",
+        "variant_wQqyc8",
+        "variant_4GeeBz",
+        "variant_rGCPfp",
+        "media_UChx9P",
+        "media_Grtrdn",
+        "media_kXn9yq"
+      ],
+      "name": "Product Buy Box",
+      "settings": {
+        "outer_bg_color": "#000000",
+        "outer_padding": 20,
+        "gap_width": 20,
+        "max_width": 1400,
+        "left_bg_color": "#ffffff",
+        "right_bg_color": "#f5f5f5",
+        "star_color": "#000000",
+        "title_color": "#000000",
+        "text_color": "#000000",
+        "secondary_text_color": "#666666",
+        "active_color": "#4FFFFF",
+        "variant_border_color": "#e0e0e0",
+        "variant_bg_color": "#ffffff",
+        "cta_text": "Add to cart",
+        "cta_bg_color": "#4FFFFF",
+        "cta_text_color": "#000000",
+        "payment_button_1": "shopify://shop_images/5cecf2c1ee40676bcef484efe1853bff.png",
+        "payment_button_2": "shopify://shop_images/shoppe-png.webp",
+        "payment_btn_bg": "#ffffff",
+        "nav_strip_bg": "#ffffff"
+      }
     }
   },
   "order": [
@@ -2979,6 +3118,7 @@
     "dot_line_section_KFqCcJ",
     "ingredients_banner_KNtyNW",
     "lifestyle_section_EFC46F",
-    "medical_team_hihAtj"
+    "medical_team_hihAtj",
+    "product_buy_box_JiCNNw"
   ]
 }

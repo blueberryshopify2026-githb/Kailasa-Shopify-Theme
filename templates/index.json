@@ -3100,6 +3100,75 @@
         "payment_btn_bg": "#ffffff",
         "nav_strip_bg": "#ffffff"
       }
+    },
+    "professional_panel_WJf7TU": {
+      "type": "professional-panel",
+      "blocks": {
+        "professional_i94dhJ": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/sample_6_10.png",
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        },
+        "professional_egiyYA": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/sample_6_11.png",
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        },
+        "professional_iWX6Rg": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/sample_6_10.png",
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "professional_i94dhJ",
+        "professional_egiyYA",
+        "professional_iWX6Rg"
+      ],
+      "name": "Professional Panel",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "card_bg_color": "#000000",
+        "card_border_radius": 24,
+        "name_font_size": 44,
+        "name_color": "#ffffff",
+        "designation_font_size": 18,
+        "designation_color": "#4FFFFF",
+        "quote_font_size": 18,
+        "quote_color": "#ffffff",
+        "quote_mark_color": "#4FFFFF",
+        "cta_font_size": 14,
+        "cta_text_color": "#ffffff",
+        "cta_border_color": "#4FFFFF",
+        "cta_border_radius": 24,
+        "arrow_bg_color": "#000000",
+        "arrow_border_color": "#4FFFFF",
+        "arrow_color": "#4FFFFF"
+      }
     }
   },
   "order": [
@@ -3119,6 +3188,7 @@
     "ingredients_banner_KNtyNW",
     "lifestyle_section_EFC46F",
     "medical_team_hihAtj",
-    "product_buy_box_JiCNNw"
+    "product_buy_box_JiCNNw",
+    "professional_panel_WJf7TU"
   ]
 }

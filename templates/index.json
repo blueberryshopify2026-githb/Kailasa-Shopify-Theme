@@ -3412,6 +3412,75 @@
         "points_font_size": 16,
         "points_font_weight": "400"
       }
+    },
+    "result_timeline_8mq7kC": {
+      "type": "result-timeline",
+      "blocks": {
+        "week_KzHTFY": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 1",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function|Shields against environmental stress.|Fuels microbial metabolism of nutrients|Shields against environmental stress."
+          }
+        },
+        "week_Pd9MXk": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 1",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function"
+          }
+        },
+        "week_M7pdJd": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 2",
+            "week_title": "Enhanced Nutrient Absorption*",
+            "week_description": "Improves digestive health|Supports microbiome balance|Increases energy levels"
+          }
+        },
+        "week_BchtED": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 3",
+            "week_title": "Optimal Wellness*",
+            "week_description": "Complete system optimization|Long-term health benefits|Sustained energy and vitality"
+          }
+        }
+      },
+      "block_order": [
+        "week_KzHTFY",
+        "week_Pd9MXk",
+        "week_M7pdJd",
+        "week_BchtED"
+      ],
+      "name": "Result-Timeline",
+      "settings": {
+        "background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "font_family": "Montserrat",
+        "title": "Benefits that build over time.",
+        "title_color": "#000000",
+        "title_font_size": 42,
+        "title_font_weight": "700",
+        "subtitle": "Designed for daily use, DM-02™ replenishes your body and microbiome with essential nutrients to build systemic.",
+        "subtitle_color": "#666666",
+        "subtitle_font_size": 16,
+        "subtitle_font_weight": "400",
+        "left_image_1": "shopify://shop_images/Le_Fluide_14_Substantific.jpg",
+        "left_image_2": "shopify://shop_images/download_29.jpg",
+        "center_image": "shopify://shop_images/image_1.png",
+        "week_badge_font_size": 14,
+        "week_badge_font_weight": "500",
+        "week_title_color": "#000000",
+        "week_title_font_size": 24,
+        "week_title_font_weight": "600",
+        "list_color": "#333333",
+        "list_font_size": 15,
+        "list_font_weight": "400"
+      }
     }
   },
   "order": [
@@ -3436,6 +3505,7 @@
     "three_column_media_3DjjeX",
     "ugc_video_carousel_6dcGLD",
     "video_scroll_interactive_emfAFB",
-    "vip_section_B4NXcX"
+    "vip_section_B4NXcX",
+    "result_timeline_8mq7kC"
   ]
 }

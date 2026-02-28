@@ -3516,6 +3516,37 @@
             "bottom_text": "<p><strong>The Lipid Matrix Philosophy™</strong><br/>We do not treat the surface alone. We restore cellular harmony through lipid-layer architecture, mitochondrial support, and regenerative signaling —aligning internal biology.</p>"
           }
         },
+        "phase_item_Q7iHJf": {
+          "type": "phase_item",
+          "settings": {
+            "phase_number": "01",
+            "phase_title": "Internal Optimization",
+            "phase_subtitle": "Cellular Enhancement",
+            "header_alignment": "center",
+            "phase_label": "PHASE I",
+            "content_title": "Internal Optimization",
+            "content_subtitle": "Cellular Longevity Layer",
+            "image_alignment": "center",
+            "phase_image_width": 500,
+            "phase_image_height": 350,
+            "text_alignment": "center",
+            "phase_description": "<p>Phase description content goes here.</p>",
+            "feature_1_icon": "shopify://shop_images/cream_1.png",
+            "feature_1_title": "Liposomal Nutrient Transport",
+            "feature_1_desc": "Encapsulated actives enhance cellular uptake and bioavailability.",
+            "feature_2_icon": "shopify://shop_images/skincare.png",
+            "feature_2_title": "Mitochondrial Energy Support",
+            "feature_2_desc": "Optimizes ATP production to improve dermal vitality.",
+            "feature_3_icon": "shopify://shop_images/sheet.png",
+            "feature_3_title": "Oxidative Stress Defense",
+            "feature_3_desc": "Reduces free radical accumulation at the cellular level.",
+            "main_image": "shopify://shop_images/download_26.jpg",
+            "stat_number": "+150%",
+            "stat_label": "Increase in Cellular Vitality",
+            "stat_description": "Double-blind, placebo-controlled 4-week clinical study",
+            "bottom_text": "<p><strong>The Lipid Matrix Philosophy™</strong><br/>We do not treat the surface alone. We restore cellular harmony through lipid-layer architecture, mitochondrial support, and regenerative signaling —aligning internal biology.</p>"
+          }
+        },
         "phase_item_CbhAkC": {
           "type": "phase_item",
           "settings": {
@@ -3581,6 +3612,7 @@
       },
       "block_order": [
         "phase_item_TwEP9V",
+        "phase_item_Q7iHJf",
         "phase_item_CbhAkC",
         "phase_item_VJpFiA"
       ],

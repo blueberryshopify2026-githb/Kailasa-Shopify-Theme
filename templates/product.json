@@ -302,6 +302,26 @@
         "arrow_style": "stroke"
       }
     },
+    "ingredients_banner_kAL9Tx": {
+      "type": "ingredients-banner",
+      "name": "Ingredients Banner",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_padding": 80,
+        "headline": "High-quality <span class=\"highlight\">ingredients</span><br>optimised for impact",
+        "headline_font_size": 42,
+        "headline_color": "#000000",
+        "highlight_color": "#4FFFFF",
+        "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+        "html_content": "<p>We don't think you should settle for questionable ingredients when it comes to your daily supplement. That's why each ingredient in AG1 is sourced for optimal absorption and nutrient density, and combined for maximum potency.</p>",
+        "content_font_size": 16,
+        "content_color": "#666666",
+        "right_image": "shopify://shop_images/download_24.jpg",
+        "image_border_radius": 20,
+        "border_width": 2,
+        "border_color": "#000000"
+      }
+    },
     "dual_container_slider_AaJiPw": {
       "type": "dual-container-slider",
       "blocks": {
@@ -363,26 +383,6 @@
         "mobile_box_height": 150,
         "mobile_heading_padding": 20,
         "mobile_side_padding": 15
-      }
-    },
-    "ingredients_banner_kAL9Tx": {
-      "type": "ingredients-banner",
-      "name": "Ingredients Banner",
-      "settings": {
-        "section_bg_color": "#ffffff",
-        "section_padding": 80,
-        "headline": "High-quality <span class=\"highlight\">ingredients</span><br>optimised for impact",
-        "headline_font_size": 42,
-        "headline_color": "#000000",
-        "highlight_color": "#4FFFFF",
-        "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
-        "html_content": "<p>We don't think you should settle for questionable ingredients when it comes to your daily supplement. That's why each ingredient in AG1 is sourced for optimal absorption and nutrient density, and combined for maximum potency.</p>",
-        "content_font_size": 16,
-        "content_color": "#666666",
-        "right_image": "shopify://shop_images/download_24.jpg",
-        "image_border_radius": 20,
-        "border_width": 2,
-        "border_color": "#000000"
       }
     },
     "filter_by_concerns_AhDYph": {
@@ -487,8 +487,8 @@
     "product_buy_box",
     "doctors_endorsement_ryA7tH",
     "tab_section_D6GaFJ",
-    "dual_container_slider_AaJiPw",
     "ingredients_banner_kAL9Tx",
+    "dual_container_slider_AaJiPw",
     "filter_by_concerns_AhDYph"
   ]
 }

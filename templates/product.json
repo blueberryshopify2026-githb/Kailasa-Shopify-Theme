@@ -245,46 +245,32 @@
     "tab_section_D6GaFJ": {
       "type": "tab-section",
       "blocks": {
-        "faq_block_GxXrYc": {
-          "type": "faq-block",
+        "image_text_block_XJbM3P": {
+          "type": "image-text-block",
           "settings": {
-            "tab_name": "FAQ",
-            "layout": "image-faq",
-            "faq_bg_color": "#ffffff",
-            "question_text_color": "#181818",
-            "answer_text_color": "#666666",
-            "border_color": "#e0e0e0",
-            "faq_max_height": 400,
-            "faq1_question": "How many times should I use this?",
-            "faq1_answer": "<p>Use this product once daily in the evening. Start with 2-3 times per week and gradually increase frequency as your skin builds tolerance.</p>",
-            "faq2_question": "I already use an exfoliating scrub, should I continue with that after I use this cleanser?",
-            "faq2_answer": "<p>It's recommended to avoid using other exfoliating products when starting this treatment to prevent over-exfoliation.</p>",
-            "faq3_question": "Will this make me break out?",
-            "faq3_answer": "<p>Some initial purging may occur as your skin adjusts. This is normal and should subside within 2-4 weeks of consistent use.</p>",
-            "faq4_question": "How long until I see results on my face?",
-            "faq4_answer": "<p>Most users see visible improvements within 4-6 weeks of consistent use. Results may vary depending on skin type and condition.</p>",
-            "faq5_question": "Can we use it on Acne Prone Skin?",
-            "faq5_answer": "<p>Yes, this product is suitable for acne-prone skin. However, start slowly and monitor your skin's response.</p>",
-            "faq6_question": "Is this good for Dry Skin?",
-            "faq6_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>",
-            "faq7_question": "",
-            "faq7_answer": "",
-            "faq8_question": "",
-            "faq8_answer": "",
-            "faq9_question": "",
-            "faq9_answer": "",
-            "faq10_question": "",
-            "faq10_answer": "",
-            "faq11_question": "",
-            "faq11_answer": "",
-            "faq12_question": "",
-            "faq12_answer": "",
-            "faq13_question": "",
-            "faq13_answer": "",
-            "faq14_question": "",
-            "faq14_answer": "",
-            "faq15_question": "",
-            "faq15_answer": ""
+            "tab_name": "About",
+            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
+          }
+        },
+        "image_text_block_g4GLCr": {
+          "type": "image-text-block",
+          "settings": {
+            "tab_name": "usage",
+            "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout.",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
           }
         },
         "ingredient_block_RVyL6m": {
@@ -324,25 +310,55 @@
             "ingredient_description_10": ""
           }
         },
-        "image_text_block_XJbM3P": {
-          "type": "image-text-block",
+        "faq_block_GxXrYc": {
+          "type": "faq-block",
           "settings": {
-            "tab_name": "About",
-            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
-            "layout": "image-text",
-            "content_font_family": "inherit",
-            "content_font_weight": 400,
-            "content_font_style": "normal",
-            "content_font_size_desktop": 16,
-            "content_font_size_mobile": 14,
-            "content_text_color": "#181818"
+            "tab_name": "FAQ",
+            "image": "shopify://shop_images/9919143ee60b1045d50652f846cb65bd.jpg",
+            "layout": "image-faq",
+            "faq_bg_color": "#ffffff",
+            "question_text_color": "#181818",
+            "answer_text_color": "#666666",
+            "border_color": "#e0e0e0",
+            "faq_max_height": 400,
+            "faq1_question": "How many times should I use this?",
+            "faq1_answer": "<p>Use this product once daily in the evening. Start with 2-3 times per week and gradually increase frequency as your skin builds tolerance.</p>",
+            "faq2_question": "I already use an exfoliating scrub, should I continue with that after I use this cleanser?",
+            "faq2_answer": "<p>It's recommended to avoid using other exfoliating products when starting this treatment to prevent over-exfoliation.</p>",
+            "faq3_question": "Will this make me break out?",
+            "faq3_answer": "<p>Some initial purging may occur as your skin adjusts. This is normal and should subside within 2-4 weeks of consistent use.</p>",
+            "faq4_question": "How long until I see results on my face?",
+            "faq4_answer": "<p>Most users see visible improvements within 4-6 weeks of consistent use. Results may vary depending on skin type and condition.</p>",
+            "faq5_question": "Can we use it on Acne Prone Skin?",
+            "faq5_answer": "<p>Yes, this product is suitable for acne-prone skin. However, start slowly and monitor your skin's response.</p>",
+            "faq6_question": "Is this good for Dry Skin?",
+            "faq6_answer": "<p>Yes, but ensure you follow up with a good moisturizer as this product can be drying initially.</p>",
+            "faq7_question": "",
+            "faq7_answer": "",
+            "faq8_question": "",
+            "faq8_answer": "",
+            "faq9_question": "",
+            "faq9_answer": "",
+            "faq10_question": "",
+            "faq10_answer": "",
+            "faq11_question": "",
+            "faq11_answer": "",
+            "faq12_question": "",
+            "faq12_answer": "",
+            "faq13_question": "",
+            "faq13_answer": "",
+            "faq14_question": "",
+            "faq14_answer": "",
+            "faq15_question": "",
+            "faq15_answer": ""
           }
         }
       },
       "block_order": [
-        "faq_block_GxXrYc",
+        "image_text_block_XJbM3P",
+        "image_text_block_g4GLCr",
         "ingredient_block_RVyL6m",
-        "image_text_block_XJbM3P"
+        "faq_block_GxXrYc"
       ],
       "name": "Tab Section",
       "settings": {

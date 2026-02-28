@@ -213,6 +213,7 @@
         "doctor_mnig6B",
         "doctor_rKMFUN"
       ],
+      "disabled": true,
       "name": "Doctor Endorsement",
       "settings": {
         "section_title": "Doctor Endorsements",

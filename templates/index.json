@@ -3209,6 +3209,39 @@
         "image_width": 100,
         "image_height": 100
       }
+    },
+    "ugc_video_carousel_6dcGLD": {
+      "type": "ugc-video-carousel",
+      "blocks": {
+        "ugc_video_PeWTen": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/063bb6c6f01d4e7aa26cea951453748c.mp4",
+            "redirect_url": "",
+            "product": "",
+            "product_url": "",
+            "product_title": "",
+            "product_price": ""
+          }
+        }
+      },
+      "block_order": [
+        "ugc_video_PeWTen"
+      ],
+      "name": "UGC Video Carousel",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "section_title": "Real Stories, Real Results",
+        "section_description": "Authentic experiences from our community—unfiltered and genuine.",
+        "title_font_size": 42,
+        "title_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "dot_active_color": "#000000",
+        "dot_inactive_color": "#cccccc"
+      }
     }
   },
   "order": [
@@ -3230,6 +3263,7 @@
     "medical_team_hihAtj",
     "product_buy_box_JiCNNw",
     "professional_panel_WJf7TU",
-    "three_column_media_3DjjeX"
+    "three_column_media_3DjjeX",
+    "ugc_video_carousel_6dcGLD"
   ]
 }

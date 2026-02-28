@@ -3315,6 +3315,7 @@
           "type": "video_text_item",
           "settings": {
             "video_file": "",
+            "image_file": "shopify://shop_images/Federico_Berardi___Oeuvre_n-2381.jpg",
             "text_title": "Driven by a passion to make quality nutrition accessible to all.",
             "text_description": ""
           }

@@ -28,6 +28,9 @@
           "settings": {
             "variant_name": "Subscribe and Save",
             "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
             "variant_price": "$79 USD"
           }
         },
@@ -35,25 +38,35 @@
           "type": "variant",
           "settings": {
             "variant_name": "Buy one time",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
             "variant_price": "$99 USD"
           }
         },
         "media_1": {
           "type": "media",
           "settings": {
-            "media_type": "image"
+            "media_type": "image",
+            "media_alt": "Product image",
+            "media_video_url": ""
           }
         },
         "media_2": {
           "type": "media",
           "settings": {
-            "media_type": "image"
+            "media_type": "image",
+            "media_alt": "Product image",
+            "media_video_url": ""
           }
         },
         "media_3": {
           "type": "media",
           "settings": {
-            "media_type": "image"
+            "media_type": "image",
+            "media_alt": "Product image",
+            "media_video_url": ""
           }
         }
       },
@@ -65,7 +78,28 @@
         "media_2",
         "media_3"
       ],
-      "settings": {}
+      "settings": {
+        "outer_bg_color": "#000000",
+        "outer_padding": 20,
+        "gap_width": 20,
+        "max_width": 1400,
+        "left_bg_color": "#ffffff",
+        "right_bg_color": "#f5f5f5",
+        "star_color": "#000000",
+        "title_color": "#000000",
+        "text_color": "#000000",
+        "secondary_text_color": "#666666",
+        "active_color": "#4fffff",
+        "variant_border_color": "#e0e0e0",
+        "variant_bg_color": "#ffffff",
+        "cta_text": "Add to cart",
+        "cta_bg_color": "#4fffff",
+        "cta_text_color": "#000000",
+        "payment_button_1": "shopify://shop_images/shoppe-png.webp",
+        "payment_button_2": "shopify://shop_images/5cecf2c1ee40676bcef484efe1853bff.png",
+        "payment_btn_bg": "#ffffff",
+        "nav_strip_bg": "#ffffff"
+      }
     }
   },
   "order": [

@@ -49,6 +49,7 @@
           "type": "media",
           "settings": {
             "media_type": "image",
+            "media_image": "shopify://shop_images/download_26.jpg",
             "media_alt": "Product image",
             "media_video_url": ""
           }
@@ -57,6 +58,7 @@
           "type": "media",
           "settings": {
             "media_type": "image",
+            "media_image": "shopify://shop_images/download_29.jpg",
             "media_alt": "Product image",
             "media_video_url": ""
           }
@@ -64,9 +66,9 @@
         "media_3": {
           "type": "media",
           "settings": {
-            "media_type": "image",
+            "media_type": "video",
             "media_alt": "Product image",
-            "media_video_url": ""
+            "media_video_url": "https://cdn.shopify.com/videos/c/o/v/12ae8aa90d6c432c8967c5b6550c99a3.mp4"
           }
         }
       },

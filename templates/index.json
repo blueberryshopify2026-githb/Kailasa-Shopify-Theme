@@ -3350,6 +3350,68 @@
         "description_size": 16,
         "description_line_height": 1.5
       }
+    },
+    "vip_section_B4NXcX": {
+      "type": "vip-section",
+      "blocks": {
+        "point_9hQRWR": {
+          "type": "point",
+          "settings": {
+            "point_text": "Want an easy way to support your daily nutrition",
+            "point_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg"
+          }
+        },
+        "point_jgekRe": {
+          "type": "point",
+          "settings": {
+            "point_text": "Are juggling a busy life and need nutrition that keeps up",
+            "point_image": "shopify://shop_images/download_27.jpg"
+          }
+        },
+        "point_bzCLBy": {
+          "type": "point",
+          "settings": {
+            "point_text": "Care about improving gut health and digestion",
+            "point_image": "shopify://shop_images/Biossance_Award_Winning_Squalene_for_Skin___Biossance.jpg"
+          }
+        },
+        "point_JttzhV": {
+          "type": "point",
+          "settings": {
+            "point_text": "Are getting back into fitness and want to support your energy levels",
+            "point_image": "shopify://shop_images/Omorovicza_Queen_Essence_3_4_oz.jpg"
+          }
+        },
+        "point_DjKYR9": {
+          "type": "point",
+          "settings": {
+            "point_text": "Are on GLP-1s and want additional nutritional support",
+            "point_image": "shopify://shop_images/download_26.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "point_9hQRWR",
+        "point_jgekRe",
+        "point_bzCLBy",
+        "point_JttzhV",
+        "point_DjKYR9"
+      ],
+      "name": "VIP Section",
+      "settings": {
+        "title": "Designed to Support Your Busy Lifestyle",
+        "subtitle": "We formulated AG1 Next Gen to support your health with advanced nutrition in every scoop.* It's a match if you:",
+        "button_text": "Get Started",
+        "button_link": "",
+        "default_image": "shopify://shop_images/Le_Fluide_14_Substantific.jpg",
+        "font_family": "montserrat_n4",
+        "title_font_size": 48,
+        "title_font_weight": "700",
+        "subtitle_font_size": 18,
+        "subtitle_font_weight": "400",
+        "points_font_size": 16,
+        "points_font_weight": "400"
+      }
     }
   },
   "order": [
@@ -3373,6 +3435,7 @@
     "professional_panel_WJf7TU",
     "three_column_media_3DjjeX",
     "ugc_video_carousel_6dcGLD",
-    "video_scroll_interactive_emfAFB"
+    "video_scroll_interactive_emfAFB",
+    "vip_section_B4NXcX"
   ]
 }

@@ -2844,6 +2844,26 @@
         "auto_advance": false,
         "auto_advance_delay": 5000
       }
+    },
+    "ingredients_banner_KNtyNW": {
+      "type": "ingredients-banner",
+      "name": "Ingredients Banner",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_padding": 80,
+        "headline": "High-quality <span class=\"highlight\">ingredients</span><br>optimised for impact",
+        "headline_font_size": 42,
+        "headline_color": "#000000",
+        "highlight_color": "#4FFFFF",
+        "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+        "html_content": "<p>We don't think you should settle for questionable ingredients when it comes to your daily supplement. That's why each ingredient in AG1 is sourced for optimal absorption and nutrient density, and combined for maximum potency.</p>",
+        "content_font_size": 16,
+        "content_color": "#666666",
+        "right_image": "shopify://shop_images/download_26.jpg",
+        "image_border_radius": 20,
+        "border_width": 2,
+        "border_color": "#000000"
+      }
     }
   },
   "order": [
@@ -2859,6 +2879,7 @@
     "science_slider_GHrxFn",
     "dual_container_slider_fP9ERg",
     "product_infographic_EFadXU",
-    "dot_line_section_KFqCcJ"
+    "dot_line_section_KFqCcJ",
+    "ingredients_banner_KNtyNW"
   ]
 }

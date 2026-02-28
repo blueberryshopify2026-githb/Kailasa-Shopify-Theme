@@ -302,6 +302,69 @@
         "arrow_style": "stroke"
       }
     },
+    "dual_container_slider_AaJiPw": {
+      "type": "dual-container-slider",
+      "blocks": {
+        "slide_item_W4RcEf": {
+          "type": "slide_item",
+          "settings": {
+            "left_image": "shopify://shop_images/download_24.jpg",
+            "left_fit": "cover",
+            "right_image": "shopify://shop_images/ChatGPT_Image_Feb_19_2026_11_42_11_AM_634c50b6-b548-4e58-9adb-f6dd398d2c2d.png",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_BTBkUW": {
+          "type": "slide_item",
+          "settings": {
+            "left_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg",
+            "left_fit": "cover",
+            "right_image": "shopify://shop_images/1f3e47a0ece8474dad4a76f020802069_eb5541f2-65a4-4151-8320-6c9da2938009.jpg",
+            "right_fit": "cover"
+          }
+        }
+      },
+      "block_order": [
+        "slide_item_W4RcEf",
+        "slide_item_BTBkUW"
+      ],
+      "name": "Dual Container Slider",
+      "settings": {
+        "bg_color": "#000000",
+        "section_height": 600,
+        "section_padding": 40,
+        "slide_height": 400,
+        "white_text": "BUILD ON BIOLOGY.",
+        "cyan_text": "GUIDED BY SCIENCE",
+        "white_color": "#ffffff",
+        "cyan_color": "#00ffff",
+        "title_size": 48,
+        "title_weight": "700",
+        "heading_padding": 30,
+        "left_bg": "#f8f8f8",
+        "right_bg": "#f8f8f8",
+        "border_radius": 20,
+        "gap": 20,
+        "side_padding": 10,
+        "placeholder_color": "#666666",
+        "placeholder_size": 14,
+        "dot_active": "#00ffff",
+        "dot_inactive": "#666666",
+        "dot_size": 12,
+        "dot_gap": 10,
+        "indicators_padding": 20,
+        "auto_slide": true,
+        "auto_duration": 5000,
+        "mobile_section_height": 500,
+        "mobile_section_padding": 30,
+        "mobile_slide_height": 350,
+        "mobile_title_size": 28,
+        "mobile_gap": 15,
+        "mobile_box_height": 150,
+        "mobile_heading_padding": 20,
+        "mobile_side_padding": 15
+      }
+    },
     "filter_by_concerns_AhDYph": {
       "type": "filter-by-concerns",
       "blocks": {
@@ -404,6 +467,7 @@
     "product_buy_box",
     "doctors_endorsement_ryA7tH",
     "tab_section_D6GaFJ",
+    "dual_container_slider_AaJiPw",
     "filter_by_concerns_AhDYph"
   ]
 }

@@ -445,6 +445,7 @@
         "slide_item_W4RcEf",
         "slide_item_BTBkUW"
       ],
+      "disabled": true,
       "name": "Dual Container Slider",
       "settings": {
         "bg_color": "#000000",

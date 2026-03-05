@@ -55,6 +55,7 @@
         "content_block_UrQViw",
         "content_block_mbgAaw"
       ],
+      "disabled": true,
       "name": "Hero Section",
       "settings": {
         "section_bg_color": "#000000",

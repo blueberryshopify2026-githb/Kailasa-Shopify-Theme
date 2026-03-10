@@ -2896,6 +2896,7 @@
           "settings": {
             "position_x": 80,
             "position_y": 70,
+            "image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
             "caption": "RETINAL 0.1%",
             "description": "Accelerates cell turnover + boosts collagen FINE-LINE REDUCTION, IMPROVED ELASTICITY"
           }
@@ -2907,7 +2908,7 @@
       ],
       "name": "Lifestyle Section",
       "settings": {
-        "background_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg",
+        "background_image": "shopify://shop_images/download_27.jpg",
         "section_bg_color": "#f5f5f5",
         "section_height": 120,
         "highlight_color": "#4fffff"

@@ -1439,6 +1439,7 @@
       ],
       "name": "Ingredients Scroll",
       "settings": {
+        "supplement_facts_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg",
         "title": "The inner workings of strength & recovery",
         "title_font": "Gilroy",
         "title_size": 48,

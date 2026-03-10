@@ -63,7 +63,6 @@
         "content_block_UrQViw",
         "content_block_mbgAaw"
       ],
-      "disabled": true,
       "name": "Hero Section",
       "settings": {
         "section_bg_color": "#000000",
@@ -214,7 +213,6 @@
         "image_text_block_zJamzz",
         "faq_block_kPRnra"
       ],
-      "disabled": true,
       "name": "Tab Section 1",
       "settings": {
         "title": "Ghoton Youth™ Pro LED Mask",
@@ -383,7 +381,6 @@
         "image_text_block_WTMHAg",
         "faq_block_q8HHhH"
       ],
-      "disabled": true,
       "name": "Tab Section 2",
       "settings": {
         "title": "Photon Youth™ Pro LED Mask",
@@ -1140,7 +1137,6 @@
         "multi_tab_block_Y6WrpH",
         "multi_tab_block_6VwnrB"
       ],
-      "disabled": true,
       "name": "Multi Tab Section",
       "settings": {
         "title": "Multi Product Tabs",
@@ -1441,7 +1437,6 @@
         "ingredient_dcBtcr",
         "ingredient_K9AynE"
       ],
-      "disabled": true,
       "name": "Ingredients Scroll",
       "settings": {
         "supplement_facts_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg",
@@ -1860,7 +1855,6 @@
         "product_Wm7kTh",
         "product_RVpwFr"
       ],
-      "disabled": true,
       "name": "Routine Tabs Section",
       "settings": {
         "section_background_color": "#ffffff",
@@ -2096,7 +2090,6 @@
         "product_hotspot_W4wUAW",
         "product_hotspot_fPRthV"
       ],
-      "disabled": true,
       "name": "Skincare Bundle",
       "settings": {
         "section_background": "#ffffff",
@@ -2293,7 +2286,6 @@
         "ingredient_row_GHmYci",
         "ingredient_row_7fVWL6"
       ],
-      "disabled": true,
       "name": "Comparison Table",
       "settings": {
         "section_heading": "Cellular Harmony Advantage",
@@ -2557,7 +2549,6 @@
         "korean_beauty_showcase_pEqYkG",
         "ingredient_showcase_9cPLiL"
       ],
-      "disabled": true,
       "name": "Science Slider",
       "settings": {
         "section_margin_top": 0,
@@ -2606,7 +2597,6 @@
         "slide_item_JWqKwm",
         "slide_item_hHFeTH"
       ],
-      "disabled": true,
       "name": "Dual Container Slider",
       "settings": {
         "bg_color": "#000000",
@@ -2714,7 +2704,6 @@
         "button_hWiLTk",
         "button_xwXRkV"
       ],
-      "disabled": true,
       "name": "Product Infographic",
       "settings": {
         "section_padding_top": 80,
@@ -2851,7 +2840,6 @@
         "media_block_KAbdze",
         "media_block_q4UpzH"
       ],
-      "disabled": true,
       "name": "Dot Line Section",
       "settings": {
         "dot_color": "#4fffff",
@@ -2868,7 +2856,6 @@
     },
     "ingredients_banner_KNtyNW": {
       "type": "ingredients-banner",
-      "disabled": true,
       "name": "Ingredients Banner",
       "settings": {
         "section_bg_color": "#ffffff",
@@ -2919,7 +2906,6 @@
         "text_block_qxXw7f",
         "image_block_qTWmHJ"
       ],
-      "disabled": true,
       "name": "Lifestyle Section",
       "settings": {
         "background_image": "shopify://shop_images/download_27.jpg",
@@ -2970,7 +2956,6 @@
         "team_member_UQpadz",
         "team_member_4BV7qy"
       ],
-      "disabled": true,
       "name": "Medical Team",
       "settings": {
         "section_bg_color": "#000000",
@@ -3035,7 +3020,6 @@
         "professional_egiyYA",
         "professional_iWX6Rg"
       ],
-      "disabled": true,
       "name": "Professional Panel",
       "settings": {
         "section_bg_color": "#ffffff",
@@ -3059,7 +3043,6 @@
     },
     "three_column_media_3DjjeX": {
       "type": "three-column-media",
-      "disabled": true,
       "name": "Three Column Media",
       "settings": {
         "section_background": "#ffffff",
@@ -3165,7 +3148,6 @@
         "ugc_video_f6iQ3D",
         "ugc_video_WKnxLL"
       ],
-      "disabled": true,
       "name": "UGC Video Carousel",
       "settings": {
         "section_background": "#ffffff",
@@ -3215,7 +3197,6 @@
         "video_text_item_exMKJn",
         "video_text_item_479iGr"
       ],
-      "disabled": true,
       "name": "Video Scroll Interactive",
       "settings": {
         "content_bg_color": "#ffffff",
@@ -3287,7 +3268,6 @@
         "point_bzCLBy",
         "point_JttzhV"
       ],
-      "disabled": true,
       "name": "VIP Section",
       "settings": {
         "title": "Designed to Support Your Busy Lifestyle",
@@ -3346,7 +3326,6 @@
         "week_M7pdJd",
         "week_BchtED"
       ],
-      "disabled": true,
       "name": "Result-Timeline",
       "settings": {
         "background_color": "#ffffff",
@@ -3572,7 +3551,6 @@
         "phase_item_VJpFiA",
         "phase_item_PxY8G7"
       ],
-      "disabled": true,
       "name": "Protocol Phases",
       "settings": {
         "bg_color": "#ffffff",
@@ -3706,7 +3684,6 @@
         "feature_item_yCFYBg",
         "feature_item_GgRBhX"
       ],
-      "disabled": true,
       "name": "Biotechnology Introduction",
       "settings": {
         "full_bg_size": "cover",
@@ -3861,7 +3838,6 @@
         "media_bXJP6x",
         "media_tQwEiV"
       ],
-      "disabled": true,
       "name": "Product Buy Box",
       "settings": {
         "outer_bg_color": "#000000",

@@ -1860,6 +1860,7 @@
         "product_Wm7kTh",
         "product_RVpwFr"
       ],
+      "disabled": true,
       "name": "Routine Tabs Section",
       "settings": {
         "section_background_color": "#ffffff",

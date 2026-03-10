@@ -214,6 +214,7 @@
         "image_text_block_zJamzz",
         "faq_block_kPRnra"
       ],
+      "disabled": true,
       "name": "Tab Section 1",
       "settings": {
         "title": "Ghoton Youth™ Pro LED Mask",
@@ -1441,7 +1442,6 @@
         "ingredient_dcBtcr",
         "ingredient_K9AynE"
       ],
-      "disabled": true,
       "name": "Ingredients Scroll",
       "settings": {
         "supplement_facts_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg",
@@ -1860,6 +1860,7 @@
         "product_Wm7kTh",
         "product_RVpwFr"
       ],
+      "disabled": true,
       "name": "Routine Tabs Section",
       "settings": {
         "section_background_color": "#ffffff",
@@ -2292,6 +2293,7 @@
         "ingredient_row_GHmYci",
         "ingredient_row_7fVWL6"
       ],
+      "disabled": true,
       "name": "Comparison Table",
       "settings": {
         "section_heading": "GCellular Harmony Advantage",

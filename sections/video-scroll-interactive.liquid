@@ -25,7 +25,7 @@
                   loop
                   playsinline
                 >
-                  <source src="{{ block.settings.video_file }}" type="video/mp4">
+                  <source src="{{ block.settings.video_file | asset_url }}" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               {% elsif block.settings.image_file %}
@@ -48,7 +48,7 @@
     </div>
 
     <!-- Right 50% - Text Content with Progress Bar -->
-    <div class="content-area">
+    <div class="content-area-vsi">
       <!-- Vertical Progress Bar -->
       <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
@@ -177,12 +177,13 @@
   }
 
   /* Content Area */
-  .content-area {
+  .content-area-vsi {
     position: relative;
     display: flex;
     align-items: center;
     padding: 40px;
     background: {{ section.settings.content_bg_color | default: '#ffffff' }};
+
   }
 
   /* Progress Bar */
@@ -200,7 +201,7 @@
   .progress-bar {
     width: 100%;
     height: 0%;
-    background: {{ section.settings.progress_bar_color | default: '#00bcd4' }};
+    background: {{ section.settings.progress_bar_color | default: '#4fffff' }};
     border-radius: 2px;
     transition: height 0.3s ease;
   }
@@ -213,6 +214,7 @@
     flex-direction: column;
     justify-content: center;
     height: {{ section.settings.media_height | default: 400 }}px;
+
   }
 
   .text-item {
@@ -223,11 +225,11 @@
   .text-item.active {
     opacity: 1;
     background-color: {{ section.settings.active_bg_color | default: '#d3ffff' }};
-    border-color: {{ section.settings.active_border_color | default: '#00bcd4' }} !important;
+    border-color: {{ section.settings.active_border_color | default: '#4fffff' }} !important;
   }
 
   .text-item.active:hover {
-    border-color: {{ section.settings.hover_border_color | default: '#00bcd4' }} !important;
+    border-color: {{ section.settings.hover_border_color | default: '#4fffff' }} !important;
   }
 
   /* Responsive */
@@ -245,7 +247,7 @@
       width: 90%;
     }
 
-    .content-area {
+    .content-area-vsi {
       padding: 30px 20px;
     }
 
@@ -264,6 +266,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const section = document.getElementById('videoScrollSection');
+    const textItemsContainer = section.querySelector('.text-items-container');
     const textItems = section.querySelectorAll('.text-item');
     const videoItems = section.querySelectorAll('.video-item');
     const progressBar = document.getElementById('progressBar');
@@ -274,64 +277,94 @@
     // Initialize
     updateActiveStates(0);
 
-    // Scroll event handler
-    section.addEventListener('wheel', function (e) {
+    // Scroll event handler - only on text items container
+    textItemsContainer.addEventListener('wheel', function (e) {
+      // Only prevent default if we're actually handling the scroll within the container
+      const isScrollingDown = e.deltaY > 0;
+      const isScrollingUp = e.deltaY < 0;
+
+      // Allow natural scroll to next/previous sections
+      if (isScrollingDown && currentIndex >= textItems.length - 1) {
+        // At last item, scrolling down - allow natural page scroll to next section
+        return;
+      }
+
+      if (isScrollingUp && currentIndex <= 0) {
+        // At first item, scrolling up - allow natural page scroll to previous section
+        return;
+      }
+
+      // Only prevent default if we're handling the scroll within the container
       e.preventDefault();
 
       if (isScrolling) return;
       isScrolling = true;
 
-      if (e.deltaY > 0) {
-        // Scroll down
+      if (isScrollingDown) {
+        // Scroll down within container
         if (currentIndex < textItems.length - 1) {
           currentIndex++;
+          updateActiveStates(currentIndex);
         }
       } else {
-        // Scroll up
+        // Scroll up within container
         if (currentIndex > 0) {
           currentIndex--;
+          updateActiveStates(currentIndex);
         }
       }
 
-      updateActiveStates(currentIndex);
-
       setTimeout(() => {
         isScrolling = false;
-      }, 500);
+      }, 300); // Reduced timeout for better responsiveness
     });
 
-    // Touch events for mobile
+    // Touch events for mobile - only on text items container
     let touchStartY = 0;
-    section.addEventListener('touchstart', function (e) {
+    textItemsContainer.addEventListener('touchstart', function (e) {
       touchStartY = e.touches[0].clientY;
     });
 
-    section.addEventListener('touchend', function (e) {
+    textItemsContainer.addEventListener('touchend', function (e) {
       if (isScrolling) return;
 
       const touchEndY = e.changedTouches[0].clientY;
       const diff = touchStartY - touchEndY;
 
       if (Math.abs(diff) > 50) {
+        const isSwipeDown = diff > 0;
+        const isSwipeUp = diff < 0;
+
+        // Allow natural scroll to next/previous sections
+        if (isSwipeDown && currentIndex >= textItems.length - 1) {
+          // At last item, swiping down - allow natural page scroll
+          return;
+        }
+
+        if (isSwipeUp && currentIndex <= 0) {
+          // At first item, swiping up - allow natural page scroll
+          return;
+        }
+
         isScrolling = true;
 
-        if (diff > 0) {
-          // Swipe up
+        if (isSwipeDown) {
+          // Swipe down
           if (currentIndex < textItems.length - 1) {
             currentIndex++;
+            updateActiveStates(currentIndex);
           }
         } else {
-          // Swipe down
+          // Swipe up
           if (currentIndex > 0) {
             currentIndex--;
+            updateActiveStates(currentIndex);
           }
         }
 
-        updateActiveStates(currentIndex);
-
         setTimeout(() => {
           isScrolling = false;
-        }, 500);
+        }, 300);
       }
     });
 
@@ -399,7 +432,7 @@
       "type": "color",
       "id": "video_area_bg",
       "label": "Video Area Background Color",
-      "default": "#f8f8f8"
+      "default": "#ffffff"
     },
     {
       "type": "range",
@@ -435,7 +468,7 @@
       "type": "color",
       "id": "progress_bar_color",
       "label": "Progress Bar Color",
-      "default": "#00bcd4"
+      "default": "#4fffff"
     },
     {
       "type": "header",
@@ -491,7 +524,7 @@
       "type": "color",
       "id": "active_border_color",
       "label": "Active Border Color",
-      "default": "#00bcd4"
+      "default": "#4fffff"
     },
     {
       "type": "color",
@@ -503,7 +536,7 @@
       "type": "color",
       "id": "hover_border_color",
       "label": "Hover Border Color",
-      "default": "#00bcd4"
+      "default": "#4fffff"
     },
     {
       "type": "header",

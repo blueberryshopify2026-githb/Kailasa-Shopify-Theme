@@ -2,7 +2,7 @@
   Product Infographic Section - Frosted Glass Design
 {% endcomment %}
 
-<section class="product-infographic-section">
+<section class="product-infographic-section full-width">
   <div class="infographic-container">
     <div class="frosted-glass-card">
       <!-- Product Image -->
@@ -11,13 +11,13 @@
           <img
             src="{{ section.settings.product_image | image_url: width: 600 }}"
             alt="{{ section.settings.product_image_alt }}"
-            class="product-image"
+            class="product-image-infographic"
             width="240"
             height="160"
             loading="lazy"
           >
         {% else %}
-          <div class="image-placeholder"></div>
+          <div class="image-placeholder-infographic"></div>
         {% endif %}
       </div>
 
@@ -30,31 +30,31 @@
         <!-- Benefit Points -->
         {% if section.settings.show_benefits %}
           <div class="benefit-points" id="benefitPoints">
-            <div class="benefit-item" id="benefit1">
+            <div class="benefit-item-infographic" id="benefit1">
               <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span class="benefit-text" id="benefit1Text">Advanced molecular technology</span>
             </div>
-            <div class="benefit-item" id="benefit2">
+            <div class="benefit-item-infographic" id="benefit2">
               <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span class="benefit-text" id="benefit2Text">Superior skin penetration</span>
             </div>
-            <div class="benefit-item" id="benefit3">
+            <div class="benefit-item-infographic" id="benefit3">
               <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span class="benefit-text" id="benefit3Text">Cellular absorption boost</span>
             </div>
-            <div class="benefit-item" id="benefit4" style="display: none;">
+            <div class="benefit-item-infographic" id="benefit4" style="display: none;">
               <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span class="benefit-text" id="benefit4Text"></span>
             </div>
-            <div class="benefit-item" id="benefit5" style="display: none;">
+            <div class="benefit-item-infographic" id="benefit5" style="display: none;">
               <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -66,7 +66,7 @@
 
       <!-- Right Content -->
       <div class="right-content-infographic">
-        <h3 class="main-heading" id="mainHeading">{{ section.settings.main_heading }}</h3>
+        <h3 class="main-heading-infographic" id="mainHeading">{{ section.settings.main_heading }}</h3>
       </div>
 
       <!-- Bottom Buttons -->
@@ -144,7 +144,7 @@
      position: relative;
    }
 
-   .product-image {
+   .product-image-infographic {
      width: 220px;
      height: 300px;
      object-fit: {{ section.settings.image_object_fit | default: 'cover' }};
@@ -154,7 +154,7 @@
      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
    }
 
-   .image-placeholder {
+   .image-placeholder-infographic {
      width: 220px;
      height: 300px;
      display: flex;
@@ -215,14 +215,14 @@
      margin-top: {{ section.settings.benefits_margin_top | default: 16 }}px;
    }
 
-   .benefit-item {
+   .benefit-item-infographic {
      display: flex;
      align-items: center;
      margin-bottom: {{ section.settings.benefit_item_spacing | default: 8 }}px;
      gap: {{ section.settings.benefit_arrow_gap | default: 8 }}px;
    }
 
-   .benefit-item:last-child {
+   .benefit-item-infographic:last-child {
      margin-bottom: 30px;
    }
 
@@ -253,7 +253,7 @@
      height: 100%;
    }
 
-   .main-heading {
+   .main-heading-infographic {
      font-size: {{ section.settings.main_heading_size | default: 3.5 }}rem;
      font-weight: {{ section.settings.main_heading_weight | default: 900 }};
      color: {{ section.settings.main_heading_color | default: '#000000' }};
@@ -336,7 +336,7 @@
        padding-bottom: 20px;
      }
 
-     .main-heading {
+     .main-heading-infographic {
        position: static;
        transform: none;
        margin-top: 20px;
@@ -356,7 +356,7 @@
        bottom: auto;
      }
 
-     .main-heading {
+     .main-heading-infographic {
        font-size: 2.2rem;
      }
    }
@@ -376,7 +376,7 @@
        font-size: 1.4rem;
      }
 
-     .main-heading {
+     .main-heading-infographic {
        font-size: 1.8rem;
      }
 
@@ -1158,7 +1158,7 @@
       "label": "Active button background",
       "default": "transparent"
     },
-    { "type": "color", "id": "button_active_text_color", "label": "Active button text color", "default": "#ffffff" },
+    { "type": "color", "id": "button_active_text_color", "label": "Active button text color", "default": "#000000" },
     {
       "type": "color",
       "id": "button_active_border_color",
@@ -1234,6 +1234,18 @@
             "benefit_1": "Clinically tested formula",
             "benefit_2": "Pharmaceutical grade quality",
             "benefit_3": "Research-backed results"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "Quality",
+            "heading": "PREMIUM QUALITY",
+            "description": "Manufactured to the highest standards with premium ingredients and rigorous quality control.",
+            "show_benefits": true,
+            "benefit_1": "GMP certified facility",
+            "benefit_2": "Third-party tested",
+            "benefit_3": "Premium ingredients"
           }
         }
       ]

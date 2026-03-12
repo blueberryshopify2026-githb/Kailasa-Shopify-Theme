@@ -92,9 +92,9 @@
     <div id="menu-shop-all" class="mega-menu-section">
       <div class="shop-all-layout">
         <!-- Left Section - 9 Products (3x3 Grid) -->
-        <div class="products-section">
+        <div class="kailasa-header-products-section">
           {% for i in (1..9) %}
-            <div class="product-card">
+            <div class="kailasa-header-product-card">
               {% assign product_image_key = 'shop_all_product_' | append: i | append: '_image' %}
               {% assign product_name_key = 'shop_all_product_' | append: i | append: '_name' %}
               {% assign product_image = section.settings[product_image_key] %}
@@ -274,7 +274,7 @@
       <div class="vip-layout">
         <!-- Left Section - Text Content -->
         <div class="vip-text-section">
-          <h2 class="vip-title">{{ section.settings.vip_title }}</h2>
+          <h2 class="kailasa-header-vip-title">{{ section.settings.vip_title }}</h2>
           <p class="vip-description">{{ section.settings.vip_description }}</p>
           <a href="{{ section.settings.vip_button_link | default: '#' }}" class="vip-cta-button">
             {{ section.settings.vip_button_text }}
@@ -705,7 +705,7 @@
   }
 
   /* Left Section - 9 Products Grid */
-  .products-section {
+  .kailasa-header-products-section {
     flex: 0 0 35%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -716,7 +716,7 @@
     max-height: 400px;
   }
 
-  .product-card {
+  .kailasa-header-product-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1173,7 +1173,7 @@
     gap: 15px;
   }
 
-  .vip-title {
+  .kailasa-header-vip-title {
     font-size: 30px;
     font-weight: 600;
     line-height: 1.2;

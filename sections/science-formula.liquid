@@ -1,0 +1,1031 @@
+{% comment %}
+  Science Formula Section - Interactive expandable science content
+  Features expandable blocks with media placeholders and cyan active states
+{% endcomment %}
+
+<section class="science-formula-section full-width" id="science-formula">
+  <div class="science-container">
+    <!-- Left Content Area -->
+    <div class="science-content">
+      <!-- Main Heading -->
+      <div class="science-header">
+        <h1 class="science-title">
+          {{
+            section.settings.main_title
+            | default: 'We have the formula for long-term skin health. And we follow it.'
+          }}
+        </h1>
+        <p class="science-subtitle">
+          {{
+            section.settings.subtitle
+            | default: 'Every formulation begins with a question: What does skin need that current products dont deliver? We find the answers in our philosophy.'
+          }}
+        </p>
+
+        <!-- Navigation Arrows -->
+        <div class="content-nav-arrows">
+          <div class="nav-arrow-small" onclick="scrollToTop()">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M9 7L6 4L3 7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="nav-arrow-small" onclick="scrollToBottom()">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M3 5L6 8L9 5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expandable Science Blocks -->
+      <div class="science-blocks-container">
+        <div class="science-blocks"></div>
+        {% for block in section.blocks %}
+          {% if block.type == 'science_item' %}
+            <div class="science-block" data-block="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              <div class="block-header" onclick="toggleBlock({{ forloop.index0 }})">
+                <h3 class="block-title">{{ block.settings.title | default: 'Science Block Title' }}</h3>
+                <div class="expand-arrow">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="block-content">
+                <p class="block-description">
+                  {{
+                    block.settings.description
+                    | default: 'Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.'
+                  }}
+                </p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right Media Area -->
+    <div class="science-media">
+      <div class="media-container-science-formula">
+        <!-- Single Media Display -->
+        <div id="media-display" class="single-media-display">
+          <!-- Default placeholder will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+  .science-formula-section {
+    background: {{ section.settings.bg_color | default: '#000000' }};
+    color: {{ section.settings.text_color | default: '#ffffff' }};
+    font-family: 'Montserrat', sans-serif;
+    padding: {{ section.settings.section_padding | default: 20 }}px;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .science-container {
+    max-width: {{ section.settings.container_width | default: 1400 }}px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: {{ section.settings.content_ratio | default: 50 }}% {{ section.settings.media_ratio | default: 50 }}%;
+    gap: {{ section.settings.grid_gap | default: 20 }}px;
+    height: calc(100vh - 40px);
+  }
+
+  /* Left Content Area */
+  .science-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    cursor: pointer; /* Pointer cursor for entire left area */
+  }
+
+  .content-nav-arrows {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .nav-arrow-small {
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .nav-arrow-small:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .science-blocks-container {
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    max-height: calc(6 * 60px + 5 * 3px);
+    scroll-behavior: auto; /* Changed from smooth to auto for better control */
+    cursor: pointer;
+  }
+
+  .science-blocks-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .science-header {
+    margin-bottom: {{ section.settings.header_margin | default: 10 }}px;
+    flex-shrink: 0;
+  }
+
+  .science-title {
+    font-size: {{ section.settings.title_size | default: 20 }}px;
+    font-weight: {{ section.settings.title_weight | default: 600 }};
+    line-height: {{ section.settings.title_line_height | default: 1.1 }};
+    color: {{ section.settings.title_color | default: '#ffffff' }};
+    margin: 0 0 {{ section.settings.title_margin | default: 10 }}px 0;
+  }
+
+  .science-subtitle {
+    font-size: {{ section.settings.subtitle_size | default: 14 }}px;
+    font-weight: {{ section.settings.subtitle_weight | default: 400 }};
+    line-height: {{ section.settings.subtitle_line_height | default: 1.5 }};
+    color: {{ section.settings.subtitle_color | default: '#ffffff' }};
+    margin: 0 0 {{ section.settings.subtitle_margin_bottom | default: 20 }}px 0;
+  }
+
+  /* Science Blocks */
+  .science-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.blocks_gap | default: 3 }}px;
+  }
+
+  .science-block {
+    border: none;
+    border-top: {{ section.settings.block_border_width | default: 1 }}px solid {{ section.settings.block_border_color | default: '#333333' }};
+    border-bottom: {{ section.settings.block_border_width | default: 1 }}px solid {{ section.settings.block_border_color | default: '#333333' }};
+    border-radius: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: {{ section.settings.block_bg | default: 'transparent' }};
+    width: {{ section.settings.block_width | default: 100 }}%;
+    min-height: 60px;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative; /* Ensure stable positioning */
+  }
+
+  .science-block.active {
+    border-top-color: {{ section.settings.block_border_color | default: '#333333' }};
+    border-bottom-color: {{ section.settings.block_border_color | default: '#333333' }};
+    background: {{ section.settings.active_bg | default: 'transparent' }};
+    box-shadow: none;
+  }
+
+  .block-header {
+    display: flex;
+    align-items: center;
+    padding: {{ section.settings.header_padding | default: 18 }}px {{ section.settings.header_padding_horizontal | default: 20 }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: {{ section.settings.header_gap | default: 16 }}px;
+    min-height: 60px; /* Minimum height for headers */
+    box-sizing: border-box;
+  }
+
+  .science-block:hover .block-header {
+    background: {{ section.settings.hover_bg | default: 'rgba(255, 255, 255, 0.02)' }};
+  }
+
+  .science-block.active .block-header {
+    background: {{ section.settings.active_header_bg | default: 'transparent' }};
+  }
+
+  .block-title {
+    flex: 1;
+    font-size: {{ section.settings.block_title_size | default: 16 }}px;
+    font-weight: {{ section.settings.block_title_weight | default: 500 }};
+    color: #ffffff;
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  .science-block.active .block-title {
+    color: #4fffff !important;
+  }
+
+  .expand-arrow {
+    width: {{ section.settings.arrow_size | default: 24 }}px;
+    height: {{ section.settings.arrow_size | default: 24 }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    transform: rotate(0deg);
+  }
+
+  .science-block.active .expand-arrow {
+    color: #ffffff;
+    transform: rotate(180deg);
+  }
+
+  .block-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+    padding: 0 {{ section.settings.header_padding_horizontal | default: 20 }}px;
+  }
+
+  .science-block.active .block-content {
+    max-height: {{ section.settings.content_max_height | default: 150 }}px;
+    padding: 0 {{ section.settings.header_padding_horizontal | default: 20 }}px {{ section.settings.content_padding_bottom | default: 16 }}px;
+  }
+
+  .block-description {
+    font-size: {{ section.settings.description_size | default: 12 }}px;
+    font-weight: {{ section.settings.description_weight | default: 400 }};
+    line-height: {{ section.settings.description_line_height | default: 1.6 }};
+    color: #ffffff;
+    margin: 0;
+  }
+
+  /* Right Media Area */
+  .science-media {
+    position: relative;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000000;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Allow normal scrolling on right side */
+  }
+
+  .media-container-science-formula {
+    position: relative;
+    width: 90%;
+    height: calc(100vh - 150px);
+    max-height: 650px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .single-media-display {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .science-video,
+  .science-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  .media-placeholder-science-formula {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: {{ section.settings.placeholder_bg | default: '#222222' }};
+    border: {{ section.settings.placeholder_border_width | default: 1 }}px solid {{ section.settings.placeholder_border_color | default: '#444444' }};
+    border-radius: 16px;
+  }
+
+  .placeholder-content {
+    text-align: center;
+    color: {{ section.settings.placeholder_text_color | default: '#888888' }};
+  }
+
+  .placeholder-content p {
+    margin: 0;
+    font-size: {{ section.settings.placeholder_text_size | default: 14 }}px;
+    font-weight: {{ section.settings.placeholder_text_weight | default: 500 }};
+  }
+
+  .science-video,
+  .science-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .media-placeholder-science-formula {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: {{ section.settings.placeholder_bg | default: '#222222' }};
+    border: {{ section.settings.placeholder_border_width | default: 1 }}px solid {{ section.settings.placeholder_border_color | default: '#444444' }};
+    border-radius: 16px;
+  }
+
+  .placeholder-content {
+    text-align: center;
+    color: {{ section.settings.placeholder_text_color | default: '#4fffff' }};
+  }
+
+  .placeholder-content p {
+    margin: {{ section.settings.placeholder_text_margin | default: 16 }}px 0 0 0;
+    font-size: {{ section.settings.placeholder_text_size | default: 16 }}px;
+    font-weight: {{ section.settings.placeholder_text_weight | default: 500 }};
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .science-container {
+      grid-template-columns: 1fr;
+      gap: {{ section.settings.mobile_gap | default: 40 }}px;
+    }
+
+    .science-content {
+      padding-right: 0;
+      order: 2;
+    }
+
+    .science-media {
+      order: 1;
+      height: {{ section.settings.mobile_media_height | default: 300 }}px;
+    }
+
+    .science-title {
+      font-size: {{ section.settings.mobile_title_size | default: 32 }}px;
+    }
+
+    .science-subtitle {
+      font-size: {{ section.settings.mobile_subtitle_size | default: 14 }}px;
+
+    }
+
+    .block-header {
+      padding: {{ section.settings.mobile_header_padding | default: 20 }}px;
+    }
+
+    .block-title {
+      font-size: {{ section.settings.mobile_block_title_size | default: 18 }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .science-formula-section {
+      padding: {{ section.settings.mobile_section_padding | default: 40 }}px 0;
+    }
+
+    .science-container {
+      padding: 0 {{ section.settings.mobile_container_padding | default: 16 }}px;
+    }
+
+    .science-title {
+      font-size: {{ section.settings.small_mobile_title_size | default: 28 }}px;
+    }
+
+    .block-header {
+      padding: {{ section.settings.small_mobile_header_padding | default: 16 }}px;
+      gap: {{ section.settings.small_mobile_header_gap | default: 12 }}px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const scienceBlocks = document.querySelectorAll('.science-block');
+    let activeBlock = -1;
+
+    // Media content data
+    const mediaData = {
+      'default': {
+        type: '{{ section.settings.default_media_type | default: "placeholder" }}',
+        video: '{{ section.settings.default_video_file }}',
+        cgi: '{{ section.settings.default_cgi_file }}',
+        image: '{{ section.settings.default_media_image | image_url: width: 800 }}',
+        placeholder: '{{ section.settings.default_placeholder_text | default: "Default Media Placeholder" }}'
+      }{% for block in section.blocks %}{% if block.type == 'science_item' %},
+      '{{ forloop.index0 }}': {
+        type: '{{ block.settings.media_type | default: "placeholder" }}',
+        video: '{{ block.settings.video_file }}',
+        cgi: '{{ block.settings.cgi_file }}',
+        image: '{{ block.settings.media_image | image_url: width: 800 }}',
+        placeholder: '{{ block.settings.placeholder_text | default: "Image/Video/CGI Placeholder" }}'
+      }{% endif %}{% endfor %}
+    };
+
+    // Function to update media display
+    function updateMediaDisplay(mediaKey) {
+      const mediaDisplay = document.getElementById('media-display');
+      const media = mediaData[mediaKey];
+      
+      console.log('Updating media for key:', mediaKey, 'Media data:', media);
+      
+      if (!media || !mediaDisplay) {
+        console.log('Missing media or display element');
+        return;
+      }
+
+      let content = '';
+      
+      if (media.type === 'video' && media.video && media.video.trim() !== '') {
+        content = `<video class="science-video" autoplay muted loop playsinline>
+                    <source src="${media.video}" type="video/mp4">
+                   </video>`;
+      } else if (media.type === 'cgi' && media.cgi && media.cgi.trim() !== '') {
+        content = `<video class="science-video" autoplay muted loop playsinline>
+                    <source src="${media.cgi}" type="video/mp4">
+                   </video>`;
+      } else if (media.type === 'image' && media.image && media.image.trim() !== '' && !media.image.includes('undefined')) {
+        content = `<img src="${media.image}" alt="Media content" class="science-image">`;
+      } else {
+        content = `<div class="media-placeholder-science-formula">
+                    <div class="placeholder-content">
+                      <p>${media.placeholder || 'Media Placeholder'}</p>
+                    </div>
+                   </div>`;
+      }
+      
+      console.log('Setting content:', content);
+      mediaDisplay.innerHTML = content;
+    }
+
+    // Initialize with default media
+    scienceBlocks.forEach((block) => block.classList.remove('active'));
+    updateMediaDisplay('default');
+
+    // Add two-stage scrolling: first show all blocks, then allow page scroll
+    const blocksContainer = document.querySelector('.science-blocks-container');
+    const leftContent = document.querySelector('.science-content');
+    const rightMedia = document.querySelector('.science-media');
+    
+    if (blocksContainer && leftContent) {
+      let currentBlockIndex = 0;
+      let isScrolling = false;
+      let allBlocksVisible = false;
+      const maxBlocks = Math.max(0, scienceBlocks.length - 6); // Max scroll position
+      
+      // Check if all blocks are visible
+      function checkAllBlocksVisible() {
+        const containerHeight = blocksContainer.clientHeight;
+        const totalContentHeight = blocksContainer.scrollHeight;
+        const currentScroll = blocksContainer.scrollTop;
+        
+        // All blocks are visible when we've scrolled to show all content
+        allBlocksVisible = (currentScroll >= maxBlocks * 63) || (totalContentHeight <= containerHeight);
+        return allBlocksVisible;
+      }
+      
+      // Handle wheel events on the left content area
+      leftContent.addEventListener('wheel', function(e) {
+        if (isScrolling) return;
+        
+        const scrollDirection = e.deltaY > 0 ? 1 : -1; // 1 for down, -1 for up
+        const isAtTop = currentBlockIndex === 0;
+        const isAtBottom = currentBlockIndex >= maxBlocks;
+        
+        // Stage 1: Navigate through blocks
+        if (!allBlocksVisible || (!isAtTop && scrollDirection === -1) || (!isAtBottom && scrollDirection === 1)) {
+          e.preventDefault();
+          e.stopPropagation();
+          isScrolling = true;
+          
+          // Update current block index
+          currentBlockIndex = Math.max(0, Math.min(maxBlocks, currentBlockIndex + scrollDirection));
+          
+          // Calculate target scroll position
+          const targetScroll = currentBlockIndex * 63; // 60px + 3px gap
+          
+          blocksContainer.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
+          });
+          
+          // Check if all blocks are now visible
+          setTimeout(() => {
+            checkAllBlocksVisible();
+            isScrolling = false;
+          }, 300);
+        } else {
+          // Stage 2: Allow page scroll when all blocks are shown and at boundaries
+          // Don't prevent default - allow normal page scrolling
+          if ((scrollDirection === 1 && isAtBottom) || (scrollDirection === -1 && isAtTop)) {
+            // Allow page scroll to next/previous section
+            return;
+          }
+        }
+      }, { passive: false });
+
+      // Initialize check
+      checkAllBlocksVisible();
+    }
+
+    window.toggleBlock = function (index) {
+      const clickedBlock = scienceBlocks[index];
+      const isCurrentlyActive = clickedBlock.classList.contains('active');
+
+      if (isCurrentlyActive) {
+        // Close the currently active block
+        clickedBlock.classList.remove('active');
+        
+        // Show default media
+        updateMediaDisplay('default');
+        
+        activeBlock = -1;
+      } else {
+        // Close all blocks first
+        scienceBlocks.forEach((block) => block.classList.remove('active'));
+
+        // Open the clicked block
+        clickedBlock.classList.add('active');
+
+        // Show corresponding media
+        updateMediaDisplay(index.toString());
+        
+        activeBlock = index;
+      }
+    };
+
+    // Scroll to top function
+    window.scrollToTop = function () {
+      const container = document.querySelector('.science-blocks-container');
+      if (container) {
+        container.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    // Scroll to bottom function
+    window.scrollToBottom = function () {
+      const container = document.querySelector('.science-blocks-container');
+      if (container) {
+        container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+      }
+    };
+  });
+</script>
+{% schema %}
+{
+  "name": "Science Formula",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "We have the formula for long-term skin health. And we follow it."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy."
+    },
+    {
+      "type": "header",
+      "content": "Default Media Settings"
+    },
+    {
+      "type": "select",
+      "id": "default_media_type",
+      "label": "Default Media Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        },
+        {
+          "value": "cgi",
+          "label": "CGI/Animation"
+        },
+        {
+          "value": "placeholder",
+          "label": "Placeholder"
+        }
+      ],
+      "default": "placeholder",
+      "info": "Media shown when no blocks are active"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_media_image",
+      "label": "Default Media Image",
+      "info": "Used when Default Media Type is set to Image"
+    },
+    {
+      "type": "url",
+      "id": "default_video_file",
+      "label": "Default Video File URL",
+      "info": "Direct link to MP4 video file. Used when Default Media Type is set to Video"
+    },
+    {
+      "type": "url",
+      "id": "default_cgi_file",
+      "label": "Default CGI/Animation File URL",
+      "info": "Direct link to MP4 animation file. Used when Default Media Type is set to CGI/Animation"
+    },
+    {
+      "type": "text",
+      "id": "default_placeholder_text",
+      "label": "Default Placeholder Text",
+      "default": "Default Media Placeholder",
+      "info": "Used when Default Media Type is set to Placeholder"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "content_ratio",
+      "label": "Content Width (%)",
+      "min": 40,
+      "max": 60,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "media_ratio",
+      "label": "Media Width (%)",
+      "min": 40,
+      "max": 60,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid Gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "block_width",
+      "label": "Block Width (%)",
+      "min": 90,
+      "max": 100,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "media_margin_left",
+      "label": "Media Right Margin",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_vertical",
+      "label": "Section Vertical Padding",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_border_color",
+      "label": "Active Border Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_title_color",
+      "label": "Active Title Color",
+      "default": "#4fffff"
+    },
+    {
+      "type": "color",
+      "id": "active_shadow_color",
+      "label": "Active Shadow Color",
+      "default": "rgba(79, 255, 255, 0.3)"
+    },
+    {
+      "type": "color",
+      "id": "media_border_color",
+      "label": "Media Border Color",
+      "default": "#4fffff"
+    },
+    {
+      "type": "color",
+      "id": "media_shadow_color",
+      "label": "Media Shadow Color",
+      "default": "rgba(79, 255, 255, 0.2)"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size",
+      "min": 16,
+      "max": 58,
+      "step": 2,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_margin_bottom",
+      "label": "Subtitle Bottom Margin",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "block_title_size",
+      "label": "Block Title Font Size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description Font Size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section Padding",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "header_margin",
+      "label": "Header Bottom Margin",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "blocks_gap",
+      "label": "Blocks Gap",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "default": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "header_padding",
+      "label": "Block Header Padding",
+      "min": 10,
+      "max": 30,
+      "step": 2,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Container Horizontal Padding",
+      "min": 20,
+      "max": 80,
+      "step": 10,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "content_max_height",
+      "label": "Content Max Height",
+      "min": 100,
+      "max": 300,
+      "step": 25,
+      "default": 150,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "science_item",
+      "name": "Science Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Address the root causes of aging"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver."
+        },
+        {
+          "type": "header",
+          "content": "Media Settings"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            },
+            {
+              "value": "cgi",
+              "label": "CGI/Animation"
+            },
+            {
+              "value": "placeholder",
+              "label": "Placeholder"
+            }
+          ],
+          "default": "placeholder"
+        },
+        {
+          "type": "image_picker",
+          "id": "media_image",
+          "label": "Media Image",
+          "info": "Used when Media Type is set to Image"
+        },
+        {
+          "type": "url",
+          "id": "video_file",
+          "label": "Video File URL",
+          "info": "Direct link to MP4 video file. Used when Media Type is set to Video"
+        },
+        {
+          "type": "url",
+          "id": "cgi_file",
+          "label": "CGI/Animation File URL",
+          "info": "Direct link to MP4 animation file. Used when Media Type is set to CGI/Animation"
+        },
+        {
+          "type": "text",
+          "id": "placeholder_text",
+          "label": "Placeholder Text",
+          "default": "Image/Video/CGI Placeholder",
+          "info": "Used when Media Type is set to Placeholder"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Science Formula",
+      "blocks": [
+        {
+          "type": "science_item",
+          "settings": {
+            "title": "Address the root causes of aging",
+            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver."
+          }
+        },
+        {
+          "type": "science_item",
+          "settings": {
+            "title": "Deliver bioavailable actives",
+            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy."
+          }
+        },
+        {
+          "type": "science_item",
+          "settings": {
+            "title": "Target multiple pathways",
+            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits."
+          }
+        },
+        {
+          "type": "science_item",
+          "settings": {
+            "title": "Respect the microbiome",
+            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function."
+          }
+        },
+        {
+          "type": "science_item",
+          "settings": {
+            "title": "Maintain skin-neutral pH",
+            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort."
+          }
+        },
+        {
+          "type": "science_item",
+          "settings": {
+            "title": "Optimize for layering or cocktailing",
+            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

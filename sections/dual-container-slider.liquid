@@ -11,7 +11,7 @@
       <span class="title-white" style="color: {{ section.settings.white_color | default: '#ffffff' }};">
         {{ section.settings.white_text | default: 'BUILD ON BIOLOGY.' }}
       </span>
-      <span class="title-cyan" style="color: {{ section.settings.cyan_color | default: '#00ffff' }};">
+      <span class="title-cyan-dual" style="color: {{ section.settings.cyan_color | default: '#00ffff' }};">
         {{ section.settings.cyan_text | default: 'GUIDED BY SCIENCE' }}
       </span>
     </h1>
@@ -99,7 +99,7 @@
     line-height: 1.2;
   }
 
-  .title-white, .title-cyan {
+  .title-white, .title-cyan-dual {
     display: inline;
   }
 
@@ -196,7 +196,7 @@
       font-size: {{ section.settings.mobile_title_size | default: 28 }}px;
     }
 
-    .title-white, .title-cyan {
+    .title-white, .title-cyan-dual {
       display: block;
       margin-bottom: 5px;
     }

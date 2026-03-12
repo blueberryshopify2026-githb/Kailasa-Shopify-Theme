@@ -4,14 +4,14 @@
 {% endcomment %}
 
 <section
-  class="science-slider-section"
+  class="science-slider-section full-width"
   style="display: block !important; visibility: visible !important; opacity: 1 !important;"
 >
   <div class="slider-container">
     <div class="slides-wrapper" id="slidesWrapper">
       {% if section.blocks.size > 0 %}
         {% for block in section.blocks %}
-          <div class="slide" data-slide="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <div class="slide-science-slider" data-slide="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
             {% if block.type == 'molecular_slide' %}
               <div class="slide-content molecular-slide">
                 <div class="molecular-layout">
@@ -39,7 +39,7 @@
                       <h2
                         class="molecular-subtitle"
                         style="
-                          color: {{ block.settings.subtitle_color | default: '#00bcd4' }};
+                          color: {{ block.settings.subtitle_color | default: '#4fffff' }};
                           font-size: {{ block.settings.subtitle_size | default: 20 }}px;
                           font-weight: {{ block.settings.subtitle_weight | default: 600 }};
                           margin-bottom: {{ block.settings.subtitle_margin_bottom | default: 15 }}px;
@@ -81,7 +81,7 @@
                           "
                         >
                           <h4
-                            class="feature-title"
+                            class="feature-title-science-slider"
                             style="
                               color: {{ block.settings.feature_box_text_color | default: '#000000' }};
                               font-size: {{ block.settings.feature_title_size | default: 14 }}px;
@@ -92,7 +92,7 @@
                             {{ block.settings.feature_1_title | default: 'PDRN:' }}
                           </h4>
                           <p
-                            class="feature-desc"
+                            class="feature-desc-science-slider"
                             style="
                               color: {{ block.settings.feature_box_text_color | default: '#000000' }};
                               font-size: {{ block.settings.feature_desc_size | default: 12 }}px;
@@ -112,7 +112,7 @@
                           "
                         >
                           <h4
-                            class="feature-title"
+                            class="feature-title-science-slider"
                             style="
                               color: {{ block.settings.feature_box_text_color | default: '#000000' }};
                               font-size: {{ block.settings.feature_title_size | default: 14 }}px;
@@ -123,7 +123,7 @@
                             {{ block.settings.feature_2_title | default: 'SNAIL MUCIN' }}
                           </h4>
                           <p
-                            class="feature-desc"
+                            class="feature-desc-science-slider"
                             style="
                               color: {{ block.settings.feature_box_text_color | default: '#000000' }};
                               font-size: {{ block.settings.feature_desc_size | default: 12 }}px;
@@ -161,7 +161,7 @@
                                 style="
                                   width: {{ block.settings.icon_size | default: 60 }}px;
                                   height: {{ block.settings.icon_size | default: 60 }}px;
-                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#00bcd4' }};
+                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#4fffff' }};
                                   color: {{ block.settings.icon_placeholder_color | default: '#ffffff' }};
                                 "
                               ></div>
@@ -184,7 +184,7 @@
                                 style="
                                   width: {{ block.settings.icon_size | default: 60 }}px;
                                   height: {{ block.settings.icon_size | default: 60 }}px;
-                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#00bcd4' }};
+                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#4fffff' }};
                                   color: {{ block.settings.icon_placeholder_color | default: '#ffffff' }};
                                 "
                               ></div>
@@ -207,7 +207,7 @@
                                 style="
                                   width: {{ block.settings.icon_size | default: 60 }}px;
                                   height: {{ block.settings.icon_size | default: 60 }}px;
-                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#00bcd4' }};
+                                  background-color: {{ block.settings.icon_placeholder_bg | default: '#4fffff' }};
                                   color: {{ block.settings.icon_placeholder_color | default: '#ffffff' }};
                                 "
                               ></div>
@@ -266,8 +266,8 @@
                           <p
                             class="molecular-icon-desc"
                             style="
-                              color: {{ block.settings.icon_desc_color | default: '#00bcd4' }};
-                              font-size: {{ block.settings.icon_desc_size | default: 12 }}px;
+                              color: {{ block.settings.icon_desc_color | default: '#4fffff' }};
+                              font-size: {{ block.settings.icon_desc_size | default: 14 }}px;
                               text-align: center;
                               line-height: {{ block.settings.icon_desc_line_height | default: 1.4 }};
                             "
@@ -277,8 +277,8 @@
                           <p
                             class="molecular-icon-desc"
                             style="
-                              color: {{ block.settings.icon_desc_color | default: '#00bcd4' }};
-                              font-size: {{ block.settings.icon_desc_size | default: 12 }}px;
+                              color: {{ block.settings.icon_desc_color | default: '#4fffff' }};
+                              font-size: {{ block.settings.icon_desc_size | default: 14 }}px;
                               text-align: center;
                               line-height: {{ block.settings.icon_desc_line_height | default: 1.4 }};
                             "
@@ -288,13 +288,13 @@
                           <p
                             class="molecular-icon-desc"
                             style="
-                              color: {{ block.settings.icon_desc_color | default: '#00bcd4' }};
-                              font-size: {{ block.settings.icon_desc_size | default: 12 }}px;
+                              color: {{ block.settings.icon_desc_color | default: '#4fffff' }};
+                              font-size: {{ block.settings.icon_desc_size | default: 14 }}px;
                               text-align: center;
                               line-height: {{ block.settings.icon_desc_line_height | default: 1.4 }};
                             "
                           >
-                            {{ block.settings.icon_3_desc | default: 'Collagen synthesis and elasticity' }}
+                            {{ block.settings.icon_3_desc | default: 'Collagen<br>synthesis and elasticity' }}
                           </p>
                         </div>
                       </div>
@@ -365,13 +365,13 @@
                   {% if block.settings.show_divider %}
                     <div
                       class="clinical-divider"
-                      style="background-color: {{ block.settings.divider_color | default: '#00bcd4' }}; left: {{ block.settings.left_ratio | default: 60 }}%;"
+                      style="background-color: {{ block.settings.divider_color | default: '#4fffff' }}; left: {{ block.settings.left_ratio | default: 60 }}%;"
                     ></div>
                   {% endif %}
 
                   <!-- Right Side - Content and Cards -->
                   <div class="clinical-right">
-                    <div class="right-content">
+                    <div class="right-content-science-slider">
                       <div class="right-header">
                         <h2 class="molecular-title">
                           {{ block.settings.right_title | default: 'THE MOLECULAR FOUNDATIONS' }}
@@ -443,7 +443,7 @@
                       <div
                         class="overlay-point point-1"
                         data-point="1"
-                        style="top: {{ block.settings.point_1_top | default: 45 }}%; left: {{ block.settings.point_1_left | default: 30 }}%;"
+                        style="top: {{ block.settings.point_1_top | default: 35 }}%; left: {{ block.settings.point_1_left | default: 30 }}%;"
                         onmouseover="highlightPoint(1)"
                         onmouseout="unhighlightPoint(1)"
                         onclick="selectPoint(1)"
@@ -454,7 +454,7 @@
                       <div
                         class="overlay-point point-2"
                         data-point="2"
-                        style="top: {{ block.settings.point_2_top | default: 70 }}%; left: {{ block.settings.point_2_left | default: 70 }}%;"
+                        style="top: {{ block.settings.point_2_top | default: 65 }}%; left: {{ block.settings.point_2_left | default: 70 }}%;"
                         onmouseover="highlightPoint(2)"
                         onmouseout="unhighlightPoint(2)"
                         onclick="selectPoint(2)"
@@ -465,7 +465,7 @@
                       <div
                         class="overlay-point point-3"
                         data-point="3"
-                        style="top: {{ block.settings.point_3_top | default: 95 }}%; left: {{ block.settings.point_3_left | default: 25 }}%;"
+                        style="top: {{ block.settings.point_3_top | default: 80 }}%; left: {{ block.settings.point_3_left | default: 25 }}%;"
                         onmouseover="highlightPoint(3)"
                         onmouseout="unhighlightPoint(3)"
                         onclick="selectPoint(3)"
@@ -479,17 +479,17 @@
                           <div
                             class="arrow-line line-1"
                             data-line="1"
-                            style="width: {{ block.settings.arrow_1_width | default: 60 }}%; top: {{ block.settings.point_1_top | default: 45 }}%; left: calc({{ block.settings.point_1_left | default: 30 }}% + 20px);"
+                            style="width: {{ block.settings.arrow_1_width | default: 60 }}%; top: {{ block.settings.point_1_top | default: 35 }}%; right: calc(100% - {{ block.settings.point_1_left | default: 30 }}% + 10px);"
                           ></div>
                           <div
                             class="arrow-line line-2"
                             data-line="2"
-                            style="width: {{ block.settings.arrow_2_width | default: 40 }}%; top: {{ block.settings.point_2_top | default: 70 }}%; left: calc({{ block.settings.point_2_left | default: 70 }}% + 20px);"
+                            style="width: {{ block.settings.arrow_2_width | default: 40 }}%; top: {{ block.settings.point_2_top | default: 65 }}%; right: calc(100% - {{ block.settings.point_2_left | default: 70 }}% + 10px);"
                           ></div>
                           <div
                             class="arrow-line line-3"
                             data-line="3"
-                            style="width: {{ block.settings.arrow_3_width | default: 60 }}%; top: {{ block.settings.point_3_top | default: 95 }}%; left: calc({{ block.settings.point_3_left | default: 25 }}% + 20px);"
+                            style="width: {{ block.settings.arrow_3_width | default: 60 }}%; top: {{ block.settings.point_3_top | default: 80 }}%; right: calc(100% - {{ block.settings.point_3_left | default: 25 }}% + 10px);"
                           ></div>
                         </div>
                       {% endif %}
@@ -589,9 +589,7 @@
                         style="opacity: {{ block.settings.background_opacity | default: 1 }};"
                       >
                     {% else %}
-                      <div class="korean-bg-placeholder">
-                       
-                      </div>
+                      <div class="korean-bg-placeholder"></div>
                     {% endif %}
                   </div>
 
@@ -682,7 +680,7 @@
                                 height="60"
                               >
                             {% else %}
-                              <div class="icon-placeholder">
+                              <div class="icon-placeholder-science-slider">
                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                                   <rect x="8" y="8" width="24" height="24" rx="4" stroke="currentColor" stroke-width="2"/>
                                   <path d="M16 20h8M20 16v8" stroke="currentColor" stroke-width="2"/>
@@ -690,7 +688,7 @@
                               </div>
                             {% endif %}
                             <span
-                              class="icon-title"
+                              class="icon-title-science-slider"
                               style="
                                 font-size: {{ block.settings.icon_title_size | default: 16 }}px;
                                 color: {{ block.settings.icon_title_color | default: '#000000' }};
@@ -701,7 +699,7 @@
                             </span>
                             <div
                               class="icon-underline"
-                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                              style="background-color: {{ block.settings.underline_color | default: '#4fffff' }};"
                             ></div>
                           </div>
 
@@ -722,7 +720,7 @@
                                 height="60"
                               >
                             {% else %}
-                              <div class="icon-placeholder">
+                              <div class="icon-placeholder-science-slider">
                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                                   <circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="2"/>
                                   <path d="M20 12v16M12 20h16" stroke="currentColor" stroke-width="2"/>
@@ -730,7 +728,7 @@
                               </div>
                             {% endif %}
                             <span
-                              class="icon-title"
+                              class="icon-title-science-slider"
                               style="
                                 font-size: {{ block.settings.icon_title_size | default: 16 }}px;
                                 color: {{ block.settings.icon_title_color | default: '#000000' }};
@@ -741,7 +739,7 @@
                             </span>
                             <div
                               class="icon-underline"
-                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                              style="background-color: {{ block.settings.underline_color | default: '#4fffff' }};"
                             ></div>
                           </div>
 
@@ -762,7 +760,7 @@
                                 height="60"
                               >
                             {% else %}
-                              <div class="icon-placeholder">
+                              <div class="icon-placeholder-science-slider">
                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                                   <path d="M20 8L32 20L20 32L8 20L20 8Z" stroke="currentColor" stroke-width="2" fill="none"/>
                                   <circle cx="20" cy="20" r="4" stroke="currentColor" stroke-width="2"/>
@@ -770,7 +768,7 @@
                               </div>
                             {% endif %}
                             <span
-                              class="icon-title"
+                              class="icon-title-science-slider"
                               style="
                                 font-size: {{ block.settings.icon_title_size | default: 16 }}px;
                                 color: {{ block.settings.icon_title_color | default: '#000000' }};
@@ -781,7 +779,7 @@
                             </span>
                             <div
                               class="icon-underline"
-                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                              style="background-color: {{ block.settings.underline_color | default: '#4fffff' }};"
                             ></div>
                           </div>
 
@@ -802,7 +800,7 @@
                                 height="60"
                               >
                             {% else %}
-                              <div class="icon-placeholder">
+                              <div class="icon-placeholder-science-slider">
                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                                   <rect x="10" y="10" width="20" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
                                   <path d="M15 18l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -810,7 +808,7 @@
                               </div>
                             {% endif %}
                             <span
-                              class="icon-title"
+                              class="icon-title-science-slider"
                               style="
                                 font-size: {{ block.settings.icon_title_size | default: 16 }}px;
                                 color: {{ block.settings.icon_title_color | default: '#000000' }};
@@ -821,7 +819,7 @@
                             </span>
                             <div
                               class="icon-underline"
-                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                              style="background-color: {{ block.settings.underline_color | default: '#4fffff' }};"
                             ></div>
                           </div>
 
@@ -842,7 +840,7 @@
                                 height="60"
                               >
                             {% else %}
-                              <div class="icon-placeholder">
+                              <div class="icon-placeholder-science-slider">
                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
                                   <path d="M8 20L20 8L32 20L20 32L8 20Z" stroke="currentColor" stroke-width="2" fill="none"/>
                                   <path d="M16 20L20 16L24 20L20 24L16 20Z" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -850,7 +848,7 @@
                               </div>
                             {% endif %}
                             <span
-                              class="icon-title"
+                              class="icon-title-science-slider"
                               style="
                                 font-size: {{ block.settings.icon_title_size | default: 16 }}px;
                                 color: {{ block.settings.icon_title_color | default: '#000000' }};
@@ -861,7 +859,7 @@
                             </span>
                             <div
                               class="icon-underline"
-                              style="background-color: {{ block.settings.underline_color | default: '#00bcd4' }};"
+                              style="background-color: {{ block.settings.underline_color | default: '#4fffff' }};"
                             ></div>
                           </div>
                         </div>
@@ -934,7 +932,7 @@
                   <div class="ingredient-cards-stack">
                     <!-- Card 1 - FIRM -->
                     <div
-                      class="ingredient-card"
+                      class="ingredient-card-ss"
                       style="background-color: {{ block.settings.card_1_bg_color | default: '#f5f5f5' }};"
                     >
                       <div class="ingredient-card-left">
@@ -1001,7 +999,7 @@
                           <div class="ingredient-benefits">
                             {% if block.settings.card_1_benefit_1 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 12 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1015,7 +1013,7 @@
                             {% endif %}
                             {% if block.settings.card_1_benefit_2 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1029,7 +1027,7 @@
                             {% endif %}
                             {% if block.settings.card_1_benefit_3 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1048,7 +1046,7 @@
 
                     <!-- Card 2 - RESTORE -->
                     <div
-                      class="ingredient-card"
+                      class="ingredient-card-ss"
                       style="background-color: {{ block.settings.card_2_bg_color | default: '#f5f5f5' }};"
                     >
                       <div class="ingredient-card-left">
@@ -1115,7 +1113,7 @@
                           <div class="ingredient-benefits">
                             {% if block.settings.card_2_benefit_1 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1129,7 +1127,7 @@
                             {% endif %}
                             {% if block.settings.card_2_benefit_2 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1143,7 +1141,7 @@
                             {% endif %}
                             {% if block.settings.card_2_benefit_3 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1162,7 +1160,7 @@
 
                     <!-- Card 3 - BRIGHTEN -->
                     <div
-                      class="ingredient-card"
+                      class="ingredient-card-ss"
                       style="background-color: {{ block.settings.card_3_bg_color | default: '#f5f5f5' }};"
                     >
                       <div class="ingredient-card-left">
@@ -1229,7 +1227,7 @@
                           <div class="ingredient-benefits">
                             {% if block.settings.card_3_benefit_1 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1243,7 +1241,7 @@
                             {% endif %}
                             {% if block.settings.card_3_benefit_2 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1257,7 +1255,7 @@
                             {% endif %}
                             {% if block.settings.card_3_benefit_3 != blank %}
                               <p
-                                class="benefit-item"
+                                class="benefit-item-science-slider"
                                 style="
                                   font-size: {{ block.settings.benefit_text_size | default: 16 }}px;
                                   color: {{ block.settings.benefit_text_color | default: '#666666' }};
@@ -1281,18 +1279,18 @@
         {% endfor %}
       {% else %}
         <!-- Default content when no blocks are added -->
-        <div class="slide" style="display: block !important; visibility: visible !important;">
+        <div class="slide-science-slider" style="display: block !important; visibility: visible !important;">
           <div class="slide-content molecular-slide" style="display: flex !important; visibility: visible !important;">
             <div class="slide-layout">
               <div class="left-panel">
-                <h1 class="main-title">
+                <h1 class="main-title-science-slider">
                   THE MOLECULAR<br>
                   STANDARD.
                 </h1>
-                <div class="slide-header">
-                  <h2 class="slide-subtitle">The Molecular Standard.</h2>
+                <div class="slide-header-science-slider">
+                  <h2 class="slide-subtitle-science-slider">The Molecular Standard.</h2>
                 </div>
-                <p class="description">
+                <p class="description-science-slider">
                   Harnessing South Korea patented fermentation technology skin elasticity at a cellular level.
                 </p>
                 <div class="feature-boxes">
@@ -1307,14 +1305,14 @@
                 </div>
                 <div class="molecular-icons"></div>
                 <div class="icons-row">
-                  <div class="icon-container"><div class="icon-placeholder pdrn-icon"></div></div>
-                  <div class="icon-container"><div class="icon-placeholder ceramides-icon"></div></div>
-                  <div class="icon-container"><div class="icon-placeholder peptides-icon"></div></div>
+                  <div class="icon-container"><div class="icon-placeholder-science-slider pdrn-icon"></div></div>
+                  <div class="icon-container"><div class="icon-placeholder-science-slider ceramides-icon"></div></div>
+                  <div class="icon-container"><div class="icon-placeholder-science-slider peptides-icon"></div></div>
                 </div>
                 <div class="titles-row">
-                  <h5 class="icon-title">PDRN</h5>
-                  <h5 class="icon-title">CERAMIDES</h5>
-                  <h5 class="icon-title">PEPTIDES</h5>
+                  <h5 class="icon-title-science-slider">PDRN</h5>
+                  <h5 class="icon-title-science-slider">CERAMIDES</h5>
+                  <h5 class="icon-title-science-slider">PEPTIDES</h5>
                 </div>
                 <div class="descriptions-row">
                   <p class="icon-desc">DNA-based rejuvenation.</p>
@@ -1324,7 +1322,7 @@
               </div>
             </div>
             <div class="right-panel">
-              <div class="image-placeholder">
+              <div class="image-placeholder-science-slider">
                 <p>Upload your background image</p>
               </div>
             </div>
@@ -1335,12 +1333,12 @@
 
     <!-- Navigation Arrows -->
     <div class="slider-navigation">
-      <button class="nav-arrow nav-prev" onclick="previousSlide()">
+      <button class="nav-arrow nav-prev" onclick="ScienceSlider.previousSlide()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
-      <button class="nav-arrow nav-next" onclick="nextSlide()">
+      <button class="nav-arrow nav-next" onclick="ScienceSlider.nextSlide()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -1350,8 +1348,10 @@
 </section>
 
 <style>
-  /* Global overflow fix */
-  html, body {
+  /* Overflow fix specific to science slider section */
+   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+  .science-slider-section {
     overflow-x: hidden !important;
     max-width: 100vw !important;
   }
@@ -1372,6 +1372,9 @@
     position: relative;
     visibility: visible !important;
     opacity: 1 !important;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    /* Ensure this section doesn't interfere with document scroll */
+    contain: layout style;
   }
 
   .slider-container {
@@ -1391,7 +1394,7 @@
     overflow: hidden;
   }
 
-  .slide {
+  .slide-science-slider {
     min-width: 100vw;
     max-width: 100vw;
     width: 100vw;
@@ -1417,9 +1420,10 @@
     box-sizing: border-box;
     visibility: visible !important;
     opacity: 1 !important;
-  }
     justify-content: center;
   }
+
+
 
   /* Molecular Slide Styles - 50/50 Layout */
   .molecular-slide {
@@ -1460,7 +1464,7 @@
     font-size: clamp(2.2rem, 3.5vw, 2.8rem);
     font-weight: 700;
     color: #000000;
-    margin: 0 0 20px 0;
+    margin: 0 20px 20px 0;
     line-height: 1.1;
     letter-spacing: -0.02em;
     text-align: left;
@@ -1468,7 +1472,7 @@
 
   .molecular-subtitle {
     font-size: clamp(1.2rem, 2vw, 1.4rem);
-    color: #00bcd4;
+    color: #4fffff;
     font-weight: 600;
     margin: 0 0 10px 0;
     text-align: left;
@@ -1497,7 +1501,7 @@
     box-sizing: border-box;
   }
 
-  .feature-title {
+  .feature-title-science-slider {
     font-size: 20px;
     font-weight: 700;
     color: #000000;
@@ -1505,7 +1509,7 @@
     text-transform: uppercase;
   }
 
-  .feature-desc {
+  .feature-desc-science-slider {
     font-size: 16px;
     color: #666666;
     margin: 0;
@@ -1549,7 +1553,7 @@
     font-size: 14px;
     font-weight: bold;
     border-radius: 8px;
-    background: #00bcd4;
+    background: #4fffff;
     color: white;
   }
 
@@ -1598,7 +1602,7 @@
 
   .molecular-descriptions-row {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
     gap: 80px;
   }
@@ -1613,20 +1617,18 @@
 
   .molecular-icon-desc {
     font-size: 14px;
-    color: #00bcd4;
+    color: #4fffff;
     margin: 0;
-    line-height: 1.3;
-    text-align: left;
-    width: 120px;
-    flex: 0 0 120px;
+    line-height: 1.4;
+    text-align: center;
+    width: auto;
+    flex: 1;
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: none;
-    max-height: 3.4em;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    min-height: auto;
+    overflow: visible;
+    display: block;
   }
 
   .molecular-right {
@@ -1676,7 +1678,7 @@
     overflow: hidden;
   }
 
-  .image-placeholder {
+  .image-placeholder-science-slider {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
@@ -1688,7 +1690,7 @@
     font-weight: 600;
   }
 
-  .main-title {
+  .main-title-science-slider {
     font-size: clamp(2.2rem, 3.5vw, 2.8rem) !important;
     font-weight: 700 !important;
     color: #000000 !important;
@@ -1701,20 +1703,20 @@
     text-align: left !important;
   }
 
-  .slide-header {
+  .slide-header-science-slider {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
   }
 
-  .slide-subtitle {
+  .slide-subtitle-science-slider {
     font-size: clamp(1.2rem, 2vw, 1.4rem);
-    color: {{ section.settings.accent_color | default: '#00bcd4' }};
+    color: {{ section.settings.accent_color | default: '#4fffff' }};
     font-weight: 600;
     margin: 0;
   }
 
-  .description {
+  .description-science-slider {
     font-size: clamp(0.85rem, 1.3vw, 0.95rem);
     color: #666;
     margin-bottom: 20px;
@@ -1773,6 +1775,7 @@
     gap: 30px;
     text-align: left;
     visibility: visible !important;
+
   }
 
   .descriptions-row {
@@ -1781,6 +1784,8 @@
     gap: 30px;
     text-align: left;
     visibility: visible !important;
+    border: 1px solid red;
+
   }
 
   .icon-container {
@@ -1797,7 +1802,7 @@
     border-radius: 8px;
   }
 
-  .icon-placeholder {
+  .icon-placeholder-science-slider {
     width: clamp(60px, 8vw, 70px);
     height: clamp(60px, 8vw, 70px);
     display: flex;
@@ -1808,7 +1813,7 @@
   }
 
   .pdrn-icon {
-    background: #00bcd4;
+    background: #4fffff;
     color: white;
     display: flex;
     align-items: center;
@@ -1822,7 +1827,7 @@
   }
 
   .ceramides-icon {
-    background: #00bcd4;
+    background: #4fffff;
     color: white;
     display: flex;
     align-items: center;
@@ -1836,7 +1841,7 @@
   }
 
   .peptides-icon {
-    background: #00bcd4;
+    background: #4fffff;
     color: white;
     display: flex;
     align-items: center;
@@ -1849,7 +1854,7 @@
     content: "PEP";
   }
 
-  .icon-title {
+  .icon-title-science-slider {
     font-size: clamp(0.85rem, 1.2vw, 0.95rem);
     font-weight: 700;
     color: #000000;
@@ -1857,13 +1862,15 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.2;
+     /* border: 1px solid red; */
   }
 
   .icon-desc {
     font-size: {{ section.settings.icon_desc_font_size | default: 14 }}px;
-    color: {{ section.settings.icon_desc_color | default: '#00bcd4' }};
+    color: {{ section.settings.icon_desc_color | default: '#4fffff' }};
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.3;
+    /* border: 1px solid red; */
   }
 
   .background-image,
@@ -2168,7 +2175,7 @@
     justify-content: center;
   }
 
-  .right-content {
+  .right-content-science-slider {
     max-width: 500px;
     width: 100%;
   }
@@ -2179,7 +2186,7 @@
     text-align: left;
   }
 
-  .content-title {
+  .content-title-science-slider {
     font-size: clamp(1.1rem, 1.8vw, 1.3rem);
     font-weight: 600;
     color: #000000;
@@ -2187,7 +2194,7 @@
     line-height: 1.4;
   }
 
-  .content-description {
+  .content-description-science-slider {
     font-size: clamp(1rem, 1.5vw, 1.1rem);
     color: #333333;
     margin: 0 0 20px 0;
@@ -2198,7 +2205,7 @@
     background: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid {{ section.settings.accent_color | default: '#00bcd4' }};
+    border-left: 4px solid {{ section.settings.accent_color | default: '#4fffff' }};
   }
 
   .detailed-text {
@@ -2326,8 +2333,8 @@
   }
 
   .clinical-card:hover {
-    background: #d3ffff;
-    border-color: #d3ffff;
+    background: #4fffff;
+    /* border-color: #4fffff; */
     transform: translateX(5px);
   }
 
@@ -2337,8 +2344,8 @@
   }
 
   .clinical-card.active {
-    background: {{ section.settings.accent_color | default: '#00bcd4' }};
-    border-color: {{ section.settings.accent_color | default: '#00bcd4' }};
+    background: {{ section.settings.accent_color | default: '#4fffff' }};
+    /* border-color: {{ section.settings.accent_color | default: '#4fffff' }};  */
   }
 
   .clinical-card.active .card-title,
@@ -2363,7 +2370,7 @@
   .card-icon {
     font-size: {{ section.settings.card_title_size | default: 16 }}px;
     font-weight: 700;
-    color: {{ section.settings.accent_color | default: '#00bcd4' }};
+    color: {{ section.settings.accent_color | default: '#4fffff' }};
     min-width: 30px;
     flex-shrink: 0;
   }
@@ -2486,12 +2493,12 @@
   }
 
   .overlay-point:hover {
-    background: #00bcd4;
+    background: #4fffff;
     transform: scale(1.1);
   }
 
   .overlay-point.active {
-    background: #00bcd4;
+    background: #4fffff;
     transform: scale(1.2);
   }
 
@@ -2521,7 +2528,7 @@
     height: 2px;
     background: #000000;
     transition: all 0.3s ease;
-    transform-origin: left center;
+    transform-origin: right center;
   }
 
   .arrow-line::after {
@@ -2578,7 +2585,7 @@
     line-height: 1.1;
     letter-spacing: -0.02em;
     text-align: left;
-    padding-top: 0;
+    padding-top: 40px;
   }
 
   .content-list {
@@ -2652,17 +2659,17 @@
 
   .content-item:hover .content-number,
   .content-item.highlighted .content-number {
-    color: #00bcd4;
+    color: #4fffff;
   }
 
   .content-item:hover .point-title,
   .content-item.highlighted .point-title {
-    color: #00bcd4;
+    color: #4fffff;
   }
 
   .content-item:hover .point-description,
   .content-item.highlighted .point-description {
-    color: #00bcd4;
+    color: #4fffff;
   }
 
   /* Korean Beauty Showcase - Slide-Specific Styles */
@@ -2804,16 +2811,16 @@
     width: 100%;
   }
 
-  .korean-beauty-slide .korean-icon-item:hover .icon-title {
-    color: #00bcd4;
+  .korean-beauty-slide .korean-icon-item:hover .icon-title-science-slider {
+    color: #4fffff;
   }
 
   .korean-beauty-slide .korean-icon-item.active .icon-underline {
     width: 100%;
   }
 
-  .korean-beauty-slide .korean-icon-item.active .icon-title {
-    color: #00bcd4;
+  .korean-beauty-slide .korean-icon-item.active .icon-title-science-slider {
+    color: #4fffff;
   }
 
   .korean-beauty-slide .icon-image {
@@ -2823,7 +2830,7 @@
     transition: all 0.3s ease;
   }
 
-  .korean-beauty-slide .icon-placeholder {
+  .korean-beauty-slide .icon-placeholder-science-slider {
     width: 50px;
     height: 50px;
     display: flex;
@@ -2833,11 +2840,11 @@
     transition: all 0.3s ease;
   }
 
-  .korean-beauty-slide .korean-icon-item:hover .icon-placeholder {
-    color: #00bcd4;
+  .korean-beauty-slide .korean-icon-item:hover .icon-placeholder-science-slider {
+    color: #4fffff;
   }
 
-  .korean-beauty-slide .icon-title {
+  .korean-beauty-slide .icon-title-science-slider {
     font-size: 16px;
     color: #000000;
     font-weight: 600;
@@ -2849,7 +2856,7 @@
   .korean-beauty-slide .icon-underline {
     width: 0;
     height: 2px;
-    background-color: #00bcd4;
+    background-color: #4fffff;
     transition: all 0.3s ease;
     margin-top: 2px;
   }
@@ -2889,7 +2896,7 @@
     padding: 10px 0;
   }
 
-  .ingredient-card {
+  .ingredient-card-ss{
     display: grid;
     grid-template-columns: 1fr 120px 1fr;
     width: 100%;
@@ -2901,7 +2908,7 @@
     overflow: hidden;
   }
 
-  .ingredient-card:last-child {
+  .ingredient-card-ss:last-child {
     border-bottom: none;
   }
 
@@ -2998,7 +3005,7 @@
     text-align: left;
   }
 
-  .benefit-item {
+  .benefit-item-science-slider {
     font-size: 16px;
     color: #666666;
     font-weight: 400;
@@ -3007,7 +3014,7 @@
     line-height: 1.4;
   }
 
-  .benefit-item:last-child {
+  .benefit-item-science-slider:last-child {
     margin-bottom: 0;
   }
 
@@ -3018,7 +3025,7 @@
       grid-template-rows: 1fr auto 1fr;
     }
 
-    .ingredient-card {
+    .ingredient-card-ss {
       grid-template-columns: 1fr;
       grid-template-rows: 200px auto 1fr;
       height: auto;
@@ -3064,7 +3071,7 @@
     width: {{ section.settings.nav_arrow_width | default: 60 }}px;
     height: {{ section.settings.nav_arrow_height | default: 60 }}px;
     border-radius: 50%;
-    border: 2px solid #00bcd4;
+    border: 2px solid #4fffff;
     background: rgba(255, 255, 255, 0.9);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -3072,16 +3079,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #00bcd4;
+    color: #4fffff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .nav-arrow:hover {
-    background: #d3ffff;
-    border-color: #d3ffff;
-    color: #000000;
+    background: #4fffff;
+    border-color: #4fffff;
+    color: #ffffff;
     transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(211, 255, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.3);
   }
 
   @media (max-width: 768px) {
@@ -3091,7 +3098,7 @@
       padding: 0;
     }
 
-    .slide {
+    .slide-science-slider {
       height: 100vh;
       padding: 0;
     }
@@ -3151,7 +3158,8 @@
 
     .molecular-icon-title,
     .molecular-icon-desc {
-      flex: 0 0 50px;
+      flex: 1;
+      min-height: auto;
     }
 
     .molecular-right {
@@ -3246,11 +3254,11 @@
       font-size: calc({{ section.settings.card_subtitle_size | default: 13 }}px * 0.9);
     }
 
-    .main-title {
+    .main-title-science-slider {
       font-size: 2.5rem;
     }
 
-    .slide-subtitle {
+    .slide-subtitle-science-slider {
       font-size: 1.2rem;
     }
 
@@ -3270,7 +3278,7 @@
       padding: 40px 30px;
     }
 
-    .icon-title {
+    .icon-title-science-slider {
       font-size: 0.9rem;
     }
 
@@ -3397,12 +3405,12 @@
     }
 
     .icon-image,
-    .icon-placeholder {
+    .icon-placeholder-science-slider {
       width: 40px;
       height: 40px;
     }
 
-    .icon-title {
+    .icon-title-science-slider {
       font-size: 14px !important;
     }
       justify-content: space-around;
@@ -3435,12 +3443,12 @@
     }
 
     .icon-image,
-    .icon-placeholder {
+    .icon-placeholder-science-slider {
       width: 50px;
       height: 50px;
     }
 
-    .icon-title {
+    .icon-title-science-slider {
       font-size: 14px !important;
     }
   }
@@ -3448,319 +3456,418 @@
 </style>
 
 <script>
-  let currentSlide = 0;
-  let totalSlides = 0;
+  (function () {
+    // Science Slider namespace to avoid conflicts
+    let currentSlide = 0;
+    let totalSlides = 0;
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const slidesWrapper = document.getElementById('slidesWrapper');
-
-    if (!slidesWrapper) return;
-
-    totalSlides = document.querySelectorAll('.slide').length;
-
-    // Ensure we have at least 1 slide (default content)
-    if (totalSlides === 0) totalSlides = 1;
-
-    // Set slides wrapper width to prevent overflow
-    slidesWrapper.style.width = totalSlides * 100 + 'vw';
-
-    // Keyboard navigation
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft') {
-        previousSlide();
-      } else if (e.key === 'ArrowRight') {
-        nextSlide();
+    document.addEventListener('DOMContentLoaded', function () {
+      // Only initialize if science slider section exists
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) {
+        console.log('Science slider section not found, skipping initialization');
+        return;
       }
-    });
 
-    // Initialize first slide
-    goToSlide(0);
+      const slidesWrapper = scienceSliderSection.querySelector('#slidesWrapper');
 
-    // Debug log
-    console.log('Science Slider initialized with', totalSlides, 'slides');
-  });
+      if (!slidesWrapper) return;
 
-  function showCardImage(cardNumber) {
-    // Hide all images
-    const images = document.querySelectorAll('.clinical-image');
-    images.forEach((img) => (img.style.display = 'none'));
+      const originalSlides = scienceSliderSection.querySelectorAll('.slide-science-slider');
+      totalSlides = originalSlides.length;
 
-    // Show selected image
-    const selectedImage = document.querySelector(`.card-image-${cardNumber}`);
-    if (selectedImage) {
-      selectedImage.style.display = 'block';
-      // Hide default placeholder
-      const placeholder = document.getElementById('defaultPlaceholder');
-      if (placeholder) placeholder.style.display = 'none';
-    } else {
-      // Show default placeholder if no image
-      const placeholder = document.getElementById('defaultPlaceholder');
-      if (placeholder) placeholder.style.display = 'flex';
-    }
+      // Ensure we have at least 1 slide (default content)
+      if (totalSlides === 0) totalSlides = 1;
 
-    // Update active card state
-    const cards = document.querySelectorAll('.clinical-card');
-    cards.forEach((card) => card.classList.remove('active'));
+      // Create true infinite loop by duplicating first slide at the end and last slide at the beginning
+      if (totalSlides > 1) {
+        const firstSlideClone = originalSlides[0].cloneNode(true);
+        const lastSlideClone = originalSlides[totalSlides - 1].cloneNode(true);
 
-    const activeCard = document.querySelector(`[data-card="${cardNumber}"]`);
-    if (activeCard) activeCard.classList.add('active');
-  }
+        firstSlideClone.classList.add('clone-slide', 'first-clone');
+        lastSlideClone.classList.add('clone-slide', 'last-clone');
 
-  function goToSlide(slideIndex) {
-    if (totalSlides === 0) return;
+        // Add last slide clone at the beginning
+        slidesWrapper.insertBefore(lastSlideClone, originalSlides[0]);
+        // Add first slide clone at the end
+        slidesWrapper.appendChild(firstSlideClone);
 
-    const slidesWrapper = document.getElementById('slidesWrapper');
-    if (!slidesWrapper) return;
+        // Set slides wrapper width to include both clones
+        slidesWrapper.style.width = (totalSlides + 2) * 100 + 'vw';
 
-    // Handle infinite loop logic
-    if (slideIndex >= totalSlides) {
-      // Going forward past last slide - jump to first without animation
-      currentSlide = 0;
-      slidesWrapper.style.transition = 'none';
-      slidesWrapper.style.transform = `translateX(0vw)`;
+        // Start at the first real slide (index 1 because of the prepended clone)
+        currentSlide = 1;
+        slidesWrapper.style.transform = `translateX(-100vw)`;
+      } else {
+        slidesWrapper.style.width = totalSlides * 100 + 'vw';
+      }
 
-      // Re-enable transition after a brief moment
-      setTimeout(() => {
-        slidesWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      }, 50);
-    } else if (slideIndex < 0) {
-      // Going backward past first slide - jump to last without animation
-      currentSlide = totalSlides - 1;
-      slidesWrapper.style.transition = 'none';
-      slidesWrapper.style.transform = `translateX(-${(totalSlides - 1) * 100}vw)`;
+      // Keyboard navigation - only when science slider is focused or visible
+      document.addEventListener('keydown', function (e) {
+        // Only handle keyboard events when science slider is in focus and visible in viewport
+        const scienceSliderSection = document.querySelector('.science-slider-section');
+        if (!scienceSliderSection) return;
 
-      // Re-enable transition after a brief moment
-      setTimeout(() => {
-        slidesWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      }, 50);
-    } else {
-      // Normal slide transition
-      currentSlide = slideIndex;
-      const translateX = -slideIndex * 100;
-      slidesWrapper.style.transform = `translateX(${translateX}vw)`;
-    }
+        // Check if science slider is in viewport
+        const rect = scienceSliderSection.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
 
-    // Debug log
-    console.log('Going to slide', currentSlide, 'translateX:', -currentSlide * 100 + 'vw');
-  }
+        if (!isVisible) return;
 
-  function nextSlide() {
-    goToSlide(currentSlide + 1);
-  }
-
-  function previousSlide() {
-    goToSlide(currentSlide - 1);
-  }
-
-  // Alias for backward compatibility
-  function prevSlide() {
-    previousSlide();
-  }
-
-  // Technology Showcase Interactive Functions
-  function highlightPoint(pointNumber) {
-    // Highlight the overlay point
-    const overlayPoint = document.querySelector(`.overlay-point.point-${pointNumber}`);
-    if (overlayPoint) {
-      overlayPoint.classList.add('active');
-    }
-
-    // Highlight the corresponding content item
-    const contentItem = document.querySelector(`.content-item.item-${pointNumber}`);
-    if (contentItem) {
-      contentItem.classList.add('highlighted');
-    }
-  }
-
-  function unhighlightPoint(pointNumber) {
-    // Remove highlight from overlay point
-    const overlayPoint = document.querySelector(`.overlay-point.point-${pointNumber}`);
-    if (overlayPoint) {
-      overlayPoint.classList.remove('active');
-    }
-
-    // Remove highlight from content item
-    const contentItem = document.querySelector(`.content-item.item-${pointNumber}`);
-    if (contentItem) {
-      contentItem.classList.remove('highlighted');
-    }
-  }
-
-  function selectPoint(pointNumber) {
-    // Remove active state from all points
-    document.querySelectorAll('.overlay-point').forEach((point) => {
-      point.classList.remove('active');
-    });
-    document.querySelectorAll('.content-item').forEach((item) => {
-      item.classList.remove('highlighted');
-    });
-
-    // Add active state to selected point
-    highlightPoint(pointNumber);
-  }
-
-  // Add hover functionality to content points
-  document.addEventListener('DOMContentLoaded', function () {
-    const contentPoints = document.querySelectorAll('.content-point');
-
-    contentPoints.forEach((point, index) => {
-      const pointNumber = index + 1;
-
-      point.addEventListener('mouseenter', function () {
-        highlightPoint(pointNumber);
-      });
-
-      point.addEventListener('mouseleave', function () {
-        unhighlightPoint(pointNumber);
-      });
-
-      point.addEventListener('click', function () {
-        selectPoint(pointNumber);
-      });
-    });
-  });
-
-  // Korean Beauty Showcase Interactive Functions
-  let currentSelectedIcon = 1; // Track the currently selected icon (default to first)
-  let isHovering = false; // Track if user is currently hovering
-
-  function activateIcon(iconNumber) {
-    const iconItem = document.querySelector(`.korean-icon-item[data-icon="${iconNumber}"]`);
-    if (iconItem) {
-      // Remove active class from all icons first
-      document.querySelectorAll('.korean-icon-item').forEach((item) => {
-        item.classList.remove('active');
-      });
-
-      // Add active class to current icon
-      iconItem.classList.add('active');
-      isHovering = true;
-
-      // Change content on hover with smoother transition
-      const contentData = document.querySelector(`.korean-content-data [data-content="${iconNumber}"]`);
-      if (contentData) {
-        const heading = contentData.querySelector('.content-heading').textContent;
-        const subheading = contentData.querySelector('.content-subheading').textContent;
-
-        const mainHeading = document.getElementById('koreanMainHeading');
-        const subHeadingElement = document.getElementById('koreanSubheading');
-
-        if (mainHeading && subHeadingElement) {
-          // Get transition speed from settings or use default
-          const transitionSpeed = parseFloat(mainHeading.getAttribute('data-transition-speed') || '0.8');
-
-          // Smoother fade out
-          mainHeading.style.transition = `opacity 0.3s ease-in-out`;
-          subHeadingElement.style.transition = `opacity 0.3s ease-in-out`;
-
-          mainHeading.style.opacity = '0';
-          subHeadingElement.style.opacity = '0';
-
-          setTimeout(() => {
-            mainHeading.textContent = heading;
-            subHeadingElement.textContent = subheading;
-
-            // Smoother fade in
-            setTimeout(() => {
-              mainHeading.style.opacity = '1';
-              subHeadingElement.style.opacity = '1';
-            }, 50);
-          }, 150);
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault(); // Prevent default scroll behavior
+          previousSlide();
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault(); // Prevent default scroll behavior
+          nextSlide();
         }
+      });
+
+      // Initialize first slide - start at slide 1 (first real slide)
+      setTimeout(() => {
+        goToSlide(1);
+      }, 200);
+
+      // Debug log
+      console.log('Science Slider initialized with', totalSlides, 'slides');
+    });
+
+    function showCardImage(cardNumber) {
+      // Only work within science slider section
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
+
+      // Hide all images
+      const images = scienceSliderSection.querySelectorAll('.clinical-image');
+      images.forEach((img) => (img.style.display = 'none'));
+
+      // Show selected image
+      const selectedImage = scienceSliderSection.querySelector(`.card-image-${cardNumber}`);
+      if (selectedImage) {
+        selectedImage.style.display = 'block';
+        // Hide default placeholder
+        const placeholder = scienceSliderSection.querySelector('#defaultPlaceholder');
+        if (placeholder) placeholder.style.display = 'none';
+      } else {
+        // Show default placeholder if no image
+        const placeholder = scienceSliderSection.querySelector('#defaultPlaceholder');
+        if (placeholder) placeholder.style.display = 'flex';
+      }
+
+      // Update active card state
+      const cards = scienceSliderSection.querySelectorAll('.clinical-card');
+      cards.forEach((card) => card.classList.remove('active'));
+
+      const activeCard = scienceSliderSection.querySelector(`[data-card="${cardNumber}"]`);
+      if (activeCard) activeCard.classList.add('active');
+    }
+
+    function goToSlide(slideIndex) {
+      if (totalSlides === 0) return;
+
+      // Only work within science slider section
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
+
+      const slidesWrapper = scienceSliderSection.querySelector('#slidesWrapper');
+      if (!slidesWrapper) return;
+
+      // Handle infinite loop with smooth transitions - adjusted for new slide structure
+      if (slideIndex > totalSlides) {
+        // Moving past the last real slide to the first clone
+        currentSlide = totalSlides + 1; // First clone position
+        const translateX = -currentSlide * 100;
+        slidesWrapper.style.transform = `translateX(${translateX}vw)`;
+
+        // After transition, jump to the real first slide
+        setTimeout(() => {
+          currentSlide = 1; // Real first slide position (after last clone)
+          slidesWrapper.style.transition = 'none';
+          slidesWrapper.style.transform = `translateX(-100vw)`;
+
+          // Re-enable transition
+          setTimeout(() => {
+            slidesWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          }, 50);
+        }, 600);
+      } else if (slideIndex < 1) {
+        // Moving before the first real slide to the last clone
+        currentSlide = 0; // Last clone position
+        const translateX = -currentSlide * 100;
+        slidesWrapper.style.transform = `translateX(${translateX}vw)`;
+
+        // After transition, jump to the real last slide
+        setTimeout(() => {
+          currentSlide = totalSlides; // Real last slide position
+          slidesWrapper.style.transition = 'none';
+          slidesWrapper.style.transform = `translateX(-${totalSlides * 100}vw)`;
+
+          // Re-enable transition
+          setTimeout(() => {
+            slidesWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          }, 50);
+        }, 600);
+      } else {
+        // Normal slide transition
+        currentSlide = slideIndex;
+        const translateX = -slideIndex * 100;
+        slidesWrapper.style.transform = `translateX(${translateX}vw)`;
+      }
+
+      // Debug log
+      console.log('Going to slide', currentSlide, 'translateX:', -currentSlide * 100 + 'vw');
+    }
+
+    // Create namespaced functions to avoid conflicts
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function previousSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    // Alias for backward compatibility
+    function prevSlide() {
+      previousSlide();
+    }
+
+    // Make functions globally accessible with namespace
+    window.ScienceSlider = {
+      nextSlide: nextSlide,
+      previousSlide: previousSlide,
+      prevSlide: prevSlide,
+    };
+
+    // Technology Showcase Interactive Functions
+    function highlightPoint(pointNumber) {
+      // Only work within science slider section
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
+
+      // Highlight the overlay point
+      const overlayPoint = scienceSliderSection.querySelector(`.overlay-point.point-${pointNumber}`);
+      if (overlayPoint) {
+        overlayPoint.classList.add('active');
+      }
+
+      // Highlight the corresponding content item
+      const contentItem = scienceSliderSection.querySelector(`.content-item.item-${pointNumber}`);
+      if (contentItem) {
+        contentItem.classList.add('highlighted');
       }
     }
-  }
 
-  function deactivateIcon(iconNumber) {
-    isHovering = false;
+    function unhighlightPoint(pointNumber) {
+      // Only work within science slider section
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
 
-    // Only reset if we're not hovering and this isn't the currently selected icon
-    setTimeout(() => {
-      if (!isHovering) {
-        // Remove active class from all icons
-        document.querySelectorAll('.korean-icon-item').forEach((item) => {
+      // Remove highlight from overlay point
+      const overlayPoint = scienceSliderSection.querySelector(`.overlay-point.point-${pointNumber}`);
+      if (overlayPoint) {
+        overlayPoint.classList.remove('active');
+      }
+
+      // Remove highlight from content item
+      const contentItem = scienceSliderSection.querySelector(`.content-item.item-${pointNumber}`);
+      if (contentItem) {
+        contentItem.classList.remove('highlighted');
+      }
+    }
+
+    function selectPoint(pointNumber) {
+      // Remove active state from all points
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
+
+      scienceSliderSection.querySelectorAll('.overlay-point').forEach((point) => {
+        point.classList.remove('active');
+      });
+      document.querySelectorAll('.content-item').forEach((item) => {
+        item.classList.remove('highlighted');
+      });
+
+      // Add active state to selected point
+      highlightPoint(pointNumber);
+    }
+
+    // Add hover functionality to content points
+    document.addEventListener('DOMContentLoaded', function () {
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
+
+      const contentPoints = scienceSliderSection.querySelectorAll('.content-point');
+
+      contentPoints.forEach((point, index) => {
+        const pointNumber = index + 1;
+
+        point.addEventListener('mouseenter', function () {
+          highlightPoint(pointNumber);
+        });
+
+        point.addEventListener('mouseleave', function () {
+          unhighlightPoint(pointNumber);
+        });
+
+        point.addEventListener('click', function () {
+          selectPoint(pointNumber);
+        });
+      });
+    });
+
+    // Korean Beauty Showcase Interactive Functions
+    let currentSelectedIcon = 1; // Track the currently selected icon (default to first)
+    let isHovering = false; // Track if user is currently hovering
+
+    function activateIcon(iconNumber) {
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
+
+      const iconItem = scienceSliderSection.querySelector(`.korean-icon-item[data-icon="${iconNumber}"]`);
+      if (iconItem) {
+        // Remove active class from all icons first
+        scienceSliderSection.querySelectorAll('.korean-icon-item').forEach((item) => {
           item.classList.remove('active');
         });
 
-        // Reactivate the currently selected icon
-        const selectedIcon = document.querySelector(`.korean-icon-item[data-icon="${currentSelectedIcon}"]`);
-        if (selectedIcon) {
-          selectedIcon.classList.add('active');
-        }
+        // Add active class to current icon
+        iconItem.classList.add('active');
+        isHovering = true;
 
-        // Reset to the currently selected icon's content
-        const contentData = document.querySelector(`.korean-content-data [data-content="${currentSelectedIcon}"]`);
+        // Change content on hover with smoother transition
+        const contentData = scienceSliderSection.querySelector(`.korean-content-data [data-content="${iconNumber}"]`);
         if (contentData) {
           const heading = contentData.querySelector('.content-heading').textContent;
           const subheading = contentData.querySelector('.content-subheading').textContent;
 
-          const mainHeading = document.getElementById('koreanMainHeading');
-          const subHeadingElement = document.getElementById('koreanSubheading');
+          const mainHeading = scienceSliderSection.querySelector('#koreanMainHeading');
+          const subHeadingElement = scienceSliderSection.querySelector('#koreanSubheading');
 
           if (mainHeading && subHeadingElement) {
-            // Get transition speed from settings or use default
-            const transitionSpeed = parseFloat(mainHeading.getAttribute('data-transition-speed') || '0.8');
+            // Smoother fade transition without blinking
+            mainHeading.style.transition = `opacity 0.4s ease-in-out`;
+            subHeadingElement.style.transition = `opacity 0.4s ease-in-out`;
 
-            // Smoother fade out
-            mainHeading.style.transition = `opacity 0.3s ease-in-out`;
-            subHeadingElement.style.transition = `opacity 0.3s ease-in-out`;
-
-            mainHeading.style.opacity = '0';
-            subHeadingElement.style.opacity = '0';
+            mainHeading.style.opacity = '0.3';
+            subHeadingElement.style.opacity = '0.3';
 
             setTimeout(() => {
               mainHeading.textContent = heading;
               subHeadingElement.textContent = subheading;
 
-              // Smoother fade in
+              // Smooth fade in
               setTimeout(() => {
                 mainHeading.style.opacity = '1';
                 subHeadingElement.style.opacity = '1';
-              }, 50);
-            }, 150);
+              }, 100);
+            }, 200);
           }
         }
       }
-    }, 100); // Small delay to allow for quick hover transitions
-  }
-
-  function selectIcon(iconNumber) {
-    // Update the currently selected icon
-    currentSelectedIcon = iconNumber;
-
-    // Remove active state from all icons
-    document.querySelectorAll('.korean-icon-item').forEach((item) => {
-      item.classList.remove('active');
-    });
-
-    // Add active state to selected icon
-    activateIcon(iconNumber);
-
-    console.log(`Icon ${iconNumber} selected and set as current`);
-  }
-
-  // Store original content on page load and initialize first icon as active
-  document.addEventListener('DOMContentLoaded', function () {
-    const mainHeading = document.getElementById('koreanMainHeading');
-    const subHeadingElement = document.getElementById('koreanSubheading');
-
-    if (mainHeading && subHeadingElement) {
-      mainHeading.setAttribute('data-original', mainHeading.textContent);
-      subHeadingElement.setAttribute('data-original', subHeadingElement.textContent);
-
-      // Store default values from theme settings
-      mainHeading.setAttribute('data-default-heading', mainHeading.textContent);
-      subHeadingElement.setAttribute('data-default-subheading', subHeadingElement.textContent);
-
-      // Store transition speed
-      mainHeading.setAttribute('data-transition-speed', '0.8');
-
-      // Initialize first icon as selected (not just active)
-      setTimeout(() => {
-        selectIcon(1); // This will set icon 1 as the current selected icon
-      }, 100);
     }
-  });
+
+    function deactivateIcon(iconNumber) {
+      isHovering = false;
+
+      // Only reset if we're not hovering and this isn't the currently selected icon
+      setTimeout(() => {
+        if (!isHovering) {
+          const scienceSliderSection = document.querySelector('.science-slider-section');
+          if (!scienceSliderSection) return;
+
+          // Remove active class from all icons
+          scienceSliderSection.querySelectorAll('.korean-icon-item').forEach((item) => {
+            item.classList.remove('active');
+          });
+
+          // Reactivate the currently selected icon
+          const selectedIcon = scienceSliderSection.querySelector(
+            `.korean-icon-item[data-icon="${currentSelectedIcon}"]`
+          );
+          if (selectedIcon) {
+            selectedIcon.classList.add('active');
+          }
+
+          // Reset to the currently selected icon's content
+          const contentData = scienceSliderSection.querySelector(
+            `.korean-content-data [data-content="${currentSelectedIcon}"]`
+          );
+          if (contentData) {
+            const heading = contentData.querySelector('.content-heading').textContent;
+            const subheading = contentData.querySelector('.content-subheading').textContent;
+
+            const mainHeading = scienceSliderSection.querySelector('#koreanMainHeading');
+            const subHeadingElement = scienceSliderSection.querySelector('#koreanSubheading');
+
+            if (mainHeading && subHeadingElement) {
+              // Smoother fade transition without blinking
+              mainHeading.style.transition = `opacity 0.4s ease-in-out`;
+              subHeadingElement.style.transition = `opacity 0.4s ease-in-out`;
+
+              mainHeading.style.opacity = '0.3';
+              subHeadingElement.style.opacity = '0.3';
+
+              setTimeout(() => {
+                mainHeading.textContent = heading;
+                subHeadingElement.textContent = subheading;
+
+                // Smooth fade in
+                setTimeout(() => {
+                  mainHeading.style.opacity = '1';
+                  subHeadingElement.style.opacity = '1';
+                }, 100);
+              }, 200);
+            }
+          }
+        }
+      }, 100); // Small delay to allow for quick hover transitions
+    }
+
+    function selectIcon(iconNumber) {
+      // Update the currently selected icon
+      currentSelectedIcon = iconNumber;
+
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
+
+      // Remove active state from all icons
+      scienceSliderSection.querySelectorAll('.korean-icon-item').forEach((item) => {
+        item.classList.remove('active');
+      });
+
+      // Add active state to selected icon
+      activateIcon(iconNumber);
+
+      console.log(`Icon ${iconNumber} selected and set as current`);
+    }
+
+    // Store original content on page load and initialize first icon as active
+    document.addEventListener('DOMContentLoaded', function () {
+      const scienceSliderSection = document.querySelector('.science-slider-section');
+      if (!scienceSliderSection) return;
+
+      const mainHeading = scienceSliderSection.querySelector('#koreanMainHeading');
+      const subHeadingElement = scienceSliderSection.querySelector('#koreanSubheading');
+
+      if (mainHeading && subHeadingElement) {
+        mainHeading.setAttribute('data-original', mainHeading.textContent);
+        subHeadingElement.setAttribute('data-original', subHeadingElement.textContent);
+
+        // Store default values from theme settings
+        mainHeading.setAttribute('data-default-heading', mainHeading.textContent);
+        subHeadingElement.setAttribute('data-default-subheading', subHeadingElement.textContent);
+
+        // Store transition speed
+        mainHeading.setAttribute('data-transition-speed', '0.8');
+
+        // Initialize first icon as selected (not just active)
+        setTimeout(() => {
+          selectIcon(1); // This will set icon 1 as the current selected icon
+        }, 100);
+      }
+    });
+  })(); // End of Science Slider IIFE
 </script>
 {% schema %}
 {
@@ -3806,13 +3913,13 @@
       "type": "color",
       "id": "accent_color",
       "label": "Accent Color (Cyan)",
-      "default": "#00bcd4"
+      "default": "#4fffff"
     },
     {
       "type": "color",
       "id": "icon_desc_color",
       "label": "Icon Description Color",
-      "default": "#00bcd4"
+      "default": "#4fffff"
     },
     {
       "type": "header",
@@ -3942,7 +4049,7 @@
           "type": "color",
           "id": "subtitle_color",
           "label": "Subtitle Color",
-          "default": "#00bcd4"
+          "default": "#4fffff"
         },
         {
           "type": "range",
@@ -4072,7 +4179,7 @@
           "step": 2,
           "unit": "px",
           "label": "Feature Box Padding",
-          "default": 18
+          "default": 14
         },
         {
           "type": "range",
@@ -4098,11 +4205,11 @@
           "type": "range",
           "id": "feature_boxes_margin_bottom",
           "min": 20,
-          "max": 60,
+          "max": 80,
           "step": 2,
           "unit": "px",
           "label": "Feature Boxes Bottom Margin",
-          "default": 40
+          "default": 70
         },
         {
           "type": "range",
@@ -4131,7 +4238,7 @@
           "step": 1,
           "unit": "px",
           "label": "Feature Title Bottom Margin",
-          "default": 10
+          "default": 5
         },
         {
           "type": "range",
@@ -4206,13 +4313,13 @@
           "step": 5,
           "unit": "px",
           "label": "Icon Size",
-          "default": 80
+          "default": 70
         },
         {
           "type": "color",
           "id": "icon_placeholder_bg",
           "label": "Icon Placeholder Background Color",
-          "default": "#00bcd4"
+          "default": "#4fffff"
         },
         {
           "type": "color",
@@ -4238,7 +4345,7 @@
           "step": 2,
           "unit": "px",
           "label": "Icons Bottom Margin",
-          "default": 20
+          "default": 14
         },
         {
           "type": "color",
@@ -4273,13 +4380,13 @@
           "step": 1,
           "unit": "px",
           "label": "Titles Bottom Margin",
-          "default": 15
+          "default": 5
         },
         {
           "type": "color",
           "id": "icon_desc_color",
           "label": "Icon Description Color",
-          "default": "#00bcd4"
+          "default": "#4fffff"
         },
         {
           "type": "range",
@@ -4298,7 +4405,7 @@
           "max": 2.0,
           "step": 0.1,
           "label": "Icon Description Line Height",
-          "default": 1.6
+          "default": 1.3
         },
         {
           "type": "header",
@@ -4385,7 +4492,7 @@
           "type": "color",
           "id": "divider_color",
           "label": "Divider Line Color",
-          "default": "#00bcd4"
+          "default": "#4fffff"
         },
         {
           "type": "checkbox",
@@ -4442,7 +4549,7 @@
           "step": 2,
           "unit": "px",
           "label": "Main Title Font Size",
-          "default": 40,
+          "default": 48,
           "info": "Size of the main heading (THE MOLECULAR FOUNDATIONS)"
         },
         {
@@ -4453,7 +4560,7 @@
           "step": 1,
           "unit": "px",
           "label": "Subtitle Font Size",
-          "default": 18,
+          "default": 20,
           "info": "Size of the subtitle text"
         },
         {
@@ -4574,7 +4681,7 @@
           "type": "color",
           "id": "card_hover_color",
           "label": "Card Hover Background Color",
-          "default": "#D3FFFF"
+          "default": "#00FFFF"
         },
         {
           "type": "color",
@@ -5170,7 +5277,7 @@
           "type": "color",
           "id": "underline_color",
           "label": "Hover Underline Color",
-          "default": "#00bcd4"
+          "default": "#4fffff"
         },
         {
           "type": "header",

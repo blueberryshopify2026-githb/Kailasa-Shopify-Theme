@@ -18,7 +18,7 @@
         "menu": ""
       }
     },
-    "kailasa_header_menu_VxpDxU": {
+    "kailasa_header_menu_g9hxmM": {
       "type": "kailasa-header-menu",
       "name": "Kailasa Header Menu",
       "settings": {
@@ -32,47 +32,30 @@
         "nav_font_weight": "500",
         "nav_font_size": 16,
         "active_tab": "shop-all",
-        "shop_all_product_1_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6-removebg-preview_1.png",
         "shop_all_product_1_name": "moisturiser",
-        "shop_all_product_2_image": "shopify://shop_images/ChatGPT_Image_Feb_6_2026_03_16_02_PM.png",
         "shop_all_product_2_name": "moisturiser",
-        "shop_all_product_3_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6-removebg-preview_1.png",
         "shop_all_product_3_name": "moisturiser",
-        "shop_all_product_4_image": "shopify://shop_images/ChatGPT_Image_Feb_6_2026_03_16_02_PM.png",
         "shop_all_product_4_name": "Essence",
-        "shop_all_product_5_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6-removebg-preview_1.png",
         "shop_all_product_5_name": "Essence",
-        "shop_all_product_6_image": "shopify://shop_images/ChatGPT_Image_Feb_6_2026_03_16_02_PM.png",
         "shop_all_product_6_name": "Essence",
-        "shop_all_product_7_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6-removebg-preview_1.png",
         "shop_all_product_7_name": "Essence",
-        "shop_all_product_8_image": "shopify://shop_images/ChatGPT_Image_Feb_6_2026_03_16_02_PM.png",
         "shop_all_product_8_name": "Essence",
-        "shop_all_product_9_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6-removebg-preview_1.png",
         "shop_all_product_9_name": "Toner",
-        "shop_all_middle_image_1": "shopify://shop_images/Quel_masque_LED_choisir___Suivez_notre_guide.jpg",
         "shop_all_middle_image_1_text": "Mask",
-        "shop_all_middle_image_2": "shopify://shop_images/ChatGPT_Image_Feb_4_2026_05_34_09_PM.png",
         "shop_all_middle_image_2_text": "Supplements",
-        "shop_all_large_image": "shopify://shop_images/ChatGPT_Image_Feb_4_2026_05_13_29_PM.png",
         "shop_all_large_button_text": "Call to Action",
         "shop_all_large_button_link": "",
-        "science_tile_1_image": "shopify://shop_images/pexels-ron-lach-10187131.jpg",
         "science_tile_1_name": "Clinical Studies/Proof",
         "science_tile_1_link": "",
-        "science_tile_2_image": "shopify://shop_images/ChatGPT_Image_Feb_12_2026_03_33_26_PM.png",
         "science_tile_2_name": "Ingredients",
         "science_tile_2_link": "",
-        "science_tile_3_image": "shopify://shop_images/pexels-pavel-danilyuk-8442887.jpg",
         "science_tile_3_name": "Standards",
         "science_tile_3_link": "",
-        "science_tile_4_image": "shopify://shop_images/pexels-kooldark-14438786.jpg",
         "science_tile_4_name": "Professional Panel",
         "science_tile_4_link": "",
         "quiz_title": "Enhanced with collagen",
         "quiz_subtitle": "Enhanced with builds collagen",
         "quiz_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Enhanced with builds collagen, and evens out tone. Enhanced with builds collagen, and evens out tone. Enhanced with",
-        "quiz_image": "shopify://shop_images/360_F_1191381670_K16JwsC3x1FvweCSRJi8EMpS4dtlW0GP.jpg",
         "quiz_button_text": "Take the Quiz",
         "quiz_button_link": "",
         "routine_title": "Skincare Routine -",
@@ -136,6 +119,6 @@
   },
   "order": [
     "header",
-    "kailasa_header_menu_VxpDxU"
+    "kailasa_header_menu_g9hxmM"
   ]
 }

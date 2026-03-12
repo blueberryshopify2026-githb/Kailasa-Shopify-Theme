@@ -213,7 +213,6 @@
         "image_text_block_zJamzz",
         "faq_block_kPRnra"
       ],
-      "disabled": true,
       "name": "Tab Section 1",
       "settings": {
         "title": "Ghoton Youth™ Pro LED Mask",
@@ -382,7 +381,6 @@
         "image_text_block_WTMHAg",
         "faq_block_q8HHhH"
       ],
-      "disabled": true,
       "name": "Tab Section 2",
       "settings": {
         "title": "Photon Youth™ Pro LED Mask",
@@ -1139,7 +1137,6 @@
         "multi_tab_block_Y6WrpH",
         "multi_tab_block_6VwnrB"
       ],
-      "disabled": true,
       "name": "Multi Tab Section",
       "settings": {
         "title": "Multi Product Tabs",

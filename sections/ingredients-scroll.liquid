@@ -112,7 +112,7 @@
 
 
   /* Side Cards - Small, grayscale like reference */
-  .ingredient-card {
+  .ingredient-d-card {
     position: relative;
     width: 160px;
     height: 160px;
@@ -129,19 +129,19 @@
   }
 
 
-  .ingredient-card:hover {
+  .ingredient-d-card:hover {
     filter: grayscale(0.7);
     transform: scale(1.05);
   }
 
 
-  .ingredient-card:active {
+  .ingredient-d-card:active {
     transform: scale(0.95);
   }
 
 
   /* Center Active Card - Large and colorful like reference */
-  .ingredient-card.active {
+  .ingredient-d-card.active {
     width: 400px !important;
     height: 400px !important;
     opacity: 1 !important;
@@ -156,13 +156,13 @@
   }
 
 
-  .ingredient-card.active:hover {
+  .ingredient-d-card.active:hover {
     transform: scale(1) !important;
     filter: grayscale(0) !important;
   }
 
 
-  .ingredient-image {
+  .ingredient-d-image {
     width: 100%;
     height: 100%;
     position: relative;
@@ -170,7 +170,7 @@
   }
 
 
-  .ingredient-image img {
+  .ingredient-d-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -181,7 +181,7 @@
   /* Remove image hover effect - only frost glass should have hover */
 
 
-  .placeholder-image {
+  .ingredients-scroll-placeholder-image {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
@@ -216,7 +216,7 @@
 
 
   /* Show frost glass by default on active card */
-  .ingredients-track .ingredient-card.active .ingredient-auto-info {
+  .ingredients-track .ingredient-d-card.active .ingredient-auto-info {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
@@ -224,7 +224,7 @@
   }
 
   /* Hide frost glass on non-active cards */
-  .ingredients-track .ingredient-card:not(.active) .ingredient-auto-info {
+  .ingredients-track .ingredient-d-card:not(.active) .ingredient-auto-info {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
@@ -274,7 +274,7 @@
 
 
   /* Show full description when frost glass is hovered */
-  .ingredient-card.active .ingredient-hover-info.show-details {
+  .ingredient-d-card.active .ingredient-hover-info.show-details {
     opacity: 1 !important;
     visibility: visible !important;
     display: flex !important;
@@ -380,13 +380,13 @@
     }
 
 
-    .ingredient-card {
+    .ingredient-d-card {
       width: 140px;
       height: 140px;
     }
 
 
-    .ingredient-card.active {
+    .ingredient-d-card.active {
       width: 350px !important;
       height: 350px !important;
     }
@@ -445,13 +445,13 @@
     }
 
 
-    .ingredient-card {
+    .ingredient-d-card {
       width: 100px;
       height: 100px;
     }
 
 
-    .ingredient-card.active {
+    .ingredient-d-card.active {
       width: 200px !important;
       height: 200px !important;
     }
@@ -545,13 +545,13 @@
     }
 
 
-    .ingredient-card {
+    .ingredient-d-card {
       width: 80px;
       height: 80px;
     }
 
 
-    .ingredient-card.active {
+    .ingredient-d-card.active {
       width: 160px !important;
       height: 160px !important;
     }
@@ -633,13 +633,13 @@
     }
 
 
-    .ingredient-card {
+    .ingredient-d-card {
       width: 70px;
       height: 70px;
     }
 
 
-    .ingredient-card.active {
+    .ingredient-d-card.active {
       width: 140px !important;
       height: 140px !important;
     }
@@ -1075,12 +1075,12 @@
           {% for i in (1..10) %}
             {% for block in section.blocks %}
               <div
-                class="ingredient-card clone-card"
+                class="ingredient-d-card clone-card"
                 data-original-index="{{ forloop.index0 }}"
                 data-clone-set="{{ i }}"
                 onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
               >
-                <div class="ingredient-image">
+                <div class="ingredient-d-image">
                   {% if block.settings.image %}
                     <img
                       src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
@@ -1090,7 +1090,7 @@
                       height="400"
                     >
                   {% else %}
-                    <div class="placeholder-image"></div>
+                    <div class="ingredients-scroll-placeholder-image"></div>
                   {% endif %}
                 </div>
 
@@ -1141,11 +1141,11 @@
           <!-- Second set of clones at the beginning -->
           {% for block in section.blocks %}
             <div
-              class="ingredient-card clone-card"
+              class="ingredient-d-card clone-card"
               data-original-index="{{ forloop.index0 }}"
               onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
             >
-              <div class="ingredient-image">
+              <div class="ingredient-d-image">
                 {% if block.settings.image %}
                   <img
                     src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
@@ -1155,7 +1155,7 @@
                     height="400"
                   >
                 {% else %}
-                  <div class="placeholder-image"></div>
+                  <div class="ingredients-scroll-placeholder-image"></div>
                 {% endif %}
               </div>
 
@@ -1205,21 +1205,21 @@
           <!-- Third set of clones at the beginning -->
           {% for block in section.blocks %}
             <div
-              class="ingredient-card clone-card"
+              class="ingredient-d-card clone-card"
               data-original-index="{{ forloop.index0 }}"
               onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
             >
-              <div class="ingredient-image">
+              <div class="ingredient-d-image">
                 {% if block.settings.image %}
                   <img
                     src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
                     alt="{{ block.settings.name }}"
                     loading="lazy"
-                    width="400"
+                    width="400" 
                     height="400"
                   >
                 {% else %}
-                  <div class="placeholder-image"></div>
+                  <div class="ingredients-scroll-placeholder-image"></div>
                 {% endif %}
               </div>
 
@@ -1269,11 +1269,11 @@
           <!-- Original cards -->
           {% for block in section.blocks %}
             <div
-              class="ingredient-card original-card"
+              class="ingredient-d-card original-card"
               data-index="{{ forloop.index0 }}"
               onclick="selectIngredientByClick({{ forloop.index0 }}, '{{ section.id }}')"
             >
-              <div class="ingredient-image">
+              <div class="ingredient-d-image">
                 {% if block.settings.image %}
                   <img
                     src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
@@ -1283,7 +1283,7 @@
                     height="400"
                   >
                 {% else %}
-                  <div class="placeholder-image"></div>
+                  <div class="ingredients-scroll-placeholder-image"></div>
                 {% endif %}
               </div>
 
@@ -1334,12 +1334,12 @@
           {% for i in (1..10) %}
             {% for block in section.blocks %}
               <div
-                class="ingredient-card clone-card"
+                class="ingredient-d-card clone-card"
                 data-original-index="{{ forloop.index0 }}"
                 data-clone-set="{{ i }}"
                 onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
               >
-                <div class="ingredient-image">
+                <div class="ingredient-d-image">
                   {% if block.settings.image %}
                     <img
                       src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
@@ -1349,7 +1349,7 @@
                       height="400"
                     >
                   {% else %}
-                    <div class="placeholder-image"></div>
+                    <div class="ingredients-scroll-placeholder-image"></div>
                   {% endif %}
                 </div>
 
@@ -1526,7 +1526,7 @@
 
 
     const track = document.getElementById('track-' + sectionId);
-    const cards = track.querySelectorAll('.ingredient-card');
+    const cards = track.querySelectorAll('.ingredient-d-card');
 
 
     if (cards.length === 0) return;
@@ -1556,7 +1556,7 @@
 
   function selectIngredient(index, sectionId, animate = true) {
     const track = document.getElementById('track-' + sectionId);
-    const cards = track.querySelectorAll('.ingredient-card');
+    const cards = track.querySelectorAll('.ingredient-d-card');
 
 
     if (index < 0 || index >= cards.length) return;
@@ -1640,7 +1640,7 @@
 
 
     const track = document.getElementById('track-' + sectionId);
-    const cards = track.querySelectorAll('.ingredient-card');
+    const cards = track.querySelectorAll('.ingredient-d-card');
     const originalBlocksCount = data.originalBlocksCount;
     const currentIndex = data.currentIndex;
    
@@ -1674,7 +1674,7 @@
 
   function centerCard(index, sectionId, animate = true) {
     const track = document.getElementById('track-' + sectionId);
-    const cards = track.querySelectorAll('.ingredient-card');
+    const cards = track.querySelectorAll('.ingredient-d-card');
     const container = track.parentElement;
 
 
@@ -1788,7 +1788,7 @@
   function seamlessReposition(newIndex, sectionId) {
     const data = window.ingredientsScrollData[sectionId];
     const track = document.getElementById('track-' + sectionId);
-    const cards = track.querySelectorAll('.ingredient-card');
+    const cards = track.querySelectorAll('.ingredient-d-card');
    
     // Temporarily disable transitions
     track.style.transition = 'none';
@@ -1824,7 +1824,7 @@
 
 
     const track = document.getElementById('track-' + sectionId);
-    const cards = track.querySelectorAll('.ingredient-card');
+    const cards = track.querySelectorAll('.ingredient-d-card');
     const currentIndex = data.currentIndex;
     const originalBlocksCount = data.originalBlocksCount;
 
@@ -1888,7 +1888,7 @@
   function forceCenterActiveCard() {
     const track = document.getElementById('track-{{ section.id }}');
     if (track) {
-      const activeCard = track.querySelector('.ingredient-card.active');
+      const activeCard = track.querySelector('.ingredient-d-card.active');
       if (activeCard) {
         const data = window.ingredientsScrollData['{{ section.id }}'];
         if (data) {
@@ -1908,7 +1908,7 @@
   // Add frost glass specific hover behavior
   function setupFrostGlassHover() {
     // Target ALL ingredient cards, not just active ones
-    const ingredientCards = document.querySelectorAll('#ingredients-scroll-{{ section.id }} .ingredient-card');
+    const ingredientCards = document.querySelectorAll('#ingredients-scroll-{{ section.id }} .ingredient-d-card');
 
 
     ingredientCards.forEach((card) => {
@@ -1983,7 +1983,7 @@
       });
       
       // Make sure the frost glass is visible on the active card
-      const activeCard = section.querySelector('.ingredient-card.active');
+      const activeCard = section.querySelector('.ingredient-d-card.active');
       if (activeCard) {
         const frostGlass = activeCard.querySelector('.ingredient-auto-info');
         if (frostGlass) {

@@ -35,8 +35,8 @@
     background: white;
     color: #000;
     border: 1px solid #000;
-    border-radius: 16px;
-    padding: 14px 28px;
+    border-radius: 8px;
+    padding: 8px 15px;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -49,7 +49,8 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-width: 140px;
+    min-width: 16.6%;
+    min-height: 44px;
   }
 
   .concern-tab:hover:not(.active) {
@@ -217,7 +218,7 @@
   }
 
   /* Products Section */
-  .products-section {
+  .sbc-products-section {
     width: 50%;
     background: #ffffff;
     padding: 0;
@@ -229,7 +230,7 @@
   }
 
   /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
-  .products-section::-webkit-scrollbar {
+  .sbc-products-section::-webkit-scrollbar {
     display: none;
   }
 
@@ -267,7 +268,7 @@
     z-index: 51;
   }
 
-  .products-title {
+  .concern-products-title {
     font-size:35px;
     font-weight: 900;
     color: #333333;
@@ -337,7 +338,7 @@
   }
 
 
-  .product-card {
+  .sbc-product-card {
     background: var(--tile-bg-color, #ffffff);
     padding: 50px;
     text-align: center;
@@ -358,7 +359,7 @@
   }
 
 
-  .product-card:hover {
+  .sbc-product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 14px 24px rgba(204, 226, 226, 0.77);
   }
@@ -396,7 +397,7 @@
   }
 
 
-  .product-title {
+  .sbc-product-title {
     font-size: 24px;
     font-weight: 700;
     color: var(--tile-text-color, #ffffff);
@@ -407,7 +408,7 @@
     text-align: center;
   }
 
-  .product-image {
+  .sbc-product-image {
     width: 100%;
     height: 300px;
     max-width: 300px;
@@ -423,7 +424,7 @@
     display: block;
   }
 
-  .product-footer {
+  .sbc-product-footer {
     margin-top: auto;
     flex-shrink: 0;
   }
@@ -538,7 +539,7 @@
       max-height: 350px;
     }
 
-    .products-section {
+    .sbc-products-section {
       position: relative;
       width: 100%;
       min-height: 60vh;
@@ -549,7 +550,7 @@
       flex-direction: column;
     }
 
-    .products-title {
+    .concern-products-title {
       font-size: 24px;
     }
 
@@ -611,13 +612,13 @@
       padding: 5px 2px;
     }
 
-    .product-card {
+    .sbc-product-card {
       max-width: none;
       padding: 8px;
       max-height: 320px;
     }
 
-    .product-image {
+    .sbc-product-image {
       height: 160px;
     }
 
@@ -636,7 +637,7 @@
       max-height: 280px;
     }
 
-    .product-image {
+    .sbc-product-image {
       height: 140px;
     }
   }
@@ -709,10 +710,10 @@
       </div>
 
       <!-- Scrollable Products Section -->
-      <div class="products-section">
+      <div class="sbc-products-section">
         <!-- Sticky Header -->
         <div class="products-header">
-          <h2 class="products-title" id="products-title-{{ section.id }}">Recommended Products</h2>
+          <h2 class="concern-products-title" id="concern-products-title-{{ section.id }}">Recommended Products</h2>
           <p class="products-description" id="products-description-{{ section.id }}">
             Discover our curated selection of products specifically designed to address your skin concerns and achieve
             visible results.
@@ -1034,7 +1035,7 @@
   // Update products title and description
   function updateProductsHeader(concern, sectionId) {
     const data = concernData[concern];
-    const titleElement = document.getElementById(`products-title-${sectionId}`);
+    const titleElement = document.getElementById(`concern-products-title-${sectionId}`);
     const descriptionElement = document.getElementById(`products-description-${sectionId}`);
    
     if (titleElement && data.title) {
@@ -1087,7 +1088,7 @@
      
       productsInRow.forEach(product => {
         const productCard = document.createElement('div');
-        productCard.className = 'product-card';
+        productCard.className = 'sbc-product-card';
         if (product.url && product.url !== '#') {
           productCard.onclick = () => window.location.href = product.url;
         }
@@ -1104,10 +1105,10 @@
           <div class="product-code">${productCode}</div>
           <div class="product-content">
             <div class="product-header">
-              <div class="product-title">${product.title}</div>
+              <div class="sbc-product-title">${product.title}</div>
             </div>
-            <img src="${customMedia}" alt="${product.title}" class="product-image" width="220" height="220">
-            <div class="product-footer">
+            <img src="${customMedia}" alt="${product.title}" class="sbc-product-image" width="220" height="220">
+            <div class="sbc-product-footer">
               <div class="product-button">Shop Now</div>
               <div class="product-price">${product.price ? `Starting at ${product.price} per month` : ''}</div>
             </div>
@@ -1128,7 +1129,7 @@
   // Initialize scroll animation for products with enhanced scroll behavior
   function initializeScrollAnimation(sectionId) {
     const sectionElement = document.getElementById(`skin-by-concern-${sectionId}`);
-    const productsSection = document.querySelector(`#skin-by-concern-${sectionId} .products-section`);
+    const productsSection = document.querySelector(`#skin-by-concern-${sectionId} .sbc-products-section`);
     const beforeAfterSection = document.querySelector(`#skin-by-concern-${sectionId} .before-after-section`);
    
     if (!productsSection || !sectionElement || !beforeAfterSection) return;

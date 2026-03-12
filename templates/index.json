@@ -2858,7 +2858,6 @@
     },
     "ingredients_banner_KNtyNW": {
       "type": "ingredients-banner",
-      "disabled": true,
       "name": "Ingredients Banner",
       "settings": {
         "section_bg_color": "#ffffff",

@@ -16,7 +16,7 @@
             style="display: {% if forloop.first %}block{% else %}none{% endif %};"
             {{ block.shopify_attributes }}
           >
-            <div class="media-container">
+            <div class="media-container-vsi">
               {% if block.settings.video_file %}
                 <video
                   class="section-video"
@@ -37,7 +37,7 @@
                   height="400"
                 >
               {% else %}
-                <div class="media-placeholder">
+                <div class="media-placeholder-vsi">
                   <p>Upload video or image</p>
                 </div>
               {% endif %}
@@ -147,7 +147,7 @@
     height: auto;
   }
 
-  .media-container {
+  .media-container-vsi {
     width: 100%;
     height: {{ section.settings.media_height | default: 400 }}px;
     border-radius: {{ section.settings.media_border_radius | default: 20 }}px;
@@ -164,7 +164,7 @@
     display: block;
   }
 
-  .media-placeholder {
+  .media-placeholder-vsi {
     width: 100%;
     height: 100%;
     display: flex;
@@ -183,7 +183,7 @@
     align-items: center;
     padding: 40px;
     background: {{ section.settings.content_bg_color | default: '#ffffff' }};
-
+     
   }
 
   /* Progress Bar */
@@ -201,7 +201,7 @@
   .progress-bar {
     width: 100%;
     height: 0%;
-    background: {{ section.settings.progress_bar_color | default: '#4fffff' }};
+    background: {{ section.settings.progress_bar_color | default: '#00bcd4' }};
     border-radius: 2px;
     transition: height 0.3s ease;
   }
@@ -214,7 +214,7 @@
     flex-direction: column;
     justify-content: center;
     height: {{ section.settings.media_height | default: 400 }}px;
-
+     
   }
 
   .text-item {
@@ -225,11 +225,11 @@
   .text-item.active {
     opacity: 1;
     background-color: {{ section.settings.active_bg_color | default: '#d3ffff' }};
-    border-color: {{ section.settings.active_border_color | default: '#4fffff' }} !important;
+    border-color: {{ section.settings.active_border_color | default: '#00bcd4' }} !important;
   }
 
   .text-item.active:hover {
-    border-color: {{ section.settings.hover_border_color | default: '#4fffff' }} !important;
+    border-color: {{ section.settings.hover_border_color | default: '#00bcd4' }} !important;
   }
 
   /* Responsive */
@@ -282,18 +282,18 @@
       // Only prevent default if we're actually handling the scroll within the container
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
-
+      
       // Allow natural scroll to next/previous sections
       if (isScrollingDown && currentIndex >= textItems.length - 1) {
         // At last item, scrolling down - allow natural page scroll to next section
         return;
       }
-
+      
       if (isScrollingUp && currentIndex <= 0) {
         // At first item, scrolling up - allow natural page scroll to previous section
         return;
       }
-
+      
       // Only prevent default if we're handling the scroll within the container
       e.preventDefault();
 
@@ -334,18 +334,18 @@
       if (Math.abs(diff) > 50) {
         const isSwipeDown = diff > 0;
         const isSwipeUp = diff < 0;
-
+        
         // Allow natural scroll to next/previous sections
         if (isSwipeDown && currentIndex >= textItems.length - 1) {
           // At last item, swiping down - allow natural page scroll
           return;
         }
-
+        
         if (isSwipeUp && currentIndex <= 0) {
           // At first item, swiping up - allow natural page scroll
           return;
         }
-
+        
         isScrolling = true;
 
         if (isSwipeDown) {
@@ -468,7 +468,7 @@
       "type": "color",
       "id": "progress_bar_color",
       "label": "Progress Bar Color",
-      "default": "#4fffff"
+      "default": "#00bcd4"
     },
     {
       "type": "header",
@@ -524,7 +524,7 @@
       "type": "color",
       "id": "active_border_color",
       "label": "Active Border Color",
-      "default": "#4fffff"
+      "default": "#00bcd4"
     },
     {
       "type": "color",
@@ -536,7 +536,7 @@
       "type": "color",
       "id": "hover_border_color",
       "label": "Hover Border Color",
-      "default": "#4fffff"
+      "default": "#00bcd4"
     },
     {
       "type": "header",

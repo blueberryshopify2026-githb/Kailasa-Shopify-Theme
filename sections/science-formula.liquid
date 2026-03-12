@@ -68,7 +68,7 @@
 
     <!-- Right Media Area -->
     <div class="science-media">
-      <div class="media-container">
+      <div class="media-container-science-formula">
         <!-- Single Media Display -->
         <div id="media-display" class="single-media-display">
           <!-- Default placeholder will be inserted here by JavaScript -->
@@ -284,7 +284,7 @@
     /* Allow normal scrolling on right side */
   }
 
-  .media-container {
+  .media-container-science-formula {
     position: relative;
     width: 90%;
     height: calc(100vh - 150px);
@@ -310,7 +310,7 @@
     border-radius: 16px;
   }
 
-  .media-placeholder {
+  .media-placeholder-science-formula {
     width: 100%;
     height: 100%;
     display: flex;
@@ -339,7 +339,7 @@
     object-fit: cover;
   }
 
-  .media-placeholder {
+  .media-placeholder-science-formula {
     width: 100%;
     height: 100%;
     display: flex;
@@ -464,7 +464,7 @@
       } else if (media.type === 'image' && media.image && media.image.trim() !== '' && !media.image.includes('undefined')) {
         content = `<img src="${media.image}" alt="Media content" class="science-image">`;
       } else {
-        content = `<div class="media-placeholder">
+        content = `<div class="media-placeholder-science-formula">
                     <div class="placeholder-content">
                       <p>${media.placeholder || 'Media Placeholder'}</p>
                     </div>

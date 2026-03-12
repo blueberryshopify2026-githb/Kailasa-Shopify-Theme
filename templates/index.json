@@ -3328,7 +3328,6 @@
         "week_M7pdJd",
         "week_BchtED"
       ],
-      "disabled": true,
       "name": "Result-Timeline",
       "settings": {
         "background_color": "#ffffff",
@@ -3554,7 +3553,6 @@
         "phase_item_VJpFiA",
         "phase_item_PxY8G7"
       ],
-      "disabled": true,
       "name": "Protocol Phases",
       "settings": {
         "bg_color": "#ffffff",
@@ -3688,7 +3686,6 @@
         "feature_item_yCFYBg",
         "feature_item_GgRBhX"
       ],
-      "disabled": true,
       "name": "Biotechnology Introduction",
       "settings": {
         "full_bg_size": "cover",

@@ -8,7 +8,7 @@
     font-family: 'Montserrat', sans-serif;
     position: relative;
     width: 100%;
-    min-height: 120vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,24 +40,24 @@
   .professional-panel-container {
     max-width: 1400px;
     width: 100%;
-    padding: 80px 40px;
+    padding: 60px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 40px;
     position: relative;
     z-index: 1;
-    min-height: 600px;
+    min-height: 500px;
   }
 
   /* Professional Card */
   .professional-card {
     background: {{ section.settings.card_bg_color | default: '#000000' }};
     border-radius: {{ section.settings.card_border_radius }}px;
-    padding: 60px 40px;
+    padding: 50px 40px;
     max-width: 550px;
     width: 100%;
-    min-height: 600px;
+    min-height: 500px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -73,7 +73,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 60px 40px;
+    padding: 50px 40px;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -81,7 +81,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
   }
 
   .professional-card-content.active {
@@ -166,12 +166,12 @@
     gap: 10px;
     position: absolute;
     right: 60px;
-    bottom: 70px;
+    bottom: 60px;
   }
 
   .carousel-arrow {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: {{ section.settings.arrow_bg_color | default: '#000000' }};
     border: 2px solid {{ section.settings.arrow_border_color | default: '#4FFFFF' }};

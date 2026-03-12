@@ -2958,7 +2958,6 @@
         "team_member_UQpadz",
         "team_member_4BV7qy"
       ],
-      "disabled": true,
       "name": "Medical Team",
       "settings": {
         "section_bg_color": "#000000",
@@ -3023,7 +3022,6 @@
         "professional_egiyYA",
         "professional_iWX6Rg"
       ],
-      "disabled": true,
       "name": "Professional Panel",
       "settings": {
         "section_bg_color": "#ffffff",
@@ -3047,7 +3045,6 @@
     },
     "three_column_media_3DjjeX": {
       "type": "three-column-media",
-      "disabled": true,
       "name": "Three Column Media",
       "settings": {
         "section_background": "#ffffff",
@@ -3153,7 +3150,6 @@
         "ugc_video_f6iQ3D",
         "ugc_video_WKnxLL"
       ],
-      "disabled": true,
       "name": "UGC Video Carousel",
       "settings": {
         "section_background": "#ffffff",

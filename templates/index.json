@@ -1350,6 +1350,7 @@
         "product_fhLmwp",
         "product_rd743b"
       ],
+      "disabled": true,
       "name": "Skin by Concern",
       "settings": {
         "dullness_before_image": "shopify://shop_images/pexels-polina-kovaleva-5927890.jpg",

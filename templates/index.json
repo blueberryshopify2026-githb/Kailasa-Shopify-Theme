@@ -1350,6 +1350,7 @@
         "product_fhLmwp",
         "product_rd743b"
       ],
+      "disabled": true,
       "name": "Skin by Concern",
       "settings": {
         "dullness_before_image": "shopify://shop_images/pexels-polina-kovaleva-5927890.jpg",
@@ -1437,7 +1438,6 @@
         "ingredient_dcBtcr",
         "ingredient_K9AynE"
       ],
-      "disabled": true,
       "name": "Ingredients Scroll",
       "settings": {
         "supplement_facts_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg",

@@ -2549,6 +2549,7 @@
         "korean_beauty_showcase_pEqYkG",
         "ingredient_showcase_9cPLiL"
       ],
+      "disabled": true,
       "name": "Science Slider",
       "settings": {
         "section_margin_top": 0,
@@ -2597,7 +2598,6 @@
         "slide_item_JWqKwm",
         "slide_item_hHFeTH"
       ],
-      "disabled": true,
       "name": "Dual Container Slider",
       "settings": {
         "bg_color": "#000000",

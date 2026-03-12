@@ -63,6 +63,7 @@
         "content_block_UrQViw",
         "content_block_mbgAaw"
       ],
+      "disabled": true,
       "name": "Hero Section",
       "settings": {
         "section_bg_color": "#000000",
@@ -213,6 +214,7 @@
         "image_text_block_zJamzz",
         "faq_block_kPRnra"
       ],
+      "disabled": true,
       "name": "Tab Section 1",
       "settings": {
         "title": "Ghoton Youth™ Pro LED Mask",
@@ -381,6 +383,7 @@
         "image_text_block_WTMHAg",
         "faq_block_q8HHhH"
       ],
+      "disabled": true,
       "name": "Tab Section 2",
       "settings": {
         "title": "Photon Youth™ Pro LED Mask",
@@ -1137,6 +1140,7 @@
         "multi_tab_block_Y6WrpH",
         "multi_tab_block_6VwnrB"
       ],
+      "disabled": true,
       "name": "Multi Tab Section",
       "settings": {
         "title": "Multi Product Tabs",
@@ -1438,6 +1442,7 @@
         "ingredient_dcBtcr",
         "ingredient_K9AynE"
       ],
+      "disabled": true,
       "name": "Ingredients Scroll",
       "settings": {
         "supplement_facts_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg",
@@ -1856,6 +1861,7 @@
         "product_Wm7kTh",
         "product_RVpwFr"
       ],
+      "disabled": true,
       "name": "Routine Tabs Section",
       "settings": {
         "section_background_color": "#ffffff",
@@ -2091,6 +2097,7 @@
         "product_hotspot_W4wUAW",
         "product_hotspot_fPRthV"
       ],
+      "disabled": true,
       "name": "Skincare Bundle",
       "settings": {
         "section_background": "#ffffff",
@@ -3281,7 +3288,6 @@
         "point_bzCLBy",
         "point_JttzhV"
       ],
-      "disabled": true,
       "name": "VIP Section",
       "settings": {
         "title": "Designed to Support Your Busy Lifestyle",

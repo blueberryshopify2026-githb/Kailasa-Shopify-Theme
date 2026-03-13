@@ -91,9 +91,58 @@
         "image_border_radius": 24,
         "active_circle_color": "#4FFFFF"
       }
+    },
+    "ingredients_scroll_A3dcrW": {
+      "type": "ingredients-scroll",
+      "blocks": {
+        "ingredient_zLbgj6": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_8zPwbw": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Collagen",
+            "subtitle": "Type I & III",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_FK9wXE": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Vitamin C",
+            "subtitle": "Ascorbic Acid",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_zLbgj6",
+        "ingredient_8zPwbw",
+        "ingredient_FK9wXE"
+      ],
+      "name": "Ingredients Scroll",
+      "settings": {
+        "title": "The inner workings of strength & recovery",
+        "title_font": "Gilroy",
+        "title_size": 48,
+        "title_weight": "600",
+        "description": "Crafted to perfection through rigorous clinical research, rooted in nature and backed by science.",
+        "description_font": "Gilroy",
+        "description_size": 16,
+        "description_weight": "400"
+      }
     }
   },
   "order": [
-    "hero_section_GWJCpg"
+    "hero_section_GWJCpg",
+    "ingredients_scroll_A3dcrW"
   ]
 }

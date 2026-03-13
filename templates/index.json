@@ -262,6 +262,81 @@
             "mask_type": "check",
             "mask_text": ""
           }
+        },
+        "ingredient_row_UeiFqE": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 4",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_bEttp6": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 4",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_kbdaXE": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 4",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_4YhBFi": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 4",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_J96NkN": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 4",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
         }
       },
       "block_order": [
@@ -271,7 +346,12 @@
         "ingredient_row_yBWLKr",
         "ingredient_row_rWKtQB",
         "ingredient_row_GakFnJ",
-        "ingredient_row_BiGLGy"
+        "ingredient_row_BiGLGy",
+        "ingredient_row_UeiFqE",
+        "ingredient_row_bEttp6",
+        "ingredient_row_kbdaXE",
+        "ingredient_row_4YhBFi",
+        "ingredient_row_J96NkN"
       ],
       "name": "Comparison Table",
       "settings": {

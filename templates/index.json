@@ -1537,6 +1537,68 @@
         "list_font_size": 15,
         "list_font_weight": "400"
       }
+    },
+    "vip_section_Rb4Upr": {
+      "type": "vip-section",
+      "blocks": {
+        "point_KfkAWk": {
+          "type": "point",
+          "settings": {
+            "point_text": "Want an easy way to support your daily nutrition",
+            "point_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg"
+          }
+        },
+        "point_D7g9zX": {
+          "type": "point",
+          "settings": {
+            "point_text": "Are juggling a busy life and need nutrition that keeps up",
+            "point_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg"
+          }
+        },
+        "point_ERUMwA": {
+          "type": "point",
+          "settings": {
+            "point_text": "Care about improving gut health and digestion",
+            "point_image": "shopify://shop_images/How_Quickly_Can_You_See_Results_with_Liquid_Iron_Supplements.jpg"
+          }
+        },
+        "point_C4fyxK": {
+          "type": "point",
+          "settings": {
+            "point_text": "Are getting back into fitness and want to support your energy levels",
+            "point_image": "shopify://shop_images/download_18.jpg"
+          }
+        },
+        "point_D8cgqV": {
+          "type": "point",
+          "settings": {
+            "point_text": "Are on GLP-1s and want additional nutritional support",
+            "point_image": "shopify://shop_images/image_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "point_KfkAWk",
+        "point_D7g9zX",
+        "point_ERUMwA",
+        "point_C4fyxK",
+        "point_D8cgqV"
+      ],
+      "name": "VIP Section",
+      "settings": {
+        "title": "Designed to Support Your Busy Lifestyle",
+        "subtitle": "We formulated AG1 Next Gen to support your health with advanced nutrition in every scoop.* It's a match if you:",
+        "button_text": "Get Started",
+        "button_link": "",
+        "default_image": "shopify://shop_images/ChatGPT_Image_Feb_4_2026_05_13_29_PM.png",
+        "font_family": "montserrat_n4",
+        "title_font_size": 48,
+        "title_font_weight": "700",
+        "subtitle_font_size": 18,
+        "subtitle_font_weight": "400",
+        "points_font_size": 16,
+        "points_font_weight": "400"
+      }
     }
   },
   "order": [
@@ -1546,6 +1608,7 @@
     "tab_section_M8Yd6W",
     "tab_section_3XKQ6Q",
     "multi_tab_section_JntqBt",
-    "result_timeline_PVmbWA"
+    "result_timeline_PVmbWA",
+    "vip_section_Rb4Upr"
   ]
 }

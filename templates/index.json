@@ -154,10 +154,146 @@
         "description_size": 16,
         "description_weight": "400"
       }
+    },
+    "comparison_table_8gLMQK": {
+      "type": "comparison-table",
+      "blocks": {
+        "ingredient_row_V4kGDW": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 1",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_Fm4Thq": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 2",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_awTpyD": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 1",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_yBWLKr": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 4",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_rWKtQB": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 3",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_GakFnJ": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 3",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_BiGLGy": {
+          "type": "ingredient_row",
+          "name": "Ingredient Row 4",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_row_V4kGDW",
+        "ingredient_row_Fm4Thq",
+        "ingredient_row_awTpyD",
+        "ingredient_row_yBWLKr",
+        "ingredient_row_rWKtQB",
+        "ingredient_row_GakFnJ",
+        "ingredient_row_BiGLGy"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n4",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n4",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
+      }
     }
   },
   "order": [
     "hero_section_tCPJUm",
-    "ingredients_scroll_4a7QpW"
+    "ingredients_scroll_4a7QpW",
+    "comparison_table_8gLMQK"
   ]
 }

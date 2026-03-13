@@ -98,6 +98,7 @@
         "ingredient_zLbgj6": {
           "type": "ingredient",
           "settings": {
+            "image": "shopify://shop_images/download_31.jpg",
             "name": "Vitamin B12",
             "subtitle": "Methylcobalamin",
             "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
@@ -107,17 +108,29 @@
         "ingredient_8zPwbw": {
           "type": "ingredient",
           "settings": {
+            "image": "shopify://shop_images/download_29.jpg",
             "name": "Collagen",
             "subtitle": "Type I & III",
             "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
             "studies_count": 967
           }
         },
-        "ingredient_FK9wXE": {
+        "ingredient_LFYT8q": {
           "type": "ingredient",
           "settings": {
-            "name": "Vitamin C",
-            "subtitle": "Ascorbic Acid",
+            "image": "shopify://shop_images/download_29.jpg",
+            "name": "Collagen",
+            "subtitle": "Type I & III",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_A7yAe3": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/download_29.jpg",
+            "name": "Collagen",
+            "subtitle": "Type I & III",
             "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
             "studies_count": 967
           }
@@ -126,7 +139,8 @@
       "block_order": [
         "ingredient_zLbgj6",
         "ingredient_8zPwbw",
-        "ingredient_FK9wXE"
+        "ingredient_LFYT8q",
+        "ingredient_A7yAe3"
       ],
       "name": "Ingredients Scroll",
       "settings": {

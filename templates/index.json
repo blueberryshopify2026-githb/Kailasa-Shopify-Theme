@@ -609,7 +609,7 @@
           "settings": {
             "tab_name": "Usage",
             "image": "shopify://shop_images/download_17_5eac7c5d-b7f6-46ac-8352-400d19047f81.jpg",
-            "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout.",
+            "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout. Contrary to popular belief,Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,",
             "layout": "text-image",
             "content_font_family": "inherit",
             "content_font_weight": 400,

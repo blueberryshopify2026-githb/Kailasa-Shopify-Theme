@@ -1,6 +1,6 @@
 {% comment %}
-  VIP Presentation Section - 50:50 split with heading, key points, arrow navigation and image preview
-  Features: Rich text key points, grayscale preview image, arrow navigation to main image
+  VIP Presentation Section - 50:50 split with sliding blocks
+  Features: Multiple content blocks with sliding animations, arrow navigation, camera reel effect
 {% endcomment %}
 
 <style>
@@ -40,12 +40,37 @@
     max-height: calc(100vh - 120px);
   }
 
+  .vip-presentation-content {
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .vip-presentation-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .vip-presentation-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .vip-presentation-slide.prev {
+    transform: translateX(-100%);
+  }
+
   .vip-presentation-heading {
     font-size: {{ section.settings.heading_font_size }}px;
     font-weight: 800;
     color: {{ section.settings.heading_color | default: '#000000' }};
     line-height: 1.2;
-    margin: 0;
+    margin: 0 0 20px 0;
     font-family: 'Montserrat', sans-serif;
   }
 
@@ -81,38 +106,60 @@
   .vip-presentation-navigation {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 15px;
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
   }
 
+  .vip-presentation-arrows {
+    display: flex;
+    gap: 10px;
+  }
+
   .vip-presentation-arrow {
-    width: auto;
-    height: auto;
-    background: none;
+    width: 50px;
+    height: 50px;
+    background: {{ section.settings.arrow_bg_color | default: '#4FFFFF' }};
     border: none;
-    outline: none;
-    box-shadow: none;
-    border-radius: 0;
-    display: inline-block;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
-    position: relative;
-    padding: 0;
-    margin: 0;
+  }
+
+  .vip-presentation-arrow:hover {
+    background: {{ section.settings.arrow_hover_color | default: '#3DEEEE' }};
+    transform: scale(1.1);
   }
 
   .vip-presentation-arrow svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     fill: {{ section.settings.arrow_icon_color | default: '#000000' }};
-    margin-left: 5px;
+  }
+
+  .vip-presentation-preview-container {
+    position: relative;
+    width: calc(70% - 30px);
+    height: 160px;
+    overflow: hidden;
+    border-radius: {{ section.settings.preview_border_radius }}px;
+    margin-left: auto;
+  }
+
+  .vip-presentation-preview-track {
+    display: flex;
+    width: calc(100% * {{ section.blocks.size }});
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .vip-presentation-preview {
-    width: calc(70% - 30px);
+    width: calc(100% / {{ section.blocks.size }});
     height: 160px;
     border-radius: {{ section.settings.preview_border_radius }}px;
     overflow: hidden;
@@ -121,7 +168,12 @@
     filter: grayscale(100%);
     opacity: 0.8;
     position: relative;
-    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .vip-presentation-preview.active {
+    filter: grayscale(0%);
+    opacity: 1;
   }
 
   .vip-presentation-preview:hover {
@@ -166,6 +218,37 @@
     justify-content: center;
     align-items: flex-start;
     height: 100%;
+    overflow: hidden;
+  }
+
+  .vip-presentation-main-image-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+    border-radius: {{ section.settings.main_image_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .vip-presentation-main-track {
+    display: flex;
+    width: calc(100% * {{ section.blocks.size }});
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .vip-presentation-main-image {
+    width: calc(100% / {{ section.blocks.size }});
+    height: 100%;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .vip-presentation-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .vip-presentation-main-cta {
@@ -188,25 +271,8 @@
   }
 
   .vip-presentation-main-cta:hover {
-    background: #000000;
+    background: #333333;
     transform: translateX(-50%) scale(1.05);
-  }
-
-  .vip-presentation-main-image {
-    width: 100%;
-    height: calc(100vh - 60px);
-    max-height: calc(100vh - 60px);
-    border-radius: {{ section.settings.main_image_border_radius }}px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-
-  .vip-presentation-main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s ease;
   }
 
   /* Responsive */
@@ -228,7 +294,7 @@
       justify-content: flex-start;
     }
 
-    .vip-presentation-main-image {
+    .vip-presentation-main-image-container {
       height: 400px;
       max-height: 400px;
     }
@@ -254,14 +320,18 @@
       gap: 15px;
     }
 
+    .vip-presentation-preview-container {
+      width: 200px;
+      height: 120px;
+    }
+
     .vip-presentation-preview {
-      width: 150px;
-      height: 90px;
+      height: 120px;
     }
 
     .vip-presentation-arrow {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
   }
 </style>
@@ -270,75 +340,157 @@
   <div class="vip-presentation-container">
     <!-- Left Content -->
     <div class="vip-presentation-left">
-      {% if section.settings.heading != blank %}
-        <h2 class="vip-presentation-heading">{{ section.settings.heading }}</h2>
-      {% endif %}
+      <div class="vip-presentation-content">
+        {% for block in section.blocks %}
+          {% if block.type == 'content_block' %}
+            <div class="vip-presentation-slide {% if forloop.first %}active{% endif %}" 
+                 data-block-id="{{ forloop.index0 }}"
+                 {{ block.shopify_attributes }}>
+              {% if block.settings.heading != blank %}
+                <h2 class="vip-presentation-heading">{{ block.settings.heading }}</h2>
+              {% endif %}
 
-      {% if section.settings.key_points != blank %}
-        <div class="vip-presentation-key-points">
-          {{ section.settings.key_points }}
-        </div>
-      {% endif %}
+              {% if block.settings.key_points != blank %}
+                <div class="vip-presentation-key-points">
+                  {{ block.settings.key_points }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
 
       <div class="vip-presentation-navigation">
-        <div class="vip-presentation-arrow" onclick="showMainImage('{{ section.id }}')">
-          {% if section.settings.arrow_icon %}
-            <img src="{{ section.settings.arrow_icon | image_url }}" 
-                 alt="Arrow Icon"
-                 width="160"
-                 height="120"
-                 style="width: 160px; height: 120px; object-fit: contain; display: block;">
-          {% endif %}
+        <div class="vip-presentation-arrows">
+          <button class="vip-presentation-arrow" onclick="changeSlide('{{ section.id }}', -1)">
+            <svg viewBox="0 0 24 24">
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+          </button>
+          <button class="vip-presentation-arrow" onclick="changeSlide('{{ section.id }}', 1)">
+            <svg viewBox="0 0 24 24">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+          </button>
         </div>
 
-        {% if section.settings.preview_image %}
-          <div class="vip-presentation-preview" onclick="showMainImage('{{ section.id }}')">
-            <img src="{{ section.settings.preview_image | image_url: width: 600 }}" 
-                 alt="Preview"
-                 width="600"
-                 height="400"
-                 loading="lazy">
+        <div class="vip-presentation-preview-container">
+          <div class="vip-presentation-preview-track" id="preview-track-{{ section.id }}">
+            {% for block in section.blocks %}
+              {% if block.type == 'content_block' and block.settings.preview_image %}
+                <div class="vip-presentation-preview {% if forloop.first %}active{% endif %}" 
+                     data-block-id="{{ forloop.index0 }}"
+                     onclick="goToSlide('{{ section.id }}', {{ forloop.index0 }})">
+                  <img src="{{ block.settings.preview_image | image_url: width: 600 }}" 
+                       alt="{{ block.settings.heading | strip_html }}"
+                       width="600"
+                       height="400"
+                       loading="lazy">
+                  {% if block.settings.preview_cta_text != blank %}
+                    <button class="vip-presentation-preview-cta">
+                      {{ block.settings.preview_cta_text }}
+                    </button>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
           </div>
-        {% endif %}
+        </div>
       </div>
     </div>
 
     <!-- Right Image -->
     <div class="vip-presentation-right">
-      {% if section.settings.main_image %}
-        <div class="vip-presentation-main-image" id="vip-main-image-{{ section.id }}">
-          <img src="{{ section.settings.main_image | image_url: width: 800 }}" 
-               alt="{{ section.settings.heading | strip_html }}"
-               width="800"
-               height="800"
-               loading="lazy">
-          {% if section.settings.preview_cta_text != blank %}
-            <button class="vip-presentation-main-cta" onclick="showMainImage('{{ section.id }}')">
-              {{ section.settings.preview_cta_text }}
-            </button>
-          {% endif %}
+      <div class="vip-presentation-main-image-container">
+        <div class="vip-presentation-main-track" id="main-track-{{ section.id }}">
+          {% for block in section.blocks %}
+            {% if block.type == 'content_block' and block.settings.main_image %}
+              <div class="vip-presentation-main-image" data-block-id="{{ forloop.index0 }}">
+                <img src="{{ block.settings.main_image | image_url: width: 800 }}" 
+                     alt="{{ block.settings.heading | strip_html }}"
+                     width="800"
+                     height="800"
+                     loading="lazy">
+                {% if block.settings.main_cta_text != blank %}
+                  <a href="{{ block.settings.main_cta_link }}" class="vip-presentation-main-cta">
+                    {{ block.settings.main_cta_text }}
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
         </div>
-      {% endif %}
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-function showMainImage(sectionId) {
-  const mainImage = document.getElementById(`vip-main-image-${sectionId}`);
-  if (mainImage) {
-    // Add a subtle animation effect
-    mainImage.style.transform = 'scale(1.02)';
-    setTimeout(() => {
-      mainImage.style.transform = 'scale(1)';
-    }, 200);
-    
-    // Scroll to the main image on mobile
-    if (window.innerWidth <= 1024) {
-      mainImage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+let currentSlideIndex = {};
+
+function initializeSlider(sectionId) {
+  currentSlideIndex[sectionId] = 0;
+  updateSlider(sectionId);
+}
+
+function changeSlide(sectionId, direction) {
+  const slides = document.querySelectorAll(`[data-block-id]`);
+  const totalSlides = slides.length / 2; // Divided by 2 because we have both content and image slides
+  
+  currentSlideIndex[sectionId] = (currentSlideIndex[sectionId] + direction + totalSlides) % totalSlides;
+  updateSlider(sectionId);
+}
+
+function goToSlide(sectionId, slideIndex) {
+  currentSlideIndex[sectionId] = slideIndex;
+  updateSlider(sectionId);
+}
+
+function updateSlider(sectionId) {
+  const currentIndex = currentSlideIndex[sectionId];
+  
+  // Update content slides
+  const contentSlides = document.querySelectorAll('.vip-presentation-slide');
+  contentSlides.forEach((slide, index) => {
+    slide.classList.remove('active', 'prev');
+    if (index === currentIndex) {
+      slide.classList.add('active');
+    } else if (index < currentIndex) {
+      slide.classList.add('prev');
     }
+  });
+  
+  // Update preview images with camera reel effect
+  const previewTrack = document.getElementById(`preview-track-${sectionId}`);
+  const previewImages = document.querySelectorAll('.vip-presentation-preview');
+  if (previewTrack) {
+    const translateX = -currentIndex * (100 / previewImages.length);
+    previewTrack.style.transform = `translateX(${translateX}%)`;
+  }
+  
+  // Update preview active state
+  previewImages.forEach((preview, index) => {
+    preview.classList.toggle('active', index === currentIndex);
+  });
+  
+  // Update main images with camera reel effect
+  const mainTrack = document.getElementById(`main-track-${sectionId}`);
+  if (mainTrack) {
+    const translateX = -currentIndex * (100 / previewImages.length);
+    mainTrack.style.transform = `translateX(${translateX}%)`;
   }
 }
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.vip-presentation-section');
+  sections.forEach(section => {
+    const sectionId = section.querySelector('[id*="preview-track-"]')?.id.replace('preview-track-', '');
+    if (sectionId) {
+      initializeSlider(sectionId);
+    }
+  });
+});
 </script>
 
 {% schema %}
@@ -356,45 +508,6 @@ function showMainImage(sectionId) {
       "id": "section_bg_color",
       "label": "Background Color",
       "default": "#ffffff"
-    },
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Skincare Elevated to an Elite Membership Experience"
-    },
-    {
-      "type": "richtext",
-      "id": "key_points",
-      "label": "Key Points",
-      "default": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>"
-    },
-    {
-      "type": "header",
-      "content": "Images"
-    },
-    {
-      "type": "image_picker",
-      "id": "preview_image",
-      "label": "Preview Image (Grayscale)",
-      "info": "Small preview image shown next to arrow"
-    },
-    {
-      "type": "text",
-      "id": "preview_cta_text",
-      "label": "Preview CTA Text",
-      "default": "Become a Member",
-      "info": "Text shown on the preview image button"
-    },
-    {
-      "type": "image_picker",
-      "id": "main_image",
-      "label": "Main Image",
-      "info": "Large image shown on the right side"
     },
     {
       "type": "header",
@@ -449,10 +562,10 @@ function showMainImage(sectionId) {
       "default": "#4FFFFF"
     },
     {
-      "type": "image_picker",
-      "id": "arrow_icon",
-      "label": "Arrow Icon (SVG/Image)",
-      "info": "Upload your custom arrow icon/SVG"
+      "type": "color",
+      "id": "arrow_hover_color",
+      "label": "Arrow Hover Color",
+      "default": "#3DEEEE"
     },
     {
       "type": "color",
@@ -481,9 +594,72 @@ function showMainImage(sectionId) {
       "default": 20
     }
   ],
+  "blocks": [
+    {
+      "type": "content_block",
+      "name": "Content Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Skincare Elevated to an Elite Membership Experience"
+        },
+        {
+          "type": "richtext",
+          "id": "key_points",
+          "label": "Key Points",
+          "default": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>"
+        },
+        {
+          "type": "image_picker",
+          "id": "preview_image",
+          "label": "Preview Image (Grayscale)",
+          "info": "Small preview image shown in the slider"
+        },
+        {
+          "type": "text",
+          "id": "preview_cta_text",
+          "label": "Preview CTA Text",
+          "default": "Become a Member",
+          "info": "Text shown on the preview image button"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image",
+          "info": "Large image shown on the right side"
+        },
+        {
+          "type": "text",
+          "id": "main_cta_text",
+          "label": "Main CTA Text",
+          "default": "Become a Member",
+          "info": "Text shown on the main image button"
+        },
+        {
+          "type": "url",
+          "id": "main_cta_link",
+          "label": "Main CTA Link",
+          "info": "Link for the main image button"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "VIP Presentation"
+      "name": "VIP Presentation",
+      "blocks": [
+        {
+          "type": "content_block"
+        },
+        {
+          "type": "content_block"
+        },
+        {
+          "type": "content_block"
+        }
+      ]
     }
   ]
 }

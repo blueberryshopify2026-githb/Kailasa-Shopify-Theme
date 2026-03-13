@@ -1454,6 +1454,86 @@
         "arrow_stroke_mobile": 2,
         "arrow_style": "stroke"
       }
+    },
+    "result_timeline_PVmbWA": {
+      "type": "result-timeline",
+      "blocks": {
+        "week_TWhzif": {
+          "type": "week",
+          "name": "Week 1",
+          "settings": {
+            "week_label": "Week 1",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function. |Shields against environmental stress."
+          }
+        },
+        "week_YV3EVg": {
+          "type": "week",
+          "name": "Week 2",
+          "settings": {
+            "week_label": "Week 2",
+            "week_title": "Enhanced Nutrient Absorption*",
+            "week_description": "Improves digestive health|Supports microbiome balance|Increases energy levels"
+          }
+        },
+        "week_B6Nxy4": {
+          "type": "week",
+          "name": "Week 3",
+          "settings": {
+            "week_label": "Week 3",
+            "week_title": "Optimal Wellness*",
+            "week_description": "Complete system optimization|Long-term health benefits|Sustained energy and vitality"
+          }
+        },
+        "week_6MErLA": {
+          "type": "week",
+          "name": "Week 4",
+          "settings": {
+            "week_label": "Week 4",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function|Shields against environmental stress.|Fuels microbial metabolism of nutrients|Shields against environmental stress."
+          }
+        },
+        "week_3CCbih": {
+          "type": "week",
+          "name": "Week 5",
+          "settings": {
+            "week_label": "Week 5",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function|Shields against environmental stress.|Fuels microbial metabolism of nutrients|Shields against environmental stress."
+          }
+        }
+      },
+      "block_order": [
+        "week_TWhzif",
+        "week_YV3EVg",
+        "week_B6Nxy4",
+        "week_6MErLA",
+        "week_3CCbih"
+      ],
+      "name": "Result-Timeline",
+      "settings": {
+        "background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "font_family": "Montserrat",
+        "title": "Benefits that build over time.",
+        "title_color": "#000000",
+        "title_font_size": 42,
+        "title_font_weight": "700",
+        "subtitle": "Designed for daily use, DM-02™ replenishes your body and microbiome with essential nutrients to build systemic.",
+        "subtitle_color": "#666666",
+        "subtitle_font_size": 16,
+        "subtitle_font_weight": "400",
+        "week_badge_font_size": 14,
+        "week_badge_font_weight": "500",
+        "week_title_color": "#000000",
+        "week_title_font_size": 24,
+        "week_title_font_weight": "600",
+        "list_color": "#333333",
+        "list_font_size": 15,
+        "list_font_weight": "400"
+      }
     }
   },
   "order": [
@@ -1462,6 +1542,7 @@
     "comparison_table_8gLMQK",
     "tab_section_M8Yd6W",
     "tab_section_3XKQ6Q",
-    "multi_tab_section_JntqBt"
+    "multi_tab_section_JntqBt",
+    "result_timeline_PVmbWA"
   ]
 }

@@ -79,9 +79,72 @@
         "image_border_radius": 24,
         "active_circle_color": "#4FFFFF"
       }
+    },
+    "ingredients_scroll_4a7QpW": {
+      "type": "ingredients-scroll",
+      "blocks": {
+        "ingredient_EEiG3K": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_88TVQm": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "name": "Collagen",
+            "subtitle": "Type I & III",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_MDnLyr": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/9919143ee60b1045d50652f846cb65bd.jpg",
+            "name": "Vitamin C",
+            "subtitle": "Ascorbic Acid",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_jQ4bxA": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/Federico_Berardi___Oeuvre_n-2381.jpg",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_EEiG3K",
+        "ingredient_88TVQm",
+        "ingredient_MDnLyr",
+        "ingredient_jQ4bxA"
+      ],
+      "name": "Ingredients Scroll",
+      "settings": {
+        "title": "The inner workings of strength & recovery",
+        "title_font": "Gilroy",
+        "title_size": 48,
+        "title_weight": "600",
+        "description": "Crafted to perfection through rigorous clinical research, rooted in nature and backed by science.",
+        "description_font": "Gilroy",
+        "description_size": 16,
+        "description_weight": "400"
+      }
     }
   },
   "order": [
-    "hero_section_tCPJUm"
+    "hero_section_tCPJUm",
+    "ingredients_scroll_4a7QpW"
   ]
 }

@@ -1,0 +1,1689 @@
+{% comment %}
+  Routine Tabs Section - Fully responsive with dynamic tab switching
+  Matches reference image with customizable content per tab
+{% endcomment %}
+
+<style>
+  .routine-tabs-section {
+    font-family: 'Montserrat', sans-serif;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
+    background-color: {{ section.settings.section_background_color }};
+    position: relative;
+    z-index: 1;
+    clear: both;
+    margin-top: 40px;
+    isolation: isolate;
+    overflow: visible;
+  }
+
+  .routine-tabs-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Section Header */
+  .routine-section-header {
+    text-align: {{ section.settings.header_alignment }};
+    margin-bottom: 40px;
+  }
+
+  .routine-section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.section_title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.section_title_color }};
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+  }
+
+  .routine-section-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.section_description_size }}px;
+    color: {{ section.settings.section_description_color }};
+    line-height: 1.4;
+    margin: 0;
+    max-width: 800px;
+    {% if section.settings.header_alignment == 'center' %}
+      margin-left: auto;
+      margin-right: auto;
+    {% elsif section.settings.header_alignment == 'right' %}
+      margin-left: auto;
+    {% endif %}
+  }
+
+  /* Tab Navigation */
+  .routine-tabs-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .routine-tab-button {
+    background: {{ section.settings.inactive_tab_bg }};
+    color: {{ section.settings.inactive_tab_text }};
+    border: 1px solid {{ section.settings.tab_border_color }};
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.tab_font_size }}px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    min-width: 25%;
+    min-height: 44px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .routine-tab-button:hover {
+    background: {{ section.settings.active_tab_bg }};
+    color: {{ section.settings.active_tab_text }};
+    border-color: {{ section.settings.active_tab_bg }};
+  }
+
+  .routine-tab-button.active {
+    background: {{ section.settings.active_tab_bg }};
+    color: {{ section.settings.active_tab_text }};
+    border-color: {{ section.settings.active_tab_bg }};
+  }
+
+  .routine-tab-button.active::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: {{ section.settings.cyan_dot_color }};
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Content Layout */
+  .routine-content {
+    display: none;
+  }
+
+  .routine-content.active {
+    display: block;
+  }
+
+  .routine-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ section.settings.split_layout_gap }}px;
+    margin-bottom: 25px;
+    margin-top: 30px;
+    align-items: stretch;
+    height: 300px;
+  }
+
+  .routine-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    border-radius: {{ section.settings.split_layout_radius }}px;
+  }
+
+  .routine-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .routine-content-card {
+    background-color: {{ section.settings.content_card_bg }};
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: {{ section.settings.content_alignment }};
+    text-align: {{ section.settings.content_alignment }};
+    height: 100%;
+    border-radius: {{ section.settings.split_layout_radius }}px;
+  }
+
+  .routine-content-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 12px 0;
+    line-height: 1.1;
+  }
+
+  .routine-content-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.description_font_size }}px;
+    color: {{ section.settings.description_color }};
+    line-height: 1.3;
+    margin: 0 0 12px 0;
+  }
+
+  .routine-cta-button {
+    background: {{ section.settings.cta_bg_color }};
+    color: {{ section.settings.cta_text_color }};
+    border: none;
+    border-radius: {{ section.settings.cta_border_radius }}px;
+    padding: 10px 28px;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.cta_font_size }}px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    max-width: 180px;
+    align-self: flex-end;
+  }
+
+  .routine-cta-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  /* Products Grid */
+  .routine-products-grid {
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+    align-items: start;
+  }
+
+
+
+  .routine-product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .routine-product-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    position: relative;
+  }
+
+  .routine-product-card {
+    text-align: center;
+    width: 100%;
+    max-width: 160px;
+    cursor: pointer;
+  }
+
+  .routine-product-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  .routine-product-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 0px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  /* Dynamic image sizing using CSS custom properties */
+  .routine-product-card[data-image-width][data-image-height] .routine-product-image {
+    width: calc(var(--image-width, 100) * 1%);
+    height: calc(var(--image-height, 100) * 1%);
+    max-width: calc(var(--image-width, 100) * 1%);
+    max-height: calc(var(--image-height, 100) * 1%);
+  }
+
+  .routine-product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .routine-step-label {
+    background: {{ section.settings.step_label_bg }};
+    color: {{ section.settings.step_label_text }};
+    {% comment %} margin-left: 18px; {% endcomment %}
+    padding: 8px 20px;
+    border-radius: 22px;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+    flex: 1;
+    text-align: center;
+    max-width: 160px;
+    text-transform: {{ section.settings.step_text_case }};
+    line-height: 1.3;
+  }
+
+  .routine-sun-icon {
+    width: 16px;
+    height: 16px;
+    fill: #000000;
+    margin-right: 34px;
+    flex-shrink: 0;
+  }
+
+  .routine-product-name {
+    font-family: {{ section.settings.product_name_font }}, sans-serif;
+    font-size: {{ section.settings.product_name_font_size }}px;
+    font-weight: {{ section.settings.product_name_font_weight }};
+    color: {{ section.settings.product_name_color }};
+    line-height: 1;
+    margin: 0;
+    margin-top: 2px;
+  }
+
+  .routine-product-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #f5f5f5;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+  }
+
+  .routine-product-placeholder p {
+    color: #999;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .routine-no-products {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-style: italic;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .routine-split-layout {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .routine-image-container {
+      height: 200px;
+    }
+
+    .routine-content-card {
+      padding: 20px 15px;
+    }
+
+    .routine-products-grid.products-4,
+    .routine-products-grid.products-5,
+    .routine-products-grid.products-6 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .routine-tabs-nav {
+      gap: 6px;
+    }
+
+    .routine-tab-button {
+      padding: 12px 20px;
+      font-size: 13px;
+      min-width: 120px;
+    }
+
+    .routine-tab-button.active {
+      padding-left: 32px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .routine-products-grid.products-4,
+    .routine-products-grid.products-5,
+    .routine-products-grid.products-6 {
+      grid-template-columns: 1fr;
+    }
+
+    .routine-content-card {
+      padding: 30px 20px;
+    }
+  }
+</style>
+
+<div class="routine-tabs-section full-width">
+  <div class="routine-tabs-container">
+    <!-- Section Header -->
+    {% if section.settings.section_title != blank or section.settings.section_description != blank %}
+      <div class="routine-section-header">
+        {% if section.settings.section_title != blank %}
+          <h2 class="routine-section-title">{{ section.settings.section_title }}</h2>
+        {% endif %}
+        {% if section.settings.section_description != blank %}
+          <p class="routine-section-description">{{ section.settings.section_description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Tab Navigation -->
+    <div class="routine-tabs-nav">
+      <button class="routine-tab-button active" data-tab="am">{{ section.settings.tab_1_label }}</button>
+      <button class="routine-tab-button" data-tab="pm">{{ section.settings.tab_2_label }}</button>
+      <button class="routine-tab-button" data-tab="pm-light">{{ section.settings.tab_3_label }}</button>
+      <button class="routine-tab-button" data-tab="exfoliate">{{ section.settings.tab_4_label }}</button>
+    </div>
+
+    <!-- AM Tab Content -->
+    <div class="routine-content active" data-content="am">
+      <div class="routine-split-layout">
+        <div class="routine-image-container">
+          {% if section.settings.am_image %}
+            <img src="{{ section.settings.am_image | image_url: width: 600, height: 400 }}" 
+                 alt="{{ section.settings.am_heading }}" 
+                 width="600" 
+                 height="400"
+                 class="routine-image">
+          {% endif %}
+        </div>
+        <div class="routine-content-card">
+          <h2 class="routine-content-heading">{{ section.settings.am_heading }}</h2>
+          <p class="routine-content-description">{{ section.settings.am_description }}</p>
+          <a href="{{ section.settings.am_cta_link }}" class="routine-cta-button">
+            {{ section.settings.am_cta_text }}
+          </a>
+        </div>
+      </div>
+      
+      {% assign am_products_count = 0 %}
+      {% for block in section.blocks %}
+        {% if block.settings.tab_selector == 'am' %}
+          {% assign am_products_count = am_products_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if am_products_count > 0 %}
+        <div class="routine-products-grid" style="grid-template-columns: repeat({{ am_products_count | at_most: 6 }}, 1fr);">
+          {% for block in section.blocks %}
+            {% if block.settings.tab_selector == 'am' %}
+              {% if block.settings.product %}
+                <a href="{{ block.settings.product.url }}" class="routine-product-link">
+              {% endif %}
+                <div class="routine-product-card" 
+                     {{ block.shopify_attributes }}
+                     data-image-width="{{ block.settings.image_width | default: 100 }}"
+                     data-image-height="{{ block.settings.image_height | default: 100 }}"
+                     style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                  <div class="routine-product-header">
+                    <div class="routine-step-label" style="background: {{ block.settings.step_label_bg }}; color: {{ block.settings.step_label_text }};">
+                      step: {{ block.settings.step_number }} {{ block.settings.step_label }}
+                    </div>
+                    {% if block.settings.show_icon %}
+                      {% if block.settings.icon_type == 'sun' %}
+                        <svg class="routine-sun-icon" style="fill: {{ block.settings.icon_color }};" viewBox="0 0 24 24">
+                          <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+                        </svg>
+                      {% else %}
+                        <svg class="routine-sun-icon" style="fill: {{ block.settings.icon_color }};" viewBox="0 0 24 24">
+                          <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                        </svg>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                  <div class="routine-product-image-container">
+                    {% if block.settings.product_image %}
+                      <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" 
+                           alt="{{ block.settings.product.title | default: 'Product' }}" 
+                           width="300" 
+                           height="300"
+                           class="routine-product-image"
+                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                    {% elsif block.settings.product.featured_image %}
+                      <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
+                           alt="{{ block.settings.product.title | default: 'Product' }}" 
+                           width="300" 
+                           height="300"
+                           class="routine-product-image"
+                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                    {% else %}
+                      <div class="routine-product-placeholder">
+                        <p>No Image</p>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="routine-product-name">
+                    {% if block.settings.custom_product_name != blank %}
+                      {{ block.settings.custom_product_name }}
+                    {% else %}
+                      {{ block.settings.product.title | default: 'Product Name' }}
+                    {% endif %}
+                  </div>
+                </div>
+              {% if block.settings.product %}
+                </a>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="routine-no-products">
+          <p>No products added to AM routine. Add products using the theme editor.</p>
+        </div>
+      {% endif %}
+    </div>
+    <!-- PM Tab Content -->
+    <div class="routine-content" data-content="pm">
+      <div class="routine-split-layout">
+        <div class="routine-image-container">
+          {% if section.settings.pm_image %}
+            <img src="{{ section.settings.pm_image | image_url: width: 600, height: 400 }}" 
+                 alt="{{ section.settings.pm_heading }}" 
+                 width="600" 
+                 height="400"
+                 class="routine-image">
+          {% endif %}
+        </div>
+        <div class="routine-content-card">
+          <h2 class="routine-content-heading">{{ section.settings.pm_heading }}</h2>
+          <p class="routine-content-description">{{ section.settings.pm_description }}</p>
+          <a href="{{ section.settings.pm_cta_link }}" class="routine-cta-button">
+            {{ section.settings.pm_cta_text }}
+          </a>
+        </div>
+      </div>
+      
+      {% assign pm_products_count = 0 %}
+      {% for block in section.blocks %}
+        {% if block.settings.tab_selector == 'pm' %}
+          {% assign pm_products_count = pm_products_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if pm_products_count > 0 %}
+        <div class="routine-products-grid" style="grid-template-columns: repeat({{ pm_products_count | at_most: 6 }}, 1fr);">
+          {% for block in section.blocks %}
+            {% if block.settings.tab_selector == 'pm' %}
+            {% if block.settings.product %}
+              <a href="{{ block.settings.product.url }}" class="routine-product-link">
+            {% endif %}
+            <div class="routine-product-card" 
+                 {{ block.shopify_attributes }}
+                 data-image-width="{{ block.settings.image_width | default: 100 }}"
+                 data-image-height="{{ block.settings.image_height | default: 100 }}">
+              <div class="routine-product-header">
+                <div class="routine-step-label" style="background: {{ block.settings.step_label_bg }}; color: {{ block.settings.step_label_text }};">
+                  step: {{ block.settings.step_number }} {{ block.settings.step_label }}
+                </div>
+                {% if block.settings.show_icon %}
+                  {% if block.settings.icon_type == 'sun' %}
+                    <svg class="routine-sun-icon" style="fill: {{ block.settings.icon_color }};" viewBox="0 0 24 24">
+                      <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+                    </svg>
+                  {% else %}
+                    <svg class="routine-sun-icon" style="fill: {{ block.settings.icon_color }};" viewBox="0 0 24 24">
+                      <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                    </svg>
+                  {% endif %}
+                {% endif %}
+              </div>
+              <div class="routine-product-image-container">
+                {% if block.settings.product_image %}
+                  <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" 
+                       alt="{{ block.settings.product.title | default: 'Product' }}" 
+                       width="300" 
+                       height="300"
+                       class="routine-product-image">
+                {% elsif block.settings.product.featured_image %}
+                  <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
+                       alt="{{ block.settings.product.title | default: 'Product' }}" 
+                       width="300" 
+                       height="300"
+                       class="routine-product-image">
+                {% else %}
+                  <div class="routine-product-placeholder">
+                    <p>No Image</p>
+                  </div>
+                {% endif %}
+              </div>
+              <div class="routine-product-name">
+                {% if block.settings.custom_product_name != blank %}
+                  {{ block.settings.custom_product_name }}
+                {% else %}
+                  {{ block.settings.product.title | default: 'Product Name' }}
+                {% endif %}
+              </div>
+            </div>
+            {% if block.settings.product %}
+              </a>
+            {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="routine-no-products">
+          <p>No products added to PM routine. Add products using the theme editor.</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- PM WITH LIGHT Tab Content -->
+    <div class="routine-content" data-content="pm-light">
+      <div class="routine-split-layout">
+        <div class="routine-image-container">
+          {% if section.settings.pm_light_image %}
+            <img src="{{ section.settings.pm_light_image | image_url: width: 600, height: 400 }}" 
+                 alt="{{ section.settings.pm_light_heading }}" 
+                 width="600" 
+                 height="400"
+                 class="routine-image">
+          {% endif %}
+        </div>
+        <div class="routine-content-card">
+          <h2 class="routine-content-heading">{{ section.settings.pm_light_heading }}</h2>
+          <p class="routine-content-description">{{ section.settings.pm_light_description }}</p>
+          <a href="{{ section.settings.pm_light_cta_link }}" class="routine-cta-button">
+            {{ section.settings.pm_light_cta_text }}
+          </a>
+        </div>
+      </div>
+      
+      {% assign pm_light_products_count = 0 %}
+      {% for block in section.blocks %}
+        {% if block.settings.tab_selector == 'pm_light' %}
+          {% assign pm_light_products_count = pm_light_products_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if pm_light_products_count > 0 %}
+        <div class="routine-products-grid" style="grid-template-columns: repeat({{ pm_light_products_count | at_most: 6 }}, 1fr);">
+          {% for block in section.blocks %}
+            {% if block.settings.tab_selector == 'pm_light' %}
+            {% if block.settings.product %}
+              <a href="{{ block.settings.product.url }}" class="routine-product-link">
+            {% endif %}
+            <div class="routine-product-card" 
+                 {{ block.shopify_attributes }}
+                 data-image-width="{{ block.settings.image_width | default: 100 }}"
+                 data-image-height="{{ block.settings.image_height | default: 100 }}">
+              <div class="routine-product-header">
+                <div class="routine-step-label" style="background: {{ block.settings.step_label_bg }}; color: {{ block.settings.step_label_text }};">
+                  step: {{ block.settings.step_number }} {{ block.settings.step_label }}
+                </div>
+                {% if block.settings.show_icon %}
+                  {% if block.settings.icon_type == 'sun' %}
+                    <svg class="routine-sun-icon" style="fill: {{ block.settings.icon_color }};" viewBox="0 0 24 24">
+                      <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+                    </svg>
+                  {% else %}
+                    <svg class="routine-sun-icon" style="fill: {{ block.settings.icon_color }};" viewBox="0 0 24 24">
+                      <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                    </svg>
+                  {% endif %}
+                {% endif %}
+              </div>
+              <div class="routine-product-image-container">
+                {% if block.settings.product_image %}
+                  <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" 
+                       alt="{{ block.settings.product.title | default: 'Product' }}" 
+                       width="300" 
+                       height="300"
+                       class="routine-product-image">
+                {% elsif block.settings.product.featured_image %}
+                  <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
+                       alt="{{ block.settings.product.title | default: 'Product' }}" 
+                       width="300" 
+                       height="300"
+                       class="routine-product-image">
+                {% else %}
+                  <div class="routine-product-placeholder">
+                    <p>No Image</p>
+                  </div>
+                {% endif %}
+              </div>
+              <div class="routine-product-name">
+                {% if block.settings.custom_product_name != blank %}
+                  {{ block.settings.custom_product_name }}
+                {% else %}
+                  {{ block.settings.product.title | default: 'Product Name' }}
+                {% endif %}
+              </div>
+            </div>
+            {% if block.settings.product %}
+              </a>
+            {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="routine-no-products">
+          <p>No products added to PM WITH LIGHT routine. Add products using the theme editor.</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- EXFOLIATE (PM) Tab Content -->
+    <div class="routine-content" data-content="exfoliate">
+      <div class="routine-split-layout">
+        <div class="routine-image-container">
+          {% if section.settings.exfoliate_image %}
+            <img src="{{ section.settings.exfoliate_image | image_url: width: 600, height: 400 }}" 
+                 alt="{{ section.settings.exfoliate_heading }}" 
+                 width="600" 
+                 height="400"
+                 class="routine-image">
+          {% endif %}
+        </div>
+        <div class="routine-content-card">
+          <h2 class="routine-content-heading">{{ section.settings.exfoliate_heading }}</h2>
+          <p class="routine-content-description">{{ section.settings.exfoliate_description }}</p>
+          <a href="{{ section.settings.exfoliate_cta_link }}" class="routine-cta-button">
+            {{ section.settings.exfoliate_cta_text }}
+          </a>
+        </div>
+      </div>
+      
+      {% assign exfoliate_products_count = 0 %}
+      {% for block in section.blocks %}
+        {% if block.settings.tab_selector == 'exfoliate' %}
+          {% assign exfoliate_products_count = exfoliate_products_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if exfoliate_products_count > 0 %}
+        <div class="routine-products-grid" style="grid-template-columns: repeat({{ exfoliate_products_count | at_most: 6 }}, 1fr);">
+          {% for block in section.blocks %}
+            {% if block.settings.tab_selector == 'exfoliate' %}
+            {% if block.settings.product %}
+              <a href="{{ block.settings.product.url }}" class="routine-product-link">
+            {% endif %}
+            <div class="routine-product-card" 
+                 {{ block.shopify_attributes }}
+                 data-image-width="{{ block.settings.image_width | default: 100 }}"
+                 data-image-height="{{ block.settings.image_height | default: 100 }}">
+              <div class="routine-product-header">
+                <div class="routine-step-label" style="background: {{ block.settings.step_label_bg }}; color: {{ block.settings.step_label_text }};">
+                  step: {{ block.settings.step_number }} {{ block.settings.step_label }}
+                </div>
+                {% if block.settings.show_icon %}
+                  {% if block.settings.icon_type == 'sun' %}
+                    <svg class="routine-sun-icon" style="fill: {{ block.settings.icon_color }};" viewBox="0 0 24 24">
+                      <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+                    </svg>
+                  {% else %}
+                    <svg class="routine-sun-icon" style="fill: {{ block.settings.icon_color }};" viewBox="0 0 24 24">
+                      <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                    </svg>
+                  {% endif %}
+                {% endif %}
+              </div>
+              <div class="routine-product-image-container">
+                {% if block.settings.product_image %}
+                  <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" 
+                       alt="{{ block.settings.product.title | default: 'Product' }}" 
+                       width="300" 
+                       height="300"
+                       class="routine-product-image">
+                {% elsif block.settings.product.featured_image %}
+                  <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
+                       alt="{{ block.settings.product.title | default: 'Product' }}" 
+                       width="300" 
+                       height="300"
+                       class="routine-product-image">
+                {% else %}
+                  <div class="routine-product-placeholder">
+                    <p>No Image</p>
+                  </div>
+                {% endif %}
+              </div>
+              <div class="routine-product-name">
+                {% if block.settings.custom_product_name != blank %}
+                  {{ block.settings.custom_product_name }}
+                {% else %}
+                  {{ block.settings.product.title | default: 'Product Name' }}
+                {% endif %}
+              </div>
+            </div>
+            {% if block.settings.product %}
+              </a>
+            {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="routine-no-products">
+          <p>No products added to EXFOLIATE routine. Add products using the theme editor.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.routine-tab-button');
+    const tabContents = document.querySelectorAll('.routine-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const targetTab = this.getAttribute('data-tab');
+        
+        // Remove active class from all buttons and contents
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding content
+        this.classList.add('active');
+        const targetContent = document.querySelector(`[data-content="${targetTab}"]`);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
+      });
+    });
+
+    // Apply dynamic image sizing
+    function applyImageSizing() {
+      const productCards = document.querySelectorAll('.routine-product-card[data-image-width][data-image-height]');
+      
+      productCards.forEach(card => {
+        const imageWidth = card.dataset.imageWidth || 100;
+        const imageHeight = card.dataset.imageHeight || 100;
+        const image = card.querySelector('.routine-product-image');
+        
+        if (image) {
+          image.style.width = `${imageWidth}%`;
+          image.style.height = `${imageHeight}%`;
+          image.style.maxWidth = `${imageWidth}%`;
+          image.style.maxHeight = `${imageHeight}%`;
+        }
+      });
+    }
+
+    // Apply sizing on load and when tabs change
+    applyImageSizing();
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        setTimeout(applyImageSizing, 100); // Small delay to ensure content is visible
+      });
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Routine Tabs Section",
+  "tag": "section",
+  "class": "routine-tabs-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Your Daily Routine"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Discover the perfect skincare routine tailored to your needs with our expertly curated products."
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "section_title_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 54
+    },
+    {
+      "type": "color",
+      "id": "section_title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "section_description_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 17
+    },
+    {
+      "type": "color",
+      "id": "section_description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Tab Navigation"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_label",
+      "label": "Tab 1 Label",
+      "default": "AM"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_label",
+      "label": "Tab 2 Label",
+      "default": "PM"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_label",
+      "label": "Tab 3 Label",
+      "default": "PM WITH LIGHT"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_label",
+      "label": "Tab 4 Label",
+      "default": "EXFOLIATE (PM)"
+    },
+    {
+      "type": "range",
+      "id": "tab_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab Border Radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "active_tab_bg",
+      "label": "Active Tab Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_text",
+      "label": "Active Tab Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "inactive_tab_bg",
+      "label": "Inactive Tab Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "inactive_tab_text",
+      "label": "Inactive Tab Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Tab Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cyan_dot_color",
+      "label": "Active Tab Dot Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Content Card Settings"
+    },
+    {
+      "type": "color",
+      "id": "content_card_bg",
+      "label": "Content Card Background",
+      "default": "#D3FFFF"
+    },
+    {
+      "type": "range",
+      "id": "split_layout_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Split Layout Border Radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "split_layout_gap",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap Between Image and Content",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA Button Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA Button Border Radius",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Product Settings"
+    },
+    {
+      "type": "color",
+      "id": "step_label_bg",
+      "label": "Step Label Background",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "step_label_text",
+      "label": "Step Label Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "product_name_color",
+      "label": "Product Name Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "product_name_font",
+      "label": "Product Name Font Family",
+      "options": [
+        {
+          "value": "Montserrat",
+          "label": "Montserrat"
+        },
+        {
+          "value": "Arial",
+          "label": "Arial"
+        },
+        {
+          "value": "Helvetica",
+          "label": "Helvetica"
+        },
+        {
+          "value": "Georgia",
+          "label": "Georgia"
+        },
+        {
+          "value": "Times New Roman",
+          "label": "Times New Roman"
+        },
+        {
+          "value": "Roboto",
+          "label": "Roboto"
+        },
+        {
+          "value": "Open Sans",
+          "label": "Open Sans"
+        }
+      ],
+      "default": "Montserrat"
+    },
+    {
+      "type": "range",
+      "id": "product_name_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Product Name Font Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "product_name_font_weight",
+      "label": "Product Name Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sun_icon",
+      "label": "Show Sun Icon in Step Labels",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "step_text_case",
+      "label": "Step Label Text Case",
+      "options": [
+        {
+          "value": "uppercase",
+          "label": "UPPERCASE"
+        },
+        {
+          "value": "lowercase",
+          "label": "lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "none",
+          "label": "Normal"
+        }
+      ],
+      "default": "capitalize"
+    },
+    {
+      "type": "header",
+      "content": "AM Tab Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "am_image",
+      "label": "AM Image"
+    },
+    {
+      "type": "text",
+      "id": "am_heading",
+      "label": "AM Heading",
+      "default": "Powered by K-Medical Innovation"
+    },
+    {
+      "type": "textarea",
+      "id": "am_description",
+      "label": "AM Description",
+      "default": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare — delivering the precision and efficacy of in-clinic treatments without the needle, at home."
+    },
+    {
+      "type": "text",
+      "id": "am_cta_text",
+      "label": "AM CTA Button Text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "am_cta_link",
+      "label": "AM CTA Button Link"
+    },
+    {
+      "type": "header",
+      "content": "PM Tab Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "pm_image",
+      "label": "PM Image"
+    },
+    {
+      "type": "text",
+      "id": "pm_heading",
+      "label": "PM Heading",
+      "default": "Evening Routine"
+    },
+    {
+      "type": "textarea",
+      "id": "pm_description",
+      "label": "PM Description",
+      "default": "Your evening skincare routine for optimal skin repair and regeneration."
+    },
+    {
+      "type": "text",
+      "id": "pm_cta_text",
+      "label": "PM CTA Button Text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "pm_cta_link",
+      "label": "PM CTA Button Link"
+    },
+    {
+      "type": "header",
+      "content": "PM WITH LIGHT Tab Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "pm_light_image",
+      "label": "PM with Light Image"
+    },
+    {
+      "type": "text",
+      "id": "pm_light_heading",
+      "label": "PM with Light Heading",
+      "default": "Evening with Light Therapy"
+    },
+    {
+      "type": "textarea",
+      "id": "pm_light_description",
+      "label": "PM with Light Description",
+      "default": "Enhanced evening routine incorporating light therapy for advanced skin treatment."
+    },
+    {
+      "type": "text",
+      "id": "pm_light_cta_text",
+      "label": "PM with Light CTA Button Text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "pm_light_cta_link",
+      "label": "PM with Light CTA Button Link"
+    },
+    {
+      "type": "header",
+      "content": "EXFOLIATE (PM) Tab Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "exfoliate_image",
+      "label": "Exfoliate Image"
+    },
+    {
+      "type": "text",
+      "id": "exfoliate_heading",
+      "label": "Exfoliate Heading",
+      "default": "Exfoliation Evening Routine"
+    },
+    {
+      "type": "textarea",
+      "id": "exfoliate_description",
+      "label": "Exfoliate Description",
+      "default": "Specialized evening routine focused on gentle exfoliation and skin renewal."
+    },
+    {
+      "type": "text",
+      "id": "exfoliate_cta_text",
+      "label": "Exfoliate CTA Button Text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "exfoliate_cta_link",
+      "label": "Exfoliate CTA Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab_selector",
+          "label": "Tab",
+          "options": [
+            {
+              "value": "am",
+              "label": "AM"
+            },
+            {
+              "value": "pm",
+              "label": "PM"
+            },
+            {
+              "value": "pm_light",
+              "label": "PM WITH LIGHT"
+            },
+            {
+              "value": "exfoliate",
+              "label": "EXFOLIATE (PM)"
+            }
+          ],
+          "default": "am"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image (Optional - overrides product image)"
+        },
+        {
+          "type": "header",
+          "content": "Image Size Controls"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 30,
+          "max": 150,
+          "step": 5,
+          "unit": "%",
+          "label": "Image Width",
+          "default": 100,
+          "info": "Control the width of the product image (30% - 150%)"
+        },
+        {
+          "type": "range",
+          "id": "image_height",
+          "min": 10,
+          "max": 250,
+          "step": 5,
+          "unit": "%",
+          "label": "Image Height",
+          "default": 100,
+          "info": "Control the height of the product image (10% - 250%)"
+        },
+        {
+          "type": "richtext",
+          "id": "custom_product_name",
+          "label": "Custom Product Name (Optional - overrides product title)"
+        },
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step Number",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "step_label",
+          "label": "Step Label",
+          "default": "Cleanser"
+        },
+        {
+          "type": "color",
+          "id": "step_label_bg",
+          "label": "Step Label Background Color",
+          "default": "#4FFFFF"
+        },
+        {
+          "type": "color",
+          "id": "step_label_text",
+          "label": "Step Label Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show Icon",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "options": [
+            {
+              "value": "sun",
+              "label": "Sun"
+            },
+            {
+              "value": "moon",
+              "label": "Half Moon"
+            }
+          ],
+          "default": "sun"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon Color",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Routine Tabs Section",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "am",
+            "step_number": "1",
+            "step_label": "Cleanser"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "am",
+            "step_number": "2",
+            "step_label": "Toner"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "am",
+            "step_number": "3",
+            "step_label": "Serum"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "am",
+            "step_number": "4",
+            "step_label": "Moisturizer"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "am",
+            "step_number": "5",
+            "step_label": "Sunscreen"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "am",
+            "step_number": "6",
+            "step_label": "Treatment"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "step_number": "1",
+            "step_label": "Cleanser"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "step_number": "2",
+            "step_label": "Toner"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "step_number": "3",
+            "step_label": "Serum"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "step_number": "4",
+            "step_label": "Moisturizer"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "step_number": "5",
+            "step_label": "Night Treatment"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "step_number": "1",
+            "step_label": "Cleanser"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "step_number": "2",
+            "step_label": "Toner"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "step_number": "3",
+            "step_label": "Light Serum"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "step_number": "4",
+            "step_label": "Light Therapy"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "step_number": "5",
+            "step_label": "Moisturizer"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm_light",
+            "step_number": "6",
+            "step_label": "Night Treatment"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "step_number": "1",
+            "step_label": "Cleanser"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "step_number": "2",
+            "step_label": "Exfoliant"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "step_number": "3",
+            "step_label": "Serum"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "tab_selector": "exfoliate",
+            "step_number": "4",
+            "step_label": "Moisturizer"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

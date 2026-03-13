@@ -1,0 +1,1255 @@
+{% comment %}
+  Product Infographic Section - Frosted Glass Design
+{% endcomment %}
+
+<section class="product-infographic-section full-width">
+  <div class="infographic-container">
+    <div class="frosted-glass-card">
+      <!-- Product Image -->
+      <div class="product-image-wrapper">
+        {% if section.settings.product_image %}
+          <img
+            src="{{ section.settings.product_image | image_url: width: 600 }}"
+            alt="{{ section.settings.product_image_alt }}"
+            class="product-image-infographic"
+            width="240"
+            height="160"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="image-placeholder-infographic"></div>
+        {% endif %}
+      </div>
+
+      <!-- Center Content -->
+      <div class="center-content">
+        <h2 class="section-title" id="centerTitle">{{ section.settings.title }}</h2>
+        <div class="title-underline"></div>
+        <p class="section-description" id="centerDescription">{{ section.settings.description }}</p>
+
+        <!-- Benefit Points -->
+        {% if section.settings.show_benefits %}
+          <div class="benefit-points" id="benefitPoints">
+            <div class="benefit-item-infographic" id="benefit1">
+              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="benefit-text" id="benefit1Text">Advanced molecular technology</span>
+            </div>
+            <div class="benefit-item-infographic" id="benefit2">
+              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="benefit-text" id="benefit2Text">Superior skin penetration</span>
+            </div>
+            <div class="benefit-item-infographic" id="benefit3">
+              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="benefit-text" id="benefit3Text">Cellular absorption boost</span>
+            </div>
+            <div class="benefit-item-infographic" id="benefit4" style="display: none;">
+              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="benefit-text" id="benefit4Text"></span>
+            </div>
+            <div class="benefit-item-infographic" id="benefit5" style="display: none;">
+              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="benefit-text" id="benefit5Text"></span>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Right Content -->
+      <div class="right-content-infographic">
+        <h3 class="main-heading-infographic" id="mainHeading">{{ section.settings.main_heading }}</h3>
+      </div>
+
+      <!-- Bottom Buttons -->
+      <div class="button-row">
+        {% for block in section.blocks %}
+          <button
+            class="info-button {% if block.settings.is_active %}active{% endif %}"
+            data-heading="{{ block.settings.heading | default: block.settings.button_text }}"
+            data-description="{{ block.settings.description | default: 'Description for ' | append: block.settings.button_text }}"
+            data-benefit1="{{ block.settings.benefit_1 }}"
+            data-benefit2="{{ block.settings.benefit_2 }}"
+            data-benefit3="{{ block.settings.benefit_3 }}"
+            data-benefit4="{{ block.settings.benefit_4 }}"
+            data-benefit5="{{ block.settings.benefit_5 }}"
+            data-showbenefits="{{ block.settings.show_benefits }}"
+            onclick="switchContent(this)"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.button_text | default: 'Button' }}
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+   .product-infographic-section {
+     padding: {{ section.settings.section_padding_top | default: 80 }}px 0 {{ section.settings.section_padding_bottom | default: 80 }}px;
+     background: {{ section.settings.background_color | default: '#ffffff' }};
+     {% if section.settings.background_image %}
+       background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');
+       background-size: {{ section.settings.background_size | default: 'cover' }};
+       background-position: {{ section.settings.background_position | default: 'center center' }};
+       background-repeat: no-repeat;
+       background-attachment: {{ section.settings.background_attachment | default: 'scroll' }};
+     {% endif %}
+     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+   }
+
+   .infographic-container {
+     max-width: {{ section.settings.container_width | default: 1200 }}px;
+     margin: 0 auto;
+     padding: 0;
+   }
+
+   .frosted-glass-card {
+     background: {{ section.settings.glass_background | default: 'rgba(255, 255, 255, 0.4)' }};
+     backdrop-filter: blur({{ section.settings.glass_blur | default: 30 }}px);
+     -webkit-backdrop-filter: blur({{ section.settings.glass_blur | default: 30 }}px);
+     border: {{ section.settings.glass_border_width | default: 1 }}px solid {{ section.settings.glass_border_color | default: 'rgba(255, 255, 255, 0.5)' }};
+     border-radius: {{ section.settings.card_border_radius | default: 32 }}px;
+     padding: {{ section.settings.card_padding | default: 60 }}px;
+     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+     display: grid;
+     grid-template-columns: {{ section.settings.image_width | default: 25 }}% {{ section.settings.center_width | default: 35 }}% {{ section.settings.right_width | default: 40 }}%;
+     gap: {{ section.settings.content_gap | default: 20 }}px;
+     align-items: flex-start;
+     position: relative;
+     overflow: hidden;
+     box-sizing: border-box;
+     margin: 0 {{ section.settings.section_horizontal_margin | default: 24 }}px;
+     height: {{ section.settings.card_fixed_height | default: 500 }}px;
+     min-height: {{ section.settings.card_fixed_height | default: 500 }}px;
+   }
+
+   .product-image-wrapper {
+     display: flex;
+     align-items: flex-start;
+     justify-content: center;
+     padding: {{ section.settings.image_padding | default: 0 }}px;
+     padding-top: {{ section.settings.image_vertical_position | default: 20 }}px;
+     box-sizing: border-box;
+     width: 100%;
+     height: 240px;
+     position: relative;
+   }
+
+   .product-image-infographic {
+     width: 220px;
+     height: 300px;
+     object-fit: {{ section.settings.image_object_fit | default: 'cover' }};
+     border-radius: {{ section.settings.image_border_radius | default: 16 }}px;
+     display: block;
+     flex-shrink: 0;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+   }
+
+   .image-placeholder-infographic {
+     width: 220px;
+     height: 300px;
+     display: flex;
+     align-items: center;
+     justify-content: left;
+     background: rgba(0, 212, 255, 0.08);
+     border: 2px dashed rgba(0, 212, 255, 0.3);
+     border-radius: 20px;
+     flex-shrink: 0;
+   }
+
+   .center-content {
+     text-align: {{ section.settings.center_text_align | default: 'left' }};
+     padding: {{ section.settings.center_padding | default: 0 }}px;
+     padding-top: {{ section.settings.center_content_offset | default: 15 }}%;
+     padding-bottom: {{ section.settings.benefits_to_buttons_spacing | default: 80 }}px;
+     overflow: hidden;
+     word-wrap: break-word;
+     max-width: 100%;
+     box-sizing: border-box;
+   }
+
+   .section-title {
+     font-size: {{ section.settings.title_size | default: 1.8 }}rem;
+     font-weight: {{ section.settings.title_weight | default: 700 }};
+     color: {{ section.settings.title_color | default: '#000000' }};
+     margin: 0 0 {{ section.settings.title_margin_bottom | default: 12 }}px 0;
+     letter-spacing: {{ section.settings.title_letter_spacing | default: 0.5 }}px;
+     text-transform: {{ section.settings.title_transform | default: 'uppercase' }};
+     word-wrap: break-word;
+     overflow-wrap: break-word;
+   }
+
+   .title-underline {
+     {% if section.settings.underline_width_type == '100%' %}
+       width: 100%;
+     {% elsif section.settings.underline_width_type == 'custom' %}
+       width: {{ section.settings.underline_custom_width | default: 80 }}px;
+     {% else %}
+       width: 80px;
+     {% endif %}
+     height: {{ section.settings.underline_height | default: 3 }}px;
+     background: {{ section.settings.underline_color | default: '#000000' }};
+     margin: 0 {% if section.settings.center_text_align == 'center' %}auto{% else %}0{% endif %} {{ section.settings.underline_margin_bottom | default: 16 }}px;
+   }
+
+   .section-description {
+     font-size: {{ section.settings.description_size | default: 0.95 }}rem;
+     line-height: {{ section.settings.description_line_height | default: 1.6 }};
+     color: {{ section.settings.description_color | default: '#333333' }};
+     margin: 0 0 {{ section.settings.description_margin_bottom | default: 16 }}px 0;
+     font-weight: {{ section.settings.description_weight | default: 400 }};
+     word-wrap: break-word;
+     overflow-wrap: break-word;
+   }
+
+   .benefit-points {
+     margin-top: {{ section.settings.benefits_margin_top | default: 16 }}px;
+   }
+
+   .benefit-item-infographic {
+     display: flex;
+     align-items: center;
+     margin-bottom: {{ section.settings.benefit_item_spacing | default: 8 }}px;
+     gap: {{ section.settings.benefit_arrow_gap | default: 8 }}px;
+   }
+
+   .benefit-item-infographic:last-child {
+     margin-bottom: 30px;
+   }
+
+   .benefit-arrow {
+     flex-shrink: 0;
+     width: {{ section.settings.benefit_arrow_size | default: 16 }}px;
+     height: {{ section.settings.benefit_arrow_size | default: 16 }}px;
+   }
+
+   .benefit-text {
+     font-size: {{ section.settings.benefit_font_size | default: 0.9 }}rem;
+     line-height: {{ section.settings.benefit_line_height | default: 1.4 }};
+     color: {{ section.settings.benefit_text_color | default: '#333333' }};
+     font-weight: {{ section.settings.benefit_font_weight | default: 500 }};
+   }
+  .right-content-infographic {
+     text-align: center;
+     padding: {{ section.settings.right_padding | default: 10 }}px;
+     padding-right: {{ section.settings.right_padding_right | default: 10 }}px;
+     overflow: visible;
+     word-wrap: break-word;
+     max-width: 100%;
+     box-sizing: border-box;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     height: 100%;
+   }
+
+   .main-heading-infographic {
+     font-size: {{ section.settings.main_heading_size | default: 3.5 }}rem;
+     font-weight: {{ section.settings.main_heading_weight | default: 900 }};
+     color: {{ section.settings.main_heading_color | default: '#000000' }};
+     margin: 0;
+     letter-spacing: {{ section.settings.main_heading_letter_spacing | default: 0.5 }}px;
+     text-transform: {{ section.settings.main_heading_transform | default: 'uppercase' }};
+     line-height: {{ section.settings.main_heading_line_height | default: 1.1 }};
+     white-space: normal;
+     overflow: visible;
+     text-overflow: clip;
+     position: absolute;
+     top: {{ section.settings.right_content_vertical_position | default: 50 }}%;
+     transform: translateY(-50%);
+     width: 120%;
+     text-align: center;
+     right: -10%;
+   }
+
+   .button-row {
+     grid-column: 1 / -1;
+     display: flex;
+     gap: {{ section.settings.button_gap | default: 20 }}px;
+     justify-content: center;
+     flex-wrap: wrap;
+     padding: 0;
+     position: absolute;
+     bottom: calc({{ section.settings.card_padding | default: 60 }}px - 5%);
+     left: {{ section.settings.card_padding | default: 60 }}px;
+     right: {{ section.settings.card_padding | default: 60 }}px;
+   }
+
+   .product-infographic-section .info-button {
+     padding: {{ section.settings.button_padding_vertical | default: 8 }}px {{ section.settings.button_padding_horizontal | default: 28 }}px;
+     border: {{ section.settings.button_border_width | default: 2 }}px solid {{ section.settings.button_border_color | default: '#000000' }};
+     border-radius: {{ section.settings.button_border_radius | default: 50 }}px;
+     background: {{ section.settings.button_background | default: 'transparent' }};
+     color: {{ section.settings.button_text_color | default: '#000000' }};
+     font-size: {{ section.settings.button_font_size | default: 0.9 }}rem;
+     font-weight: {{ section.settings.button_font_weight | default: 500 }};
+     cursor: pointer;
+     /* transition: all 0.3s ease; */
+     text-transform: {{ section.settings.button_text_transform | default: 'none' }};
+     letter-spacing: {{ section.settings.button_letter_spacing | default: 0.3 }}px;
+     width: {{ section.settings.button_width | default: 180 }}px;
+     white-space: nowrap;
+     text-align: center;
+   }
+
+   .product-infographic-section .info-button:hover {
+     background: {{ section.settings.button_hover_background | default: 'rgba(0, 0, 0, 0.05)' }};
+     /* transform: translateY(-2px); */
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+   }
+
+   .product-infographic-section .info-button.active {
+     background: {{ section.settings.button_active_background | default: '#000000' }};
+     color: {{ section.settings.button_active_text_color | default: '#ffffff' }};
+     border-color: {{ section.settings.button_active_border_color | default: '#00d4ff' }};
+     border-width: 3px;
+   }
+
+   .product-infographic-section .info-button.active:hover {
+     background: {{ section.settings.button_active_hover_background | default: '#1a1a1a' }};
+   }
+
+   @media (max-width: 1024px) {
+     .frosted-glass-card {
+       grid-template-columns: 1fr;
+       gap: 32px;
+       padding: 40px;
+       height: auto;
+       min-height: 600px;
+     }
+
+     .center-content,
+     .right-content-infographic {
+       text-align: center;
+       position: static;
+       transform: none;
+       padding-bottom: 20px;
+     }
+
+     .main-heading-infographic {
+       position: static;
+       transform: none;
+       margin-top: 20px;
+     }
+
+     .title-underline {
+       margin-left: auto;
+       margin-right: auto;
+     }
+
+     .button-row {
+       position: static;
+       margin-top: 60px;
+       justify-content: center;
+       left: auto;
+       right: auto;
+       bottom: auto;
+     }
+
+     .main-heading-infographic {
+       font-size: 2.2rem;
+     }
+   }
+
+   @media (max-width: 768px) {
+     .product-infographic-section {
+       padding: 60px 0;
+     }
+
+     .frosted-glass-card {
+       padding: 32px 24px;
+       border-radius: 24px;
+       min-height: 500px;
+     }
+
+     .section-title {
+       font-size: 1.4rem;
+     }
+
+     .main-heading-infographic {
+       font-size: 1.8rem;
+     }
+
+     .button-row {
+       gap: 12px;
+     }
+
+     .product-infographic-section .info-button {
+       padding: 12px 24px;
+       font-size: 0.85rem;
+     }
+   }
+</style>
+<script>
+  function switchContent(button) {
+    const buttons = document.querySelectorAll('.product-infographic-section .info-button');
+    buttons.forEach((btn) => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    const heading = button.getAttribute('data-heading');
+    const description = button.getAttribute('data-description');
+    const benefits = [
+      button.getAttribute('data-benefit1'),
+      button.getAttribute('data-benefit2'),
+      button.getAttribute('data-benefit3'),
+      button.getAttribute('data-benefit4'),
+      button.getAttribute('data-benefit5'),
+    ];
+    const showBenefits = button.getAttribute('data-showbenefits') === 'true';
+
+    const mainHeading = document.getElementById('mainHeading');
+    const centerTitle = document.getElementById('centerTitle');
+    const centerDescription = document.getElementById('centerDescription');
+
+    if (mainHeading && heading) mainHeading.textContent = heading;
+    if (centerTitle && heading) centerTitle.textContent = heading;
+    if (centerDescription && description) centerDescription.textContent = description;
+
+    benefits.forEach((benefit, index) => {
+      const benefitEl = document.getElementById(`benefit${index + 1}`);
+      const benefitText = document.getElementById(`benefit${index + 1}Text`);
+
+      if (benefitEl && benefitText) {
+        if (showBenefits && benefit && benefit.trim() !== '') {
+          benefitText.textContent = benefit;
+          benefitEl.style.display = 'flex';
+        } else {
+          benefitEl.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const activeButton = document.querySelector('.product-infographic-section .info-button.active');
+    if (activeButton) {
+      switchContent(activeButton);
+    } else {
+      const benefit1El = document.getElementById('benefit1');
+      const benefit2El = document.getElementById('benefit2');
+      const benefit3El = document.getElementById('benefit3');
+
+      if (benefit1El) benefit1El.style.display = 'flex';
+      if (benefit2El) benefit2El.style.display = 'flex';
+      if (benefit3El) benefit3El.style.display = 'flex';
+    }
+  });
+</script>
+{% schema %}
+{
+  "name": "Product Infographic",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "header", "content": "Section Settings" },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding bottom",
+      "default": 80
+    },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#ffffff" },
+    { "type": "image_picker", "id": "background_image", "label": "Background image" },
+    {
+      "type": "select",
+      "id": "background_size",
+      "label": "Background size",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "auto", "label": "Auto" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Background position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "top center", "label": "Top" },
+        { "value": "bottom center", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "background_attachment",
+      "label": "Background attachment",
+      "options": [
+        { "value": "scroll", "label": "Scroll" },
+        { "value": "fixed", "label": "Fixed" }
+      ],
+      "default": "scroll"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Container max width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "section_horizontal_margin",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section horizontal margin",
+      "default": 24
+    },
+    { "type": "header", "content": "Frosted Glass Card" },
+    { "type": "color", "id": "glass_background", "label": "Glass background", "default": "rgba(255, 255, 255, 0.4)" },
+    {
+      "type": "range",
+      "id": "glass_blur",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Glass blur amount",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "glass_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Glass border width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "glass_border_color",
+      "label": "Glass border color",
+      "default": "rgba(255, 255, 255, 0.3)"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "card_fixed_height",
+      "min": 400,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Card fixed height",
+      "default": 500
+    },
+    { "type": "header", "content": "Layout Grid" },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 15,
+      "max": 40,
+      "step": 1,
+      "unit": "%",
+      "label": "Image column width",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "center_width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Center column width",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "right_width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Right column width",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap between columns",
+      "default": 20
+    },
+    { "type": "header", "content": "Product Image" },
+    { "type": "image_picker", "id": "product_image", "label": "Product image" },
+    { "type": "text", "id": "product_image_alt", "label": "Image alt text", "default": "Product" },
+    {
+      "type": "range",
+      "id": "image_width_px",
+      "min": 150,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Image width",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "image_height_px",
+      "min": 0,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Image height (0 = auto)",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "image_object_fit",
+      "label": "Image fit",
+      "options": [
+        { "value": "contain", "label": "Contain" },
+        { "value": "cover", "label": "Cover" },
+        { "value": "fill", "label": "Fill" },
+        { "value": "scale-down", "label": "Scale Down" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "image_padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Image padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "image_vertical_position",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Image vertical position from top",
+      "default": 20
+    },
+    { "type": "header", "content": "Center Content" },
+    { "type": "text", "id": "title", "label": "Title", "default": "CELLULAR HARMONY" },
+    {
+      "type": "range",
+      "id": "center_content_offset",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "label": "Center content vertical offset",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Title font size",
+      "default": 1.8
+    },
+    {
+      "type": "range",
+      "id": "title_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Title font weight",
+      "default": 700
+    },
+    { "type": "color", "id": "title_color", "label": "Title color", "default": "#000000" },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": -1,
+      "max": 3,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Title letter spacing",
+      "default": 0.5
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Title text transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Title margin bottom",
+      "default": 12
+    },
+    { "type": "header", "content": "Title Underline" },
+    {
+      "type": "select",
+      "id": "underline_width_type",
+      "label": "Underline width",
+      "options": [
+        { "value": "auto", "label": "Auto (80px)" },
+        { "value": "100%", "label": "Full width" },
+        { "value": "custom", "label": "Custom width" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "underline_custom_width",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Custom underline width",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "underline_height",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "label": "Underline height",
+      "default": 3
+    },
+    { "type": "color", "id": "underline_color", "label": "Underline color", "default": "#000000" },
+    {
+      "type": "range",
+      "id": "underline_margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Underline margin bottom",
+      "default": 16
+    },
+    { "type": "header", "content": "Description" },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Advanced molecular technology for superior skin penetration and cellular absorption."
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 0.8,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Description font size",
+      "default": 1.0
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 1.2,
+      "max": 2,
+      "step": 0.1,
+      "label": "Description line height",
+      "default": 1.6
+    },
+    { "type": "color", "id": "description_color", "label": "Description color", "default": "#333333" },
+    {
+      "type": "range",
+      "id": "description_weight",
+      "min": 300,
+      "max": 700,
+      "step": 100,
+      "label": "Description font weight",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "description_margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Description margin bottom",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "center_text_align",
+      "label": "Center content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "center_padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Center content padding",
+      "default": 0
+    },
+    { "type": "header", "content": "Benefits" },
+    { "type": "checkbox", "id": "show_benefits", "label": "Show benefits", "default": true },
+    {
+      "type": "range",
+      "id": "benefits_margin_top",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Benefits margin top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "benefit_item_spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Benefit item spacing",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "benefit_arrow_gap",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Arrow to text gap",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "benefit_arrow_size",
+      "min": 12,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Arrow size",
+      "default": 16
+    },
+    { "type": "color", "id": "benefit_arrow_color", "label": "Arrow color", "default": "#000000" },
+    {
+      "type": "range",
+      "id": "benefit_font_size",
+      "min": 0.8,
+      "max": 1.2,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Benefit font size",
+      "default": 0.9
+    },
+    {
+      "type": "range",
+      "id": "benefit_line_height",
+      "min": 1.2,
+      "max": 1.8,
+      "step": 0.1,
+      "label": "Benefit line height",
+      "default": 1.4
+    },
+    { "type": "color", "id": "benefit_text_color", "label": "Benefit text color", "default": "#333333" },
+    {
+      "type": "range",
+      "id": "benefit_font_weight",
+      "min": 300,
+      "max": 700,
+      "step": 100,
+      "label": "Benefit font weight",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "benefits_to_buttons_spacing",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Benefits to buttons spacing",
+      "default": 80
+    },
+    { "type": "header", "content": "Right Content" },
+    { "type": "text", "id": "main_heading", "label": "Main heading", "default": "LIPOSOMAL" },
+    {
+      "type": "range",
+      "id": "right_content_vertical_position",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Right content vertical position",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "main_heading_size",
+      "min": 2,
+      "max": 8,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Main heading font size",
+      "default": 3.7
+    },
+    {
+      "type": "range",
+      "id": "main_heading_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Main heading font weight",
+      "default": 700
+    },
+    { "type": "color", "id": "main_heading_color", "label": "Main heading color", "default": "#000000" },
+    {
+      "type": "range",
+      "id": "main_heading_letter_spacing",
+      "min": -1,
+      "max": 3,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Main heading letter spacing",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "main_heading_transform",
+      "label": "Main heading text transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "main_heading_line_height",
+      "min": 0.8,
+      "max": 1.5,
+      "step": 0.1,
+      "label": "Main heading line height",
+      "default": 1.1
+    },
+    {
+      "type": "range",
+      "id": "right_padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Right content padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "right_padding_right",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Right content padding right",
+      "default": 35
+    },
+    { "type": "header", "content": "Buttons" },
+    {
+      "type": "range",
+      "id": "button_row_margin_top",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Button row margin top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_gap",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_width",
+      "min": 120,
+      "max": 250,
+      "step": 10,
+      "unit": "px",
+      "label": "Button width",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Button vertical padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Button horizontal padding",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Button border width",
+      "default": 2
+    },
+    { "type": "color", "id": "button_border_color", "label": "Button border color", "default": "#000000" },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 50
+    },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "transparent" },
+    { "type": "color", "id": "button_text_color", "label": "Button text color", "default": "#000000" },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 0.8,
+      "max": 1.2,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Button font size",
+      "default": 0.9
+    },
+    {
+      "type": "range",
+      "id": "button_font_weight",
+      "min": 300,
+      "max": 700,
+      "step": 100,
+      "label": "Button font weight",
+      "default": 500
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Button text transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "button_letter_spacing",
+      "min": -0.5,
+      "max": 2,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Button letter spacing",
+      "default": 0.3
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "button_active_background",
+      "label": "Active button background",
+      "default": "transparent"
+    },
+    { "type": "color", "id": "button_active_text_color", "label": "Active button text color", "default": "#000000" },
+    {
+      "type": "color",
+      "id": "button_active_border_color",
+      "label": "Active button border color",
+      "default": "#00d4ff"
+    },
+    {
+      "type": "color",
+      "id": "button_active_hover_background",
+      "label": "Active button hover background",
+      "default": "transparent"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "Info Button",
+      "settings": [
+        { "type": "text", "id": "button_text", "label": "Button text", "default": "Button" },
+        { "type": "text", "id": "heading", "label": "Heading (when clicked)", "default": "Heading" },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description (when clicked)",
+          "default": "Description text"
+        },
+        { "type": "checkbox", "id": "is_active", "label": "Active by default", "default": false },
+        { "type": "header", "content": "Benefits (when clicked)" },
+        { "type": "checkbox", "id": "show_benefits", "label": "Show benefits for this button", "default": true },
+        { "type": "text", "id": "benefit_1", "label": "Benefit 1" },
+        { "type": "text", "id": "benefit_2", "label": "Benefit 2" },
+        { "type": "text", "id": "benefit_3", "label": "Benefit 3" },
+        { "type": "text", "id": "benefit_4", "label": "Benefit 4" },
+        { "type": "text", "id": "benefit_5", "label": "Benefit 5" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Infographic",
+      "blocks": [
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "Technology",
+            "heading": "LIPOSOMAL TECHNOLOGY",
+            "description": "Advanced molecular encapsulation for superior bioavailability and targeted delivery.",
+            "show_benefits": true,
+            "benefit_1": "Enhanced absorption rate",
+            "benefit_2": "Targeted cellular delivery",
+            "benefit_3": "Improved bioavailability"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "Benefits",
+            "heading": "CELLULAR BENEFITS",
+            "description": "Optimized for maximum cellular uptake and therapeutic effectiveness.",
+            "show_benefits": true,
+            "benefit_1": "Rapid cellular penetration",
+            "benefit_2": "Enhanced nutrient delivery",
+            "benefit_3": "Sustained release formula"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "Science",
+            "heading": "PROVEN SCIENCE",
+            "description": "Backed by clinical research and advanced pharmaceutical technology.",
+            "show_benefits": true,
+            "benefit_1": "Clinically tested formula",
+            "benefit_2": "Pharmaceutical grade quality",
+            "benefit_3": "Research-backed results"
+          }
+        },
+        {
+          "type": "button",
+          "settings": {
+            "button_text": "Quality",
+            "heading": "PREMIUM QUALITY",
+            "description": "Manufactured to the highest standards with premium ingredients and rigorous quality control.",
+            "show_benefits": true,
+            "benefit_1": "GMP certified facility",
+            "benefit_2": "Third-party tested",
+            "benefit_3": "Premium ingredients"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

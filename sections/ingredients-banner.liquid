@@ -1,0 +1,369 @@
+{% comment %}
+  Ingredients Banner Section - Two column layout with content and image
+  Features: Headline with highlight, image, custom HTML content, styled image with border
+{% endcomment %}
+
+<style>
+  .ingredients-banner-section {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.section_bg_color | default: '#ffffff' }};
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .ingredients-banner-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px 60px;
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+    gap: 80px;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Left Content */
+  .ingredients-banner-left {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+  }
+
+  .ingredients-banner-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+  }
+
+  .ingredients-banner-top-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .ingredients-banner-bottom-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .ingredients-banner-headline {
+    font-size: {{ section.settings.headline_font_size }}px;
+    font-weight: 800;
+    color: {{ section.settings.headline_color | default: '#000000' }};
+    line-height: 1.1;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .ingredients-banner-headline .highlight {
+    color: {{ section.settings.highlight_color | default: '#4FFFFF' }};
+    display: inline;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ingredients-banner-headline br {
+    display: block;
+    content: "";
+    margin: 0;
+    line-height: 0;
+  }
+
+  .ingredients-banner-image-wrapper {
+    width: 100%;
+    max-width: 350px;
+    max-height: 350px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .ingredients-banner-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .ingredients-banner-content {
+    font-size: {{ section.settings.content_font_size }}px;
+    color: {{ section.settings.content_color | default: '#666666' }};
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .ingredients-banner-content p {
+    margin: 0 0 15px 0;
+  }
+
+  .ingredients-banner-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Right Image with Border */
+  .ingredients-banner-right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .ingredients-banner-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: calc(100vh - 80px);
+  }
+
+  /* Main Image */
+  .ingredients-banner-main-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .ingredients-banner-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .ingredients-banner-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 40px 40px;
+    }
+
+    .ingredients-banner-left {
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ingredients-banner-section {
+      min-height: auto;
+      padding: 40px 0;
+    }
+
+    .ingredients-banner-container {
+      padding: 0 20px;
+      gap: 30px;
+    }
+
+    .ingredients-banner-left {
+      padding: 0;
+      gap: 20px;
+    }
+
+    .ingredients-banner-headline {
+      font-size: {{ section.settings.headline_font_size | minus: 10 }}px;
+    }
+  }
+</style>
+
+<section class="ingredients-banner-section">
+  <div class="ingredients-banner-container">
+    <!-- Left Content -->
+    <div class="ingredients-banner-left">
+      <div class="ingredients-banner-content-wrapper">
+        <div class="ingredients-banner-top-content">
+          {% if section.settings.headline != blank %}
+            <h2 class="ingredients-banner-headline">{{ section.settings.headline }}</h2>
+          {% endif %}
+
+          {% if section.settings.left_image %}
+            <div class="ingredients-banner-image-wrapper">
+              <img src="{{ section.settings.left_image | image_url: width: 1000 }}" 
+                   alt="{{ section.settings.headline | strip_html }}"
+                   width="1000"
+                   height="1000"
+                   loading="lazy">
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ingredients-banner-bottom-content">
+          {% if section.settings.html_content != blank %}
+            <div class="ingredients-banner-content">
+              {{ section.settings.html_content }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Image -->
+    <div class="ingredients-banner-right">
+      <div class="ingredients-banner-image-container">
+        <!-- Main Image -->
+        {% if section.settings.right_image %}
+          <div class="ingredients-banner-main-image">
+            <img src="{{ section.settings.right_image | image_url: width: 1400 }}" 
+                 alt="Results"
+                 width="1400"
+                 height="1400"
+                 loading="lazy">
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ingredients Banner",
+  "tag": "section",
+  "class": "ingredients-banner-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Left Content"
+    },
+    {
+      "type": "html",
+      "id": "headline",
+      "label": "Headline",
+      "default": "High-quality <span class='highlight'>ingredients</span><br>optimised for impact",
+      "info": "Use <span class='highlight'>text</span> for cyan highlight and <br> for line breaks"
+    },
+    {
+      "type": "range",
+      "id": "headline_font_size",
+      "min": 28,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Headline Font Size",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image",
+      "info": "Image displayed below headline"
+    },
+    {
+      "type": "html",
+      "id": "html_content",
+      "label": "HTML Content",
+      "default": "<p>We don't think you should settle for questionable ingredients when it comes to your daily supplement. That's why each ingredient in AG1 is sourced for optimal absorption and nutrient density, and combined for maximum potency.</p>",
+      "info": "Add your custom HTML content here"
+    },
+    {
+      "type": "range",
+      "id": "content_font_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Content Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Right Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Image",
+      "info": "Main image on the right side"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 20,
+      "info": "Curved edges for the image"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Width",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredients Banner"
+    }
+  ]
+}
+{% endschema %}

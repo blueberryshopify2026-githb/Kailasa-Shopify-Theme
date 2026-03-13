@@ -1,0 +1,490 @@
+{% comment %}
+  VIP Presentation Section - 50:50 split with heading, key points, arrow navigation and image preview
+  Features: Rich text key points, grayscale preview image, arrow navigation to main image
+{% endcomment %}
+
+<style>
+  .vip-presentation-section {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.section_bg_color | default: '#ffffff' }};
+    padding: 40px 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .vip-presentation-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: flex-start;
+    width: 100%;
+    height: calc(100vh - 80px);
+    box-sizing: border-box;
+  }
+
+  /* Left Content */
+  .vip-presentation-left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    padding: 0;
+    justify-content: flex-start;
+    height: 100%;
+    max-height: calc(100vh - 120px);
+  }
+
+  .vip-presentation-heading {
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: 800;
+    color: {{ section.settings.heading_color | default: '#000000' }};
+    line-height: 1.2;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .vip-presentation-key-points {
+    font-size: {{ section.settings.key_points_font_size }}px;
+    color: {{ section.settings.key_points_color | default: '#333333' }};
+    line-height: 1.6;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .vip-presentation-key-points ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .vip-presentation-key-points li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 15px;
+  }
+
+  .vip-presentation-key-points li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: {{ section.settings.bullet_color | default: '#000000' }};
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .vip-presentation-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .vip-presentation-arrow {
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    position: relative;
+    padding: 0;
+    margin: 0;
+  }
+
+  .vip-presentation-arrow svg {
+    width: 24px;
+    height: 24px;
+    fill: {{ section.settings.arrow_icon_color | default: '#000000' }};
+    margin-left: 5px;
+  }
+
+  .vip-presentation-preview {
+    width: calc(70% - 30px);
+    height: 160px;
+    border-radius: {{ section.settings.preview_border_radius }}px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    opacity: 0.8;
+    position: relative;
+    margin-left: auto;
+  }
+
+  .vip-presentation-preview:hover {
+    filter: grayscale(70%);
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+
+  .vip-presentation-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .vip-presentation-preview-cta {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .vip-presentation-preview:hover .vip-presentation-preview-cta {
+    background: #4fffff;
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  /* Right Image */
+  .vip-presentation-right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  .vip-presentation-main-cta {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000000;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .vip-presentation-main-cta:hover {
+    background: #000000;
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  .vip-presentation-main-image {
+    width: 100%;
+    height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+    border-radius: {{ section.settings.main_image_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .vip-presentation-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .vip-presentation-container {
+      grid-template-columns: 1fr;
+      gap: 60px;
+      padding: 40px 40px;
+      align-items: flex-start;
+    }
+
+    .vip-presentation-section {
+      padding: 60px 0;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .vip-presentation-left {
+      justify-content: flex-start;
+    }
+
+    .vip-presentation-main-image {
+      height: 400px;
+      max-height: 400px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .vip-presentation-container {
+      padding: 20px;
+      gap: 40px;
+    }
+
+    .vip-presentation-heading {
+      font-size: {{ section.settings.heading_font_size | minus: 8 }}px;
+    }
+
+    .vip-presentation-key-points {
+      font-size: {{ section.settings.key_points_font_size | minus: 2 }}px;
+    }
+
+    .vip-presentation-navigation {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .vip-presentation-preview {
+      width: 150px;
+      height: 90px;
+    }
+
+    .vip-presentation-arrow {
+      width: 50px;
+      height: 50px;
+    }
+  }
+</style>
+
+<section class="vip-presentation-section">
+  <div class="vip-presentation-container">
+    <!-- Left Content -->
+    <div class="vip-presentation-left">
+      {% if section.settings.heading != blank %}
+        <h2 class="vip-presentation-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.key_points != blank %}
+        <div class="vip-presentation-key-points">
+          {{ section.settings.key_points }}
+        </div>
+      {% endif %}
+
+      <div class="vip-presentation-navigation">
+        <div class="vip-presentation-arrow" onclick="showMainImage('{{ section.id }}')">
+          {% if section.settings.arrow_icon %}
+            <img src="{{ section.settings.arrow_icon | image_url }}" 
+                 alt="Arrow Icon"
+                 width="160"
+                 height="120"
+                 style="width: 160px; height: 120px; object-fit: contain; display: block;">
+          {% endif %}
+        </div>
+
+        {% if section.settings.preview_image %}
+          <div class="vip-presentation-preview" onclick="showMainImage('{{ section.id }}')">
+            <img src="{{ section.settings.preview_image | image_url: width: 600 }}" 
+                 alt="Preview"
+                 width="600"
+                 height="400"
+                 loading="lazy">
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Right Image -->
+    <div class="vip-presentation-right">
+      {% if section.settings.main_image %}
+        <div class="vip-presentation-main-image" id="vip-main-image-{{ section.id }}">
+          <img src="{{ section.settings.main_image | image_url: width: 800 }}" 
+               alt="{{ section.settings.heading | strip_html }}"
+               width="800"
+               height="800"
+               loading="lazy">
+          {% if section.settings.preview_cta_text != blank %}
+            <button class="vip-presentation-main-cta" onclick="showMainImage('{{ section.id }}')">
+              {{ section.settings.preview_cta_text }}
+            </button>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+function showMainImage(sectionId) {
+  const mainImage = document.getElementById(`vip-main-image-${sectionId}`);
+  if (mainImage) {
+    // Add a subtle animation effect
+    mainImage.style.transform = 'scale(1.02)';
+    setTimeout(() => {
+      mainImage.style.transform = 'scale(1)';
+    }, 200);
+    
+    // Scroll to the main image on mobile
+    if (window.innerWidth <= 1024) {
+      mainImage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "VIP Presentation",
+  "tag": "section",
+  "class": "vip-presentation-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Skincare Elevated to an Elite Membership Experience"
+    },
+    {
+      "type": "richtext",
+      "id": "key_points",
+      "label": "Key Points",
+      "default": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "preview_image",
+      "label": "Preview Image (Grayscale)",
+      "info": "Small preview image shown next to arrow"
+    },
+    {
+      "type": "text",
+      "id": "preview_cta_text",
+      "label": "Preview CTA Text",
+      "default": "Become a Member",
+      "info": "Text shown on the preview image button"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image",
+      "info": "Large image shown on the right side"
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "key_points_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Key Points Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "key_points_color",
+      "label": "Key Points Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Bullet Point Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Arrow & Preview"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_color",
+      "label": "Arrow Background Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_icon",
+      "label": "Arrow Icon (SVG/Image)",
+      "info": "Upload your custom arrow icon/SVG"
+    },
+    {
+      "type": "color",
+      "id": "arrow_icon_color",
+      "label": "Arrow Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "preview_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Preview Image Border Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "main_image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Main Image Border Radius",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "VIP Presentation"
+    }
+  ]
+}
+{% endschema %}

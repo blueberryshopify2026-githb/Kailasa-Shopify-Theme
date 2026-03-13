@@ -28,10 +28,9 @@
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
             "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
-            "media_type": "image",
-            "main_image": "shopify://shop_images/download_24.jpg",
-            "video_url": "",
-            "thumbnail_image": "shopify://shop_images/download_24.jpg"
+            "media_type": "video",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/12ae8aa90d6c432c8967c5b6550c99a3.mp4",
+            "thumbnail_image": "shopify://shop_images/PDRN_Salmon_DNA_Therapy_in_Dubai.jpg"
           }
         },
         "content_block_yDpn86": {
@@ -40,7 +39,9 @@
             "title": "Daily Essentials for Nutrition and Digestive",
             "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
             "media_type": "image",
-            "video_url": ""
+            "main_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png",
+            "video_url": "",
+            "thumbnail_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png"
           }
         },
         "content_block_q6UGbY": {
@@ -48,8 +49,9 @@
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
             "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
-            "media_type": "image",
-            "video_url": ""
+            "media_type": "video",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4",
+            "thumbnail_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg"
           }
         }
       },

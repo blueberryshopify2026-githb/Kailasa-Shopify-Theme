@@ -9,10 +9,10 @@
  */
 {
   "sections": {
-    "hero_section_GWJCpg": {
+    "hero_section_tCPJUm": {
       "type": "hero-section",
       "blocks": {
-        "content_block_FVCTwP": {
+        "content_block_JiRkdR": {
           "type": "content_block",
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
@@ -23,29 +23,18 @@
             "thumbnail_image": "shopify://shop_images/download_26.jpg"
           }
         },
-        "content_block_6xLDMC": {
+        "content_block_nzbPie": {
           "type": "content_block",
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
             "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
             "media_type": "image",
-            "main_image": "shopify://shop_images/9919143ee60b1045d50652f846cb65bd.jpg",
+            "main_image": "shopify://shop_images/download_24.jpg",
             "video_url": "",
             "thumbnail_image": "shopify://shop_images/download_24.jpg"
           }
         },
-        "content_block_gzgiL8": {
-          "type": "content_block",
-          "settings": {
-            "title": "Daily Essentials for Nutrition and Digestive",
-            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
-            "media_type": "video",
-            "main_image": "shopify://shop_images/download_18.jpg",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
-            "thumbnail_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg"
-          }
-        },
-        "content_block_NH9MCU": {
+        "content_block_yDpn86": {
           "type": "content_block",
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
@@ -54,7 +43,7 @@
             "video_url": ""
           }
         },
-        "content_block_XXqVbF": {
+        "content_block_q6UGbY": {
           "type": "content_block",
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
@@ -65,11 +54,10 @@
         }
       },
       "block_order": [
-        "content_block_FVCTwP",
-        "content_block_6xLDMC",
-        "content_block_gzgiL8",
-        "content_block_NH9MCU",
-        "content_block_XXqVbF"
+        "content_block_JiRkdR",
+        "content_block_nzbPie",
+        "content_block_yDpn86",
+        "content_block_q6UGbY"
       ],
       "name": "Hero Section",
       "settings": {
@@ -91,72 +79,9 @@
         "image_border_radius": 24,
         "active_circle_color": "#4FFFFF"
       }
-    },
-    "ingredients_scroll_A3dcrW": {
-      "type": "ingredients-scroll",
-      "blocks": {
-        "ingredient_zLbgj6": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/download_31.jpg",
-            "name": "Vitamin B12",
-            "subtitle": "Methylcobalamin",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        },
-        "ingredient_8zPwbw": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/download_29.jpg",
-            "name": "Collagen",
-            "subtitle": "Type I & III",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        },
-        "ingredient_LFYT8q": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/download_29.jpg",
-            "name": "Collagen",
-            "subtitle": "Type I & III",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        },
-        "ingredient_A7yAe3": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/download_29.jpg",
-            "name": "Collagen",
-            "subtitle": "Type I & III",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        }
-      },
-      "block_order": [
-        "ingredient_zLbgj6",
-        "ingredient_8zPwbw",
-        "ingredient_LFYT8q",
-        "ingredient_A7yAe3"
-      ],
-      "name": "Ingredients Scroll",
-      "settings": {
-        "title": "The inner workings of strength & recovery",
-        "title_font": "Gilroy",
-        "title_size": 48,
-        "title_weight": "600",
-        "description": "Crafted to perfection through rigorous clinical research, rooted in nature and backed by science.",
-        "description_font": "Gilroy",
-        "description_size": 16,
-        "description_weight": "400"
-      }
     }
   },
   "order": [
-    "hero_section_GWJCpg",
-    "ingredients_scroll_A3dcrW"
+    "hero_section_tCPJUm"
   ]
 }

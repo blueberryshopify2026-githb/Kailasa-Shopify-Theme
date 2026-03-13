@@ -85,10 +85,20 @@
     "ingredients_scroll_4a7QpW": {
       "type": "ingredients-scroll",
       "blocks": {
+        "ingredient_D47JLN": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/pexels-eva-bronzini-6104096.jpg",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
         "ingredient_EEiG3K": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
+            "image": "shopify://shop_images/Le_Fluide_14_Substantific.jpg",
             "name": "Vitamin B12",
             "subtitle": "Methylcobalamin",
             "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
@@ -98,7 +108,7 @@
         "ingredient_88TVQm": {
           "type": "ingredient",
           "settings": {
-            "image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "image": "shopify://shop_images/Omorovicza_Queen_Essence_3_4_oz.jpg",
             "name": "Collagen",
             "subtitle": "Type I & III",
             "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
@@ -127,6 +137,7 @@
         }
       },
       "block_order": [
+        "ingredient_D47JLN",
         "ingredient_EEiG3K",
         "ingredient_88TVQm",
         "ingredient_MDnLyr",

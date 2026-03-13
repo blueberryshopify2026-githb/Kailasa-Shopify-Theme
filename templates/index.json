@@ -9,10 +9,43 @@
  */
 {
   "sections": {
-    "hero_section_CtBNGQ": {
+    "hero_section_GWJCpg": {
       "type": "hero-section",
       "blocks": {
-        "content_block_c8iMrm": {
+        "content_block_FVCTwP": {
+          "type": "content_block",
+          "settings": {
+            "title": "Daily Essentials for Nutrition and Digestive",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
+            "media_type": "image",
+            "main_image": "shopify://shop_images/download_26.jpg",
+            "video_url": "",
+            "thumbnail_image": "shopify://shop_images/download_26.jpg"
+          }
+        },
+        "content_block_6xLDMC": {
+          "type": "content_block",
+          "settings": {
+            "title": "Daily Essentials for Nutrition and Digestive",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
+            "media_type": "image",
+            "main_image": "shopify://shop_images/9919143ee60b1045d50652f846cb65bd.jpg",
+            "video_url": "",
+            "thumbnail_image": "shopify://shop_images/download_24.jpg"
+          }
+        },
+        "content_block_gzgiL8": {
+          "type": "content_block",
+          "settings": {
+            "title": "Daily Essentials for Nutrition and Digestive",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
+            "media_type": "video",
+            "main_image": "shopify://shop_images/download_18.jpg",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
+            "thumbnail_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg"
+          }
+        },
+        "content_block_NH9MCU": {
           "type": "content_block",
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
@@ -21,25 +54,7 @@
             "video_url": ""
           }
         },
-        "content_block_CPTNra": {
-          "type": "content_block",
-          "settings": {
-            "title": "Daily Essentials for Nutrition and Digestive",
-            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
-            "media_type": "image",
-            "video_url": ""
-          }
-        },
-        "content_block_8MEUpV": {
-          "type": "content_block",
-          "settings": {
-            "title": "Daily Essentials for Nutrition and Digestive",
-            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
-            "media_type": "image",
-            "video_url": ""
-          }
-        },
-        "content_block_ijPEj6": {
+        "content_block_XXqVbF": {
           "type": "content_block",
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
@@ -50,10 +65,11 @@
         }
       },
       "block_order": [
-        "content_block_c8iMrm",
-        "content_block_CPTNra",
-        "content_block_8MEUpV",
-        "content_block_ijPEj6"
+        "content_block_FVCTwP",
+        "content_block_6xLDMC",
+        "content_block_gzgiL8",
+        "content_block_NH9MCU",
+        "content_block_XXqVbF"
       ],
       "name": "Hero Section",
       "settings": {
@@ -75,31 +91,9 @@
         "image_border_radius": 24,
         "active_circle_color": "#4FFFFF"
       }
-    },
-    "skin_by_concern_6PbktT": {
-      "type": "skin-by-concern",
-      "name": "Skin by Concern",
-      "settings": {
-        "dullness_title": "Brighten Dull Skin",
-        "dullness_description": "Revitalize your complexion with our powerful brightening formulas that restore radiance and luminosity to tired, dull skin.",
-        "wrinkles_title": "Smooth Fine Lines",
-        "wrinkles_description": "Target visible signs of aging with our advanced anti-wrinkle treatments that help smooth and firm your skin.",
-        "undereye_title": "Refresh Under Eyes",
-        "undereye_description": "Diminish dark circles, puffiness, and fine lines around the delicate eye area with our specialized treatments.",
-        "anti_aging_title": "Combat Aging Signs",
-        "anti_aging_description": "Turn back time with our comprehensive anti-aging solutions that promote youthful, resilient skin.",
-        "sunburn_title": "Soothe Sun Damage",
-        "sunburn_description": "Repair and protect sun-damaged skin with our healing formulas that restore and prevent further damage.",
-        "acne_title": "Clear Acne & Blemishes",
-        "acne_description": "Achieve clearer, healthier skin with our targeted acne treatments that reduce breakouts and prevent future blemishes.",
-        "tile_bg_color": "#ffffff",
-        "tile_text_color": "#000000",
-        "tile_radius": 16
-      }
     }
   },
   "order": [
-    "hero_section_CtBNGQ",
-    "skin_by_concern_6PbktT"
+    "hero_section_GWJCpg"
   ]
 }

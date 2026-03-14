@@ -82,6 +82,90 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "ingredients_scroll_T8EQgK": {
+      "type": "ingredients-scroll",
+      "blocks": {
+        "ingredient_6YK3Gg": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/Gummy_png_de58176a-c876-4f2b-a0f4-aebfdb2d766d.png",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_mQCKda": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/pexels-eva-bronzini-6085951.jpg",
+            "name": "Collagen",
+            "subtitle": "Type I & III",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_mnVrXy": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/pexels-eva-bronzini-6104096.jpg",
+            "name": "Vitamin C",
+            "subtitle": "Ascorbic Acid",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_qnJfET": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_meBgKF": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Feb_12_2026_03_33_26_PM.png",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        },
+        "ingredient_ykTd9N": {
+          "type": "ingredient",
+          "settings": {
+            "image": "shopify://shop_images/Biossance_Award_Winning_Squalene_for_Skin___Biossance.jpg",
+            "name": "Vitamin B12",
+            "subtitle": "Methylcobalamin",
+            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
+            "studies_count": 967
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_6YK3Gg",
+        "ingredient_mQCKda",
+        "ingredient_mnVrXy",
+        "ingredient_qnJfET",
+        "ingredient_meBgKF",
+        "ingredient_ykTd9N"
+      ],
+      "name": "Ingredients Scroll",
+      "settings": {
+        "title": "The inner workings of strength & recovery",
+        "title_font": "Gilroy",
+        "title_size": 48,
+        "title_weight": "600",
+        "description": "Crafted to perfection through rigorous clinical research, rooted in nature and backed by science.",
+        "description_font": "Gilroy",
+        "description_size": 16,
+        "description_weight": "400"
+      }
+    },
     "ingredients_banner_KpDmD7": {
       "type": "ingredients-banner",
       "name": "Ingredients Banner",
@@ -1844,6 +1928,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "ingredients_scroll_T8EQgK",
     "ingredients_banner_KpDmD7",
     "how_to_use_V6n3pg",
     "dynamic_tiles_TEDzHG",

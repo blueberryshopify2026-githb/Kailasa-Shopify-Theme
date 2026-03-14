@@ -163,6 +163,7 @@
           "type": "media",
           "settings": {
             "media_type": "image",
+            "media_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
             "media_alt": "Product image",
             "media_video_url": ""
           }

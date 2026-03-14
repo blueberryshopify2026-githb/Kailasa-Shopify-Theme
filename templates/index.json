@@ -90,7 +90,8 @@
           "settings": {
             "title": "Address the root causes of aging",
             "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/download_26.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -101,7 +102,8 @@
           "settings": {
             "title": "Deliver bioavailable actives",
             "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/730ee01a626e47c2295d04151b2f1b23.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -112,7 +114,8 @@
           "settings": {
             "title": "Target multiple pathways",
             "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/download_17_5eac7c5d-b7f6-46ac-8352-400d19047f81.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -124,6 +127,7 @@
             "title": "Respect the microbiome",
             "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
             "media_type": "placeholder",
+            "media_image": "shopify://shop_images/download_18.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"

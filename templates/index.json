@@ -228,6 +228,24 @@
             "icon_type": "sun",
             "icon_color": "#000000"
           }
+        },
+        "product_cF768A": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
+            "image_width": 100,
+            "image_height": 100,
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
         }
       },
       "block_order": [
@@ -238,7 +256,8 @@
         "product_mjHWFj",
         "product_3Da3VY",
         "product_YiiUPQ",
-        "product_9JeztH"
+        "product_9JeztH",
+        "product_cF768A"
       ],
       "name": "Routine Tabs Section",
       "settings": {

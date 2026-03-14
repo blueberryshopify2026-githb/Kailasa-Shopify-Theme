@@ -103,6 +103,7 @@
         },
         "step_XAJT4C": {
           "type": "step",
+          "name": "Step 2",
           "settings": {
             "tab_id": "am",
             "step_label": "Toner",
@@ -118,12 +119,14 @@
         },
         "step_MFBcJN": {
           "type": "step",
+          "name": "Step 3",
           "settings": {
             "tab_id": "am",
             "step_label": "Moisturiser",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
             "product_name": "PM Moisturiser",
             "product_link": "",
-            "video_url": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/12ae8aa90d6c432c8967c5b6550c99a3.mp4",
             "image_position_x": -50,
             "image_position_y": -250,
             "name_position_x": 250,
@@ -132,11 +135,12 @@
         },
         "step_wGQYwQ": {
           "type": "step",
+          "name": "Step 4",
           "settings": {
             "tab_id": "am",
             "step_label": "Cleanser",
             "product_name": "Product Name",
-            "product_link": "",
+            "product_link": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4",
             "video_url": "",
             "image_position_x": -50,
             "image_position_y": -250,

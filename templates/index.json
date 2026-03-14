@@ -106,7 +106,7 @@
         "product_gNr6e3": {
           "type": "product",
           "settings": {
-            "tab_selector": "pm",
+            "tab_selector": "am",
             "product": "",
             "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
             "image_width": 100,
@@ -174,6 +174,60 @@
             "icon_type": "sun",
             "icon_color": "#000000"
           }
+        },
+        "product_3Da3VY": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "am",
+            "product": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "image_width": 100,
+            "image_height": 100,
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_YiiUPQ": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/download_32.png",
+            "image_width": 100,
+            "image_height": 100,
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
+        },
+        "product_9JeztH": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "image_width": 100,
+            "image_height": 100,
+            "custom_product_name": "",
+            "step_number": "1",
+            "step_label": "Cleanser",
+            "step_label_bg": "#4fffff",
+            "step_label_text": "#000000",
+            "show_icon": true,
+            "icon_type": "sun",
+            "icon_color": "#000000"
+          }
         }
       },
       "block_order": [
@@ -181,7 +235,10 @@
         "product_gNr6e3",
         "product_YLDhK7",
         "product_aL9WHQ",
-        "product_mjHWFj"
+        "product_mjHWFj",
+        "product_3Da3VY",
+        "product_YiiUPQ",
+        "product_9JeztH"
       ],
       "name": "Routine Tabs Section",
       "settings": {

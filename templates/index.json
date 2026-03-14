@@ -82,6 +82,79 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "dual_container_slider_PhqNRE": {
+      "type": "dual-container-slider",
+      "blocks": {
+        "slide_item_GmCMHw": {
+          "type": "slide_item",
+          "settings": {
+            "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "left_fit": "cover",
+            "right_image": "shopify://shop_images/1f3e47a0ece8474dad4a76f020802069_eb5541f2-65a4-4151-8320-6c9da2938009.jpg",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_hJq3tF": {
+          "type": "slide_item",
+          "settings": {
+            "left_image": "shopify://shop_images/Ectoin_and_niacinamide_work_together_to_strengthen_the_skin_barrier_ectoin_locks_in_moisture_while_niacinamide_enhances_ceramide_and_elastin_production_for_healthier_skin.jpg",
+            "left_fit": "cover",
+            "right_image": "shopify://shop_images/PDRN_Salmon_DNA_Therapy_in_Dubai.jpg",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_p4XrEH": {
+          "type": "slide_item",
+          "settings": {
+            "left_image": "shopify://shop_images/6b0cd7165734f6f66ef67d60db2e9e90-removebg-preview.png",
+            "left_fit": "cover",
+            "right_image": "shopify://shop_images/Biossance_Award_Winning_Squalene_for_Skin___Biossance.jpg",
+            "right_fit": "cover"
+          }
+        }
+      },
+      "block_order": [
+        "slide_item_GmCMHw",
+        "slide_item_hJq3tF",
+        "slide_item_p4XrEH"
+      ],
+      "name": "Dual Container Slider",
+      "settings": {
+        "bg_color": "#000000",
+        "section_height": 600,
+        "section_padding": 40,
+        "slide_height": 400,
+        "white_text": "BUILD ON BIOLOGY.",
+        "cyan_text": "GUIDED BY SCIENCE",
+        "white_color": "#ffffff",
+        "cyan_color": "#00ffff",
+        "title_size": 48,
+        "title_weight": "700",
+        "heading_padding": 30,
+        "left_bg": "#f8f8f8",
+        "right_bg": "#f8f8f8",
+        "border_radius": 20,
+        "gap": 20,
+        "side_padding": 10,
+        "placeholder_color": "#666666",
+        "placeholder_size": 14,
+        "dot_active": "#00ffff",
+        "dot_inactive": "#666666",
+        "dot_size": 12,
+        "dot_gap": 10,
+        "indicators_padding": 20,
+        "auto_slide": true,
+        "auto_duration": 5000,
+        "mobile_section_height": 500,
+        "mobile_section_padding": 30,
+        "mobile_slide_height": 350,
+        "mobile_title_size": 28,
+        "mobile_gap": 15,
+        "mobile_box_height": 150,
+        "mobile_heading_padding": 20,
+        "mobile_side_padding": 15
+      }
+    },
     "science_formula_NqgmBB": {
       "type": "science-formula",
       "blocks": {
@@ -185,9 +258,9 @@
         "subtitle_color": "#ffffff",
         "active_border_color": "#ffffff",
         "active_title_color": "#4fffff",
-        "active_shadow_color": "rgba(79, 255, 255, 0.3)",
+        "active_shadow_color": "#4fffff4d",
         "media_border_color": "#4fffff",
-        "media_shadow_color": "rgba(79, 255, 255, 0.2)",
+        "media_shadow_color": "#4fffff33",
         "title_size": 36,
         "subtitle_size": 16,
         "subtitle_margin_bottom": 20,
@@ -282,10 +355,10 @@
         "background_attachment": "scroll",
         "container_width": 1200,
         "section_horizontal_margin": 24,
-        "glass_background": "rgba(255, 255, 255, 0.4)",
+        "glass_background": "#ffffff66",
         "glass_blur": 30,
         "glass_border_width": 1,
-        "glass_border_color": "rgba(255, 255, 255, 0.3)",
+        "glass_border_color": "#ffffff4d",
         "card_border_radius": 32,
         "card_padding": 60,
         "card_fixed_height": 500,
@@ -351,90 +424,17 @@
         "button_border_width": 2,
         "button_border_color": "#000000",
         "button_border_radius": 50,
-        "button_background": "transparent",
+        "button_background": "rgba(0,0,0,0)",
         "button_text_color": "#000000",
         "button_font_size": 0.9,
         "button_font_weight": 500,
         "button_text_transform": "none",
         "button_letter_spacing": 0.3,
-        "button_hover_background": "transparent",
-        "button_active_background": "transparent",
+        "button_hover_background": "rgba(0,0,0,0)",
+        "button_active_background": "rgba(0,0,0,0)",
         "button_active_text_color": "#000000",
         "button_active_border_color": "#00d4ff",
-        "button_active_hover_background": "transparent"
-      }
-    },
-    "dual_container_slider_PhqNRE": {
-      "type": "dual-container-slider",
-      "blocks": {
-        "slide_item_GmCMHw": {
-          "type": "slide_item",
-          "settings": {
-            "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
-            "left_fit": "cover",
-            "right_image": "shopify://shop_images/1f3e47a0ece8474dad4a76f020802069_eb5541f2-65a4-4151-8320-6c9da2938009.jpg",
-            "right_fit": "cover"
-          }
-        },
-        "slide_item_hJq3tF": {
-          "type": "slide_item",
-          "settings": {
-            "left_image": "shopify://shop_images/Ectoin_and_niacinamide_work_together_to_strengthen_the_skin_barrier_ectoin_locks_in_moisture_while_niacinamide_enhances_ceramide_and_elastin_production_for_healthier_skin.jpg",
-            "left_fit": "cover",
-            "right_image": "shopify://shop_images/PDRN_Salmon_DNA_Therapy_in_Dubai.jpg",
-            "right_fit": "cover"
-          }
-        },
-        "slide_item_p4XrEH": {
-          "type": "slide_item",
-          "settings": {
-            "left_image": "shopify://shop_images/6b0cd7165734f6f66ef67d60db2e9e90-removebg-preview.png",
-            "left_fit": "cover",
-            "right_image": "shopify://shop_images/Biossance_Award_Winning_Squalene_for_Skin___Biossance.jpg",
-            "right_fit": "cover"
-          }
-        }
-      },
-      "block_order": [
-        "slide_item_GmCMHw",
-        "slide_item_hJq3tF",
-        "slide_item_p4XrEH"
-      ],
-      "name": "Dual Container Slider",
-      "settings": {
-        "bg_color": "#000000",
-        "section_height": 600,
-        "section_padding": 40,
-        "slide_height": 400,
-        "white_text": "BUILD ON BIOLOGY.",
-        "cyan_text": "GUIDED BY SCIENCE",
-        "white_color": "#ffffff",
-        "cyan_color": "#00ffff",
-        "title_size": 48,
-        "title_weight": "700",
-        "heading_padding": 30,
-        "left_bg": "#f8f8f8",
-        "right_bg": "#f8f8f8",
-        "border_radius": 20,
-        "gap": 20,
-        "side_padding": 10,
-        "placeholder_color": "#666666",
-        "placeholder_size": 14,
-        "dot_active": "#00ffff",
-        "dot_inactive": "#666666",
-        "dot_size": 12,
-        "dot_gap": 10,
-        "indicators_padding": 20,
-        "auto_slide": true,
-        "auto_duration": 5000,
-        "mobile_section_height": 500,
-        "mobile_section_padding": 30,
-        "mobile_slide_height": 350,
-        "mobile_title_size": 28,
-        "mobile_gap": 15,
-        "mobile_box_height": 150,
-        "mobile_heading_padding": 20,
-        "mobile_side_padding": 15
+        "button_active_hover_background": "rgba(0,0,0,0)"
       }
     },
     "doctors_endorsement_LtGzx4": {
@@ -582,10 +582,10 @@
         "full_bg_position": "center",
         "section_bg_color": "#ffffff",
         "show_overlay": false,
-        "overlay_color": "rgba(0,0,0,0.3)",
+        "overlay_color": "#0000004d",
         "overlay_opacity": 0.3,
-        "content_bg_color": "transparent",
-        "image_bg_color": "transparent",
+        "content_bg_color": "rgba(0,0,0,0)",
+        "image_bg_color": "rgba(0,0,0,0)",
         "content_padding": 20,
         "content_padding_horizontal": 30,
         "main_title": "Introduction to<br>Biotechnology and<br>Transforming",
@@ -642,18 +642,18 @@
         "step_text_size": 24,
         "step_text_color": "#000000",
         "step_number_color": "#000000",
-        "step_highlight_color": "#4FFFFF",
+        "step_highlight_color": "#4fffff",
         "heading_font_size": 32,
         "heading_color": "#000000",
         "description_font_size": 16,
         "description_color": "#666666",
         "cta_font_size": 14,
-        "cta_bg_color": "transparent",
+        "cta_bg_color": "rgba(0,0,0,0)",
         "cta_text_color": "#000000",
-        "cta_border_color": "#4FFFFF",
-        "cta_hover_bg": "#4FFFFF",
+        "cta_border_color": "#4fffff",
+        "cta_hover_bg": "#4fffff",
         "cta_hover_text": "#000000",
-        "cta_hover_border": "#4FFFFF",
+        "cta_hover_border": "#4fffff",
         "cta_border_radius": 24,
         "product_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg",
         "image_width": 100,
@@ -3128,9 +3128,9 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "dual_container_slider_PhqNRE",
     "science_formula_NqgmBB",
     "product_infographic_FGYWwf",
-    "dual_container_slider_PhqNRE",
     "doctors_endorsement_LtGzx4",
     "biotechnology_intro_bKwUjK",
     "three_column_media_QrB4NN",

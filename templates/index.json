@@ -84,6 +84,94 @@
     },
     "skin_by_concern_CT8TWF": {
       "type": "skin-by-concern",
+      "blocks": {
+        "product_K8UYmV": {
+          "type": "product",
+          "settings": {
+            "concern": "dullness",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
+            "product_code": "NEW",
+            "show_new_badge": true
+          }
+        },
+        "product_URWEXN": {
+          "type": "product",
+          "settings": {
+            "concern": "dullness",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_code": "NEW",
+            "show_new_badge": true
+          }
+        },
+        "product_yrFknd": {
+          "type": "product",
+          "settings": {
+            "concern": "dullness",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_code": "NEW",
+            "show_new_badge": true
+          }
+        },
+        "product_T76Bce": {
+          "type": "product",
+          "settings": {
+            "concern": "dullness",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
+            "product_code": "NEW",
+            "show_new_badge": true
+          }
+        },
+        "product_krGM7E": {
+          "type": "product",
+          "settings": {
+            "concern": "dullness",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_code": "NEW",
+            "show_new_badge": true
+          }
+        },
+        "product_fXMTkD": {
+          "type": "product",
+          "settings": {
+            "concern": "dullness",
+            "product": "",
+            "custom_subtitle": "",
+            "custom_rating": "4.5",
+            "custom_reviews": "1,234",
+            "custom_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_code": "NEW",
+            "show_new_badge": true
+          }
+        }
+      },
+      "block_order": [
+        "product_K8UYmV",
+        "product_URWEXN",
+        "product_yrFknd",
+        "product_T76Bce",
+        "product_krGM7E",
+        "product_fXMTkD"
+      ],
       "name": "Skin by Concern",
       "settings": {
         "dullness_before_image": "shopify://shop_images/Lifting_estetico_antes_vs_despues_e0310d14-3289-42ec-b225-03f03318ea82.jpg",

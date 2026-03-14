@@ -82,6 +82,55 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "dynamic_tiles_TEDzHG": {
+      "type": "dynamic-tiles",
+      "blocks": {
+        "slide_XTrVGA": {
+          "type": "slide",
+          "settings": {
+            "slide_title": "Slide 1",
+            "background_image": "shopify://shop_images/Le_Fluide_14_Substantific.jpg",
+            "thumbnail_image": "shopify://shop_images/pexels-polina-kovaleva-5927732_430x_1a79bf5d-cd17-4862-a739-14f3fdfc07cc.webp",
+            "statistic_1": "500K",
+            "title_1": "Consumer reach",
+            "description_1": "Consumer across 20 countries",
+            "statistic_2": "60%",
+            "title_2": "Reduced Carbon",
+            "description_2": "Consumer across 20 countries",
+            "statistic_3": "90%",
+            "title_3": "Consumer reach",
+            "description_3": "Consumer across 20 countries"
+          }
+        },
+        "slide_PP6B83": {
+          "type": "slide",
+          "settings": {
+            "slide_title": "Slide 1",
+            "background_image": "shopify://shop_images/Quel_masque_LED_choisir___Suivez_notre_guide_430x_61ad7220-852f-441c-9598-bd61511162fd.webp",
+            "thumbnail_image": "shopify://shop_images/pexels-darina-belonogova-7520423-removebg-preview.png",
+            "statistic_1": "500K",
+            "title_1": "Consumer reach",
+            "description_1": "Consumer across 20 countries",
+            "statistic_2": "60%",
+            "title_2": "Reduced Carbon",
+            "description_2": "Consumer across 20 countries",
+            "statistic_3": "90%",
+            "title_3": "Consumer reach",
+            "description_3": "Consumer across 20 countries"
+          }
+        }
+      },
+      "block_order": [
+        "slide_XTrVGA",
+        "slide_PP6B83"
+      ],
+      "name": "Dynamic Tiles",
+      "settings": {
+        "section_height": 80,
+        "strip_border_radius": 24,
+        "accent_color": "#4FFFFF"
+      }
+    },
     "dot_line_section_RKh47P": {
       "type": "dot-line-section",
       "blocks": {
@@ -1679,6 +1728,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "dynamic_tiles_TEDzHG",
     "dot_line_section_RKh47P",
     "ingredients_scroll_4a7QpW",
     "comparison_table_8gLMQK",

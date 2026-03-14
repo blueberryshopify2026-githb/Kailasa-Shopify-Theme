@@ -82,6 +82,66 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "vip_presentation_XijaHE": {
+      "type": "vip-presentation",
+      "blocks": {
+        "content_block_wGqMee": {
+          "type": "content_block",
+          "settings": {
+            "heading": "Skincare Elevated to an Elite Membership Experience",
+            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
+            "preview_image": "shopify://shop_images/Biossance_Award_Winning_Squalene_for_Skin___Biossance.jpg",
+            "preview_cta_text": "Become a Member",
+            "main_image": "shopify://shop_images/Biossance_Award_Winning_Squalene_for_Skin___Biossance.jpg",
+            "main_cta_text": "Become a Member",
+            "main_cta_link": ""
+          }
+        },
+        "content_block_mbhfnw": {
+          "type": "content_block",
+          "settings": {
+            "heading": "Skincare Elevated to an Elite Membership Experience",
+            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
+            "preview_image": "shopify://shop_images/download_17_5eac7c5d-b7f6-46ac-8352-400d19047f81.jpg",
+            "preview_cta_text": "Become a Member",
+            "main_image": "shopify://shop_images/download_17_5eac7c5d-b7f6-46ac-8352-400d19047f81.jpg",
+            "main_cta_text": "Become a Member",
+            "main_cta_link": ""
+          }
+        },
+        "content_block_njzfxn": {
+          "type": "content_block",
+          "settings": {
+            "heading": "Skincare Elevated to an Elite Membership Experience",
+            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
+            "preview_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg",
+            "preview_cta_text": "Become a Member",
+            "main_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg",
+            "main_cta_text": "Become a Member",
+            "main_cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "content_block_wGqMee",
+        "content_block_mbhfnw",
+        "content_block_njzfxn"
+      ],
+      "name": "VIP Presentation",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "heading_font_size": 42,
+        "heading_color": "#000000",
+        "key_points_font_size": 16,
+        "key_points_color": "#333333",
+        "bullet_color": "#000000",
+        "arrow_bg_color": "#4FFFFF",
+        "arrow_hover_color": "#3DEEEE",
+        "arrow_icon_color": "#000000",
+        "preview_border_radius": 12,
+        "main_image_border_radius": 20
+      }
+    },
     "three_column_media_QrB4NN": {
       "type": "three-column-media",
       "name": "Three Column Media",
@@ -2591,6 +2651,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "vip_presentation_XijaHE",
     "three_column_media_QrB4NN",
     "skincare_bundle_TqdqX4",
     "skin_by_concern_CT8TWF",

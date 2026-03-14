@@ -82,6 +82,46 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "lifestyle_section_6wjbgt": {
+      "type": "lifestyle-section",
+      "blocks": {
+        "text_block_QDWbUN": {
+          "type": "text_block",
+          "settings": {
+            "position_x": 20,
+            "position_y": 30,
+            "title": "WHY OUR SKINCARE IS DIFFERENT",
+            "item1_heading": "MINIMAL INGREDIENTS",
+            "item1_description": "Formulated with only functional actives. No unnecessary additives.",
+            "item2_heading": "MAXIMUM EFFICACY",
+            "item2_description": "Efficacy proven through controlled clinical studies. Results before aesthetics.",
+            "item3_heading": "NO MARKETING NOISE",
+            "item3_description": "No fragrance. No fillers. No hype. Science over sensation."
+          }
+        },
+        "image_block_jk7NGX": {
+          "type": "image_block",
+          "settings": {
+            "position_x": 80,
+            "position_y": 70,
+            "image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "caption": "RETINAL 0.1%",
+            "description": "Accelerates cell turnover + boosts collagen FINE-LINE REDUCTION, IMPROVED ELASTICITY"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_QDWbUN",
+        "image_block_jk7NGX"
+      ],
+      "name": "Lifestyle Section",
+      "settings": {
+        "background_image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
+        "section_bg_color": "#f5f5f5",
+        "section_height": 100,
+        "highlight_color": "#4FFFFF"
+      }
+    },
     "ingredients_scroll_T8EQgK": {
       "type": "ingredients-scroll",
       "blocks": {
@@ -1855,6 +1895,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "lifestyle_section_6wjbgt",
     "ingredients_scroll_T8EQgK",
     "ingredients_banner_KpDmD7",
     "how_to_use_V6n3pg",

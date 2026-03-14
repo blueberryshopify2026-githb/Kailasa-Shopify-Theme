@@ -82,6 +82,121 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "science_formula_NqgmBB": {
+      "type": "science-formula",
+      "blocks": {
+        "science_item_dMQcph": {
+          "type": "science_item",
+          "settings": {
+            "title": "Address the root causes of aging",
+            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_qiMw8C": {
+          "type": "science_item",
+          "settings": {
+            "title": "Deliver bioavailable actives",
+            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_egn7id": {
+          "type": "science_item",
+          "settings": {
+            "title": "Target multiple pathways",
+            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_jY7ea9": {
+          "type": "science_item",
+          "settings": {
+            "title": "Respect the microbiome",
+            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_4VPFb9": {
+          "type": "science_item",
+          "settings": {
+            "title": "Maintain skin-neutral pH",
+            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_TdFmcU": {
+          "type": "science_item",
+          "settings": {
+            "title": "Optimize for layering or cocktailing",
+            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        }
+      },
+      "block_order": [
+        "science_item_dMQcph",
+        "science_item_qiMw8C",
+        "science_item_egn7id",
+        "science_item_jY7ea9",
+        "science_item_4VPFb9",
+        "science_item_TdFmcU"
+      ],
+      "name": "Science Formula",
+      "settings": {
+        "main_title": "We have the formula for long-term skin health. And we follow it.",
+        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
+        "default_media_type": "image",
+        "default_media_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+        "default_video_file": "",
+        "default_cgi_file": "",
+        "default_placeholder_text": "Default Media Placeholder",
+        "content_ratio": 50,
+        "media_ratio": 50,
+        "grid_gap": 20,
+        "block_width": 100,
+        "media_margin_left": 0,
+        "section_padding_vertical": 60,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "active_border_color": "#ffffff",
+        "active_title_color": "#4fffff",
+        "active_shadow_color": "rgba(79, 255, 255, 0.3)",
+        "media_border_color": "#4fffff",
+        "media_shadow_color": "rgba(79, 255, 255, 0.2)",
+        "title_size": 36,
+        "subtitle_size": 16,
+        "subtitle_margin_bottom": 20,
+        "block_title_size": 16,
+        "description_size": 12,
+        "section_padding": 20,
+        "header_margin": 10,
+        "blocks_gap": 4,
+        "header_padding": 18,
+        "container_padding": 40,
+        "content_max_height": 150
+      }
+    },
     "product_infographic_FGYWwf": {
       "type": "product-infographic",
       "blocks": {
@@ -243,150 +358,6 @@
         "button_active_text_color": "#000000",
         "button_active_border_color": "#00d4ff",
         "button_active_hover_background": "transparent"
-      }
-    },
-    "product_buy_box_hK8fTT": {
-      "type": "product-buy-box",
-      "blocks": {
-        "star_rating_KwBj77": {
-          "type": "star_rating",
-          "settings": {
-            "rating": "5",
-            "show_count": true,
-            "review_count": "231 Reviews"
-          }
-        },
-        "review_text_33DcyM": {
-          "type": "review_text",
-          "settings": {
-            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
-          }
-        },
-        "review_author_kPiRJq": {
-          "type": "review_author",
-          "settings": {
-            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
-          }
-        },
-        "title_BcRDJE": {
-          "type": "title",
-          "settings": {
-            "title": "Photon Youth™ Pro LED Mask"
-          }
-        },
-        "description_MYM9Gg": {
-          "type": "description",
-          "settings": {
-            "description": "The light feels gentle and relaxing, not harsh or heating, and it fits comfortably on the face. Over time, my skin has started to look more \"alive\"—that healthy glow"
-          }
-        },
-        "product_image_yRWEbd": {
-          "type": "product_image",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png"
-          }
-        },
-        "variant_zTxwrJ": {
-          "type": "variant",
-          "name": "VIP",
-          "settings": {
-            "variant_name": "VIP Club Membership",
-            "variant_detail_1": "Free SCI Travel Packs",
-            "variant_detail_2": "Easily edit, skip or cancel anytime",
-            "variant_detail_3": "0-Day Money Back Guarantee",
-            "variant_detail_4": "Delivered every 30 days",
-            "variant_price": "$49 USD"
-          }
-        },
-        "variant_tN6GxN": {
-          "type": "variant",
-          "name": "Subscribe and Save",
-          "settings": {
-            "variant_name": "Subscribe and Save",
-            "variant_detail_1": "Free SCI Travel Packs",
-            "variant_detail_2": "Easily edit, skip or cancel anytime",
-            "variant_detail_3": "",
-            "variant_detail_4": "",
-            "variant_price": "$79 USD"
-          }
-        },
-        "variant_hQgV4J": {
-          "type": "variant",
-          "name": "Buy one time",
-          "settings": {
-            "variant_name": "Buy one time",
-            "variant_detail_1": "Free SCI Travel Packs",
-            "variant_detail_2": "",
-            "variant_detail_3": "",
-            "variant_detail_4": "",
-            "variant_price": "$99 USD"
-          }
-        },
-        "media_3aHmr3": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "media_image": "shopify://shop_images/download_17_5eac7c5d-b7f6-46ac-8352-400d19047f81.jpg",
-            "media_alt": "Product image",
-            "media_video_url": ""
-          }
-        },
-        "media_Pt3A69": {
-          "type": "media",
-          "settings": {
-            "media_type": "video",
-            "media_alt": "Product image",
-            "media_video_url": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4",
-            "media_thumbnail": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg"
-          }
-        },
-        "media_xG3pdQ": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "media_image": "shopify://shop_images/download_26.jpg",
-            "media_alt": "Product image",
-            "media_video_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "star_rating_KwBj77",
-        "review_text_33DcyM",
-        "review_author_kPiRJq",
-        "title_BcRDJE",
-        "description_MYM9Gg",
-        "product_image_yRWEbd",
-        "variant_zTxwrJ",
-        "variant_tN6GxN",
-        "variant_hQgV4J",
-        "media_3aHmr3",
-        "media_Pt3A69",
-        "media_xG3pdQ"
-      ],
-      "disabled": true,
-      "name": "Product Buy Box",
-      "settings": {
-        "outer_bg_color": "#000000",
-        "outer_padding": 20,
-        "gap_width": 20,
-        "max_width": 1400,
-        "left_bg_color": "#ffffff",
-        "right_bg_color": "#f5f5f5",
-        "star_color": "#000000",
-        "title_color": "#000000",
-        "text_color": "#000000",
-        "secondary_text_color": "#666666",
-        "active_color": "#4FFFFF",
-        "variant_border_color": "#e0e0e0",
-        "variant_bg_color": "#ffffff",
-        "cta_text": "Add to cart",
-        "cta_bg_color": "#4FFFFF",
-        "cta_text_color": "#000000",
-        "payment_button_1": "shopify://shop_images/gp.png",
-        "payment_button_2": "shopify://shop_images/5cecf2c1ee40676bcef484efe1853bff.png",
-        "payment_btn_bg": "#ffffff",
-        "nav_strip_bg": "#ffffff"
       }
     },
     "dual_container_slider_PhqNRE": {
@@ -3153,8 +3124,8 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "science_formula_NqgmBB",
     "product_infographic_FGYWwf",
-    "product_buy_box_hK8fTT",
     "dual_container_slider_PhqNRE",
     "doctors_endorsement_LtGzx4",
     "biotechnology_intro_bKwUjK",

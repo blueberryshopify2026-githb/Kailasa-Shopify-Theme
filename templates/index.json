@@ -82,6 +82,71 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "ugc_image_carousel_RPcVQm": {
+      "type": "ugc-image-carousel",
+      "blocks": {
+        "ugc_image_C3HW6E": {
+          "type": "ugc_image",
+          "settings": {
+            "card_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "ouoiuoui",
+            "product_price": "4565"
+          }
+        },
+        "ugc_image_ptUjJF": {
+          "type": "ugc_image",
+          "settings": {
+            "card_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "ouoiuoui",
+            "product_price": "4565"
+          }
+        },
+        "ugc_image_37PpwK": {
+          "type": "ugc_image",
+          "settings": {
+            "card_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "ouoiuoui",
+            "product_price": "4565"
+          }
+        },
+        "ugc_image_kAB3nf": {
+          "type": "ugc_image",
+          "settings": {
+            "card_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "ouoiuoui",
+            "product_price": "4565"
+          }
+        }
+      },
+      "block_order": [
+        "ugc_image_C3HW6E",
+        "ugc_image_ptUjJF",
+        "ugc_image_37PpwK",
+        "ugc_image_kAB3nf"
+      ],
+      "name": "UGC Image Carousel",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "section_title": "Real Stories, Real Results",
+        "section_description": "Authentic experiences from our community—unfiltered and genuine.",
+        "title_font_size": 42,
+        "title_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "dot_active_color": "#000000",
+        "dot_inactive_color": "#cccccc"
+      }
+    },
     "vip_presentation_XijaHE": {
       "type": "vip-presentation",
       "blocks": {
@@ -2651,6 +2716,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "ugc_image_carousel_RPcVQm",
     "vip_presentation_XijaHE",
     "three_column_media_QrB4NN",
     "skincare_bundle_TqdqX4",

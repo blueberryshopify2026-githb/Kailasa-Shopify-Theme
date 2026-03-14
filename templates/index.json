@@ -82,6 +82,29 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "skin_by_concern_CT8TWF": {
+      "type": "skin-by-concern",
+      "name": "Skin by Concern",
+      "settings": {
+        "dullness_before_image": "shopify://shop_images/Lifting_estetico_antes_vs_despues_e0310d14-3289-42ec-b225-03f03318ea82.jpg",
+        "dullness_after_image": "shopify://shop_images/dgfd.jpg",
+        "dullness_title": "Brighten Dull Skin",
+        "dullness_description": "Revitalize your complexion with our powerful brightening formulas that restore radiance and luminosity to tired, dull skin.",
+        "wrinkles_title": "Smooth Fine Lines",
+        "wrinkles_description": "Target visible signs of aging with our advanced anti-wrinkle treatments that help smooth and firm your skin.",
+        "undereye_title": "Refresh Under Eyes",
+        "undereye_description": "Diminish dark circles, puffiness, and fine lines around the delicate eye area with our specialized treatments.",
+        "anti_aging_title": "Combat Aging Signs",
+        "anti_aging_description": "Turn back time with our comprehensive anti-aging solutions that promote youthful, resilient skin.",
+        "sunburn_title": "Soothe Sun Damage",
+        "sunburn_description": "Repair and protect sun-damaged skin with our healing formulas that restore and prevent further damage.",
+        "acne_title": "Clear Acne & Blemishes",
+        "acne_description": "Achieve clearer, healthier skin with our targeted acne treatments that reduce breakouts and prevent future blemishes.",
+        "tile_bg_color": "#ffffff",
+        "tile_text_color": "#000000",
+        "tile_radius": 16
+      }
+    },
     "routine_tabs_section_VB3cNg": {
       "type": "routine-tabs-section",
       "blocks": {
@@ -2286,6 +2309,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "skin_by_concern_CT8TWF",
     "routine_tabs_section_VB3cNg",
     "professional_panel_PzXJEh",
     "medical_team_XfxtWd",

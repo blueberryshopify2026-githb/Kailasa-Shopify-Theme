@@ -163,7 +163,7 @@
           "type": "media",
           "settings": {
             "media_type": "image",
-            "media_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
+            "media_image": "shopify://shop_images/download_17_5eac7c5d-b7f6-46ac-8352-400d19047f81.jpg",
             "media_alt": "Product image",
             "media_video_url": ""
           }
@@ -173,13 +173,15 @@
           "settings": {
             "media_type": "image",
             "media_alt": "Product image",
-            "media_video_url": ""
+            "media_video_url": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4",
+            "media_thumbnail": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg"
           }
         },
         "media_xG3pdQ": {
           "type": "media",
           "settings": {
             "media_type": "image",
+            "media_image": "shopify://shop_images/download_26.jpg",
             "media_alt": "Product image",
             "media_video_url": ""
           }

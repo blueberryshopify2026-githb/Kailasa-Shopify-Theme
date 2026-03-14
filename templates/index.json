@@ -82,6 +82,45 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "three_column_media_QrB4NN": {
+      "type": "three-column-media",
+      "name": "Three Column Media",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "column_gap": 40,
+        "media_border_radius": 12,
+        "video_url": "",
+        "step_text": "",
+        "step_number": "",
+        "main_heading": "",
+        "main_description": "",
+        "cta_text": "",
+        "cta_link": "",
+        "text_alignment": "left",
+        "step_number_size": 80,
+        "step_highlight_size": 120,
+        "step_text_size": 24,
+        "step_text_color": "#000000",
+        "step_number_color": "#000000",
+        "step_highlight_color": "#4FFFFF",
+        "heading_font_size": 32,
+        "heading_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "cta_font_size": 14,
+        "cta_bg_color": "transparent",
+        "cta_text_color": "#000000",
+        "cta_border_color": "#4FFFFF",
+        "cta_hover_bg": "#4FFFFF",
+        "cta_hover_text": "#000000",
+        "cta_hover_border": "#4FFFFF",
+        "cta_border_radius": 24,
+        "image_width": 100,
+        "image_height": 100
+      }
+    },
     "skincare_bundle_TqdqX4": {
       "type": "skincare-bundle",
       "blocks": {
@@ -232,7 +271,7 @@
         "cta_font_size": 16,
         "bundle_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png",
         "products_background": "#f8f9fa",
-        "hotspot_color": "#4FFFFF"
+        "hotspot_color": "#4fffff"
       }
     },
     "skin_by_concern_CT8TWF": {
@@ -360,7 +399,7 @@
             "custom_product_name": "",
             "step_number": "1",
             "step_label": "Cleanser",
-            "step_label_bg": "#4FFFFF",
+            "step_label_bg": "#4fffff",
             "step_label_text": "#000000",
             "show_icon": true,
             "icon_type": "sun",
@@ -378,7 +417,7 @@
             "custom_product_name": "",
             "step_number": "2",
             "step_label": "Toner",
-            "step_label_bg": "#4FFFFF",
+            "step_label_bg": "#4fffff",
             "step_label_text": "#000000",
             "show_icon": true,
             "icon_type": "sun",
@@ -396,7 +435,7 @@
             "custom_product_name": "",
             "step_number": "3",
             "step_label": "Serum",
-            "step_label_bg": "#4FFFFF",
+            "step_label_bg": "#4fffff",
             "step_label_text": "#000000",
             "show_icon": true,
             "icon_type": "sun",
@@ -414,7 +453,7 @@
             "custom_product_name": "",
             "step_number": "4",
             "step_label": "Moisturizer",
-            "step_label_bg": "#4FFFFF",
+            "step_label_bg": "#4fffff",
             "step_label_text": "#000000",
             "show_icon": true,
             "icon_type": "sun",
@@ -432,7 +471,7 @@
             "custom_product_name": "",
             "step_number": "5",
             "step_label": "Sunscreen",
-            "step_label_bg": "#4FFFFF",
+            "step_label_bg": "#4fffff",
             "step_label_text": "#000000",
             "show_icon": true,
             "icon_type": "sun",
@@ -546,8 +585,8 @@
         "inactive_tab_bg": "#ffffff",
         "inactive_tab_text": "#000000",
         "tab_border_color": "#000000",
-        "cyan_dot_color": "#4FFFFF",
-        "content_card_bg": "#D3FFFF",
+        "cyan_dot_color": "#4fffff",
+        "content_card_bg": "#d3ffff",
         "split_layout_radius": 20,
         "split_layout_gap": 20,
         "content_alignment": "right",
@@ -559,7 +598,7 @@
         "cta_bg_color": "#000000",
         "cta_text_color": "#ffffff",
         "cta_border_radius": 30,
-        "step_label_bg": "#4FFFFF",
+        "step_label_bg": "#4fffff",
         "step_label_text": "#000000",
         "product_name_color": "#000000",
         "product_name_font": "Montserrat",
@@ -657,17 +696,17 @@
         "name_font_size": 44,
         "name_color": "#ffffff",
         "designation_font_size": 18,
-        "designation_color": "#4FFFFF",
+        "designation_color": "#4fffff",
         "quote_font_size": 18,
         "quote_color": "#ffffff",
-        "quote_mark_color": "#4FFFFF",
+        "quote_mark_color": "#4fffff",
         "cta_font_size": 14,
         "cta_text_color": "#ffffff",
-        "cta_border_color": "#4FFFFF",
+        "cta_border_color": "#4fffff",
         "cta_border_radius": 24,
         "arrow_bg_color": "#000000",
-        "arrow_border_color": "#4FFFFF",
-        "arrow_color": "#4FFFFF"
+        "arrow_border_color": "#4fffff",
+        "arrow_color": "#4fffff"
       }
     },
     "medical_team_XfxtWd": {
@@ -728,13 +767,13 @@
         "title_part2": "MEDICAL TEAM",
         "title_font_size": 48,
         "title_color": "#ffffff",
-        "highlight_color": "#4FFFFF",
+        "highlight_color": "#4fffff",
         "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
         "description_font_size": 18,
         "description_color": "#ffffff",
         "nav_bg_color": "#000000",
-        "nav_border_color": "#4FFFFF",
-        "nav_icon_color": "#4FFFFF"
+        "nav_border_color": "#4fffff",
+        "nav_icon_color": "#4fffff"
       }
     },
     "lifestyle_section_6wjbgt": {
@@ -774,7 +813,7 @@
         "background_image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
         "section_bg_color": "#f5f5f5",
         "section_height": 100,
-        "highlight_color": "#4FFFFF"
+        "highlight_color": "#4fffff"
       }
     },
     "ingredients_scroll_T8EQgK": {
@@ -870,7 +909,7 @@
         "headline": "High-quality <span class=\"highlight\">ingredients</span><br>optimised for impact",
         "headline_font_size": 42,
         "headline_color": "#000000",
-        "highlight_color": "#4FFFFF",
+        "highlight_color": "#4fffff",
         "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
         "html_content": "<p>We don't think you should settle for questionable ingredients when it comes to your daily supplement. That's why each ingredient in AG1 is sourced for optimal absorption and nutrient density, and combined for maximum potency.</p>",
         "content_font_size": 16,
@@ -974,7 +1013,7 @@
       ],
       "name": "How To Use",
       "settings": {
-        "accent_color": "#4FFFFF"
+        "accent_color": "#4fffff"
       }
     },
     "dynamic_tiles_TEDzHG": {
@@ -1023,7 +1062,7 @@
       "settings": {
         "section_height": 80,
         "strip_border_radius": 24,
-        "accent_color": "#4FFFFF"
+        "accent_color": "#4fffff"
       }
     },
     "dot_line_section_RKh47P": {
@@ -1090,7 +1129,7 @@
       ],
       "name": "Dot Line Section",
       "settings": {
-        "dot_color": "#4FFFFF",
+        "dot_color": "#4fffff",
         "description_title_color": "#1a1a1a",
         "description_text_color": "#4a4a4a",
         "dot_label_color": "#ffffff",
@@ -2550,6 +2589,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "three_column_media_QrB4NN",
     "skincare_bundle_TqdqX4",
     "skin_by_concern_CT8TWF",
     "routine_tabs_section_VB3cNg",

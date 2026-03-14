@@ -120,12 +120,25 @@
             "image_url": "",
             "video_url": ""
           }
+        },
+        "media_block_Gqj9p4": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 1",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "background_image": "shopify://shop_images/1f3e47a0ece8474dad4a76f020802069_eb5541f2-65a4-4151-8320-6c9da2938009.jpg",
+            "image_url": "",
+            "video_url": ""
+          }
         }
       },
       "block_order": [
         "media_block_kEqAHq",
         "media_block_xG3QLL",
-        "media_block_4nBXC4"
+        "media_block_4nBXC4",
+        "media_block_Gqj9p4"
       ],
       "name": "Dot Line Section",
       "settings": {

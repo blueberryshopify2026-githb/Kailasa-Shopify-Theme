@@ -150,9 +150,11 @@
         },
         "step_M4kVGT": {
           "type": "step",
+          "name": "Step 5",
           "settings": {
             "tab_id": "am",
             "step_label": "Cleanser",
+            "product_image": "shopify://shop_images/download_32.png",
             "product_name": "Product Name",
             "product_link": "",
             "video_url": "",

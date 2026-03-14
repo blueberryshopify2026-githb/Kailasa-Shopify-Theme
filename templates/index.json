@@ -407,79 +407,6 @@
         "auto_advance_delay": 5000
       }
     },
-    "ingredients_scroll_4a7QpW": {
-      "type": "ingredients-scroll",
-      "blocks": {
-        "ingredient_D47JLN": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/pexels-eva-bronzini-6104096.jpg",
-            "name": "Vitamin B12",
-            "subtitle": "Methylcobalamin",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        },
-        "ingredient_EEiG3K": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/Le_Fluide_14_Substantific.jpg",
-            "name": "Vitamin B12",
-            "subtitle": "Methylcobalamin",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        },
-        "ingredient_88TVQm": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/Omorovicza_Queen_Essence_3_4_oz.jpg",
-            "name": "Collagen",
-            "subtitle": "Type I & III",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        },
-        "ingredient_MDnLyr": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/pexels-mhajrinvincible-19483328.jpg",
-            "name": "Vitamin C",
-            "subtitle": "Ascorbic Acid",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        },
-        "ingredient_jQ4bxA": {
-          "type": "ingredient",
-          "settings": {
-            "image": "shopify://shop_images/Federico_Berardi___Oeuvre_n-2381.jpg",
-            "name": "Vitamin B12",
-            "subtitle": "Methylcobalamin",
-            "full_description": "<p>Vitamin B12 plays an indirect role in collagen formation by supporting overall cellular metabolism and protein synthesis, which are necessary for collagen production.</p><p>This essential vitamin supports energy metabolism and helps maintain healthy nerve function.</p>",
-            "studies_count": 967
-          }
-        }
-      },
-      "block_order": [
-        "ingredient_D47JLN",
-        "ingredient_EEiG3K",
-        "ingredient_88TVQm",
-        "ingredient_MDnLyr",
-        "ingredient_jQ4bxA"
-      ],
-      "name": "Ingredients Scroll",
-      "settings": {
-        "title": "The inner workings of strength & recovery",
-        "title_font": "Gilroy",
-        "title_size": 44,
-        "title_weight": "800",
-        "description": "Crafted to perfection through rigorous clinical research, rooted in nature and backed by science.",
-        "description_font": "Gilroy",
-        "description_size": 16,
-        "description_weight": "400"
-      }
-    },
     "comparison_table_8gLMQK": {
       "type": "comparison-table",
       "blocks": {
@@ -1933,7 +1860,6 @@
     "how_to_use_V6n3pg",
     "dynamic_tiles_TEDzHG",
     "dot_line_section_RKh47P",
-    "ingredients_scroll_4a7QpW",
     "comparison_table_8gLMQK",
     "tab_section_M8Yd6W",
     "tab_section_3XKQ6Q",

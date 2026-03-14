@@ -115,7 +115,7 @@
           "type": "product",
           "settings": {
             "concern": "dullness",
-            "product": "",
+            "product": "bg-product",
             "custom_subtitle": "",
             "custom_rating": "4.5",
             "custom_reviews": "1,234",
@@ -128,7 +128,7 @@
           "type": "product",
           "settings": {
             "concern": "dullness",
-            "product": "",
+            "product": "kailasa-shilajit-gummies",
             "custom_subtitle": "",
             "custom_rating": "4.5",
             "custom_reviews": "1,234",

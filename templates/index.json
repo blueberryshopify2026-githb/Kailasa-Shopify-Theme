@@ -149,12 +149,13 @@
         },
         "variant_hQgV4J": {
           "type": "variant",
+          "name": "Buy one time",
           "settings": {
             "variant_name": "Buy one time",
             "variant_detail_1": "Free SCI Travel Packs",
-            "variant_detail_2": "Easily edit, skip or cancel anytime",
-            "variant_detail_3": "0-Day Money Back Guarantee",
-            "variant_detail_4": "Delivered every 30 days",
+            "variant_detail_2": "",
+            "variant_detail_3": "",
+            "variant_detail_4": "",
             "variant_price": "$99 USD"
           }
         },

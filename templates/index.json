@@ -82,6 +82,159 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "skincare_bundle_TqdqX4": {
+      "type": "skincare-bundle",
+      "blocks": {
+        "product_hotspot_YaFUEY": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "hotspot_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "product": "",
+            "product_title": "Skin Detox Capsules",
+            "product_description": "Detoxifies & revitalizes from within",
+            "custom_price": "",
+            "product_link": "",
+            "hotspot_x": 15,
+            "hotspot_y": 20,
+            "panel_position": "bottom"
+          }
+        },
+        "product_hotspot_973g8i": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "hotspot_image": "shopify://shop_images/6b0cd7165734f6f66ef67d60db2e9e90-removebg-preview.png",
+            "product": "",
+            "product_title": "Hydrating Eye Cream",
+            "product_description": "Firms & hydrates delicate eye area",
+            "custom_price": "",
+            "product_link": "",
+            "hotspot_x": 35,
+            "hotspot_y": 15,
+            "panel_position": "bottom"
+          }
+        },
+        "product_hotspot_XbQgzT": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Radiance Drops",
+            "product_description": "Brightens & evens out skin tone",
+            "custom_price": "",
+            "product_link": "",
+            "hotspot_x": 55,
+            "hotspot_y": 18,
+            "panel_position": "bottom"
+          }
+        },
+        "product_hotspot_eYRCAb": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Brightening Mist",
+            "product_description": "Refreshes & boosts radiance",
+            "custom_price": "",
+            "product_link": "",
+            "hotspot_x": 75,
+            "hotspot_y": 22,
+            "panel_position": "bottom"
+          }
+        },
+        "product_hotspot_AaB7Ma": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Eye Renewal Cream",
+            "product_description": "Reduces puffiness & dark circles",
+            "custom_price": "",
+            "product_link": "",
+            "hotspot_x": 25,
+            "hotspot_y": 45,
+            "panel_position": "top"
+          }
+        },
+        "product_hotspot_xR33qw": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Hydrating Serum",
+            "product_description": "Boosts moisture & strengthens skin barrier",
+            "custom_price": "",
+            "product_link": "",
+            "hotspot_x": 45,
+            "hotspot_y": 40,
+            "panel_position": "top"
+          }
+        },
+        "product_hotspot_kqDVFx": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Daily Cleanser",
+            "product_description": "Gently purifies & revitalizes",
+            "custom_price": "",
+            "product_link": "",
+            "hotspot_x": 65,
+            "hotspot_y": 42,
+            "panel_position": "top"
+          }
+        },
+        "product_hotspot_zReXz8": {
+          "type": "product_hotspot",
+          "settings": {
+            "show_hotspot": true,
+            "product": "",
+            "product_title": "Firming Moisturizer",
+            "product_description": "Lifts & firms for youthful glow",
+            "custom_price": "",
+            "product_link": "",
+            "hotspot_x": 85,
+            "hotspot_y": 38,
+            "panel_position": "left"
+          }
+        }
+      },
+      "block_order": [
+        "product_hotspot_YaFUEY",
+        "product_hotspot_973g8i",
+        "product_hotspot_XbQgzT",
+        "product_hotspot_eYRCAb",
+        "product_hotspot_AaB7Ma",
+        "product_hotspot_xR33qw",
+        "product_hotspot_kqDVFx",
+        "product_hotspot_zReXz8"
+      ],
+      "name": "Skincare Bundle",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "bundle_title": "The Ultimate Skincare Bundle",
+        "bundle_description": "Everything your skin needs, perfectly layered for healthy, radiant results.",
+        "content_alignment": "left",
+        "content_vertical_alignment": "center",
+        "title_font_size": 42,
+        "title_color": "#1a1a1a",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "cta_text": "Explore the full routine →",
+        "cta_link": "",
+        "cta_bg_color": "#1a1a1a",
+        "cta_hover_color": "#333333",
+        "cta_text_color": "#ffffff",
+        "cta_border_radius": 50,
+        "cta_font_size": 16,
+        "bundle_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png",
+        "products_background": "#f8f9fa",
+        "hotspot_color": "#4FFFFF"
+      }
+    },
     "skin_by_concern_CT8TWF": {
       "type": "skin-by-concern",
       "blocks": {
@@ -2397,6 +2550,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "skincare_bundle_TqdqX4",
     "skin_by_concern_CT8TWF",
     "routine_tabs_section_VB3cNg",
     "professional_panel_PzXJEh",

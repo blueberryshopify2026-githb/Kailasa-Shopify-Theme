@@ -82,6 +82,62 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "how_to_use_V6n3pg": {
+      "type": "how-to-use",
+      "blocks": {
+        "step_XFJppc": {
+          "type": "step",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Cleanser",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "",
+            "image_position_x": -50,
+            "image_position_y": -250,
+            "name_position_x": 250,
+            "name_position_y": -100
+          }
+        },
+        "step_XAJT4C": {
+          "type": "step",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Toner",
+            "product_name": "Hydrating Tonic",
+            "product_link": "",
+            "video_url": "",
+            "image_position_x": -50,
+            "image_position_y": -250,
+            "name_position_x": 250,
+            "name_position_y": -100
+          }
+        },
+        "step_MFBcJN": {
+          "type": "step",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Moisturiser",
+            "product_name": "PM Moisturiser",
+            "product_link": "",
+            "video_url": "",
+            "image_position_x": -50,
+            "image_position_y": -250,
+            "name_position_x": 250,
+            "name_position_y": -100
+          }
+        }
+      },
+      "block_order": [
+        "step_XFJppc",
+        "step_XAJT4C",
+        "step_MFBcJN"
+      ],
+      "name": "How To Use",
+      "settings": {
+        "accent_color": "#4FFFFF"
+      }
+    },
     "dynamic_tiles_TEDzHG": {
       "type": "dynamic-tiles",
       "blocks": {
@@ -1728,6 +1784,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "how_to_use_V6n3pg",
     "dynamic_tiles_TEDzHG",
     "dot_line_section_RKh47P",
     "ingredients_scroll_4a7QpW",

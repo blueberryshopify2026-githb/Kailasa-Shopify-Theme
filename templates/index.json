@@ -97,14 +97,18 @@
         "slide_item_hJq3tF": {
           "type": "slide_item",
           "settings": {
+            "left_image": "shopify://shop_images/Ectoin_and_niacinamide_work_together_to_strengthen_the_skin_barrier_ectoin_locks_in_moisture_while_niacinamide_enhances_ceramide_and_elastin_production_for_healthier_skin.jpg",
             "left_fit": "cover",
+            "right_image": "shopify://shop_images/PDRN_Salmon_DNA_Therapy_in_Dubai.jpg",
             "right_fit": "cover"
           }
         },
         "slide_item_p4XrEH": {
           "type": "slide_item",
           "settings": {
+            "left_image": "shopify://shop_images/6b0cd7165734f6f66ef67d60db2e9e90-removebg-preview.png",
             "left_fit": "cover",
+            "right_image": "shopify://shop_images/Biossance_Award_Winning_Squalene_for_Skin___Biossance.jpg",
             "right_fit": "cover"
           }
         }

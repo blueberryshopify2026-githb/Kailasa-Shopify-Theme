@@ -87,6 +87,7 @@
       "blocks": {
         "media_block_kEqAHq": {
           "type": "media_block",
+          "name": "Media Block 1",
           "settings": {
             "dot_label": "Chapter 1",
             "content_title": "Science-backed probiotics",
@@ -99,6 +100,7 @@
         },
         "media_block_xG3QLL": {
           "type": "media_block",
+          "name": "Media Block 2",
           "settings": {
             "dot_label": "Chapter 2",
             "content_title": "Science-backed probiotics",
@@ -111,6 +113,7 @@
         },
         "media_block_4nBXC4": {
           "type": "media_block",
+          "name": "Media Block 3",
           "settings": {
             "dot_label": "Chapter 3",
             "content_title": "Science-backed probiotics",
@@ -123,8 +126,9 @@
         },
         "media_block_Gqj9p4": {
           "type": "media_block",
+          "name": "Media Block 4",
           "settings": {
-            "dot_label": "Chapter 1",
+            "dot_label": "Chapter 4",
             "content_title": "Science-backed probiotics",
             "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
             "media_type": "image",

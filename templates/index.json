@@ -82,6 +82,75 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "dual_container_slider_PhqNRE": {
+      "type": "dual-container-slider",
+      "blocks": {
+        "slide_item_GmCMHw": {
+          "type": "slide_item",
+          "settings": {
+            "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "left_fit": "cover",
+            "right_image": "shopify://shop_images/1f3e47a0ece8474dad4a76f020802069_eb5541f2-65a4-4151-8320-6c9da2938009.jpg",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_hJq3tF": {
+          "type": "slide_item",
+          "settings": {
+            "left_fit": "cover",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_p4XrEH": {
+          "type": "slide_item",
+          "settings": {
+            "left_fit": "cover",
+            "right_fit": "cover"
+          }
+        }
+      },
+      "block_order": [
+        "slide_item_GmCMHw",
+        "slide_item_hJq3tF",
+        "slide_item_p4XrEH"
+      ],
+      "name": "Dual Container Slider",
+      "settings": {
+        "bg_color": "#000000",
+        "section_height": 600,
+        "section_padding": 40,
+        "slide_height": 400,
+        "white_text": "BUILD ON BIOLOGY.",
+        "cyan_text": "GUIDED BY SCIENCE",
+        "white_color": "#ffffff",
+        "cyan_color": "#00ffff",
+        "title_size": 48,
+        "title_weight": "700",
+        "heading_padding": 30,
+        "left_bg": "#f8f8f8",
+        "right_bg": "#f8f8f8",
+        "border_radius": 20,
+        "gap": 20,
+        "side_padding": 10,
+        "placeholder_color": "#666666",
+        "placeholder_size": 14,
+        "dot_active": "#00ffff",
+        "dot_inactive": "#666666",
+        "dot_size": 12,
+        "dot_gap": 10,
+        "indicators_padding": 20,
+        "auto_slide": true,
+        "auto_duration": 5000,
+        "mobile_section_height": 500,
+        "mobile_section_padding": 30,
+        "mobile_slide_height": 350,
+        "mobile_title_size": 28,
+        "mobile_gap": 15,
+        "mobile_box_height": 150,
+        "mobile_heading_padding": 20,
+        "mobile_side_padding": 15
+      }
+    },
     "doctors_endorsement_LtGzx4": {
       "type": "doctors-endorsement",
       "blocks": {
@@ -2900,6 +2969,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "dual_container_slider_PhqNRE",
     "doctors_endorsement_LtGzx4",
     "biotechnology_intro_bKwUjK",
     "ugc_image_carousel_RPcVQm",

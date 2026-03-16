@@ -1535,7 +1535,7 @@
             "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
             "image_position_x": -50,
             "image_position_y": -380,
-            "name_position_x": -40,
+            "name_position_x": 150,
             "name_position_y": -170
           }
         },

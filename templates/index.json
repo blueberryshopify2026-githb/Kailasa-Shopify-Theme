@@ -1539,77 +1539,77 @@
             "name_position_y": -170
           }
         },
-        "step_XAJT4C": {
+        "step_YbfLgH": {
           "type": "step",
           "name": "Step 2",
           "settings": {
             "tab_id": "am",
             "step_label": "Toner",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
-            "product_name": "Hydrating Tonic",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_name": "BHA & Tea Tree",
             "product_link": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/605b9d48312e4dc4b10d6695b2817b85.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
             "image_position_x": -50,
-            "image_position_y": -250,
-            "name_position_x": 250,
-            "name_position_y": -100
+            "image_position_y": -380,
+            "name_position_x": 150,
+            "name_position_y": -170
           }
         },
-        "step_MFBcJN": {
+        "step_cXEQBd": {
           "type": "step",
           "name": "Step 3",
           "settings": {
             "tab_id": "am",
-            "step_label": "Moisturiser",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
-            "product_name": "PM Moisturiser",
+            "step_label": "Moisturizer",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
+            "product_name": "BHA & Tea Tree",
             "product_link": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/12ae8aa90d6c432c8967c5b6550c99a3.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
             "image_position_x": -50,
-            "image_position_y": -250,
-            "name_position_x": 250,
-            "name_position_y": -100
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
           }
         },
-        "step_wGQYwQ": {
+        "step_jRjT39": {
           "type": "step",
           "name": "Step 4",
           "settings": {
             "tab_id": "am",
-            "step_label": "Cleanser",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
-            "product_name": "Product Name",
-            "product_link": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4",
-            "video_url": "",
+            "step_label": "LED Mask",
+            "product_image": "shopify://shop_images/download_32.png",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
             "image_position_x": -50,
-            "image_position_y": -250,
-            "name_position_x": 250,
-            "name_position_y": -100
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
           }
         },
-        "step_M4kVGT": {
+        "step_XPRTYm": {
           "type": "step",
           "name": "Step 5",
           "settings": {
             "tab_id": "am",
-            "step_label": "Cleanser",
-            "product_image": "shopify://shop_images/download_32.png",
-            "product_name": "Product Name",
+            "step_label": "Serum",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_name": "BHA & Tea Tree",
             "product_link": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/6a6ae8fbddd8420c90d1dd372c6a461d.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
             "image_position_x": -50,
-            "image_position_y": -250,
-            "name_position_x": 250,
-            "name_position_y": -100
+            "image_position_y": -380,
+            "name_position_x": 150,
+            "name_position_y": -170
           }
         }
       },
       "block_order": [
         "step_XFJppc",
-        "step_XAJT4C",
-        "step_MFBcJN",
-        "step_wGQYwQ",
-        "step_M4kVGT"
+        "step_YbfLgH",
+        "step_cXEQBd",
+        "step_jRjT39",
+        "step_XPRTYm"
       ],
       "name": "How To Use",
       "settings": {

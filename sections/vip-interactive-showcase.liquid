@@ -1,0 +1,808 @@
+{% comment %} Using system fonts for better performance {% endcomment %}
+
+<style>
+  
+  .vip-showcase {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: white;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .vip-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+  }
+
+  .vip-left {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .vip-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .vip-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px 40px 20px 40px;
+    height: 100vh;
+    position: relative;
+  }
+
+  .vip-icons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+    z-index: 10;
+  }
+
+  .vip-icon-block {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    overflow: hidden;
+  }
+
+  .vip-icon-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .vip-icon-block.active {
+    border-color: #4fffff;
+    box-shadow: 0 0 20px rgba(79, 255, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .vip-icon-block img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    transition: all 0.1s ease;
+  }
+
+  .vip-content-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(79, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 15px 30px rgba(79, 255, 255, 0.06), 0 0 15px rgba(79, 255, 255, 0.04), 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    flex-shrink: 0;
+    transform: translateY(-5px);
+  }
+
+  .vip-content-container.active {
+    box-shadow: 0 20px 40px rgba(79, 255, 255, 0.08), 0 0 20px rgba(79, 255, 255, 0.06), 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: rgba(79, 255, 255, 0.25);
+    transform: translateY(-8px);
+  }
+
+  .vip-product-image {
+    width: 100%;
+    max-width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin: 15px auto 0;
+    display: block;
+    transition: all 0.1s ease;
+  }
+
+  .vip-product-name {
+    font-size: {{ section.settings.product_name_size | default: 24 }}px;
+    font-weight: 700;
+    color: {{ section.settings.product_name_color | default: '#333' }};
+    margin-bottom: 8px;
+    transition: all 0.6s ease;
+  }
+
+  .vip-product-subtitle {
+    font-size: {{ section.settings.product_subtitle_size | default: 16 }}px;
+    color: {{ section.settings.product_subtitle_color | default: '#666' }};
+    font-style: normal;
+    margin-bottom: 15px;
+    transition: all 0.6s ease;
+  }
+
+  .vip-bottom-content {
+    text-align: left;
+    margin-top: 20px;
+    padding: 0 20px 20px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .vip-main-heading {
+    font-size: {{ section.settings.main_heading_size | default: 32 }}px;
+    font-weight: 700;
+    color: {{ section.settings.main_heading_color | default: '#333' }};
+    margin-bottom: 15px;
+    transition: all 0.6s ease;
+  }
+
+  .vip-main-subheading {
+    font-size: {{ section.settings.main_subheading_size | default: 18 }}px;
+    color: {{ section.settings.main_subheading_color | default: '#666' }};
+    font-style: italic;
+    line-height: 1.6;
+    transition: all 0.6s ease;
+  }
+
+  @media (max-width: 768px) {
+    .vip-showcase {
+      height: 100vh;
+    }
+
+    .vip-container {
+      grid-template-columns: 1fr;
+      height: 100vh;
+    }
+
+    .vip-left {
+      height: 50vh;
+    }
+
+    .vip-right {
+      padding: 20px;
+      height: 50vh;
+      justify-content: flex-start;
+    }
+
+    .vip-icons-container {
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: nowrap;
+    }
+
+    .vip-icon-block {
+      width: 65px;
+      height: 65px;
+    }
+
+    .vip-icon-block img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .vip-content-container {
+      padding: 15px;
+      max-width: 100%;
+    }
+
+    .vip-bottom-content {
+      padding: 0 15px 15px 15px;
+      margin-top: 15px;
+    }
+
+    .vip-product-image {
+      max-width: 120px;
+      height: 120px;
+    }
+
+    .vip-product-name {
+      font-size: 20px;
+    }
+
+    .vip-product-subtitle {
+      font-size: 14px;
+    }
+
+    .vip-main-heading {
+      font-size: 26px;
+    }
+
+    .vip-main-subheading {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<section class="vip-showcase full-width">
+  <div class="vip-container">
+    <div class="vip-left">
+      {% if section.settings.main_image_1 %}
+        <img
+          id="vip-main-image"
+          src="{{ section.settings.main_image_1 | image_url: width: 1200 }}"
+          alt="{{ section.settings.main_image_1.alt | default: 'VIP Showcase' }}"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+      {% elsif section.settings.default_main_image %}
+        <img
+          id="vip-main-image"
+          src="{{ section.settings.default_main_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.default_main_image.alt | default: 'VIP Showcase' }}"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+      {% else %}
+        <img
+          id="vip-main-image"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' fill='%23999'%3EUpload Lifestyle Image%3C/text%3E%3C/svg%3E"
+          alt="Upload Lifestyle Image"
+          width="1200"
+          height="800"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+
+    <div class="vip-right">
+      <div class="vip-icons-container">
+        {% for block in section.blocks %}
+          <div class="vip-icon-block{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
+            {% if block.settings.icon_image %}
+              <img
+                src="{{ block.settings.icon_image | image_url: width: 90 }}"
+                alt="{{ block.settings.icon_image.alt | default: 'Icon' }}"
+                width="45"
+                height="45"
+                loading="lazy"
+              >
+            {% else %}
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='45' height='45' viewBox='0 0 45 45'%3E%3Crect width='45' height='45' fill='%23e5e5e5'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='16' fill='%23999'%3E{{ forloop.index }}%3C/text%3E%3C/svg%3E"
+                alt="Icon {{ forloop.index }}"
+                width="45"
+                height="45"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="vip-content-container active" id="vip-content">
+        {% assign first_block = section.blocks.first %}
+
+        <h3 id="vip-product-name" class="vip-product-name">
+          {{ first_block.settings.product_name | default: 'PEPTIDE GLAZING SERUM' }}
+        </h3>
+        <p id="vip-product-subtitle" class="vip-product-subtitle">
+          {{ first_block.settings.product_subtitle | default: 'The Dewy Hydration Layer' }}
+        </p>
+
+        {% if first_block.settings.product_image %}
+          <img
+            id="vip-product-image"
+            class="vip-product-image"
+            src="{{ first_block.settings.product_image | image_url: width: 500 }}"
+            alt="{{ first_block.settings.product_image.alt | default: 'Product' }}"
+            width="250"
+            height="250"
+            loading="lazy"
+          >
+        {% else %}
+          <img
+            id="vip-product-image"
+            class="vip-product-image"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Crect width='250' height='250' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='16' fill='%23999'%3EProduct Image%3C/text%3E%3C/svg%3E"
+            alt="Product"
+            width="250"
+            height="250"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+
+      <div class="vip-bottom-content">
+        <h2 id="vip-main-heading" class="vip-main-heading">
+          {{ section.settings.main_heading_1 | default: 'A NEW PHILOSOPHY ON SKINCARE' }}
+        </h2>
+        <p id="vip-main-subheading" class="vip-main-subheading">
+          {{
+            section.settings.main_subheading_1
+            | default: 'Rhode is a line of curated skincare essentials. Formulated for a variety of skin types and needs with high performance ingredients, it is a daily routine that nourishes your skin barrier over time.'
+          }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const iconBlocks = document.querySelectorAll('.vip-icon-block');
+    const container = document.getElementById('vip-content');
+    const productImage = document.getElementById('vip-product-image');
+    const productName = document.getElementById('vip-product-name');
+    const productSubtitle = document.getElementById('vip-product-subtitle');
+    const mainHeading = document.getElementById('vip-main-heading');
+    const mainSubheading = document.getElementById('vip-main-subheading');
+    const mainImage = document.getElementById('vip-main-image');
+
+    // Auto-timer settings from schema
+    const autoTimerEnabled = {{ section.settings.auto_timer_enabled | default: true }};
+    const autoTimerInterval = {{ section.settings.auto_timer_interval | default: 5 }} * 1000; // Convert to milliseconds
+    const pauseOnHover = {{ section.settings.pause_on_hover | default: true }};
+    const restartDelay = {{ section.settings.restart_delay | default: 10 }} * 1000; // Convert to milliseconds
+
+    const contentData = [
+      {% for block in section.blocks %}
+        {
+          productImage: '{{ block.settings.product_image | image_url: width: 500 }}' || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Crect width='250' height='250' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='16' fill='%23999'%3EProduct {{ forloop.index }}%3C/text%3E%3C/svg%3E",
+          productName: '{{ block.settings.product_name | escape }}' || 'Product {{ forloop.index }}',
+          productSubtitle: '{{ block.settings.product_subtitle | escape }}' || 'Product Subtitle {{ forloop.index }}',
+          {% case forloop.index %}
+            {% when 1 %}
+              mainHeading: '{{ section.settings.main_heading_1 | escape }}' || 'Main Heading 1',
+              mainSubheading: '{{ section.settings.main_subheading_1 | escape }}' || 'Main subheading for product 1.',
+              mainImage: '{{ section.settings.main_image_1 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+            {% when 2 %}
+              mainHeading: '{{ section.settings.main_heading_2 | escape }}' || 'Main Heading 2',
+              mainSubheading: '{{ section.settings.main_subheading_2 | escape }}' || 'Main subheading for product 2.',
+              mainImage: '{{ section.settings.main_image_2 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+            {% when 3 %}
+              mainHeading: '{{ section.settings.main_heading_3 | escape }}' || 'Main Heading 3',
+              mainSubheading: '{{ section.settings.main_subheading_3 | escape }}' || 'Main subheading for product 3.',
+              mainImage: '{{ section.settings.main_image_3 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+            {% when 4 %}
+              mainHeading: '{{ section.settings.main_heading_4 | escape }}' || 'Main Heading 4',
+              mainSubheading: '{{ section.settings.main_subheading_4 | escape }}' || 'Main subheading for product 4.',
+              mainImage: '{{ section.settings.main_image_4 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+            {% when 5 %}
+              mainHeading: '{{ section.settings.main_heading_5 | escape }}' || 'Main Heading 5',
+              mainSubheading: '{{ section.settings.main_subheading_5 | escape }}' || 'Main subheading for product 5.',
+              mainImage: '{{ section.settings.main_image_5 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+            {% else %}
+              mainHeading: 'Main Heading {{ forloop.index }}',
+              mainSubheading: 'Main subheading for product {{ forloop.index }}.',
+              mainImage: '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+          {% endcase %}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ];
+
+    let currentIndex = 0;
+    let autoTimer = null;
+    let isUserInteracting = false;
+    let restartTimeout = null;
+
+    // Function to update content
+    function updateContent(index) {
+      if (index >= contentData.length) return;
+      
+      // Remove active class from all blocks
+      iconBlocks.forEach((b) => b.classList.remove('active'));
+
+      // Add active class to current block
+      if (iconBlocks[index]) {
+        iconBlocks[index].classList.add('active');
+      }
+
+      // Ensure container has active class
+      container.classList.add('active');
+
+      // Update content with smooth transition
+      const data = contentData[index];
+      if (!data) return;
+
+      // Fade out
+      productImage.style.opacity = '0';
+      productName.style.opacity = '0';
+      productSubtitle.style.opacity = '0';
+      mainHeading.style.opacity = '0';
+      mainSubheading.style.opacity = '0';
+      mainImage.style.opacity = '0';
+
+      setTimeout(() => {
+        // Update content
+        if (data.productImage && !data.productImage.includes('data:image/svg+xml')) {
+          productImage.src = data.productImage;
+        }
+        productName.textContent = data.productName;
+        productSubtitle.textContent = data.productSubtitle;
+        mainHeading.textContent = data.mainHeading;
+        mainSubheading.textContent = data.mainSubheading;
+        if (data.mainImage && !data.mainImage.includes('data:image/svg+xml')) {
+          mainImage.src = data.mainImage;
+        }
+
+        // Fade in
+        productImage.style.opacity = '1';
+        productName.style.opacity = '1';
+        productSubtitle.style.opacity = '1';
+        mainHeading.style.opacity = '1';
+        mainSubheading.style.opacity = '1';
+        mainImage.style.opacity = '1';
+      }, 300);
+    }
+
+    // Auto-timer function with proper cleanup
+    function startAutoTimer() {
+      if (!autoTimerEnabled || contentData.length <= 1) return;
+      
+      stopAutoTimer(); // Clear any existing timer
+      
+      autoTimer = setInterval(() => {
+        if (!isUserInteracting) {
+          currentIndex = (currentIndex + 1) % contentData.length;
+          updateContent(currentIndex);
+        }
+      }, autoTimerInterval);
+    }
+
+    // Stop auto-timer function
+    function stopAutoTimer() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+      if (restartTimeout) {
+        clearTimeout(restartTimeout);
+        restartTimeout = null;
+      }
+    }
+
+    // Restart timer after user interaction
+    function scheduleRestart() {
+      if (restartTimeout) {
+        clearTimeout(restartTimeout);
+      }
+      restartTimeout = setTimeout(() => {
+        isUserInteracting = false;
+        startAutoTimer();
+      }, restartDelay);
+    }
+
+    // Manual click handlers
+    iconBlocks.forEach((block, index) => {
+      block.addEventListener('click', function () {
+        // Stop auto-timer when user clicks
+        isUserInteracting = true;
+        stopAutoTimer();
+
+        // Update current index
+        currentIndex = index;
+
+        // Update content
+        updateContent(index);
+
+        // Schedule restart
+        scheduleRestart();
+      });
+    });
+
+    // Pause on hover functionality
+    if (pauseOnHover) {
+      const showcase = document.querySelector('.vip-showcase');
+      if (showcase) {
+        showcase.addEventListener('mouseenter', () => {
+          isUserInteracting = true;
+        });
+        
+        showcase.addEventListener('mouseleave', () => {
+          isUserInteracting = false;
+        });
+      }
+    }
+
+    // Initialize
+    if (contentData.length > 0) {
+      updateContent(0);
+      if (autoTimerEnabled) {
+        startAutoTimer();
+      }
+    }
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', stopAutoTimer);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "VIP Interactive Showcase",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Default Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_main_image",
+      "label": "Default Main Image (Left Side)"
+    },
+    {
+      "type": "header",
+      "content": "Auto-Timer Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_timer_enabled",
+      "label": "Enable Auto-Timer",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_timer_interval",
+      "label": "Auto-Timer Interval (seconds)",
+      "min": 2,
+      "max": 15,
+      "step": 1,
+      "default": 5,
+      "unit": "s"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause Timer on Hover",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "restart_delay",
+      "label": "Restart Delay After Click (seconds)",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 10,
+      "unit": "s"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "product_name_size",
+      "label": "Product Name Font Size",
+      "min": 16,
+      "max": 36,
+      "step": 2,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "product_name_color",
+      "label": "Product Name Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "product_subtitle_size",
+      "label": "Product Subtitle Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "product_subtitle_color",
+      "label": "Product Subtitle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "main_heading_size",
+      "label": "Main Heading Font Size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "main_heading_color",
+      "label": "Main Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "main_subheading_size",
+      "label": "Main Subheading Font Size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "main_subheading_color",
+      "label": "Main Subheading Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Content for Icon 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_1",
+      "label": "Main Image for Icon 1"
+    },
+    {
+      "type": "text",
+      "id": "main_heading_1",
+      "label": "Main Heading for Icon 1",
+      "default": "A NEW PHILOSOPHY ON SKINCARE"
+    },
+    {
+      "type": "textarea",
+      "id": "main_subheading_1",
+      "label": "Main Subheading for Icon 1",
+      "default": "Rhode is a line of curated skincare essentials. Formulated for a variety of skin types and needs with high performance ingredients, it is a daily routine that nourishes your skin barrier over time."
+    },
+    {
+      "type": "header",
+      "content": "Content for Icon 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_2",
+      "label": "Main Image for Icon 2"
+    },
+    {
+      "type": "text",
+      "id": "main_heading_2",
+      "label": "Main Heading for Icon 2",
+      "default": "PREMIUM SKINCARE COLLECTION"
+    },
+    {
+      "type": "textarea",
+      "id": "main_subheading_2",
+      "label": "Main Subheading for Icon 2",
+      "default": "Experience the luxury of premium skincare with our carefully curated collection designed for modern skin needs."
+    },
+    {
+      "type": "header",
+      "content": "Content for Icon 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_3",
+      "label": "Main Image for Icon 3"
+    },
+    {
+      "type": "text",
+      "id": "main_heading_3",
+      "label": "Main Heading for Icon 3",
+      "default": "ADVANCED BEAUTY SOLUTIONS"
+    },
+    {
+      "type": "textarea",
+      "id": "main_subheading_3",
+      "label": "Main Subheading for Icon 3",
+      "default": "Discover advanced beauty solutions that transform your daily routine into a luxurious self-care experience."
+    },
+    {
+      "type": "header",
+      "content": "Content for Icon 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_4",
+      "label": "Main Image for Icon 4"
+    },
+    {
+      "type": "text",
+      "id": "main_heading_4",
+      "label": "Main Heading for Icon 4",
+      "default": "INNOVATIVE SKINCARE TECHNOLOGY"
+    },
+    {
+      "type": "textarea",
+      "id": "main_subheading_4",
+      "label": "Main Subheading for Icon 4",
+      "default": "Harness the power of innovative skincare technology for visible results and long-lasting skin health."
+    },
+    {
+      "type": "header",
+      "content": "Content for Icon 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_5",
+      "label": "Main Image for Icon 5"
+    },
+    {
+      "type": "text",
+      "id": "main_heading_5",
+      "label": "Main Heading for Icon 5",
+      "default": "LUXURY BEAUTY ESSENTIALS"
+    },
+    {
+      "type": "textarea",
+      "id": "main_subheading_5",
+      "label": "Main Subheading for Icon 5",
+      "default": "Indulge in luxury beauty essentials that deliver exceptional results while pampering your skin."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_block",
+      "name": "Icon Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "PEPTIDE GLAZING SERUM"
+        },
+        {
+          "type": "text",
+          "id": "product_subtitle",
+          "label": "Product Subtitle",
+          "default": "The Dewy Hydration Layer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "VIP Interactive Showcase",
+      "blocks": [
+        {
+          "type": "icon_block"
+        },
+        {
+          "type": "icon_block"
+        },
+        {
+          "type": "icon_block"
+        },
+        {
+          "type": "icon_block"
+        },
+        {
+          "type": "icon_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

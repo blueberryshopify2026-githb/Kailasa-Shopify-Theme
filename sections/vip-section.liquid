@@ -9,7 +9,7 @@
   display: flex;
 }
 
-.vip-container {
+.vip-container-md {
   max-width: none;
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@
   height: 100vh;
 }
 
-.vip-content {
+.vip-content-md {
   display: flex;
   align-items: stretch;
   gap: 0;
@@ -150,11 +150,11 @@
     min-height: auto;
   }
   
-  .vip-container {
+  .vip-container-md {
     height: auto;
   }
   
-  .vip-content {
+  .vip-content-md {
     flex-direction: column;
     height: auto;
   }
@@ -187,7 +187,7 @@
 }
 
 @media (max-width: 480px) {
-  .vip-container {
+  .vip-container-md {
     padding: 0 15px;
   }
   
@@ -203,8 +203,8 @@
 </style>
 
 <div class="vip-section full-width">
-  <div class="vip-container">
-    <div class="vip-content">
+  <div class="vip-container-md">
+    <div class="vip-content-md">
       <div class="vip-text-content">
         <h2 class="vip-title-m" style="font-size: {{ section.settings.title_font_size }}px; font-weight: {{ section.settings.title_font_weight }};">
           {{ section.settings.title }}

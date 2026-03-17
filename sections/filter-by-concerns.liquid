@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     background: #fff;
-    border-right: 1px solid #e5e5e5;
+    {% comment %} border-right: 1px solid #e5e5e5; {% endcomment %}
   }
 
   .filter-concerns__nav {
@@ -50,20 +50,22 @@
     left: 48px;
     width: 77px;
     height: 3px;
-    background: #00CED1;
+    background: #4fffff;
   }
 
   .filter-concerns__content {
     flex: 1;
     overflow-y: auto;
-    background: #f5f5f5;
-    padding: {{ section.settings.image_gap }}px;
+    background: #fff;
+    padding: 10px;
+    {% comment %} padding: {{ section.settings.image_gap }}px; {% endcomment %}
   }
 
   .filter-concerns__group {
     display: flex;
     flex-direction: column;
     gap: {{ section.settings.image_gap }}px;
+    margin-top: 20px;
   }
 
   .filter-concerns__image-wrapper {
@@ -72,6 +74,7 @@
     height: {{ section.settings.image_height }}px;
     border-radius: 8px;
     overflow: hidden;
+    {% comment %} border: 2px solid #4fffff; {% endcomment %}
   }
 
   .filter-concerns__image {
@@ -86,19 +89,118 @@
     right: 40px;
     background: #fff;
     color: #000;
-    padding: 12px 32px;
+    padding: 12px 80px;
     border-radius: 50px;
     font-size: 16px;
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    border: none;
+    border: 2px solid #4fffff;
     transition: all 0.3s ease;
     font-family: 'Montserrat', sans-serif;
   }
 
   .filter-concerns__button:hover {
     background: #f0f0f0;
+  }
+
+  /* Popup */
+  .fc-popup-overlay {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 10;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, background 0.35s ease, visibility 0.35s;
+  }
+  .fc-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    background: rgba(0, 0, 0, 0.6);
+    pointer-events: auto;
+  }
+  .fc-popup {
+    background: #fff;
+    border: 2px solid #4fffff;
+    border-radius: 16px;
+    padding: 60px 32px 28px;
+    width: 90%;
+    max-width: 550px;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    transform: scale(0.9);
+    transition: transform 0.35s ease;
+  }
+  .fc-popup-overlay.active .fc-popup {
+    transform: scale(1);
+  }
+  .fc-popup__close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+    {% comment %} line-height: 1; {% endcomment %}
+  }
+  .fc-popup__stats {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 20px;
+  }
+  .fc-popup__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    flex: 1;
+  }
+  .fc-popup__stat-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  .fc-popup__stat-icon-placeholder {
+    width: 60px;
+    height: 60px;
+    background: #ecececff;
+    border-radius: 50%;
+  }
+  .fc-popup__stat-value {
+    font-size: 27px;
+    font-weight: 700;
+    color: #000;
+  }
+  .fc-popup__stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .fc-popup__divider {
+    border: none;
+    border-top: 1px solid #c5c5c5ff;
+    margin: 30px auto 30px;
+    width: 55%;
+  }
+  .fc-popup__description {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.7;
+    color: #222222ff;
+    text-align: center;
+    margin: 0;
   }
 
   @media (max-width: 768px) {
@@ -157,18 +259,64 @@
           {% assign image_key = 'image_' | append: i %}
           {% assign image = block.settings[image_key] %}
           {% if image %}
+            {% assign p_s1_icon = 'popup_' | append: i | append: '_stat1_icon' %}
+            {% assign p_s1_val  = 'popup_' | append: i | append: '_stat1_value' %}
+            {% assign p_s1_lbl  = 'popup_' | append: i | append: '_stat1_label' %}
+            {% assign p_s2_icon = 'popup_' | append: i | append: '_stat2_icon' %}
+            {% assign p_s2_val  = 'popup_' | append: i | append: '_stat2_value' %}
+            {% assign p_s2_lbl  = 'popup_' | append: i | append: '_stat2_label' %}
+            {% assign p_s3_icon = 'popup_' | append: i | append: '_stat3_icon' %}
+            {% assign p_s3_val  = 'popup_' | append: i | append: '_stat3_value' %}
+            {% assign p_s3_lbl  = 'popup_' | append: i | append: '_stat3_label' %}
+            {% assign p_desc    = 'popup_' | append: i | append: '_description' %}
             <div class="filter-concerns__image-wrapper">
-              <img 
-                src="{{ image | image_url: width: 1200 }}" 
+              <img
+                src="{{ image | image_url: width: 1200 }}"
                 alt="{{ block.settings.concern_name }} ingredient {{ i }}"
                 class="filter-concerns__image"
                 width="{{ image.width }}"
                 height="{{ image.height }}"
                 loading="lazy"
               >
-              <a href="#" class="filter-concerns__button">
+              <button class="filter-concerns__button fc-open-popup">
                 {{ section.settings.button_text }}
-              </a>
+              </button>
+              <div class="fc-popup-overlay">
+                <div class="fc-popup">
+                  <button class="fc-popup__close" aria-label="Close">&#x2715;</button>
+                  <div class="fc-popup__stats">
+                    <div class="fc-popup__stat">
+                      {% if block.settings[p_s1_icon] %}
+                        <img src="{{ block.settings[p_s1_icon] | image_url: width: 104 }}" alt="" class="fc-popup__stat-icon" width="52" height="52">
+                      {% else %}
+                        <div class="fc-popup__stat-icon-placeholder"></div>
+                      {% endif %}
+                      <span class="fc-popup__stat-value">{{ block.settings[p_s1_val] }}</span>
+                      <span class="fc-popup__stat-label">{{ block.settings[p_s1_lbl] }}</span>
+                    </div>
+                    <div class="fc-popup__stat">
+                      {% if block.settings[p_s2_icon] %}
+                        <img src="{{ block.settings[p_s2_icon] | image_url: width: 104 }}" alt="" class="fc-popup__stat-icon" width="52" height="52">
+                      {% else %}
+                        <div class="fc-popup__stat-icon-placeholder"></div>
+                      {% endif %}
+                      <span class="fc-popup__stat-value">{{ block.settings[p_s2_val] }}</span>
+                      <span class="fc-popup__stat-label">{{ block.settings[p_s2_lbl] }}</span>
+                    </div>
+                    <div class="fc-popup__stat">
+                      {% if block.settings[p_s3_icon] %}
+                        <img src="{{ block.settings[p_s3_icon] | image_url: width: 104 }}" alt="" class="fc-popup__stat-icon" width="52" height="52">
+                      {% else %}
+                        <div class="fc-popup__stat-icon-placeholder"></div>
+                      {% endif %}
+                      <span class="fc-popup__stat-value">{{ block.settings[p_s3_val] }}</span>
+                      <span class="fc-popup__stat-label">{{ block.settings[p_s3_lbl] }}</span>
+                    </div>
+                  </div>
+                  <hr class="fc-popup__divider">
+                  <p class="fc-popup__description">{{ block.settings[p_desc] }}</p>
+                </div>
+              </div>
             </div>
           {% endif %}
         {% endfor %}
@@ -180,7 +328,6 @@
 <script>
   (function() {
     const sectionId = '{{ section.id }}';
-    const content = document.getElementById('concerns-content-' + sectionId);
     const navItems = document.querySelectorAll('#filter-concerns-' + sectionId + ' .filter-concerns__nav-item');
     const groups = document.querySelectorAll('#filter-concerns-' + sectionId + ' .filter-concerns__group');
 
@@ -189,33 +336,24 @@
     function updateActiveNav() {
       if (isScrolling) return;
 
-      const scrollTop = content.scrollTop;
-      const scrollHeight = content.scrollHeight;
-      const clientHeight = content.clientHeight;
-
+      const triggerY = window.innerHeight * 0.4;
       let activeIndex = 0;
 
       groups.forEach((group, index) => {
         const rect = group.getBoundingClientRect();
-        const contentRect = content.getBoundingClientRect();
-        
-        if (rect.top <= contentRect.top + 100) {
+        if (rect.top <= triggerY) {
           activeIndex = index;
         }
       });
 
       navItems.forEach((item, index) => {
-        if (index === activeIndex) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
+        item.classList.toggle('active', index === activeIndex);
       });
     }
 
-    content.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
 
-    navItems.forEach((item, index) => {
+    navItems.forEach((item) => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
         isScrolling = true;
@@ -224,14 +362,9 @@
         const targetGroup = document.getElementById(targetId);
 
         if (targetGroup) {
-          const contentRect = content.getBoundingClientRect();
-          const targetRect = targetGroup.getBoundingClientRect();
-          const scrollTo = content.scrollTop + targetRect.top - contentRect.top;
-
-          content.scrollTo({
-            top: scrollTo,
-            behavior: 'smooth'
-          });
+          const rect = targetGroup.getBoundingClientRect();
+          const offset = window.scrollY + rect.top - window.innerHeight * 0.1;
+          window.scrollTo({ top: offset, behavior: 'smooth' });
 
           setTimeout(() => {
             isScrolling = false;
@@ -241,8 +374,28 @@
       });
     });
 
-    // Initialize
     updateActiveNav();
+
+    // Popup open/close
+    document.querySelectorAll('#filter-concerns-' + sectionId + ' .fc-open-popup').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        // Close all other open popups first
+        document.querySelectorAll('#filter-concerns-' + sectionId + ' .fc-popup-overlay.active').forEach(o => o.classList.remove('active'));
+        btn.closest('.filter-concerns__image-wrapper').querySelector('.fc-popup-overlay').classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('#filter-concerns-' + sectionId + ' .fc-popup__close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.fc-popup-overlay').classList.remove('active');
+      });
+    });
+
+    document.querySelectorAll('#filter-concerns-' + sectionId + ' .fc-popup-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.classList.remove('active');
+      });
+    });
   })();
 </script>
 
@@ -294,9 +447,131 @@
           "label": "Ingredient Image 1"
         },
         {
+          "type": "header",
+          "content": "Image 1 Popup"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_1_stat1_icon",
+          "label": "Stat 1 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_1_stat1_value",
+          "label": "Stat 1 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_1_stat1_label",
+          "label": "Stat 1 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_1_stat2_icon",
+          "label": "Stat 2 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_1_stat2_value",
+          "label": "Stat 2 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_1_stat2_label",
+          "label": "Stat 2 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_1_stat3_icon",
+          "label": "Stat 3 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_1_stat3_value",
+          "label": "Stat 3 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_1_stat3_label",
+          "label": "Stat 3 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "textarea",
+          "id": "popup_1_description",
+          "label": "Description",
+          "default": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+        },
+        {
           "type": "image_picker",
           "id": "image_2",
           "label": "Ingredient Image 2"
+        },
+        {
+          "type": "header",
+          "content": "Image 2 Popup"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_2_stat1_icon",
+          "label": "Stat 1 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_2_stat1_value",
+          "label": "Stat 1 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_2_stat1_label",
+          "label": "Stat 1 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_2_stat2_icon",
+          "label": "Stat 2 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_2_stat2_value",
+          "label": "Stat 2 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_2_stat2_label",
+          "label": "Stat 2 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_2_stat3_icon",
+          "label": "Stat 3 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_2_stat3_value",
+          "label": "Stat 3 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_2_stat3_label",
+          "label": "Stat 3 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "textarea",
+          "id": "popup_2_description",
+          "label": "Description",
+          "default": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
         },
         {
           "type": "image_picker",
@@ -304,14 +579,197 @@
           "label": "Ingredient Image 3"
         },
         {
+          "type": "header",
+          "content": "Image 3 Popup"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_3_stat1_icon",
+          "label": "Stat 1 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_3_stat1_value",
+          "label": "Stat 1 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_3_stat1_label",
+          "label": "Stat 1 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_3_stat2_icon",
+          "label": "Stat 2 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_3_stat2_value",
+          "label": "Stat 2 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_3_stat2_label",
+          "label": "Stat 2 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_3_stat3_icon",
+          "label": "Stat 3 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_3_stat3_value",
+          "label": "Stat 3 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_3_stat3_label",
+          "label": "Stat 3 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "textarea",
+          "id": "popup_3_description",
+          "label": "Description",
+          "default": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+        },
+        {
           "type": "image_picker",
           "id": "image_4",
           "label": "Ingredient Image 4"
         },
         {
+          "type": "header",
+          "content": "Image 4 Popup"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_4_stat1_icon",
+          "label": "Stat 1 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_4_stat1_value",
+          "label": "Stat 1 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_4_stat1_label",
+          "label": "Stat 1 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_4_stat2_icon",
+          "label": "Stat 2 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_4_stat2_value",
+          "label": "Stat 2 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_4_stat2_label",
+          "label": "Stat 2 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_4_stat3_icon",
+          "label": "Stat 3 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_4_stat3_value",
+          "label": "Stat 3 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_4_stat3_label",
+          "label": "Stat 3 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "textarea",
+          "id": "popup_4_description",
+          "label": "Description",
+          "default": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+        },
+        {
           "type": "image_picker",
           "id": "image_5",
           "label": "Ingredient Image 5"
+        },
+        {
+          "type": "header",
+          "content": "Image 5 Popup"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_5_stat1_icon",
+          "label": "Stat 1 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_5_stat1_value",
+          "label": "Stat 1 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_5_stat1_label",
+          "label": "Stat 1 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_5_stat2_icon",
+          "label": "Stat 2 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_5_stat2_value",
+          "label": "Stat 2 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_5_stat2_label",
+          "label": "Stat 2 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "image_picker",
+          "id": "popup_5_stat3_icon",
+          "label": "Stat 3 Icon"
+        },
+        {
+          "type": "text",
+          "id": "popup_5_stat3_value",
+          "label": "Stat 3 Value",
+          "default": "+96%"
+        },
+        {
+          "type": "text",
+          "id": "popup_5_stat3_label",
+          "label": "Stat 3 Label",
+          "default": "MEGADOSE OF VITAMIN C"
+        },
+        {
+          "type": "textarea",
+          "id": "popup_5_description",
+          "label": "Description",
+          "default": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
         }
       ]
     }

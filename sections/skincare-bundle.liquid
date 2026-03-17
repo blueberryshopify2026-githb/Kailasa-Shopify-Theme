@@ -206,7 +206,7 @@
     bottom: 100%;
     margin-bottom: 40px;
     left: 50%;
-    transform: translateX(-60%) translateY(15px) scale(0.9);
+    transform: translateX(-50%) translateY(15px) scale(0.9);
   }
 
   .product-info-panel.position-top.show {
@@ -221,7 +221,7 @@
   }
 
   .product-info-panel.position-bottom.show {
-    transform: translateX(-60%) translateY(0) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 
   .product-info-panel.position-left {
@@ -312,11 +312,12 @@
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
-    text-align: center;
+    text-align: left;
     display: block;
     white-space: nowrap;
     margin: 0;
     width: fit-content;
+    align-self: flex-start;
   }
 
   .panel-learn-more:hover {

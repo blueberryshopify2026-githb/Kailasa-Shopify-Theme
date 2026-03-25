@@ -3124,66 +3124,141 @@
         "list_font_weight": "400"
       }
     },
-    "vip_section_Rb4Upr": {
-      "type": "vip-section",
+    "product_buy_box_EkLCc6": {
+      "type": "product-buy-box",
       "blocks": {
-        "point_KfkAWk": {
-          "type": "point",
+        "star_rating_qL4qf4": {
+          "type": "star_rating",
           "settings": {
-            "point_text": "Want an easy way to support your daily nutrition",
-            "point_image": "shopify://shop_images/4d7c65b4a0cb56bc1d230693aa54273a.jpg"
+            "rating": "5",
+            "show_count": true,
+            "review_count": "231 Reviews"
           }
         },
-        "point_D7g9zX": {
-          "type": "point",
+        "review_text_jeci9Y": {
+          "type": "review_text",
           "settings": {
-            "point_text": "Are juggling a busy life and need nutrition that keeps up",
-            "point_image": "shopify://shop_images/179f3fbaed6ca404eeee0fe58ea2be75.jpg"
+            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
           }
         },
-        "point_ERUMwA": {
-          "type": "point",
+        "review_author_JKA3Wq": {
+          "type": "review_author",
           "settings": {
-            "point_text": "Care about improving gut health and digestion",
-            "point_image": "shopify://shop_images/How_Quickly_Can_You_See_Results_with_Liquid_Iron_Supplements.jpg"
+            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
           }
         },
-        "point_C4fyxK": {
-          "type": "point",
+        "title_bffBbL": {
+          "type": "title",
           "settings": {
-            "point_text": "Are getting back into fitness and want to support your energy levels",
-            "point_image": "shopify://shop_images/download_18.jpg"
+            "title": "Photon Youth™ Pro LED Mask"
           }
         },
-        "point_D8cgqV": {
-          "type": "point",
+        "description_LkETDz": {
+          "type": "description",
           "settings": {
-            "point_text": "Are on GLP-1s and want additional nutritional support",
-            "point_image": "shopify://shop_images/LED-Lichttherapie_und_die_CurrentBody_Skin_LED_Maske__Ein_Erfahrungsbericht_-_Lifestyle_Blog_und_Karriere_Blog_aus_Osterreich.jpg"
+            "description": "The light feels gentle and relaxing, not harsh or heating, and it fits comfortably on the face. Over time, my skin has started to look more \"alive\"—that healthy glow"
+          }
+        },
+        "product_image_9AaicY": {
+          "type": "product_image",
+          "settings": {
+            "image": "shopify://shop_images/download_32.png"
+          }
+        },
+        "variant_rK8rBk": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "VIP Club Membership",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$49 USD"
+          }
+        },
+        "variant_3JXMVL": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Subscribe and Save",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "",
+            "variant_price": "$79 USD"
+          }
+        },
+        "variant_rpFpLi": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Buy one time",
+            "variant_detail_1": "",
+            "variant_detail_2": "",
+            "variant_detail_3": "",
+            "variant_detail_4": "",
+            "variant_price": "$99 USD"
+          }
+        },
+        "media_PJPwgX": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        },
+        "media_hVz6cA": {
+          "type": "media",
+          "settings": {
+            "media_type": "video",
+            "media_alt": "Product image",
+            "media_video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4"
+          }
+        },
+        "media_VcNKrY": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_image": "shopify://shop_images/54d0ca5598f44be30889d35d562bf505.jpg",
+            "media_alt": "Product image",
+            "media_video_url": ""
           }
         }
       },
       "block_order": [
-        "point_KfkAWk",
-        "point_D7g9zX",
-        "point_ERUMwA",
-        "point_C4fyxK",
-        "point_D8cgqV"
+        "star_rating_qL4qf4",
+        "review_text_jeci9Y",
+        "review_author_JKA3Wq",
+        "title_bffBbL",
+        "description_LkETDz",
+        "product_image_9AaicY",
+        "variant_rK8rBk",
+        "variant_3JXMVL",
+        "variant_rpFpLi",
+        "media_PJPwgX",
+        "media_hVz6cA",
+        "media_VcNKrY"
       ],
-      "name": "VIP Section",
+      "name": "Product Buy Box",
       "settings": {
-        "title": "Designed to Support Your Busy Lifestyle",
-        "subtitle": "We formulated AG1 Next Gen to support your health with advanced nutrition in every scoop.* It's a match if you:",
-        "button_text": "Get Started",
-        "button_link": "",
-        "default_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
-        "font_family": "montserrat_n4",
-        "title_font_size": 48,
-        "title_font_weight": "700",
-        "subtitle_font_size": 18,
-        "subtitle_font_weight": "400",
-        "points_font_size": 16,
-        "points_font_weight": "400"
+        "outer_bg_color": "#000000",
+        "outer_padding": 20,
+        "gap_width": 20,
+        "max_width": 1400,
+        "left_bg_color": "#ffffff",
+        "right_bg_color": "#f5f5f5",
+        "star_color": "#000000",
+        "title_color": "#000000",
+        "text_color": "#000000",
+        "secondary_text_color": "#666666",
+        "active_color": "#4FFFFF",
+        "variant_border_color": "#e0e0e0",
+        "variant_bg_color": "#ffffff",
+        "cta_text": "Add to cart",
+        "cta_bg_color": "#4FFFFF",
+        "cta_text_color": "#000000",
+        "payment_btn_bg": "#ffffff",
+        "nav_strip_bg": "#ffffff"
       }
     }
   },
@@ -3212,6 +3287,6 @@
     "tab_section_3XKQ6Q",
     "multi_tab_section_JntqBt",
     "result_timeline_PVmbWA",
-    "vip_section_Rb4Upr"
+    "product_buy_box_EkLCc6"
   ]
 }

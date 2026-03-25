@@ -3162,7 +3162,7 @@
         "product_image_9AaicY": {
           "type": "product_image",
           "settings": {
-            "image": "shopify://shop_images/download_32.png"
+            "image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png"
           }
         },
         "variant_rK8rBk": {
@@ -3182,7 +3182,7 @@
             "variant_name": "Subscribe and Save",
             "variant_detail_1": "Free SCI Travel Packs",
             "variant_detail_2": "Easily edit, skip or cancel anytime",
-            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_3": "",
             "variant_detail_4": "",
             "variant_price": "$79 USD"
           }

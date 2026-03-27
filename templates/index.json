@@ -721,6 +721,102 @@
         "image_height": 100
       }
     },
+    "how_to_use_V6n3pg": {
+      "type": "how-to-use",
+      "blocks": {
+        "step_XFJppc": {
+          "type": "step",
+          "name": "Step 1",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Cleanser",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 150,
+            "name_position_y": -170
+          }
+        },
+        "step_YbfLgH": {
+          "type": "step",
+          "name": "Step 2",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Toner",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/6a6ae8fbddd8420c90d1dd372c6a461d.mp4",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 150,
+            "name_position_y": -170
+          }
+        },
+        "step_cXEQBd": {
+          "type": "step",
+          "name": "Step 3",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Moisturizer",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
+          }
+        },
+        "step_jRjT39": {
+          "type": "step",
+          "name": "Step 4",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "LED Mask",
+            "product_image": "shopify://shop_images/download_32.png",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
+          }
+        },
+        "step_XPRTYm": {
+          "type": "step",
+          "name": "Step 5",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Serum",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 150,
+            "name_position_y": -170
+          }
+        }
+      },
+      "block_order": [
+        "step_XFJppc",
+        "step_YbfLgH",
+        "step_cXEQBd",
+        "step_jRjT39",
+        "step_XPRTYm"
+      ],
+      "name": "How To Use",
+      "settings": {
+        "accent_color": "#4fffff"
+      }
+    },
     "skincare_bundle_TqdqX4": {
       "type": "skincare-bundle",
       "blocks": {
@@ -1518,102 +1614,6 @@
         "image_border_radius": 20,
         "border_width": 2,
         "border_color": "#000000"
-      }
-    },
-    "how_to_use_V6n3pg": {
-      "type": "how-to-use",
-      "blocks": {
-        "step_XFJppc": {
-          "type": "step",
-          "name": "Step 1",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Cleanser",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
-            "product_name": "BHA & Tea Tree",
-            "product_link": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
-            "image_position_x": -50,
-            "image_position_y": -380,
-            "name_position_x": 150,
-            "name_position_y": -170
-          }
-        },
-        "step_YbfLgH": {
-          "type": "step",
-          "name": "Step 2",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Toner",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
-            "product_name": "BHA & Tea Tree",
-            "product_link": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/6a6ae8fbddd8420c90d1dd372c6a461d.mp4",
-            "image_position_x": -50,
-            "image_position_y": -380,
-            "name_position_x": 150,
-            "name_position_y": -170
-          }
-        },
-        "step_cXEQBd": {
-          "type": "step",
-          "name": "Step 3",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Moisturizer",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_xse670xse670xse6_1.png",
-            "product_name": "BHA & Tea Tree",
-            "product_link": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4",
-            "image_position_x": -50,
-            "image_position_y": -380,
-            "name_position_x": 190,
-            "name_position_y": -170
-          }
-        },
-        "step_jRjT39": {
-          "type": "step",
-          "name": "Step 4",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "LED Mask",
-            "product_image": "shopify://shop_images/download_32.png",
-            "product_name": "BHA & Tea Tree",
-            "product_link": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
-            "image_position_x": -50,
-            "image_position_y": -380,
-            "name_position_x": 190,
-            "name_position_y": -170
-          }
-        },
-        "step_XPRTYm": {
-          "type": "step",
-          "name": "Step 5",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Serum",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
-            "product_name": "BHA & Tea Tree",
-            "product_link": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c576538649644729e274ce414daca8d.mp4",
-            "image_position_x": -50,
-            "image_position_y": -380,
-            "name_position_x": 150,
-            "name_position_y": -170
-          }
-        }
-      },
-      "block_order": [
-        "step_XFJppc",
-        "step_YbfLgH",
-        "step_cXEQBd",
-        "step_jRjT39",
-        "step_XPRTYm"
-      ],
-      "name": "How To Use",
-      "settings": {
-        "accent_color": "#4fffff"
       }
     },
     "dynamic_tiles_TEDzHG": {
@@ -3271,6 +3271,7 @@
     "doctors_endorsement_LtGzx4",
     "biotechnology_intro_bKwUjK",
     "three_column_media_QrB4NN",
+    "how_to_use_V6n3pg",
     "skincare_bundle_TqdqX4",
     "skin_by_concern_CT8TWF",
     "routine_tabs_section_VB3cNg",
@@ -3279,7 +3280,6 @@
     "lifestyle_section_6wjbgt",
     "ingredients_scroll_T8EQgK",
     "ingredients_banner_KpDmD7",
-    "how_to_use_V6n3pg",
     "dynamic_tiles_TEDzHG",
     "dot_line_section_RKh47P",
     "comparison_table_8gLMQK",

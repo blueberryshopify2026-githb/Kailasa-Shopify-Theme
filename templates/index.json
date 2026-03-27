@@ -1616,55 +1616,6 @@
         "border_color": "#000000"
       }
     },
-    "dynamic_tiles_TEDzHG": {
-      "type": "dynamic-tiles",
-      "blocks": {
-        "slide_XTrVGA": {
-          "type": "slide",
-          "settings": {
-            "slide_title": "Slide 1",
-            "background_image": "shopify://shop_images/PDRN_Salmon_DNA_Therapy_in_Dubai.jpg",
-            "thumbnail_image": "shopify://shop_images/3d91dba277601f6a1ce03e2f1e2f75ad.jpg",
-            "statistic_1": "500K",
-            "title_1": "Consumer reach",
-            "description_1": "Consumer across 20 countries",
-            "statistic_2": "60%",
-            "title_2": "Reduced Carbon",
-            "description_2": "Consumer across 20 countries",
-            "statistic_3": "90%",
-            "title_3": "Consumer reach",
-            "description_3": "Consumer across 20 countries"
-          }
-        },
-        "slide_PP6B83": {
-          "type": "slide",
-          "settings": {
-            "slide_title": "Slide 1",
-            "background_image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
-            "thumbnail_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
-            "statistic_1": "500K",
-            "title_1": "Consumer reach",
-            "description_1": "Consumer across 20 countries",
-            "statistic_2": "60%",
-            "title_2": "Reduced Carbon",
-            "description_2": "Consumer across 20 countries",
-            "statistic_3": "90%",
-            "title_3": "Consumer reach",
-            "description_3": "Consumer across 20 countries"
-          }
-        }
-      },
-      "block_order": [
-        "slide_XTrVGA",
-        "slide_PP6B83"
-      ],
-      "name": "Dynamic Tiles",
-      "settings": {
-        "section_height": 80,
-        "strip_border_radius": 24,
-        "accent_color": "#4fffff"
-      }
-    },
     "dot_line_section_RKh47P": {
       "type": "dot-line-section",
       "blocks": {
@@ -3041,6 +2992,55 @@
         "arrow_style": "stroke"
       }
     },
+    "dynamic_tiles_TEDzHG": {
+      "type": "dynamic-tiles",
+      "blocks": {
+        "slide_XTrVGA": {
+          "type": "slide",
+          "settings": {
+            "slide_title": "Slide 1",
+            "background_image": "shopify://shop_images/PDRN_Salmon_DNA_Therapy_in_Dubai.jpg",
+            "thumbnail_image": "shopify://shop_images/3d91dba277601f6a1ce03e2f1e2f75ad.jpg",
+            "statistic_1": "500K",
+            "title_1": "Consumer reach",
+            "description_1": "Consumer across 20 countries",
+            "statistic_2": "60%",
+            "title_2": "Reduced Carbon",
+            "description_2": "Consumer across 20 countries",
+            "statistic_3": "90%",
+            "title_3": "Consumer reach",
+            "description_3": "Consumer across 20 countries"
+          }
+        },
+        "slide_PP6B83": {
+          "type": "slide",
+          "settings": {
+            "slide_title": "Slide 1",
+            "background_image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
+            "thumbnail_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "statistic_1": "500K",
+            "title_1": "Consumer reach",
+            "description_1": "Consumer across 20 countries",
+            "statistic_2": "60%",
+            "title_2": "Reduced Carbon",
+            "description_2": "Consumer across 20 countries",
+            "statistic_3": "90%",
+            "title_3": "Consumer reach",
+            "description_3": "Consumer across 20 countries"
+          }
+        }
+      },
+      "block_order": [
+        "slide_XTrVGA",
+        "slide_PP6B83"
+      ],
+      "name": "Dynamic Tiles",
+      "settings": {
+        "section_height": 80,
+        "strip_border_radius": 24,
+        "accent_color": "#4fffff"
+      }
+    },
     "result_timeline_PVmbWA": {
       "type": "result-timeline",
       "blocks": {
@@ -3280,12 +3280,12 @@
     "lifestyle_section_6wjbgt",
     "ingredients_scroll_T8EQgK",
     "ingredients_banner_KpDmD7",
-    "dynamic_tiles_TEDzHG",
     "dot_line_section_RKh47P",
     "comparison_table_8gLMQK",
     "tab_section_M8Yd6W",
     "tab_section_3XKQ6Q",
     "multi_tab_section_JntqBt",
+    "dynamic_tiles_TEDzHG",
     "result_timeline_PVmbWA",
     "product_buy_box_EkLCc6"
   ]

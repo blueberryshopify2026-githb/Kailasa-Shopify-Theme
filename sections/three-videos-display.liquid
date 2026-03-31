@@ -1,0 +1,782 @@
+{% comment %}
+  Three Videos Display Section
+  Layout: full-width background video/thumbnail, top-left: play + mute controls,
+  bottom-left: 2 upcoming video tiles, bottom-right: frosted glass with title/subtitle.
+  CSS suffix: -tvd | Font: Montserrat
+{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+  /* ── Section wrapper ── */
+  .section-tvd {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 80px;
+    {% comment %} height: {{ section.settings.section_height | default: 560 }}px; {% endcomment %}
+    height: 660px;
+    background: #000;
+  }
+
+  /* ── Background layer ── */
+  .bg-media-tvd {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .bg-thumb-tvd,
+  .bg-video-tvd {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .bg-video-tvd {
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    cursor: pointer;
+  }
+
+  .bg-video-tvd.playing-tvd {
+    opacity: 1;
+  }
+
+  /* ── Content overlay ── */
+  .content-tvd {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px 40px 32px 40px;
+    box-sizing: border-box;
+  }
+
+  /* ── Top-left controls ── */
+  .controls-tvd {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 50px;
+  }
+
+  /* Play/Pause button with progress ring */
+  .play-btn-wrap-tvd {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .play-ring-svg-tvd {
+    position: absolute;
+    inset: 0;
+    width: 52px;
+    height: 52px;
+    transform: rotate(-90deg);
+  }
+
+  .play-ring-bg-tvd {
+    fill: none;
+    {% comment %} stroke: rgba(255, 255, 255, 0.74); {% endcomment %}
+    stroke: rgba(255, 255, 255, 0.93);
+    stroke-width: 2.6;
+  }
+
+  .play-ring-progress-tvd {
+    fill: none;
+    stroke: #4fffff;
+    stroke-width: 2.7;
+    stroke-linecap: round;
+    stroke-dasharray: 138.23; /* 2π × 22 */
+    stroke-dashoffset: 138.23;
+    transition: stroke-dashoffset 0.3s linear;
+  }
+
+  .play-btn-inner-tvd {
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .play-icon-tvd,
+  .pause-icon-tvd {
+    width: 16px;
+    height: 16px;
+    fill: #ffffff;
+  }
+
+  .pause-icon-tvd { display: none; }
+
+  .section-tvd.is-playing-tvd .play-icon-tvd { display: none; }
+  .section-tvd.is-playing-tvd .pause-icon-tvd { display: block; }
+
+  /* Mute button */
+  .mute-btn-tvd {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.93);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+
+  .mute-btn-tvd svg {
+    width: 23px;
+    height: 23px;
+    fill: #ffffff;
+  }
+
+  .mute-icon-on-tvd { display: block; }
+  .mute-icon-off-tvd { display: none; }
+
+  .section-tvd.is-muted-tvd .mute-icon-on-tvd { display: none; }
+  .section-tvd.is-muted-tvd .mute-icon-off-tvd { display: block; }
+
+  /* ── Bottom row ── */
+  .bottom-row-tvd {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  /* ── Upcoming tiles (bottom-left) ── */
+
+  .tile-tvd {
+    position: relative;
+    width: 180px;
+    height: 113px;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    transition: border-color 0.25s ease, transform 0.2s ease;
+  }
+
+  .tile-tvd:hover {
+    transform: translateY(-3px);
+  }
+
+  .tile-tvd.active-tile-tvd {
+    border-color: #4fffff;
+  }
+
+  .tile-thumb-tvd {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .tile-thumb-placeholder-tvd {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2a2a3a, #1a1a2a);
+  }
+
+  .tile-overlay-tvd {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .tile-label-tvd {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+    z-index: 2;
+  }
+
+  /* ── Frosted glass info box (bottom-right) ── */
+  .glass-info-tvd {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 18px;
+    padding: 14px 14px;
+    max-width: 400px;
+    min-width: 260px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  /* Tiles slide left, glass slides right when video plays */
+  .tiles-tvd {
+    display: flex;
+    gap: 14px;
+    align-items: flex-end;
+    transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .section-tvd.is-playing-tvd .tiles-tvd {
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+
+  .section-tvd.is-playing-tvd .glass-info-tvd {
+    transform: translateX(120%);
+    pointer-events: none;
+  }
+
+  .glass-title-tvd {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+  }
+
+  .glass-subtitle-tvd {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .section-tvd {
+      height: auto;
+      min-height: 420px;
+    }
+
+    .content-tvd {
+      padding: 20px 18px 22px 18px;
+    }
+
+    .tile-tvd {
+      width: 120px;
+      height: 82px;
+    }
+
+    .glass-info-tvd {
+      max-width: 200px;
+      padding: 14px 16px;
+    }
+
+    .glass-title-tvd {
+      font-size: 16px;
+    }
+
+    .glass-subtitle-tvd {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bottom-row-tvd {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .glass-info-tvd {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+</style>
+
+{% comment %} Video data is read inline per tile below {% endcomment %}
+
+<section
+  class="section-tvd full-width"
+  id="three-videos-display-{{ section.id }}"
+  aria-label="Three Videos Display"
+>
+  <!-- Background media for video 1 (default active) -->
+  <div class="bg-media-tvd" id="bg-media-tvd-{{ section.id }}">
+    {% if section.settings.thumb_1 %}
+      <img
+        class="bg-thumb-tvd"
+        id="bg-thumb-tvd-{{ section.id }}"
+        src="{{ section.settings.thumb_1 | image_url: width: 2000 }}"
+        alt="{{ section.settings.thumb_1.alt | default: '' }}"
+        width="2000"
+        height="1125"
+        loading="eager"
+      >
+    {% else %}
+      <div class="bg-thumb-tvd" id="bg-thumb-tvd-{{ section.id }}" style="background:#1a1a2a;"></div>
+    {% endif %}
+
+    {% if section.settings.video_1 %}
+      <video
+        class="bg-video-tvd"
+        id="bg-video-tvd-{{ section.id }}"
+        src="{{ section.settings.video_1 }}"
+        playsinline
+        preload="metadata"
+        muted
+      ></video>
+    {% endif %}
+  </div>
+
+  <div class="content-tvd">
+    <!-- Top-left: play button + mute -->
+    <div class="controls-tvd">
+      <div
+        class="play-btn-wrap-tvd"
+        id="play-btn-tvd-{{ section.id }}"
+        role="button"
+        aria-label="Play / Pause"
+        tabindex="0"
+      >
+        <svg class="play-ring-svg-tvd" viewBox="0 0 52 52" aria-hidden="true">
+          <circle class="play-ring-bg-tvd" cx="26" cy="26" r="22"/>
+          <circle class="play-ring-progress-tvd" id="progress-ring-tvd-{{ section.id }}" cx="26" cy="26" r="22"/>
+        </svg>
+        <div class="play-btn-inner-tvd">
+          <!-- Play icon -->
+          <svg class="play-icon-tvd" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M3 2.5l10 5.5-10 5.5V2.5z"/>
+          </svg>
+          <!-- Pause icon -->
+          <svg class="pause-icon-tvd" viewBox="0 0 16 16" aria-hidden="true">
+            <rect x="2" y="2" width="4.5" height="12" rx="1"/>
+            <rect x="9.5" y="2" width="4.5" height="12" rx="1"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="mute-btn-tvd" id="mute-btn-tvd-{{ section.id }}" role="button" aria-label="Toggle mute" tabindex="0">
+        <!-- Sound on -->
+        <svg class="mute-icon-on-tvd" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M3 7H7L12 3V17L7 13H3V7Z"/>
+          <path d="M15 7C16.1 8.1 16.7 9 16.7 10C16.7 11 16.1 11.9 15 13" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <!-- Sound off -->
+        <svg class="mute-icon-off-tvd" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M3 7H7L12 3V17L7 13H3V7Z"/>
+          <line x1="14" y1="8" x2="18" y2="12" stroke="#ff3333" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="8" x2="14" y2="12" stroke="#ff3333" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="bottom-row-tvd">
+      <!-- Bottom-left: 2 upcoming tiles (JS will populate src/label dynamically) -->
+      <div class="tiles-tvd" id="tiles-tvd-{{ section.id }}">
+        <div class="tile-tvd" id="tile-a-tvd-{{ section.id }}" role="button" tabindex="0" aria-label="Play next video">
+          <div class="tile-thumb-placeholder-tvd" id="tile-a-img-tvd-{{ section.id }}"></div>
+          <div class="tile-overlay-tvd"></div>
+          <div class="tile-label-tvd" id="tile-a-label-tvd-{{ section.id }}"></div>
+        </div>
+        <div class="tile-tvd" id="tile-b-tvd-{{ section.id }}" role="button" tabindex="0" aria-label="Play video after next">
+          <div class="tile-thumb-placeholder-tvd" id="tile-b-img-tvd-{{ section.id }}"></div>
+          <div class="tile-overlay-tvd"></div>
+          <div class="tile-label-tvd" id="tile-b-label-tvd-{{ section.id }}"></div>
+        </div>
+      </div>
+
+      <!-- Bottom-right: frosted glass info -->
+      <div class="glass-info-tvd" id="glass-info-tvd-{{ section.id }}">
+        <h2 class="glass-title-tvd" id="glass-title-tvd-{{ section.id }}">
+          {{ section.settings.title_1 | default: 'Overnight Repair' }}
+        </h2>
+        <p class="glass-subtitle-tvd" id="glass-subtitle-tvd-{{ section.id }}">
+          {{
+            section.settings.subtitle_1
+            | default: 'Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit.'
+          }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var sectionEl = document.getElementById('three-videos-display-{{ section.id }}');
+    if (!sectionEl) return;
+
+    var video        = sectionEl.querySelector('.bg-video-tvd');
+    var bgThumb      = sectionEl.querySelector('#bg-thumb-tvd-{{ section.id }}');
+    var playBtn      = sectionEl.querySelector('#play-btn-tvd-{{ section.id }}');
+    var muteBtn      = sectionEl.querySelector('#mute-btn-tvd-{{ section.id }}');
+    var progressRing = sectionEl.querySelector('#progress-ring-tvd-{{ section.id }}');
+    var glassTitle   = sectionEl.querySelector('#glass-title-tvd-{{ section.id }}');
+    var glassSub     = sectionEl.querySelector('#glass-subtitle-tvd-{{ section.id }}');
+    var tileA        = sectionEl.querySelector('#tile-a-tvd-{{ section.id }}');
+    var tileB        = sectionEl.querySelector('#tile-b-tvd-{{ section.id }}');
+    var tileAImg     = sectionEl.querySelector('#tile-a-img-tvd-{{ section.id }}');
+    var tileBImg     = sectionEl.querySelector('#tile-b-img-tvd-{{ section.id }}');
+    var tileALabel   = sectionEl.querySelector('#tile-a-label-tvd-{{ section.id }}');
+    var tileBLabel   = sectionEl.querySelector('#tile-b-label-tvd-{{ section.id }}');
+
+    var CIRCUMFERENCE = 138.23;
+    var isPlaying = false;
+    var isMuted   = false; // default: sound ON
+
+    // All 3 videos data — 0-indexed internally
+    var videos = [
+      {
+        src:      '{{ section.settings.video_1 }}',
+        thumb:    '{% if section.settings.thumb_1 %}{{ section.settings.thumb_1 | image_url: width: 2000 }}{% endif %}',
+        tileThumb:'{% if section.settings.tile_thumb_1 %}{{ section.settings.tile_thumb_1 | image_url: width: 400 }}{% elsif section.settings.thumb_1 %}{{ section.settings.thumb_1 | image_url: width: 400 }}{% endif %}',
+        title:    '{{ section.settings.title_1 | default: "Overnight Repair" | escape }}',
+        subtitle: '{{ section.settings.subtitle_1 | default: "" | escape }}'
+      },
+      {
+        src:      '{{ section.settings.video_2 }}',
+        thumb:    '{% if section.settings.thumb_2 %}{{ section.settings.thumb_2 | image_url: width: 2000 }}{% endif %}',
+        tileThumb:'{% if section.settings.tile_thumb_2 %}{{ section.settings.tile_thumb_2 | image_url: width: 400 }}{% elsif section.settings.thumb_2 %}{{ section.settings.thumb_2 | image_url: width: 400 }}{% endif %}',
+        title:    '{{ section.settings.title_2 | default: "Daily Defense" | escape }}',
+        subtitle: '{{ section.settings.subtitle_2 | default: "" | escape }}'
+      },
+      {
+        src:      '{{ section.settings.video_3 }}',
+        thumb:    '{% if section.settings.thumb_3 %}{{ section.settings.thumb_3 | image_url: width: 2000 }}{% endif %}',
+        tileThumb:'{% if section.settings.tile_thumb_3 %}{{ section.settings.tile_thumb_3 | image_url: width: 400 }}{% elsif section.settings.thumb_3 %}{{ section.settings.thumb_3 | image_url: width: 400 }}{% endif %}',
+        title:    '{{ section.settings.title_3 | default: "Deep Hydration" | escape }}',
+        subtitle: '{{ section.settings.subtitle_3 | default: "" | escape }}'
+      }
+    ];
+
+    var activeIndex = 0; // 0-based, video 1 is active by default
+
+    /* ── Set tile image helper ── */
+    function setTileContent(imgEl, labelEl, videoData) {
+      labelEl.textContent = videoData.title;
+      if (videoData.tileThumb) {
+        if (imgEl.tagName === 'IMG') {
+          imgEl.src = videoData.tileThumb;
+        } else {
+          var img = document.createElement('img');
+          img.className = 'tile-thumb-tvd';
+          img.src = videoData.tileThumb;
+          img.alt = videoData.title;
+          img.width = 400;
+          img.height = 280;
+          imgEl.parentNode.replaceChild(img, imgEl);
+          // update reference
+          if (labelEl === tileALabel) tileAImg = img;
+          else tileBImg = img;
+          return img;
+        }
+      }
+      return imgEl;
+    }
+
+    /* ── Render tiles for current activeIndex ── */
+    function renderTiles() {
+      var nextA = (activeIndex + 1) % 3;
+      var nextB = (activeIndex + 2) % 3;
+      tileAImg   = setTileContent(tileAImg, tileALabel, videos[nextA]);
+      tileBImg   = setTileContent(tileBImg, tileBLabel, videos[nextB]);
+      tileA.dataset.targetIndex = nextA;
+      tileB.dataset.targetIndex = nextB;
+    }
+
+    /* ── Switch active video ── */
+    function switchToVideo(index) {
+      // Stop current
+      if (video) {
+        video.pause();
+        video.classList.remove('playing-tvd');
+      }
+      sectionEl.classList.remove('is-playing-tvd');
+      isPlaying = false;
+      if (progressRing) progressRing.style.strokeDashoffset = CIRCUMFERENCE;
+
+      activeIndex = index;
+      var vd = videos[activeIndex];
+
+      // Update glass text
+      if (glassTitle) glassTitle.textContent = vd.title;
+      if (glassSub)   glassSub.textContent   = vd.subtitle;
+
+      // Swap background thumbnail
+      if (vd.thumb) {
+        if (bgThumb && bgThumb.tagName === 'IMG') {
+          bgThumb.src = vd.thumb;
+        } else if (bgThumb) {
+          var img = document.createElement('img');
+          img.className = 'bg-thumb-tvd';
+          img.id = 'bg-thumb-tvd-{{ section.id }}';
+          img.src = vd.thumb;
+          img.alt = '';
+          img.width = 2000;
+          img.height = 1125;
+          bgThumb.parentNode.replaceChild(img, bgThumb);
+          bgThumb = img;
+        }
+      }
+
+      // Swap video src
+      if (video && vd.src) {
+        video.src = vd.src;
+        video.muted = isMuted;
+        video.load();
+      }
+
+      // Re-render the 2 tiles to show next upcoming videos
+      renderTiles();
+    }
+
+    /* ── Play / Pause ── */
+    function playVideo() {
+      if (!video || !video.src) return;
+      video.muted = isMuted;
+      video.play().then(function () {
+        video.classList.add('playing-tvd');
+        sectionEl.classList.add('is-playing-tvd');
+        isPlaying = true;
+      }).catch(function () {});
+    }
+
+    function pauseVideo() {
+      if (!video) return;
+      video.pause();
+      video.classList.remove('playing-tvd');
+      sectionEl.classList.remove('is-playing-tvd');
+      isPlaying = false;
+    }
+
+    function togglePlay() {
+      if (isPlaying) pauseVideo(); else playVideo();
+    }
+
+    /* ── Progress ring ── */
+    if (video && progressRing) {
+      video.addEventListener('timeupdate', function () {
+        if (!video.duration) return;
+        progressRing.style.strokeDashoffset = CIRCUMFERENCE * (1 - video.currentTime / video.duration);
+      });
+      video.addEventListener('ended', function () {
+        video.classList.remove('playing-tvd');
+        sectionEl.classList.remove('is-playing-tvd');
+        isPlaying = false;
+        if (progressRing) progressRing.style.strokeDashoffset = CIRCUMFERENCE;
+      });
+    }
+
+    /* ── Play button ── */
+    if (playBtn) {
+      playBtn.addEventListener('click', togglePlay);
+      playBtn.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePlay(); }
+      });
+    }
+
+    /* ── Click anywhere on section to pause when playing ── */
+    sectionEl.addEventListener('click', function (e) {
+      if (!isPlaying) return;
+      // ignore clicks on the play/mute buttons themselves
+      if (playBtn && playBtn.contains(e.target)) return;
+      if (muteBtn && muteBtn.contains(e.target)) return;
+      pauseVideo();
+    });
+
+    /* ── Mute button ── */
+    if (muteBtn) {
+      muteBtn.addEventListener('click', function () {
+        isMuted = !isMuted;
+        if (video) video.muted = isMuted;
+        sectionEl.classList.toggle('is-muted-tvd', isMuted);
+      });
+      muteBtn.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); muteBtn.click(); }
+      });
+      // sync visual state to default (sound on = not muted)
+      sectionEl.classList.toggle('is-muted-tvd', isMuted);
+    }
+
+    /* ── Tile clicks ── */
+    [tileA, tileB].forEach(function (tile) {
+      tile.addEventListener('click', function () {
+        var idx = parseInt(tile.dataset.targetIndex);
+        switchToVideo(idx);
+      });
+      tile.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tile.click(); }
+      });
+    });
+
+    /* ── Init: render tiles for default active video (index 0) ── */
+    renderTiles();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Three Videos Display",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Height (px)",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "default": 560
+    },
+    {
+      "type": "header",
+      "content": "── Video 1 ──"
+    },
+    {
+      "type": "text",
+      "id": "video_1",
+      "label": "Video 1 URL (mp4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_1",
+      "label": "Video 1 Background Thumbnail"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Video 1 Title",
+      "default": "Overnight Repair"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle_1",
+      "label": "Video 1 Subtitle",
+      "default": "Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit."
+    },
+    {
+      "type": "header",
+      "content": "── Video 2 ──"
+    },
+    {
+      "type": "text",
+      "id": "video_2",
+      "label": "Video 2 URL (mp4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_2",
+      "label": "Video 2 Background Thumbnail"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Video 2 Title",
+      "default": "Daily Defense"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle_2",
+      "label": "Video 2 Subtitle",
+      "default": "Protect and nourish your skin every day with our advanced formula."
+    },
+    {
+      "type": "header",
+      "content": "── Video 3 ──"
+    },
+    {
+      "type": "text",
+      "id": "video_3",
+      "label": "Video 3 URL (mp4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_3",
+      "label": "Video 3 Background Thumbnail"
+    },
+    {
+      "type": "text",
+      "id": "title_3",
+      "label": "Video 3 Title",
+      "default": "Deep Hydration"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle_3",
+      "label": "Video 3 Subtitle",
+      "default": "Replenish moisture at a cellular level for lasting radiance."
+    },
+    {
+      "type": "header",
+      "content": "── Tile Thumbnails (bottom-left tiles) ──"
+    },
+    {
+      "type": "paragraph",
+      "content": "Optional separate thumbnail shown inside each tile. Falls back to the video background thumbnail if not set."
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_thumb_1",
+      "label": "Tile Thumbnail — Video 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_thumb_2",
+      "label": "Tile Thumbnail — Video 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_thumb_3",
+      "label": "Tile Thumbnail — Video 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Three Videos Display"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,778 @@
+{% comment %} Product Dual Showcase - RTN {% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .pds-rtn-section {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    padding: {{ section.settings.section_padding }}px 0;
+    background: {{ section.settings.section_bg }};
+    box-sizing: border-box;
+  }
+
+  .pds-rtn-wrapper {
+    display: flex;
+    gap: {{ section.settings.gap }}px;
+    width: 100%;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-items: stretch;
+    height: {{ section.settings.section_height }}px;
+    position: relative;
+  }
+
+  /* ── LEFT 60% ── */
+  .pds-rtn-left {
+    flex: 0 0 60%;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  /* ── LEFT slide track — reel/film strip ── */
+  .pds-rtn-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .pds-rtn-strip {
+    display: flex;
+    height: 100%;
+    will-change: transform;
+    /* transition set by JS only — never by CSS default to avoid flash */
+  }
+
+  .pds-rtn-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pds-rtn-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    backface-visibility: hidden;
+  }
+
+  /* ── RIGHT image — reel slide in from right ── */
+  .pds-rtn-right-img-wrap {
+    flex: 1;
+    width: 60%;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
+  }
+
+  .pds-rtn-next-img {
+    width: 100%;
+    height: 90%;
+    border-radius: 16px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* frost glass card — top/bottom offsets define height, centered */
+  .pds-rtn-card {
+    position: absolute;
+    top: 50px;
+    bottom: {{ section.settings.card_bottom }}px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height:80% ;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: none;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.45s ease;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .pds-rtn-card.pds-rtn-card-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .pds-rtn-card-img {
+    width: {{ section.settings.card_img_size }}px;
+    height: {{ section.settings.card_img_size }}px;
+    object-fit: cover;
+    border-radius: 14px;
+    flex-shrink: 0;
+  }
+
+  .pds-rtn-card-heading {
+    font-size: {{ section.settings.card_heading_size }}px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .pds-rtn-card-desc {
+    font-size: {{ section.settings.card_desc_size }}px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .pds-rtn-card-sub {
+    font-size: {{ section.settings.card_desc_size }}px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  /* toggle — on the image, outside frost card, bottom-right of left panel */
+  .pds-rtn-toggle-wrap {
+    position: absolute;
+    bottom: 18px;
+    right: 20px;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .pds-rtn-toggle {
+    position: relative;
+    display: block;
+    width: 52px;
+    height: 28px;
+    cursor: pointer;
+  }
+
+  .pds-rtn-toggle input { display: none; }
+
+  .pds-rtn-toggle-track {
+    position: absolute;
+    inset: 0;
+    background: rgba(180, 180, 180, 0.55);
+    border-radius: 999px;
+    transition: background 0.3s ease;
+  }
+
+  .pds-rtn-toggle input:checked ~ .pds-rtn-toggle-track {
+    background: #4fffff;
+  }
+
+  .pds-rtn-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    background: #111;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .pds-rtn-toggle input:checked ~ .pds-rtn-toggle-thumb {
+    transform: translateX(24px);
+    background: #000;
+  }
+
+  /* ── RIGHT 40% ── */
+  .pds-rtn-right {
+    flex: 1;
+    background: {{ section.settings.right_bg }};
+    border-radius: 24px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    overflow: visible;
+    height: 100%;
+  }
+
+  .pds-rtn-next-heading {
+    font-size: {{ section.settings.right_heading_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.right_heading_color }};
+    margin: 0 0 26px 0;
+    /* padding-top: {{ section.settings.card_top }}px; */
+    line-height: 1.2;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  /* single forward arrow — floats between panels, 5% higher */
+  .pds-rtn-arrow-btn {
+    position: absolute;
+    left: 65%;
+    transform: translateX(-50%);
+    top: calc({{ section.settings.card_top }}px + 16px + (100% - {{ section.settings.card_top }}px - 16px) * 0.75);
+    z-index: 20;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: {{ section.settings.arrow_img_size }}px;
+    height: {{ section.settings.arrow_img_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    user-select: none;
+  }
+
+  .pds-rtn-arrow-btn:hover {
+    transform: translateX(-50%) scale(1.12);
+    opacity: 0.85;
+  }
+
+  .pds-rtn-arrow-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .pds-rtn-arrow-svg {
+    width: {{ section.settings.arrow_img_size }}px;
+    height: {{ section.settings.arrow_img_size }}px;
+    color: {{ section.settings.accent_color }};
+  }
+
+  @media (max-width: 768px) {
+    .pds-rtn-wrapper {
+      flex-direction: column;
+      height: auto;
+    }
+    .pds-rtn-left {
+      flex: unset;
+      width: 100%;
+      height: 420px;
+    }
+    .pds-rtn-right {
+      flex: unset;
+      width: 100%;
+      height: 420px;
+    }
+  }
+</style>
+
+{%- assign total = section.blocks.size -%}
+{%- assign fb = section.blocks.first -%}
+
+<section class="pds-rtn-section full-width">
+  <div class="pds-rtn-wrapper">
+    <!-- LEFT -->
+    <div class="pds-rtn-left" id="pds-rtn-left">
+      <div class="pds-rtn-track" id="pds-rtn-track">
+        <div class="pds-rtn-strip" id="pds-rtn-strip">
+          {%- for block in section.blocks -%}
+            <div class="pds-rtn-slide">
+              {%- if block.settings.main_image -%}
+                <img
+                  src="{{ block.settings.main_image | image_url: width: 1400 }}"
+                  alt="{{ block.settings.card_heading | default: 'Product' }}"
+                  width="1400"
+                  height="900"
+                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                >
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- frost glass card -->
+      <a class="pds-rtn-card pds-rtn-card-hidden" id="pds-rtn-card" href="{{ fb.settings.product_url | default: '#' }}">
+        {%- if fb.settings.card_image -%}
+          <img
+            class="pds-rtn-card-img"
+            id="pds-rtn-card-img"
+            src="{{ fb.settings.card_image | image_url: width: 400 }}"
+            alt="{{ fb.settings.card_heading | default: 'Product' }}"
+            width="200"
+            height="200"
+            loading="eager"
+          >
+        {%- endif -%}
+        <p class="pds-rtn-card-heading" id="pds-rtn-card-heading">
+          {{ fb.settings.card_heading | default: 'Product Name' }}
+        </p>
+        <p class="pds-rtn-card-desc" id="pds-rtn-card-desc">
+          {{ fb.settings.card_description | default: 'Add a description here.' }}
+        </p>
+        {%- if fb.settings.card_sub -%}
+          <p class="pds-rtn-card-sub" id="pds-rtn-card-sub">{{ fb.settings.card_sub }}</p>
+        {%- endif -%}
+      </a>
+
+      <!-- toggle lives on the image, outside the card -->
+      <div class="pds-rtn-toggle-wrap" id="pds-rtn-toggle-wrap">
+        <label class="pds-rtn-toggle">
+          <input type="checkbox" id="pds-rtn-toggle-input">
+          <span class="pds-rtn-toggle-track"></span>
+          <span class="pds-rtn-toggle-thumb"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="pds-rtn-right" id="pds-rtn-right">
+      <h3 class="pds-rtn-next-heading" id="pds-rtn-next-heading">
+        {%- if total > 1 -%}
+          {{ section.blocks[1].settings.card_heading | default: 'Next Product' }}
+        {%- else -%}
+          {{ fb.settings.card_heading | default: 'Product' }}
+        {%- endif -%}
+      </h3>
+      <div class="pds-rtn-right-img-wrap">
+        {%- if total > 1 and section.blocks[1].settings.main_image -%}
+          <img
+            class="pds-rtn-next-img"
+            id="pds-rtn-next-img"
+            src="{{ section.blocks[1].settings.main_image | image_url: width: 800 }}"
+            alt="{{ section.blocks[1].settings.card_heading | default: 'Next product' }}"
+            width="800"
+            height="600"
+            loading="lazy"
+          >
+        {%- elsif fb.settings.main_image -%}
+          <img
+            class="pds-rtn-next-img"
+            id="pds-rtn-next-img"
+            src="{{ fb.settings.main_image | image_url: width: 800 }}"
+            alt="{{ fb.settings.card_heading | default: 'Product' }}"
+            width="800"
+            height="600"
+            loading="lazy"
+          >
+        {%- else -%}
+          <img
+            class="pds-rtn-next-img"
+            id="pds-rtn-next-img"
+            src="{{ fb.settings.main_image | image_url: width: 800 }}"
+            alt="Next product"
+            width="800"
+            height="600"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- single forward arrow — floats between panels -->
+    <button class="pds-rtn-arrow-btn" id="pds-rtn-next-btn" aria-label="Next product">
+      {%- if section.settings.arrow_image -%}
+        <img
+          src="{{ section.settings.arrow_image | image_url: width: 120 }}"
+          alt="Next"
+          width="{{ section.settings.arrow_img_size }}"
+          height="{{ section.settings.arrow_img_size }}"
+          loading="lazy"
+        >
+      {%- else -%}
+        <svg
+          class="pds-rtn-arrow-svg"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path d="M18 10L34 24L18 38" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      {%- endif -%}
+    </button>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var data = [
+      {% for block in section.blocks %}
+      {
+        mainImagePreview: "{% if block.settings.main_image %}{{ block.settings.main_image | image_url: width: 800 }}{% endif %}",
+        cardImage: "{% if block.settings.card_image %}{{ block.settings.card_image | image_url: width: 400 }}{% endif %}",
+        heading: {{ block.settings.card_heading | default: 'Product' | json }},
+        description: {{ block.settings.card_description | default: '' | json }},
+        sub: {{ block.settings.card_sub | default: '' | json }},
+        url: {{ block.settings.product_url | default: '#' | json }}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ];
+
+    var total = data.length;
+    if (total === 0) return;
+
+    var strip    = document.getElementById('pds-rtn-strip');
+    var card     = document.getElementById('pds-rtn-card');
+    var cardImg  = document.getElementById('pds-rtn-card-img');
+    var cardHead = document.getElementById('pds-rtn-card-heading');
+    var cardDesc = document.getElementById('pds-rtn-card-desc');
+    var cardSub  = document.getElementById('pds-rtn-card-sub');
+    var nextHead = document.getElementById('pds-rtn-next-heading');
+    var nextImg  = document.getElementById('pds-rtn-next-img');
+    var nextBtn  = document.getElementById('pds-rtn-next-btn');
+    var toggleIn = document.getElementById('pds-rtn-toggle-input');
+
+    /* ── Build infinite strip: clone first slide to end ── */
+    var realSlides = strip.querySelectorAll('.pds-rtn-slide');
+    var cloneFirst = realSlides[0].cloneNode(true);
+    strip.appendChild(cloneFirst);
+    /* DOM: [0][1][2]...[n-1][clone-of-0]  total+1 items */
+
+    var DURATION = 680; /* ms — feel of a smooth reel pull */
+    var EASE     = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
+    var pos      = 0;   /* strip position index */
+    var current  = 0;   /* logical slide index */
+    var busy     = false;
+
+    /* position strip instantly (no animation) */
+    function snapTo(idx) {
+      strip.style.transition = 'none';
+      strip.style.transform  = 'translateX(-' + (idx * 100) + '%)';
+      /* force reflow so next transition applies */
+      strip.getBoundingClientRect();
+    }
+
+    /* slide strip with animation */
+    function slideTo(idx) {
+      strip.style.transition = 'transform ' + DURATION + 'ms ' + EASE;
+      strip.style.transform  = 'translateX(-' + (idx * 100) + '%)';
+    }
+
+    /* update card + right panel content */
+    function updateContent(idx) {
+      var d = data[idx];
+
+      /* card */
+      if (cardImg) {
+        if (d.cardImage) { cardImg.src = d.cardImage; cardImg.style.display = ''; }
+        else { cardImg.style.display = 'none'; }
+      }
+      cardHead.textContent = d.heading;
+      cardDesc.textContent = d.description;
+      if (cardSub) cardSub.textContent = d.sub;
+      card.href = d.url;
+
+      /* preserve current toggle state — don't force card visible */
+      card.classList.toggle('pds-rtn-card-hidden', !toggleIn.checked);
+
+      /* right panel — instant swap, no animation */
+      var ni = (idx + 1) % total;
+      var nd = data[ni];
+      nextHead.textContent = nd.heading;
+      if (nd.mainImagePreview) nextImg.src = nd.mainImagePreview;
+    }
+
+    function goNext() {
+      if (busy) return;
+      busy = true;
+
+      pos += 1;
+      current = pos % total;
+
+      slideTo(pos);
+      updateContent(current);
+
+      /* after animation: if we're on the clone, snap back silently */
+      setTimeout(function () {
+        if (pos === total) {
+          pos = 0;
+          snapTo(0);
+        }
+        busy = false;
+      }, DURATION + 20);
+    }
+
+    /* init */
+    snapTo(0);
+    updateContent(0);
+
+    nextBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      goNext();
+    });
+
+    /* ── Toggle ── */
+    var toggleWrap = document.getElementById('pds-rtn-toggle-wrap');
+
+    toggleIn.addEventListener('change', function () {
+      card.classList.toggle('pds-rtn-card-hidden', !this.checked);
+    });
+
+    toggleWrap.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+
+    /* init right panel */
+    if (total > 1) {
+      nextHead.textContent = data[1].heading;
+      if (data[1].mainImagePreview) nextImg.src = data[1].mainImagePreview;
+    }
+  }());
+</script>
+
+{% schema %}
+{
+  "name": "Product Dual Showcase RTN",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Width (px)",
+      "min": 900,
+      "max": 1800,
+      "step": 20,
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Height (px)",
+      "min": 400,
+      "max": 900,
+      "step": 20,
+      "default": 580
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section Vertical Padding (px)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap Between Panels (px)",
+      "min": 8,
+      "max": 60,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Frost Card Position"
+    },
+    {
+      "type": "range",
+      "id": "card_top",
+      "label": "Card Top Offset (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_left",
+      "label": "Card Left Offset (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_right",
+      "label": "Card Right Offset (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_bottom",
+      "label": "Card Bottom Offset (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Frost Card Typography"
+    },
+    {
+      "type": "range",
+      "id": "card_img_size",
+      "label": "Card Image Size (px)",
+      "min": 80,
+      "max": 300,
+      "step": 10,
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "card_heading_size",
+      "label": "Card Heading Size (px)",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "card_desc_size",
+      "label": "Card Description Size (px)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "right_bg",
+      "label": "Right Panel Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "right_heading_color",
+      "label": "Right Heading Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#00e5e5"
+    },
+    {
+      "type": "header",
+      "content": "Right Panel"
+    },
+    {
+      "type": "range",
+      "id": "right_heading_size",
+      "label": "Heading Size (px)",
+      "min": 16,
+      "max": 56,
+      "step": 2,
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Arrow"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_image",
+      "label": "Arrow Image (upload your custom arrow)"
+    },
+    {
+      "type": "range",
+      "id": "arrow_img_size",
+      "label": "Arrow Size (px)",
+      "min": 24,
+      "max": 152,
+      "step": 4,
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "accent_color_arrow",
+      "label": "Fallback Arrow Color (if no image)",
+      "default": "#00e5e5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_slide",
+      "name": "Product Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Background"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Background Image (Left)"
+        },
+        {
+          "type": "header",
+          "content": "Frost Card"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "card_heading",
+          "label": "Product Name",
+          "default": "Product Name"
+        },
+        {
+          "type": "textarea",
+          "id": "card_description",
+          "label": "Description",
+          "default": "Add a little bit of body text here."
+        },
+        {
+          "type": "text",
+          "id": "card_sub",
+          "label": "Sub-line (bold, below description)"
+        },
+        {
+          "type": "url",
+          "id": "product_url",
+          "label": "Product Page Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Dual Showcase RTN",
+      "blocks": [{ "type": "product_slide" }, { "type": "product_slide" }, { "type": "product_slide" }]
+    }
+  ]
+}
+{% endschema %}

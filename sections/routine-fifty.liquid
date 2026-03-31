@@ -1,0 +1,678 @@
+{% comment %}
+  Routine Fifty — routine-fifty.liquid
+  50/50 split. Left: heading (changes) + static image/text/CTA. Right: image (changes) + arrows.
+  All classes use -rf suffix.
+{% endcomment %}
+
+<section
+  class="rf-section full-width"
+  id="rf-section-{{ section.id }}"
+  style="
+    --rf-height:          {{ section.settings.section_height }}px;
+    --rf-heading-size:    {{ section.settings.heading_size }}px;
+    --rf-subheading-size: {{ section.settings.subheading_size }}px;
+    --rf-body-size:       {{ section.settings.body_size }}px;
+    --rf-btn-bg:          {{ section.settings.btn_bg_color }};
+    --rf-btn-text:        {{ section.settings.btn_text_color }};
+    --rf-btn-radius:      {{ section.settings.btn_radius }}px;
+    --rf-left-bg:         {{ section.settings.left_bg_color }};
+    --rf-heading-color:   {{ section.settings.heading_color }};
+    --rf-body-color:      {{ section.settings.body_color }};
+    --rf-arrow-color:     {{ section.settings.arrow_color }};
+  "
+>
+
+  {% comment %} LEFT PANEL {% endcomment %}
+  <div class="rf-left">
+
+    {% comment %} Heading — changes on nav {% endcomment %}
+    <h2 class="rf-heading" id="rf-heading">
+      {{ section.blocks.first.settings.heading | default: 'Age Gracefully, Glow Shamelessly' }}
+    </h2>
+
+    {% comment %} Static block: image left + text right {% endcomment %}
+    <div class="rf-static">
+      <div class="rf-content-row">
+
+        {% comment %} Square image on the left {% endcomment %}
+        <div class="rf-img-wrap">
+          {% if section.settings.content_image %}
+            <img
+              class="rf-content-img"
+              src="{{ section.settings.content_image | image_url: width: 400 }}"
+              alt="{{ section.settings.subheading | escape }}"
+              width="400"
+              height="400"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="rf-content-img rf-img-placeholder" aria-hidden="true"></div>
+          {% endif %}
+        </div>
+
+        {% comment %} Subheading + body on the right {% endcomment %}
+        <div class="rf-text-col">
+          <h3 class="rf-subheading">{{ section.settings.subheading | default: 'Add a subheading' }}</h3>
+          <p class="rf-body">{{ section.settings.body | default: 'Effective anti-aging headlines for a skincare brand should focus on rejuvenation, firming, and enhancing natural beauty.' }}</p>
+        </div>
+
+      </div>
+
+      {% comment %} Full-width CTA below the row {% endcomment %}
+      <a class="rf-cta" href="{{ section.settings.cta_url | default: '#' }}">
+        {{ section.settings.cta_label | default: 'Start your regime' }}
+      </a>
+    </div>
+
+  </div>
+
+  {% comment %} RIGHT PANEL {% endcomment %}
+  <div class="rf-right">
+
+    {% comment %}
+      Two image layers stacked on top of each other.
+      Layer A starts visible (opacity 1), Layer B starts hidden (opacity 0).
+      On nav: load next image into the hidden layer, fade it IN on top.
+      Then swap roles. The outgoing image is always visible underneath
+      until the new one is fully loaded — zero grey gap.
+    {% endcomment %}
+
+    {% assign fi = section.blocks.first %}
+    {% assign fp = fi.settings.main_image %}
+
+    {% comment %} Layer A — visible on load {% endcomment %}
+    <img
+      id="rf-img-a"
+      class="rf-img-layer"
+      src="{% if fp %}{{ fp | image_url: width: 1400 }}{% else %}{% endif %}"
+      alt="{% if fi %}{{ fi.settings.heading | escape }}{% endif %}"
+      width="1400"
+      height="900"
+      loading="eager"
+      style="opacity:1; z-index:1;"
+    >
+
+    {% comment %} Layer B — hidden, receives next image {% endcomment %}
+    <img
+      id="rf-img-b"
+      class="rf-img-layer"
+      src=""
+      alt=""
+      width="1400"
+      height="900"
+      loading="lazy"
+      style="opacity:0; z-index:0;"
+    >
+
+    {% comment %} Arrows {% endcomment %}
+    {% if section.blocks.size > 1 %}
+      <div class="rf-arrows">
+        <button class="rf-arrow-btn" id="rf-prev" aria-label="Previous">
+          {% if section.settings.arrow_image %}
+            <img src="{{ section.settings.arrow_image | image_url: width: 80 }}" alt="" width="22" height="22" class="rf-arrow-img" style="transform:scaleX(-1)">
+          {% else %}
+            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><polyline points="24,8 14,20 24,32" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {% endif %}
+        </button>
+        <button class="rf-arrow-btn" id="rf-next" aria-label="Next">
+          {% if section.settings.arrow_image %}
+            <img src="{{ section.settings.arrow_image | image_url: width: 80 }}" alt="" width="22" height="22" class="rf-arrow-img">
+          {% else %}
+            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><polyline points="16,8 26,20 16,32" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          {% endif %}
+        </button>
+      </div>
+    {% endif %}
+
+  </div>
+
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+  /* Section locked to exact height — nothing inside can push it */
+  .rf-section {
+    display: flex;
+    width: 100%;
+    height: var(--rf-height, 100vh);
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background: #fff;
+  }
+
+  /* ── LEFT ── */
+  .rf-left {
+    flex: 0 0 50%;
+    width: 50%;
+    height: 100%;
+    background: var(--rf-left-bg, #ffffff);
+    position: relative; /* anchor for absolute children */
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Heading — pinned to top, smooth transition (no keyframe, no blink) */
+  .rf-heading {
+    position: absolute;
+    top: 48px;
+    left: 48px;
+    right: 48px;
+    font-size: var(--rf-heading-size, 40px);
+    font-weight: 800;
+    color: var(--rf-heading-color, #000);
+    line-height: 1.15;
+    margin: 0;
+    /* CSS transition drives the slide — JS just sets opacity/transform directly */
+    transition: opacity 0.38s ease, transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+
+  /* Static content — pinned to bottom, never moves regardless of heading size */
+  .rf-static {
+    position: absolute;
+    bottom: 28px;
+    left: 48px;
+    right: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Image + text side by side */
+  .rf-content-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  /* Square image — fixed size, never grows */
+  .rf-img-wrap {
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 12px;
+    overflow: hidden; /* clips any image that would overflow */
+  }
+
+  .rf-content-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fills the fixed box, never resizes it */
+    display: block;
+  }
+
+  .rf-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #efefef;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+  }
+
+  /* Text column */
+  .rf-text-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rf-subheading {
+    font-size: var(--rf-subheading-size, 20px);
+    font-weight: 700;
+    color: var(--rf-heading-color, #000);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .rf-body {
+    font-size: var(--rf-body-size, 15px);
+    color: var(--rf-body-color, #444);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* CTA — 80% width, centered */
+  .rf-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    background: var(--rf-btn-bg, #4fffff);
+    color: var(--rf-btn-text, #000);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 18px 32px;
+    border-radius: var(--rf-btn-radius, 48px);
+    box-sizing: border-box;
+    transition: opacity 0.2s ease;
+  }
+
+  .rf-cta:hover { opacity: 0.85; }
+
+  /* ── RIGHT ── */
+  .rf-right {
+    flex: 0 0 50%;
+    width: 50%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #e0e0e0;
+  }
+
+  /* Two image layers — always stacked, crossfade between them */
+  .rf-img-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: opacity 0.5s ease;
+    will-change: opacity;
+  }
+
+  /* Arrows — bottom right */
+  .rf-arrows {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .rf-arrow-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    border: 1.5px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--rf-arrow-color, #000);
+    padding: 0;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .rf-arrow-btn:hover {
+    background: #4fffff;
+    border-color: #4fffff;
+  }
+
+  .rf-arrow-btn:active,
+  .rf-arrow-btn:focus { outline: none; }
+
+  .rf-arrow-btn svg {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    display: block;
+  }
+
+  .rf-arrow-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* No keyframe animations needed — transitions handle everything */
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .rf-section { flex-direction: column; height: auto; }
+    .rf-left, .rf-right { flex: none; width: 100%; height: auto; }
+    .rf-left { min-height: 360px; }
+    .rf-right { height: 280px; }
+    .rf-heading { font-size: calc(var(--rf-heading-size, 40px) * 0.68); top: 28px; left: 24px; right: 24px; }
+    .rf-static { bottom: 28px; left: 24px; right: 24px; }
+    .rf-img-wrap { width: 100px; height: 100px; min-width: 100px; min-height: 100px; }
+  }
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  var real = [
+    {% for block in section.blocks %}
+    {
+      heading: {{ block.settings.heading | default: '' | json }},
+      img: {% if block.settings.main_image %}'{{ block.settings.main_image | image_url: width: 1400 }}'{% else %}''{% endif %}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  if (!real || real.length < 1) return;
+
+  /*
+    Clone method:
+    track = [clone-of-last, real[0]...real[n-1], clone-of-first]
+    cur starts at 1 (= real[0]).
+    After landing on a clone end, we silently reset cur to the real counterpart
+    WITHOUT touching any DOM — just updating the index pointer.
+    Next click will then crossfade from the correct real position.
+  */
+  var n     = real.length;
+  var track = [real[n - 1]].concat(real).concat([real[0]]);
+  var cur   = 1;  /* real[0] */
+
+  var busy = false;  /* single lock — never released early */
+
+  var headingEl = document.getElementById('rf-heading');
+  var imgA      = document.getElementById('rf-img-a');
+  var imgB      = document.getElementById('rf-img-b');
+  var prevBtn   = document.getElementById('rf-prev');
+  var nextBtn   = document.getElementById('rf-next');
+
+  if (!headingEl || !imgA || !imgB) return;
+
+  /* topLayer = currently visible, botLayer = hidden staging area */
+  var top = imgA;
+  var bot = imgB;
+
+  /* Ensure clean initial state */
+  top.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;z-index:1;transition:none;';
+  bot.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;transition:none;';
+
+  /* Preload all real images */
+  real.forEach(function (s) { if (s.img) { (new Image()).src = s.img; } });
+
+  function goTo(next, dir) {
+    if (busy) return;
+    busy = true;
+
+    var slide = track[next];
+    var outX  = dir === 'next' ? '-32px' : '32px';
+    var inX   = dir === 'next' ? '32px'  : '-32px';
+
+    /* 1. Slide heading OUT */
+    headingEl.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+    headingEl.style.opacity    = '0';
+    headingEl.style.transform  = 'translateX(' + outX + ')';
+
+    /* 2. Stage bot layer above top, invisible, no transition */
+    bot.style.transition = 'none';
+    bot.style.opacity    = '0';
+    bot.style.zIndex     = '2';
+    top.style.zIndex     = '1';
+
+    /* 3. Load image into bot, then crossfade */
+    function doFade() {
+      /* Clear handlers immediately so they never fire again */
+      bot.onload  = null;
+      bot.onerror = null;
+
+      /* Fade bot IN over top — top stays visible, zero grey gap */
+      bot.style.transition = 'opacity 0.46s ease';
+      bot.style.opacity    = '1';
+
+      /* Swap heading text while image is fading */
+      setTimeout(function () {
+        headingEl.style.transition = 'none';
+        headingEl.textContent      = slide.heading;
+        headingEl.style.transform  = 'translateX(' + inX + ')';
+        headingEl.style.opacity    = '0';
+        void headingEl.offsetWidth;
+        headingEl.style.transition = 'opacity 0.32s ease, transform 0.32s ease';
+        headingEl.style.opacity    = '1';
+        headingEl.style.transform  = 'translateX(0)';
+      }, 280);
+
+      /* After fade done: swap layer roles */
+      setTimeout(function () {
+        top.style.transition = 'none';
+        top.style.opacity    = '0';
+        top.style.zIndex     = '0';
+        /* DO NOT clear top.src here — clearing src triggers load events */
+
+        var tmp = top;
+        top = bot;
+        bot = tmp;
+
+        cur = next;
+
+        /* Silent index correction for clone ends — no DOM change */
+        if (cur === 0)             cur = n;      /* clone-of-last  → real last  */
+        if (cur === track.length - 1) cur = 1;   /* clone-of-first → real first */
+
+        busy = false;
+      }, 500);
+    }
+
+    if (slide.img) {
+      /* Clear any stale handlers before assigning new ones */
+      bot.onload  = null;
+      bot.onerror = null;
+
+      /* Check if already cached */
+      var tmp = new Image();
+      tmp.onload = function () {
+        bot.onload  = null;
+        bot.onerror = null;
+        bot.src = slide.img;
+        doFade();
+      };
+      tmp.onerror = function () {
+        bot.src = slide.img;
+        doFade();
+      };
+      tmp.src = slide.img;
+
+      /* If browser already has it cached, tmp.complete fires synchronously */
+      if (tmp.complete && tmp.naturalWidth > 0) {
+        tmp.onload  = null;
+        tmp.onerror = null;
+        bot.src = slide.img;
+        doFade();
+      }
+    } else {
+      bot.src = '';
+      doFade();
+    }
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', function () { goTo(cur + 1, 'next'); });
+  if (prevBtn) prevBtn.addEventListener('click', function () { goTo(cur - 1, 'prev'); });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Routine Fifty",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Height",
+      "min": 400,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "header",
+      "content": "Static Left Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "content_image",
+      "label": "Content Image (left of text)"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Add a subheading"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body Text",
+      "default": "Effective anti-aging headlines for a skincare brand should focus on rejuvenation, firming, and enhancing natural beauty."
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button Label",
+      "default": "Start your regime"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "left_bg_color",
+      "label": "Left Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading & Subheading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#444444"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background",
+      "default": "#4fffff"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "btn_radius",
+      "label": "Button Border Radius",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Arrow"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_image",
+      "label": "Custom Arrow Image",
+      "info": "Leave empty for default chevron."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "info": "Changes on navigation.",
+          "default": "Age Gracefully, Glow Shamelessly"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Right Panel Image",
+          "info": "Changes on navigation."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Routine Fifty",
+      "blocks": [
+        { "type": "slide", "settings": { "heading": "Age Gracefully, Glow Shamelessly Where Wrinkles Go to Retire" } },
+        { "type": "slide", "settings": { "heading": "Science-Backed Skincare for Every Skin Type" } },
+        { "type": "slide", "settings": { "heading": "Nourish Deep, Glow Bright, Feel Confident" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,655 @@
+{% comment %}
+  Banner Section - banner-section.liquid
+  All classes use -bs suffix to avoid conflicts
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+  .section-bs {
+    position: relative;
+    width: 100%;
+    min-height: {{ section.settings.section_height }}px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .bg-image-bs {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  .overlay-bs {
+    position: absolute;
+    inset: 0;
+    background: {{ section.settings.overlay_color }};
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  /* ── Inner: left headings + right column ── */
+  .inner-bs {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 48px 48px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  /* ── Left headings ── */
+  .left-bs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .heading-top-bs {
+    font-size: {{ section.settings.heading_top_size }}px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .heading-bottom-bs {
+    font-size: {{ section.settings.heading_bottom_size }}px;
+    font-weight: 800;
+    color: #4fffff;
+    line-height: 1.05;
+    margin: 0;
+    text-transform: lowercase;
+  }
+
+  /* ── Right column ── */
+  .right-bs {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 300px;
+    flex-shrink: 0;
+  }
+
+  /* ── Product image card — fixed size, white bg ── */
+  .product-card-bs {
+    background: #ffffff;
+    border-radius: {{ section.settings.card_radius }}px;
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative; /* needed for absolute img inside */
+  }
+
+  /* Image fills the card, object-fit keeps it contained */
+  .product-img-bs {
+    position: absolute;
+    inset: 12px;
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    object-fit: cover;
+  }
+
+  /* ── Frosted glass card — fixed container, clips animation ── */
+  .glass-card-bs {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: 0;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+    overflow: hidden; /* clips the sliding text to stay inside the card */
+  }
+
+  /* Inner wrapper is what actually animates — card border never moves */
+  .glass-inner-bs {
+    padding: 18px 20px;
+    width: 100%;
+  }
+
+  .glass-heading-bs {
+    font-size: {{ section.settings.glass_heading_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.glass_text_color }};
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+  }
+
+  .glass-desc1-bs {
+    font-size: {{ section.settings.glass_body_size }}px;
+    color: {{ section.settings.glass_text_color }};
+    line-height: 1.6;
+    margin: 0 0 8px 0;
+    opacity: 0.9;
+  }
+
+  .glass-desc2-bs {
+    font-size: {{ section.settings.glass_body_size }}px;
+    color: {{ section.settings.glass_text_color }};
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.75;
+  }
+
+  /* ── Arrow — gap from glass card, no hover effect ── */
+  .arrow-wrap-bs {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 12px; /* extra gap between glass card and arrow */
+  }
+
+  .arrow-btn-bs {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: {{ section.settings.arrow_size }}px;
+    height: {{ section.settings.arrow_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    /* intentionally no transition or transform */
+  }
+
+  .arrow-btn-bs:hover,
+  .arrow-btn-bs:active,
+  .arrow-btn-bs:focus {
+    transform: none !important;
+    outline: none;
+  }
+
+  .arrow-btn-bs img,
+  .arrow-btn-bs svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* ── Slide keyframes: right → left direction ── */
+  @keyframes bs-out {
+    0%   { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(-100%); }
+  }
+
+  @keyframes bs-in {
+    0%   { opacity: 0; transform: translateX(100%); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Image animates itself */
+  .product-img-bs.bs-anim-out {
+    animation: bs-out 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .product-img-bs.bs-anim-in {
+    animation: bs-in 0.5s cubic-bezier(0.0, 0.0, 0.2, 1) forwards;
+  }
+
+  /* Glass inner wrapper animates — clipped by parent overflow:hidden */
+  .glass-inner-bs.bs-anim-out {
+    animation: bs-out 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .glass-inner-bs.bs-anim-in {
+    animation: bs-in 0.5s cubic-bezier(0.0, 0.0, 0.2, 1) forwards;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .inner-bs {
+      flex-direction: column;
+      padding: 32px 24px 40px;
+    }
+    .right-bs {
+      width: 100%;
+    }
+    .heading-top-bs { font-size: {{ section.settings.heading_top_size | minus: 10 }}px; }
+    .heading-bottom-bs { font-size: {{ section.settings.heading_bottom_size | minus: 16 }}px; }
+  }
+
+  @media (max-width: 480px) {
+    .inner-bs { padding: 24px 16px 32px; }
+    .heading-top-bs { font-size: 28px; }
+    .heading-bottom-bs { font-size: 44px; }
+  }
+</style>
+
+{% comment %} Build block data for JS — rendered server-side {% endcomment %}
+{% assign bs_first = section.blocks.first %}
+{% assign bs_first_product = all_products[bs_first.settings.product] %}
+
+<section class="section-bs full-width" id="banner-section-bs-{{ section.id }}">
+  {% comment %} Background {% endcomment %}
+  {% if section.settings.bg_image %}
+    <img
+      class="bg-image-bs"
+      src="{{ section.settings.bg_image | image_url: width: 2000 }}"
+      alt="{{ section.settings.bg_image.alt | default: 'Banner background' }}"
+      loading="lazy"
+      width="2000"
+      height="1000"
+    >
+  {% else %}
+    <div class="bg-image-bs" style="background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);"></div>
+  {% endif %}
+
+  <div class="overlay-bs"></div>
+
+  <div class="inner-bs">
+    {% comment %} LEFT: headings {% endcomment %}
+    <div class="left-bs">
+      <h2 class="heading-top-bs">{{ section.settings.heading_top | default: 'Unique beauty' }}</h2>
+      <h1 class="heading-bottom-bs">{{ section.settings.heading_bottom | default: 'experience' }}</h1>
+    </div>
+
+    {% comment %} RIGHT: product card + glass card + arrow {% endcomment %}
+    <div class="right-bs">
+      {% comment %} White product image card — clicking goes to product page {% endcomment %}
+      <a
+        id="bs-product-link"
+        class="product-card-bs"
+        href="{% if bs_first_product %}{{ bs_first_product.url }}{% else %}#{% endif %}"
+        aria-label="{% if bs_first_product %}{{ bs_first_product.title }}{% else %}View product{% endif %}"
+      >
+        {% comment %}
+          Image priority: manual upload first → store product image → placeholder
+          This means uploading a manual image always overrides the store product image.
+        {% endcomment %}
+        {% if bs_first.settings.product_image %}
+          <img
+            id="bs-product-img"
+            class="product-img-bs"
+            src="{{ bs_first.settings.product_image | image_url: width: 600 }}"
+            alt="{{ bs_first.settings.product_image.alt | default: 'Product' }}"
+            width="276"
+            height="196"
+            loading="eager"
+          >
+        {% elsif bs_first_product and bs_first_product.featured_image %}
+          <img
+            id="bs-product-img"
+            class="product-img-bs"
+            src="{{ bs_first_product.featured_image | image_url: width: 600 }}"
+            alt="{{ bs_first_product.featured_image.alt | default: bs_first_product.title }}"
+            width="276"
+            height="196"
+            loading="eager"
+          >
+        {% else %}
+          <img
+            id="bs-product-img"
+            class="product-img-bs"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='276' height='196'%3E%3Crect width='276' height='196' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='14' fill='%23bbb'%3EProduct Image%3C/text%3E%3C/svg%3E"
+            alt="Product placeholder"
+            width="276"
+            height="196">
+        {% endif %}
+      </a>
+
+      {% comment %} Frosted glass info card {% endcomment %}
+      <div class="glass-card-bs">
+        {% assign fp = bs_first_product %}
+        <div id="bs-glass-inner" class="glass-inner-bs">
+          <h3 id="bs-glass-heading" class="glass-heading-bs">
+            {%- if bs_first.settings.card_heading != blank -%}
+              {{ bs_first.settings.card_heading }}
+            {%- elsif fp.title != blank -%}
+              {{ fp.title }}
+            {%- else -%}
+              Add a subheading
+            {%- endif -%}
+          </h3>
+          <p id="bs-glass-desc1" class="glass-desc1-bs">
+            {%- if bs_first.settings.card_desc1 != blank -%}
+              {{ bs_first.settings.card_desc1 }}
+            {%- elsif fp.description != blank -%}
+              {{ fp.description | strip_html | truncate: 160 }}
+            {%- else -%}
+              A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional,
+              and aesthetic beauty of the body.
+            {%- endif -%}
+          </p>
+          <p id="bs-glass-desc2" class="glass-desc2-bs">
+            {{ bs_first.settings.card_desc2 | default: 'Add a little bit of body text' }}
+          </p>
+        </div>
+      </div>
+
+      {% comment %} Arrow — gap via margin-top on arrow-wrap-bs {% endcomment %}
+      <div class="arrow-wrap-bs">
+        <button class="arrow-btn-bs" id="bs-arrow-btn" aria-label="Next product">
+          {% if section.settings.arrow_image %}
+            <img
+              src="{{ section.settings.arrow_image | image_url: width: 120 }}"
+              alt="Next"
+              width="{{ section.settings.arrow_size }}"
+              height="{{ section.settings.arrow_size }}"
+            >
+          {% else %}
+            <svg
+              width="{{ section.settings.arrow_size }}"
+              height="{{ section.settings.arrow_size }}"
+              viewBox="0 0 60 60"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polyline points="22,12 42,30 22,48" stroke="#4fffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          {% endif %}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    'use strict';
+
+    var bsBlocks = [
+      {% for block in section.blocks %}
+        {% assign bp = all_products[block.settings.product] %}
+        {
+          /* Image priority: manual upload first → store product image → empty */
+          productImg: {% if block.settings.product_image %}'{{ block.settings.product_image | image_url: width: 600 }}'{% elsif bp.featured_image %}'{{ bp.featured_image | image_url: width: 600 }}'{% else %}''{% endif %},
+          productUrl: '{{ bp.url | default: '#' }}',
+          heading: {{ block.settings.card_heading | default: bp.title | default: 'Product' | json }},
+          desc1: {{ block.settings.card_desc1 | default: bp.description | strip_html | truncate: 160 | default: '' | json }},
+          desc2: {{ block.settings.card_desc2 | default: '' | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ];
+
+    if (!bsBlocks || bsBlocks.length < 2) return;
+
+    var idx       = 0;
+    var animating = false;
+
+    var imgEl     = document.getElementById('bs-product-img');
+    var linkEl    = document.getElementById('bs-product-link');
+    var innerEl   = document.getElementById('bs-glass-inner');   /* whole inner wrapper animates */
+    var headEl    = document.getElementById('bs-glass-heading'); /* text updated after anim */
+    var desc1El   = document.getElementById('bs-glass-desc1');
+    var desc2El   = document.getElementById('bs-glass-desc2');
+    var btn       = document.getElementById('bs-arrow-btn');
+
+    if (!btn || !imgEl || !innerEl) return;
+
+    function reflow(el) { return el.offsetWidth; }
+
+    function anim(el, dir) {
+      el.classList.remove('bs-anim-out', 'bs-anim-in');
+      reflow(el);
+      el.classList.add(dir === 'out' ? 'bs-anim-out' : 'bs-anim-in');
+    }
+
+    btn.addEventListener('click', function () {
+      if (animating) return;
+      animating = true;
+
+      var next = (idx + 1) % bsBlocks.length; /* infinite forward loop */
+      var data = bsBlocks[next];
+
+      /* ── 1. Image slides out left ── */
+      anim(imgEl, 'out');
+
+      setTimeout(function () {
+        /* ── 2. Swap image + link, slide in from right ── */
+        if (data.productImg) imgEl.src = data.productImg;
+        if (linkEl) linkEl.href = data.productUrl || '#';
+        anim(imgEl, 'in');
+
+        /* ── 3. After 2s, slide the whole glass inner out ── */
+        setTimeout(function () {
+          anim(innerEl, 'out');
+
+          /* ── 4. Swap text content, slide inner back in ── */
+          setTimeout(function () {
+            headEl.textContent  = data.heading;
+            desc1El.textContent = data.desc1;
+            desc2El.textContent = data.desc2;
+
+            anim(innerEl, 'in');
+
+            idx       = next;
+            animating = false;
+          }, 260);
+
+        }, 400); /* text changes 600ms after image slides in */
+
+      }, 260);
+    });
+
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Banner Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 45,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Min Height",
+      "min": 400,
+      "max": 900,
+      "step": 20,
+      "default": 560,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Left Headings"
+    },
+    {
+      "type": "text",
+      "id": "heading_top",
+      "label": "Top Heading (white)",
+      "default": "Unique beauty"
+    },
+    {
+      "type": "range",
+      "id": "heading_top_size",
+      "label": "Top Heading Size",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "default": 48,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "heading_bottom",
+      "label": "Bottom Heading (cyan, lowercase, bold)",
+      "default": "experience"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_size",
+      "label": "Bottom Heading Size",
+      "min": 40,
+      "max": 120,
+      "step": 4,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Frosted Glass Card Text"
+    },
+    {
+      "type": "color",
+      "id": "glass_text_color",
+      "label": "Glass Card Text Color",
+      "info": "Use white (#ffffff) or black (#000000) depending on your background image",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "glass_heading_size",
+      "label": "Glass Heading Size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "glass_body_size",
+      "label": "Glass Body Text Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Arrow Button"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_image",
+      "label": "Arrow Image",
+      "info": "Upload your custom arrow. Leave empty for the default cyan chevron."
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow Size",
+      "min": 40,
+      "max": 160,
+      "step": 4,
+      "default": 120,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_slide",
+      "name": "Product Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product (from store)"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product",
+          "info": "Auto-fills image and description. Manual fields below override store data."
+        },
+        {
+          "type": "header",
+          "content": "Manual Image Override"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image (manual)",
+          "info": "Used if no store product is selected, or to override the product image."
+        },
+        {
+          "type": "header",
+          "content": "Glass Card Content"
+        },
+        {
+          "type": "text",
+          "id": "card_heading",
+          "label": "Card Heading",
+          "info": "Leave blank to use the product title.",
+          "default": "Add a subheading"
+        },
+        {
+          "type": "textarea",
+          "id": "card_desc1",
+          "label": "Description (line 1)",
+          "info": "Leave blank to use the product description.",
+          "default": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body."
+        },
+        {
+          "type": "textarea",
+          "id": "card_desc2",
+          "label": "Description (line 2)",
+          "default": "Add a little bit of body text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Section",
+      "blocks": [{ "type": "product_slide" }, { "type": "product_slide" }, { "type": "product_slide" }]
+    }
+  ]
+}
+{% endschema %}

@@ -63,7 +63,7 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     {% comment %} border-radius: 40px 40px 0 0; {% endcomment %}
-    padding: 30px 80px 30px 80px;
+    padding: 15px 80px 15px 80px;
     box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.1);
   }
 
@@ -127,17 +127,17 @@
   .how-to-use-tabs {
     display: flex;
     justify-content: flex-end;
-    gap: 20px;
-    margin-bottom: 25px;
+    gap: 15px;
+    margin-bottom: 12px;
   }
 
   .how-to-use-tab {
-    padding: 12px 32px;
+    padding: 8px 24px;
     background: rgba(255, 255, 255, 0.5);
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     color: #333333;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -167,14 +167,14 @@
   /* Progress Line */
   .how-to-use-progress-line {
     position: absolute;
-    top: 24px;
+    top: 20px;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: #e0e0e0;
     z-index: 1;
     border-radius: 2px;
-    margin: 0 24px;
+    margin: 0 20px;
   }
 
   .how-to-use-progress-fill {
@@ -199,19 +199,19 @@
   }
 
   .how-to-use-step-circle {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: #ffffff;
-    border: 4px solid #e0e0e0;
+    border: 3px solid #e0e0e0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #666666;
     transition: all 0.3s ease;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   .how-to-use-step.completed .how-to-use-step-circle {
@@ -244,7 +244,7 @@
   }
 
   .how-to-use-step-label {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: #333333;
     text-align: center;
@@ -256,18 +256,18 @@
   /* Responsive */
   @media (max-width: 1024px) {
     .how-to-use-strip-wrapper {
-      padding: 40px 60px 50px;
+      padding: 20px 60px 20px;
       border-radius: 32px 32px 0 0;
     }
 
     .how-to-use-tabs {
-      gap: 12px;
-      margin-bottom: 40px;
+      gap: 10px;
+      margin-bottom: 15px;
     }
 
     .how-to-use-tab {
-      padding: 10px 24px;
-      font-size: 14px;
+      padding: 8px 20px;
+      font-size: 13px;
     }
 
     .how-to-use-product {
@@ -288,23 +288,23 @@
 
   @media (max-width: 768px) {
     .how-to-use-strip-wrapper {
-      padding: 30px 30px 40px;
+      padding: 15px 30px 20px;
       border-radius: 24px 24px 0 0;
     }
 
     .how-to-use-tabs {
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 30px;
+      margin-bottom: 12px;
     }
 
     .how-to-use-tab {
-      padding: 8px 16px;
-      font-size: 13px;
+      padding: 6px 14px;
+      font-size: 12px;
     }
 
     .how-to-use-step-circle {
-      width: 36px;
+      width: 32px;
       height: 36px;
       font-size: 14px;
     }
@@ -341,10 +341,20 @@
   <!-- Video Backgrounds -->
   <div class="how-to-use-video-bg">
     {% for block in section.blocks %}
+      {% assign step_in_tab = 0 %}
+      {% for check_block in section.blocks %}
+        {% if check_block.settings.tab_id == block.settings.tab_id %}
+          {% assign step_in_tab = step_in_tab | plus: 1 %}
+          {% if check_block == block %}
+            {% break %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      
       <div class="how-to-use-video {% if forloop.first %}active{% endif %}" 
            data-tab="{{ block.settings.tab_id }}"
-           data-step="{{ forloop.index0 }}"
-           id="video-{{ section.id }}-{{ forloop.index0 }}">
+           data-step="{{ step_in_tab }}"
+           id="video-{{ section.id }}-{{ forloop.index }}">
         {% if block.settings.video_url %}
           <video muted playsinline preload="metadata">
             <source src="{{ block.settings.video_url }}" type="video/mp4">
@@ -390,7 +400,7 @@
                 {% assign current_step = current_step | plus: 1 %}
                 <div class="how-to-use-step {% if current_step == 1 %}active{% endif %}" 
                      data-step="{{ current_step }}"
-                     onclick="goToStep({{ current_step }}, '{{ tab }}', '{{ section.id }}')">
+                     onclick="console.log('Step clicked:', {{ current_step }}, '{{ tab }}', '{{ section.id }}'); goToStep({{ current_step }}, '{{ tab }}', '{{ section.id }}'); return false;">
                   <div class="how-to-use-step-circle">{{ current_step }}</div>
                   <div class="how-to-use-step-label">{{ block.settings.step_label }}</div>
                 </div>
@@ -456,7 +466,9 @@ function initHowToUse(sectionId) {
     currentTab: 'am',
     currentStep: 1,
     isPlaying: false,
-    videoEndedListener: null
+    videoEndedListener: null,
+    manualClick: false,
+    isProgressing: false
   };
   
   // Start first video
@@ -490,48 +502,72 @@ function switchTab(tabId, sectionId) {
 }
 
 function goToStep(stepNumber, tabId, sectionId) {
+  console.log(`Attempting to go to step ${stepNumber} in tab ${tabId} for section ${sectionId}`);
+  
   const data = window.howToUseData[sectionId];
+  console.log(`Current tab: ${data.currentTab}, Current step: ${data.currentStep}`);
   
   // Only allow clicking if we're on the correct tab
   if (data.currentTab !== tabId) {
+    console.log(`Tab mismatch: current=${data.currentTab}, requested=${tabId}`);
     return;
   }
+  
+  // Set flag to prevent auto-progression
+  data.manualClick = true;
   
   // Stop current video
   stopAllVideos(sectionId);
   
   // Update step - allow jumping to any step
   data.currentStep = stepNumber;
+  console.log(`Updated current step to: ${data.currentStep}`);
   
   // Update progress without blink animation for manual clicks
   updateProgress(sectionId, tabId, stepNumber, false);
   
   // Play video for this step
   playCurrentVideo(sectionId);
+  
+  // Reset flag after a short delay
+  setTimeout(() => {
+    data.manualClick = false;
+  }, 1000);
 }
 
 function updateProgress(sectionId, tabId, stepNumber, shouldBlink = false) {
+  console.log(`updateProgress called: sectionId=${sectionId}, tabId=${tabId}, stepNumber=${stepNumber}`);
+  
   const tabContent = document.querySelector(`.how-to-use-tab-content[data-tab="${tabId}"]`);
-  if (!tabContent) return;
+  if (!tabContent) {
+    console.log(`No tab content found for tab: ${tabId}`);
+    return;
+  }
   
   const steps = tabContent.querySelectorAll('.how-to-use-step');
   const totalSteps = steps.length;
+  console.log(`Found ${totalSteps} steps in tab ${tabId}`);
   
   // Update step circles - mark completed and active
   steps.forEach((step, index) => {
     const stepNum = index + 1;
-    step.classList.remove('active', 'blink');
+    step.classList.remove('active', 'blink', 'completed');
+    
+    console.log(`Processing step ${stepNum}, current target: ${stepNumber}`);
     
     // Mark as completed if it's before current step
     if (stepNum < stepNumber) {
       step.classList.add('completed');
+      console.log(`Step ${stepNum} marked as completed`);
     } else if (stepNum === stepNumber) {
-      step.classList.add('active', 'completed');
+      step.classList.add('active');
+      if (stepNum > 1) {
+        step.classList.add('completed');
+      }
       if (shouldBlink) {
         step.classList.add('blink');
       }
-    } else {
-      step.classList.remove('completed');
+      console.log(`Step ${stepNum} marked as active`);
     }
   });
   
@@ -539,6 +575,7 @@ function updateProgress(sectionId, tabId, stepNumber, shouldBlink = false) {
   const progressFill = document.getElementById(`progress-fill-${sectionId}-${tabId}`);
   if (progressFill && totalSteps > 1) {
     const percentage = ((stepNumber - 1) / (totalSteps - 1)) * 100;
+    console.log(`Setting progress bar to ${percentage}%`);
     progressFill.style.width = percentage + '%';
   }
   
@@ -554,21 +591,29 @@ function playCurrentVideo(sectionId) {
   const tabId = data.currentTab;
   const stepNumber = data.currentStep;
   
+  console.log(`Playing video for tab: ${tabId}, step: ${stepNumber}`);
+  
   // Find the video for current tab and step
   const videos = document.querySelectorAll('.how-to-use-video');
   let videoElement = null;
-  let videoIndex = 0;
+  
+  console.log(`Found ${videos.length} total videos`);
   
   videos.forEach((videoDiv, index) => {
-    if (videoDiv.dataset.tab === tabId) {
-      videoIndex++;
-      if (videoIndex === stepNumber) {
-        videoElement = videoDiv;
-      }
+    const videoTab = videoDiv.dataset.tab;
+    const videoStep = parseInt(videoDiv.dataset.step);
+    console.log(`Video ${index}: tab=${videoTab}, step=${videoStep}`);
+    
+    if (videoTab === tabId && videoStep === stepNumber) {
+      videoElement = videoDiv;
+      console.log(`Found matching video at index ${index}`);
     }
   });
   
-  if (!videoElement) return;
+  if (!videoElement) {
+    console.log(`No video found for tab: ${tabId}, step: ${stepNumber}`);
+    return;
+  }
   
   // Show video
   videos.forEach(v => v.classList.remove('active'));
@@ -642,23 +687,49 @@ function stopAllVideos(sectionId) {
 
 function onVideoEnded(sectionId) {
   const data = window.howToUseData[sectionId];
+  
+  // Don't auto-progress if user just clicked manually
+  if (data.manualClick) {
+    console.log('Skipping auto-progression due to manual click');
+    return;
+  }
+  
+  // Prevent multiple rapid calls
+  if (data.isProgressing) {
+    console.log('Already progressing, skipping duplicate call');
+    return;
+  }
+  
+  data.isProgressing = true;
+  
   const tabId = data.currentTab;
+  console.log(`Video ended for tab: ${tabId}, current step: ${data.currentStep}`);
   
   // Count total steps for current tab
   const tabContent = document.querySelector(`.how-to-use-tab-content[data-tab="${tabId}"]`);
   const totalSteps = tabContent ? tabContent.querySelectorAll('.how-to-use-step').length : 0;
   
+  console.log(`Total steps in tab ${tabId}: ${totalSteps}`);
+  
   // Move to next step
   if (data.currentStep < totalSteps) {
-    data.currentStep++;
+    const nextStep = data.currentStep + 1;
+    console.log(`Moving from step ${data.currentStep} to step ${nextStep}`);
+    data.currentStep = nextStep;
     updateProgress(sectionId, tabId, data.currentStep, false);
     playCurrentVideo(sectionId);
   } else {
     // Loop back to first step with blink animation
+    console.log(`Looping back from step ${data.currentStep} to step 1`);
     data.currentStep = 1;
     updateProgress(sectionId, tabId, data.currentStep, true);
     playCurrentVideo(sectionId);
   }
+  
+  // Reset progression flag after a short delay
+  setTimeout(() => {
+    data.isProgressing = false;
+  }, 500);
 }
 
 document.addEventListener('DOMContentLoaded', function() {

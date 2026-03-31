@@ -1,0 +1,1190 @@
+{% comment %}
+  Two Preview Section - Interactive sliding cards with expandable content
+  Features smooth transitions similar to VIP presentation camera roll effect
+{% endcomment %}
+
+<style>
+  .two-preview-section {
+    font-family: 'Montserrat', sans-serif;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
+    background-color: {{ section.settings.section_background_color }};
+    position: relative;
+    overflow: hidden;
+  }
+
+  .two-preview-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header Section - Split Layout */
+  .two-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    gap: 40px;
+  }
+
+  .two-preview-header-left {
+    flex: 1;
+  }
+
+  .two-preview-header-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .two-preview-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: 900;
+    color: {{ section.settings.title_color }};
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+  }
+
+  .two-preview-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.description_font_size }}px;
+    color: {{ section.settings.description_color }};
+    line-height: 1.4;
+    margin: 0 0 30px 0;
+    padding: 10px;
+  }
+
+  /* Email Collection Form */
+  .two-preview-email-form {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .two-preview-email-input {
+    flex: 1;
+    min-width: 320px;
+    padding: 10px 25px;
+    border: 2px solid {{ section.settings.email_border_color | default: '#e0e0e0' }};
+    border-radius: {{ section.settings.cta_border_radius }}px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .two-preview-email-input:focus {
+    border-color: {{ section.settings.cta_bg_color }};
+  }
+
+  .two-preview-email-submit {
+    background: {{ section.settings.cta_bg_color }};
+    color: {{ section.settings.cta_text_color }};
+    border: none;
+    border-radius: {{ section.settings.cta_border_radius }}px;
+    padding: 10px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.cta_font_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-width: 140px;
+  }
+
+  .two-preview-email-submit:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .two-preview-cta {
+    background: {{ section.settings.cta_bg_color }};
+    color: {{ section.settings.cta_text_color }};
+    border: none;
+    border-radius: {{ section.settings.cta_border_radius }}px;
+    padding: 15px 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.cta_font_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .two-preview-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  /* Cards Container */
+  .two-preview-cards-container {
+    display: flex;
+    gap: 20px;
+    height: 400px;
+    position: relative;
+    margin-top: 40px;
+  }
+
+  /* Left Expandable Card */
+  .two-preview-left-card {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Card overlay for smooth transitions */
+  .two-preview-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    z-index: 1;
+  }
+
+  .two-preview-card-overlay.active {
+    opacity: 1;
+  }
+
+  /* Content overlay */
+  .two-preview-content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+  }
+
+  .two-preview-content-overlay.active {
+    opacity: 1;
+  }
+
+  /* Right Fixed Cards */
+  .two-preview-right-card {
+    flex: 0 0 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background-color: {{ section.settings.closed_card_bg }};
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .two-preview-right-card:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Card Content Containers */
+  .two-preview-card-content {
+    height: 100%;
+    position: relative;
+  }
+
+  /* Closed Card Content (for right cards) - Vertical Text */
+  .two-preview-closed-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
+  }
+
+  .two-preview-closed-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+    line-height: 1.3;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    letter-spacing: 2px;
+  }
+
+  /* Left Card Sliding Content */
+  .two-preview-left-card {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+  }
+
+  /* Open Card Content */
+  .two-preview-open-header {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 40px;
+  }
+  .two-preview-open-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 33px;
+    font-weight: 800;
+    color: white;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+  } line-height: 1.2;
+  }
+
+  .two-preview-open-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+    margin: 0;
+    max-width: 400px;
+  }
+
+  /* Bottom Content Area */
+  .two-preview-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    position: relative;
+  }
+
+  /* White Panel with Icons */
+  .two-preview-icons-panel {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    {% comment %} margin-top: 20px; {% endcomment %}
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 240px;
+    width: 240px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .two-preview-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .two-preview-icon {
+    width: 40px;
+    height: 40px;
+    {% comment %} background: {{ section.settings.icon_bg_color | default: '#f0f0f0' }}; {% endcomment %}
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .two-preview-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .two-preview-icon-placeholder {
+    width: 28px;
+    height: 28px;
+    background: #e0e0e0;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #999;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .two-preview-icon-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: {{ section.settings.icon_label_color }};
+    line-height: 1.2;
+  }
+
+  /* Next Arrow - Clean Large Arrow */
+  .two-preview-next-arrow {
+    width: 120px;
+    height: 120px;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+  }
+
+  /* Permanent arrow - always visible and clickable */
+  #permanentArrow {
+    z-index: 25;
+  }
+
+  .two-preview-next-arrow:hover {
+    transform: scale(1.1);
+  }
+
+  .two-preview-arrow-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .two-preview-next-arrow::after {
+    content: '→';
+    color: white;
+    font-size: 80px;
+    font-weight: bold;
+  }
+
+  /* Hide default arrow when custom SVG is used */
+  .two-preview-next-arrow.has-custom-icon::after {
+    display: none;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .two-preview-header {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .two-preview-cards-container {
+      flex-direction: column;
+      height: auto;
+      gap: 15px;
+    }
+
+    .two-preview-left-card,
+    .two-preview-right-card {
+      height: 250px;
+      flex: none;
+      width: 100%;
+    }
+
+    .two-preview-left-card {
+      padding: 25px;
+    }
+
+    .two-preview-open-title {
+      font-size: 24px;
+    }
+
+    .two-preview-icons-panel {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 180px;
+      width: 180px;
+    }
+
+    .two-preview-email-form {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .two-preview-closed-title {
+      writing-mode: horizontal-tb;
+      transform: none;
+      font-size: 20px;
+    }
+  }
+</style>
+
+<div class="two-preview-section">
+  <div class="two-preview-container">
+    <!-- Header Section -->
+    <div class="two-preview-header">
+      <div class="two-preview-header-left">
+        {% if section.settings.section_title != blank %}
+          <h2 class="two-preview-title">{{ section.settings.section_title }}</h2>
+        {% endif %}
+      </div>
+      <div class="two-preview-header-right">
+        {% if section.settings.section_description != blank %}
+          <p class="two-preview-description">{{ section.settings.section_description }}</p>
+        {% endif %}
+        
+        {% if section.settings.use_email_form %}
+          <form class="two-preview-email-form" onsubmit="handleEmailSubmit(event)">
+            <input 
+              type="email" 
+              class="two-preview-email-input" 
+              placeholder="{{ section.settings.email_placeholder | default: 'Enter your email' }}" 
+              required
+            >
+            <button type="submit" class="two-preview-email-submit">
+              {{ section.settings.email_submit_text | default: 'Subscribe' }}
+            </button>
+          </form>
+        {% elsif section.settings.cta_text != blank %}
+          <a href="{{ section.settings.cta_link }}" class="two-preview-cta">
+            {{ section.settings.cta_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Cards Container -->
+    <div class="two-preview-cards-container" id="twoPreviewCards">
+      <!-- Dynamic Card Positions -->
+      <div class="two-preview-left-card" id="leftCard">
+        <!-- Background overlays for smooth transitions -->
+        <div class="two-preview-card-overlay" id="bgOverlay1"></div>
+        <div class="two-preview-card-overlay" id="bgOverlay2"></div>
+        
+        <!-- Content overlays for smooth transitions -->
+        <div class="two-preview-content-overlay active" id="contentOverlay1">
+          <!-- Active slide content will be injected here -->
+        </div>
+        <div class="two-preview-content-overlay" id="contentOverlay2">
+          <!-- Next slide content will be injected here -->
+        </div>
+        
+        <!-- Permanent arrow that's always clickable -->
+        <div class="two-preview-next-arrow {% if section.settings.arrow_icon %}has-custom-icon{% endif %}" id="permanentArrow">
+          {% if section.settings.arrow_icon %}
+            <img src="{{ section.settings.arrow_icon | image_url }}" alt="Next" class="two-preview-arrow-icon" width="100" height="100">
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="two-preview-right-card" id="rightCard1">
+        <div class="two-preview-card-content">
+          <div class="two-preview-closed-content">
+            <h3 class="two-preview-closed-title" id="rightTitle1"></h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-preview-right-card" id="rightCard2">
+        <div class="two-preview-card-content">
+          <div class="two-preview-closed-content">
+            <h3 class="two-preview-closed-title" id="rightTitle2"></h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hidden slide templates -->
+      <div style="display: none;" id="slideTemplates">
+        {% for block in section.blocks %}
+          <div class="two-preview-slide-template" 
+               data-slide-index="{{ forloop.index0 }}"
+               data-closed-title="{{ block.settings.closed_title }}"
+               data-closed-bg="{{ block.settings.closed_bg_image | image_url: width: 400, height: 600 }}"
+               data-open-bg="{{ block.settings.open_bg_image | image_url: width: 800, height: 600 }}"
+               {{ block.shopify_attributes }}>
+            
+            <!-- Open Card Content Template -->
+            <div class="two-preview-slide-content">
+              <div class="two-preview-open-header">
+                {% if block.settings.open_title != blank %}
+                  <h3 class="two-preview-open-title">{{ block.settings.open_title }}</h3>
+                {% endif %}
+                {% if block.settings.open_description != blank %}
+                  <p class="two-preview-open-description">{{ block.settings.open_description }}</p>
+                {% endif %}
+              </div>
+
+              <div class="two-preview-bottom-content">
+                <div class="two-preview-icons-panel">
+                  {% for i in (1..6) %}
+                    {% assign icon_text = 'icon_' | append: i | append: '_text' %}
+                    {% assign icon_image = 'icon_' | append: i | append: '_image' %}
+                    {% if block.settings[icon_text] != blank %}
+                      <div class="two-preview-icon-item">
+                        <div class="two-preview-icon">
+                          {% if block.settings[icon_image] %}
+                            <img src="{{ block.settings[icon_image] | image_url: width: 28, height: 28 }}" alt="{{ block.settings[icon_text] }}" width="28" height="28">
+                          {% else %}
+                            <div class="two-preview-icon-placeholder">
+                              Icon
+                            </div>
+                          {% endif %}
+                        </div>
+                        <span class="two-preview-icon-label">{{ block.settings[icon_text] }}</span>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentSlideIndex = 0;
+  const totalSlides = {{ section.blocks.size }};
+  let slideData = [];
+  let isTransitioning = false;
+  let activeOverlay = 1; // Track which overlay is currently active
+
+  // Initialize slide data from templates
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing two-preview section...');
+    
+    const templates = document.querySelectorAll('.two-preview-slide-template');
+    templates.forEach((template, index) => {
+      slideData.push({
+        index: index,
+        closedTitle: template.dataset.closedTitle,
+        closedBg: template.dataset.closedBg,
+        openBg: template.dataset.openBg,
+        content: template.querySelector('.two-preview-slide-content').innerHTML
+      });
+    });
+    
+    console.log('Slide data loaded:', slideData.length, 'slides');
+    
+    // Set up event delegation for arrow clicks - improved targeting
+    document.addEventListener('click', function(e) {
+      const arrow = e.target.closest('.two-preview-next-arrow');
+      if (arrow) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Arrow clicked! Arrow ID:', arrow.id); // Debug log
+        nextSlide();
+      }
+    });
+    
+    // Also add click handlers to right cards
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.two-preview-right-card')) {
+        e.preventDefault();
+        console.log('Right card clicked!');
+        nextSlide();
+      }
+    });
+    
+    // Initialize first slide
+    updateCardPositions();
+    
+    // Verify permanent arrow is present and clickable
+    setTimeout(() => {
+      const permanentArrow = document.getElementById('permanentArrow');
+      const allArrows = document.querySelectorAll('.two-preview-next-arrow');
+      console.log('Permanent arrow found:', !!permanentArrow);
+      console.log('Total arrows found:', allArrows.length);
+      
+      if (permanentArrow) {
+        console.log('Permanent arrow is clickable:', permanentArrow.style.pointerEvents !== 'none');
+        // Test click programmatically
+        permanentArrow.addEventListener('click', function() {
+          console.log('Permanent arrow direct click detected!');
+        });
+      }
+    }, 100);
+  });
+
+  function nextSlide() {
+    console.log('nextSlide called, totalSlides:', totalSlides, 'isTransitioning:', isTransitioning); // Debug log
+    if (totalSlides <= 1 || isTransitioning) return;
+    
+    isTransitioning = true;
+    
+    // Move to next slide
+    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+    console.log('Moving to slide:', currentSlideIndex); // Debug log
+    
+    // Use crossfade transition
+    crossfadeToNextSlide();
+  }
+
+  function crossfadeToNextSlide() {
+    const currentOverlay = activeOverlay;
+    const nextOverlay = activeOverlay === 1 ? 2 : 1;
+    
+    const currentContentOverlay = document.getElementById(`contentOverlay${currentOverlay}`);
+    const nextContentOverlay = document.getElementById(`contentOverlay${nextOverlay}`);
+    const currentBgOverlay = document.getElementById(`bgOverlay${currentOverlay}`);
+    const nextBgOverlay = document.getElementById(`bgOverlay${nextOverlay}`);
+    
+    // Prepare next slide content
+    const leftData = slideData[currentSlideIndex];
+    nextContentOverlay.innerHTML = leftData.content;
+    nextBgOverlay.style.backgroundImage = leftData.openBg ? `url('${leftData.openBg}')` : '';
+    
+    // Start crossfade
+    setTimeout(() => {
+      currentContentOverlay.classList.remove('active');
+      currentBgOverlay.classList.remove('active');
+      nextContentOverlay.classList.add('active');
+      nextBgOverlay.classList.add('active');
+      
+      // Update right cards
+      updateRightCards();
+      
+      // Switch active overlay
+      activeOverlay = nextOverlay;
+      
+      // Reset transition flag
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 600);
+    }, 50);
+  }
+
+  function updateRightCards() {
+    const rightCard1 = document.getElementById('rightCard1');
+    const rightCard2 = document.getElementById('rightCard2');
+    const rightTitle1 = document.getElementById('rightTitle1');
+    const rightTitle2 = document.getElementById('rightTitle2');
+
+    // Calculate positions
+    const rightIndex1 = (currentSlideIndex + 1) % totalSlides;
+    const rightIndex2 = (currentSlideIndex + 2) % totalSlides;
+
+    // Update right cards (closed cards)
+    if (totalSlides > 1) {
+      const rightData1 = slideData[rightIndex1];
+      rightCard1.style.backgroundImage = rightData1.closedBg ? `url('${rightData1.closedBg}')` : '';
+      rightTitle1.textContent = rightData1.closedTitle;
+      rightCard1.style.display = 'block';
+    } else {
+      rightCard1.style.display = 'none';
+    }
+
+    if (totalSlides > 2) {
+      const rightData2 = slideData[rightIndex2];
+      rightCard2.style.backgroundImage = rightData2.closedBg ? `url('${rightData2.closedBg}')` : '';
+      rightTitle2.textContent = rightData2.closedTitle;
+      rightCard2.style.display = 'block';
+    } else {
+      rightCard2.style.display = 'none';
+    }
+  }
+
+  function updateCardPositions() {
+    console.log('updateCardPositions called, slideData length:', slideData.length); // Debug log
+    // Initial setup
+    const leftData = slideData[currentSlideIndex];
+    const contentOverlay1 = document.getElementById('contentOverlay1');
+    const bgOverlay1 = document.getElementById('bgOverlay1');
+    
+    if (leftData && contentOverlay1 && bgOverlay1) {
+      contentOverlay1.innerHTML = leftData.content;
+      bgOverlay1.style.backgroundImage = leftData.openBg ? `url('${leftData.openBg}')` : '';
+      bgOverlay1.classList.add('active');
+      
+      updateRightCards();
+      console.log('Card positions updated successfully'); // Debug log
+      
+      // Ensure arrows are clickable after content update
+      setTimeout(() => {
+        const arrows = document.querySelectorAll('.two-preview-next-arrow');
+        console.log('Arrows after update:', arrows.length);
+      }, 50);
+    } else {
+      console.log('Missing elements or data:', { leftData, contentOverlay1, bgOverlay1 }); // Debug log
+    }
+  }
+
+  // Make nextSlide globally accessible for debugging
+  window.nextSlide = nextSlide;
+  window.twoPreviewDebug = {
+    currentSlideIndex: () => currentSlideIndex,
+    totalSlides: () => totalSlides,
+    slideData: () => slideData,
+    isTransitioning: () => isTransitioning
+  };
+
+  function attachArrowClickHandler() {
+    // Remove existing handlers to prevent duplicates
+    const arrows = document.querySelectorAll('.two-preview-next-arrow');
+    arrows.forEach(arrow => {
+      arrow.removeEventListener('click', nextSlide);
+      arrow.addEventListener('click', nextSlide);
+    });
+  }
+
+  // Auto-advance slides (optional)
+  {% if section.settings.auto_advance %}
+    setInterval(nextSlide, {{ section.settings.auto_advance_delay | default: 5000 }});
+  {% endif %}
+
+  // Email form handler
+  function handleEmailSubmit(event) {
+    event.preventDefault();
+    const email = event.target.querySelector('.two-preview-email-input').value;
+    
+    // Add your email handling logic here
+    console.log('Email submitted:', email);
+    
+    // Show success message (you can customize this)
+    alert('Thank you for subscribing!');
+    
+    // Reset form
+    event.target.reset();
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Two Preview Section",
+  "tag": "section",
+  "class": "two-preview-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Header Content"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Discover the freedom of banking on your terms"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Get business banking, card, bill pay, travel, and reimbursements — all in one scalable solution"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header Alignment (Mobile Only)",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "info": "On desktop, title is always on left and description/CTA on right"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button / Email Form"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_email_form",
+      "label": "Use Email Collection Form",
+      "default": false,
+      "info": "Toggle between CTA button and email collection form"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Get Demo Account"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email Input Placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "email_submit_text",
+      "label": "Email Submit Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "color",
+      "id": "email_border_color",
+      "label": "Email Input Border Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA Background Color",
+      "default": "#4fffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA Border Radius",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "closed_card_bg",
+      "label": "Closed Card Background (fallback)",
+      "default": "#e9ecef",
+      "info": "Used when no background image is set"
+    },
+    {
+      "type": "color",
+      "id": "closed_title_color",
+      "label": "Closed Card Title Color",
+      "default": "#ffffff",
+      "info": "Text is now always white and bold for better visibility"
+    },
+    {
+      "type": "color",
+      "id": "icon_box_bg_color",
+      "label": "Icon Box Background Color",
+      "default": "#ffffff",
+      "info": "Background color of the white panel containing icons"
+    },
+    {
+      "type": "color",
+      "id": "icon_bg_color",
+      "label": "Icon Circle Background Color",
+      "default": "#f0f0f0",
+      "info": "Background color of individual icon circles"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_label_color",
+      "label": "Icon Label Color",
+      "default": "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Arrow Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_icon",
+      "label": "Custom Arrow Icon (SVG recommended)",
+      "info": "Upload a custom SVG icon for the next arrow. If not provided, default arrow will be used."
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_advance",
+      "label": "Auto Advance Cards",
+      "default": false,
+      "info": "Automatically advance to next card"
+    },
+    {
+      "type": "range",
+      "id": "auto_advance_delay",
+      "min": 3000,
+      "max": 9500,
+      "step": 500,
+      "unit": "ms",
+      "label": "Auto Advance Delay",
+      "default": 5000,
+      "info": "Time between automatic card changes (milliseconds)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "preview_card",
+      "name": "Preview Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Closed Card Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "closed_bg_image",
+          "label": "Closed Card Background Image",
+          "info": "Background image for the closed card state"
+        },
+        {
+          "type": "text",
+          "id": "closed_title",
+          "label": "Closed Card Title",
+          "default": "Personal"
+        },
+        {
+          "type": "header",
+          "content": "Open Card Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "open_bg_image",
+          "label": "Open Card Background Image"
+        },
+        {
+          "type": "text",
+          "id": "open_title",
+          "label": "Open Card Title",
+          "default": "Personal"
+        },
+        {
+          "type": "textarea",
+          "id": "open_description",
+          "label": "Open Card Description",
+          "default": "The all-in-one plan for banking, saving, investing, and payments, from one app — local or global — move freely between countries and currencies."
+        },
+        {
+          "type": "header",
+          "content": "Icons Panel (6 icons max)"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1_image",
+          "label": "Icon 1 Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_1_text",
+          "label": "Icon 1 Label",
+          "default": "23"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2_image",
+          "label": "Icon 2 Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_2_text",
+          "label": "Icon 2 Label",
+          "default": "Banking"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3_image",
+          "label": "Icon 3 Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_3_text",
+          "label": "Icon 3 Label",
+          "default": "Team"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_4_image",
+          "label": "Icon 4 Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_4_text",
+          "label": "Icon 4 Label",
+          "default": "Savings"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_5_image",
+          "label": "Icon 5 Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_5_text",
+          "label": "Icon 5 Label",
+          "default": "Premium"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_6_image",
+          "label": "Icon 6 Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_6_text",
+          "label": "Icon 6 Label",
+          "default": "Secure"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two Preview Section",
+      "blocks": [
+        {
+          "type": "preview_card",
+          "settings": {
+            "closed_title": "Personal",
+            "open_title": "Personal",
+            "open_description": "The all-in-one plan for banking, saving, investing, and payments, from one app — local or global — move freely between countries and currencies.",
+            "icon_1_text": "23",
+            "icon_2_text": "Banking",
+            "icon_3_text": "Team",
+            "icon_4_text": "Savings",
+            "icon_5_text": "Premium",
+            "icon_6_text": "Secure"
+          }
+        },
+        {
+          "type": "preview_card",
+          "settings": {
+            "closed_title": "Business",
+            "open_title": "Business",
+            "open_description": "Comprehensive business banking solutions with advanced features for growing companies and enterprises.",
+            "icon_1_text": "Analytics",
+            "icon_2_text": "Business",
+            "icon_3_text": "Transfer",
+            "icon_4_text": "Growth",
+            "icon_5_text": "Protected",
+            "icon_6_text": "Fast"
+          }
+        },
+        {
+          "type": "preview_card",
+          "settings": {
+            "closed_title": "Freelance",
+            "open_title": "Freelance",
+            "open_description": "Perfect banking solution for freelancers and independent contractors with flexible payment options.",
+            "icon_1_text": "Digital",
+            "icon_2_text": "Focused",
+            "icon_3_text": "Global",
+            "icon_4_text": "24/7",
+            "icon_5_text": "Mobile",
+            "icon_6_text": "Simple"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

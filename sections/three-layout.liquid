@@ -1,0 +1,622 @@
+{% comment %}
+  Three Layout Section - Three horizontal rows with different sizes
+  Row 1: Large - Image or Video
+  Row 2: Medium - Bold text with background image
+  Row 3: Small - Five icons with #4FFFFF background
+{% endcomment %}
+
+<style>
+  .tL-section {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
+    background: {{ section.settings.section_background }};
+    overflow: hidden;
+  }
+
+  .tL-container {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-sizing: border-box;
+  }
+
+  /* Row 1 - Large Image/Video Row */
+  .tL-row-1 {
+    width: 100%;
+    height: {{ section.settings.row1_height }}px;
+    border-radius: {{ section.settings.row1_border_radius }}px;
+    overflow: hidden;
+    position: relative;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tL-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .tL-media-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  /* Row 2 - Medium Text Row with Background */
+  .tL-row-2 {
+    width: 100%;
+    height: {{ section.settings.row2_height }}px;
+    border-radius: {{ section.settings.row2_border_radius }}px;
+    overflow: hidden;
+    position: relative;
+    background: {{ section.settings.row2_background_color }};
+    background-image: {% if section.settings.row2_background_image %}url('{{ section.settings.row2_background_image | image_url }}'){% else %}none{% endif %};
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: {{ section.settings.row_gap }}px;
+    {% if section.settings.row2_border_enabled %}
+    border: {{ section.settings.row2_border_size }}px solid {{ section.settings.row2_border_color }};
+    {% endif %}
+  }
+
+  .tL-row-2-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, {{ section.settings.row2_overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+  }
+
+  .tL-text {
+    font-size: {{ section.settings.text_font_size }}px;
+    font-weight: 800;
+    color: {{ section.settings.text_color }};
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+    text-transform: uppercase;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  /* Row 3 - Small Icons Row */
+  .tL-row-3 {
+    width: 100%;
+    height: {{ section.settings.row3_height }}px;
+    border-radius: {{ section.settings.row3_border_radius }}px;
+    background: {{ section.settings.row3_background_color }};
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 40px;
+    margin-top: {{ section.settings.row_gap }}px;
+    box-sizing: border-box;
+  }
+
+  .tL-icon {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .tL-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .tL-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: {{ section.settings.icon_filter }};
+  }
+
+  .tL-icon-placeholder {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .tL-container {
+      padding: 0 20px;
+    }
+
+    .tL-row-1 {
+      height: {{ section.settings.row1_height | minus: 100 }}px;
+    }
+
+    .tL-row-2 {
+      height: {{ section.settings.row2_height | minus: 50 }}px;
+    }
+
+    .tL-text {
+      font-size: {{ section.settings.text_font_size | minus: 12 }}px;
+      padding: 0 20px;
+    }
+
+    .tL-row-3 {
+      padding: 0 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tL-container {
+      padding: 0 20px;
+    }
+
+    .tL-row-1 {
+      height: {{ section.settings.row1_height | minus: 150 }}px;
+      border-radius: {{ section.settings.row1_border_radius | minus: 5 }}px;
+    }
+
+    .tL-row-2 {
+      height: {{ section.settings.row2_height | minus: 80 }}px;
+      border-radius: {{ section.settings.row2_border_radius | minus: 5 }}px;
+    }
+
+    .tL-text {
+      font-size: {{ section.settings.text_font_size | minus: 20 }}px;
+      padding: 0 20px;
+    }
+
+    .tL-row-3 {
+      height: {{ section.settings.row3_height | minus: 10 }}px;
+      padding: 0 20px;
+      border-radius: {{ section.settings.row3_border_radius | minus: 5 }}px;
+    }
+
+    .tL-icon {
+      width: {{ section.settings.icon_size | minus: 10 }}px;
+      height: {{ section.settings.icon_size | minus: 10 }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tL-container {
+      padding: 0 20px;
+    }
+
+    .tL-row-1 {
+      height: {{ section.settings.row1_height | minus: 200 }}px;
+    }
+
+    .tL-row-2 {
+      height: {{ section.settings.row2_height | minus: 100 }}px;
+    }
+
+    .tL-text {
+      font-size: {{ section.settings.text_font_size | minus: 30 }}px;
+      padding: 0 15px;
+    }
+
+    .tL-row-3 {
+      padding: 0 15px;
+    }
+
+    .tL-icon {
+      width: {{ section.settings.icon_size | minus: 15 }}px;
+      height: {{ section.settings.icon_size | minus: 15 }}px;
+    }
+  }
+</style>
+
+<section class="tL-section">
+  <div class="tL-container">
+    <!-- Row 1: Large Image/Video Row -->
+    <div class="tL-row-1">
+      {% if section.settings.media_type == 'video' and section.settings.video_url != blank %}
+        {% if section.settings.video_url contains 'youtube.com' or section.settings.video_url contains 'youtu.be' %}
+          {% assign video_id = section.settings.video_url | split: '/' | last | split: '?' | first | split: '&' | first %}
+          {% if section.settings.video_url contains 'watch?v=' %}
+            {% assign video_id = section.settings.video_url | split: 'watch?v=' | last | split: '&' | first %}
+          {% endif %}
+          <iframe 
+            class="tL-media"
+            src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1&loop=1&playlist={{ video_id }}&controls=0&showinfo=0&rel=0&modestbranding=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        {% elsif section.settings.video_url contains 'vimeo.com' %}
+          {% assign video_id = section.settings.video_url | split: '/' | last %}
+          <iframe 
+            class="tL-media"
+            src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&muted=1&loop=1&controls=0&background=1"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        {% else %}
+          {% comment %} Direct video file URL {% endcomment %}
+          <video class="tL-media" autoplay muted loop playsinline>
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% endif %}
+      {% elsif section.settings.media_type == 'image' and section.settings.media_image %}
+        <img 
+          src="{{ section.settings.media_image | image_url: width: 1200 }}" 
+          alt="{{ section.settings.media_alt | default: 'Media content' }}"
+          class="tL-media"
+          width="1200"
+          height="600"
+          loading="lazy">
+      {% else %}
+        <div class="tL-media-placeholder">
+          Add Image or Video
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Row 2: Medium Text Row with Background -->
+    <div class="tL-row-2">
+      {% if section.settings.row2_background_image %}
+        <div class="tL-row-2-overlay"></div>
+      {% endif %}
+      {% if section.settings.main_text != blank %}
+        <h2 class="tL-text">{{ section.settings.main_text }}</h2>
+      {% else %}
+        <h2 class="tL-text">ADD YOUR BOLD TEXT HERE</h2>
+      {% endif %}
+    </div>
+
+    <!-- Row 3: Small Icons Row -->
+    <div class="tL-row-3">
+      {% for i in (1..5) %}
+        {% assign icon_setting = 'icon_' | append: i %}
+        <div class="tL-icon">
+          {% if section.settings[icon_setting] %}
+            <img 
+              src="{{ section.settings[icon_setting] | image_url: width: 100 }}" 
+              alt="Icon {{ i }}"
+              width="100"
+              height="100"
+              loading="lazy">
+          {% else %}
+            <div class="tL-icon-placeholder">
+              Icon {{ i }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Three Layout",
+  "tag": "section",
+  "class": "tL-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap Between Rows",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Row 1 - Media (Largest)"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "media_image",
+      "label": "Media Image",
+      "info": "Recommended size: 1200x600px"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "YouTube, Vimeo, or direct video file URL"
+    },
+    {
+      "type": "text",
+      "id": "media_alt",
+      "label": "Media Alt Text",
+      "default": "Media content"
+    },
+    {
+      "type": "range",
+      "id": "row1_height",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Row 1 Height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "row1_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Row 1 Border Radius",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Row 2 - Text (Medium)"
+    },
+    {
+      "type": "text",
+      "id": "main_text",
+      "label": "Main Text",
+      "default": "CELLULAR HARMONY"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Text Font Size",
+      "default": 104
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "row2_height",
+      "min": 80,
+      "max": 300,
+      "step": 20,
+      "unit": "px",
+      "label": "Row 2 Height",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "row2_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Row 2 Border Radius",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "row2_background_color",
+      "label": "Row 2 Background Color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "image_picker",
+      "id": "row2_background_image",
+      "label": "Row 2 Background Image",
+      "info": "Optional background image for text row"
+    },
+    {
+      "type": "range",
+      "id": "row2_overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 10,
+      "unit": "%",
+      "label": "Background Image Overlay Opacity",
+      "default": 30,
+      "info": "Only applies when background image is set"
+    },
+    {
+      "type": "checkbox",
+      "id": "row2_border_enabled",
+      "label": "Enable Border",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "row2_border_color",
+      "label": "Border Color",
+      "default": "#000000",
+      "info": "Only applies when border is enabled"
+    },
+    {
+      "type": "range",
+      "id": "row2_border_size",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Size",
+      "default": 2,
+      "info": "Only applies when border is enabled"
+    },
+    {
+      "type": "header",
+      "content": "Row 3 - Icons (Smallest)"
+    },
+    {
+      "type": "color",
+      "id": "row3_background_color",
+      "label": "Row 3 Background Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "range",
+      "id": "row3_height",
+      "min": 60,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "label": "Row 3 Height",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "row3_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Row 3 Border Radius",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "icon_filter",
+      "label": "Icon Color Filter",
+      "options": [
+        {
+          "value": "none",
+          "label": "Original Colors"
+        },
+        {
+          "value": "brightness(0)",
+          "label": "Black"
+        },
+        {
+          "value": "brightness(0) invert(1)",
+          "label": "White"
+        },
+        {
+          "value": "sepia(1) hue-rotate(180deg)",
+          "label": "Blue Tint"
+        }
+      ],
+      "default": "brightness(0)"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1",
+      "label": "Icon 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2",
+      "label": "Icon 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3",
+      "label": "Icon 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_4",
+      "label": "Icon 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_5",
+      "label": "Icon 5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Three Layout",
+      "settings": {
+        "main_text": "CELLULAR HARMONY",
+        "media_type": "image"
+      }
+    }
+  ]
+}
+{% endschema %}

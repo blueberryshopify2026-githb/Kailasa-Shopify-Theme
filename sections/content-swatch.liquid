@@ -1,0 +1,898 @@
+{% comment %}
+  Content Swatch Section - VIP membership section with floating content cards
+  Features: Left text content, right image with floating swatch cards, CTA button
+{% endcomment %}
+
+
+<style>
+  .content-swatch-section {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
+    background: {{ section.settings.section_background }};
+    position: relative;
+    overflow: hidden;
+  }
+
+
+  .content-swatch-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: center;
+    min-height: 600px;
+    position: relative;
+  }
+
+
+  /* Left Content */
+  .content-swatch-text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space between top and bottom alignment */
+    z-index: 2;
+    position: relative;
+    text-align: left;
+    padding-right: 120px; /* Increased padding to keep text further from center cards */
+    height: 600px; /* Match image area height for alignment */
+  }
+
+
+  .content-swatch-text-top {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Significantly increased gap between title and description */
+  }
+
+
+  .content-swatch-text-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+
+  .content-swatch-heading {
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    line-height: 1.1;
+    margin: 0 0 20px 0; /* Added bottom margin to heading */
+    letter-spacing: -0.02em;
+    transition: opacity 0.3s ease;
+  }
+
+
+  .content-swatch-description {
+    color: {{ section.settings.description_color }};
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+    transition: opacity 0.3s ease;
+    min-height: 120px; /* Reserve space for description */
+  }
+
+
+  .content-swatch-description p {
+    margin: 0 0 16px 0;
+  }
+
+
+  .content-swatch-description p:last-child {
+    margin-bottom: 0;
+  }
+
+
+  .content-swatch-description ul,
+  .content-swatch-description ol {
+    margin: 0 0 16px 0;
+    padding-left: 20px;
+  }
+
+
+  .content-swatch-description li {
+    margin-bottom: 8px;
+  }
+
+
+  .content-swatch-description strong {
+    font-weight: 700;
+  }
+
+
+  .content-swatch-description em {
+    font-style: italic;
+  }
+
+
+  .content-swatch-description a {
+    color: {{ section.settings.description_color }};
+    text-decoration: underline;
+  }
+
+
+  .content-swatch-description a:hover {
+    opacity: 0.8;
+  }
+
+
+  .content-swatch-cta {
+    background: {{ section.settings.cta_bg_color }};
+    color: {{ section.settings.cta_text_color }};
+    border: 2px solid {{ section.settings.cta_border_color }};
+    border-radius: {{ section.settings.cta_border_radius }}px;
+    padding: 16px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.cta_font_size }}px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+
+  .content-swatch-cta:hover {
+    background: {{ section.settings.cta_hover_bg }};
+    color: {{ section.settings.cta_hover_text }};
+    border-color: {{ section.settings.cta_hover_border }};
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+
+  /* Hidden content for each swatch */
+  .content-swatch-content {
+    display: none;
+  }
+
+
+  .content-swatch-content.active {
+    display: block;
+  }
+
+
+  /* Center Swatch Cards Column - Now overlapping between left and right */
+  .content-swatch-cards-column {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+
+  .content-swatch-cards-column .content-swatch-card {
+    pointer-events: auto;
+  }
+
+
+  /* Right Image Area */
+  .content-swatch-image-area {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .content-swatch-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+
+  .content-swatch-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute; /* Stack images on top of each other */
+    top: 0;
+    left: 0;
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth crossfade with subtle scale */
+    transform: scale(1.02); /* Slight scale for premium feel */
+  }
+
+  .content-swatch-main-image:first-child {
+    opacity: 1; /* Show first image by default */
+    transform: scale(1);
+  }
+
+  .content-swatch-main-image.active {
+    opacity: 1; /* Visible when active */
+    transform: scale(1); /* Normal scale when active */
+    z-index: 2; /* Active image on top */
+  }
+
+  .content-swatch-main-image.previous {
+    opacity: 1; /* Keep previous image visible during transition */
+    transform: scale(1);
+    z-index: 1; /* Previous image below */
+  }
+
+  .content-swatch-main-image.fade-out {
+    opacity: 0; /* Fade out previous image */
+    transform: scale(0.98); /* Slight scale down for premium feel */
+  }
+
+
+  .content-swatch-main-image.hidden {
+    opacity: 0;
+  }
+
+
+  .content-swatch-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    border-radius: 20px; /* Fixed border radius since setting removed */
+    font-size: 16px;
+    text-align: center;
+    gap: 12px;
+  }
+
+
+  /* Swatch Cards - Now overlapping between columns */
+  .content-swatch-card {
+    background: {{ section.settings.card_bg_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: 6px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ffffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 100px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+
+  .content-swatch-card:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  }
+
+
+  .content-swatch-card.active {
+    border-color: #4FFFFF;
+    border-width: 2px;
+    box-shadow: 0 12px 35px rgba(79, 255, 255, 0.4);
+    transform: translateY(-3px) scale(1.05);
+  }
+
+
+  .content-swatch-card-image {
+    width: {{ section.settings.card_image_size }}px;
+    height: {{ section.settings.card_image_size }}px;
+    object-fit: cover;
+    border-radius: {{ section.settings.card_image_border_radius }}px;
+    display: block;
+    margin: 0 auto;
+  }
+
+
+  .content-swatch-card-text {
+    font-size: {{ section.settings.card_text_size }}px;
+    color: {{ section.settings.card_text_color }};
+    font-weight: 600;
+    margin: 8px 0 0 0;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .content-swatch-container {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding: 0 30px;
+      text-align: center;
+    }
+
+
+    .content-swatch-text-content {
+      order: 1;
+      padding-right: 0; /* Remove padding on mobile */
+      text-align: center; /* Center text on mobile */
+    }
+
+
+    .content-swatch-cards-column {
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      order: 2;
+      flex-direction: row;
+      gap: 15px;
+      padding: 20px 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+
+    .content-swatch-image-area {
+      order: 3;
+      height: 500px;
+    }
+
+
+    .content-swatch-heading {
+      font-size: {{ section.settings.heading_font_size | minus: 8 }}px;
+    }
+
+
+    .content-swatch-cta {
+      align-self: center;
+    }
+
+
+    .content-swatch-card {
+      padding: 10px;
+      min-width: 90px;
+    }
+
+
+    .content-swatch-card-image {
+      width: {{ section.settings.card_image_size | minus: 15 }}px;
+      height: {{ section.settings.card_image_size | minus: 15 }}px;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .content-swatch-container {
+      grid-template-columns: 1fr;
+      gap: 25px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+
+    .content-swatch-text-content {
+      order: 1;
+      gap: 20px;
+      padding-right: 0; /* Remove padding on mobile */
+      text-align: center; /* Center text on mobile */
+    }
+
+
+    .content-swatch-cards-column {
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      order: 2;
+      flex-direction: row;
+      gap: 12px;
+      padding: 15px 0;
+    }
+
+
+    .content-swatch-image-area {
+      order: 3;
+      height: 400px;
+    }
+
+
+    .content-swatch-heading {
+      font-size: {{ section.settings.heading_font_size | minus: 12 }}px;
+    }
+
+
+    .content-swatch-cta {
+      align-self: center;
+    }
+
+
+    .content-swatch-card {
+      padding: 8px;
+      min-width: 80px;
+    }
+
+
+    .content-swatch-card-image {
+      width: {{ section.settings.card_image_size | minus: 25 }}px;
+      height: {{ section.settings.card_image_size | minus: 25 }}px;
+    }
+  }
+
+
+  @media (max-width: 480px) {
+    .content-swatch-container {
+      padding: 0 20px;
+      gap: 30px;
+    }
+
+
+    .content-swatch-image-area {
+      height: 300px;
+    }
+
+
+    .content-swatch-heading {
+      font-size: {{ section.settings.heading_font_size | minus: 16 }}px;
+    }
+
+
+    .content-swatch-card {
+      padding: 10px;
+    }
+
+
+    .content-swatch-card-image {
+      width: {{ section.settings.card_image_size | minus: 30 }}px;
+      height: {{ section.settings.card_image_size | minus: 30 }}px;
+    }
+
+
+    .content-swatch-card-text {
+      font-size: {{ section.settings.card_text_size | minus: 2 }}px;
+    }
+  }
+</style>
+
+
+<section class="content-swatch-section">
+  <div class="content-swatch-container">
+    <!-- Left Content -->
+    <div class="content-swatch-text-content">
+      <!-- Top Section - Title aligned with image top -->
+      <div class="content-swatch-text-top">
+        <!-- Dynamic content for each swatch -->
+        {% for block in section.blocks %}
+          <div class="content-swatch-content {% if forloop.first %}active{% endif %}" data-content="{{ forloop.index }}">
+            {% if block.settings.heading != blank %}
+              <h2 class="content-swatch-heading" style="font-size: {{ section.settings.heading_font_size | default: 48 }}px;">{{ block.settings.heading }}</h2>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <div class="content-swatch-description" style="font-size: {{ section.settings.description_font_size | default: 16 }}px;">{{ block.settings.description }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+       
+        <!-- Fallback to section settings if no blocks -->
+        {% if section.blocks.size == 0 %}
+          <div class="content-swatch-content active">
+            {% if section.settings.heading != blank %}
+              <h2 class="content-swatch-heading" style="font-size: {{ section.settings.heading_font_size | default: 48 }}px;">{{ section.settings.heading }}</h2>
+            {% endif %}
+            {% if section.settings.description != blank %}
+              <div class="content-swatch-description" style="font-size: {{ section.settings.description_font_size | default: 16 }}px;">{{ section.settings.description }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+
+      <!-- Bottom Section - CTA aligned with image bottom -->
+      <div class="content-swatch-text-bottom">
+        <!-- Dynamic CTA for each swatch -->
+        {% for block in section.blocks %}
+          <div class="content-swatch-content {% if forloop.first %}active{% endif %}" data-content="{{ forloop.index }}">
+            {% if block.settings.cta_text != blank %}
+              <a href="{{ block.settings.cta_link }}" class="content-swatch-cta">
+                {{ block.settings.cta_text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+       
+        <!-- Fallback CTA -->
+        {% if section.blocks.size == 0 %}
+          <div class="content-swatch-content active">
+            {% if section.settings.cta_text != blank %}
+              <a href="{{ section.settings.cta_link }}" class="content-swatch-cta">
+                {{ section.settings.cta_text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+
+    <!-- Center Swatch Cards Column -->
+    <div class="content-swatch-cards-column">
+      {% for block in section.blocks %}
+        {% if block.settings.card_image %}
+          <div class="content-swatch-card {% if forloop.first %}active{% endif %}"
+               data-main-image="{{ block.settings.main_image | image_url: width: 800 }}"
+               data-content="{{ forloop.index }}"
+               onclick="switchContent(this, '{{ section.id }}')">
+            <img src="{{ block.settings.card_image | image_url: width: 200 }}"
+                 alt="{{ block.settings.card_text | default: 'Swatch' }}"
+                 class="content-swatch-card-image"
+                 width="200"
+                 height="200"
+                 loading="lazy">
+            {% if block.settings.card_text != blank %}
+              <p class="content-swatch-card-text">{{ block.settings.card_text }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+
+    <!-- Right Image Area -->
+    <div class="content-swatch-image-area">
+      {% if section.blocks.size > 0 %}
+        <!-- Image container for smooth crossfading -->
+        <div class="content-swatch-image-container">
+          {% for block in section.blocks %}
+            {% if block.settings.main_image %}
+              <img src="{{ block.settings.main_image | image_url: width: 800 }}" 
+                   alt="Content Image"
+                   class="content-swatch-main-image {% if forloop.first %}active{% endif %}"
+                   data-content="{{ forloop.index }}"
+                   width="800"
+                   height="600"
+                   loading="lazy">
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="content-swatch-image-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="#ccc">
+            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+          </svg>
+          <p>Add Main Image</p>
+          <small>Add swatch cards with main images</small>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+<script>
+function switchContent(cardElement, sectionId) {
+  console.log('switchContent called', cardElement, sectionId); // Debug log
+  
+  // Remove active class from all cards
+  const allCards = document.querySelectorAll('.content-swatch-card');
+  allCards.forEach(card => card.classList.remove('active'));
+  
+  // Add active class to clicked card
+  cardElement.classList.add('active');
+  
+  // Get content index
+  const contentIndex = cardElement.getAttribute('data-content');
+  console.log('Content index:', contentIndex); // Debug log
+  
+  // Switch text content
+  const allContent = document.querySelectorAll('.content-swatch-content');
+  allContent.forEach(content => {
+    if (content.getAttribute('data-content') === contentIndex) {
+      content.classList.add('active');
+    } else {
+      content.classList.remove('active');
+    }
+  });
+  
+  // Switch main image with smooth crossfade (no white flash)
+  const currentImage = document.querySelector('.content-swatch-main-image.active');
+  const targetImage = document.querySelector(`.content-swatch-main-image[data-content="${contentIndex}"]`);
+  
+  console.log('Current image:', currentImage); // Debug log
+  console.log('Target image:', targetImage); // Debug log
+  
+  if (currentImage && targetImage && currentImage !== targetImage) {
+    console.log('Starting crossfade transition'); // Debug log
+    
+    // Step 1: Mark current image as previous (keeps it visible)
+    currentImage.classList.remove('active');
+    currentImage.classList.add('previous');
+    
+    // Step 2: Show target image (fade in with scale animation)
+    targetImage.classList.add('active');
+    
+    // Step 3: After transition, clean up previous image
+    setTimeout(() => {
+      // Fade out previous image
+      currentImage.classList.add('fade-out');
+      
+      // After fade out completes, reset previous image
+      setTimeout(() => {
+        currentImage.classList.remove('previous', 'fade-out');
+      }, 500); // Match CSS transition duration
+    }, 50); // Small delay to ensure smooth transition
+  } else if (targetImage && !currentImage) {
+    console.log('First time activation'); // Debug log
+    // First time activation
+    targetImage.classList.add('active');
+  } else {
+    console.log('No valid transition found'); // Debug log
+  }
+}
+
+
+// Initialize first active card on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const firstCard = document.querySelector('.content-swatch-card');
+  if (firstCard && !document.querySelector('.content-swatch-card.active')) {
+    firstCard.classList.add('active');
+  }
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Content Swatch",
+  "tag": "section",
+  "class": "content-swatch-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Text Styling"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 28,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button Styling"
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "CTA Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cta_border_color",
+      "label": "CTA Border Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_bg",
+      "label": "CTA Hover Background",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_text",
+      "label": "CTA Hover Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_border",
+      "label": "CTA Hover Border Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "CTA Border Radius",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Floating Cards Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "rgba(255, 255, 255, 0.9)"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_image_size",
+      "min": 60,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Card Image Size",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "card_image_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Image Border Radius",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Card Text Size",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#333333"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "swatch_card",
+      "name": "Swatch Card",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card Image (Swatch)",
+          "info": "Small swatch image shown in center column"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image",
+          "info": "Large image shown on right when this swatch is selected"
+        },
+        {
+          "type": "header",
+          "content": "Content for this Swatch"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "info": "Title that appears when this swatch is selected"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "info": "Description that appears when this swatch is selected"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA Button Text",
+          "info": "Button text that appears when this swatch is selected"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "CTA Button Link",
+          "info": "Button link that appears when this swatch is selected"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content Swatch",
+      "blocks": [
+        {
+          "type": "swatch_card"
+        },
+        {
+          "type": "swatch_card"
+        },
+        {
+          "type": "swatch_card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

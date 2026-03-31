@@ -1,13 +1,12 @@
 {% comment %}
-  Medical Team Section - Infinite carousel with center focus card and polaroid side cards
+  Medical Team Section - Infinite carousel with center focus card and frosted glass overlay
 {% endcomment %}
-
 
 <style>
   .medical-team-section {
     font-family: 'Montserrat', sans-serif;
     background: {{ section.settings.section_bg_color | default: '#000000' }};
-    padding: 60px 0 40px 0;
+    padding: 40px 0 30px 0;
     overflow: hidden;
     min-height: auto;
     display: flex;
@@ -26,7 +25,7 @@
   /* Header */
   .medical-team-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     background: transparent;
     width: 100%;
   }
@@ -88,10 +87,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    padding: 0 50px;
-    height: 480px;
-    min-height: 480px;
+    gap: 25px;
+    padding: 0 40px;
+    height: 400px;
+    min-height: 400px;
   }
 
 
@@ -102,18 +101,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 480px;
+    height: 400px;
   }
 
 
   .medical-team-track {
     display: flex;
-    gap: 30px;
+    gap: 25px;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    padding: 20px 0;
+    padding: 15px 0;
     align-items: center;
     justify-content: center;
-    height: 440px;
+    height: 370px;
     opacity: 0;
     visibility: hidden;
     will-change: transform;
@@ -155,36 +154,37 @@
   }
 
 
-  /* Side Cards - Polaroid Style */
+  /* Side Cards - Simple Grayscale Images */
   .medical-team-card {
     position: relative;
     flex-shrink: 0;
     cursor: pointer;
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 15px 15px 25px 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: 200px;
+    background: transparent;
+    border-radius: 18px;
+    padding: 0;
+    box-shadow: none;
+    width: 240px;
     height: 280px;
-    opacity: 0.8;
-    filter: grayscale(0.2);
+    opacity: 0.7;
+    filter: grayscale(100%);
     align-self: center;
+    overflow: hidden;
   }
 
 
   .medical-team-card:hover {
-    opacity: 0.9;
-    transform: translateY(-5px);
+    opacity: 0.8;
+    transform: none;
   }
 
 
   .side-card-image {
     width: 100%;
-    height: 190px;
-    border-radius: 12px;
+    height: 100%;
+    border-radius: 18px;
     overflow: hidden;
-    margin-bottom: 12px;
+    margin-bottom: 0;
     background: #f0f0f0;
   }
 
@@ -197,33 +197,23 @@
 
 
   .side-card-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: #000000;
-    text-align: center;
-    margin: 0 0 5px 0;
-    font-family: 'Montserrat', sans-serif;
+    display: none;
   }
-
 
   .side-card-designation {
-    font-size: 12px;
-    color: #666666;
-    text-align: center;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    display: none;
   }
 
 
-  /* Center Active Card - Full Image with Frosted Glass */
+  /* Center Active Card - Larger with Full Image and Frosted Glass */
   .medical-team-card.active {
-    width: 360px !important;
-    height: 440px !important;
+    width: 400px !important;
+    height: 480px !important;
     opacity: 1 !important;
     filter: grayscale(0) !important;
     transform: scale(1) !important;
     z-index: 10 !important;
-    border-radius: 24px !important;
+    border-radius: 22px !important;
     overflow: hidden !important;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5) !important;
     background: #000000 !important;
@@ -336,23 +326,21 @@
   /* Responsive */
   @media (max-width: 1024px) {
     .medical-team-header {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
 
+    .medical-team-card {
+      width: 200px;
+      height: 240px;
+    }
 
     .medical-team-card.active {
-      width: 420px !important;
-      height: 520px !important;
+      width: 350px !important;
+      height: 420px !important;
     }
-
-
-    .medical-team-card.side-card {
-      width: 220px;
-    }
-
 
     .side-card-image {
-      height: 220px;
+      height: 150px;
     }
   }
 
@@ -362,52 +350,43 @@
       padding: 60px 15px;
     }
 
-
     .medical-team-header {
       margin-bottom: 40px;
     }
-
 
     .medical-team-title {
       font-size: {{ section.settings.title_font_size | minus: 10 }}px;
     }
 
-
     .medical-team-description {
       font-size: {{ section.settings.description_font_size | minus: 2 }}px;
     }
-
 
     .medical-team-carousel {
       gap: 15px;
     }
 
+    .medical-team-card {
+      width: 200px;
+      height: 240px;
+    }
 
     .medical-team-card.active {
       width: 320px !important;
       height: 420px !important;
     }
 
-
-    .medical-team-card.side-card {
-      width: 180px;
-    }
-
-
     .side-card-image {
-      height: 180px;
+      height: 150px;
     }
-
 
     .side-card-name {
       font-size: 14px;
     }
 
-
     .side-card-designation {
       font-size: 12px;
     }
-
 
     .center-card-frost {
       bottom: 20px;
@@ -416,16 +395,13 @@
       padding: 20px;
     }
 
-
     .center-card-name {
       font-size: 22px;
     }
 
-
     .center-card-designation {
       font-size: 14px;
     }
-
 
     .medical-team-nav {
       width: 48px;
@@ -439,32 +415,27 @@
       gap: 10px;
     }
 
+    .medical-team-card {
+      width: 160px;
+      height: 200px;
+    }
 
     .medical-team-card.active {
       width: 260px !important;
       height: 340px !important;
     }
 
-
-    .medical-team-card.side-card {
-      width: 140px;
-    }
-
-
     .side-card-image {
-      height: 140px;
+      height: 120px;
     }
-
 
     .side-card-name {
       font-size: 13px;
     }
 
-
     .side-card-designation {
       font-size: 11px;
     }
-
 
     .center-card-frost {
       bottom: 15px;
@@ -473,16 +444,13 @@
       padding: 15px;
     }
 
-
     .center-card-name {
       font-size: 18px;
     }
 
-
     .center-card-designation {
       font-size: 12px;
     }
-
 
     .medical-team-nav {
       width: 40px;
@@ -677,13 +645,11 @@ function initializeMedicalTeam(sectionId) {
       `;
       card.classList.add('active');
     } else {
-      // All other cards - polaroid style
+      // All other cards - simple grayscale image only
       card.innerHTML = `
         <div class="side-card-image">
-          <img src="${imageUrl}" alt="${name}" width="180" height="160">
+          <img src="${imageUrl}" alt="${name}" width="240" height="280">
         </div>
-        <h3 class="side-card-name">${name}</h3>
-        <p class="side-card-designation">${designation}</p>
       `;
       card.classList.remove('active');
     }
@@ -731,13 +697,11 @@ function selectMedicalCard(index, sectionId, animate = true) {
       `;
       card.classList.add('active');
     } else {
-      // All other cards - polaroid style
+      // All other cards - simple grayscale image only
       card.innerHTML = `
         <div class="side-card-image">
-          <img src="${imageUrl}" alt="${name}" width="180" height="160">
+          <img src="${imageUrl}" alt="${name}" width="240" height="280">
         </div>
-        <h3 class="side-card-name">${name}</h3>
-        <p class="side-card-designation">${designation}</p>
       `;
       card.classList.remove('active');
     }
@@ -773,9 +737,9 @@ function centerMedicalCard(index, sectionId, animate = true) {
   const containerCenter = containerWidth / 2;
 
 
-  const sideCardWidth = 200;
-  const activeCardWidth = 360;
-  const gap = 30;
+  const sideCardWidth = 240;
+  const activeCardWidth = 400;
+  const gap = 25;
 
 
   // Calculate the left edge position of the active card

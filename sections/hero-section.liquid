@@ -24,18 +24,27 @@
     display: grid;
     grid-template-columns: 60fr 40fr;
     gap: 0;
-    align-items: center;
+    align-items: center; /* This centers both columns vertically */
   }
 
   /* Left Side - Text Content */
   .circle-hero-content {
     padding-right: 60px;
-    padding-top: 80px;
     z-index: 2;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    justify-content: space-between; /* Space between top content and bottom buttons */
+    height: 850px; /* Match the main image height instead of 100vh */
+    max-height: 90vh; /* Match the image max-height */
     position: relative;
+    align-self: center; /* Center align with the image container */
+  }
+
+  .circle-hero-text-top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between title and description */
+    padding-top: 20px; /* Small padding to keep title within image bounds */
   }
 
   .circle-hero-title {
@@ -43,7 +52,7 @@
     font-weight: 700;
     color: {{ section.settings.title_color | default: '#ffffff' }};
     line-height: 1.1;
-    margin: 0;
+    margin: 0; /* Remove margin for tight spacing */
     font-family: 'Montserrat', sans-serif;
   }
 
@@ -51,22 +60,17 @@
     font-size: {{ section.settings.description_font_size }}px;
     color: {{ section.settings.description_color | default: '#ffffff' }};
     line-height: 1.6;
-    margin: 24px 0 0 0;
+    margin: 0; /* Remove margin for tight spacing */
     font-family: 'Montserrat', sans-serif;
   }
   
-  .circle-hero-buttons {
-    position: absolute;
-    bottom: calc((100vh - 90vh) / 2);
-    left: 0;
-    right: 60px;
-  }
-
   .circle-hero-buttons {
     display: flex;
     flex-direction: column;
     gap: 16px;
     max-width: 450px;
+    flex-shrink: 0; /* Keep buttons at bottom */
+    padding-bottom: 20px; /* Small padding to keep buttons within image bounds */
   }
 
   .circle-hero-btn {
@@ -133,9 +137,7 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
-    {% comment %} align-self: center; {% endcomment %}
-    height: 100vh;
-    
+    height: 100vh; /* Keep full viewport height for container */
   }
 
   .circle-hero-main-image {
@@ -233,6 +235,11 @@
 
     .circle-hero-content {
       padding-right: 0;
+      height: auto; /* Allow flexible height on mobile */
+    }
+
+    .circle-hero-text-top {
+      gap: 16px; /* Smaller gap on mobile */
     }
 
     .circle-hero-circles {
@@ -256,6 +263,10 @@
       padding: 40px 20px;
     }
 
+    .circle-hero-text-top {
+      gap: 12px; /* Even smaller gap on mobile */
+    }
+
     .circle-hero-title {
       font-size: {{ section.settings.title_font_size | minus: 10 }}px;
     }
@@ -266,6 +277,7 @@
 
     .circle-hero-buttons {
       max-width: 100%;
+      margin-top: 30px; /* Add space between text and buttons on mobile */
     }
 
     .circle-hero-circle {
@@ -279,9 +291,13 @@
   <div class="circle-hero-container">
     <!-- Left Side: Text Content -->
     <div class="circle-hero-content">
-      <h1 class="circle-hero-title" id="circle-hero-title">{{ section.blocks.first.settings.title }}</h1>
-      <p class="circle-hero-description" id="circle-hero-description">{{ section.blocks.first.settings.description }}</p>
+      <!-- Top Section - Title and Description aligned with image top -->
+      <div class="circle-hero-text-top">
+        <h1 class="circle-hero-title" id="circle-hero-title">{{ section.blocks.first.settings.title }}</h1>
+        <p class="circle-hero-description" id="circle-hero-description">{{ section.blocks.first.settings.description }}</p>
+      </div>
       
+      <!-- Bottom Section - Buttons stay at bottom -->
       <div class="circle-hero-buttons">
         {% if section.settings.button_1_text != blank %}
           <a href="{{ section.settings.button_1_link }}" class="circle-hero-btn circle-hero-btn-primary">

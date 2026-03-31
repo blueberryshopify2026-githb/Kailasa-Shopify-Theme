@@ -347,7 +347,7 @@
                  playsinline
                  preload="metadata"
                  {% if section.settings.video_poster %}poster="{{ section.settings.video_poster | image_url: width: 600 }}"{% endif %}>
-            <source src="{% if section.settings.video_url contains 'shopifycdn.com' or section.settings.video_url contains 'http' %}{{ section.settings.video_url }}{% else %}{{ section.settings.video_url | asset_url }}{% endif %}" type="video/mp4">
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         {% else %}

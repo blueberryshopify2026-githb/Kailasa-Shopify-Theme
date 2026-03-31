@@ -1,0 +1,751 @@
+{% comment %}
+  VIP Hero Banner Section - Background with animated frosted glass review tile
+  Features: Background image, frosted glass panel, animated scrolling reviews, hover effects
+{% endcomment %}
+
+<style>
+  .vip-hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 80px;
+    padding: 0;
+  }
+
+  .vip-hero-banner-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');
+  }
+
+  .vip-hero-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: {{ section.settings.overlay_color | color_modify: 'alpha', section.settings.overlay_opacity }};
+  }
+
+  .vip-hero-banner-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 {{ section.settings.content_padding }}px;
+    box-sizing: border-box;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Frosted Glass Title Bar */
+  .vip-hero-banner-title-bar {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 10px 18px;
+    width: 320px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    height: 44px;
+  }
+
+  .vip-hero-banner-title-icon {
+    width: 24px;
+    height: 24px;
+    background: #4FFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .vip-hero-banner-title-icon img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+  .vip-hero-banner-title-text {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Frosted Glass Review Tile */
+  .vip-hero-banner-review-tile {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 24px;
+    width: 320px;
+    height: 400px;
+    overflow: visible;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+
+  /* Text Content Area */
+  .vip-hero-banner-text-content {
+    flex: 1;
+    max-width: 600px;
+    color: white;
+  }
+
+  .vip-hero-banner-title {
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 20px 0;
+    color: {{ section.settings.title_color }};
+  }
+
+  .vip-hero-banner-subtitle {
+    font-size: {{ section.settings.subtitle_font_size }}px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0 0 30px 0;
+    color: {{ section.settings.subtitle_color }};
+    opacity: 0.9;
+  }
+
+  .vip-hero-banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: {{ section.settings.cta_bg_color }};
+    color: {{ section.settings.cta_text_color }};
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .vip-hero-banner-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(218, 194, 194, 0.2);
+  }
+
+  /* Reviews Container */
+  .vip-hero-banner-reviews-container {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+    z-index: 20;
+    padding: 16px 0;
+  }
+
+  .vip-hero-banner-reviews-scroll {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    width: 100%;
+    animation: vip-hero-banner-scroll-up 30s linear infinite;
+  }
+
+  .vip-hero-banner-reviews-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes vip-hero-banner-scroll-up {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  /* Individual Review Item */
+  .vip-hero-banner-review-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 25px 8px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    z-index: 50;
+    height: 48px;
+    border: 2px solid transparent;
+  }
+
+  .vip-hero-banner-review-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #4FFFFF;
+    border-radius: 12px;
+    padding: 25px 8px;
+    box-shadow: 0 0 20px rgba(79, 255, 255, 0.3);
+    z-index: 100;
+  }
+
+  .vip-hero-banner-review-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    z-index: 60;
+    position: relative;
+  }
+
+  .vip-hero-banner-review-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .vip-hero-banner-review-info {
+    flex: 1;
+    z-index: 60;
+    position: relative;
+  }
+
+  .vip-hero-banner-review-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+  }
+
+  .vip-hero-banner-review-meta {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.93);
+    margin: 0;
+  }
+
+  /* Hover Review Text */
+  .vip-hero-banner-review-hover {
+    position: absolute;
+    top: -110px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 280px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
+
+  /* Dynamic class for top two visible reviews - will be added by JavaScript */
+  .vip-hero-banner-review-item.show-below .vip-hero-banner-review-hover {
+    top: 65px;
+    transform: translateX(-50%) translateY(-15px);
+    z-index: 10000;
+  }
+
+  .vip-hero-banner-review-item.show-below:hover .vip-hero-banner-review-hover {
+    transform: translateX(-50%) translateY(0);
+    z-index: 10001;
+  }
+
+  .vip-hero-banner-review-item:hover .vip-hero-banner-review-hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: none;
+  }
+
+  /* Close popup when mouse leaves the review item */
+  .vip-hero-banner-review-item:not(:hover) .vip-hero-banner-review-hover {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Arrow pointing down from review bubble (default) */
+  .vip-hero-banner-review-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+  }
+
+  /* Arrow pointing up for reviews with show-below class */
+  .vip-hero-banner-review-item.show-below .vip-hero-banner-review-hover::after {
+    bottom: auto;
+    top: -10px;
+    border-top: none;
+    border-bottom: 10px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+
+  .vip-hero-banner-review-text {
+    font-size: 14px;
+    font-style: italic;
+    color: #333333;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .vip-hero-banner-content {
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .vip-hero-banner-title-bar {
+      width: 260px;
+    }
+
+    .vip-hero-banner-review-tile {
+      width: 260px;
+      height: 380px;
+      padding: 20px;
+    }
+
+    .vip-hero-banner-reviews-container {
+      height: 300px;
+    }
+
+    .vip-hero-banner-review-hover {
+      width: 240px;
+    }
+  }
+</style>
+
+<div class="vip-hero-banner full-width">
+  <!-- Background Image -->
+  <div class="vip-hero-banner-background"></div>
+  
+  <!-- Overlay -->
+  <div class="vip-hero-banner-overlay"></div>
+  
+  <!-- Content -->
+  <div class="vip-hero-banner-content">
+    <!-- Text Content -->
+    {% if section.settings.show_text_content %}
+      <div class="vip-hero-banner-text-content">
+        {% if section.settings.title != blank %}
+          <h1 class="vip-hero-banner-title">{{ section.settings.title }}</h1>
+        {% endif %}
+        {% if section.settings.subtitle != blank %}
+          <p class="vip-hero-banner-subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+        {% if section.settings.cta_text != blank %}
+          <a href="{{ section.settings.cta_link }}" class="vip-hero-banner-cta">
+            {{ section.settings.cta_text }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Frosted Glass Review Section -->
+    <div class="vip-hero-banner-review-section">
+      <!-- Title Bar -->
+      <div class="vip-hero-banner-title-bar">
+        <div class="vip-hero-banner-title-icon">
+          {% if section.settings.title_icon_image %}
+            <img src="{{ section.settings.title_icon_image | image_url: width: 32 }}" 
+                 alt="Review Icon"
+                 width="16"
+                 height="16">
+          {% else %}
+            {{ section.settings.title_icon | default: '★' }}
+          {% endif %}
+        </div>
+        <h3 class="vip-hero-banner-title-text">{{ section.settings.reviews_title | default: 'Reviews' }}</h3>
+      </div>
+
+      <!-- Reviews Tile -->
+      <div class="vip-hero-banner-review-tile">
+        <!-- Reviews Container -->
+        <div class="vip-hero-banner-reviews-container">
+          <div class="vip-hero-banner-reviews-scroll">
+            {% assign review_count = 0 %}
+            {% for block in section.blocks %}
+              {% if block.type == 'review' and review_count < 5 %}
+                {% assign review_count = review_count | plus: 1 %}
+                <div class="vip-hero-banner-review-item" {{ block.shopify_attributes }}>
+                  <div class="vip-hero-banner-review-avatar">
+                    {% if block.settings.avatar %}
+                      <img src="{{ block.settings.avatar | image_url: width: 80 }}" 
+                           alt="{{ block.settings.name }}"
+                           width="40"
+                           height="40">
+                    {% else %}
+                      <div style="width: 100%; height: 100%; background: #ccc; border-radius: 50%;"></div>
+                    {% endif %}
+                  </div>
+                  <div class="vip-hero-banner-review-info">
+                    <h3 class="vip-hero-banner-review-name">{{ block.settings.name }}</h3>
+                    <p class="vip-hero-banner-review-meta">{{ block.settings.meta }}</p>
+                  </div>
+                  
+                  <!-- Hover Review Text -->
+                  {% if block.settings.review_text != blank %}
+                    <div class="vip-hero-banner-review-hover">
+                      <p class="vip-hero-banner-review-text">{{ block.settings.review_text }}</p>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+            
+            <!-- Duplicate first 5 reviews for seamless loop -->
+            {% assign review_count = 0 %}
+            {% for block in section.blocks %}
+              {% if block.type == 'review' and review_count < 5 %}
+                {% assign review_count = review_count | plus: 1 %}
+                <div class="vip-hero-banner-review-item">
+                  <div class="vip-hero-banner-review-avatar">
+                    {% if block.settings.avatar %}
+                      <img src="{{ block.settings.avatar | image_url: width: 80 }}" 
+                           alt="{{ block.settings.name }}"
+                           width="40"
+                           height="40">
+                    {% else %}
+                      <div style="width: 100%; height: 100%; background: #ccc; border-radius: 50%;"></div>
+                    {% endif %}
+                  </div>
+                  <div class="vip-hero-banner-review-info">
+                    <h3 class="vip-hero-banner-review-name">{{ block.settings.name }}</h3>
+                    <p class="vip-hero-banner-review-meta">{{ block.settings.meta }}</p>
+                  </div>
+                  
+                  <!-- Hover Review Text -->
+                  {% if block.settings.review_text != blank %}
+                    <div class="vip-hero-banner-review-hover">
+                      <p class="vip-hero-banner-review-text">{{ block.settings.review_text }}</p>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const reviewsContainer = document.querySelector('.vip-hero-banner-reviews-container');
+  const reviewsScroll = document.querySelector('.vip-hero-banner-reviews-scroll');
+  
+  if (!reviewsContainer || !reviewsScroll) return;
+  
+  function updateTopReviews() {
+    // Get all review items (including duplicates)
+    const reviewItems = reviewsScroll.querySelectorAll('.vip-hero-banner-review-item');
+    
+    // Remove existing show-below classes
+    reviewItems.forEach(item => item.classList.remove('show-below'));
+    
+    // Get container bounds
+    const containerRect = reviewsContainer.getBoundingClientRect();
+    const containerTop = containerRect.top;
+    
+    let visibleReviews = [];
+    
+    // Find all reviews that are currently visible
+    reviewItems.forEach((item, index) => {
+      const itemRect = item.getBoundingClientRect();
+      const itemTop = itemRect.top;
+      const itemBottom = itemRect.bottom;
+      
+      // Check if review is visible in the container
+      if (itemBottom > containerTop && itemTop < containerRect.bottom) {
+        visibleReviews.push({
+          element: item,
+          top: itemTop - containerTop,
+          index: index
+        });
+      }
+    });
+    
+    // Sort by position (top to bottom)
+    visibleReviews.sort((a, b) => a.top - b.top);
+    
+    // Add show-below class to first two visible reviews
+    for (let i = 0; i < Math.min(2, visibleReviews.length); i++) {
+      visibleReviews[i].element.classList.add('show-below');
+    }
+  }
+  
+  // Update immediately and then periodically
+  updateTopReviews();
+  setInterval(updateTopReviews, 200);
+  
+  // Also update on animation events
+  reviewsScroll.addEventListener('animationiteration', updateTopReviews);
+});
+</script>
+
+{% schema %}
+{
+  "name": "VIP Hero Banner",
+  "tag": "section",
+  "class": "vip-hero-banner-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Overlay Opacity",
+      "default": 0.3
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Content Padding",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Reviews Title Bar"
+    },
+    {
+      "type": "text",
+      "id": "reviews_title",
+      "label": "Reviews Title",
+      "default": "Reviews"
+    },
+    {
+      "type": "image_picker",
+      "id": "title_icon_image",
+      "label": "Title Icon Image",
+      "info": "Upload an icon image (optional - will use text icon if not provided)"
+    },
+    {
+      "type": "text",
+      "id": "title_icon",
+      "label": "Title Icon Text",
+      "default": "★",
+      "info": "Single character or emoji for the icon (used if no image is uploaded)"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_content",
+      "label": "Show Text Content",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "360 POD"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Experience the future of immersive entertainment"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Get Started"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 32,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle Font Size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA Background Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Text Color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "John Doe"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta Text",
+          "default": "2 hours ago"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text (shown on hover)",
+          "default": "This is an amazing product that exceeded my expectations!"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "VIP Hero Banner",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "name": "Last girl",
+            "meta": "Member",
+            "review_text": "Absolutely love this product! It has changed my daily routine completely."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Most",
+            "meta": "1 hour ago",
+            "review_text": "Great quality and fast shipping. Highly recommend to everyone!"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Monkey",
+            "meta": "2 hours ago",
+            "review_text": "Perfect fit and amazing design. Worth every penny!"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Division",
+            "meta": "3 hours ago",
+            "review_text": "Customer service was excellent and the product quality is top-notch."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "The Resident",
+            "meta": "4 hours ago",
+            "review_text": "I've been using this for weeks now and I'm completely satisfied with the results."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

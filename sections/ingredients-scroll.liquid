@@ -1,8 +1,9 @@
 <style>
   .ingredients-scroll-section {
-    padding: 80px 0;
+    padding: 50px 0;
     background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -16,17 +17,19 @@
   /* Header Styles */
   .ingredients-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     padding: 0;
     width: 100%;
   }
 
 
   .ingredients-title {
-    margin: 0 0 20px 0;
-    font-weight: 900;
+    margin: 0 0 15px 0;
+    font-weight: 800;
     color: #333;
-    line-height: 1.2;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -35,6 +38,8 @@
     max-width: 600px;
     color: #666;
     line-height: 1.6;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -46,7 +51,7 @@
     justify-content: center;
     gap: 20px;
     padding: 0 50px;
-    height: 460px; /* Fixed height to prevent button jumping */
+    height: 380px; /* Reduced height to fit above fold */
   }
 
 
@@ -57,7 +62,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 460px; /* Fixed height to prevent button jumping */
+    height: 380px; /* Reduced height to fit above fold */
   }
 
 
@@ -71,10 +76,10 @@
     display: flex;
     gap: 40px;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    padding: 20px 0;
+    padding: 15px 0;
     align-items: center;
     justify-content: center;
-    height: 420px; /* Fixed height to prevent layout shifts */
+    height: 350px; /* Reduced height to fit above fold */
   }
 
 
@@ -114,8 +119,8 @@
   /* Side Cards - Small, grayscale like reference */
   .ingredient-d-card {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     flex-shrink: 0;
     cursor: pointer;
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -142,12 +147,12 @@
 
   /* Center Active Card - Large and colorful like reference */
   .ingredient-d-card.active {
-    width: 400px !important;
-    height: 400px !important;
+    width: 340px !important;
+    height: 340px !important;
     opacity: 1 !important;
     filter: grayscale(0) !important;
     transform: scale(1) !important;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important;
+    {% comment %} box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2) !important; {% endcomment %}
     z-index: 10;
     border-radius: 20px;
     align-self: flex-end !important;
@@ -236,7 +241,7 @@
     font-size: 20px;
     font-weight: 700;
     color: white;
-    font-family: 'Gilroy', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.2;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -247,7 +252,7 @@
     font-size: 15px;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
-    font-family: 'Gilroy', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -298,7 +303,7 @@
     font-weight: 600;
     line-height: 1.2;
     color: white;
-    font-family: 'Gilroy', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -381,14 +386,14 @@
 
 
     .ingredient-d-card {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
     }
 
 
     .ingredient-d-card.active {
-      width: 350px !important;
-      height: 350px !important;
+      width: 370px !important;
+      height: 370px !important;
     }
 
 
@@ -446,14 +451,14 @@
 
 
     .ingredient-d-card {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
     }
 
 
     .ingredient-d-card.active {
-      width: 200px !important;
-      height: 200px !important;
+      width: 220px !important;
+      height: 220px !important;
     }
 
 
@@ -675,7 +680,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 0 20px;
   }
 
@@ -684,11 +689,11 @@
   .supplement-facts-button {
     width: 100%;
     max-width: 500px;
-    padding: 16px 32px;
+    padding: 14px 28px;
     background: transparent;
-    border: 2px solid #333;
+    border: 2px solid #4fffff;
     border-radius: 50px;
-    font-family: 'Gilroy', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: 500;
     color: #333;
@@ -697,11 +702,14 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     display: block;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1;
   }
 
 
   .supplement-facts-button:hover {
-    background: #333;
+    background: #000000;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -803,7 +811,7 @@
     max-height: 85vh;
     overflow: hidden;
     position: relative;
-    font-family: 'Gilroy', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
 
@@ -1412,7 +1420,11 @@
 
     <!-- View Supplement Facts Button -->
     <div class="supplement-facts-container">
-      <button class="supplement-facts-button" onclick="viewSupplementFacts()">View Supplement Facts</button>
+      {% if section.settings.supplement_facts_url != blank %}
+        <a href="{{ section.settings.supplement_facts_url }}" class="supplement-facts-button" target="_blank">View Supplement Facts</a>
+      {% else %}
+        <button class="supplement-facts-button" onclick="viewSupplementFacts()">View Supplement Facts</button>
+      {% endif %}
     </div>
 
 
@@ -1694,8 +1706,8 @@
     const containerCenter = containerWidth / 2;
 
 
-    const sideCardWidth = 160; // Side card width
-    const activeCardWidth = 400; // Active card width
+    const sideCardWidth = 180; // Side card width
+    const activeCardWidth = 340; // Active card width
     const gap = 40; // Gap between cards
 
 
@@ -2045,6 +2057,12 @@
       "content": "Section Header"
     },
     {
+      "type": "url",
+      "id": "supplement_facts_url",
+      "label": "Supplement Facts URL",
+      "info": "Enter the URL to redirect to when clicking 'View Supplement Facts'. If left empty, the modal will be used."
+    },
+    {
       "type": "image_picker",
       "id": "supplement_facts_image",
       "label": "Supplement Facts Image",
@@ -2062,6 +2080,10 @@
       "label": "Title Font",
       "options": [
         {
+          "value": "Montserrat",
+          "label": "Montserrat"
+        },
+        {
           "value": "Gilroy",
           "label": "Gilroy"
         },
@@ -2074,7 +2096,7 @@
           "label": "Helvetica"
         }
       ],
-      "default": "Gilroy"
+      "default": "Montserrat"
     },
     {
       "type": "range",
@@ -2116,7 +2138,7 @@
           "label": "Extra Bold"
         }
       ],
-      "default": "600"
+      "default": "800"
     },
     {
       "type": "textarea",
@@ -2130,6 +2152,10 @@
       "label": "Description Font",
       "options": [
         {
+          "value": "Montserrat",
+          "label": "Montserrat"
+        },
+        {
           "value": "Gilroy",
           "label": "Gilroy"
         },
@@ -2142,7 +2168,7 @@
           "label": "Helvetica"
         }
       ],
-      "default": "Gilroy"
+      "default": "Montserrat"
     },
     {
       "type": "range",
@@ -2152,7 +2178,7 @@
       "max": 24,
       "step": 1,
       "unit": "px",
-      "default": 16
+      "default": 18
     },
     {
       "type": "select",

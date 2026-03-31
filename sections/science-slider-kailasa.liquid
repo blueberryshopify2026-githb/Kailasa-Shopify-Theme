@@ -1,0 +1,2279 @@
+{% comment %}
+  Science Slider Kailasa
+  5-slide science/ingredient slider with smooth looping transitions.
+  CSS suffix: -ssk | Font: Montserrat | Cyan: #4fffff
+{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+    .section-ssk {
+      font-family: 'Montserrat', sans-serif;
+      background: #fff;
+      overflow: hidden;
+      position: relative;
+      margin-top: 100px;
+    }
+
+    /* ── Slider wrapper ── */
+    .slider-overflow-ssk {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .slider-track-ssk {
+      display: flex;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .slide-ssk {
+      min-width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      flex-shrink: 0;
+    }
+
+    /* ── Left content pane ── */
+    .slide-left-ssk {
+      flex: 0 0 50%;
+      max-width: 50%;
+      height: {{ section.settings.section_height }}px;
+      max-height: {{ section.settings.section_height }}px;
+      padding: 50px 56px 80px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #fff;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .slide-heading-ssk {
+      font-size: 50px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #000;
+      margin: 0 0 10px 0;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .slide-subheading-ssk {
+      font-size: 26px;
+      font-weight: 600;
+      color: #1a1a1aff;
+      margin: 0 0 14px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .slide-description-ssk {
+      font-size: 18px;
+      font-weight: 400;
+      color: #222222ff;
+      line-height: 1.65;
+      margin: 0 0 28px 0;
+      max-width: 600px;
+    }
+
+    /* ── Feature cards (PDRN / SNAIL MUCIN) ── */
+    .slide-cards-ssk {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+
+    .slide-card-ssk {
+      background: #d2fcfaff;
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+
+    .slide-card-title-ssk {
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+      margin: 0 0 4px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .slide-card-text-ssk {
+      font-size: 16px;
+      font-weight: 400;
+      color: #242424ff;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── Icon row ── */
+    .slide-icons-row-ssk {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .slide-icon-item-ssk {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      max-width: 190px;
+    }
+
+    .slide-icon-img-ssk {
+      width: 65px;
+      height: 65px;
+      object-fit: contain;
+    }
+
+    /* SVG placeholder icon wrapper */
+    .slide-icon-svg-ssk {
+      width: 65px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-icon-svg-ssk svg {
+      width: 65px;
+      height: 65px;
+      stroke: #222;
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .slide-icon-label-ssk {
+      font-size: 15px;
+      font-weight: 700;
+      color: #000;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin: 0;
+    }
+
+    .slide-icon-desc-ssk {
+      font-size: 15px;
+      font-weight: 400;
+      color: #000;
+      line-height: 1.4;
+      margin: 0;
+      text-align: center;
+    }
+
+    /* ── Right image pane ── */
+    .slide-right-ssk {
+      flex: 0 0 50%;
+      max-width: 50%;
+      position: relative;
+      overflow: hidden;
+      height: {{ section.settings.section_height }}px;
+      max-height: {{ section.settings.section_height }}px;
+    }
+
+    .slide-right-ssk img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slide-right-placeholder-ssk {
+      width: 100%;
+      height: 100%;
+      min-height: 540px;
+      background: linear-gradient(135deg, #d0eef5 0%, #b0d8e8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #4fffff;
+      letter-spacing: 1px;
+    }
+
+    /* ── Navigation arrows ── */
+    .slider-nav-ssk {
+      position: absolute;
+      bottom: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .slider-btn-ssk {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #4fffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s ease, border-color 0.25s ease;
+      outline: none;
+      padding: 0;
+    }
+
+    .slider-btn-ssk svg {
+      width: 27px;
+      height: 27px;
+      stroke: #4fffff;
+      fill: none;
+      stroke-width: 2.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.25s ease;
+    }
+
+    .slider-btn-ssk:hover {
+      background: #4fffff;
+      border-color: #4fffff;
+    }
+
+    .slider-btn-ssk:hover svg {
+      stroke: #fff;
+    }
+
+    /* ── Placeholder slides ── */
+    .slide-placeholder-ssk {
+      min-width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: {{ section.settings.section_height }}px;
+      background: #f5fffe;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #4fffff;
+      letter-spacing: 2px;
+    }
+
+    /* ── Slide 2 ── */
+    .s2-slide-ssk {
+      min-width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      height: {{ section.settings.section_height }}px;
+    }
+
+    .s2-image-pane-ssk {
+      flex: 0 0 60%;
+      max-width: 60%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s2-img-ssk {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .s2-img-ssk.s2-img-active-ssk {
+      opacity: 1;
+    }
+
+    .s2-img-placeholder-ssk {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #cce8f0 0%, #a8d4e0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #4fffff;
+    }
+
+    .s2-content-pane-ssk {
+      flex: 0 0 40%;
+      max-width: 40%;
+      padding: 90px 36px 10px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #fff;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    .s2-heading-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #000;
+      text-transform: uppercase;
+      {% comment %} margin: 0 0 5px 0; {% endcomment %}
+      letter-spacing: -0.3px;
+    }
+
+    .s2-desc-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #000;
+      margin: 0 0 20px 0;
+      line-height: 1.5;
+    }
+
+    .s2-boxes-ssk {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .s2-box-ssk {
+      border: 1.5px solid #ccc;
+      background: #fafafaff;
+      border-radius: 6px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .s2-box-ssk:hover,
+    .s2-box-ssk.s2-box-active-ssk {
+      border: 3px solid #4fffff;
+      background: #f5f5f5;
+    }
+
+    .s2-box-title-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+      margin: 0 0 3px 0;
+    }
+
+    .s2-box-text-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #252525ff;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* ── Slide 3 ── */
+    .s3-slide-ssk {
+      min-width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      height: {{ section.settings.section_height }}px;
+    }
+
+    /* Left image pane 60% */
+    .s3-image-pane-ssk {
+      flex: 0 0 60%;
+      max-width: 60%;
+      position: relative;
+      overflow: hidden;
+      background: #f0f4f8;
+    }
+
+    .s3-main-img-ssk {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .s3-main-placeholder-ssk {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #daeef5 0%, #b8d8e8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #4fffff;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Dot hotspots */
+    .s3-dot-ssk {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #222;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s ease;
+      z-index: 5;
+      transform: translate(-50%, -50%);
+    }
+
+    .s3-dot-ssk:hover,
+    .s3-dot-ssk.s3-dot-active-ssk {
+      background: #4fffff;
+      color: #000;
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+      transition: all 0.4s ease;
+    }
+
+    /* Right content pane 40% */
+    .s3-content-pane-ssk {
+      flex: 0 0 40%;
+      max-width: 40%;
+      padding: 44px 36px 5px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    .s3-heading-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      text-transform: uppercase;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #000;
+      {% comment %} margin: 0 0 32px 0; {% endcomment %}
+    }
+
+    .s3-points-ssk {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 20px;
+    }
+
+    .s3-point-ssk {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 11px 16px;
+      border: 3px solid transparent;
+      border-radius: 8px;
+      transition: border-color 0.25s ease;
+      cursor: default;
+    }
+
+    .s3-point-ssk.s3-point-active-ssk {
+      border-color: #4fffff;
+    }
+
+    .s3-point-num-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      min-width: 20px;
+      padding-top: 1px;
+    }
+
+    .s3-point-body-ssk {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .s3-point-title-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      margin: 0;
+    }
+  {% comment %}
+   .s3-point-title-ssk.s3-point-title-active-ssk {
+      font-size: 17px;
+      transition: all 0.4s ease;
+    }  {% endcomment %}
+
+    .s3-point-desc-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #2c2c2cff;
+      margin: 0;
+      line-height: 1.45;
+    }
+  {% comment %}
+    .s3-point-desc-ssk.s3-point-desc-active-ssk {
+      font-size: 16px;
+      transition: all 0.4s ease;
+    } {% endcomment %}
+
+    /* ── Slide 4 ── */
+    .s4-slide-ssk {
+      min-width: 100%;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: {{ section.settings.section_height }}px;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .s4-bg-img-ssk {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 0;
+    }
+
+    .s4-bg-placeholder-ssk {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #c8e8f5 0%, #a0cfe8 100%);
+      z-index: 0;
+    }
+
+    /* Frosted glass card */
+    .s4-glass-ssk {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.20);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 15px;
+      padding: 40px 80px 40px;
+      max-width: 840px;
+      width: 80%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+      margin-top: 90px;
+    }
+
+    /* Fixed-height text block so card never resizes */
+    .s4-text-block-ssk {
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .s4-title-ssk {
+      font-size: 30px;
+      font-weight: 800;
+      color: #000;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.3px;
+      flex-shrink: 0;
+    }
+
+    .s4-subtitle-ssk {
+      font-size: 17px;
+      font-weight: 400;
+      color: #1b1b1bff;
+      margin: 0;
+      line-height: 1.5;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    /* Icon row */
+    .s4-icons-row-ssk {
+      display: flex;
+
+      justify-content: center;
+      gap: 50px;
+      margin-top: 50px;
+    }
+
+    .s4-icon-item-ssk {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      padding: 0 8px;
+      cursor: default;
+      position: relative;
+    }
+
+    .s4-icon-img-ssk {
+      width: 62px;
+      height: 62px;
+      object-fit: contain;
+    }
+
+    .s4-icon-svg-ssk {
+      width: 62px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .s4-icon-svg-ssk svg {
+      width: 58px;
+      height: 58px;
+      stroke: #333;
+      fill: none;
+      stroke-width: 1.4;
+    }
+
+    .s4-icon-label-ssk {
+      font-size: 13px;
+      font-weight: 700;
+      color: #000;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin: 0;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    /* Active underline — cyan, default on icon 1, hover on any */
+    .s4-icon-item-ssk .s4-icon-label-ssk::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #4fffff;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .s4-icon-item-ssk.s4-icon-active-ssk .s4-icon-label-ssk::after,
+    .s4-icon-item-ssk:hover .s4-icon-label-ssk::after {
+      opacity: 1;
+    }
+
+    /* ── Slide 5 ── */
+    .s5-slide-ssk {
+      min-width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: {{ section.settings.section_height }}px;
+      background: #eef5f8;
+      box-sizing: border-box;
+      padding: 0;
+      gap: 12px;
+    }
+
+    .s5-row-ssk {
+      display: grid;
+      grid-template-columns: 1fr 100px 1fr;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Left image cell */
+    .s5-img-cell-ssk {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s5-img-cell-ssk img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .s5-img-placeholder-ssk {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #cce4ef 0%, #a8cfe0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4fffff;
+    }
+
+    /* Middle vertical label cell */
+    .s5-mid-cell-ssk {
+      background: #eef5f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .s5-vert-label-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      white-space: nowrap;
+    }
+
+    /* Right text cell */
+    .s5-text-cell-ssk {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      {% comment %} justify-content: center; {% endcomment %}
+      padding: 24px 36px;
+      box-sizing: border-box;
+    }
+
+    .s5-right-text-container-ssk {
+      margin-top: 50px;
+    }
+
+    .s5-text-title-ssk {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: #000;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin: 0 0 12px 0;
+      padding-bottom: 10px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .s5-text-title-ssk::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: #4fffff;
+      border-radius: 2px;
+    }
+
+    .s5-text-bullets-ssk {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .s5-text-bullets-ssk li {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #333;
+      line-height: 1.5;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .s5-text-bullets-ssk li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #333;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .slide-ssk {
+        flex-direction: column;
+      }
+
+      .slide-left-ssk,
+      .slide-right-ssk {
+        flex: 0 0 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: none;
+      }
+
+      .slide-left-ssk {
+        padding: 36px 24px 40px;
+        overflow: visible;
+      }
+
+      .slide-heading-ssk {
+        font-size: 28px;
+      }
+
+      .slide-right-ssk {
+        height: 280px;
+      }
+
+      .slider-nav-ssk {
+        bottom: 16px;
+      }
+    }
+</style>
+
+<section class="section-ssk full-width" id="science-slider-{{ section.id }}">
+  <div class="slider-overflow-ssk">
+    <div class="slider-track-ssk" id="ssk-track-{{ section.id }}">
+      <!-- ══ SLIDE 1 ══ -->
+      <div class="slide-ssk">
+        <div class="slide-left-ssk">
+          <h2 class="slide-heading-ssk">{{ section.settings.s1_heading | default: 'The Molecular Standard.' }}</h2>
+          <p class="slide-subheading-ssk">{{ section.settings.s1_subheading | default: 'The Molecular Standard.' }}</p>
+          <p class="slide-description-ssk">
+            {{
+              section.settings.s1_description
+              | default: 'Harnessing South Korea patented fermentation technology skin elasticity at a cellular level. Technology skin elasticity at a cellular level.'
+            }}
+          </p>
+
+          <div class="slide-cards-ssk">
+            <div class="slide-card-ssk">
+              <p class="slide-card-title-ssk">{{ section.settings.s1_card1_title | default: 'PDRN:' }}</p>
+              <p class="slide-card-text-ssk">
+                {{ section.settings.s1_card1_text | default: 'DNA-based rejuvenation.' }}
+              </p>
+            </div>
+            <div class="slide-card-ssk">
+              <p class="slide-card-title-ssk">{{ section.settings.s1_card2_title | default: 'Snail Mucin' }}</p>
+              <p class="slide-card-text-ssk">
+                {{ section.settings.s1_card2_text | default: 'Advanced barrier repair' }}
+              </p>
+            </div>
+          </div>
+
+          <div class="slide-icons-row-ssk">
+            <!-- Icon 1 -->
+            <div class="slide-icon-item-ssk">
+              {% if section.settings.s1_icon1_image %}
+                <img
+                  class="slide-icon-img-ssk"
+                  src="{{ section.settings.s1_icon1_image | image_url: width: 104 }}"
+                  alt="{{ section.settings.s1_icon1_label }}"
+                  width="52"
+                  height="52"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="slide-icon-svg-ssk">
+                  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- DNA helix placeholder -->
+                    <path d="M14 6 C20 12, 28 12, 34 18 C28 24, 20 24, 14 30 C20 36, 28 36, 34 42"/>
+                    <path d="M34 6 C28 12, 20 12, 14 18 C20 24, 28 24, 34 30 C28 36, 20 36, 14 42"/>
+                    <line x1="14" y1="18" x2="34" y2="18"/>
+                    <line x1="14" y1="30" x2="34" y2="30"/>
+                  </svg>
+                </div>
+              {% endif %}
+              <p class="slide-icon-label-ssk">{{ section.settings.s1_icon1_label | default: 'PDRN' }}</p>
+              <p class="slide-icon-desc-ssk">
+                {{ section.settings.s1_icon1_desc | default: 'DNA-based rejuvenation.' }}
+              </p>
+            </div>
+
+            <!-- Icon 2 -->
+            <div class="slide-icon-item-ssk">
+              {% if section.settings.s1_icon2_image %}
+                <img
+                  class="slide-icon-img-ssk"
+                  src="{{ section.settings.s1_icon2_image | image_url: width: 104 }}"
+                  alt="{{ section.settings.s1_icon2_label }}"
+                  width="52"
+                  height="52"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="slide-icon-svg-ssk">
+                  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Ceramides / cell cluster placeholder -->
+                    <circle cx="24" cy="24" r="10"/>
+                    <circle cx="24" cy="10" r="6"/>
+                    <circle cx="38" cy="24" r="6"/>
+                    <circle cx="10" cy="24" r="6"/>
+                    <circle cx="24" cy="38" r="6"/>
+                  </svg>
+                </div>
+              {% endif %}
+              <p class="slide-icon-label-ssk">{{ section.settings.s1_icon2_label | default: 'CERAMIDES' }}</p>
+              <p class="slide-icon-desc-ssk">
+                {{ section.settings.s1_icon2_desc | default: 'Barrier strength and protration' }}
+              </p>
+            </div>
+
+            <!-- Icon 3 -->
+            <div class="slide-icon-item-ssk">
+              {% if section.settings.s1_icon3_image %}
+                <img
+                  class="slide-icon-img-ssk"
+                  src="{{ section.settings.s1_icon3_image | image_url: width: 104 }}"
+                  alt="{{ section.settings.s1_icon3_label }}"
+                  width="52"
+                  height="52"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="slide-icon-svg-ssk">
+                  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Peptides / droplet + skin layers placeholder -->
+                    <path d="M24 6 C24 6, 14 18, 14 26 a10 10 0 0 0 20 0 C34 18, 24 6, 24 6Z"/>
+                    <line x1="10" y1="40" x2="38" y2="40"/>
+                    <line x1="10" y1="44" x2="38" y2="44"/>
+                    <circle cx="16" cy="36" r="2"/>
+                    <circle cx="24" cy="36" r="2"/>
+                    <circle cx="32" cy="36" r="2"/>
+                  </svg>
+                </div>
+              {% endif %}
+              <p class="slide-icon-label-ssk">{{ section.settings.s1_icon3_label | default: 'PEPTIDES' }}</p>
+              <p class="slide-icon-desc-ssk">
+                {{ section.settings.s1_icon3_desc | default: 'Collagen synthesis and elasticity' }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right image -->
+        <div class="slide-right-ssk">
+          {% if section.settings.s1_image %}
+            <img
+              src="{{ section.settings.s1_image | image_url: width: 1200 }}"
+              alt="{{ section.settings.s1_heading }}"
+              width="{{ section.settings.s1_image.width }}"
+              height="{{ section.settings.s1_image.height }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="slide-right-placeholder-ssk">IMAGE</div>
+          {% endif %}
+        </div>
+      </div>
+      <!-- ══ END SLIDE 1 ══ -->
+
+      <!-- ══ SLIDE 2 ══ -->
+      <div class="s2-slide-ssk" id="ssk-slide2-{{ section.id }}">
+        <!-- Left: image pane (60%) -->
+        <div class="s2-image-pane-ssk" id="ssk-s2-imgpane-{{ section.id }}">
+          {% for i in (1..6) %}
+            {% assign img_key = 's2_box' | append: i | append: '_image' %}
+            {% assign alt_key = 's2_box' | append: i | append: '_title' %}
+            {% assign img_alt = section.settings[alt_key] %}
+            {% if section.settings[img_key] %}
+              <img
+                class="s2-img-ssk{% if i == 1 %} s2-img-active-ssk{% endif %}"
+                src="{{ section.settings[img_key] | image_url: width: 1200 }}"
+                alt="{{ img_alt }}"
+                width="{{ section.settings[img_key].width }}"
+                height="{{ section.settings[img_key].height }}"
+                loading="lazy"
+                data-s2-img="{{ i }}"
+              >
+            {% else %}
+              <div
+                class="s2-img-ssk s2-img-placeholder-ssk{% if i == 1 %} s2-img-active-ssk{% endif %}"
+                data-s2-img="{{ i }}"
+              >
+                IMAGE {{ i }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Right: content pane (40%) -->
+        <div class="s2-content-pane-ssk">
+          <h2 class="s2-heading-ssk">{{ section.settings.s2_heading | default: 'The Molecular Foundations' }}</h2>
+          <p class="s2-desc-ssk">
+            {{ section.settings.s2_description | default: 'Beyond the surface. We engineer the architecture.' }}
+          </p>
+
+          <div class="s2-boxes-ssk" id="ssk-s2-boxes-{{ section.id }}">
+            {% for i in (1..6) %}
+              {% assign title_key = 's2_box' | append: i | append: '_title' %}
+              {% assign text_key = 's2_box' | append: i | append: '_text' %}
+              {% assign box_title = section.settings[title_key] | default: 'Box' %}
+              {% assign box_text = section.settings[text_key] | default: 'Description text here.' %}
+              <div class="s2-box-ssk{% if i == 1 %} s2-box-active-ssk{% endif %}" data-s2-box="{{ i }}">
+                <p class="s2-box-title-ssk">{{ box_title }}</p>
+                <p class="s2-box-text-ssk">{{ box_text }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- ══ END SLIDE 2 ══ -->
+
+      <!-- ══ SLIDE 3 ══ -->
+      <div class="s3-slide-ssk">
+        <!-- Left: image pane with dot hotspots (60%) -->
+        <div class="s3-image-pane-ssk" id="ssk-s3-imgpane-{{ section.id }}">
+          {% if section.settings.s3_image %}
+            <img
+              class="s3-main-img-ssk"
+              src="{{ section.settings.s3_image | image_url: width: 1200 }}"
+              alt="{{ section.settings.s3_heading }}"
+              width="{{ section.settings.s3_image.width }}"
+              height="{{ section.settings.s3_image.height }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="s3-main-placeholder-ssk">IMAGE</div>
+          {% endif %}
+
+          <!-- Dot 1 -->
+          <div
+            class="s3-dot-ssk"
+            style="left:{{ section.settings.s3_dot1_x | default: 35 }}%; top:{{ section.settings.s3_dot1_y | default: 28 }}%;"
+            data-s3-dot="1"
+            aria-label="Point 1"
+          >
+            1
+          </div>
+
+          <!-- Dot 2 -->
+          <div
+            class="s3-dot-ssk"
+            style="left:{{ section.settings.s3_dot2_x | default: 65 }}%; top:{{ section.settings.s3_dot2_y | default: 55 }}%;"
+            data-s3-dot="2"
+            aria-label="Point 2"
+          >
+            2
+          </div>
+
+          <!-- Dot 3 -->
+          <div
+            class="s3-dot-ssk"
+            style="left:{{ section.settings.s3_dot3_x | default: 22 }}%; top:{{ section.settings.s3_dot3_y | default: 75 }}%;"
+            data-s3-dot="3"
+            aria-label="Point 3"
+          >
+            3
+          </div>
+
+          <!-- Dot 4 -->
+          <div
+            class="s3-dot-ssk"
+            style="left:{{ section.settings.s3_dot4_x | default: 50 }}%; top:{{ section.settings.s3_dot4_y | default: 40 }}%;"
+            data-s3-dot="4"
+            aria-label="Point 4"
+          >
+            4
+          </div>
+
+          <!-- Dot 5 -->
+          <div
+            class="s3-dot-ssk"
+            style="left:{{ section.settings.s3_dot5_x | default: 75 }}%; top:{{ section.settings.s3_dot5_y | default: 20 }}%;"
+            data-s3-dot="5"
+            aria-label="Point 5"
+          >
+            5
+          </div>
+
+          <!-- Dot 6 -->
+          <div
+            class="s3-dot-ssk"
+            style="left:{{ section.settings.s3_dot6_x | default: 40 }}%; top:{{ section.settings.s3_dot6_y | default: 65 }}%;"
+            data-s3-dot="6"
+            aria-label="Point 6"
+          >
+            6
+          </div>
+        </div>
+
+        <!-- Right: content pane (40%) -->
+        <div class="s3-content-pane-ssk">
+          <h2 class="s3-heading-ssk">
+            {{ section.settings.s3_heading | default: 'Derm proven retinol with patented technology' }}
+          </h2>
+
+          <div class="s3-points-ssk" id="ssk-s3-points-{{ section.id }}">
+            {% for i in (1..6) %}
+              {% assign pt_title = 's3_point' | append: i | append: '_title' %}
+              {% assign pt_desc = 's3_point' | append: i | append: '_desc' %}
+              {% assign pt_title_val = section.settings[pt_title] %}
+              {% assign pt_desc_val = section.settings[pt_desc] %}
+              <div class="s3-point-ssk" data-s3-point="{{ i }}">
+                <span class="s3-point-num-ssk">{{ i }}.</span>
+                <div class="s3-point-body-ssk">
+                  <p class="s3-point-title-ssk">{{ pt_title_val | default: 'Point title' }}</p>
+                  <p class="s3-point-desc-ssk">{{ pt_desc_val | default: 'Point description.' }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- ══ END SLIDE 3 ══ -->
+
+      <!-- ══ SLIDE 4 ══ -->
+      <div class="s4-slide-ssk">
+        <!-- Background image -->
+        {% if section.settings.s4_bg_image %}
+          <img
+            class="s4-bg-img-ssk"
+            src="{{ section.settings.s4_bg_image | image_url: width: 2000 }}"
+            alt=""
+            width="{{ section.settings.s4_bg_image.width }}"
+            height="{{ section.settings.s4_bg_image.height }}"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="s4-bg-placeholder-ssk"></div>
+        {% endif %}
+
+        <!-- Frosted glass card -->
+        <div class="s4-glass-ssk">
+          <div class="s4-text-block-ssk">
+            <h2 class="s4-title-ssk" id="ssk-s4-title-{{ section.id }}">
+              {{
+                section.settings.s4_icon1_card_title
+                | default: section.settings.s4_title
+                | default: 'Renewal Complex'
+              }}
+            </h2>
+            <p class="s4-subtitle-ssk" id="ssk-s4-subtitle-{{ section.id }}">
+              {{
+                section.settings.s4_icon1_card_subtitle
+                | default: section.settings.s4_subtitle
+                | default: 'Advanced skin renewal and rejuvenation formulas'
+              }}
+            </p>
+          </div>
+
+          <div class="s4-icons-row-ssk" id="ssk-s4-icons-{{ section.id }}">
+            {% for i in (1..5) %}
+              {% assign lbl_key = 's4_icon' | append: i | append: '_label' %}
+              {% assign img_key = 's4_icon' | append: i | append: '_image' %}
+              {% assign ctitle_key = 's4_icon' | append: i | append: '_card_title' %}
+              {% assign csubtitle_key = 's4_icon' | append: i | append: '_card_subtitle' %}
+              {% assign lbl_val = section.settings[lbl_key] %}
+              {% assign img_val = section.settings[img_key] %}
+              {% assign ctitle_val = section.settings[ctitle_key] | default: lbl_val %}
+              {% assign csubtitle_val = section.settings[csubtitle_key] %}
+              <div
+                class="s4-icon-item-ssk{% if i == 1 %} s4-icon-active-ssk{% endif %}"
+                data-s4-title="{{ ctitle_val }}"
+                data-s4-subtitle="{{ csubtitle_val }}"
+              >
+                {% if img_val %}
+                  <img
+                    class="s4-icon-img-ssk"
+                    src="{{ img_val | image_url: width: 120 }}"
+                    alt="{{ lbl_val }}"
+                    width="58"
+                    height="58"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="s4-icon-svg-ssk">
+                    <svg viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <circle cx="27" cy="18" r="9"/>
+                      <path d="M10 46 C10 34, 44 34, 44 46"/>
+                      <circle cx="27" cy="27" r="14" stroke-dasharray="4 3"/>
+                    </svg>
+                  </div>
+                {% endif %}
+                <p class="s4-icon-label-ssk">{{ lbl_val | default: 'Label' }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- ══ END SLIDE 4 ══ -->
+
+      <!-- ══ SLIDE 5 ══ -->
+      <div class="s5-slide-ssk">
+        {% for row in (1..3) %}
+          {% assign img_key = 's5_row' | append: row | append: '_image' %}
+          {% assign lbl_key = 's5_row' | append: row | append: '_label' %}
+          {% assign ttl_key = 's5_row' | append: row | append: '_title' %}
+          {% assign b1_key = 's5_row' | append: row | append: '_bullet1' %}
+          {% assign b2_key = 's5_row' | append: row | append: '_bullet2' %}
+          {% assign b3_key = 's5_row' | append: row | append: '_bullet3' %}
+          {% assign img_val = section.settings[img_key] %}
+          {% assign lbl_val = section.settings[lbl_key] %}
+          {% assign ttl_val = section.settings[ttl_key] %}
+          {% assign b1_val = section.settings[b1_key] %}
+          {% assign b2_val = section.settings[b2_key] %}
+          {% assign b3_val = section.settings[b3_key] %}
+
+          <div class="s5-row-ssk">
+            <!-- Left: image -->
+            <div class="s5-img-cell-ssk">
+              {% if img_val %}
+                <img
+                  src="{{ img_val | image_url: width: 1000 }}"
+                  alt="{{ ttl_val }}"
+                  width="{{ img_val.width }}"
+                  height="{{ img_val.height }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="s5-img-placeholder-ssk">IMAGE {{ row }}</div>
+              {% endif %}
+            </div>
+
+            <!-- Middle: vertical label -->
+            <div class="s5-mid-cell-ssk">
+              <span class="s5-vert-label-ssk">{{ lbl_val | default: 'LABEL' }}</span>
+            </div>
+
+            <!-- Right: text -->
+            <div class="s5-text-cell-ssk">
+              <div class="s5-right-text-container-ssk">
+                <span class="s5-text-title-ssk">{{ ttl_val | default: 'Title' }}</span>
+                <ul class="s5-text-bullets-ssk">
+                  {% if b1_val and b1_val != blank %}
+                    <li>{{ b1_val }}</li>
+                  {% endif %}
+                  {% if b2_val and b2_val != blank %}
+                    <li>{{ b2_val }}</li>
+                  {% endif %}
+                  {% if b3_val and b3_val != blank %}
+                    <li>{{ b3_val }}</li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- ══ END SLIDE 5 ══ -->
+    </div>
+  </div>
+
+  <!-- Navigation arrows -->
+  <div class="slider-nav-ssk" role="group" aria-label="Slider navigation">
+    <button class="slider-btn-ssk" id="ssk-prev-{{ section.id }}" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <button class="slider-btn-ssk" id="ssk-next-{{ section.id }}" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="9 6 15 12 9 18"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var sectionId = '{{ section.id }}';
+    var track = document.getElementById('ssk-track-' + sectionId);
+    var prevBtn = document.getElementById('ssk-prev-' + sectionId);
+    var nextBtn = document.getElementById('ssk-next-' + sectionId);
+    var slides = Array.from(track.children);
+    var total = slides.length; // real slides count (5)
+    var animating = false;
+
+    // Clone first and last slides for seamless loop
+    var cloneFirst = slides[0].cloneNode(true);
+    var cloneLast = slides[total - 1].cloneNode(true);
+    track.appendChild(cloneFirst); // position total+1  (after slide 5)
+    track.insertBefore(cloneLast, slides[0]); // position 0 (before slide 1)
+
+    // Now track order: [clone-last, s1, s2, s3, s4, s5, clone-first]
+    // Real slides start at index 1
+    var current = 1; // start on real slide 1
+
+    function setPosition(index, animate) {
+      if (!animate) {
+        track.style.transition = 'none';
+      } else {
+        track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      track.style.transform = 'translateX(-' + index * 100 + '%)';
+    }
+
+    // Set initial position instantly
+    setPosition(current, false);
+
+    function goNext() {
+      if (animating) return;
+      animating = true;
+      current++;
+      setPosition(current, true);
+    }
+
+    function goPrev() {
+      if (animating) return;
+      animating = true;
+      current--;
+      setPosition(current, true);
+    }
+
+    track.addEventListener('transitionend', function () {
+      var allSlides = track.children.length; // total + 2 clones
+      // If we landed on clone-first (index = total+1), jump to real slide 1
+      if (current >= allSlides - 1) {
+        current = 1;
+        setPosition(current, false);
+      }
+      // If we landed on clone-last (index = 0), jump to real last slide
+      if (current <= 0) {
+        current = total;
+        setPosition(current, false);
+      }
+      animating = false;
+    });
+
+    nextBtn.addEventListener('click', goNext);
+    prevBtn.addEventListener('click', goPrev);
+
+    // ── Slide 2 box hover image swap ──
+    var s2Boxes = document.querySelectorAll('#ssk-s2-boxes-{{ section.id }} .s2-box-ssk');
+    var s2Imgs = document.querySelectorAll('#ssk-s2-imgpane-{{ section.id }} [data-s2-img]');
+
+    function activateS2(index) {
+      s2Boxes.forEach(function (b) {
+        b.classList.remove('s2-box-active-ssk');
+      });
+      s2Imgs.forEach(function (img) {
+        img.classList.remove('s2-img-active-ssk');
+      });
+      var targetBox = document.querySelector('#ssk-s2-boxes-{{ section.id }} [data-s2-box="' + index + '"]');
+      var targetImg = document.querySelector('#ssk-s2-imgpane-{{ section.id }} [data-s2-img="' + index + '"]');
+      if (targetBox) targetBox.classList.add('s2-box-active-ssk');
+      if (targetImg) targetImg.classList.add('s2-img-active-ssk');
+    }
+
+    s2Boxes.forEach(function (box) {
+      box.addEventListener('mouseenter', function () {
+        activateS2(this.getAttribute('data-s2-box'));
+      });
+    });
+
+    // ── Slide 3 dot hover ──
+    var s3Dots = document.querySelectorAll('#ssk-s3-imgpane-{{ section.id }} .s3-dot-ssk');
+    var s3Points = document.querySelectorAll('#ssk-s3-points-{{ section.id }} .s3-point-ssk');
+
+    function activateS3(index) {
+      s3Dots.forEach(function (d) {
+        d.classList.remove('s3-dot-active-ssk');
+      });
+      s3Points.forEach(function (p) {
+        p.classList.remove('s3-point-active-ssk');
+        var t = p.querySelector('.s3-point-title-ssk');
+        var d = p.querySelector('.s3-point-desc-ssk');
+        if (t) t.classList.remove('s3-point-title-active-ssk');
+        if (d) d.classList.remove('s3-point-desc-active-ssk');
+      });
+      var activeDot = document.querySelector('#ssk-s3-imgpane-{{ section.id }} [data-s3-dot="' + index + '"]');
+      var activePoint = document.querySelector('#ssk-s3-points-{{ section.id }} [data-s3-point="' + index + '"]');
+      if (activeDot) activeDot.classList.add('s3-dot-active-ssk');
+      if (activePoint) {
+        activePoint.classList.add('s3-point-active-ssk');
+        var t = activePoint.querySelector('.s3-point-title-ssk');
+        var d = activePoint.querySelector('.s3-point-desc-ssk');
+        if (t) t.classList.add('s3-point-title-active-ssk');
+        if (d) d.classList.add('s3-point-desc-active-ssk');
+      }
+    }
+
+    function deactivateS3() {
+      s3Dots.forEach(function (d) {
+        d.classList.remove('s3-dot-active-ssk');
+      });
+      s3Points.forEach(function (p) {
+        p.classList.remove('s3-point-active-ssk');
+        var t = p.querySelector('.s3-point-title-ssk');
+        var d = p.querySelector('.s3-point-desc-ssk');
+        if (t) t.classList.remove('s3-point-title-active-ssk');
+        if (d) d.classList.remove('s3-point-desc-active-ssk');
+      });
+    }
+
+    s3Dots.forEach(function (dot) {
+      dot.addEventListener('mouseenter', function () {
+        activateS3(this.getAttribute('data-s3-dot'));
+      });
+      dot.addEventListener('mouseleave', deactivateS3);
+    });
+
+    s3Points.forEach(function (point) {
+      point.addEventListener('mouseenter', function () {
+        activateS3(this.getAttribute('data-s3-point'));
+      });
+      point.addEventListener('mouseleave', deactivateS3);
+    });
+
+    // ── Slide 4 icon hover ──
+    var s4Icons = document.querySelectorAll('#ssk-s4-icons-{{ section.id }} .s4-icon-item-ssk');
+    var s4TitleEl = document.getElementById('ssk-s4-title-{{ section.id }}');
+    var s4SubEl = document.getElementById('ssk-s4-subtitle-{{ section.id }}');
+
+    // Store default text from icon 1
+    var s4DefaultTitle = s4TitleEl ? s4TitleEl.textContent : '';
+    var s4DefaultSub = s4SubEl ? s4SubEl.textContent : '';
+
+    s4Icons.forEach(function (icon) {
+      icon.addEventListener('mouseenter', function () {
+        s4Icons.forEach(function (ic) {
+          ic.classList.remove('s4-icon-active-ssk');
+        });
+        this.classList.add('s4-icon-active-ssk');
+        var t = this.getAttribute('data-s4-title');
+        var s = this.getAttribute('data-s4-subtitle');
+        if (s4TitleEl && t) s4TitleEl.textContent = t;
+        if (s4SubEl && s) s4SubEl.textContent = s;
+      });
+      icon.addEventListener('mouseleave', function () {
+        // restore active to icon 1
+        s4Icons.forEach(function (ic) {
+          ic.classList.remove('s4-icon-active-ssk');
+        });
+        if (s4Icons[0]) s4Icons[0].classList.add('s4-icon-active-ssk');
+        if (s4TitleEl) s4TitleEl.textContent = s4DefaultTitle;
+        if (s4SubEl) s4SubEl.textContent = s4DefaultSub;
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Science Slider Kailasa",
+  "settings": [
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Height",
+      "min": 400,
+      "max": 900,
+      "step": 10,
+      "default": 700,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "── Slide 1 ──────────────────────"
+    },
+    {
+      "type": "text",
+      "id": "s1_heading",
+      "label": "Slide 1 – Main Heading",
+      "default": "The Molecular Standard."
+    },
+    {
+      "type": "text",
+      "id": "s1_subheading",
+      "label": "Slide 1 – Subheading (cyan)",
+      "default": "The Molecular Standard."
+    },
+    {
+      "type": "textarea",
+      "id": "s1_description",
+      "label": "Slide 1 – Description",
+      "default": "Harnessing South Korea patented fermentation technology skin elasticity at a cellular level. Technology skin elasticity at a cellular level."
+    },
+    {
+      "type": "header",
+      "content": "Slide 1 – Feature Cards"
+    },
+    {
+      "type": "text",
+      "id": "s1_card1_title",
+      "label": "Card 1 Title",
+      "default": "PDRN:"
+    },
+    {
+      "type": "text",
+      "id": "s1_card1_text",
+      "label": "Card 1 Text",
+      "default": "DNA-based rejuvenation."
+    },
+    {
+      "type": "text",
+      "id": "s1_card2_title",
+      "label": "Card 2 Title",
+      "default": "Snail Mucin"
+    },
+    {
+      "type": "text",
+      "id": "s1_card2_text",
+      "label": "Card 2 Text",
+      "default": "Advanced barrier repair"
+    },
+    {
+      "type": "header",
+      "content": "Slide 1 – Icon 1 (PDRN)"
+    },
+    {
+      "type": "image_picker",
+      "id": "s1_icon1_image",
+      "label": "Icon 1 Image (overrides SVG)"
+    },
+    {
+      "type": "text",
+      "id": "s1_icon1_label",
+      "label": "Icon 1 Label",
+      "default": "PDRN"
+    },
+    {
+      "type": "text",
+      "id": "s1_icon1_desc",
+      "label": "Icon 1 Description (cyan)",
+      "default": "DNA-based rejuvenation."
+    },
+    {
+      "type": "header",
+      "content": "Slide 1 – Icon 2 (Ceramides)"
+    },
+    {
+      "type": "image_picker",
+      "id": "s1_icon2_image",
+      "label": "Icon 2 Image (overrides SVG)"
+    },
+    {
+      "type": "text",
+      "id": "s1_icon2_label",
+      "label": "Icon 2 Label",
+      "default": "CERAMIDES"
+    },
+    {
+      "type": "text",
+      "id": "s1_icon2_desc",
+      "label": "Icon 2 Description (cyan)",
+      "default": "Barrier strength and protration"
+    },
+    {
+      "type": "header",
+      "content": "Slide 1 – Icon 3 (Peptides)"
+    },
+    {
+      "type": "image_picker",
+      "id": "s1_icon3_image",
+      "label": "Icon 3 Image (overrides SVG)"
+    },
+    {
+      "type": "text",
+      "id": "s1_icon3_label",
+      "label": "Icon 3 Label",
+      "default": "PEPTIDES"
+    },
+    {
+      "type": "text",
+      "id": "s1_icon3_desc",
+      "label": "Icon 3 Description (cyan)",
+      "default": "Collagen synthesis and elasticity"
+    },
+    {
+      "type": "header",
+      "content": "Slide 1 – Right Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "s1_image",
+      "label": "Slide 1 Right Image"
+    },
+    {
+      "type": "header",
+      "content": "── Slide 2 ──────────────────────"
+    },
+    {
+      "type": "text",
+      "id": "s2_heading",
+      "label": "Slide 2 – Heading",
+      "default": "The Molecular Foundations"
+    },
+    {
+      "type": "textarea",
+      "id": "s2_description",
+      "label": "Slide 2 – Description",
+      "default": "Beyond the surface. We engineer the architecture."
+    },
+    {
+      "type": "header",
+      "content": "Slide 2 – Box 1"
+    },
+    {
+      "type": "text",
+      "id": "s2_box1_title",
+      "label": "Box 1 Title",
+      "default": "Exosomes"
+    },
+    {
+      "type": "text",
+      "id": "s2_box1_text",
+      "label": "Box 1 Text",
+      "default": "Targeted Intercellular Signaling"
+    },
+    {
+      "type": "image_picker",
+      "id": "s2_box1_image",
+      "label": "Box 1 Hover Image"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2 – Box 2"
+    },
+    {
+      "type": "text",
+      "id": "s2_box2_title",
+      "label": "Box 2 Title",
+      "default": "Scientific Mechanism"
+    },
+    {
+      "type": "text",
+      "id": "s2_box2_text",
+      "label": "Box 2 Text",
+      "default": "It is a long established fact that a reader."
+    },
+    {
+      "type": "image_picker",
+      "id": "s2_box2_image",
+      "label": "Box 2 Hover Image"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2 – Box 3"
+    },
+    {
+      "type": "text",
+      "id": "s2_box3_title",
+      "label": "Box 3 Title",
+      "default": "Lipid Matrix"
+    },
+    {
+      "type": "text",
+      "id": "s2_box3_text",
+      "label": "Box 3 Text",
+      "default": "Targeted Extracellular Signaling"
+    },
+    {
+      "type": "image_picker",
+      "id": "s2_box3_image",
+      "label": "Box 3 Hover Image"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2 – Box 4"
+    },
+    {
+      "type": "text",
+      "id": "s2_box4_title",
+      "label": "Box 4 Title",
+      "default": "Peptides"
+    },
+    {
+      "type": "text",
+      "id": "s2_box4_text",
+      "label": "Box 4 Text",
+      "default": "It is a long established fact that a reader."
+    },
+    {
+      "type": "image_picker",
+      "id": "s2_box4_image",
+      "label": "Box 4 Hover Image"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2 – Box 5"
+    },
+    {
+      "type": "text",
+      "id": "s2_box5_title",
+      "label": "Box 5 Title",
+      "default": "Snail Mucin"
+    },
+    {
+      "type": "text",
+      "id": "s2_box5_text",
+      "label": "Box 5 Text",
+      "default": "Proprietary Blend a Melting"
+    },
+    {
+      "type": "image_picker",
+      "id": "s2_box5_image",
+      "label": "Box 5 Hover Image"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2 – Box 6"
+    },
+    {
+      "type": "text",
+      "id": "s2_box6_title",
+      "label": "Box 6 Title",
+      "default": "Ceramides"
+    },
+    {
+      "type": "text",
+      "id": "s2_box6_text",
+      "label": "Box 6 Text",
+      "default": "At vero eos et accusamus et iusto odio dignissimos"
+    },
+    {
+      "type": "image_picker",
+      "id": "s2_box6_image",
+      "label": "Box 6 Hover Image"
+    },
+    {
+      "type": "header",
+      "content": "── Slide 3 ──────────────────────"
+    },
+    {
+      "type": "text",
+      "id": "s3_heading",
+      "label": "Slide 3 – Heading",
+      "default": "Derm proven retinol with patented technology"
+    },
+    {
+      "type": "image_picker",
+      "id": "s3_image",
+      "label": "Slide 3 – Left Image"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Dot 1 Position"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot1_x",
+      "label": "Dot 1 – Horizontal position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 36,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot1_y",
+      "label": "Dot 1 – Vertical position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 28,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Dot 2 Position"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot2_x",
+      "label": "Dot 2 – Horizontal position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 65,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot2_y",
+      "label": "Dot 2 – Vertical position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 35,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Dot 3 Position"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot3_x",
+      "label": "Dot 3 – Horizontal position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 88,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot3_y",
+      "label": "Dot 3 – Vertical position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 58,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Dot 4 Position"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot4_x",
+      "label": "Dot 4 – Horizontal position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 57,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot4_y",
+      "label": "Dot 4 – Vertical position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Dot 5 Position"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot5_x",
+      "label": "Dot 5 – Horizontal position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 44,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot5_y",
+      "label": "Dot 5 – Vertical position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 57,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Dot 6 Position"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot6_x",
+      "label": "Dot 6 – Horizontal position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 65,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "s3_dot6_y",
+      "label": "Dot 6 – Vertical position (%)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 75,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Point 1"
+    },
+    {
+      "type": "text",
+      "id": "s3_point1_title",
+      "label": "Point 1 Title",
+      "default": "Derm proven retinol"
+    },
+    {
+      "type": "text",
+      "id": "s3_point1_desc",
+      "label": "Point 1 Description",
+      "default": "Helps to fade lines and wrinkles"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Point 2"
+    },
+    {
+      "type": "text",
+      "id": "s3_point2_title",
+      "label": "Point 2 Title",
+      "default": "Peptides"
+    },
+    {
+      "type": "text",
+      "id": "s3_point2_desc",
+      "label": "Point 2 Description",
+      "default": "Helps improve skin firmness and elasticity"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Point 3"
+    },
+    {
+      "type": "text",
+      "id": "s3_point3_title",
+      "label": "Point 3 Title",
+      "default": "Soothing Complex"
+    },
+    {
+      "type": "text",
+      "id": "s3_point3_desc",
+      "label": "Point 3 Description",
+      "default": "Helps nourish skin and minimize irritation"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Point 4"
+    },
+    {
+      "type": "text",
+      "id": "s3_point4_title",
+      "label": "Point 4 Title",
+      "default": "Ceramides"
+    },
+    {
+      "type": "text",
+      "id": "s3_point4_desc",
+      "label": "Point 4 Description",
+      "default": "Strengthens the skin barrier"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Point 5"
+    },
+    {
+      "type": "text",
+      "id": "s3_point5_title",
+      "label": "Point 5 Title",
+      "default": "Hyaluronic Acid"
+    },
+    {
+      "type": "text",
+      "id": "s3_point5_desc",
+      "label": "Point 5 Description",
+      "default": "Deep hydration and plumping"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3 – Point 6"
+    },
+    {
+      "type": "text",
+      "id": "s3_point6_title",
+      "label": "Point 6 Title",
+      "default": "Niacinamide"
+    },
+    {
+      "type": "text",
+      "id": "s3_point6_desc",
+      "label": "Point 6 Description",
+      "default": "Brightens and evens skin tone"
+    },
+    {
+      "type": "header",
+      "content": "── Slide 4 ──────────────────────"
+    },
+    {
+      "type": "image_picker",
+      "id": "s4_bg_image",
+      "label": "Slide 4 – Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4 – Icon 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "s4_icon1_image",
+      "label": "Icon 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon1_label",
+      "label": "Icon 1 Label",
+      "default": "REPAIR"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon1_card_title",
+      "label": "Icon 1 – Card Title (default/rest state)",
+      "default": "Renewal Complex"
+    },
+    {
+      "type": "textarea",
+      "id": "s4_icon1_card_subtitle",
+      "label": "Icon 1 – Card Subtitle",
+      "default": "Advanced skin renewal and rejuvenation formulas"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4 – Icon 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "s4_icon2_image",
+      "label": "Icon 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon2_label",
+      "label": "Icon 2 Label",
+      "default": "RENEW"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon2_card_title",
+      "label": "Icon 2 – Card Title",
+      "default": "Renew Your Skin"
+    },
+    {
+      "type": "textarea",
+      "id": "s4_icon2_card_subtitle",
+      "label": "Icon 2 – Card Subtitle",
+      "default": "Stimulates cellular turnover for a fresher complexion"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4 – Icon 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "s4_icon3_image",
+      "label": "Icon 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon3_label",
+      "label": "Icon 3 Label",
+      "default": "PROTECT"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon3_card_title",
+      "label": "Icon 3 – Card Title",
+      "default": "Protect Your Barrier"
+    },
+    {
+      "type": "textarea",
+      "id": "s4_icon3_card_subtitle",
+      "label": "Icon 3 – Card Subtitle",
+      "default": "Shields skin from environmental stressors"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4 – Icon 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "s4_icon4_image",
+      "label": "Icon 4 Image"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon4_label",
+      "label": "Icon 4 Label",
+      "default": "ENHANCE"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon4_card_title",
+      "label": "Icon 4 – Card Title",
+      "default": "Enhance Radiance"
+    },
+    {
+      "type": "textarea",
+      "id": "s4_icon4_card_subtitle",
+      "label": "Icon 4 – Card Subtitle",
+      "default": "Boosts luminosity and skin tone evenness"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4 – Icon 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "s4_icon5_image",
+      "label": "Icon 5 Image"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon5_label",
+      "label": "Icon 5 Label",
+      "default": "TRANSFORM"
+    },
+    {
+      "type": "text",
+      "id": "s4_icon5_card_title",
+      "label": "Icon 5 – Card Title",
+      "default": "Transform Visibly"
+    },
+    {
+      "type": "textarea",
+      "id": "s4_icon5_card_subtitle",
+      "label": "Icon 5 – Card Subtitle",
+      "default": "Visible transformation with consistent use"
+    },
+    {
+      "type": "header",
+      "content": "── Slide 5 ──────────────────────"
+    },
+    {
+      "type": "header",
+      "content": "Slide 5 – Row 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "s5_row1_image",
+      "label": "Row 1 – Left Image"
+    },
+    {
+      "type": "text",
+      "id": "s5_row1_label",
+      "label": "Row 1 – Vertical Middle Label",
+      "default": "FIRM"
+    },
+    {
+      "type": "text",
+      "id": "s5_row1_title",
+      "label": "Row 1 – Right Title",
+      "default": "RETINYL PALMITATE"
+    },
+    {
+      "type": "text",
+      "id": "s5_row1_bullet1",
+      "label": "Row 1 – Bullet 1",
+      "default": "Boosts collagen renewal"
+    },
+    {
+      "type": "text",
+      "id": "s5_row1_bullet2",
+      "label": "Row 1 – Bullet 2",
+      "default": "Smooths fine lines & texture"
+    },
+    {
+      "type": "text",
+      "id": "s5_row1_bullet3",
+      "label": "Row 1 – Bullet 3",
+      "default": "Supports firm, lifted appearance"
+    },
+    {
+      "type": "header",
+      "content": "Slide 5 – Row 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "s5_row2_image",
+      "label": "Row 2 – Left Image"
+    },
+    {
+      "type": "text",
+      "id": "s5_row2_label",
+      "label": "Row 2 – Vertical Middle Label",
+      "default": "RESTORE"
+    },
+    {
+      "type": "text",
+      "id": "s5_row2_title",
+      "label": "Row 2 – Right Title",
+      "default": "NIACINAMIDE"
+    },
+    {
+      "type": "text",
+      "id": "s5_row2_bullet1",
+      "label": "Row 2 – Bullet 1",
+      "default": "Strengthens skin barrier"
+    },
+    {
+      "type": "text",
+      "id": "s5_row2_bullet2",
+      "label": "Row 2 – Bullet 2",
+      "default": "Minimizes pores"
+    },
+    {
+      "type": "text",
+      "id": "s5_row2_bullet3",
+      "label": "Row 2 – Bullet 3",
+      "default": "Keeps skin hydrated and balanced"
+    },
+    {
+      "type": "header",
+      "content": "Slide 5 – Row 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "s5_row3_image",
+      "label": "Row 3 – Left Image"
+    },
+    {
+      "type": "text",
+      "id": "s5_row3_label",
+      "label": "Row 3 – Vertical Middle Label",
+      "default": "BRIGHTEN"
+    },
+    {
+      "type": "text",
+      "id": "s5_row3_title",
+      "label": "Row 3 – Right Title",
+      "default": "VITAMIN C (ETHYL ASCORBIC ACID)"
+    },
+    {
+      "type": "text",
+      "id": "s5_row3_bullet1",
+      "label": "Row 3 – Bullet 1",
+      "default": "Enhances radiance & glow"
+    },
+    {
+      "type": "text",
+      "id": "s5_row3_bullet2",
+      "label": "Row 3 – Bullet 2",
+      "default": "Reduces dullness and uneven tone"
+    },
+    {
+      "type": "text",
+      "id": "s5_row3_bullet3",
+      "label": "Row 3 – Bullet 3",
+      "default": "Boosts natural luminosity"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Science Slider Kailasa"
+    }
+  ]
+}
+{% endschema %}

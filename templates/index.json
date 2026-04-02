@@ -1935,6 +1935,59 @@
         "strip_border_radius": 24,
         "accent_color": "#4fffff"
       }
+    },
+    "banner_section_kw8mzx": {
+      "type": "banner-section",
+      "blocks": {
+        "product_slide_j4B63J": {
+          "type": "product_slide",
+          "settings": {
+            "product": "",
+            "card_heading": "Add a subheading",
+            "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
+            "card_desc2": "Add a little bit of body text"
+          }
+        },
+        "product_slide_KcAKit": {
+          "type": "product_slide",
+          "settings": {
+            "product": "",
+            "card_heading": "Add a subheading",
+            "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
+            "card_desc2": "Add a little bit of body text"
+          }
+        },
+        "product_slide_WCtR7i": {
+          "type": "product_slide",
+          "settings": {
+            "product": "",
+            "card_heading": "Add a subheading",
+            "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
+            "card_desc2": "Add a little bit of body text"
+          }
+        }
+      },
+      "block_order": [
+        "product_slide_j4B63J",
+        "product_slide_KcAKit",
+        "product_slide_WCtR7i"
+      ],
+      "name": "Banner Section",
+      "settings": {
+        "bg_image": "shopify://shop_images/Futuristic_skincare_with_LED_therapy.png",
+        "overlay_color": "#000000",
+        "overlay_opacity": 45,
+        "section_height": 560,
+        "heading_top": "Unique beauty",
+        "heading_top_size": 48,
+        "heading_bottom": "experience",
+        "heading_bottom_size": 80,
+        "card_radius": 16,
+        "glass_text_color": "#ffffff",
+        "glass_heading_size": 18,
+        "glass_body_size": 13,
+        "arrow_size": 120
+      }
     }
   },
   "order": [
@@ -1957,6 +2010,7 @@
     "ingredients_banner_KpDmD7",
     "dot_line_section_RKh47P",
     "comparison_table_8gLMQK",
-    "dynamic_tiles_TEDzHG"
+    "dynamic_tiles_TEDzHG",
+    "banner_section_kw8mzx"
   ]
 }

@@ -1936,10 +1936,10 @@
         "accent_color": "#4fffff"
       }
     },
-    "banner_section_kw8mzx": {
+    "banner_section_yrJLYB": {
       "type": "banner-section",
       "blocks": {
-        "product_slide_j4B63J": {
+        "product_slide_NqMWQT": {
           "type": "product_slide",
           "settings": {
             "product": "",
@@ -1948,7 +1948,7 @@
             "card_desc2": "Add a little bit of body text"
           }
         },
-        "product_slide_KcAKit": {
+        "product_slide_zx3RfL": {
           "type": "product_slide",
           "settings": {
             "product": "",
@@ -1957,7 +1957,7 @@
             "card_desc2": "Add a little bit of body text"
           }
         },
-        "product_slide_WCtR7i": {
+        "product_slide_bAEKaq": {
           "type": "product_slide",
           "settings": {
             "product": "",
@@ -1968,13 +1968,13 @@
         }
       },
       "block_order": [
-        "product_slide_j4B63J",
-        "product_slide_KcAKit",
-        "product_slide_WCtR7i"
+        "product_slide_NqMWQT",
+        "product_slide_zx3RfL",
+        "product_slide_bAEKaq"
       ],
       "name": "Banner Section",
       "settings": {
-        "bg_image": "shopify://shop_images/Futuristic_skincare_with_LED_therapy.png",
+        "bg_image": "shopify://shop_images/54d0ca5598f44be30889d35d562bf505.jpg",
         "overlay_color": "#000000",
         "overlay_opacity": 45,
         "section_height": 560,
@@ -2011,6 +2011,6 @@
     "dot_line_section_RKh47P",
     "comparison_table_8gLMQK",
     "dynamic_tiles_TEDzHG",
-    "banner_section_kw8mzx"
+    "banner_section_yrJLYB"
   ]
 }

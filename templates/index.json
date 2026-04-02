@@ -552,6 +552,7 @@
         "doctor_9ddGE7",
         "doctor_z7Kbtk"
       ],
+      "disabled": true,
       "name": "Doctor Endorsement",
       "settings": {
         "section_title": "Doctor Endorsements",
@@ -1094,12 +1095,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
-            "step_label": "Cleanser",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         },
         "product_gNr6e3": {
@@ -1112,12 +1111,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "2",
-            "step_label": "Toner",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         },
         "product_YLDhK7": {
@@ -1130,12 +1127,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "3",
-            "step_label": "Serum",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         },
         "product_aL9WHQ": {
@@ -1148,12 +1143,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "4",
-            "step_label": "Moisturizer",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         },
         "product_mjHWFj": {
@@ -1166,12 +1159,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "5",
-            "step_label": "Sunscreen",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         },
         "product_3Da3VY": {
@@ -1184,12 +1175,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
-            "step_label": "Cleanser",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         },
         "product_YiiUPQ": {
@@ -1202,12 +1191,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
-            "step_label": "Cleanser",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         },
         "product_9JeztH": {
@@ -1220,12 +1207,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
-            "step_label": "Cleanser",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         },
         "product_cF768A": {
@@ -1238,12 +1223,10 @@
             "image_height": 100,
             "custom_product_name": "",
             "step_number": "1",
-            "step_label": "Cleanser",
-            "step_label_bg": "#4fffff",
-            "step_label_text": "#000000",
-            "show_icon": true,
-            "icon_type": "sun",
-            "icon_color": "#000000"
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
           }
         }
       },
@@ -1294,14 +1277,10 @@
         "cta_bg_color": "#000000",
         "cta_text_color": "#ffffff",
         "cta_border_radius": 30,
-        "step_label_bg": "#4fffff",
-        "step_label_text": "#000000",
         "product_name_color": "#000000",
         "product_name_font": "Montserrat",
         "product_name_font_size": 14,
         "product_name_font_weight": "500",
-        "show_sun_icon": true,
-        "step_text_case": "capitalize",
         "am_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png",
         "am_heading": "Powered by K-Medical Innovation",
         "am_description": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare — delivering the precision and efficacy of in-clinic treatments without the needle, at home.",
@@ -1586,6 +1565,7 @@
       ],
       "name": "Ingredients Scroll",
       "settings": {
+        "supplement_facts_url": "",
         "title": "The inner workings of strength & recovery",
         "title_font": "Gilroy",
         "title_size": 48,

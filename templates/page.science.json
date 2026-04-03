@@ -12,9 +12,34 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "science_page_hero_wtwke3": {
+      "type": "science-page-hero",
+      "name": "Science Page Hero Section",
+      "settings": {
+        "section_top_margin": 0,
+        "section_height": 520,
+        "background_image": "shopify://shop_images/54d0ca5598f44be30889d35d562bf505.jpg",
+        "title": "Your Daily Dose of Luxury",
+        "title_font_size": 56,
+        "title_color": "#ffffff",
+        "subtitle": "skin elasticity at a cellular level. Technology skin elasticity at a cellular level.",
+        "subtitle_font_size": 19,
+        "subtitle_color": "#f8f8f8",
+        "glass_image_1": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview_ae8b5eba-a677-4e85-85fd-e4b7c3485165.png",
+        "glass_image_2": "shopify://shop_images/pexels-redwolf-44736300-12889997-removebg-preview.png",
+        "glass_image_3": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d-removebg-preview-removebg-preview.png",
+        "glass_image_4": "shopify://shop_images/14937dc9021241450aa241abc2cc804a-removebg-preview.png",
+        "glass_image_5": "shopify://shop_images/a317e9df7934b9802bcd6c2e74828e26.jpg",
+        "glass_image_6": "shopify://shop_images/Gemini_Generated_Image_gtq2m5gtq2m5gtq2-removebg-preview_387781a3-c41e-4dc6-9c72-aac98229c018.png",
+        "glass_width": 280,
+        "glass_height": 220,
+        "glass_border_radius": 18
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "science_page_hero_wtwke3"
   ]
 }

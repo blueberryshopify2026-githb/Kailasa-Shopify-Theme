@@ -115,10 +115,29 @@
         "blog_editors_pick_link": "",
         "icon_size": 16
       }
+    },
+    "science_page_hero_DKCqJ3": {
+      "type": "science-page-hero",
+      "name": "Science Page Hero Section",
+      "settings": {
+        "section_top_margin": 0,
+        "section_height": 520,
+        "background_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
+        "title": "Your Daily Dose of Luxury",
+        "title_font_size": 56,
+        "title_color": "#000000",
+        "subtitle": "skin elasticity at a cellular level. Technology skin elasticity at a cellular level.",
+        "subtitle_font_size": 19,
+        "subtitle_color": "#1a1a1a",
+        "glass_width": 280,
+        "glass_height": 220,
+        "glass_border_radius": 18
+      }
     }
   },
   "order": [
     "header",
-    "kailasa_header_menu_9yiJ3D"
+    "kailasa_header_menu_9yiJ3D",
+    "science_page_hero_DKCqJ3"
   ]
 }

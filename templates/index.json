@@ -2049,6 +2049,33 @@
         "arrow_stroke_mobile": 2,
         "arrow_style": "stroke"
       }
+    },
+    "routine_hero_banner_bD9WNb": {
+      "type": "routine-hero-banner",
+      "name": "Routine Hero Banner",
+      "settings": {
+        "content_max_width": 1200,
+        "image_max_width": 1200,
+        "headline": "Build Your Ageless Routine",
+        "headline_font_size": 64,
+        "headline_color": "#000000",
+        "subheading_1_title": "Your Personalized Path to Youthful Skin",
+        "subheading_1_text": "",
+        "subheading_2_title": "Where Science Meets Ageless Beauty",
+        "subheading_2_text": "",
+        "subheading_3_title": "Design Your Age-Defying Ritual",
+        "subheading_3_text": "",
+        "subheading_font_size": 18,
+        "subheading_text_size": 14,
+        "subheading_color": "#333333",
+        "subheading_text_color": "#666666",
+        "main_image": "shopify://shop_images/Futuristic_skincare_with_LED_therapy.png",
+        "show_product_card": true,
+        "product_title": "Photon LED Mask",
+        "product_description": "Advanced formulations work deep beneath the surface",
+        "product_title_color": "#333333",
+        "product_description_color": "#666666"
+      }
     }
   },
   "order": [
@@ -2073,6 +2100,7 @@
     "comparison_table_8gLMQK",
     "dynamic_tiles_TEDzHG",
     "banner_section_yrJLYB",
-    "tab_section_AqL6JL"
+    "tab_section_AqL6JL",
+    "routine_hero_banner_bD9WNb"
   ]
 }

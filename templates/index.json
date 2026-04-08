@@ -1989,6 +1989,66 @@
         "glass_body_size": 13,
         "arrow_size": 120
       }
+    },
+    "tab_section_AqL6JL": {
+      "type": "tab-section",
+      "blocks": {
+        "image_text_block_CkN4bD": {
+          "type": "image-text-block",
+          "settings": {
+            "tab_name": "About",
+            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_block_CkN4bD"
+      ],
+      "name": "Tab Section",
+      "settings": {
+        "title": "Photon Youth™ Pro LED Mask",
+        "background_color": "#FFFFFF",
+        "text_color": "#181818",
+        "border_color": "#4FFFFF",
+        "border_width": 2,
+        "inner_tab_active_bg": "#181818",
+        "inner_tab_active_text": "#FFFFFF",
+        "inner_tab_active_dot": "#4FFFFF",
+        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_inactive_text": "#181818",
+        "inner_tab_hover_bg": "#181818",
+        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_border_color": "#181818",
+        "inner_tab_border_width": 1,
+        "title_font_family": "Montserrat, sans-serif",
+        "title_font_weight": 800,
+        "title_font_style": "normal",
+        "title_font_size_desktop": 50,
+        "title_font_size_mobile": 24,
+        "tab_font_family": "Montserrat, sans-serif",
+        "tab_font_weight": 500,
+        "tab_font_style": "normal",
+        "tab_font_size_desktop": 16,
+        "tab_font_size_mobile": 14,
+        "height_desktop": 120,
+        "title_padding_desktop": 20,
+        "arrow_padding_desktop": 45,
+        "arrow_size_desktop": 70,
+        "arrow_stroke_desktop": 3,
+        "height_mobile": 60,
+        "title_padding_mobile": 20,
+        "arrow_padding_mobile": 20,
+        "arrow_size_mobile": 18,
+        "arrow_stroke_mobile": 2,
+        "arrow_style": "stroke"
+      }
     }
   },
   "order": [
@@ -2012,6 +2072,7 @@
     "dot_line_section_RKh47P",
     "comparison_table_8gLMQK",
     "dynamic_tiles_TEDzHG",
-    "banner_section_yrJLYB"
+    "banner_section_yrJLYB",
+    "tab_section_AqL6JL"
   ]
 }

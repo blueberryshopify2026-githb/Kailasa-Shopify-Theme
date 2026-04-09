@@ -2309,67 +2309,6 @@
         "main_image_border_radius": 20
       }
     },
-    "vip_section_9MhKE9": {
-      "type": "vip-section",
-      "blocks": {
-        "point_aYrktQ": {
-          "type": "point",
-          "settings": {
-            "point_text": "Want an easy way to support your daily nutrition",
-            "point_image": "shopify://shop_images/pexels-monirathnak-15108322.jpg"
-          }
-        },
-        "point_e9a4LG": {
-          "type": "point",
-          "settings": {
-            "point_text": "Are juggling a busy life and need nutrition that keeps up",
-            "point_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg"
-          }
-        },
-        "point_Gg6kmF": {
-          "type": "point",
-          "settings": {
-            "point_text": "Care about improving gut health and digestion",
-            "point_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png"
-          }
-        },
-        "point_pqB9BR": {
-          "type": "point",
-          "settings": {
-            "point_text": "Are getting back into fitness and want to support your energy levels",
-            "point_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg"
-          }
-        },
-        "point_EwHdxi": {
-          "type": "point",
-          "settings": {
-            "point_text": "Are on GLP-1s and want additional nutritional support"
-          }
-        }
-      },
-      "block_order": [
-        "point_aYrktQ",
-        "point_e9a4LG",
-        "point_Gg6kmF",
-        "point_pqB9BR",
-        "point_EwHdxi"
-      ],
-      "name": "VIP Section",
-      "settings": {
-        "title": "Designed to Support Your Busy Lifestyle",
-        "subtitle": "We formulated AG1 Next Gen to support your health with advanced nutrition in every scoop.* It's a match if you:",
-        "button_text": "Get Started",
-        "button_link": "",
-        "default_image": "shopify://shop_images/54d0ca5598f44be30889d35d562bf505.jpg",
-        "font_family": "montserrat_n4",
-        "title_font_size": 48,
-        "title_font_weight": "700",
-        "subtitle_font_size": 18,
-        "subtitle_font_weight": "400",
-        "points_font_size": 16,
-        "points_font_weight": "400"
-      }
-    },
     "science_slider_kailasa_fX4Xbp": {
       "type": "science-slider-kailasa",
       "name": "Science Slider Kailasa",
@@ -2464,6 +2403,64 @@
         "s5_row3_bullet2": "Reduces dullness and uneven tone",
         "s5_row3_bullet3": "Boosts natural luminosity"
       }
+    },
+    "medical_team_6J9h4T": {
+      "type": "medical-team",
+      "blocks": {
+        "team_member_xjP96p": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-kooldark-14438788.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_Kpyw3q": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-darina-belonogova-7520423-removebg-preview_430x_81a532bc-2288-4e27-8dc8-ad0cb7424d8d.webp",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_qw8nx7": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_AehcUY": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-redwolf-44736300-12889997-removebg-preview.png",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_xjP96p",
+        "team_member_Kpyw3q",
+        "team_member_qw8nx7",
+        "team_member_AehcUY"
+      ],
+      "name": "Medical Team",
+      "settings": {
+        "section_bg_color": "#000000",
+        "title_part1": "MEET OUR SPECIALISED",
+        "title_part2": "MEDICAL TEAM",
+        "title_font_size": 48,
+        "title_color": "#ffffff",
+        "highlight_color": "#4FFFFF",
+        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
+        "description_font_size": 18,
+        "description_color": "#ffffff",
+        "nav_bg_color": "#000000",
+        "nav_border_color": "#4FFFFF",
+        "nav_icon_color": "#4FFFFF"
+      }
     }
   },
   "order": [
@@ -2490,7 +2487,7 @@
     "dynamic_tiles_TEDzHG",
     "routine_hero_banner_bD9WNb",
     "vip_presentation_JktD3E",
-    "vip_section_9MhKE9",
-    "science_slider_kailasa_fX4Xbp"
+    "science_slider_kailasa_fX4Xbp",
+    "medical_team_6J9h4T"
   ]
 }

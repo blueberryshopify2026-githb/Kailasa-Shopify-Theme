@@ -2410,7 +2410,7 @@
         "ugc_video_XQ9JnQ": {
           "type": "ugc_video",
           "settings": {
-            "video_url": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
             "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
             "product": "kailasa-creatine-powder",
@@ -2420,10 +2420,10 @@
             "product_price": ""
           }
         },
-        "ugc_video_AYaggg": {
+        "ugc_video_jyxfgR": {
           "type": "ugc_video",
           "settings": {
-            "video_url": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
             "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
             "product": "kailasa-creatine-powder",
@@ -2433,10 +2433,23 @@
             "product_price": ""
           }
         },
-        "ugc_video_kb8MwD": {
+        "ugc_video_iBAihB": {
           "type": "ugc_video",
           "settings": {
-            "video_url": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
+            "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "redirect_url": "",
+            "product": "kailasa-creatine-powder",
+            "product_url": "",
+            "product_image": "shopify://shop_images/download_32.png",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_9AVNfn": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
             "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
             "product": "kailasa-creatine-powder",
@@ -2475,7 +2488,7 @@
         "ugc_video_tNrQaP": {
           "type": "ugc_video",
           "settings": {
-            "video_url": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
             "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
             "product": "kailasa-creatine-powder",
@@ -2488,8 +2501,9 @@
       },
       "block_order": [
         "ugc_video_XQ9JnQ",
-        "ugc_video_AYaggg",
-        "ugc_video_kb8MwD",
+        "ugc_video_jyxfgR",
+        "ugc_video_iBAihB",
+        "ugc_video_9AVNfn",
         "ugc_video_WVpARX",
         "ugc_video_N3cPgT",
         "ugc_video_tNrQaP"

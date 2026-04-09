@@ -9,51 +9,57 @@
  */
 {
   "sections": {
-    "hero_section_kwnUKB": {
+    "hero_section_tCPJUm": {
       "type": "hero-section",
       "blocks": {
-        "content_block_By3Ftw": {
+        "content_block_JiRkdR": {
           "type": "content_block",
           "settings": {
             "title": "Daily Essentials for Nutrition and Digestive",
             "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
             "media_type": "image",
-            "video_url": ""
+            "main_image": "shopify://shop_images/download_26.jpg",
+            "video_url": "",
+            "thumbnail_image": "shopify://shop_images/download_26.jpg"
           }
         },
-        "content_block_pck3CR": {
+        "content_block_nzbPie": {
           "type": "content_block",
           "settings": {
-            "title": "Daily Essentials for Nutrition and Digestive",
-            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
-            "media_type": "image",
-            "video_url": ""
+            "title": "Clinically proven daily probiotic",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating.",
+            "media_type": "video",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/605b9d48312e4dc4b10d6695b2817b85.mp4",
+            "thumbnail_image": "shopify://shop_images/Quel_masque_LED_choisir___Suivez_notre_guide_430x_61ad7220-852f-441c-9598-bd61511162fd.webp"
           }
         },
-        "content_block_KYyiWp": {
+        "content_block_yDpn86": {
           "type": "content_block",
           "settings": {
-            "title": "Daily Essentials for Nutrition and Digestive",
-            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
+            "title": "Nutrition and Digestive daily probiotic and new daily multivitamin",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating.",
             "media_type": "image",
-            "video_url": ""
+            "main_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png",
+            "video_url": "",
+            "thumbnail_image": "shopify://shop_images/Gemini_Generated_Image_67fs0r67fs0r67fs.png"
           }
         },
-        "content_block_8UeR7t": {
+        "content_block_q6UGbY": {
           "type": "content_block",
           "settings": {
-            "title": "Daily Essentials for Nutrition and Digestive",
-            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
-            "media_type": "image",
-            "video_url": ""
+            "title": "Daily Essentials for Nutrition",
+            "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity,  daily probiotic and new daily multivitamin.",
+            "media_type": "video",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4",
+            "thumbnail_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg"
           }
         }
       },
       "block_order": [
-        "content_block_By3Ftw",
-        "content_block_pck3CR",
-        "content_block_KYyiWp",
-        "content_block_8UeR7t"
+        "content_block_JiRkdR",
+        "content_block_nzbPie",
+        "content_block_yDpn86",
+        "content_block_q6UGbY"
       ],
       "name": "Hero Section",
       "settings": {
@@ -68,12 +74,12 @@
         "primary_btn_text": "#000000",
         "button_2_text": "Take Regeneration Audit",
         "button_2_link": "",
-        "secondary_btn_bg": "#4FFFFF",
+        "secondary_btn_bg": "#4fffff",
         "secondary_btn_text": "#000000",
         "button_font_size": 16,
         "button_border_radius": 50,
         "image_border_radius": 24,
-        "active_circle_color": "#4FFFFF"
+        "active_circle_color": "#4fffff"
       }
     },
     "result_timeline_NawiQR": {
@@ -1756,73 +1762,6 @@
         "arrow_color": "#4fffff"
       }
     },
-    "medical_team_XfxtWd": {
-      "type": "medical-team",
-      "blocks": {
-        "team_member_wfaTFf": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-shkrabaanthony-5214964.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_q4bxGK": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-kooldark-14438788.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_cf4cnx": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-thirdman-5327580.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_bddbKp": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-shkrabaanthony-5215024.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_MbD9VH": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-shkrabaanthony-5214964.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        }
-      },
-      "block_order": [
-        "team_member_wfaTFf",
-        "team_member_q4bxGK",
-        "team_member_cf4cnx",
-        "team_member_bddbKp",
-        "team_member_MbD9VH"
-      ],
-      "name": "Medical Team",
-      "settings": {
-        "section_bg_color": "#000000",
-        "title_part1": "MEET OUR SPECIALISED",
-        "title_part2": "MEDICAL TEAM",
-        "title_font_size": 48,
-        "title_color": "#ffffff",
-        "highlight_color": "#4fffff",
-        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
-        "description_font_size": 18,
-        "description_color": "#ffffff",
-        "nav_bg_color": "#000000",
-        "nav_border_color": "#4fffff",
-        "nav_icon_color": "#4fffff"
-      }
-    },
     "lifestyle_section_6wjbgt": {
       "type": "lifestyle-section",
       "blocks": {
@@ -2259,109 +2198,6 @@
         "cell_text_font_size": 12
       }
     },
-    "dynamic_tiles_TEDzHG": {
-      "type": "dynamic-tiles",
-      "blocks": {
-        "slide_XTrVGA": {
-          "type": "slide",
-          "settings": {
-            "slide_title": "Slide 1",
-            "background_image": "shopify://shop_images/PDRN_Salmon_DNA_Therapy_in_Dubai.jpg",
-            "thumbnail_image": "shopify://shop_images/3d91dba277601f6a1ce03e2f1e2f75ad.jpg",
-            "statistic_1": "500K",
-            "title_1": "Consumer reach",
-            "description_1": "Consumer across 20 countries",
-            "statistic_2": "60%",
-            "title_2": "Reduced Carbon",
-            "description_2": "Consumer across 20 countries",
-            "statistic_3": "90%",
-            "title_3": "Consumer reach",
-            "description_3": "Consumer across 20 countries"
-          }
-        },
-        "slide_PP6B83": {
-          "type": "slide",
-          "settings": {
-            "slide_title": "Slide 1",
-            "background_image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
-            "thumbnail_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
-            "statistic_1": "500K",
-            "title_1": "Consumer reach",
-            "description_1": "Consumer across 20 countries",
-            "statistic_2": "60%",
-            "title_2": "Reduced Carbon",
-            "description_2": "Consumer across 20 countries",
-            "statistic_3": "90%",
-            "title_3": "Consumer reach",
-            "description_3": "Consumer across 20 countries"
-          }
-        }
-      },
-      "block_order": [
-        "slide_XTrVGA",
-        "slide_PP6B83"
-      ],
-      "name": "Dynamic Tiles",
-      "settings": {
-        "section_height": 80,
-        "strip_border_radius": 24,
-        "accent_color": "#4fffff"
-      }
-    },
-    "banner_section_yrJLYB": {
-      "type": "banner-section",
-      "blocks": {
-        "product_slide_NqMWQT": {
-          "type": "product_slide",
-          "settings": {
-            "product": "",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
-            "card_heading": "Add a subheading",
-            "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
-            "card_desc2": "Add a little bit of body text"
-          }
-        },
-        "product_slide_zx3RfL": {
-          "type": "product_slide",
-          "settings": {
-            "product": "",
-            "card_heading": "Add a subheading",
-            "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
-            "card_desc2": "Add a little bit of body text"
-          }
-        },
-        "product_slide_bAEKaq": {
-          "type": "product_slide",
-          "settings": {
-            "product": "",
-            "card_heading": "Add a subheading",
-            "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
-            "card_desc2": "Add a little bit of body text"
-          }
-        }
-      },
-      "block_order": [
-        "product_slide_NqMWQT",
-        "product_slide_zx3RfL",
-        "product_slide_bAEKaq"
-      ],
-      "name": "Banner Section",
-      "settings": {
-        "bg_image": "shopify://shop_images/54d0ca5598f44be30889d35d562bf505.jpg",
-        "overlay_color": "#000000",
-        "overlay_opacity": 45,
-        "section_height": 560,
-        "heading_top": "Unique beauty",
-        "heading_top_size": 48,
-        "heading_bottom": "experience",
-        "heading_bottom_size": 80,
-        "card_radius": 16,
-        "glass_text_color": "#ffffff",
-        "glass_heading_size": 18,
-        "glass_body_size": 13,
-        "arrow_size": 120
-      }
-    },
     "routine_hero_banner_bD9WNb": {
       "type": "routine-hero-banner",
       "name": "Routine Hero Banner",
@@ -2403,32 +2239,10 @@
             "main_cta_text": "Become a Member",
             "main_cta_link": ""
           }
-        },
-        "vip_slide_f3rgAf": {
-          "type": "vip_slide",
-          "settings": {
-            "heading": "Skincare Elevated to an Elite Membership Experience",
-            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
-            "preview_cta_text": "Become a Member",
-            "main_cta_text": "Become a Member",
-            "main_cta_link": ""
-          }
-        },
-        "vip_slide_mgAkLm": {
-          "type": "vip_slide",
-          "settings": {
-            "heading": "Skincare Elevated to an Elite Membership Experience",
-            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
-            "preview_cta_text": "Become a Member",
-            "main_cta_text": "Become a Member",
-            "main_cta_link": ""
-          }
         }
       },
       "block_order": [
-        "vip_slide_VRrJmB",
-        "vip_slide_f3rgAf",
-        "vip_slide_mgAkLm"
+        "vip_slide_VRrJmB"
       ],
       "name": "VIP Presentation",
       "settings": {
@@ -2438,16 +2252,198 @@
         "key_points_font_size": 16,
         "key_points_color": "#333333",
         "bullet_color": "#000000",
+        "arrow_icon": "shopify://shop_images/Gemini_Generated_Image_sv377csv377csv37-removebg-preview.png",
         "arrow_bg_color": "#4fffff",
         "arrow_hover_color": "#3deeee",
         "arrow_icon_color": "#000000",
         "preview_border_radius": 12,
         "main_image_border_radius": 20
       }
+    },
+    "science_slider_kailasa_fX4Xbp": {
+      "type": "science-slider-kailasa",
+      "name": "Science Slider Kailasa",
+      "settings": {
+        "section_height": 700,
+        "s1_heading": "The Molecular Standard.",
+        "s1_subheading": "The Molecular Standard.",
+        "s1_description": "Harnessing South Korea patented fermentation technology skin elasticity at a cellular level. Technology skin elasticity at a cellular level.",
+        "s1_card1_title": "PDRN:",
+        "s1_card1_text": "DNA-based rejuvenation.",
+        "s1_card2_title": "Snail Mucin",
+        "s1_card2_text": "Advanced barrier repair",
+        "s1_icon1_label": "PDRN",
+        "s1_icon1_desc": "DNA-based rejuvenation.",
+        "s1_icon2_label": "CERAMIDES",
+        "s1_icon2_desc": "Barrier strength and protration",
+        "s1_icon3_label": "PEPTIDES",
+        "s1_icon3_desc": "Collagen synthesis and elasticity",
+        "s1_image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+        "s2_heading": "The Molecular Foundations",
+        "s2_description": "Beyond the surface. We engineer the architecture.",
+        "s2_box1_title": "Exosomes",
+        "s2_box1_text": "Targeted Intercellular Signaling",
+        "s2_box1_image": "shopify://shop_images/Futuristic_skincare_with_LED_therapy.png",
+        "s2_box2_title": "Scientific Mechanism",
+        "s2_box2_text": "It is a long established fact that a reader.",
+        "s2_box2_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+        "s2_box3_title": "Lipid Matrix",
+        "s2_box3_text": "Targeted Extracellular Signaling",
+        "s2_box3_image": "shopify://shop_images/pexels-redwolf-44736300-12889997-removebg-preview.png",
+        "s2_box4_title": "Peptides",
+        "s2_box4_text": "It is a long established fact that a reader.",
+        "s2_box4_image": "shopify://shop_images/a317e9df7934b9802bcd6c2e74828e26.jpg",
+        "s2_box5_title": "Snail Mucin",
+        "s2_box5_text": "Proprietary Blend a Melting",
+        "s2_box5_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
+        "s2_box6_title": "Ceramides",
+        "s2_box6_text": "At vero eos et accusamus et iusto odio dignissimos",
+        "s3_heading": "Derm proven retinol with patented technology",
+        "s3_dot1_x": 36,
+        "s3_dot1_y": 28,
+        "s3_dot2_x": 65,
+        "s3_dot2_y": 35,
+        "s3_dot3_x": 88,
+        "s3_dot3_y": 58,
+        "s3_dot4_x": 57,
+        "s3_dot4_y": 50,
+        "s3_dot5_x": 44,
+        "s3_dot5_y": 57,
+        "s3_dot6_x": 65,
+        "s3_dot6_y": 75,
+        "s3_point1_title": "Derm proven retinol",
+        "s3_point1_desc": "Helps to fade lines and wrinkles",
+        "s3_point2_title": "Peptides",
+        "s3_point2_desc": "Helps improve skin firmness and elasticity",
+        "s3_point3_title": "Soothing Complex",
+        "s3_point3_desc": "Helps nourish skin and minimize irritation",
+        "s3_point4_title": "Ceramides",
+        "s3_point4_desc": "Strengthens the skin barrier",
+        "s3_point5_title": "Hyaluronic Acid",
+        "s3_point5_desc": "Deep hydration and plumping",
+        "s3_point6_title": "Niacinamide",
+        "s3_point6_desc": "Brightens and evens skin tone",
+        "s4_icon1_label": "REPAIR",
+        "s4_icon1_card_title": "Renewal Complex",
+        "s4_icon1_card_subtitle": "Advanced skin renewal and rejuvenation formulas",
+        "s4_icon2_label": "RENEW",
+        "s4_icon2_card_title": "Renew Your Skin",
+        "s4_icon2_card_subtitle": "Stimulates cellular turnover for a fresher complexion",
+        "s4_icon3_label": "PROTECT",
+        "s4_icon3_card_title": "Protect Your Barrier",
+        "s4_icon3_card_subtitle": "Shields skin from environmental stressors",
+        "s4_icon4_label": "ENHANCE",
+        "s4_icon4_card_title": "Enhance Radiance",
+        "s4_icon4_card_subtitle": "Boosts luminosity and skin tone evenness",
+        "s4_icon5_label": "TRANSFORM",
+        "s4_icon5_card_title": "Transform Visibly",
+        "s4_icon5_card_subtitle": "Visible transformation with consistent use",
+        "s5_row1_label": "FIRM",
+        "s5_row1_title": "RETINYL PALMITATE",
+        "s5_row1_bullet1": "Boosts collagen renewal",
+        "s5_row1_bullet2": "Smooths fine lines & texture",
+        "s5_row1_bullet3": "Supports firm, lifted appearance",
+        "s5_row2_label": "RESTORE",
+        "s5_row2_title": "NIACINAMIDE",
+        "s5_row2_bullet1": "Strengthens skin barrier",
+        "s5_row2_bullet2": "Minimizes pores",
+        "s5_row2_bullet3": "Keeps skin hydrated and balanced",
+        "s5_row3_label": "BRIGHTEN",
+        "s5_row3_title": "VITAMIN C (ETHYL ASCORBIC ACID)",
+        "s5_row3_bullet1": "Enhances radiance & glow",
+        "s5_row3_bullet2": "Reduces dullness and uneven tone",
+        "s5_row3_bullet3": "Boosts natural luminosity"
+      }
+    },
+    "medical_team_yC3JM7": {
+      "type": "medical-team",
+      "blocks": {
+        "team_member_HgE9dt": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_aehy4b": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_KAY3qX": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_zAUBR4": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_HJTCgK": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_HgE9dt",
+        "team_member_aehy4b",
+        "team_member_KAY3qX",
+        "team_member_zAUBR4",
+        "team_member_HJTCgK"
+      ],
+      "name": "Medical Team",
+      "settings": {
+        "section_bg_color": "#000000",
+        "title_part1": "MEET OUR SPECIALISED",
+        "title_part2": "MEDICAL TEAM",
+        "title_font_size": 48,
+        "title_color": "#ffffff",
+        "highlight_color": "#4FFFFF",
+        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
+        "description_font_size": 18,
+        "description_color": "#ffffff",
+        "nav_bg_color": "#000000",
+        "nav_border_color": "#4FFFFF",
+        "nav_icon_color": "#4FFFFF"
+      }
+    },
+    "science_page_hero_ppDgV6": {
+      "type": "science-page-hero",
+      "name": "Science Page Hero Section",
+      "settings": {
+        "section_top_margin": 0,
+        "section_height": 520,
+        "background_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
+        "title": "Your Daily Dose of Luxury",
+        "title_font_size": 56,
+        "title_color": "#000000",
+        "subtitle": "skin elasticity at a cellular level. Technology skin elasticity at a cellular level.",
+        "subtitle_font_size": 19,
+        "subtitle_color": "#1a1a1a",
+        "glass_image_1": "shopify://shop_images/pexels-redwolf-44736300-12889997-removebg-preview.png",
+        "glass_width": 280,
+        "glass_height": 220,
+        "glass_border_radius": 18
+      }
     }
   },
   "order": [
-    "hero_section_kwnUKB",
+    "hero_section_tCPJUm",
     "result_timeline_NawiQR",
     "filter_by_concerns_Q7XLcU",
     "video_scroll_interactive_hbMbgh",
@@ -2462,15 +2458,15 @@
     "skin_by_concern_CT8TWF",
     "routine_tabs_section_VB3cNg",
     "professional_panel_PzXJEh",
-    "medical_team_XfxtWd",
     "lifestyle_section_6wjbgt",
     "ingredients_scroll_T8EQgK",
     "ingredients_banner_KpDmD7",
     "dot_line_section_RKh47P",
     "comparison_table_8gLMQK",
-    "dynamic_tiles_TEDzHG",
-    "banner_section_yrJLYB",
     "routine_hero_banner_bD9WNb",
-    "vip_presentation_JktD3E"
+    "vip_presentation_JktD3E",
+    "science_slider_kailasa_fX4Xbp",
+    "medical_team_yC3JM7",
+    "science_page_hero_ppDgV6"
   ]
 }

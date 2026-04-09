@@ -89,6 +89,8 @@
           "type": "concern",
           "settings": {
             "concern_name": "Acne",
+            "image_1": "shopify://shop_images/Futuristic_skincare_with_LED_therapy.png",
+            "popup_1_stat1_icon": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d-removebg-preview-removebg-preview.png",
             "popup_1_stat1_value": "+96%",
             "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
             "popup_1_stat2_value": "+96%",

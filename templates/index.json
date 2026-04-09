@@ -2404,62 +2404,80 @@
         "s5_row3_bullet3": "Boosts natural luminosity"
       }
     },
-    "medical_team_6J9h4T": {
-      "type": "medical-team",
+    "ugc_image_carousel_Rjeydj": {
+      "type": "ugc-image-carousel",
       "blocks": {
-        "team_member_xjP96p": {
-          "type": "team_member",
+        "ugc_image_yUxFxe": {
+          "type": "ugc_image",
           "settings": {
-            "image": "shopify://shop_images/pexels-kooldark-14438788.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
+            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "",
+            "product_price": ""
           }
         },
-        "team_member_Kpyw3q": {
-          "type": "team_member",
+        "ugc_image_MVDrmM": {
+          "type": "ugc_image",
           "settings": {
-            "image": "shopify://shop_images/pexels-darina-belonogova-7520423-removebg-preview_430x_81a532bc-2288-4e27-8dc8-ad0cb7424d8d.webp",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
+            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "",
+            "product_price": ""
           }
         },
-        "team_member_qw8nx7": {
-          "type": "team_member",
+        "ugc_image_FHhDzW": {
+          "type": "ugc_image",
           "settings": {
-            "image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
+            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "",
+            "product_price": ""
           }
         },
-        "team_member_AehcUY": {
-          "type": "team_member",
+        "ugc_image_CbcKAj": {
+          "type": "ugc_image",
           "settings": {
-            "image": "shopify://shop_images/pexels-redwolf-44736300-12889997-removebg-preview.png",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
+            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_image_H8Jm6L": {
+          "type": "ugc_image",
+          "settings": {
+            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product_title": "",
+            "product_price": ""
           }
         }
       },
       "block_order": [
-        "team_member_xjP96p",
-        "team_member_Kpyw3q",
-        "team_member_qw8nx7",
-        "team_member_AehcUY"
+        "ugc_image_yUxFxe",
+        "ugc_image_MVDrmM",
+        "ugc_image_FHhDzW",
+        "ugc_image_CbcKAj",
+        "ugc_image_H8Jm6L"
       ],
-      "name": "Medical Team",
+      "name": "UGC Image Carousel",
       "settings": {
-        "section_bg_color": "#000000",
-        "title_part1": "MEET OUR SPECIALISED",
-        "title_part2": "MEDICAL TEAM",
-        "title_font_size": 48,
-        "title_color": "#ffffff",
-        "highlight_color": "#4FFFFF",
-        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
-        "description_font_size": 18,
-        "description_color": "#ffffff",
-        "nav_bg_color": "#000000",
-        "nav_border_color": "#4FFFFF",
-        "nav_icon_color": "#4FFFFF"
+        "section_background": "#ffffff",
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "section_title": "Real Stories, Real Results",
+        "section_description": "Authentic experiences from our community—unfiltered and genuine.",
+        "title_font_size": 42,
+        "title_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "dot_active_color": "#000000",
+        "dot_inactive_color": "#cccccc"
       }
     }
   },
@@ -2488,6 +2506,6 @@
     "routine_hero_banner_bD9WNb",
     "vip_presentation_JktD3E",
     "science_slider_kailasa_fX4Xbp",
-    "medical_team_6J9h4T"
+    "ugc_image_carousel_Rjeydj"
   ]
 }

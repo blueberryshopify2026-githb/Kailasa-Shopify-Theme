@@ -2404,68 +2404,97 @@
         "s5_row3_bullet3": "Boosts natural luminosity"
       }
     },
-    "ugc_image_carousel_Rjeydj": {
-      "type": "ugc-image-carousel",
+    "ugc_video_carousel_mMzCqK": {
+      "type": "ugc-video-carousel",
       "blocks": {
-        "ugc_image_yUxFxe": {
-          "type": "ugc_image",
+        "ugc_video_XQ9JnQ": {
+          "type": "ugc_video",
           "settings": {
-            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "video_url": "",
+            "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product": "kailasa-creatine-powder",
+            "product_url": "",
+            "product_image": "shopify://shop_images/download_32.png",
             "product_title": "",
             "product_price": ""
           }
         },
-        "ugc_image_MVDrmM": {
-          "type": "ugc_image",
+        "ugc_video_AYaggg": {
+          "type": "ugc_video",
           "settings": {
-            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "video_url": "",
+            "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product": "kailasa-creatine-powder",
+            "product_url": "",
+            "product_image": "shopify://shop_images/download_32.png",
             "product_title": "",
             "product_price": ""
           }
         },
-        "ugc_image_FHhDzW": {
-          "type": "ugc_image",
+        "ugc_video_kb8MwD": {
+          "type": "ugc_video",
           "settings": {
-            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "video_url": "",
+            "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product": "kailasa-creatine-powder",
+            "product_url": "",
+            "product_image": "shopify://shop_images/download_32.png",
             "product_title": "",
             "product_price": ""
           }
         },
-        "ugc_image_CbcKAj": {
-          "type": "ugc_image",
+        "ugc_video_WVpARX": {
+          "type": "ugc_video",
           "settings": {
-            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "video_url": "",
+            "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product": "kailasa-creatine-powder",
+            "product_url": "",
+            "product_image": "shopify://shop_images/download_32.png",
             "product_title": "",
             "product_price": ""
           }
         },
-        "ugc_image_H8Jm6L": {
-          "type": "ugc_image",
+        "ugc_video_N3cPgT": {
+          "type": "ugc_video",
           "settings": {
-            "card_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "video_url": "",
+            "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
             "redirect_url": "",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "product": "kailasa-creatine-powder",
+            "product_url": "",
+            "product_image": "shopify://shop_images/download_32.png",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_tNrQaP": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "",
+            "video_poster": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "redirect_url": "",
+            "product": "kailasa-creatine-powder",
+            "product_url": "",
+            "product_image": "shopify://shop_images/download_32.png",
             "product_title": "",
             "product_price": ""
           }
         }
       },
       "block_order": [
-        "ugc_image_yUxFxe",
-        "ugc_image_MVDrmM",
-        "ugc_image_FHhDzW",
-        "ugc_image_CbcKAj",
-        "ugc_image_H8Jm6L"
+        "ugc_video_XQ9JnQ",
+        "ugc_video_AYaggg",
+        "ugc_video_kb8MwD",
+        "ugc_video_WVpARX",
+        "ugc_video_N3cPgT",
+        "ugc_video_tNrQaP"
       ],
-      "name": "UGC Image Carousel",
+      "name": "UGC Video Carousel",
       "settings": {
         "section_background": "#ffffff",
         "section_padding_top": 80,
@@ -2506,6 +2535,6 @@
     "routine_hero_banner_bD9WNb",
     "vip_presentation_JktD3E",
     "science_slider_kailasa_fX4Xbp",
-    "ugc_image_carousel_Rjeydj"
+    "ugc_video_carousel_mMzCqK"
   ]
 }

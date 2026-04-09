@@ -2198,55 +2198,6 @@
         "cell_text_font_size": 12
       }
     },
-    "dynamic_tiles_TEDzHG": {
-      "type": "dynamic-tiles",
-      "blocks": {
-        "slide_XTrVGA": {
-          "type": "slide",
-          "settings": {
-            "slide_title": "Slide 1",
-            "background_image": "shopify://shop_images/PDRN_Salmon_DNA_Therapy_in_Dubai.jpg",
-            "thumbnail_image": "shopify://shop_images/3d91dba277601f6a1ce03e2f1e2f75ad.jpg",
-            "statistic_1": "500K",
-            "title_1": "Consumer reach",
-            "description_1": "Consumer across 20 countries",
-            "statistic_2": "60%",
-            "title_2": "Reduced Carbon",
-            "description_2": "Consumer across 20 countries",
-            "statistic_3": "90%",
-            "title_3": "Consumer reach",
-            "description_3": "Consumer across 20 countries"
-          }
-        },
-        "slide_PP6B83": {
-          "type": "slide",
-          "settings": {
-            "slide_title": "Slide 1",
-            "background_image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
-            "thumbnail_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
-            "statistic_1": "500K",
-            "title_1": "Consumer reach",
-            "description_1": "Consumer across 20 countries",
-            "statistic_2": "60%",
-            "title_2": "Reduced Carbon",
-            "description_2": "Consumer across 20 countries",
-            "statistic_3": "90%",
-            "title_3": "Consumer reach",
-            "description_3": "Consumer across 20 countries"
-          }
-        }
-      },
-      "block_order": [
-        "slide_XTrVGA",
-        "slide_PP6B83"
-      ],
-      "name": "Dynamic Tiles",
-      "settings": {
-        "section_height": 80,
-        "strip_border_radius": 24,
-        "accent_color": "#4fffff"
-      }
-    },
     "routine_hero_banner_bD9WNb": {
       "type": "routine-hero-banner",
       "name": "Routine Hero Banner",
@@ -2522,6 +2473,73 @@
         "dot_active_color": "#000000",
         "dot_inactive_color": "#cccccc"
       }
+    },
+    "medical_team_yC3JM7": {
+      "type": "medical-team",
+      "blocks": {
+        "team_member_HgE9dt": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_aehy4b": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_KAY3qX": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_zAUBR4": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_HJTCgK": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_HgE9dt",
+        "team_member_aehy4b",
+        "team_member_KAY3qX",
+        "team_member_zAUBR4",
+        "team_member_HJTCgK"
+      ],
+      "name": "Medical Team",
+      "settings": {
+        "section_bg_color": "#000000",
+        "title_part1": "MEET OUR SPECIALISED",
+        "title_part2": "MEDICAL TEAM",
+        "title_font_size": 48,
+        "title_color": "#ffffff",
+        "highlight_color": "#4FFFFF",
+        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
+        "description_font_size": 18,
+        "description_color": "#ffffff",
+        "nav_bg_color": "#000000",
+        "nav_border_color": "#4FFFFF",
+        "nav_icon_color": "#4FFFFF"
+      }
     }
   },
   "order": [
@@ -2545,10 +2563,10 @@
     "ingredients_banner_KpDmD7",
     "dot_line_section_RKh47P",
     "comparison_table_8gLMQK",
-    "dynamic_tiles_TEDzHG",
     "routine_hero_banner_bD9WNb",
     "vip_presentation_JktD3E",
     "science_slider_kailasa_fX4Xbp",
-    "ugc_video_carousel_mMzCqK"
+    "ugc_video_carousel_mMzCqK",
+    "medical_team_yC3JM7"
   ]
 }

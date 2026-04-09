@@ -82,6 +82,75 @@
         "active_circle_color": "#4fffff"
       }
     },
+    "result_timeline_NawiQR": {
+      "type": "result-timeline",
+      "blocks": {
+        "week_eVJQEm": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 1",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function"
+          }
+        },
+        "week_kmDbtE": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 2",
+            "week_title": "Enhanced Nutrient Absorption*",
+            "week_description": "Improves digestive health|Supports microbiome balance|Increases energy levels"
+          }
+        },
+        "week_tjMYij": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 3",
+            "week_title": "Optimal Wellness*",
+            "week_description": "Complete system optimization|Long-term health benefits|Sustained energy and vitality"
+          }
+        },
+        "week_eGdkEP": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 1",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function|Shields against environmental stress.|Fuels microbial metabolism of nutrients|Shields against environmental stress."
+          }
+        }
+      },
+      "block_order": [
+        "week_eVJQEm",
+        "week_kmDbtE",
+        "week_tjMYij",
+        "week_eGdkEP"
+      ],
+      "name": "Result-Timeline",
+      "settings": {
+        "background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "font_family": "Montserrat",
+        "title": "Benefits that build over time.",
+        "title_color": "#000000",
+        "title_font_size": 42,
+        "title_font_weight": "700",
+        "subtitle": "Designed for daily use, DM-02™ replenishes your body and microbiome with essential nutrients to build systemic.",
+        "subtitle_color": "#666666",
+        "subtitle_font_size": 16,
+        "subtitle_font_weight": "400",
+        "left_image_1": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+        "left_image_2": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
+        "center_image": "shopify://shop_images/54d0ca5598f44be30889d35d562bf505.jpg",
+        "week_badge_font_size": 14,
+        "week_badge_font_weight": "500",
+        "week_title_color": "#000000",
+        "week_title_font_size": 24,
+        "week_title_font_weight": "600",
+        "list_color": "#333333",
+        "list_font_size": 15,
+        "list_font_weight": "400"
+      }
+    },
     "filter_by_concerns_Q7XLcU": {
       "type": "filter-by-concerns",
       "blocks": {
@@ -2299,66 +2368,6 @@
         "arrow_size": 120
       }
     },
-    "tab_section_AqL6JL": {
-      "type": "tab-section",
-      "blocks": {
-        "image_text_block_CkN4bD": {
-          "type": "image-text-block",
-          "settings": {
-            "tab_name": "About",
-            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
-            "layout": "image-text",
-            "content_font_family": "inherit",
-            "content_font_weight": 400,
-            "content_font_style": "normal",
-            "content_font_size_desktop": 16,
-            "content_font_size_mobile": 14,
-            "content_text_color": "#181818"
-          }
-        }
-      },
-      "block_order": [
-        "image_text_block_CkN4bD"
-      ],
-      "name": "Tab Section",
-      "settings": {
-        "title": "Photon Youth™ Pro LED Mask",
-        "background_color": "#ffffff",
-        "text_color": "#181818",
-        "border_color": "#4fffff",
-        "border_width": 2,
-        "inner_tab_active_bg": "#181818",
-        "inner_tab_active_text": "#ffffff",
-        "inner_tab_active_dot": "#4fffff",
-        "inner_tab_inactive_bg": "#ffffff",
-        "inner_tab_inactive_text": "#181818",
-        "inner_tab_hover_bg": "#181818",
-        "inner_tab_hover_text": "#ffffff",
-        "inner_tab_border_color": "#181818",
-        "inner_tab_border_width": 1,
-        "title_font_family": "Montserrat, sans-serif",
-        "title_font_weight": 800,
-        "title_font_style": "normal",
-        "title_font_size_desktop": 50,
-        "title_font_size_mobile": 24,
-        "tab_font_family": "Montserrat, sans-serif",
-        "tab_font_weight": 500,
-        "tab_font_style": "normal",
-        "tab_font_size_desktop": 16,
-        "tab_font_size_mobile": 14,
-        "height_desktop": 120,
-        "title_padding_desktop": 20,
-        "arrow_padding_desktop": 45,
-        "arrow_size_desktop": 70,
-        "arrow_stroke_desktop": 3,
-        "height_mobile": 60,
-        "title_padding_mobile": 20,
-        "arrow_padding_mobile": 20,
-        "arrow_size_mobile": 18,
-        "arrow_stroke_mobile": 2,
-        "arrow_style": "stroke"
-      }
-    },
     "routine_hero_banner_bD9WNb": {
       "type": "routine-hero-banner",
       "name": "Routine Hero Banner",
@@ -2445,6 +2454,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "result_timeline_NawiQR",
     "filter_by_concerns_Q7XLcU",
     "video_scroll_interactive_hbMbgh",
     "dual_container_slider_PhqNRE",
@@ -2466,7 +2476,6 @@
     "comparison_table_8gLMQK",
     "dynamic_tiles_TEDzHG",
     "banner_section_yrJLYB",
-    "tab_section_AqL6JL",
     "routine_hero_banner_bD9WNb",
     "vip_presentation_JktD3E"
   ]

@@ -2355,73 +2355,6 @@
         "s5_row3_bullet3": "Boosts natural luminosity"
       }
     },
-    "medical_team_yC3JM7": {
-      "type": "medical-team",
-      "blocks": {
-        "team_member_HgE9dt": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_aehy4b": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_KAY3qX": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_zAUBR4": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_HJTCgK": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        }
-      },
-      "block_order": [
-        "team_member_HgE9dt",
-        "team_member_aehy4b",
-        "team_member_KAY3qX",
-        "team_member_zAUBR4",
-        "team_member_HJTCgK"
-      ],
-      "name": "Medical Team",
-      "settings": {
-        "section_bg_color": "#000000",
-        "title_part1": "MEET OUR SPECIALISED",
-        "title_part2": "MEDICAL TEAM",
-        "title_font_size": 48,
-        "title_color": "#ffffff",
-        "highlight_color": "#4FFFFF",
-        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
-        "description_font_size": 18,
-        "description_color": "#ffffff",
-        "nav_bg_color": "#000000",
-        "nav_border_color": "#4FFFFF",
-        "nav_icon_color": "#4FFFFF"
-      }
-    },
     "science_page_hero_ppDgV6": {
       "type": "science-page-hero",
       "name": "Science Page Hero Section",
@@ -2439,6 +2372,139 @@
         "glass_width": 280,
         "glass_height": 220,
         "glass_border_radius": 18
+      }
+    },
+    "product_buy_box_BCRCbk": {
+      "type": "product-buy-box",
+      "blocks": {
+        "star_rating_rjG6JX": {
+          "type": "star_rating",
+          "settings": {
+            "rating": "5",
+            "show_count": true,
+            "review_count": "231 Reviews"
+          }
+        },
+        "review_text_CJ8gf8": {
+          "type": "review_text",
+          "settings": {
+            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
+          }
+        },
+        "review_author_UbeyYy": {
+          "type": "review_author",
+          "settings": {
+            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
+          }
+        },
+        "title_HBdCbF": {
+          "type": "title",
+          "settings": {
+            "title": "Photon Youth™ Pro LED Mask"
+          }
+        },
+        "description_VCHn6R": {
+          "type": "description",
+          "settings": {
+            "description": "The light feels gentle and relaxing, not harsh or heating, and it fits comfortably on the face. Over time, my skin has started to look more \"alive\"—that healthy glow"
+          }
+        },
+        "product_image_LLpFa7": {
+          "type": "product_image",
+          "settings": {}
+        },
+        "variant_CGKimY": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "VIP Club Membership",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$49 USD"
+          }
+        },
+        "variant_rk3AQX": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Subscribe and Save",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$79 USD"
+          }
+        },
+        "variant_jWVTAq": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Buy one time",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$99 USD"
+          }
+        },
+        "media_pLQeMg": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        },
+        "media_xrLjrT": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        },
+        "media_EfAtMw": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_rjG6JX",
+        "review_text_CJ8gf8",
+        "review_author_UbeyYy",
+        "title_HBdCbF",
+        "description_VCHn6R",
+        "product_image_LLpFa7",
+        "variant_CGKimY",
+        "variant_rk3AQX",
+        "variant_jWVTAq",
+        "media_pLQeMg",
+        "media_xrLjrT",
+        "media_EfAtMw"
+      ],
+      "name": "Product Buy Box",
+      "settings": {
+        "outer_bg_color": "#000000",
+        "outer_padding": 20,
+        "gap_width": 20,
+        "max_width": 1400,
+        "left_bg_color": "#ffffff",
+        "right_bg_color": "#f5f5f5",
+        "star_color": "#4fffff",
+        "title_color": "#000000",
+        "text_color": "#000000",
+        "secondary_text_color": "#666666",
+        "active_color": "#4FFFFF",
+        "variant_border_color": "#e0e0e0",
+        "variant_bg_color": "#ffffff",
+        "cta_text": "Add to cart",
+        "cta_bg_color": "#4FFFFF",
+        "cta_text_color": "#000000",
+        "payment_btn_bg": "#ffffff",
+        "nav_strip_bg": "#ffffff"
       }
     }
   },
@@ -2466,7 +2532,7 @@
     "routine_hero_banner_bD9WNb",
     "vip_presentation_JktD3E",
     "science_slider_kailasa_fX4Xbp",
-    "medical_team_yC3JM7",
-    "science_page_hero_ppDgV6"
+    "science_page_hero_ppDgV6",
+    "product_buy_box_BCRCbk"
   ]
 }

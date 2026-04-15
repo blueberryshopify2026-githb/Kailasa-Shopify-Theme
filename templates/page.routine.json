@@ -12,9 +12,199 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "how_to_use_FHUUPg": {
+      "type": "how-to-use",
+      "blocks": {
+        "step_zgArGp": {
+          "type": "step",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Cleanser",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
+          }
+        },
+        "step_gt4YAy": {
+          "type": "step",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Toner",
+            "product_name": "Hydrating Tonic",
+            "product_link": "",
+            "video_url": "",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
+          }
+        },
+        "step_hRqBK7": {
+          "type": "step",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Moisturiser",
+            "product_name": "PM Moisturiser",
+            "product_link": "",
+            "video_url": "",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
+          }
+        }
+      },
+      "block_order": [
+        "step_zgArGp",
+        "step_gt4YAy",
+        "step_hRqBK7"
+      ],
+      "name": "How To Use",
+      "settings": {
+        "accent_color": "#4FFFFF"
+      }
+    },
+    "science_formula_qhcFJp": {
+      "type": "science-formula",
+      "blocks": {
+        "science_item_wFeHcy": {
+          "type": "science_item",
+          "settings": {
+            "title": "Address the root causes of aging",
+            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_CnaakK": {
+          "type": "science_item",
+          "settings": {
+            "title": "Deliver bioavailable actives",
+            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_cYizAP": {
+          "type": "science_item",
+          "settings": {
+            "title": "Target multiple pathways",
+            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_kLiAMd": {
+          "type": "science_item",
+          "settings": {
+            "title": "Respect the microbiome",
+            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_GXwJUz": {
+          "type": "science_item",
+          "settings": {
+            "title": "Maintain skin-neutral pH",
+            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_czTHr7": {
+          "type": "science_item",
+          "settings": {
+            "title": "Optimize for layering or cocktailing",
+            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        }
+      },
+      "block_order": [
+        "science_item_wFeHcy",
+        "science_item_CnaakK",
+        "science_item_cYizAP",
+        "science_item_kLiAMd",
+        "science_item_GXwJUz",
+        "science_item_czTHr7"
+      ],
+      "name": "Science Formula",
+      "settings": {
+        "main_title": "We have the formula for long-term skin health. And we follow it.",
+        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
+        "default_media_type": "placeholder",
+        "default_video_file": "",
+        "default_cgi_file": "",
+        "default_placeholder_text": "Default Media Placeholder",
+        "content_ratio": 50,
+        "media_ratio": 50,
+        "grid_gap": 20,
+        "block_width": 100,
+        "media_margin_left": 0,
+        "section_padding_vertical": 60,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "active_border_color": "#ffffff",
+        "active_title_color": "#4fffff",
+        "active_shadow_color": "rgba(79, 255, 255, 0.3)",
+        "media_border_color": "#4fffff",
+        "media_shadow_color": "rgba(79, 255, 255, 0.2)",
+        "title_size": 36,
+        "subtitle_size": 16,
+        "subtitle_margin_bottom": 20,
+        "block_title_size": 16,
+        "description_size": 12,
+        "section_padding": 20,
+        "header_margin": 10,
+        "blocks_gap": 4,
+        "header_padding": 18,
+        "container_padding": 40,
+        "content_max_height": 150
+      }
+    },
+    "ugc_video_carousel_Ak76GQ": {
+      "type": "ugc-video-carousel",
+      "name": "UGC Video Carousel",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "section_title": "Real Stories, Real Results",
+        "section_description": "Authentic experiences from our community—unfiltered and genuine.",
+        "title_font_size": 42,
+        "title_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "dot_active_color": "#000000",
+        "dot_inactive_color": "#cccccc"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "how_to_use_FHUUPg",
+    "science_formula_qhcFJp",
+    "ugc_video_carousel_Ak76GQ"
   ]
 }

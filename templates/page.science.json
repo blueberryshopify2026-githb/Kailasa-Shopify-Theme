@@ -12,9 +12,713 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "science_page_hero_TjK7yy": {
+      "type": "science-page-hero",
+      "name": "Science Page Hero Section",
+      "settings": {
+        "section_top_margin": 0,
+        "section_height": 520,
+        "title": "Your Daily Dose of Luxury",
+        "title_font_size": 56,
+        "title_color": "#000000",
+        "subtitle": "skin elasticity at a cellular level. Technology skin elasticity at a cellular level.",
+        "subtitle_font_size": 19,
+        "subtitle_color": "#1a1a1a",
+        "glass_width": 280,
+        "glass_height": 220,
+        "glass_border_radius": 18
+      }
+    },
+    "protocol_phases_v2_kHCXeK": {
+      "type": "protocol-phases-v2",
+      "blocks": {
+        "phase_1_W8LzLN": {
+          "type": "phase_1",
+          "settings": {
+            "phase_number": "001",
+            "phase_title": "Internal Optimization",
+            "phase_subtitle": "Cellular Enhancement",
+            "phase_label": "PHASE I",
+            "content_title": "Internal Optimization",
+            "content_subtitle": "Cellular Longevity Layer",
+            "feature_1_title": "Liposomal Nutrient Transport",
+            "feature_1_desc": "Encapsulated actives enhance cellular uptake and bioavailability.",
+            "feature_2_title": "Mitochondrial Energy Support",
+            "feature_2_desc": "Optimizes ATP production to improve dermal vitality.",
+            "feature_3_title": "Oxidative Stress Defense",
+            "feature_3_desc": "Reduces free radical accumulation at the cellular level.",
+            "stat_number": "+150%",
+            "stat_label": "Increase in Cellular Vitality",
+            "stat_description": "Double-blind, placebo-controlled 4-week clinical study"
+          }
+        },
+        "phase_2_t3EiVD": {
+          "type": "phase_2",
+          "settings": {
+            "phase_number": "002",
+            "phase_title": "Barrier Reconstitution",
+            "phase_subtitle": "Protective Layer Repair",
+            "phase_label": "PHASE II",
+            "content_title": "Barrier Reconstitution",
+            "content_subtitle": "Protective Layer Repair",
+            "pillar_1_feature_1": "Collagen stimulation",
+            "pillar_1_feature_2": "Microcirculation",
+            "pillar_1_feature_3": "Firmness boost",
+            "pillar_2_feature_1": "Collagen stimulation",
+            "pillar_2_feature_2": "Microcirculation",
+            "pillar_2_feature_3": "Firmness boost",
+            "pillar_3_feature_1": "Collagen stimulation",
+            "pillar_3_feature_2": "Microcirculation",
+            "pillar_3_feature_3": "Firmness boost",
+            "bottom_description": "Buy Kits & Combos Online: Explore a range of skincare & haircare kits & combos products from top brands at Nykaa with best offers. Easy returns policy. Buy Kits & Combos Online. Explore a range of skincare & haircare kits & combos products from top brands at Nykaa with"
+          }
+        },
+        "phase_3_AGp4HT": {
+          "type": "phase_3",
+          "settings": {
+            "phase_number": "003",
+            "phase_title": "Cellular Preparation",
+            "phase_subtitle": "Regenerative Priming",
+            "phase_label": "PHASE III",
+            "content_title": "Cellular Preparation",
+            "content_subtitle": "Regenerative Priming",
+            "phase_description": "Prepares cellular environment for optimal regeneration through targeted signaling pathway activation and metabolic optimization."
+          }
+        },
+        "phase_4_74CQYE": {
+          "type": "phase_4",
+          "settings": {
+            "phase_number": "004",
+            "phase_title": "Regenerative Activation",
+            "phase_subtitle": "Renewal Acceleration",
+            "phase_label": "PHASE IV",
+            "content_title": "Regenerative Activation",
+            "content_subtitle": "Renewal Acceleration",
+            "phase_description": "Activates natural regenerative processes through growth factor stimulation and cellular renewal pathway enhancement."
+          }
+        },
+        "phase_5_xtmGQy": {
+          "type": "phase_5",
+          "settings": {
+            "phase_number": "005",
+            "phase_title": "Longevity Integration",
+            "phase_subtitle": "Sustained Enhancement",
+            "phase_label": "PHASE V",
+            "content_title": "Longevity Integration",
+            "content_subtitle": "Sustained Enhancement",
+            "phase_description": "Integrates longevity mechanisms for sustained skin health through telomere support and senescence pathway modulation."
+          }
+        },
+        "phase_6_4Lpam9": {
+          "type": "phase_6",
+          "settings": {
+            "phase_number": "006",
+            "phase_title": "Matrix Stabilization",
+            "phase_subtitle": "Structural Reinforcement",
+            "phase_label": "PHASE VI",
+            "content_title": "Matrix Stabilization",
+            "content_subtitle": "Structural Reinforcement",
+            "image_1_alt": "Phase VI Image 1",
+            "image_2_alt": "Phase VI Image 2",
+            "cta_text": "Start Your 90 Days Journey",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "phase_1_W8LzLN",
+        "phase_2_t3EiVD",
+        "phase_3_AGp4HT",
+        "phase_4_74CQYE",
+        "phase_5_xtmGQy",
+        "phase_6_4Lpam9"
+      ],
+      "name": "Protocol Phases V2",
+      "settings": {
+        "bg_color": "#ffffff",
+        "section_height": 85,
+        "section_padding": 10,
+        "max_width": 1200,
+        "container_padding": 15,
+        "container_gap": 30,
+        "title_black": "THE 360° SKIN",
+        "title_cyan": "LONGEVITY PROTOCOL",
+        "trademark": "™",
+        "black_color": "#000000",
+        "cyan_color": "#00ffff",
+        "title_size": 42,
+        "title_weight": "700",
+        "header_margin": 20,
+        "sidebar_width": 350,
+        "sidebar_padding": 10,
+        "track_position": 35,
+        "track_top": 35,
+        "track_bottom": 35,
+        "track_width": 3,
+        "track_color": "#e0e0e0",
+        "progress_color": "#00ffff",
+        "phase_spacing": 10,
+        "phase_item_padding": 8,
+        "phase_item_radius": 10,
+        "active_phase_bg": "#f0f8ff",
+        "active_phase_bg_strong": "#e0f7ff",
+        "hover_offset": 5,
+        "number_size": 60,
+        "number_font_size": 14,
+        "number_margin": 15,
+        "number_bg": "#f0f0f0",
+        "number_color": "#666666",
+        "active_number_bg": "#00ffff",
+        "active_number_color": "#000000",
+        "phase_title_size": 18,
+        "phase_title_color": "#000000",
+        "phase_subtitle_size": 14,
+        "phase_subtitle_color": "#666666",
+        "label_size": 12,
+        "label_color": "#666666",
+        "content_title_size": 28,
+        "content_title_weight": "700",
+        "content_title_color": "#000000",
+        "content_subtitle_size": 14,
+        "content_subtitle_color": "#00ffff",
+        "phase_one_gap": 25,
+        "image_width_percent": 40,
+        "image_top_padding": 20,
+        "image_width": 360,
+        "image_height": 400,
+        "image_radius": 15,
+        "content_gap": 15,
+        "feature_gap": 10,
+        "feature_item_padding": 10,
+        "feature_item_bg": "transparent",
+        "feature_item_radius": 8,
+        "feature_icon_gap": 12,
+        "feature_icon_size": 40,
+        "feature_icon_img_size": 24,
+        "icon_bg": "#f0f8ff",
+        "feature_title_size": 18,
+        "feature_title_color": "#000000",
+        "feature_desc_size": 14,
+        "feature_desc_color": "#000000",
+        "bottom_gap": 15,
+        "stats_bg": "#f8f8f8",
+        "stats_padding": 12,
+        "stats_radius": 8,
+        "stat_number_size": 24,
+        "stat_number_color": "#00ffff",
+        "stat_label_size": 10,
+        "stat_label_color": "#000000",
+        "stat_desc_size": 9,
+        "stat_desc_color": "#666666",
+        "static_gap": 20,
+        "static_header_margin": 15,
+        "static_content_gap": 15,
+        "static_image_width": 600,
+        "static_image_height": 350,
+        "description_bg": "#f8f8f8",
+        "description_padding": 15,
+        "description_radius": 10,
+        "description_max_width": 500,
+        "description_text_size": 14,
+        "description_text_color": "#333333",
+        "progress_bar_right": 15,
+        "progress_bar_width": 6,
+        "progress_bar_height": 80,
+        "progress_bar_radius": 3,
+        "progress_bg": "#e0e0e0",
+        "placeholder_border": "#cccccc",
+        "placeholder_bg": "#f9f9f9",
+        "placeholder_text_color": "#666666",
+        "placeholder_text_size": 14,
+        "mobile_gap": 20,
+        "mobile_content_gap": 15,
+        "mobile_title_size": 28,
+        "mobile_content_title": 24,
+        "cta_bg_color": "#4fffff",
+        "cta_text_color": "#000000",
+        "cta_hover_bg": "transparent",
+        "cta_hover_text": "#4fffff",
+        "cta_font_size": 18,
+        "cta_font_weight": "600",
+        "cta_padding_x": 40,
+        "cta_padding_y": 15,
+        "cta_border_radius": 50
+      }
+    },
+    "dual_container_slider_cy9Tc7": {
+      "type": "dual-container-slider",
+      "blocks": {
+        "slide_item_qMBz7W": {
+          "type": "slide_item",
+          "settings": {
+            "left_fit": "cover",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_rQNTAP": {
+          "type": "slide_item",
+          "settings": {
+            "left_fit": "cover",
+            "right_fit": "cover"
+          }
+        },
+        "slide_item_CcjjVg": {
+          "type": "slide_item",
+          "settings": {
+            "left_fit": "cover",
+            "right_fit": "cover"
+          }
+        }
+      },
+      "block_order": [
+        "slide_item_qMBz7W",
+        "slide_item_rQNTAP",
+        "slide_item_CcjjVg"
+      ],
+      "name": "Dual Container Slider",
+      "settings": {
+        "bg_color": "#000000",
+        "section_height": 600,
+        "section_padding": 40,
+        "slide_height": 400,
+        "white_text": "BUILD ON BIOLOGY.",
+        "cyan_text": "GUIDED BY SCIENCE",
+        "white_color": "#ffffff",
+        "cyan_color": "#00ffff",
+        "title_size": 48,
+        "title_weight": "700",
+        "heading_padding": 30,
+        "left_bg": "#f8f8f8",
+        "right_bg": "#f8f8f8",
+        "border_radius": 20,
+        "gap": 20,
+        "side_padding": 10,
+        "placeholder_color": "#666666",
+        "placeholder_size": 14,
+        "dot_active": "#00ffff",
+        "dot_inactive": "#666666",
+        "dot_size": 12,
+        "dot_gap": 10,
+        "indicators_padding": 20,
+        "auto_slide": true,
+        "auto_duration": 5000,
+        "mobile_section_height": 500,
+        "mobile_section_padding": 30,
+        "mobile_slide_height": 350,
+        "mobile_title_size": 28,
+        "mobile_gap": 15,
+        "mobile_box_height": 150,
+        "mobile_heading_padding": 20,
+        "mobile_side_padding": 15
+      }
+    },
+    "product_infographic_iQbYcj": {
+      "type": "product-infographic",
+      "blocks": {
+        "button_QUxMmm": {
+          "type": "button",
+          "settings": {
+            "button_text": "Technology",
+            "heading": "LIPOSOMAL TECHNOLOGY",
+            "description": "Advanced molecular encapsulation for superior bioavailability and targeted delivery.",
+            "is_active": false,
+            "show_benefits": true,
+            "benefit_1": "Enhanced absorption rate",
+            "benefit_2": "Targeted cellular delivery",
+            "benefit_3": "Improved bioavailability",
+            "benefit_4": "",
+            "benefit_5": ""
+          }
+        },
+        "button_jq9xPY": {
+          "type": "button",
+          "settings": {
+            "button_text": "Benefits",
+            "heading": "CELLULAR BENEFITS",
+            "description": "Optimized for maximum cellular uptake and therapeutic effectiveness.",
+            "is_active": false,
+            "show_benefits": true,
+            "benefit_1": "Rapid cellular penetration",
+            "benefit_2": "Enhanced nutrient delivery",
+            "benefit_3": "Sustained release formula",
+            "benefit_4": "",
+            "benefit_5": ""
+          }
+        },
+        "button_NaXRQi": {
+          "type": "button",
+          "settings": {
+            "button_text": "Science",
+            "heading": "PROVEN SCIENCE",
+            "description": "Backed by clinical research and advanced pharmaceutical technology.",
+            "is_active": false,
+            "show_benefits": true,
+            "benefit_1": "Clinically tested formula",
+            "benefit_2": "Pharmaceutical grade quality",
+            "benefit_3": "Research-backed results",
+            "benefit_4": "",
+            "benefit_5": ""
+          }
+        },
+        "button_WbwNM9": {
+          "type": "button",
+          "settings": {
+            "button_text": "Quality",
+            "heading": "PREMIUM QUALITY",
+            "description": "Manufactured to the highest standards with premium ingredients and rigorous quality control.",
+            "is_active": false,
+            "show_benefits": true,
+            "benefit_1": "GMP certified facility",
+            "benefit_2": "Third-party tested",
+            "benefit_3": "Premium ingredients",
+            "benefit_4": "",
+            "benefit_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "button_QUxMmm",
+        "button_jq9xPY",
+        "button_NaXRQi",
+        "button_WbwNM9"
+      ],
+      "name": "Product Infographic",
+      "settings": {
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "background_color": "#ffffff",
+        "background_size": "cover",
+        "background_position": "center center",
+        "background_attachment": "scroll",
+        "container_width": 1200,
+        "section_horizontal_margin": 24,
+        "glass_background": "rgba(255, 255, 255, 0.4)",
+        "glass_blur": 30,
+        "glass_border_width": 1,
+        "glass_border_color": "rgba(255, 255, 255, 0.3)",
+        "card_border_radius": 32,
+        "card_padding": 60,
+        "card_fixed_height": 500,
+        "image_width": 25,
+        "center_width": 35,
+        "right_width": 40,
+        "content_gap": 20,
+        "product_image_alt": "Product",
+        "image_width_px": 280,
+        "image_height_px": 0,
+        "image_object_fit": "cover",
+        "image_border_radius": 16,
+        "image_padding": 0,
+        "image_vertical_position": 20,
+        "title": "CELLULAR HARMONY",
+        "center_content_offset": 15,
+        "title_size": 1.8,
+        "title_weight": 700,
+        "title_color": "#000000",
+        "title_letter_spacing": 0.5,
+        "title_transform": "uppercase",
+        "title_margin_bottom": 12,
+        "underline_width_type": "auto",
+        "underline_custom_width": 80,
+        "underline_height": 3,
+        "underline_color": "#000000",
+        "underline_margin_bottom": 16,
+        "description": "Advanced molecular technology for superior skin penetration and cellular absorption.",
+        "description_size": 1,
+        "description_line_height": 1.6,
+        "description_color": "#333333",
+        "description_weight": 400,
+        "description_margin_bottom": 16,
+        "center_text_align": "left",
+        "center_padding": 0,
+        "show_benefits": true,
+        "benefits_margin_top": 16,
+        "benefit_item_spacing": 8,
+        "benefit_arrow_gap": 8,
+        "benefit_arrow_size": 16,
+        "benefit_arrow_color": "#000000",
+        "benefit_font_size": 0.9,
+        "benefit_line_height": 1.4,
+        "benefit_text_color": "#333333",
+        "benefit_font_weight": 500,
+        "benefits_to_buttons_spacing": 80,
+        "main_heading": "LIPOSOMAL",
+        "right_content_vertical_position": 50,
+        "main_heading_size": 3.7,
+        "main_heading_weight": 700,
+        "main_heading_color": "#000000",
+        "main_heading_letter_spacing": 1,
+        "main_heading_transform": "uppercase",
+        "main_heading_line_height": 1.1,
+        "right_padding": 30,
+        "right_padding_right": 35,
+        "button_row_margin_top": 40,
+        "button_gap": 20,
+        "button_width": 180,
+        "button_padding_vertical": 8,
+        "button_padding_horizontal": 28,
+        "button_border_width": 2,
+        "button_border_color": "#000000",
+        "button_border_radius": 50,
+        "button_background": "transparent",
+        "button_text_color": "#000000",
+        "button_font_size": 0.9,
+        "button_font_weight": 500,
+        "button_text_transform": "none",
+        "button_letter_spacing": 0.3,
+        "button_hover_background": "transparent",
+        "button_active_background": "transparent",
+        "button_active_text_color": "#000000",
+        "button_active_border_color": "#00d4ff",
+        "button_active_hover_background": "transparent"
+      }
+    },
+    "science_formula_Bcwrqp": {
+      "type": "science-formula",
+      "blocks": {
+        "science_item_Qf6cd7": {
+          "type": "science_item",
+          "settings": {
+            "title": "Address the root causes of aging",
+            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_JV6zyY": {
+          "type": "science_item",
+          "settings": {
+            "title": "Deliver bioavailable actives",
+            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_FTEHaB": {
+          "type": "science_item",
+          "settings": {
+            "title": "Target multiple pathways",
+            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_xyTFzJ": {
+          "type": "science_item",
+          "settings": {
+            "title": "Respect the microbiome",
+            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_F6RdH6": {
+          "type": "science_item",
+          "settings": {
+            "title": "Maintain skin-neutral pH",
+            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_AdgYEJ": {
+          "type": "science_item",
+          "settings": {
+            "title": "Optimize for layering or cocktailing",
+            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        }
+      },
+      "block_order": [
+        "science_item_Qf6cd7",
+        "science_item_JV6zyY",
+        "science_item_FTEHaB",
+        "science_item_xyTFzJ",
+        "science_item_F6RdH6",
+        "science_item_AdgYEJ"
+      ],
+      "name": "Science Formula",
+      "settings": {
+        "main_title": "We have the formula for long-term skin health. And we follow it.",
+        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
+        "default_media_type": "placeholder",
+        "default_video_file": "",
+        "default_cgi_file": "",
+        "default_placeholder_text": "Default Media Placeholder",
+        "content_ratio": 50,
+        "media_ratio": 50,
+        "grid_gap": 20,
+        "block_width": 100,
+        "media_margin_left": 0,
+        "section_padding_vertical": 60,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "active_border_color": "#ffffff",
+        "active_title_color": "#4fffff",
+        "active_shadow_color": "rgba(79, 255, 255, 0.3)",
+        "media_border_color": "#4fffff",
+        "media_shadow_color": "rgba(79, 255, 255, 0.2)",
+        "title_size": 36,
+        "subtitle_size": 16,
+        "subtitle_margin_bottom": 20,
+        "block_title_size": 16,
+        "description_size": 12,
+        "section_padding": 20,
+        "header_margin": 10,
+        "blocks_gap": 4,
+        "header_padding": 18,
+        "container_padding": 40,
+        "content_max_height": 150
+      }
+    },
+    "medical_team_wn8Fb9": {
+      "type": "medical-team",
+      "blocks": {
+        "team_member_EtUYpx": {
+          "type": "team_member",
+          "settings": {
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_4WHypr": {
+          "type": "team_member",
+          "settings": {
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_wBKpmt": {
+          "type": "team_member",
+          "settings": {
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_gj6k6w": {
+          "type": "team_member",
+          "settings": {
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_EtUYpx",
+        "team_member_4WHypr",
+        "team_member_wBKpmt",
+        "team_member_gj6k6w"
+      ],
+      "name": "Medical Team",
+      "settings": {
+        "section_bg_color": "#000000",
+        "title_part1": "MEET OUR SPECIALISED",
+        "title_part2": "MEDICAL TEAM",
+        "title_font_size": 48,
+        "title_color": "#ffffff",
+        "highlight_color": "#4FFFFF",
+        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
+        "description_font_size": 18,
+        "description_color": "#ffffff",
+        "nav_bg_color": "#000000",
+        "nav_border_color": "#4FFFFF",
+        "nav_icon_color": "#4FFFFF"
+      }
+    },
+    "comparison_table_4GTUqW": {
+      "type": "comparison-table",
+      "blocks": {
+        "ingredient_row_a6Ac3n": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_g3ikHH": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_MnkNV8": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_row_a6Ac3n",
+        "ingredient_row_g3ikHH",
+        "ingredient_row_MnkNV8"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n4",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n4",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "science_page_hero_TjK7yy",
+    "protocol_phases_v2_kHCXeK",
+    "dual_container_slider_cy9Tc7",
+    "product_infographic_iQbYcj",
+    "science_formula_Bcwrqp",
+    "medical_team_wn8Fb9",
+    "comparison_table_4GTUqW"
   ]
 }

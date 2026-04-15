@@ -15,7 +15,7 @@
         "content_block_JiRkdR": {
           "type": "content_block",
           "settings": {
-            "title": "Daily Essentials for Nutrition and Digestive",
+            "title": "",
             "description": "Clinically proven daily probiotic and new daily multivitamin that help cover nutrient gaps, reduce bloating, and promote healthy regularity.",
             "media_type": "image",
             "main_image": "shopify://shop_images/download_26.jpg",
@@ -2497,11 +2497,11 @@
         "title_color": "#000000",
         "text_color": "#000000",
         "secondary_text_color": "#666666",
-        "active_color": "#4FFFFF",
+        "active_color": "#4fffff",
         "variant_border_color": "#e0e0e0",
         "variant_bg_color": "#ffffff",
         "cta_text": "Add to cart",
-        "cta_bg_color": "#4FFFFF",
+        "cta_bg_color": "#4fffff",
         "cta_text_color": "#000000",
         "payment_btn_bg": "#ffffff",
         "nav_strip_bg": "#ffffff"

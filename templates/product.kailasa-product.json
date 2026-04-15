@@ -322,6 +322,19 @@
     "professional_panel_z43EmP": {
       "type": "professional-panel",
       "blocks": {
+        "professional_DyNjxP": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/sample_6_13.png",
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        },
         "professional_eApTed": {
           "type": "professional",
           "settings": {
@@ -336,6 +349,7 @@
         }
       },
       "block_order": [
+        "professional_DyNjxP",
         "professional_eApTed"
       ],
       "name": "Professional Panel",

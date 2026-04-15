@@ -12,9 +12,320 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "vip_hero_banner_pW3nqk": {
+      "type": "vip-hero-banner",
+      "blocks": {
+        "review_a8MECX": {
+          "type": "review",
+          "settings": {
+            "name": "Last girl",
+            "meta": "Member",
+            "review_text": "Absolutely love this product! It has changed my daily routine completely."
+          }
+        },
+        "review_ygW3KX": {
+          "type": "review",
+          "settings": {
+            "name": "Most",
+            "meta": "1 hour ago",
+            "review_text": "Great quality and fast shipping. Highly recommend to everyone!"
+          }
+        },
+        "review_gDmARJ": {
+          "type": "review",
+          "settings": {
+            "name": "Monkey",
+            "meta": "2 hours ago",
+            "review_text": "Perfect fit and amazing design. Worth every penny!"
+          }
+        },
+        "review_fUiPQW": {
+          "type": "review",
+          "settings": {
+            "name": "Division",
+            "meta": "3 hours ago",
+            "review_text": "Customer service was excellent and the product quality is top-notch."
+          }
+        },
+        "review_NaAHWQ": {
+          "type": "review",
+          "settings": {
+            "name": "The Resident",
+            "meta": "4 hours ago",
+            "review_text": "I've been using this for weeks now and I'm completely satisfied with the results."
+          }
+        }
+      },
+      "block_order": [
+        "review_a8MECX",
+        "review_ygW3KX",
+        "review_gDmARJ",
+        "review_fUiPQW",
+        "review_NaAHWQ"
+      ],
+      "name": "VIP Hero Banner",
+      "settings": {
+        "overlay_color": "#000000",
+        "overlay_opacity": 0.3,
+        "content_padding": 80,
+        "reviews_title": "Reviews",
+        "title_icon": "★",
+        "show_text_content": true,
+        "title": "360 POD",
+        "subtitle": "Experience the future of immersive entertainment",
+        "cta_text": "Get Started",
+        "cta_link": "",
+        "title_font_size": 64,
+        "subtitle_font_size": 20,
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "cta_bg_color": "#4FFFFF",
+        "cta_text_color": "#000000"
+      }
+    },
+    "vip_presentation_tyddPH": {
+      "type": "vip-presentation",
+      "blocks": {
+        "vip_slide_F4jTyX": {
+          "type": "vip_slide",
+          "settings": {
+            "heading": "Skincare Elevated to an Elite Membership Experience",
+            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
+            "preview_cta_text": "Become a Member",
+            "main_cta_text": "Become a Member",
+            "main_cta_link": ""
+          }
+        },
+        "vip_slide_zCKFx9": {
+          "type": "vip_slide",
+          "settings": {
+            "heading": "Skincare Elevated to an Elite Membership Experience",
+            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
+            "preview_cta_text": "Become a Member",
+            "main_cta_text": "Become a Member",
+            "main_cta_link": ""
+          }
+        },
+        "vip_slide_JBrUHD": {
+          "type": "vip_slide",
+          "settings": {
+            "heading": "Skincare Elevated to an Elite Membership Experience",
+            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
+            "preview_cta_text": "Become a Member",
+            "main_cta_text": "Become a Member",
+            "main_cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "vip_slide_F4jTyX",
+        "vip_slide_zCKFx9",
+        "vip_slide_JBrUHD"
+      ],
+      "name": "VIP Presentation",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "heading_font_size": 42,
+        "heading_color": "#000000",
+        "key_points_font_size": 16,
+        "key_points_color": "#333333",
+        "bullet_color": "#000000",
+        "arrow_bg_color": "#4FFFFF",
+        "arrow_hover_color": "#3DEEEE",
+        "arrow_icon_color": "#000000",
+        "preview_border_radius": 12,
+        "main_image_border_radius": 20
+      }
+    },
+    "comparison_table_CbUdKK": {
+      "type": "comparison-table",
+      "blocks": {
+        "ingredient_row_D3kgDt": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_ykCqyM": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_NKKDTT": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_row_D3kgDt",
+        "ingredient_row_ykCqyM",
+        "ingredient_row_NKKDTT"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n4",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n4",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
+      }
+    },
+    "science_formula_QL4gJm": {
+      "type": "science-formula",
+      "blocks": {
+        "science_item_NC6rDQ": {
+          "type": "science_item",
+          "settings": {
+            "title": "Address the root causes of aging",
+            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_rEp3kU": {
+          "type": "science_item",
+          "settings": {
+            "title": "Deliver bioavailable actives",
+            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_UbcRQE": {
+          "type": "science_item",
+          "settings": {
+            "title": "Target multiple pathways",
+            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_ekjK4t": {
+          "type": "science_item",
+          "settings": {
+            "title": "Respect the microbiome",
+            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_CPQ3f3": {
+          "type": "science_item",
+          "settings": {
+            "title": "Maintain skin-neutral pH",
+            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_3ftaxq": {
+          "type": "science_item",
+          "settings": {
+            "title": "Optimize for layering or cocktailing",
+            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        }
+      },
+      "block_order": [
+        "science_item_NC6rDQ",
+        "science_item_rEp3kU",
+        "science_item_UbcRQE",
+        "science_item_ekjK4t",
+        "science_item_CPQ3f3",
+        "science_item_3ftaxq"
+      ],
+      "name": "Science Formula",
+      "settings": {
+        "main_title": "We have the formula for long-term skin health. And we follow it.",
+        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
+        "default_media_type": "placeholder",
+        "default_video_file": "",
+        "default_cgi_file": "",
+        "default_placeholder_text": "Default Media Placeholder",
+        "content_ratio": 50,
+        "media_ratio": 50,
+        "grid_gap": 20,
+        "block_width": 100,
+        "media_margin_left": 0,
+        "section_padding_vertical": 60,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "active_border_color": "#ffffff",
+        "active_title_color": "#4fffff",
+        "active_shadow_color": "rgba(79, 255, 255, 0.3)",
+        "media_border_color": "#4fffff",
+        "media_shadow_color": "rgba(79, 255, 255, 0.2)",
+        "title_size": 36,
+        "subtitle_size": 16,
+        "subtitle_margin_bottom": 20,
+        "block_title_size": 16,
+        "description_size": 12,
+        "section_padding": 20,
+        "header_margin": 10,
+        "blocks_gap": 4,
+        "header_padding": 18,
+        "container_padding": 40,
+        "content_max_height": 150
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "vip_hero_banner_pW3nqk",
+    "vip_presentation_tyddPH",
+    "comparison_table_CbUdKK",
+    "science_formula_QL4gJm"
   ]
 }

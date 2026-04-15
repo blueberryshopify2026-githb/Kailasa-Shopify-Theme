@@ -11,7 +11,6 @@
   "sections": {
     "main": {
       "type": "product",
-      "disabled": true,
       "settings": {}
     },
     "product_buy_box_TzCRnN": {

@@ -92,7 +92,7 @@
           "type": "media",
           "settings": {
             "media_type": "image",
-            "media_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
+            "media_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
             "media_alt": "Product image",
             "media_video_url": ""
           }
@@ -180,17 +180,17 @@
         "name_font_size": 44,
         "name_color": "#ffffff",
         "designation_font_size": 18,
-        "designation_color": "#4FFFFF",
+        "designation_color": "#4fffff",
         "quote_font_size": 18,
         "quote_color": "#ffffff",
-        "quote_mark_color": "#4FFFFF",
+        "quote_mark_color": "#4fffff",
         "cta_font_size": 14,
         "cta_text_color": "#ffffff",
-        "cta_border_color": "#4FFFFF",
+        "cta_border_color": "#4fffff",
         "cta_border_radius": 24,
         "arrow_bg_color": "#000000",
-        "arrow_border_color": "#4FFFFF",
-        "arrow_color": "#4FFFFF"
+        "arrow_border_color": "#4fffff",
+        "arrow_color": "#4fffff"
       }
     }
   },

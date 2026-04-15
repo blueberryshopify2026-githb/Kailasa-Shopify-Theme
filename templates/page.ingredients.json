@@ -12,9 +12,493 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "ingredients_showcase_a4DpYy": {
+      "type": "ingredients-showcase",
+      "blocks": {
+        "ingredient_WWRxHM": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Compounded GLP-1"
+          }
+        },
+        "ingredient_R7R89e": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Oral Rx"
+          }
+        },
+        "ingredient_hNEGMm": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Ozempic®"
+          }
+        },
+        "ingredient_dQaUzq": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Vitamin B12"
+          }
+        },
+        "ingredient_mMCKdr": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "L-Carnitine"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_WWRxHM",
+        "ingredient_R7R89e",
+        "ingredient_hNEGMm",
+        "ingredient_dQaUzq",
+        "ingredient_mMCKdr"
+      ],
+      "name": "Ingredients Showcase",
+      "settings": {
+        "heading": "Our Ingredients",
+        "subheading": "Clinically formulated with precision",
+        "bg_video": "",
+        "overlay_opacity": 25,
+        "section_height": 600,
+        "card_width": 200,
+        "card_height": 140,
+        "card_radius": 20,
+        "name_font_size": 13,
+        "blur_amount": 28,
+        "scroll_speed": 30,
+        "card_bg_color": "#ffffff26",
+        "card_border_color": "#ffffff40",
+        "text_color": "#ffffff",
+        "accent_color": "#4fffff"
+      }
+    },
+    "filter_by_concerns_rnQ9T3": {
+      "type": "filter-by-concerns",
+      "blocks": {
+        "concern_AAMiGa": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Acne",
+            "popup_1_stat1_value": "+96%",
+            "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat2_value": "+96%",
+            "popup_1_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat3_value": "+96%",
+            "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_2_stat1_value": "+96%",
+            "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat2_value": "+96%",
+            "popup_2_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat3_value": "+96%",
+            "popup_2_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_3_stat1_value": "+96%",
+            "popup_3_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat2_value": "+96%",
+            "popup_3_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat3_value": "+96%",
+            "popup_3_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_4_stat1_value": "+96%",
+            "popup_4_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat2_value": "+96%",
+            "popup_4_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat3_value": "+96%",
+            "popup_4_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_5_stat1_value": "+96%",
+            "popup_5_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat2_value": "+96%",
+            "popup_5_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat3_value": "+96%",
+            "popup_5_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+          }
+        },
+        "concern_3Erkb6": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Dryness",
+            "popup_1_stat1_value": "+96%",
+            "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat2_value": "+96%",
+            "popup_1_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat3_value": "+96%",
+            "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_2_stat1_value": "+96%",
+            "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat2_value": "+96%",
+            "popup_2_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat3_value": "+96%",
+            "popup_2_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_3_stat1_value": "+96%",
+            "popup_3_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat2_value": "+96%",
+            "popup_3_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat3_value": "+96%",
+            "popup_3_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_4_stat1_value": "+96%",
+            "popup_4_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat2_value": "+96%",
+            "popup_4_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat3_value": "+96%",
+            "popup_4_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_5_stat1_value": "+96%",
+            "popup_5_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat2_value": "+96%",
+            "popup_5_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat3_value": "+96%",
+            "popup_5_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+          }
+        },
+        "concern_iVA8Ce": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Wrinkles/fine lines",
+            "popup_1_stat1_value": "+96%",
+            "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat2_value": "+96%",
+            "popup_1_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat3_value": "+96%",
+            "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_2_stat1_value": "+96%",
+            "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat2_value": "+96%",
+            "popup_2_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat3_value": "+96%",
+            "popup_2_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_3_stat1_value": "+96%",
+            "popup_3_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat2_value": "+96%",
+            "popup_3_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat3_value": "+96%",
+            "popup_3_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_4_stat1_value": "+96%",
+            "popup_4_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat2_value": "+96%",
+            "popup_4_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat3_value": "+96%",
+            "popup_4_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_5_stat1_value": "+96%",
+            "popup_5_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat2_value": "+96%",
+            "popup_5_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat3_value": "+96%",
+            "popup_5_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+          }
+        },
+        "concern_9bQqMX": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Hyperpigmentation",
+            "popup_1_stat1_value": "+96%",
+            "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat2_value": "+96%",
+            "popup_1_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat3_value": "+96%",
+            "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_2_stat1_value": "+96%",
+            "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat2_value": "+96%",
+            "popup_2_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat3_value": "+96%",
+            "popup_2_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_3_stat1_value": "+96%",
+            "popup_3_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat2_value": "+96%",
+            "popup_3_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat3_value": "+96%",
+            "popup_3_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_4_stat1_value": "+96%",
+            "popup_4_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat2_value": "+96%",
+            "popup_4_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat3_value": "+96%",
+            "popup_4_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_5_stat1_value": "+96%",
+            "popup_5_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat2_value": "+96%",
+            "popup_5_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat3_value": "+96%",
+            "popup_5_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+          }
+        },
+        "concern_JpeEtU": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Sensitivity",
+            "popup_1_stat1_value": "+96%",
+            "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat2_value": "+96%",
+            "popup_1_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat3_value": "+96%",
+            "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_2_stat1_value": "+96%",
+            "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat2_value": "+96%",
+            "popup_2_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat3_value": "+96%",
+            "popup_2_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_3_stat1_value": "+96%",
+            "popup_3_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat2_value": "+96%",
+            "popup_3_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat3_value": "+96%",
+            "popup_3_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_4_stat1_value": "+96%",
+            "popup_4_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat2_value": "+96%",
+            "popup_4_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat3_value": "+96%",
+            "popup_4_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_5_stat1_value": "+96%",
+            "popup_5_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat2_value": "+96%",
+            "popup_5_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat3_value": "+96%",
+            "popup_5_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+          }
+        },
+        "concern_DNj9Nb": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Enlarged Pores",
+            "popup_1_stat1_value": "+96%",
+            "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat2_value": "+96%",
+            "popup_1_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat3_value": "+96%",
+            "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_2_stat1_value": "+96%",
+            "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat2_value": "+96%",
+            "popup_2_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat3_value": "+96%",
+            "popup_2_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_3_stat1_value": "+96%",
+            "popup_3_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat2_value": "+96%",
+            "popup_3_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat3_value": "+96%",
+            "popup_3_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_4_stat1_value": "+96%",
+            "popup_4_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat2_value": "+96%",
+            "popup_4_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat3_value": "+96%",
+            "popup_4_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_5_stat1_value": "+96%",
+            "popup_5_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat2_value": "+96%",
+            "popup_5_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat3_value": "+96%",
+            "popup_5_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+          }
+        },
+        "concern_7NwPq9": {
+          "type": "concern",
+          "settings": {
+            "concern_name": "Oily Skin",
+            "popup_1_stat1_value": "+96%",
+            "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat2_value": "+96%",
+            "popup_1_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat3_value": "+96%",
+            "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_2_stat1_value": "+96%",
+            "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat2_value": "+96%",
+            "popup_2_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat3_value": "+96%",
+            "popup_2_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_3_stat1_value": "+96%",
+            "popup_3_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat2_value": "+96%",
+            "popup_3_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat3_value": "+96%",
+            "popup_3_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_4_stat1_value": "+96%",
+            "popup_4_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat2_value": "+96%",
+            "popup_4_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_stat3_value": "+96%",
+            "popup_4_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_4_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "popup_5_stat1_value": "+96%",
+            "popup_5_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat2_value": "+96%",
+            "popup_5_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_stat3_value": "+96%",
+            "popup_5_stat3_label": "MEGADOSE OF VITAMIN C",
+            "popup_5_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
+          }
+        }
+      },
+      "block_order": [
+        "concern_AAMiGa",
+        "concern_3Erkb6",
+        "concern_iVA8Ce",
+        "concern_9bQqMX",
+        "concern_JpeEtU",
+        "concern_DNj9Nb",
+        "concern_7NwPq9"
+      ],
+      "name": "Filter by Concerns",
+      "settings": {
+        "button_text": "Know More",
+        "image_height": 500,
+        "image_gap": 20
+      }
+    },
+    "science_formula_dUnNV8": {
+      "type": "science-formula",
+      "blocks": {
+        "science_item_riTXKh": {
+          "type": "science_item",
+          "settings": {
+            "title": "Address the root causes of aging",
+            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_LJCaeR": {
+          "type": "science_item",
+          "settings": {
+            "title": "Deliver bioavailable actives",
+            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_tq6Fn4": {
+          "type": "science_item",
+          "settings": {
+            "title": "Target multiple pathways",
+            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_Q8JBdr": {
+          "type": "science_item",
+          "settings": {
+            "title": "Respect the microbiome",
+            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_YcWNCL": {
+          "type": "science_item",
+          "settings": {
+            "title": "Maintain skin-neutral pH",
+            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_ikYFRY": {
+          "type": "science_item",
+          "settings": {
+            "title": "Optimize for layering or cocktailing",
+            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        }
+      },
+      "block_order": [
+        "science_item_riTXKh",
+        "science_item_LJCaeR",
+        "science_item_tq6Fn4",
+        "science_item_Q8JBdr",
+        "science_item_YcWNCL",
+        "science_item_ikYFRY"
+      ],
+      "name": "Science Formula",
+      "settings": {
+        "main_title": "We have the formula for long-term skin health. And we follow it.",
+        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
+        "default_media_type": "placeholder",
+        "default_video_file": "",
+        "default_cgi_file": "",
+        "default_placeholder_text": "Default Media Placeholder",
+        "content_ratio": 50,
+        "media_ratio": 50,
+        "grid_gap": 20,
+        "block_width": 100,
+        "media_margin_left": 0,
+        "section_padding_vertical": 60,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "active_border_color": "#ffffff",
+        "active_title_color": "#4fffff",
+        "active_shadow_color": "rgba(79, 255, 255, 0.3)",
+        "media_border_color": "#4fffff",
+        "media_shadow_color": "rgba(79, 255, 255, 0.2)",
+        "title_size": 36,
+        "subtitle_size": 16,
+        "subtitle_margin_bottom": 20,
+        "block_title_size": 16,
+        "description_size": 12,
+        "section_padding": 20,
+        "header_margin": 10,
+        "blocks_gap": 4,
+        "header_padding": 18,
+        "container_padding": 40,
+        "content_max_height": 150
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "ingredients_showcase_a4DpYy",
+    "filter_by_concerns_rnQ9T3",
+    "science_formula_dUnNV8"
   ]
 }

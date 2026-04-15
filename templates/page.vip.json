@@ -98,32 +98,10 @@
             "main_cta_text": "Become a Member",
             "main_cta_link": ""
           }
-        },
-        "vip_slide_zCKFx9": {
-          "type": "vip_slide",
-          "settings": {
-            "heading": "Skincare Elevated to an Elite Membership Experience",
-            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
-            "preview_cta_text": "Become a Member",
-            "main_cta_text": "Become a Member",
-            "main_cta_link": ""
-          }
-        },
-        "vip_slide_JBrUHD": {
-          "type": "vip_slide",
-          "settings": {
-            "heading": "Skincare Elevated to an Elite Membership Experience",
-            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
-            "preview_cta_text": "Become a Member",
-            "main_cta_text": "Become a Member",
-            "main_cta_link": ""
-          }
         }
       },
       "block_order": [
-        "vip_slide_F4jTyX",
-        "vip_slide_zCKFx9",
-        "vip_slide_JBrUHD"
+        "vip_slide_F4jTyX"
       ],
       "name": "VIP Presentation",
       "settings": {

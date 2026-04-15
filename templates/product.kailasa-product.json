@@ -142,19 +142,288 @@
         "title_color": "#000000",
         "text_color": "#000000",
         "secondary_text_color": "#666666",
-        "active_color": "#4FFFFF",
+        "active_color": "#4fffff",
         "variant_border_color": "#e0e0e0",
         "variant_bg_color": "#ffffff",
         "cta_text": "Add to cart",
-        "cta_bg_color": "#4FFFFF",
+        "cta_bg_color": "#4fffff",
         "cta_text_color": "#000000",
         "payment_btn_bg": "#ffffff",
         "nav_strip_bg": "#ffffff"
+      }
+    },
+    "tab_section_b69zcK": {
+      "type": "tab-section",
+      "blocks": {
+        "image_text_block_qyUVnn": {
+          "type": "image-text-block",
+          "settings": {
+            "tab_name": "About",
+            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
+          }
+        }
+      },
+      "block_order": [
+        "image_text_block_qyUVnn"
+      ],
+      "name": "Tab Section",
+      "settings": {
+        "title": "Photon Youth™ Pro LED Mask",
+        "background_color": "#FFFFFF",
+        "text_color": "#181818",
+        "border_color": "#4FFFFF",
+        "border_width": 2,
+        "inner_tab_active_bg": "#181818",
+        "inner_tab_active_text": "#FFFFFF",
+        "inner_tab_active_dot": "#4FFFFF",
+        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_inactive_text": "#181818",
+        "inner_tab_hover_bg": "#181818",
+        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_border_color": "#181818",
+        "inner_tab_border_width": 1,
+        "title_font_family": "Montserrat, sans-serif",
+        "title_font_weight": 800,
+        "title_font_style": "normal",
+        "title_font_size_desktop": 50,
+        "title_font_size_mobile": 24,
+        "tab_font_family": "Montserrat, sans-serif",
+        "tab_font_weight": 500,
+        "tab_font_style": "normal",
+        "tab_font_size_desktop": 16,
+        "tab_font_size_mobile": 14,
+        "height_desktop": 120,
+        "title_padding_desktop": 20,
+        "arrow_padding_desktop": 45,
+        "arrow_size_desktop": 70,
+        "arrow_stroke_desktop": 3,
+        "height_mobile": 60,
+        "title_padding_mobile": 20,
+        "arrow_padding_mobile": 20,
+        "arrow_size_mobile": 18,
+        "arrow_stroke_mobile": 2,
+        "arrow_style": "stroke"
+      }
+    },
+    "three_column_media_NGwfBE": {
+      "type": "three-column-media",
+      "name": "Three Column Media",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "column_gap": 40,
+        "media_border_radius": 12,
+        "video_url": "",
+        "step_text": "",
+        "step_number": "",
+        "main_heading": "",
+        "main_description": "",
+        "cta_text": "",
+        "cta_link": "",
+        "text_alignment": "left",
+        "step_number_size": 80,
+        "step_highlight_size": 120,
+        "step_text_size": 24,
+        "step_text_color": "#000000",
+        "step_number_color": "#000000",
+        "step_highlight_color": "#4FFFFF",
+        "heading_font_size": 32,
+        "heading_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "cta_font_size": 14,
+        "cta_bg_color": "transparent",
+        "cta_text_color": "#000000",
+        "cta_border_color": "#4FFFFF",
+        "cta_hover_bg": "#4FFFFF",
+        "cta_hover_text": "#000000",
+        "cta_hover_border": "#4FFFFF",
+        "cta_border_radius": 24,
+        "image_width": 100,
+        "image_height": 100
+      }
+    },
+    "comparison_table_jUqtif": {
+      "type": "comparison-table",
+      "blocks": {
+        "ingredient_row_cxwerx": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_9zR8Ke": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_9HgYtq": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_row_cxwerx",
+        "ingredient_row_9zR8Ke",
+        "ingredient_row_9HgYtq"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n4",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n4",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
+      }
+    },
+    "professional_panel_z43EmP": {
+      "type": "professional-panel",
+      "blocks": {
+        "professional_eApTed": {
+          "type": "professional",
+          "settings": {
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "professional_eApTed"
+      ],
+      "name": "Professional Panel",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "card_bg_color": "#000000",
+        "card_border_radius": 24,
+        "name_font_size": 44,
+        "name_color": "#ffffff",
+        "designation_font_size": 18,
+        "designation_color": "#4FFFFF",
+        "quote_font_size": 18,
+        "quote_color": "#ffffff",
+        "quote_mark_color": "#4FFFFF",
+        "cta_font_size": 14,
+        "cta_text_color": "#ffffff",
+        "cta_border_color": "#4FFFFF",
+        "cta_border_radius": 24,
+        "arrow_bg_color": "#000000",
+        "arrow_border_color": "#4FFFFF",
+        "arrow_color": "#4FFFFF"
+      }
+    },
+    "result_timeline_y7mkmj": {
+      "type": "result-timeline",
+      "blocks": {
+        "week_nLgCeT": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 1",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function"
+          }
+        },
+        "week_gqYLPD": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 2",
+            "week_title": "Enhanced Nutrient Absorption*",
+            "week_description": "Improves digestive health|Supports microbiome balance|Increases energy levels"
+          }
+        },
+        "week_YRx4nr": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 3",
+            "week_title": "Optimal Wellness*",
+            "week_description": "Complete system optimization|Long-term health benefits|Sustained energy and vitality"
+          }
+        }
+      },
+      "block_order": [
+        "week_nLgCeT",
+        "week_gqYLPD",
+        "week_YRx4nr"
+      ],
+      "name": "Result-Timeline",
+      "settings": {
+        "background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "font_family": "Montserrat",
+        "title": "Benefits that build over time.",
+        "title_color": "#000000",
+        "title_font_size": 42,
+        "title_font_weight": "700",
+        "subtitle": "Designed for daily use, DM-02™ replenishes your body and microbiome with essential nutrients to build systemic.",
+        "subtitle_color": "#666666",
+        "subtitle_font_size": 16,
+        "subtitle_font_weight": "400",
+        "week_badge_font_size": 14,
+        "week_badge_font_weight": "500",
+        "week_title_color": "#000000",
+        "week_title_font_size": 24,
+        "week_title_font_weight": "600",
+        "list_color": "#333333",
+        "list_font_size": 15,
+        "list_font_weight": "400"
       }
     }
   },
   "order": [
     "main",
-    "product_buy_box_TzCRnN"
+    "product_buy_box_TzCRnN",
+    "tab_section_b69zcK",
+    "three_column_media_NGwfBE",
+    "comparison_table_jUqtif",
+    "professional_panel_z43EmP",
+    "result_timeline_y7mkmj"
   ]
 }

@@ -14,6 +14,104 @@
       "disabled": true,
       "settings": {}
     },
+    "ingredients_showcase_a4DpYy": {
+      "type": "ingredients-showcase",
+      "blocks": {
+        "ingredient_hNEGMm": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Ozempic®",
+            "ingredient_image": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d-removebg-preview-removebg-preview.png"
+          }
+        },
+        "ingredient_WWRxHM": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Compounded GLP-1",
+            "ingredient_image": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview_ae8b5eba-a677-4e85-85fd-e4b7c3485165.png"
+          }
+        },
+        "ingredient_R7R89e": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Oral Rx",
+            "ingredient_image": "shopify://shop_images/14937dc9021241450aa241abc2cc804a-removebg-preview.png"
+          }
+        },
+        "ingredient_6qtF8r": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Ozempic®",
+            "ingredient_image": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d-removebg-preview-removebg-preview.png"
+          }
+        },
+        "ingredient_BiaQBX": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Oral Rx",
+            "ingredient_image": "shopify://shop_images/14937dc9021241450aa241abc2cc804a-removebg-preview.png"
+          }
+        },
+        "ingredient_rPXDFt": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Vitamin B12",
+            "ingredient_image": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview.png"
+          }
+        },
+        "ingredient_mMCKdr": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "L-Carnitine",
+            "ingredient_image": "shopify://shop_images/Gemini_Generated_Image_gtq2m5gtq2m5gtq2-removebg-preview_387781a3-c41e-4dc6-9c72-aac98229c018.png"
+          }
+        },
+        "ingredient_dQaUzq": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "Vitamin B12",
+            "ingredient_image": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview.png"
+          }
+        },
+        "ingredient_npYebh": {
+          "type": "ingredient",
+          "settings": {
+            "ingredient_name": "L-Carnitine",
+            "ingredient_image": "shopify://shop_images/Gemini_Generated_Image_gtq2m5gtq2m5gtq2-removebg-preview_387781a3-c41e-4dc6-9c72-aac98229c018.png"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_hNEGMm",
+        "ingredient_WWRxHM",
+        "ingredient_R7R89e",
+        "ingredient_6qtF8r",
+        "ingredient_BiaQBX",
+        "ingredient_rPXDFt",
+        "ingredient_mMCKdr",
+        "ingredient_dQaUzq",
+        "ingredient_npYebh"
+      ],
+      "name": "Ingredients Showcase",
+      "settings": {
+        "heading": "Our Ingredients",
+        "subheading": "Clinically formulated with precision",
+        "bg_image": "shopify://shop_images/pexels-arina-krasnikova-6663393_a8e5de8d-ebc7-4140-9bc5-f37200146d89.jpg",
+        "bg_video": "",
+        "overlay_opacity": 80,
+        "section_height": 600,
+        "card_width": 200,
+        "card_height": 140,
+        "card_radius": 20,
+        "name_font_size": 13,
+        "blur_amount": 28,
+        "scroll_speed": 30,
+        "card_bg_color": "#ffffff26",
+        "card_border_color": "#ffffff40",
+        "text_color": "#ffffff",
+        "accent_color": "#4fffff"
+      }
+    },
     "filter_by_concerns_rnQ9T3": {
       "type": "filter-by-concerns",
       "blocks": {
@@ -123,28 +221,40 @@
             "popup_5_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone."
           }
         },
-        "concern_iVA8Ce": {
+        "concern_c6Nzbm": {
           "type": "concern",
           "settings": {
             "concern_name": "Wrinkles/fine lines",
+            "image_1": "shopify://shop_images/Instagram_2.jpg",
+            "popup_1_stat1_icon": "shopify://shop_images/skincare-routine.png",
             "popup_1_stat1_value": "+96%",
             "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat2_icon": "shopify://shop_images/care.png",
             "popup_1_stat2_value": "+96%",
             "popup_1_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_1_stat3_icon": "shopify://shop_images/ceramide.png",
             "popup_1_stat3_value": "+96%",
             "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
             "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "image_2": "shopify://shop_images/7_Natural_ingredients_for_Korean_glass_skin.jpg",
+            "popup_2_stat1_icon": "shopify://shop_images/skincare-routine.png",
             "popup_2_stat1_value": "+96%",
             "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat2_icon": "shopify://shop_images/care.png",
             "popup_2_stat2_value": "+96%",
             "popup_2_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_2_stat3_icon": "shopify://shop_images/ceramide.png",
             "popup_2_stat3_value": "+96%",
             "popup_2_stat3_label": "MEGADOSE OF VITAMIN C",
             "popup_2_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
+            "image_3": "shopify://shop_images/download_34.jpg",
+            "popup_3_stat1_icon": "shopify://shop_images/7951849171678789890-128.png",
             "popup_3_stat1_value": "+96%",
             "popup_3_stat1_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat2_icon": "shopify://shop_images/skincare-routine.png",
             "popup_3_stat2_value": "+96%",
             "popup_3_stat2_label": "MEGADOSE OF VITAMIN C",
+            "popup_3_stat3_icon": "shopify://shop_images/ceramide.png",
             "popup_3_stat3_value": "+96%",
             "popup_3_stat3_label": "MEGADOSE OF VITAMIN C",
             "popup_3_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
@@ -332,7 +442,7 @@
       "block_order": [
         "concern_AAMiGa",
         "concern_iHHpga",
-        "concern_iVA8Ce",
+        "concern_c6Nzbm",
         "concern_9bQqMX",
         "concern_JpeEtU",
         "concern_DNj9Nb",
@@ -343,104 +453,6 @@
         "button_text": "Know More",
         "image_height": 500,
         "image_gap": 20
-      }
-    },
-    "ingredients_showcase_a4DpYy": {
-      "type": "ingredients-showcase",
-      "blocks": {
-        "ingredient_hNEGMm": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "Ozempic®",
-            "ingredient_image": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d-removebg-preview-removebg-preview.png"
-          }
-        },
-        "ingredient_WWRxHM": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "Compounded GLP-1",
-            "ingredient_image": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview_ae8b5eba-a677-4e85-85fd-e4b7c3485165.png"
-          }
-        },
-        "ingredient_R7R89e": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "Oral Rx",
-            "ingredient_image": "shopify://shop_images/14937dc9021241450aa241abc2cc804a-removebg-preview.png"
-          }
-        },
-        "ingredient_6qtF8r": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "Ozempic®",
-            "ingredient_image": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d-removebg-preview-removebg-preview.png"
-          }
-        },
-        "ingredient_BiaQBX": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "Oral Rx",
-            "ingredient_image": "shopify://shop_images/14937dc9021241450aa241abc2cc804a-removebg-preview.png"
-          }
-        },
-        "ingredient_rPXDFt": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "Vitamin B12",
-            "ingredient_image": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview.png"
-          }
-        },
-        "ingredient_mMCKdr": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "L-Carnitine",
-            "ingredient_image": "shopify://shop_images/Gemini_Generated_Image_gtq2m5gtq2m5gtq2-removebg-preview_387781a3-c41e-4dc6-9c72-aac98229c018.png"
-          }
-        },
-        "ingredient_dQaUzq": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "Vitamin B12",
-            "ingredient_image": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview.png"
-          }
-        },
-        "ingredient_npYebh": {
-          "type": "ingredient",
-          "settings": {
-            "ingredient_name": "L-Carnitine",
-            "ingredient_image": "shopify://shop_images/Gemini_Generated_Image_gtq2m5gtq2m5gtq2-removebg-preview_387781a3-c41e-4dc6-9c72-aac98229c018.png"
-          }
-        }
-      },
-      "block_order": [
-        "ingredient_hNEGMm",
-        "ingredient_WWRxHM",
-        "ingredient_R7R89e",
-        "ingredient_6qtF8r",
-        "ingredient_BiaQBX",
-        "ingredient_rPXDFt",
-        "ingredient_mMCKdr",
-        "ingredient_dQaUzq",
-        "ingredient_npYebh"
-      ],
-      "name": "Ingredients Showcase",
-      "settings": {
-        "heading": "Our Ingredients",
-        "subheading": "Clinically formulated with precision",
-        "bg_image": "shopify://shop_images/pexels-arina-krasnikova-6663393_a8e5de8d-ebc7-4140-9bc5-f37200146d89.jpg",
-        "bg_video": "",
-        "overlay_opacity": 80,
-        "section_height": 600,
-        "card_width": 200,
-        "card_height": 140,
-        "card_radius": 20,
-        "name_font_size": 13,
-        "blur_amount": 28,
-        "scroll_speed": 30,
-        "card_bg_color": "#ffffff26",
-        "card_border_color": "#ffffff40",
-        "text_color": "#ffffff",
-        "accent_color": "#4fffff"
       }
     },
     "science_formula_dUnNV8": {

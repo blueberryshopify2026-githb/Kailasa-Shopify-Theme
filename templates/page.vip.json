@@ -55,7 +55,8 @@
         "review_NaAHWQ": {
           "type": "review",
           "settings": {
-            "name": "The Resident",
+            "avatar": "shopify://shop_images/pexels-shkrabaanthony-5214964.jpg",
+            "name": "Mia Brooks",
             "meta": "4 hours ago",
             "review_text": "I've been using this for weeks now and I'm completely satisfied with the results."
           }

@@ -573,7 +573,6 @@
         "science_item_F6RdH6",
         "science_item_AdgYEJ"
       ],
-      "disabled": true,
       "name": "Science Formula",
       "settings": {
         "main_title": "We have the formula for long-term skin health. And we follow it.",
@@ -648,6 +647,7 @@
         "team_member_wBKpmt",
         "team_member_gj6k6w"
       ],
+      "disabled": true,
       "name": "Medical Team",
       "settings": {
         "section_bg_color": "#000000",

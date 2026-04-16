@@ -13,13 +13,13 @@
   "sections": {
     "header": {
       "type": "header",
-      "disabled": true,
       "settings": {
         "menu": ""
       }
     },
     "kailasa_header_menu_tCdiNY": {
       "type": "kailasa-header-menu",
+      "disabled": true,
       "name": "Kailasa Header Menu",
       "settings": {
         "show_announcement_bar": true,

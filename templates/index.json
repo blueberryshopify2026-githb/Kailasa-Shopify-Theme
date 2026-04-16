@@ -225,7 +225,9 @@
           "type": "product_hotspot",
           "settings": {
             "show_hotspot": true,
-            "product": "",
+            "hotspot_image": "shopify://shop_images/Gemini_Generated_Image_4xz2he4xz2he4xz2.png",
+            "product": "eye-serum",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
             "product_title": "Radiance Drops",
             "product_description": "Brightens & evens out skin tone",
             "custom_price": "",
@@ -239,7 +241,9 @@
           "type": "product_hotspot",
           "settings": {
             "show_hotspot": true,
-            "product": "",
+            "hotspot_image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
+            "product": "photon-youth™-pro-led-mask",
+            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
             "product_title": "Brightening Mist",
             "product_description": "Refreshes & boosts radiance",
             "custom_price": "",
@@ -253,7 +257,9 @@
           "type": "product_hotspot",
           "settings": {
             "show_hotspot": true,
-            "product": "",
+            "hotspot_image": "shopify://shop_images/download_31.jpg",
+            "product": "eye-serum",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
             "product_title": "Eye Renewal Cream",
             "product_description": "Reduces puffiness & dark circles",
             "custom_price": "",
@@ -267,7 +273,9 @@
           "type": "product_hotspot",
           "settings": {
             "show_hotspot": true,
-            "product": "",
+            "hotspot_image": "shopify://shop_images/download_29.jpg",
+            "product": "photon-youth™-pro-led-mask",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
             "product_title": "Hydrating Serum",
             "product_description": "Boosts moisture & strengthens skin barrier",
             "custom_price": "",
@@ -281,7 +289,9 @@
           "type": "product_hotspot",
           "settings": {
             "show_hotspot": true,
-            "product": "",
+            "hotspot_image": "shopify://shop_images/download_24.jpg",
+            "product": "photon-youth™-pro-led-mask",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
             "product_title": "Daily Cleanser",
             "product_description": "Gently purifies & revitalizes",
             "custom_price": "",
@@ -289,20 +299,6 @@
             "hotspot_x": 65,
             "hotspot_y": 42,
             "panel_position": "top"
-          }
-        },
-        "product_hotspot_zReXz8": {
-          "type": "product_hotspot",
-          "settings": {
-            "show_hotspot": true,
-            "product": "",
-            "product_title": "Firming Moisturizer",
-            "product_description": "Lifts & firms for youthful glow",
-            "custom_price": "",
-            "product_link": "",
-            "hotspot_x": 85,
-            "hotspot_y": 38,
-            "panel_position": "left"
           }
         }
       },
@@ -313,8 +309,7 @@
         "product_hotspot_eYRCAb",
         "product_hotspot_AaB7Ma",
         "product_hotspot_xR33qw",
-        "product_hotspot_kqDVFx",
-        "product_hotspot_zReXz8"
+        "product_hotspot_kqDVFx"
       ],
       "name": "Skincare Bundle",
       "settings": {

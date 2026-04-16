@@ -299,7 +299,6 @@
         "slide_item_rQNTAP",
         "slide_item_CcjjVg"
       ],
-      "disabled": true,
       "name": "Dual Container Slider",
       "settings": {
         "bg_color": "#000000",
@@ -652,6 +651,7 @@
         "team_member_wBKpmt",
         "team_member_gj6k6w"
       ],
+      "disabled": true,
       "name": "Medical Team",
       "settings": {
         "section_bg_color": "#000000",

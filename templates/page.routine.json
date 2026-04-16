@@ -352,7 +352,8 @@
           "settings": {
             "title": "Address the root causes of aging",
             "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -363,7 +364,8 @@
           "settings": {
             "title": "Deliver bioavailable actives",
             "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -374,7 +376,8 @@
           "settings": {
             "title": "Target multiple pathways",
             "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -385,7 +388,8 @@
           "settings": {
             "title": "Respect the microbiome",
             "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -396,7 +400,8 @@
           "settings": {
             "title": "Maintain skin-neutral pH",
             "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -407,7 +412,8 @@
           "settings": {
             "title": "Optimize for layering or cocktailing",
             "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -422,11 +428,12 @@
         "science_item_GXwJUz",
         "science_item_czTHr7"
       ],
-      "name": "Science Formula",
+      "name": "FAQs",
       "settings": {
         "main_title": "We have the formula for long-term skin health. And we follow it.",
         "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
-        "default_media_type": "placeholder",
+        "default_media_type": "image",
+        "default_media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
         "default_video_file": "",
         "default_cgi_file": "",
         "default_placeholder_text": "Default Media Placeholder",
@@ -460,6 +467,70 @@
     },
     "ugc_video_carousel_Ak76GQ": {
       "type": "ugc-video-carousel",
+      "blocks": {
+        "ugc_video_pK6w8d": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/16d697ef2b0c494eaf5b840875813c02.mp4",
+            "redirect_url": "",
+            "product": "",
+            "product_url": "",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_F4XKzL": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/ae6570b21a16410ea7ce81a5e0428078.mp4",
+            "redirect_url": "",
+            "product": "",
+            "product_url": "",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_ffDcBn": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/7a13a15cd7ee4ce0bfef007e414894f4.mp4",
+            "redirect_url": "",
+            "product": "",
+            "product_url": "",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_8TqrVH": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
+            "redirect_url": "",
+            "product": "",
+            "product_url": "",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_iyXbMG": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/f4882a27a3dc410d8803ab284312f61d.mp4",
+            "redirect_url": "",
+            "product": "",
+            "product_url": "",
+            "product_title": "",
+            "product_price": ""
+          }
+        }
+      },
+      "block_order": [
+        "ugc_video_pK6w8d",
+        "ugc_video_F4XKzL",
+        "ugc_video_ffDcBn",
+        "ugc_video_8TqrVH",
+        "ugc_video_iyXbMG"
+      ],
       "name": "UGC Video Carousel",
       "settings": {
         "section_background": "#ffffff",

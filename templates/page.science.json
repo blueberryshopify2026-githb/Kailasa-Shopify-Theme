@@ -11,10 +11,12 @@
   "sections": {
     "main": {
       "type": "page",
+      "disabled": true,
       "settings": {}
     },
     "science_page_hero_TjK7yy": {
       "type": "science-page-hero",
+      "disabled": true,
       "name": "Science Page Hero Section",
       "settings": {
         "section_top_margin": 0,
@@ -297,6 +299,7 @@
         "slide_item_rQNTAP",
         "slide_item_CcjjVg"
       ],
+      "disabled": true,
       "name": "Dual Container Slider",
       "settings": {
         "bg_color": "#000000",
@@ -404,6 +407,7 @@
         "button_NaXRQi",
         "button_WbwNM9"
       ],
+      "disabled": true,
       "name": "Product Infographic",
       "settings": {
         "section_padding_top": 80,
@@ -573,6 +577,7 @@
         "science_item_F6RdH6",
         "science_item_AdgYEJ"
       ],
+      "disabled": true,
       "name": "Science Formula",
       "settings": {
         "main_title": "We have the formula for long-term skin health. And we follow it.",
@@ -647,7 +652,6 @@
         "team_member_wBKpmt",
         "team_member_gj6k6w"
       ],
-      "disabled": true,
       "name": "Medical Team",
       "settings": {
         "section_bg_color": "#000000",
@@ -715,6 +719,7 @@
         "ingredient_row_g3ikHH",
         "ingredient_row_MnkNV8"
       ],
+      "disabled": true,
       "name": "Comparison Table",
       "settings": {
         "section_heading": "Cellular Harmony Advantage",

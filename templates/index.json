@@ -1090,17 +1090,17 @@
       "name": "Tab Section",
       "settings": {
         "title": "Photon Youth™ Pro LED Mask",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#181818",
-        "border_color": "#4FFFFF",
+        "border_color": "#4fffff",
         "border_width": 2,
         "inner_tab_active_bg": "#181818",
-        "inner_tab_active_text": "#FFFFFF",
-        "inner_tab_active_dot": "#4FFFFF",
-        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_active_text": "#ffffff",
+        "inner_tab_active_dot": "#4fffff",
+        "inner_tab_inactive_bg": "#ffffff",
         "inner_tab_inactive_text": "#181818",
         "inner_tab_hover_bg": "#181818",
-        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_hover_text": "#ffffff",
         "inner_tab_border_color": "#181818",
         "inner_tab_border_width": 1,
         "title_font_family": "Montserrat, sans-serif",
@@ -1150,17 +1150,17 @@
       "name": "Tab Section",
       "settings": {
         "title": "Photon Youth™ Pro LED Mask",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#181818",
-        "border_color": "#4FFFFF",
+        "border_color": "#4fffff",
         "border_width": 2,
         "inner_tab_active_bg": "#181818",
-        "inner_tab_active_text": "#FFFFFF",
-        "inner_tab_active_dot": "#4FFFFF",
-        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_active_text": "#ffffff",
+        "inner_tab_active_dot": "#4fffff",
+        "inner_tab_inactive_bg": "#ffffff",
         "inner_tab_inactive_text": "#181818",
         "inner_tab_hover_bg": "#181818",
-        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_hover_text": "#ffffff",
         "inner_tab_border_color": "#181818",
         "inner_tab_border_width": 1,
         "title_font_family": "Montserrat, sans-serif",
@@ -1229,10 +1229,10 @@
             "usage_layout": "image-text",
             "usage_text_content": "<p>Add your usage instructions here. This text will appear alongside the image in a 50-50 layout.</p>",
             "faq_layout": "image-faq",
-            "faq_bg_color": "#FFFFFF",
+            "faq_bg_color": "#ffffff",
             "question_text_color": "#181818",
             "answer_text_color": "#666666",
-            "faq_border_color": "#E0E0E0",
+            "faq_border_color": "#e0e0e0",
             "faq_max_height": 400,
             "faq1_question": "How many times should I use this?",
             "faq1_answer": "<p>Use this product once daily in the evening. Start with 2-3 times per week and gradually increase frequency as your skin builds tolerance.</p>",
@@ -1263,17 +1263,17 @@
       "name": "Multi Tab Section",
       "settings": {
         "title": "Multi Product Tabs",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#181818",
-        "border_color": "#4FFFFF",
+        "border_color": "#4fffff",
         "border_width": 2,
         "inner_tab_active_bg": "#181818",
-        "inner_tab_active_text": "#FFFFFF",
-        "inner_tab_active_dot": "#4FFFFF",
-        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_active_text": "#ffffff",
+        "inner_tab_active_dot": "#4fffff",
+        "inner_tab_inactive_bg": "#ffffff",
         "inner_tab_inactive_text": "#181818",
         "inner_tab_hover_bg": "#181818",
-        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_hover_text": "#ffffff",
         "inner_tab_border_color": "#181818",
         "inner_tab_border_width": 1,
         "title_font_family": "Montserrat, sans-serif",
@@ -1357,6 +1357,75 @@
     },
     "ugc_video_carousel_6MNk4T": {
       "type": "ugc-video-carousel",
+      "blocks": {
+        "ugc_video_EYRDHV": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/cd535b7b614f4279b7273d7d57f30842.mp4",
+            "redirect_url": "shopify://products/eye-serum",
+            "product": "eye-serum",
+            "product_url": "shopify://products/eye-serum",
+            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_8naRNY": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/f4882a27a3dc410d8803ab284312f61d.mp4",
+            "redirect_url": "shopify://products/eye-serum",
+            "product": "eye-serum",
+            "product_url": "shopify://products/eye-serum",
+            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_ABEtAd": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
+            "redirect_url": "shopify://products/eye-serum",
+            "product": "eye-serum",
+            "product_url": "shopify://products/eye-serum",
+            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_JDbkkD": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/ae6570b21a16410ea7ce81a5e0428078.mp4",
+            "redirect_url": "shopify://products/eye-serum",
+            "product": "eye-serum",
+            "product_url": "shopify://products/eye-serum",
+            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
+            "product_title": "",
+            "product_price": ""
+          }
+        },
+        "ugc_video_87mhjB": {
+          "type": "ugc_video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/16d697ef2b0c494eaf5b840875813c02.mp4",
+            "redirect_url": "shopify://products/eye-serum",
+            "product": "eye-serum",
+            "product_url": "shopify://products/eye-serum",
+            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
+            "product_title": "",
+            "product_price": ""
+          }
+        }
+      },
+      "block_order": [
+        "ugc_video_EYRDHV",
+        "ugc_video_8naRNY",
+        "ugc_video_ABEtAd",
+        "ugc_video_JDbkkD",
+        "ugc_video_87mhjB"
+      ],
       "name": "UGC Video Carousel",
       "settings": {
         "section_background": "#ffffff",

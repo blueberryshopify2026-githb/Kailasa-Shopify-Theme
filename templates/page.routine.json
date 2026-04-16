@@ -75,13 +75,45 @@
             "name_position_x": 190,
             "name_position_y": -170
           }
+        },
+        "step_mdRWyG": {
+          "type": "step",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Cleanser",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
+          }
+        },
+        "step_B7NWTg": {
+          "type": "step",
+          "settings": {
+            "tab_id": "am",
+            "step_label": "Cleanser",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
+            "product_name": "BHA & Tea Tree",
+            "product_link": "",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/f4882a27a3dc410d8803ab284312f61d.mp4",
+            "image_position_x": -50,
+            "image_position_y": -380,
+            "name_position_x": 190,
+            "name_position_y": -170
+          }
         }
       },
       "block_order": [
         "step_zgArGp",
         "step_LQ6QfM",
         "step_iPBJiR",
-        "step_B9ketY"
+        "step_B9ketY",
+        "step_mdRWyG",
+        "step_B7NWTg"
       ],
       "name": "How To Use",
       "settings": {

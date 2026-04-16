@@ -347,7 +347,8 @@
           "settings": {
             "title": "Address the root causes of aging",
             "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -358,7 +359,8 @@
           "settings": {
             "title": "Deliver bioavailable actives",
             "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/6b0cd7165734f6f66ef67d60db2e9e90-removebg-preview_a8b8c8f5-c1e4-4de0-a3fe-22a99006da0c.png",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -369,7 +371,8 @@
           "settings": {
             "title": "Target multiple pathways",
             "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Quel_masque_LED_choisir___Suivez_notre_guide_430x_aa9fbe61-4adf-438c-9117-0b3c4ecefd38.webp",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -380,7 +383,8 @@
           "settings": {
             "title": "Respect the microbiome",
             "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/image_1.png",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -391,7 +395,8 @@
           "settings": {
             "title": "Maintain skin-neutral pH",
             "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -402,7 +407,8 @@
           "settings": {
             "title": "Optimize for layering or cocktailing",
             "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -417,11 +423,12 @@
         "science_item_CPQ3f3",
         "science_item_3ftaxq"
       ],
-      "name": "Science Formula",
+      "name": "Faqs",
       "settings": {
         "main_title": "We have the formula for long-term skin health. And we follow it.",
         "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
-        "default_media_type": "placeholder",
+        "default_media_type": "image",
+        "default_media_image": "shopify://shop_images/ee78b72411d68a5fc5ce582dc0670065.jpg",
         "default_video_file": "",
         "default_cgi_file": "",
         "default_placeholder_text": "Default Media Placeholder",

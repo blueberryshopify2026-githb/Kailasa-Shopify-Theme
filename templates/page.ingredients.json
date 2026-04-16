@@ -517,7 +517,8 @@
           "settings": {
             "title": "Address the root causes of aging",
             "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/download_26.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -587,7 +588,7 @@
         "science_item_YcWNCL",
         "science_item_ikYFRY"
       ],
-      "name": "Science Formula",
+      "name": "FAQs ing",
       "settings": {
         "main_title": "We have the formula for long-term skin health. And we follow it.",
         "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",

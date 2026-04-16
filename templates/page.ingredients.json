@@ -529,7 +529,8 @@
           "settings": {
             "title": "Deliver bioavailable actives",
             "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/download_31.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -540,7 +541,8 @@
           "settings": {
             "title": "Target multiple pathways",
             "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Biotherm___Force_Supreme_XK_studio.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -551,7 +553,8 @@
           "settings": {
             "title": "Respect the microbiome",
             "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Biossance_Award_Winning_Squalene_for_Skin___Biossance.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -562,7 +565,8 @@
           "settings": {
             "title": "Maintain skin-neutral pH",
             "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -573,7 +577,8 @@
           "settings": {
             "title": "Optimize for layering or cocktailing",
             "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/pexels-angela-roma-7480272.jpg",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"

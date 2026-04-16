@@ -154,6 +154,62 @@
     "comparison_table_CbUdKK": {
       "type": "comparison-table",
       "blocks": {
+        "ingredient_row_iYDMKE": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Hyaluronic acid",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_tUhQYY": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Exosomes",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_nfNGWw": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Retinol",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_8T7qz7": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Snail Mucin",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
         "ingredient_row_aGzyEV": {
           "type": "ingredient_row",
           "settings": {
@@ -254,6 +310,10 @@
         }
       },
       "block_order": [
+        "ingredient_row_iYDMKE",
+        "ingredient_row_tUhQYY",
+        "ingredient_row_nfNGWw",
+        "ingredient_row_8T7qz7",
         "ingredient_row_aGzyEV",
         "ingredient_row_dXT8LN",
         "ingredient_row_wykaiC",

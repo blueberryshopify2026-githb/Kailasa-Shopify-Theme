@@ -404,7 +404,6 @@
         "button_NaXRQi",
         "button_WbwNM9"
       ],
-      "disabled": true,
       "name": "Product Infographic",
       "settings": {
         "section_padding_top": 80,
@@ -574,6 +573,7 @@
         "science_item_F6RdH6",
         "science_item_AdgYEJ"
       ],
+      "disabled": true,
       "name": "Science Formula",
       "settings": {
         "main_title": "We have the formula for long-term skin health. And we follow it.",

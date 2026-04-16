@@ -297,7 +297,6 @@
         "slide_item_rQNTAP",
         "slide_item_CcjjVg"
       ],
-      "disabled": true,
       "name": "Dual Container Slider",
       "settings": {
         "bg_color": "#000000",
@@ -405,6 +404,7 @@
         "button_NaXRQi",
         "button_WbwNM9"
       ],
+      "disabled": true,
       "name": "Product Infographic",
       "settings": {
         "section_padding_top": 80,

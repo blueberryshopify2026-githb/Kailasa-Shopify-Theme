@@ -19,7 +19,8 @@
         "review_a8MECX": {
           "type": "review",
           "settings": {
-            "name": "Last girl",
+            "avatar": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
+            "name": "Olivia Bennett",
             "meta": "Member",
             "review_text": "Absolutely love this product! It has changed my daily routine completely."
           }
@@ -27,7 +28,8 @@
         "review_ygW3KX": {
           "type": "review",
           "settings": {
-            "name": "Most",
+            "avatar": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "name": "Emma Collins",
             "meta": "1 hour ago",
             "review_text": "Great quality and fast shipping. Highly recommend to everyone!"
           }
@@ -35,7 +37,8 @@
         "review_gDmARJ": {
           "type": "review",
           "settings": {
-            "name": "Monkey",
+            "avatar": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "name": "Charlotte Parker",
             "meta": "2 hours ago",
             "review_text": "Perfect fit and amazing design. Worth every penny!"
           }
@@ -66,6 +69,7 @@
       ],
       "name": "VIP Hero Banner",
       "settings": {
+        "background_image": "shopify://shop_images/Futuristic_skincare_with_LED_therapy.png",
         "overlay_color": "#000000",
         "overlay_opacity": 0.3,
         "content_padding": 80,
@@ -80,7 +84,7 @@
         "subtitle_font_size": 20,
         "title_color": "#ffffff",
         "subtitle_color": "#ffffff",
-        "cta_bg_color": "#4FFFFF",
+        "cta_bg_color": "#4fffff",
         "cta_text_color": "#000000"
       }
     },
@@ -112,8 +116,8 @@
         "key_points_color": "#333333",
         "bullet_color": "#000000",
         "arrow_icon": "shopify://shop_images/Gemini_Generated_Image_sv377csv377csv37-removebg-preview.png",
-        "arrow_bg_color": "#4FFFFF",
-        "arrow_hover_color": "#3DEEEE",
+        "arrow_bg_color": "#4fffff",
+        "arrow_hover_color": "#3deeee",
         "arrow_icon_color": "#000000",
         "preview_border_radius": 12,
         "main_image_border_radius": 20
@@ -285,9 +289,9 @@
         "subtitle_color": "#ffffff",
         "active_border_color": "#ffffff",
         "active_title_color": "#4fffff",
-        "active_shadow_color": "rgba(79, 255, 255, 0.3)",
+        "active_shadow_color": "#4fffff4d",
         "media_border_color": "#4fffff",
-        "media_shadow_color": "rgba(79, 255, 255, 0.2)",
+        "media_shadow_color": "#4fffff33",
         "title_size": 36,
         "subtitle_size": 16,
         "subtitle_margin_bottom": 20,

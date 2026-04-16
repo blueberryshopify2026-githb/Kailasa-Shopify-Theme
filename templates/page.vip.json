@@ -46,7 +46,8 @@
         "review_fUiPQW": {
           "type": "review",
           "settings": {
-            "name": "Division",
+            "avatar": "shopify://shop_images/pexels-kooldark-14438788.jpg",
+            "name": "James Carter",
             "meta": "3 hours ago",
             "review_text": "Customer service was excellent and the product quality is top-notch."
           }

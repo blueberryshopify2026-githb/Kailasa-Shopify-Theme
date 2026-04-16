@@ -21,36 +21,9 @@
           "settings": {
             "tab_id": "am",
             "step_label": "Cleanser",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
             "product_name": "BHA & Tea Tree",
-            "product_link": "",
-            "video_url": "",
-            "image_position_x": -50,
-            "image_position_y": -380,
-            "name_position_x": 190,
-            "name_position_y": -170
-          }
-        },
-        "step_gt4YAy": {
-          "type": "step",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Toner",
-            "product_name": "Hydrating Tonic",
-            "product_link": "",
-            "video_url": "",
-            "image_position_x": -50,
-            "image_position_y": -380,
-            "name_position_x": 190,
-            "name_position_y": -170
-          }
-        },
-        "step_hRqBK7": {
-          "type": "step",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Moisturiser",
-            "product_name": "PM Moisturiser",
-            "product_link": "",
+            "product_link": "https://cdn.shopify.com/videos/c/o/v/ae6570b21a16410ea7ce81a5e0428078.mp4",
             "video_url": "",
             "image_position_x": -50,
             "image_position_y": -380,
@@ -60,13 +33,11 @@
         }
       },
       "block_order": [
-        "step_zgArGp",
-        "step_gt4YAy",
-        "step_hRqBK7"
+        "step_zgArGp"
       ],
       "name": "How To Use",
       "settings": {
-        "accent_color": "#4FFFFF"
+        "accent_color": "#4fffff"
       }
     },
     "science_formula_qhcFJp": {
@@ -167,9 +138,9 @@
         "subtitle_color": "#ffffff",
         "active_border_color": "#ffffff",
         "active_title_color": "#4fffff",
-        "active_shadow_color": "rgba(79, 255, 255, 0.3)",
+        "active_shadow_color": "#4fffff4d",
         "media_border_color": "#4fffff",
-        "media_shadow_color": "rgba(79, 255, 255, 0.2)",
+        "media_shadow_color": "#4fffff33",
         "title_size": 36,
         "subtitle_size": 16,
         "subtitle_margin_bottom": 20,

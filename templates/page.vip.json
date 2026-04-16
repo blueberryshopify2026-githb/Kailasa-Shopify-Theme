@@ -116,11 +116,24 @@
             "main_cta_text": "Become a Member",
             "main_cta_link": ""
           }
+        },
+        "vip_slide_dCwNWr": {
+          "type": "vip_slide",
+          "settings": {
+            "heading": "Skincare Elevated to an Elite Membership Experience",
+            "key_points": "<ul><li>Powerful ingredients that visibly reduce fine lines and wrinkles.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li><li>Restores elasticity and plumps skin from within</li><li>Protects against environmental aging and daily stressors.</li></ul>",
+            "preview_image": "shopify://shop_images/54d0ca5598f44be30889d35d562bf505.jpg",
+            "preview_cta_text": "Become a Member",
+            "main_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
+            "main_cta_text": "Become a Member",
+            "main_cta_link": ""
+          }
         }
       },
       "block_order": [
         "vip_slide_F4jTyX",
-        "vip_slide_4Frce7"
+        "vip_slide_4Frce7",
+        "vip_slide_dCwNWr"
       ],
       "name": "VIP Presentation",
       "settings": {

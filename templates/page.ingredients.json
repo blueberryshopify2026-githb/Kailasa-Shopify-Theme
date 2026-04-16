@@ -555,21 +555,12 @@
         "container_padding": 40,
         "content_max_height": 150
       }
-    },
-    "collections_PNKxEN": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
-      "settings": {
-        "grid_item_width": "collections--compact",
-        "grid_gap": 10
-      }
     }
   },
   "order": [
     "main",
     "ingredients_showcase_a4DpYy",
     "filter_by_concerns_rnQ9T3",
-    "science_formula_dUnNV8",
-    "collections_PNKxEN"
+    "science_formula_dUnNV8"
   ]
 }

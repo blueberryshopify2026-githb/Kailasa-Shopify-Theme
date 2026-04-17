@@ -416,13 +416,58 @@
             "mask_type": "cross",
             "mask_text": ""
           }
+        },
+        "ingredient_row_UNfrya": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Peptide",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_dENxhX": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Pdrn",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_pMV9wX": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Snail mucin",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
         }
       },
       "block_order": [
         "ingredient_row_cxwerx",
         "ingredient_row_9zR8Ke",
         "ingredient_row_9HgYtq",
-        "ingredient_row_AAaW8i"
+        "ingredient_row_AAaW8i",
+        "ingredient_row_UNfrya",
+        "ingredient_row_dENxhX",
+        "ingredient_row_pMV9wX"
       ],
       "name": "Comparison Table",
       "settings": {

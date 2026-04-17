@@ -530,19 +530,22 @@
         "slide_YakRMc": {
           "type": "slide",
           "settings": {
-            "heading": "Age Gracefully, Glow Shamelessly Where Wrinkles Go to Retire"
+            "heading": "Age Gracefully, Glow Shamelessly Where Wrinkles Go to Retire",
+            "main_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg"
           }
         },
         "slide_CAXByQ": {
           "type": "slide",
           "settings": {
-            "heading": "Science-Backed Skincare for Every Skin Type"
+            "heading": "Science-Backed Skincare for Every Skin Type",
+            "main_image": "shopify://shop_images/pexels-monirathnak-15108322.jpg"
           }
         },
         "slide_cTjRBY": {
           "type": "slide",
           "settings": {
-            "heading": "Nourish Deep, Glow Bright, Feel Confident"
+            "heading": "Nourish Deep, Glow Bright, Feel Confident",
+            "main_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg"
           }
         }
       },
@@ -554,6 +557,7 @@
       "name": "Routine Fifty",
       "settings": {
         "section_height": 560,
+        "content_image": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d.jpg",
         "subheading": "Add a subheading",
         "body": "Effective anti-aging headlines for a skincare brand should focus on rejuvenation, firming, and enhancing natural beauty.",
         "cta_label": "Start your regime",

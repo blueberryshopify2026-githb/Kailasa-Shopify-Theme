@@ -364,6 +364,46 @@
         "professional_rPijpX": {
           "type": "professional",
           "settings": {
+            "background_image": "shopify://shop_images/sample_6_12.png",
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        },
+        "professional_CtLPAH": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/sample_6_13.png",
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        },
+        "professional_BNFwax": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/sample_6_11.png",
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        },
+        "professional_ATYjmw": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/sample_6_10.png",
             "bg_position_x": 50,
             "bg_position_y": 50,
             "name": "Belinda Tan, MD, PhD",
@@ -375,7 +415,10 @@
         }
       },
       "block_order": [
-        "professional_rPijpX"
+        "professional_rPijpX",
+        "professional_CtLPAH",
+        "professional_BNFwax",
+        "professional_ATYjmw"
       ],
       "name": "Professional Panel",
       "settings": {
@@ -445,6 +488,9 @@
         "subtitle_color": "#666666",
         "subtitle_font_size": 16,
         "subtitle_font_weight": "400",
+        "left_image_1": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
+        "left_image_2": "shopify://shop_images/7_Natural_ingredients_for_Korean_glass_skin.jpg",
+        "center_image": "shopify://shop_images/download_31.jpg",
         "week_badge_font_size": 14,
         "week_badge_font_weight": "500",
         "week_title_color": "#000000",

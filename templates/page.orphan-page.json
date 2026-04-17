@@ -12,9 +12,851 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "banner_section_ERnei9": {
+      "type": "banner-section",
+      "blocks": {
+        "product_slide_wEypWy": {
+          "type": "product_slide",
+          "settings": {
+            "product": "photon-youth™-pro-led-mask",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
+            "card_heading": "Add a subheading",
+            "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
+            "card_desc2": "Add a little bit of body text"
+          }
+        },
+        "product_slide_TWqJCk": {
+          "type": "product_slide",
+          "settings": {
+            "product": "photon-youth™-pro-led-mask",
+            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
+            "card_heading": "Add a subheading",
+            "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
+            "card_desc2": "Add a little bit of body text"
+          }
+        }
+      },
+      "block_order": [
+        "product_slide_wEypWy",
+        "product_slide_TWqJCk"
+      ],
+      "name": "Banner Section",
+      "settings": {
+        "bg_image": "shopify://shop_images/pexels-arina-krasnikova-6663393_a8e5de8d-ebc7-4140-9bc5-f37200146d89.jpg",
+        "overlay_color": "#000000",
+        "overlay_opacity": 45,
+        "section_height": 560,
+        "heading_top": "Unique beauty",
+        "heading_top_size": 48,
+        "heading_bottom": "experience",
+        "heading_bottom_size": 80,
+        "card_radius": 16,
+        "glass_text_color": "#ffffff",
+        "glass_heading_size": 18,
+        "glass_body_size": 13,
+        "arrow_image": "shopify://shop_images/Gemini_Generated_Image_sv377csv377csv37-removebg-preview.png",
+        "arrow_size": 120
+      }
+    },
+    "biotechnology_intro_eD66LY": {
+      "type": "biotechnology-intro",
+      "blocks": {
+        "feature_item_xFcbqH": {
+          "type": "feature_item",
+          "settings": {
+            "feature_icon": "shopify://shop_images/skincare-routine.png",
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        },
+        "feature_item_6Ff6rQ": {
+          "type": "feature_item",
+          "settings": {
+            "feature_icon": "shopify://shop_images/ceramide.png",
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        },
+        "feature_item_NcjCKX": {
+          "type": "feature_item",
+          "settings": {
+            "feature_icon": "shopify://shop_images/7951849171678789890-128.png",
+            "feature_title": "Real-Time Analysis",
+            "feature_description": "Fast, actionable insights without long wait times."
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_xFcbqH",
+        "feature_item_6Ff6rQ",
+        "feature_item_NcjCKX"
+      ],
+      "name": "Biotechnology Introduction",
+      "settings": {
+        "full_bg_size": "cover",
+        "full_bg_position": "center",
+        "section_bg_color": "#ffffff",
+        "show_overlay": false,
+        "overlay_color": "rgba(0,0,0,0.3)",
+        "overlay_opacity": 0.3,
+        "content_bg_color": "transparent",
+        "image_bg_color": "transparent",
+        "content_padding": 20,
+        "content_padding_horizontal": 30,
+        "main_title": "Introduction to<br>Biotechnology and<br>Transforming",
+        "main_title_color": "#000000",
+        "main_title_size": 48,
+        "main_title_weight": "700",
+        "main_title_line_height": 1.2,
+        "main_title_margin_bottom": 20,
+        "title_features_gap": 140,
+        "feature_gap": 20,
+        "feature_margin_bottom": 20,
+        "icon_size": 40,
+        "icon_placeholder_bg": "#4fffff",
+        "icon_placeholder_color": "#ffffff",
+        "icon_border_radius": 50,
+        "icon_placeholder_font_size": 24,
+        "feature_title_color": "#000000",
+        "feature_title_size": 19,
+        "feature_title_weight": "600",
+        "feature_title_margin_bottom": 8,
+        "feature_desc_color": "#000000",
+        "feature_desc_size": 16,
+        "feature_desc_line_height": 1.5,
+        "background_image": "shopify://shop_images/p-removebg-preview.png",
+        "image_fit": "cover",
+        "image_position": "center",
+        "image_opacity": 1,
+        "placeholder_bg_color": "#f5f5f5",
+        "placeholder_text_color": "#999999",
+        "placeholder_text_size": 18,
+        "placeholder_text": "Upload your background image"
+      }
+    },
+    "content_swatch_eLgiFa": {
+      "type": "content-swatch",
+      "blocks": {
+        "swatch_card_DFtmcF": {
+          "type": "swatch_card",
+          "settings": {
+            "card_image": "shopify://shop_images/download_54.jpg",
+            "main_image": "shopify://shop_images/download_54.jpg",
+            "heading": "Replenishes Nutrients*",
+            "description": "<ul><li>Helps fill daily nutrient gaps</li><li>Supports cellular energy production</li><li>Fuels microbial metabolism of nutrients</li></ul>",
+            "cta_text": "Start Now",
+            "cta_link": ""
+          }
+        },
+        "swatch_card_JeaNgD": {
+          "type": "swatch_card",
+          "settings": {
+            "card_image": "shopify://shop_images/For_DOJEN.jpg",
+            "main_image": "shopify://shop_images/For_DOJEN.jpg",
+            "heading": "Complete Your Routine With DS-01®",
+            "description": "<ul><li><strong>DM-02™ Daily Multivitamin</strong>: 24 probiotic strains to ease bloating, improve regularity, and support digestive health.*</li><li><strong>DS-01® Daily Synbiotic</strong>: Essential vitamins and minerals to help cover nutrient gaps and support your microbiome.*</li></ul>",
+            "cta_text": "Start Now",
+            "cta_link": ""
+          }
+        },
+        "swatch_card_WwhQeC": {
+          "type": "swatch_card",
+          "settings": {
+            "card_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
+            "main_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
+            "heading": "Your microbiome needs essential nutrients to function.",
+            "description": "<p>Your microbiome needs essential nutrients to function.<br/></p>",
+            "cta_text": "Start Now",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "swatch_card_DFtmcF",
+        "swatch_card_JeaNgD",
+        "swatch_card_WwhQeC"
+      ],
+      "name": "Content Swatch",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 20,
+        "section_padding_bottom": 20,
+        "heading_font_size": 48,
+        "heading_color": "#000000",
+        "description_font_size": 18,
+        "description_color": "#000000",
+        "cta_font_size": 16,
+        "cta_bg_color": "transparent",
+        "cta_text_color": "#000000",
+        "cta_border_color": "#4FFFFF",
+        "cta_hover_bg": "#4FFFFF",
+        "cta_hover_text": "#000000",
+        "cta_hover_border": "#4FFFFF",
+        "cta_border_radius": 24,
+        "card_bg_color": "rgba(255, 255, 255, 0.9)",
+        "card_border_radius": 14,
+        "card_image_size": 80,
+        "card_image_border_radius": 10,
+        "card_text_size": 12,
+        "card_text_color": "#333333"
+      }
+    },
+    "dot_line_section_djEKcK": {
+      "type": "dot-line-section",
+      "blocks": {
+        "media_block_F7rj6m": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 1",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "image_url": "",
+            "video_url": ""
+          }
+        },
+        "media_block_XjGPK4": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 2",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "image_url": "",
+            "video_url": ""
+          }
+        },
+        "media_block_xzbaLc": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 3",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "image_url": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_block_F7rj6m",
+        "media_block_XjGPK4",
+        "media_block_xzbaLc"
+      ],
+      "name": "Dot Line Section",
+      "settings": {
+        "dot_color": "#4FFFFF",
+        "description_title_color": "#1a1a1a",
+        "description_text_color": "#4a4a4a",
+        "dot_label_color": "#ffffff",
+        "glass_background_color": "#ffffff",
+        "glass_border_color": "#ffffff",
+        "glass_opacity": 8,
+        "glass_blur": 12,
+        "auto_advance": false,
+        "auto_advance_delay": 5000
+      }
+    },
+    "dynamic_tiles_eEkJ4G": {
+      "type": "dynamic-tiles",
+      "blocks": {
+        "slide_iaKFjN": {
+          "type": "slide",
+          "settings": {
+            "slide_title": "Slide 1",
+            "statistic_1": "500K",
+            "title_1": "Consumer reach",
+            "description_1": "Consumer across 20 countries",
+            "statistic_2": "60%",
+            "title_2": "Reduced Carbon",
+            "description_2": "Consumer across 20 countries",
+            "statistic_3": "90%",
+            "title_3": "Consumer reach",
+            "description_3": "Consumer across 20 countries"
+          }
+        },
+        "slide_TPWNM9": {
+          "type": "slide",
+          "settings": {
+            "slide_title": "Slide 1",
+            "statistic_1": "500K",
+            "title_1": "Consumer reach",
+            "description_1": "Consumer across 20 countries",
+            "statistic_2": "60%",
+            "title_2": "Reduced Carbon",
+            "description_2": "Consumer across 20 countries",
+            "statistic_3": "90%",
+            "title_3": "Consumer reach",
+            "description_3": "Consumer across 20 countries"
+          }
+        }
+      },
+      "block_order": [
+        "slide_iaKFjN",
+        "slide_TPWNM9"
+      ],
+      "name": "Dynamic Tiles",
+      "settings": {
+        "section_height": 80,
+        "strip_border_radius": 24,
+        "accent_color": "#4FFFFF"
+      }
+    },
+    "ingredients_banner_QzEXBT": {
+      "type": "ingredients-banner",
+      "name": "Ingredients Banner",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "section_padding": 80,
+        "headline": "High-quality <span class=\"highlight\">ingredients</span><br>optimised for impact",
+        "headline_font_size": 42,
+        "headline_color": "#000000",
+        "highlight_color": "#4FFFFF",
+        "html_content": "<p>We don't think you should settle for questionable ingredients when it comes to your daily supplement. That's why each ingredient in AG1 is sourced for optimal absorption and nutrient density, and combined for maximum potency.</p>",
+        "content_font_size": 16,
+        "content_color": "#666666",
+        "image_border_radius": 20,
+        "border_width": 2,
+        "border_color": "#000000"
+      }
+    },
+    "lifestyle_interactive_showcase_EYNczK": {
+      "type": "lifestyle-interactive-showcase",
+      "blocks": {
+        "content_block_bbapV3": {
+          "type": "content_block",
+          "settings": {
+            "button_text": "VALUES",
+            "heading": "OUR VALUES",
+            "description": "It was important to us to build a value driven business. At rhode, we believe in: Simplicity. Affordability. Authenticity. Quality. Transparency.",
+            "point_1": "Premium Quality Ingredients",
+            "point_2": "Sustainable Practices",
+            "point_3": "Transparent Process"
+          }
+        },
+        "content_block_d6rTcQ": {
+          "type": "content_block",
+          "settings": {
+            "button_text": "EFFICACIOUS",
+            "heading": "EFFICACIOUS FORMULAS",
+            "description": "Our formulas are carefully crafted with clinically proven ingredients that deliver visible results for all skin types.",
+            "point_1": "Clinically Tested Results",
+            "point_2": "Dermatologist Approved",
+            "point_3": "All Skin Types"
+          }
+        },
+        "content_block_8dXrC8": {
+          "type": "content_block",
+          "settings": {
+            "button_text": "NATURAL",
+            "heading": "NATURAL INGREDIENTS",
+            "description": "We source the finest natural ingredients from around the world to create products that are both effective and gentle.",
+            "point_1": "Ethically Sourced",
+            "point_2": "Cruelty Free",
+            "point_3": "Clean Beauty"
+          }
+        },
+        "content_block_dQe9Bt": {
+          "type": "content_block",
+          "settings": {
+            "button_text": "INNOVATIVE",
+            "heading": "INNOVATIVE TECHNOLOGY",
+            "description": "Combining cutting-edge technology with time-tested ingredients to create the next generation of skincare.",
+            "point_1": "Advanced Delivery Systems",
+            "point_2": "Breakthrough Formulations",
+            "point_3": "Future-Forward Science"
+          }
+        },
+        "content_block_c463j7": {
+          "type": "content_block",
+          "settings": {
+            "button_text": "DAILY",
+            "heading": "DAILY ESSENTIALS",
+            "description": "Simple, effective products designed to fit seamlessly into your daily routine for consistent, long-term results.",
+            "point_1": "Morning & Evening Use",
+            "point_2": "Easy Application",
+            "point_3": "Long-Term Benefits"
+          }
+        },
+        "content_block_xpCKXJ": {
+          "type": "content_block",
+          "settings": {
+            "button_text": "NUTRITIONAL",
+            "heading": "NUTRITIONAL SUPPORT",
+            "description": "Nourish your skin from within with our comprehensive approach to beauty and wellness.",
+            "point_1": "Vitamin Enriched",
+            "point_2": "Antioxidant Protection",
+            "point_3": "Skin Barrier Support"
+          }
+        }
+      },
+      "block_order": [
+        "content_block_bbapV3",
+        "content_block_d6rTcQ",
+        "content_block_8dXrC8",
+        "content_block_dQe9Bt",
+        "content_block_c463j7",
+        "content_block_xpCKXJ"
+      ],
+      "name": "Lifestyle Interactive Showcase",
+      "settings": {
+        "default_heading": "OUR VALUES",
+        "default_description": "It was important to us to build a value driven business. At rhode, we believe in: Simplicity. Affordability. Authenticity. Quality. Transparency.",
+        "default_point_1": "Premium Quality Ingredients",
+        "default_point_2": "Sustainable Practices",
+        "default_point_3": "Transparent Process",
+        "heading_size": 28,
+        "description_size": 16,
+        "points_size": 14,
+        "button_size": 14
+      }
+    },
+    "lifestyle_section_ydGV9x": {
+      "type": "lifestyle-section",
+      "blocks": {
+        "text_block_D8N4jz": {
+          "type": "text_block",
+          "settings": {
+            "position_x": 20,
+            "position_y": 30,
+            "title": "WHY OUR SKINCARE IS DIFFERENT",
+            "item1_heading": "MINIMAL INGREDIENTS",
+            "item1_description": "Formulated with only functional actives. No unnecessary additives.",
+            "item2_heading": "MAXIMUM EFFICACY",
+            "item2_description": "Efficacy proven through controlled clinical studies. Results before aesthetics.",
+            "item3_heading": "NO MARKETING NOISE",
+            "item3_description": "No fragrance. No fillers. No hype. Science over sensation."
+          }
+        },
+        "image_block_4TaRDM": {
+          "type": "image_block",
+          "settings": {
+            "position_x": 80,
+            "position_y": 70,
+            "caption": "RETINAL 0.1%",
+            "description": "Accelerates cell turnover + boosts collagen FINE-LINE REDUCTION, IMPROVED ELASTICITY"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_D8N4jz",
+        "image_block_4TaRDM"
+      ],
+      "name": "Lifestyle Section",
+      "settings": {
+        "section_bg_color": "#f5f5f5",
+        "section_height": 100,
+        "highlight_color": "#4FFFFF"
+      }
+    },
+    "product_dual_showcase_rtn_QTr89p": {
+      "type": "product-dual-showcase-rtn",
+      "blocks": {
+        "product_slide_kaGcTE": {
+          "type": "product_slide",
+          "settings": {
+            "card_heading": "Product Name",
+            "card_description": "Add a little bit of body text here.",
+            "card_sub": "",
+            "product_url": ""
+          }
+        },
+        "product_slide_WQgpDr": {
+          "type": "product_slide",
+          "settings": {
+            "card_heading": "Product Name",
+            "card_description": "Add a little bit of body text here.",
+            "card_sub": "",
+            "product_url": ""
+          }
+        },
+        "product_slide_nLKtfF": {
+          "type": "product_slide",
+          "settings": {
+            "card_heading": "Product Name",
+            "card_description": "Add a little bit of body text here.",
+            "card_sub": "",
+            "product_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_slide_kaGcTE",
+        "product_slide_WQgpDr",
+        "product_slide_nLKtfF"
+      ],
+      "name": "Product Dual Showcase RTN",
+      "settings": {
+        "max_width": 1400,
+        "section_height": 580,
+        "section_padding": 40,
+        "gap": 24,
+        "card_top": 28,
+        "card_left": 28,
+        "card_right": 28,
+        "card_bottom": 28,
+        "card_img_size": 180,
+        "card_heading_size": 22,
+        "card_desc_size": 13,
+        "section_bg": "#ffffff",
+        "right_bg": "#ffffff",
+        "right_heading_color": "#111111",
+        "accent_color": "#00e5e5",
+        "right_heading_size": 32,
+        "arrow_img_size": 100,
+        "accent_color_arrow": "#00e5e5"
+      }
+    },
+    "routine_fifty_gJyxXX": {
+      "type": "routine-fifty",
+      "blocks": {
+        "slide_YakRMc": {
+          "type": "slide",
+          "settings": {
+            "heading": "Age Gracefully, Glow Shamelessly Where Wrinkles Go to Retire"
+          }
+        },
+        "slide_CAXByQ": {
+          "type": "slide",
+          "settings": {
+            "heading": "Science-Backed Skincare for Every Skin Type"
+          }
+        },
+        "slide_cTjRBY": {
+          "type": "slide",
+          "settings": {
+            "heading": "Nourish Deep, Glow Bright, Feel Confident"
+          }
+        }
+      },
+      "block_order": [
+        "slide_YakRMc",
+        "slide_CAXByQ",
+        "slide_cTjRBY"
+      ],
+      "name": "Routine Fifty",
+      "settings": {
+        "section_height": 560,
+        "subheading": "Add a subheading",
+        "body": "Effective anti-aging headlines for a skincare brand should focus on rejuvenation, firming, and enhancing natural beauty.",
+        "cta_label": "Start your regime",
+        "cta_url": "",
+        "heading_size": 40,
+        "subheading_size": 20,
+        "body_size": 15,
+        "left_bg_color": "#ffffff",
+        "heading_color": "#000000",
+        "body_color": "#444444",
+        "btn_bg_color": "#4fffff",
+        "btn_text_color": "#000000",
+        "btn_radius": 48,
+        "arrow_color": "#000000"
+      }
+    },
+    "routine_hero_banner_bQQnBH": {
+      "type": "routine-hero-banner",
+      "name": "Routine Hero Banner",
+      "settings": {
+        "content_max_width": 1200,
+        "image_max_width": 1200,
+        "headline": "Build Your Ageless Routine",
+        "headline_font_size": 64,
+        "headline_color": "#000000",
+        "subheading_1_title": "Your Personalized Path to Youthful Skin",
+        "subheading_1_text": "",
+        "subheading_2_title": "Where Science Meets Ageless Beauty",
+        "subheading_2_text": "",
+        "subheading_3_title": "Design Your Age-Defying Ritual",
+        "subheading_3_text": "",
+        "subheading_font_size": 18,
+        "subheading_text_size": 14,
+        "subheading_color": "#333333",
+        "subheading_text_color": "#666666",
+        "show_product_card": true,
+        "product_title": "Photon LED Mask",
+        "product_description": "Advanced formulations work deep beneath the surface",
+        "product_title_color": "#333333",
+        "product_description_color": "#666666"
+      }
+    },
+    "three_layout_WXWqq3": {
+      "type": "three-layout",
+      "name": "Three Layout",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 20,
+        "section_padding_bottom": 20,
+        "row_gap": 10,
+        "media_type": "image",
+        "video_url": "",
+        "media_alt": "Media content",
+        "row1_height": 400,
+        "row1_border_radius": 20,
+        "main_text": "CELLULAR HARMONY",
+        "text_font_size": 104,
+        "text_color": "#000000",
+        "row2_height": 140,
+        "row2_border_radius": 20,
+        "row2_background_color": "#f8f9fa",
+        "row2_overlay_opacity": 30,
+        "row2_border_enabled": false,
+        "row2_border_color": "#000000",
+        "row2_border_size": 2,
+        "row3_background_color": "#4FFFFF",
+        "row3_height": 80,
+        "row3_border_radius": 40,
+        "icon_size": 40,
+        "icon_filter": "brightness(0)"
+      }
+    },
+    "three_videos_display_C6jMDf": {
+      "type": "three-videos-display",
+      "name": "Three Videos Display",
+      "settings": {
+        "section_height": 560,
+        "video_1": "",
+        "title_1": "Overnight Repair",
+        "subtitle_1": "Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit.",
+        "video_2": "",
+        "title_2": "Daily Defense",
+        "subtitle_2": "Protect and nourish your skin every day with our advanced formula.",
+        "video_3": "",
+        "title_3": "Deep Hydration",
+        "subtitle_3": "Replenish moisture at a cellular level for lasting radiance."
+      }
+    },
+    "two_preview_XmwMCT": {
+      "type": "two-preview",
+      "blocks": {
+        "preview_card_Xc8Pr3": {
+          "type": "preview_card",
+          "settings": {
+            "closed_title": "Personal",
+            "open_title": "Personal",
+            "open_description": "The all-in-one plan for banking, saving, investing, and payments, from one app — local or global — move freely between countries and currencies.",
+            "icon_1_text": "23",
+            "icon_2_text": "Banking",
+            "icon_3_text": "Team",
+            "icon_4_text": "Savings",
+            "icon_5_text": "Premium",
+            "icon_6_text": "Secure"
+          }
+        },
+        "preview_card_kwMxXX": {
+          "type": "preview_card",
+          "settings": {
+            "closed_title": "Business",
+            "open_title": "Business",
+            "open_description": "Comprehensive business banking solutions with advanced features for growing companies and enterprises.",
+            "icon_1_text": "Analytics",
+            "icon_2_text": "Business",
+            "icon_3_text": "Transfer",
+            "icon_4_text": "Growth",
+            "icon_5_text": "Protected",
+            "icon_6_text": "Fast"
+          }
+        },
+        "preview_card_rXEMQY": {
+          "type": "preview_card",
+          "settings": {
+            "closed_title": "Freelance",
+            "open_title": "Freelance",
+            "open_description": "Perfect banking solution for freelancers and independent contractors with flexible payment options.",
+            "icon_1_text": "Digital",
+            "icon_2_text": "Focused",
+            "icon_3_text": "Global",
+            "icon_4_text": "24/7",
+            "icon_5_text": "Mobile",
+            "icon_6_text": "Simple"
+          }
+        }
+      },
+      "block_order": [
+        "preview_card_Xc8Pr3",
+        "preview_card_kwMxXX",
+        "preview_card_rXEMQY"
+      ],
+      "name": "Two Preview Section",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_padding_top": 20,
+        "section_padding_bottom": 20,
+        "section_title": "Discover the freedom of banking on your terms",
+        "section_description": "Get business banking, card, bill pay, travel, and reimbursements — all in one scalable solution",
+        "header_alignment": "left",
+        "title_font_size": 48,
+        "title_color": "#000000",
+        "description_font_size": 18,
+        "description_color": "#333333",
+        "use_email_form": false,
+        "cta_text": "Get Demo Account",
+        "cta_link": "",
+        "email_placeholder": "Enter your email",
+        "email_submit_text": "Subscribe",
+        "email_border_color": "#e0e0e0",
+        "cta_bg_color": "#4fffff",
+        "cta_text_color": "#ffffff",
+        "cta_font_size": 16,
+        "cta_border_radius": 25,
+        "closed_card_bg": "#e9ecef",
+        "closed_title_color": "#ffffff",
+        "icon_box_bg_color": "#ffffff",
+        "icon_bg_color": "#f0f0f0",
+        "icon_color": "#000000",
+        "icon_label_color": "#fff",
+        "auto_advance": false,
+        "auto_advance_delay": 5000
+      }
+    },
+    "vip_interactive_showcase_zaiRFG": {
+      "type": "vip-interactive-showcase",
+      "blocks": {
+        "icon_block_UMKbjF": {
+          "type": "icon_block",
+          "settings": {
+            "product_name": "PEPTIDE GLAZING SERUM",
+            "product_subtitle": "The Dewy Hydration Layer"
+          }
+        },
+        "icon_block_GViyf6": {
+          "type": "icon_block",
+          "settings": {
+            "product_name": "PEPTIDE GLAZING SERUM",
+            "product_subtitle": "The Dewy Hydration Layer"
+          }
+        },
+        "icon_block_RBCmHQ": {
+          "type": "icon_block",
+          "settings": {
+            "product_name": "PEPTIDE GLAZING SERUM",
+            "product_subtitle": "The Dewy Hydration Layer"
+          }
+        },
+        "icon_block_pEHcPp": {
+          "type": "icon_block",
+          "settings": {
+            "product_name": "PEPTIDE GLAZING SERUM",
+            "product_subtitle": "The Dewy Hydration Layer"
+          }
+        },
+        "icon_block_etUNXj": {
+          "type": "icon_block",
+          "settings": {
+            "product_name": "PEPTIDE GLAZING SERUM",
+            "product_subtitle": "The Dewy Hydration Layer"
+          }
+        }
+      },
+      "block_order": [
+        "icon_block_UMKbjF",
+        "icon_block_GViyf6",
+        "icon_block_RBCmHQ",
+        "icon_block_pEHcPp",
+        "icon_block_etUNXj"
+      ],
+      "name": "VIP Interactive Showcase",
+      "settings": {
+        "auto_timer_enabled": true,
+        "auto_timer_interval": 5,
+        "pause_on_hover": true,
+        "restart_delay": 10,
+        "product_name_size": 24,
+        "product_name_color": "#333333",
+        "product_subtitle_size": 16,
+        "product_subtitle_color": "#666666",
+        "main_heading_size": 32,
+        "main_heading_color": "#333333",
+        "main_subheading_size": 18,
+        "main_subheading_color": "#666666",
+        "main_heading_1": "A NEW PHILOSOPHY ON SKINCARE",
+        "main_subheading_1": "Rhode is a line of curated skincare essentials. Formulated for a variety of skin types and needs with high performance ingredients, it is a daily routine that nourishes your skin barrier over time.",
+        "main_heading_2": "PREMIUM SKINCARE COLLECTION",
+        "main_subheading_2": "Experience the luxury of premium skincare with our carefully curated collection designed for modern skin needs.",
+        "main_heading_3": "ADVANCED BEAUTY SOLUTIONS",
+        "main_subheading_3": "Discover advanced beauty solutions that transform your daily routine into a luxurious self-care experience.",
+        "main_heading_4": "INNOVATIVE SKINCARE TECHNOLOGY",
+        "main_subheading_4": "Harness the power of innovative skincare technology for visible results and long-lasting skin health.",
+        "main_heading_5": "LUXURY BEAUTY ESSENTIALS",
+        "main_subheading_5": "Indulge in luxury beauty essentials that deliver exceptional results while pampering your skin."
+      }
+    },
+    "video_scroll_interactive_aPixij": {
+      "type": "video-scroll-interactive",
+      "blocks": {
+        "video_text_item_MNHUDN": {
+          "type": "video_text_item",
+          "settings": {
+            "video_file": "",
+            "text_title": "Designed to give your body the nutrients it needs to feel well and live well.",
+            "text_description": ""
+          }
+        },
+        "video_text_item_jik8fd": {
+          "type": "video_text_item",
+          "settings": {
+            "video_file": "",
+            "text_title": "Developed with health experts using the latest research.",
+            "text_description": ""
+          }
+        },
+        "video_text_item_MKUcTn": {
+          "type": "video_text_item",
+          "settings": {
+            "video_file": "",
+            "text_title": "Driven by a passion to make quality nutrition accessible to all.",
+            "text_description": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_text_item_MNHUDN",
+        "video_text_item_jik8fd",
+        "video_text_item_MKUcTn"
+      ],
+      "name": "Video Scroll Interactive",
+      "settings": {
+        "content_bg_color": "#ffffff",
+        "video_area_bg": "#ffffff",
+        "video_area_padding": 40,
+        "media_border_radius": 20,
+        "media_height": 400,
+        "progress_bar_color": "#00bcd4",
+        "text_padding": 20,
+        "text_margin_bottom": 10,
+        "text_border_radius": 10,
+        "text_border_width": 2,
+        "active_bg_color": "#d3ffff",
+        "active_border_color": "#00bcd4",
+        "hover_bg_color": "#d3ffff",
+        "hover_border_color": "#00bcd4",
+        "title_color": "#000000",
+        "title_size": 24,
+        "title_weight": "600",
+        "title_margin_bottom": 15,
+        "description_color": "#666666",
+        "description_size": 16,
+        "description_line_height": 1.5
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "banner_section_ERnei9",
+    "biotechnology_intro_eD66LY",
+    "content_swatch_eLgiFa",
+    "dot_line_section_djEKcK",
+    "dynamic_tiles_eEkJ4G",
+    "ingredients_banner_QzEXBT",
+    "lifestyle_interactive_showcase_EYNczK",
+    "lifestyle_section_ydGV9x",
+    "product_dual_showcase_rtn_QTr89p",
+    "routine_fifty_gJyxXX",
+    "routine_hero_banner_bQQnBH",
+    "three_layout_WXWqq3",
+    "three_videos_display_C6jMDf",
+    "two_preview_XmwMCT",
+    "vip_interactive_showcase_zaiRFG",
+    "video_scroll_interactive_aPixij"
   ]
 }

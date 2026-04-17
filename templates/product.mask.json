@@ -155,11 +155,68 @@
     "tab_section_hyhKPN": {
       "type": "tab-section",
       "blocks": {
+        "ingredient_block_tbVrAk": {
+          "type": "ingredient-block",
+          "settings": {
+            "tab_name": "Ingredients",
+            "layout": "ingredients-image",
+            "main_image": "shopify://shop_images/Le_Fluide_14_Substantific.jpg",
+            "main_image_alt": "Product ingredients",
+            "ingredients_title": "KEY INGREDIENTS",
+            "ingredient_image_size": 60,
+            "font_family": "Montserrat, sans-serif",
+            "section_title_font_size": 14,
+            "section_title_color": "#999999",
+            "ingredient_title_font_size": 16,
+            "ingredient_title_color": "#333333",
+            "ingredient_desc_font_size": 13,
+            "ingredient_desc_color": "#888888",
+            "ingredient_image_1": "shopify://shop_images/Gemini_Generated_Image_gtq2m5gtq2m5gtq2-removebg-preview_387781a3-c41e-4dc6-9c72-aac98229c018.png",
+            "ingredient_title_1": "Glycolic Acid",
+            "ingredient_description_1": "An AHA from sugarcane, it exfoliates, brightens, reduces wrinkles, fades hyperpigmentation, and prevents blackheads. It boosts cell renewal but increases sun sensitivity, so sunscreen is essential.",
+            "ingredient_image_2": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview_ae8b5eba-a677-4e85-85fd-e4b7c3485165.png",
+            "ingredient_title_2": "",
+            "ingredient_description_2": "",
+            "ingredient_image_3": "shopify://shop_images/a317e9df7934b9802bcd6c2e74828e26.jpg",
+            "ingredient_title_3": "",
+            "ingredient_description_3": "",
+            "ingredient_title_4": "",
+            "ingredient_description_4": "",
+            "ingredient_title_5": "",
+            "ingredient_description_5": "",
+            "ingredient_title_6": "",
+            "ingredient_description_6": "",
+            "ingredient_title_7": "",
+            "ingredient_description_7": "",
+            "ingredient_title_8": "",
+            "ingredient_description_8": "",
+            "ingredient_title_9": "",
+            "ingredient_description_9": "",
+            "ingredient_title_10": "",
+            "ingredient_description_10": ""
+          }
+        },
+        "image_text_block_bXf7zA": {
+          "type": "image-text-block",
+          "settings": {
+            "tab_name": "Usage",
+            "image": "shopify://shop_images/7_Natural_ingredients_for_Korean_glass_skin.jpg",
+            "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout.",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
+          }
+        },
         "image_text_block_ncw6tF": {
           "type": "image-text-block",
           "settings": {
             "tab_name": "About",
-            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "image": "shopify://shop_images/Quel_masque_LED_choisir___Suivez_notre_guide_430x_aa9fbe61-4adf-438c-9117-0b3c4ecefd38.webp",
+            "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout.",
             "layout": "image-text",
             "content_font_family": "inherit",
             "content_font_weight": 400,
@@ -171,6 +228,8 @@
         }
       },
       "block_order": [
+        "ingredient_block_tbVrAk",
+        "image_text_block_bXf7zA",
         "image_text_block_ncw6tF"
       ],
       "name": "Tab Section",
@@ -211,11 +270,219 @@
         "arrow_stroke_mobile": 2,
         "arrow_style": "stroke"
       }
+    },
+    "three_column_media_TwRKMU": {
+      "type": "three-column-media",
+      "name": "Three Column Media",
+      "settings": {
+        "section_background": "#ffffff",
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "column_gap": 40,
+        "media_border_radius": 12,
+        "video_url": "",
+        "step_text": "",
+        "step_number": "",
+        "main_heading": "",
+        "main_description": "",
+        "cta_text": "",
+        "cta_link": "",
+        "text_alignment": "left",
+        "step_number_size": 80,
+        "step_highlight_size": 120,
+        "step_text_size": 24,
+        "step_text_color": "#000000",
+        "step_number_color": "#000000",
+        "step_highlight_color": "#4FFFFF",
+        "heading_font_size": 32,
+        "heading_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "cta_font_size": 14,
+        "cta_bg_color": "transparent",
+        "cta_text_color": "#000000",
+        "cta_border_color": "#4FFFFF",
+        "cta_hover_bg": "#4FFFFF",
+        "cta_hover_text": "#000000",
+        "cta_hover_border": "#4FFFFF",
+        "cta_border_radius": 24,
+        "image_width": 100,
+        "image_height": 100
+      }
+    },
+    "professional_panel_PBgJJd": {
+      "type": "professional-panel",
+      "blocks": {
+        "professional_rPijpX": {
+          "type": "professional",
+          "settings": {
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "professional_rPijpX"
+      ],
+      "name": "Professional Panel",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "card_bg_color": "#000000",
+        "card_border_radius": 24,
+        "name_font_size": 44,
+        "name_color": "#ffffff",
+        "designation_font_size": 18,
+        "designation_color": "#4FFFFF",
+        "quote_font_size": 18,
+        "quote_color": "#ffffff",
+        "quote_mark_color": "#4FFFFF",
+        "cta_font_size": 14,
+        "cta_text_color": "#ffffff",
+        "cta_border_color": "#4FFFFF",
+        "cta_border_radius": 24,
+        "arrow_bg_color": "#000000",
+        "arrow_border_color": "#4FFFFF",
+        "arrow_color": "#4FFFFF"
+      }
+    },
+    "result_timeline_GKg8KF": {
+      "type": "result-timeline",
+      "blocks": {
+        "week_t4Kmmj": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 1",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function"
+          }
+        },
+        "week_43qdqH": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 2",
+            "week_title": "Enhanced Nutrient Absorption*",
+            "week_description": "Improves digestive health|Supports microbiome balance|Increases energy levels"
+          }
+        },
+        "week_rJcJQ8": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 3",
+            "week_title": "Optimal Wellness*",
+            "week_description": "Complete system optimization|Long-term health benefits|Sustained energy and vitality"
+          }
+        }
+      },
+      "block_order": [
+        "week_t4Kmmj",
+        "week_43qdqH",
+        "week_rJcJQ8"
+      ],
+      "name": "Result-Timeline",
+      "settings": {
+        "background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "font_family": "Montserrat",
+        "title": "Benefits that build over time.",
+        "title_color": "#000000",
+        "title_font_size": 42,
+        "title_font_weight": "700",
+        "subtitle": "Designed for daily use, DM-02™ replenishes your body and microbiome with essential nutrients to build systemic.",
+        "subtitle_color": "#666666",
+        "subtitle_font_size": 16,
+        "subtitle_font_weight": "400",
+        "week_badge_font_size": 14,
+        "week_badge_font_weight": "500",
+        "week_title_color": "#000000",
+        "week_title_font_size": 24,
+        "week_title_font_weight": "600",
+        "list_color": "#333333",
+        "list_font_size": 15,
+        "list_font_weight": "400"
+      }
+    },
+    "comparison_table_tjbgne": {
+      "type": "comparison-table",
+      "blocks": {
+        "ingredient_row_We463P": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_PnQYBa": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_WhQTGT": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_row_We463P",
+        "ingredient_row_PnQYBa",
+        "ingredient_row_WhQTGT"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n4",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n4",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
+      }
     }
   },
   "order": [
     "main",
     "product_buy_box_TzCRnN",
-    "tab_section_hyhKPN"
+    "tab_section_hyhKPN",
+    "three_column_media_TwRKMU",
+    "professional_panel_PBgJJd",
+    "result_timeline_GKg8KF",
+    "comparison_table_tjbgne"
   ]
 }

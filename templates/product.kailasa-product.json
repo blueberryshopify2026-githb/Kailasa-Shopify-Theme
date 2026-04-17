@@ -354,7 +354,7 @@
         "cta_hover_border": "#4fffff",
         "cta_border_radius": 24,
         "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
-        "image_width": 55,
+        "image_width": 60,
         "image_height": 60
       }
     },
@@ -402,12 +402,27 @@
             "mask_type": "check",
             "mask_text": ""
           }
+        },
+        "ingredient_row_AAaW8i": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Retinol",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
         }
       },
       "block_order": [
         "ingredient_row_cxwerx",
         "ingredient_row_9zR8Ke",
-        "ingredient_row_9HgYtq"
+        "ingredient_row_9HgYtq",
+        "ingredient_row_AAaW8i"
       ],
       "name": "Comparison Table",
       "settings": {

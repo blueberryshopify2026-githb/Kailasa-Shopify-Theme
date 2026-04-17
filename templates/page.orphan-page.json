@@ -766,48 +766,58 @@
     "vip_interactive_showcase_zaiRFG": {
       "type": "vip-interactive-showcase",
       "blocks": {
+        "icon_block_xHCWNa": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify://shop_images/ceramide.png",
+            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
+            "product_name": "PEPTIDE GLAZING SERUM",
+            "product_subtitle": "The Dewy Hydration Layer"
+          }
+        },
+        "icon_block_P6Ne3K": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify://shop_images/7951849171678789890-128.png",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
+            "product_name": "PEPTIDE GLAZING SERUM",
+            "product_subtitle": "The Dewy Hydration Layer"
+          }
+        },
+        "icon_block_WEPDC9": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify://shop_images/cream_1.png",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
+            "product_name": "PEPTIDE GLAZING SERUM",
+            "product_subtitle": "The Dewy Hydration Layer"
+          }
+        },
         "icon_block_UMKbjF": {
           "type": "icon_block",
           "settings": {
+            "icon_image": "shopify://shop_images/skincare.png",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
             "product_name": "PEPTIDE GLAZING SERUM",
             "product_subtitle": "The Dewy Hydration Layer"
           }
         },
-        "icon_block_GViyf6": {
+        "icon_block_UJyCYc": {
           "type": "icon_block",
           "settings": {
-            "product_name": "PEPTIDE GLAZING SERUM",
-            "product_subtitle": "The Dewy Hydration Layer"
-          }
-        },
-        "icon_block_RBCmHQ": {
-          "type": "icon_block",
-          "settings": {
-            "product_name": "PEPTIDE GLAZING SERUM",
-            "product_subtitle": "The Dewy Hydration Layer"
-          }
-        },
-        "icon_block_pEHcPp": {
-          "type": "icon_block",
-          "settings": {
-            "product_name": "PEPTIDE GLAZING SERUM",
-            "product_subtitle": "The Dewy Hydration Layer"
-          }
-        },
-        "icon_block_etUNXj": {
-          "type": "icon_block",
-          "settings": {
+            "icon_image": "shopify://shop_images/skincare-routine.png",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
             "product_name": "PEPTIDE GLAZING SERUM",
             "product_subtitle": "The Dewy Hydration Layer"
           }
         }
       },
       "block_order": [
+        "icon_block_xHCWNa",
+        "icon_block_P6Ne3K",
+        "icon_block_WEPDC9",
         "icon_block_UMKbjF",
-        "icon_block_GViyf6",
-        "icon_block_RBCmHQ",
-        "icon_block_pEHcPp",
-        "icon_block_etUNXj"
+        "icon_block_UJyCYc"
       ],
       "name": "VIP Interactive Showcase",
       "settings": {

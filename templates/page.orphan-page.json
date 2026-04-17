@@ -407,6 +407,7 @@
       ],
       "name": "Lifestyle Interactive Showcase",
       "settings": {
+        "background_image": "shopify://shop_images/pexels-arina-krasnikova-6663393_a8e5de8d-ebc7-4140-9bc5-f37200146d89.jpg",
         "default_heading": "OUR VALUES",
         "default_description": "It was important to us to build a value driven business. At rhode, we believe in: Simplicity. Affordability. Authenticity. Quality. Transparency.",
         "default_point_1": "Premium Quality Ingredients",

@@ -645,12 +645,15 @@
       "settings": {
         "section_height": 560,
         "video_1": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
+        "thumb_1": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
         "title_1": "Overnight Repair",
         "subtitle_1": "Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit.",
         "video_2": "https://cdn.shopify.com/videos/c/o/v/16d697ef2b0c494eaf5b840875813c02.mp4",
+        "thumb_2": "shopify://shop_images/download_54.jpg",
         "title_2": "Daily Defense",
         "subtitle_2": "Protect and nourish your skin every day with our advanced formula.",
         "video_3": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
+        "thumb_3": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
         "title_3": "Deep Hydration",
         "subtitle_3": "Replenish moisture at a cellular level for lasting radiance.",
         "tile_thumb_1": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
@@ -664,21 +667,31 @@
         "preview_card_Xc8Pr3": {
           "type": "preview_card",
           "settings": {
+            "closed_bg_image": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview_ae8b5eba-a677-4e85-85fd-e4b7c3485165.png",
             "closed_title": "Personal",
+            "open_bg_image": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
             "open_title": "Personal",
             "open_description": "The all-in-one plan for banking, saving, investing, and payments, from one app — local or global — move freely between countries and currencies.",
+            "icon_1_image": "shopify://shop_images/care.png",
             "icon_1_text": "23",
+            "icon_2_image": "shopify://shop_images/ceramide.png",
             "icon_2_text": "Banking",
+            "icon_3_image": "shopify://shop_images/7951849171678789890-128.png",
             "icon_3_text": "Team",
+            "icon_4_image": "shopify://shop_images/ceramide.png",
             "icon_4_text": "Savings",
+            "icon_5_image": "shopify://shop_images/skincare-routine.png",
             "icon_5_text": "Premium",
+            "icon_6_image": "shopify://shop_images/skincare-routine.png",
             "icon_6_text": "Secure"
           }
         },
         "preview_card_kwMxXX": {
           "type": "preview_card",
           "settings": {
+            "closed_bg_image": "shopify://shop_images/Gemini_Generated_Image_gtq2m5gtq2m5gtq2.png",
             "closed_title": "Business",
+            "open_bg_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
             "open_title": "Business",
             "open_description": "Comprehensive business banking solutions with advanced features for growing companies and enterprises.",
             "icon_1_text": "Analytics",
@@ -692,14 +705,22 @@
         "preview_card_rXEMQY": {
           "type": "preview_card",
           "settings": {
+            "closed_bg_image": "shopify://shop_images/7_Natural_ingredients_for_Korean_glass_skin.jpg",
             "closed_title": "Freelance",
+            "open_bg_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
             "open_title": "Freelance",
             "open_description": "Perfect banking solution for freelancers and independent contractors with flexible payment options.",
+            "icon_1_image": "shopify://shop_images/skincare-routine.png",
             "icon_1_text": "Digital",
+            "icon_2_image": "shopify://shop_images/care.png",
             "icon_2_text": "Focused",
+            "icon_3_image": "shopify://shop_images/ceramide.png",
             "icon_3_text": "Global",
+            "icon_4_image": "shopify://shop_images/7951849171678789890-128.png",
             "icon_4_text": "24/7",
+            "icon_5_image": "shopify://shop_images/skincare-routine.png",
             "icon_5_text": "Mobile",
+            "icon_6_image": "shopify://shop_images/7951849171678789890-128.png",
             "icon_6_text": "Simple"
           }
         }

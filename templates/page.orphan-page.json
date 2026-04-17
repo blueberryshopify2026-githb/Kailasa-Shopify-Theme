@@ -644,15 +644,18 @@
       "name": "Three Videos Display",
       "settings": {
         "section_height": 560,
-        "video_1": "",
+        "video_1": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
         "title_1": "Overnight Repair",
         "subtitle_1": "Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit.",
-        "video_2": "",
+        "video_2": "https://cdn.shopify.com/videos/c/o/v/16d697ef2b0c494eaf5b840875813c02.mp4",
         "title_2": "Daily Defense",
         "subtitle_2": "Protect and nourish your skin every day with our advanced formula.",
-        "video_3": "",
+        "video_3": "https://cdn.shopify.com/videos/c/o/v/4034315cb55e49b3954cbbcd2cf3a85b.mp4",
         "title_3": "Deep Hydration",
-        "subtitle_3": "Replenish moisture at a cellular level for lasting radiance."
+        "subtitle_3": "Replenish moisture at a cellular level for lasting radiance.",
+        "tile_thumb_1": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
+        "tile_thumb_2": "shopify://shop_images/download_54.jpg",
+        "tile_thumb_3": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg"
       }
     },
     "two_preview_XmwMCT": {

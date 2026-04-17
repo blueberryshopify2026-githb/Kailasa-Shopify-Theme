@@ -155,6 +155,44 @@
     "tab_section_b69zcK": {
       "type": "tab-section",
       "blocks": {
+        "ingredient_block_kQ6zjH": {
+          "type": "ingredient-block",
+          "settings": {
+            "tab_name": "Ingredients",
+            "layout": "ingredients-image",
+            "main_image": "shopify://shop_images/See_All_The_Cool_Skincare_Products.jpg",
+            "main_image_alt": "Product ingredients",
+            "ingredients_title": "KEY INGREDIENTS",
+            "ingredient_image_size": 60,
+            "font_family": "Montserrat, sans-serif",
+            "section_title_font_size": 14,
+            "section_title_color": "#999999",
+            "ingredient_title_font_size": 16,
+            "ingredient_title_color": "#333333",
+            "ingredient_desc_font_size": 13,
+            "ingredient_desc_color": "#888888",
+            "ingredient_title_1": "Glycolic Acid",
+            "ingredient_description_1": "An AHA from sugarcane, it exfoliates, brightens, reduces wrinkles, fades hyperpigmentation, and prevents blackheads. It boosts cell renewal but increases sun sensitivity, so sunscreen is essential.",
+            "ingredient_title_2": "",
+            "ingredient_description_2": "",
+            "ingredient_title_3": "",
+            "ingredient_description_3": "",
+            "ingredient_title_4": "",
+            "ingredient_description_4": "",
+            "ingredient_title_5": "",
+            "ingredient_description_5": "",
+            "ingredient_title_6": "",
+            "ingredient_description_6": "",
+            "ingredient_title_7": "",
+            "ingredient_description_7": "",
+            "ingredient_title_8": "",
+            "ingredient_description_8": "",
+            "ingredient_title_9": "",
+            "ingredient_description_9": "",
+            "ingredient_title_10": "",
+            "ingredient_description_10": ""
+          }
+        },
         "image_text_block_qyUVnn": {
           "type": "image-text-block",
           "settings": {
@@ -171,6 +209,7 @@
         }
       },
       "block_order": [
+        "ingredient_block_kQ6zjH",
         "image_text_block_qyUVnn"
       ],
       "name": "Tab Section",

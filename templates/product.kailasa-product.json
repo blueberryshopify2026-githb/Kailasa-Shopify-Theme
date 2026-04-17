@@ -114,6 +114,14 @@
             "media_alt": "Product image",
             "media_video_url": ""
           }
+        },
+        "media_cqHgcM": {
+          "type": "media",
+          "settings": {
+            "media_type": "video",
+            "media_alt": "Product image",
+            "media_video_url": "https://cdn.shopify.com/videos/c/o/v/b121c7f95b42413299c3e78337a9d3c3.mp4"
+          }
         }
       },
       "block_order": [
@@ -128,7 +136,8 @@
         "variant_HzY8R7",
         "media_Dbjgri",
         "media_eGHdeN",
-        "media_7JGftC"
+        "media_7JGftC",
+        "media_cqHgcM"
       ],
       "name": "Product Buy Box",
       "settings": {

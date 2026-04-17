@@ -235,7 +235,7 @@
             "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
             "media_type": "video",
             "image_url": "",
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/ae6570b21a16410ea7ce81a5e0428078.mp4"
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/f4882a27a3dc410d8803ab284312f61d.mp4"
           }
         }
       },
@@ -247,8 +247,8 @@
       "name": "Dot Line Section",
       "settings": {
         "dot_color": "#4FFFFF",
-        "description_title_color": "#1a1a1a",
-        "description_text_color": "#4a4a4a",
+        "description_title_color": "#FFFFFF",
+        "description_text_color": "#ffffff",
         "dot_label_color": "#ffffff",
         "glass_background_color": "#ffffff",
         "glass_border_color": "#ffffff",

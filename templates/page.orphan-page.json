@@ -465,6 +465,8 @@
         "product_slide_kaGcTE": {
           "type": "product_slide",
           "settings": {
+            "main_image": "shopify://shop_images/download_54.jpg",
+            "card_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
             "card_heading": "Product Name",
             "card_description": "Add a little bit of body text here.",
             "card_sub": "",
@@ -474,6 +476,8 @@
         "product_slide_WQgpDr": {
           "type": "product_slide",
           "settings": {
+            "main_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
+            "card_image": "shopify://shop_images/Gummy_png_de58176a-c876-4f2b-a0f4-aebfdb2d766d.png",
             "card_heading": "Product Name",
             "card_description": "Add a little bit of body text here.",
             "card_sub": "",
@@ -483,6 +487,8 @@
         "product_slide_nLKtfF": {
           "type": "product_slide",
           "settings": {
+            "main_image": "shopify://shop_images/For_DOJEN.jpg",
+            "card_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
             "card_heading": "Product Name",
             "card_description": "Add a little bit of body text here.",
             "card_sub": "",
@@ -513,6 +519,7 @@
         "right_heading_color": "#111111",
         "accent_color": "#00e5e5",
         "right_heading_size": 32,
+        "arrow_image": "shopify://shop_images/Gemini_Generated_Image_sv377csv377csv37-removebg-preview.png",
         "arrow_img_size": 100,
         "accent_color_arrow": "#00e5e5"
       }

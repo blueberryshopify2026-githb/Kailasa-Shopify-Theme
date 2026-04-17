@@ -98,10 +98,10 @@
         "full_bg_position": "center",
         "section_bg_color": "#ffffff",
         "show_overlay": false,
-        "overlay_color": "rgba(0,0,0,0.3)",
+        "overlay_color": "#0000004d",
         "overlay_opacity": 0.3,
-        "content_bg_color": "transparent",
-        "image_bg_color": "transparent",
+        "content_bg_color": "rgba(0,0,0,0)",
+        "image_bg_color": "rgba(0,0,0,0)",
         "content_padding": 20,
         "content_padding_horizontal": 30,
         "main_title": "Introduction to<br>Biotechnology and<br>Transforming",
@@ -187,14 +187,14 @@
         "description_font_size": 18,
         "description_color": "#000000",
         "cta_font_size": 16,
-        "cta_bg_color": "transparent",
+        "cta_bg_color": "rgba(0,0,0,0)",
         "cta_text_color": "#000000",
-        "cta_border_color": "#4FFFFF",
-        "cta_hover_bg": "#4FFFFF",
+        "cta_border_color": "#4fffff",
+        "cta_hover_bg": "#4fffff",
         "cta_hover_text": "#000000",
-        "cta_hover_border": "#4FFFFF",
+        "cta_hover_border": "#4fffff",
         "cta_border_radius": 24,
-        "card_bg_color": "rgba(255, 255, 255, 0.9)",
+        "card_bg_color": "#ffffffe6",
         "card_border_radius": 14,
         "card_image_size": 80,
         "card_image_border_radius": 10,
@@ -246,8 +246,8 @@
       ],
       "name": "Dot Line Section",
       "settings": {
-        "dot_color": "#4FFFFF",
-        "description_title_color": "#FFFFFF",
+        "dot_color": "#4fffff",
+        "description_title_color": "#ffffff",
         "description_text_color": "#ffffff",
         "dot_label_color": "#ffffff",
         "glass_background_color": "#ffffff",
@@ -304,7 +304,7 @@
       "settings": {
         "section_height": 80,
         "strip_border_radius": 24,
-        "accent_color": "#4FFFFF"
+        "accent_color": "#4fffff"
       }
     },
     "ingredients_banner_QzEXBT": {
@@ -316,7 +316,7 @@
         "headline": "High-quality <span class=\"highlight\">ingredients</span><br>optimised for impact",
         "headline_font_size": 42,
         "headline_color": "#000000",
-        "highlight_color": "#4FFFFF",
+        "highlight_color": "#4fffff",
         "left_image": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
         "html_content": "<p>We don't think you should settle for questionable ingredients when it comes to your daily supplement. That's why each ingredient in AG1 is sourced for optimal absorption and nutrient density, and combined for maximum potency.</p>",
         "content_font_size": 16,
@@ -456,7 +456,7 @@
         "background_image": "shopify://shop_images/JULIA_ROBERTS_-_ph__for_Chopard_2023.jpg",
         "section_bg_color": "#f5f5f5",
         "section_height": 100,
-        "highlight_color": "#4FFFFF"
+        "highlight_color": "#4fffff"
       }
     },
     "product_dual_showcase_rtn_QTr89p": {
@@ -627,7 +627,7 @@
         "row2_border_enabled": false,
         "row2_border_color": "#000000",
         "row2_border_size": 2,
-        "row3_background_color": "#4FFFFF",
+        "row3_background_color": "#4fffff",
         "row3_height": 80,
         "row3_border_radius": 40,
         "icon_size": 50,
@@ -742,7 +742,7 @@
         "title_color": "#000000",
         "description_font_size": 18,
         "description_color": "#333333",
-        "use_email_form": false,
+        "use_email_form": true,
         "cta_text": "Get Demo Account",
         "cta_link": "",
         "email_placeholder": "Enter your email",
@@ -757,9 +757,10 @@
         "icon_box_bg_color": "#ffffff",
         "icon_bg_color": "#f0f0f0",
         "icon_color": "#000000",
-        "icon_label_color": "#fff",
+        "icon_label_color": "#ffffff",
+        "arrow_icon": "shopify://shop_images/Gemini_Generated_Image_sv377csv377csv37-removebg-preview.png",
         "auto_advance": false,
-        "auto_advance_delay": 5000
+        "auto_advance_delay": 3000
       }
     },
     "vip_interactive_showcase_zaiRFG": {
@@ -810,6 +811,7 @@
       ],
       "name": "VIP Interactive Showcase",
       "settings": {
+        "default_main_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
         "auto_timer_enabled": true,
         "auto_timer_interval": 5,
         "pause_on_hover": true,
@@ -822,10 +824,13 @@
         "main_heading_color": "#333333",
         "main_subheading_size": 18,
         "main_subheading_color": "#666666",
+        "main_image_1": "shopify://shop_images/Gemini_Generated_Image_lxrrbqlxrrbqlxrr_54ca8868-5b9d-4075-b5b1-dd64ba95d2c0.png",
         "main_heading_1": "A NEW PHILOSOPHY ON SKINCARE",
         "main_subheading_1": "Rhode is a line of curated skincare essentials. Formulated for a variety of skin types and needs with high performance ingredients, it is a daily routine that nourishes your skin barrier over time.",
+        "main_image_2": "shopify://shop_images/Gemini_Generated_Image_s6zatds6zatds6za_158c3a35-fd1e-4552-8375-d699ed0ebaba.png",
         "main_heading_2": "PREMIUM SKINCARE COLLECTION",
         "main_subheading_2": "Experience the luxury of premium skincare with our carefully curated collection designed for modern skin needs.",
+        "main_image_3": "shopify://shop_images/Gemini_Generated_Image_jrggoqjrggoqjrgg_1e7f00f8-47ba-4881-b3c7-4acb06d050cb.png",
         "main_heading_3": "ADVANCED BEAUTY SOLUTIONS",
         "main_subheading_3": "Discover advanced beauty solutions that transform your daily routine into a luxurious self-care experience.",
         "main_heading_4": "INNOVATIVE SKINCARE TECHNOLOGY",

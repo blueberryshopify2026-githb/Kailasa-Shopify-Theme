@@ -444,6 +444,14 @@
     "result_timeline_GKg8KF": {
       "type": "result-timeline",
       "blocks": {
+        "week_3Bc3fF": {
+          "type": "week",
+          "settings": {
+            "week_label": "Week 1",
+            "week_title": "Maintains Immune Function*",
+            "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function|Shields against environmental stress.|Fuels microbial metabolism of nutrients|Shields against environmental stress."
+          }
+        },
         "week_CWNKr3": {
           "type": "week",
           "settings": {
@@ -486,6 +494,7 @@
         }
       },
       "block_order": [
+        "week_3Bc3fF",
         "week_CWNKr3",
         "week_mRdMkp",
         "week_t4Kmmj",

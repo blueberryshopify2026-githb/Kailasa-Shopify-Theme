@@ -327,13 +327,13 @@
         "section_padding_bottom": 80,
         "column_gap": 40,
         "media_border_radius": 12,
-        "video_url": "",
-        "step_text": "",
-        "step_number": "",
-        "main_heading": "",
-        "main_description": "",
-        "cta_text": "",
-        "cta_link": "",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/6a6ae8fbddd8420c90d1dd372c6a461d.mp4",
+        "step_text": "Step",
+        "step_number": "4",
+        "main_heading": "Daily Multivitamin",
+        "main_description": "DM-02™ helps cover the nutritional needs of your body and gut microbiome with 100% daily value of 20 essential vitamins and minerals.*",
+        "cta_text": "Explore our routine",
+        "cta_link": "shopify://pages/routine-page",
         "text_alignment": "left",
         "step_number_size": 80,
         "step_highlight_size": 120,
@@ -353,8 +353,9 @@
         "cta_hover_text": "#000000",
         "cta_hover_border": "#4fffff",
         "cta_border_radius": 24,
-        "image_width": 100,
-        "image_height": 100
+        "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
+        "image_width": 55,
+        "image_height": 60
       }
     },
     "comparison_table_jUqtif": {

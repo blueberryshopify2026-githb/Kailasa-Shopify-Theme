@@ -265,6 +265,8 @@
           "type": "slide",
           "settings": {
             "slide_title": "Slide 1",
+            "background_image": "shopify://shop_images/BOOST_LAB_BEAUTIES_boostlabco_nadinebush_melani_gatmaitan_rebeccachurn____beautyphotographer_beautyphotography_commercialphotography_maturemodel_boostlab.jpg",
+            "thumbnail_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
             "statistic_1": "500K",
             "title_1": "Consumer reach",
             "description_1": "Consumer across 20 countries",
@@ -280,6 +282,8 @@
           "type": "slide",
           "settings": {
             "slide_title": "Slide 1",
+            "background_image": "shopify://shop_images/download_54.jpg",
+            "thumbnail_image": "shopify://shop_images/For_DOJEN.jpg",
             "statistic_1": "500K",
             "title_1": "Consumer reach",
             "description_1": "Consumer across 20 countries",

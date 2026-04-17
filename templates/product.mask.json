@@ -152,51 +152,70 @@
         "nav_strip_bg": "#ffffff"
       }
     },
-    "professional_panel_iDFanP": {
-      "type": "professional-panel",
+    "tab_section_hyhKPN": {
+      "type": "tab-section",
       "blocks": {
-        "professional_iXax6n": {
-          "type": "professional",
+        "image_text_block_ncw6tF": {
+          "type": "image-text-block",
           "settings": {
-            "background_image": "shopify://shop_images/sample_6_12.png",
-            "bg_position_x": 50,
-            "bg_position_y": 50,
-            "name": "Belinda Tan, MD, PhD",
-            "designation": "Scientific Advisor",
-            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
-            "cta_text": "SKINBOOSTER SERUM",
-            "cta_link": ""
+            "tab_name": "About",
+            "text_content": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>",
+            "layout": "image-text",
+            "content_font_family": "inherit",
+            "content_font_weight": 400,
+            "content_font_style": "normal",
+            "content_font_size_desktop": 16,
+            "content_font_size_mobile": 14,
+            "content_text_color": "#181818"
           }
         }
       },
       "block_order": [
-        "professional_iXax6n"
+        "image_text_block_ncw6tF"
       ],
-      "name": "Professional Panel",
+      "name": "Tab Section",
       "settings": {
-        "section_bg_color": "#ffffff",
-        "card_bg_color": "#000000",
-        "card_border_radius": 24,
-        "name_font_size": 44,
-        "name_color": "#ffffff",
-        "designation_font_size": 18,
-        "designation_color": "#4fffff",
-        "quote_font_size": 18,
-        "quote_color": "#ffffff",
-        "quote_mark_color": "#4fffff",
-        "cta_font_size": 14,
-        "cta_text_color": "#ffffff",
-        "cta_border_color": "#4fffff",
-        "cta_border_radius": 24,
-        "arrow_bg_color": "#000000",
-        "arrow_border_color": "#4fffff",
-        "arrow_color": "#4fffff"
+        "title": "Photon Youth™ Pro LED Mask",
+        "background_color": "#FFFFFF",
+        "text_color": "#181818",
+        "border_color": "#4FFFFF",
+        "border_width": 2,
+        "inner_tab_active_bg": "#181818",
+        "inner_tab_active_text": "#FFFFFF",
+        "inner_tab_active_dot": "#4FFFFF",
+        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_inactive_text": "#181818",
+        "inner_tab_hover_bg": "#181818",
+        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_border_color": "#181818",
+        "inner_tab_border_width": 1,
+        "title_font_family": "Montserrat, sans-serif",
+        "title_font_weight": 800,
+        "title_font_style": "normal",
+        "title_font_size_desktop": 50,
+        "title_font_size_mobile": 24,
+        "tab_font_family": "Montserrat, sans-serif",
+        "tab_font_weight": 500,
+        "tab_font_style": "normal",
+        "tab_font_size_desktop": 16,
+        "tab_font_size_mobile": 14,
+        "height_desktop": 120,
+        "title_padding_desktop": 20,
+        "arrow_padding_desktop": 45,
+        "arrow_size_desktop": 70,
+        "arrow_stroke_desktop": 3,
+        "height_mobile": 60,
+        "title_padding_mobile": 20,
+        "arrow_padding_mobile": 20,
+        "arrow_size_mobile": 18,
+        "arrow_stroke_mobile": 2,
+        "arrow_style": "stroke"
       }
     }
   },
   "order": [
     "main",
     "product_buy_box_TzCRnN",
-    "professional_panel_iDFanP"
+    "tab_section_hyhKPN"
   ]
 }

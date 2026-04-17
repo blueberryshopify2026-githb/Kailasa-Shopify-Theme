@@ -504,6 +504,62 @@
     "comparison_table_tjbgne": {
       "type": "comparison-table",
       "blocks": {
+        "ingredient_row_mktqPa": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Ceramide",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_7mRxtx": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "pdrn",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_Ww3AT6": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Retinol",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_fBR8xn": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Hyaluronic ACID",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
         "ingredient_row_We463P": {
           "type": "ingredient_row",
           "settings": {
@@ -548,6 +604,10 @@
         }
       },
       "block_order": [
+        "ingredient_row_mktqPa",
+        "ingredient_row_7mRxtx",
+        "ingredient_row_Ww3AT6",
+        "ingredient_row_fBR8xn",
         "ingredient_row_We463P",
         "ingredient_row_PnQYBa",
         "ingredient_row_WhQTGT"

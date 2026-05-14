@@ -1,0 +1,265 @@
+{% comment %}
+  Info Routine Section — full-width bg image, AM/PM toggle, frost glass ingredient card
+  Class suffix: pri
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+  .pri-section {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.pri_bg }};
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding:20px;
+  }
+
+  /* ── Full-width background image ── */
+  .pri-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.pri_img_fit }};
+    object-position: center;
+    display: block;
+    z-index: 0;
+  }
+
+  .pri-bg-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #e0e0e0, #c8c8c8);
+    z-index: 0;
+  }
+
+  /* ── AM/PM Toggle — top right, 30px from top ── */
+  .pri-toggle {
+    position: absolute;
+    top: 30px;
+    right: {{ section.settings.pri_toggle_right }}px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #000;
+    border-radius: 50px;
+    padding: 10px 22px;
+    cursor: default;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: {{ section.settings.pri_toggle_size }}px;
+    font-weight: 700;
+    color: #4fffff;
+    letter-spacing: 1px;
+  }
+
+  .pri-toggle-icon {
+    font-size: 20px;
+    color: #4fffff;
+  }
+
+  /* ── Frost glass ingredient card — bottom center ── */
+  .pri-ingredient-card {
+    position: absolute;
+    bottom: {{ section.settings.pri_card_bottom }}px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: {{ section.settings.pri_card_width }}%;
+    min-height: {{ section.settings.pri_card_min_height }}px;
+    background: rgba(255,255,255,{{ section.settings.pri_card_opacity | divided_by: 100.0 }});
+    backdrop-filter: blur({{ section.settings.pri_card_blur }}px);
+    -webkit-backdrop-filter: blur({{ section.settings.pri_card_blur }}px);
+    border-radius: {{ section.settings.pri_card_radius }}px;
+    padding: 10px {{ section.settings.pri_card_pad_h }}px;
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.pri_card_gap }}px;
+    z-index: 15;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+  }
+
+  .pri-ingredient-img {
+    width: {{ section.settings.pri_ingredient_img_size }}px;
+    height: {{ section.settings.pri_ingredient_img_size }}px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  .pri-ingredient-img-placeholder {
+    width: {{ section.settings.pri_ingredient_img_size }}px;
+    height: {{ section.settings.pri_ingredient_img_size }}px;
+    border-radius: 50%;
+    background: #ddd;
+    flex-shrink: 0;
+  }
+
+  .pri-card-divider {
+    width: 1px;
+    height: 60px;
+    background: #ddd;
+    flex-shrink: 0;
+  }
+
+  .pri-card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pri-card-desc {
+    font-size: {{ section.settings.pri_card_desc_size }}px;
+    color: {{ section.settings.pri_card_desc_color }};
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .pri-card-apply {
+    flex: 0 0 22%;
+    text-align: center;
+  }
+
+  .pri-card-apply-text {
+    font-size: {{ section.settings.pri_card_apply_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.pri_card_apply_color }};
+    line-height: 1.5;
+    margin: 0;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  /* AM/PM content visibility */
+  .pri-am-content { display: flex; }
+  .pri-pm-content { display: none; }
+  .pri-section[data-mode="pm"] .pri-am-content { display: none; }
+  .pri-section[data-mode="pm"] .pri-pm-content { display: flex; }
+  .pri-section[data-mode="am"] .pri-am-content { display: flex; }
+  .pri-section[data-mode="am"] .pri-pm-content { display: none; }
+</style>
+
+<section class="pri-section full-width" id="priSection" data-mode="{{ section.settings.pri_default_mode }}">
+
+  <!-- Full-width background image -->
+  {% if section.settings.pri_image != blank %}
+    <img
+      class="pri-bg-image"
+      src="{{ section.settings.pri_image | image_url: width: 2000 }}"
+      alt="Routine"
+      width="2000"
+      height="1000"
+      loading="lazy"
+    >
+  {% else %}
+    <div class="pri-bg-placeholder"></div>
+  {% endif %}
+
+  <!-- Static AM/PM label pill — controlled only from theme editor -->
+  <div class="pri-toggle">
+    <span class="pri-toggle-icon">{% if section.settings.pri_default_mode == 'am' %}☀{% else %}🌙{% endif %}</span>
+    <span>{% if section.settings.pri_default_mode == 'am' %}{{ section.settings.pri_am_label }}{% else %}{{ section.settings.pri_pm_label }}{% endif %}</span>
+  </div>
+
+  <!-- Ingredient frost glass card — AM -->
+  <div class="pri-ingredient-card pri-am-content">
+    {% if section.settings.pri_ingredient_img != blank %}
+      <img class="pri-ingredient-img" src="{{ section.settings.pri_ingredient_img | image_url: width: 200 }}" alt="Ingredient" width="{{ section.settings.pri_ingredient_img_size }}" height="{{ section.settings.pri_ingredient_img_size }}">
+    {% else %}
+      <div class="pri-ingredient-img-placeholder"></div>
+    {% endif %}
+    <div class="pri-card-divider"></div>
+    <div class="pri-card-info">
+      <p class="pri-card-desc">{{ section.settings.pri_card_desc }}</p>
+    </div>
+    <div class="pri-card-divider"></div>
+    <div class="pri-card-apply">
+      <p class="pri-card-apply-text">{{ section.settings.pri_card_apply | newline_to_br }}</p>
+    </div>
+  </div>
+
+  <!-- Ingredient frost glass card — PM -->
+  <div class="pri-ingredient-card pri-pm-content">
+    {% if section.settings.pri_pm_ingredient_img != blank %}
+      <img class="pri-ingredient-img" src="{{ section.settings.pri_pm_ingredient_img | image_url: width: 200 }}" alt="Ingredient" width="{{ section.settings.pri_ingredient_img_size }}" height="{{ section.settings.pri_ingredient_img_size }}">
+    {% else %}
+      <div class="pri-ingredient-img-placeholder"></div>
+    {% endif %}
+    <div class="pri-card-divider"></div>
+    <div class="pri-card-info">
+      <p class="pri-card-desc">{{ section.settings.pri_pm_card_desc }}</p>
+    </div>
+    <div class="pri-card-divider"></div>
+    <div class="pri-card-apply">
+      <p class="pri-card-apply-text">{{ section.settings.pri_pm_card_apply | newline_to_br }}</p>
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Info Routine Section",
+  "settings": [
+    { "type": "header", "content": "── Section" },
+    { "type": "color", "id": "pri_bg", "label": "Background", "default": "#ffffff" },
+    { "type": "image_picker", "id": "pri_image", "label": "Background Image" },
+    {
+      "type": "select", "id": "pri_img_fit", "label": "Image Fit",
+      "options": [
+        { "value": "cover", "label": "Cover (fill, may crop)" },
+        { "value": "contain", "label": "Contain (show full image)" },
+        { "value": "fill", "label": "Fill (stretch)" }
+      ],
+      "default": "cover"
+    },
+
+    { "type": "header", "content": "── AM/PM Toggle" },
+    { "type": "text", "id": "pri_am_label", "label": "AM Label", "default": "AM ROUTINE" },
+    { "type": "text", "id": "pri_pm_label", "label": "PM Label", "default": "PM ROUTINE" },
+    {
+      "type": "select", "id": "pri_default_mode", "label": "Default Mode",
+      "options": [
+        { "value": "am", "label": "AM Routine" },
+        { "value": "pm", "label": "PM Routine" }
+      ],
+      "default": "am"
+    },
+    { "type": "range", "id": "pri_toggle_size", "label": "Toggle Font Size (px)", "min": 10, "max": 24, "step": 1, "default": 14 },
+    { "type": "range", "id": "pri_toggle_right", "label": "Toggle — Distance from Right (px)", "min": 10, "max": 100, "step": 2, "default": 24 },
+
+    { "type": "header", "content": "── AM Ingredient Card" },
+    { "type": "image_picker", "id": "pri_ingredient_img", "label": "AM Ingredient Image" },
+    { "type": "textarea", "id": "pri_card_desc", "label": "AM Description", "default": "Ingredients like Vitamin C are often added to morning routines to reduce hyperpigmentation, combat free radicals, and improve radiance." },
+    { "type": "text", "id": "pri_card_apply", "label": "AM Apply Instructions", "default": "Apply\n1-2 times\ndaily" },
+
+    { "type": "header", "content": "── PM Ingredient Card" },
+    { "type": "image_picker", "id": "pri_pm_ingredient_img", "label": "PM Ingredient Image" },
+    { "type": "textarea", "id": "pri_pm_card_desc", "label": "PM Description", "default": "Night-time ingredients like Retinol help accelerate cell renewal, reduce fine lines, and restore skin while you sleep." },
+    { "type": "text", "id": "pri_pm_card_apply", "label": "PM Apply Instructions", "default": "Apply\nevery night\nbefore bed" },
+
+    { "type": "header", "content": "── Card Style" },
+    { "type": "range", "id": "pri_ingredient_img_size", "label": "Ingredient Image Size (px)", "min": 40, "max": 120, "step": 4, "default": 72 },
+    { "type": "range", "id": "pri_card_bottom", "label": "Card Distance from Bottom (px)", "min": 40, "max": 200, "step": 4, "default": 48 },
+    { "type": "range", "id": "pri_card_min_height", "label": "Card Min Height (px)", "min": 60, "max": 200, "step": 4, "default": 100 },
+    { "type": "range", "id": "pri_card_width", "label": "Card Width (%)", "min": 30, "max": 90, "step": 2, "default": 50 },
+    { "type": "range", "id": "pri_card_opacity", "label": "Card Background Opacity (%)", "min": 10, "max": 100, "step": 5, "default": 85 },
+    { "type": "range", "id": "pri_card_blur", "label": "Card Blur (px)", "min": 0, "max": 30, "step": 2, "default": 12 },
+    { "type": "range", "id": "pri_card_radius", "label": "Card Border Radius (px)", "min": 0, "max": 40, "step": 2, "default": 20 },
+    { "type": "range", "id": "pri_card_pad_h", "label": "Card Horizontal Padding (px)", "min": 8, "max": 60, "step": 4, "default": 24 },
+    { "type": "range", "id": "pri_card_gap", "label": "Card Inner Gap (px)", "min": 4, "max": 40, "step": 4, "default": 16 },
+    { "type": "range", "id": "pri_card_desc_size", "label": "Description Font Size (px)", "min": 11, "max": 20, "step": 1, "default": 14 },
+    { "type": "color", "id": "pri_card_desc_color", "label": "Description Color", "default": "#000000" },
+    { "type": "range", "id": "pri_card_apply_size", "label": "Apply Text Font Size (px)", "min": 10, "max": 32, "step": 1, "default": 16 },
+    { "type": "color", "id": "pri_card_apply_color", "label": "Apply Text Color", "default": "#000000" }
+  ],
+  "blocks": [],
+  "presets": [
+    { "name": "Info Routine Section" }
+  ]
+}
+{% endschema %}

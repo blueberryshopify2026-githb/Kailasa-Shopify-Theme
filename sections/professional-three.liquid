@@ -1,0 +1,544 @@
+{% comment %}
+  Professional Three Section
+  60% left: heading, blog excerpt, thumbnails or info card
+  40% right: doctor image with frost glass card
+  Class suffix: spt
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap');
+
+  .spt-section {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.spt_bg }};
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+  }
+
+  /* ── LEFT 60% ── */
+  .spt-left {
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: {{ section.settings.spt_left_pad_v }}px {{ section.settings.spt_left_pad_h }}px;
+    position: relative;
+  }
+
+
+
+  .spt-heading {
+    font-size: {{ section.settings.spt_heading_size }}px;
+    font-weight: {{ section.settings.spt_heading_weight }};
+    color: {{ section.settings.spt_heading_color }};
+    line-height: 1.1;
+    margin: 0 0 {{ section.settings.spt_heading_gap }}px 0;
+  }
+
+  /* Blog excerpt — 2 lines max */
+  .spt-excerpt-wrap {
+    font-size: {{ section.settings.spt_excerpt_size }}px;
+    color: {{ section.settings.spt_excerpt_color }};
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0 0 6px 0;
+  }
+
+  .spt-read-more {
+    display: block;
+    font-size: {{ section.settings.spt_excerpt_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.spt_read_more_color }};
+    text-decoration: none;
+    margin-top: 4px;
+    transition: color 0.2s;
+  }
+
+  .spt-read-more:hover { color: #4fffff; }
+
+  /* ── Bottom area: thumbnails OR info card ── */
+  .spt-bottom {
+    margin-top:70px;
+    padding-top: {{ section.settings.spt_bottom_gap }}px;
+    padding-bottom: 10px;
+    /* border: 1px solid red; */
+   }
+
+  /* Thumbnails row */
+  .spt-thumbs {
+    display: flex;
+    gap: {{ section.settings.spt_thumb_gap }}px;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    /* margin-top: 100px; */
+    margin-bottom: 10px;
+  }
+
+  .spt-thumb-wrap {
+    position: relative;
+    width: {{ section.settings.spt_thumb_size }}px;
+    height: {{ section.settings.spt_thumb_size }}px;
+    border-radius: {{ section.settings.spt_thumb_radius }}px;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .spt-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: {{ section.settings.spt_thumb_radius }}px;
+    transition: transform 0.3s ease;
+  }
+
+  .spt-thumb-wrap:hover .spt-thumb-img {
+    transform: scale(1.05);
+  }
+
+  /* Hover info card — positioned via JS above each thumbnail */
+  .spt-thumb-hover-card {
+    display: none;
+    position: absolute;
+    width: {{ section.settings.spt_thumb_card_width }}px;
+    background: rgba(255,255,255,{{ section.settings.spt_thumb_frost_opacity | divided_by: 100.0 }});
+    backdrop-filter: blur({{ section.settings.spt_thumb_frost_blur }}px);
+    -webkit-backdrop-filter: blur({{ section.settings.spt_thumb_frost_blur }}px);
+    border: 2px solid #4fffff;
+    border-radius: {{ section.settings.spt_thumb_radius }}px;
+    padding: 16px 20px;
+    z-index: 30;
+    box-shadow: 0 4px 20px rgba(79,255,255,0.25);
+  }
+
+  .spt-hcard-title {
+    font-size: {{ section.settings.spt_thumb_frost_size | plus: 2 }}px;
+    font-weight: 700;
+    color: {{ section.settings.spt_thumb_frost_color }};
+    text-align: center;
+    margin: 0 0 8px 0;
+  }
+
+  .spt-hcard-text {
+    font-size: {{ section.settings.spt_thumb_frost_size }}px;
+    font-weight: 400;
+    color: {{ section.settings.spt_thumb_frost_color }};
+    text-align: center;
+    line-height: 1.55;
+    margin: 0 0 8px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .spt-hcard-link {
+    display: block;
+    font-size: {{ section.settings.spt_thumb_frost_size }}px;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .spt-hcard-link:hover { color: #4fffff; }
+
+  /* Info card (alternative bottom) */
+  .spt-info-card {
+    background: rgba(255,255,255,{{ section.settings.spt_info_card_opacity | divided_by: 100.0 }});
+    backdrop-filter: blur({{ section.settings.spt_info_card_blur }}px);
+    -webkit-backdrop-filter: blur({{ section.settings.spt_info_card_blur }}px);
+    border: 2px solid #4fffff;
+    border-radius: {{ section.settings.spt_info_card_radius }}px;
+    padding: {{ section.settings.spt_info_card_pad }}px;
+    max-width: {{ section.settings.spt_info_card_width }}px;
+    box-shadow: 0 4px 20px rgba(79,255,255,0.2);
+  }
+
+  .spt-info-card-title {
+    font-size: {{ section.settings.spt_info_title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.spt_info_title_color }};
+    margin: 0 0 6px 0;
+  }
+
+  .spt-info-card-text {
+    font-size: {{ section.settings.spt_info_text_size }}px;
+    color: {{ section.settings.spt_info_text_color }};
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* ── RIGHT 40% ── */
+  .spt-right {
+    flex: 0 0 40%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spt-doctor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ section.settings.spt_img_position }};
+    display: block;
+  }
+
+  .spt-doctor-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+  }
+
+  /* Doctor frost glass card — centered, wider */
+  .spt-doctor-card {
+    position: absolute;
+    bottom: {{ section.settings.spt_dr_card_bottom }}px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: {{ section.settings.spt_dr_card_max_width }}px;
+    background: rgba(255,255,255,{{ section.settings.spt_dr_card_opacity | divided_by: 100.0 }});
+    backdrop-filter: blur({{ section.settings.spt_dr_card_blur }}px);
+    -webkit-backdrop-filter: blur({{ section.settings.spt_dr_card_blur }}px);
+    border: 2px solid #4fffff;
+    border-radius: {{ section.settings.spt_dr_card_radius }}px;
+    padding: {{ section.settings.spt_dr_card_pad_v }}px {{ section.settings.spt_dr_card_pad_h }}px;
+    box-shadow: 0 4px 24px rgba(79,255,255,0.3);
+  }
+
+  .spt-dr-name {
+    font-size: {{ section.settings.spt_dr_name_size }}px;
+    font-weight: 600;
+    font-style: italic;
+    color: {{ section.settings.spt_dr_name_color }};
+    margin: 0 0 4px 0;
+  }
+
+  .spt-dr-specialty {
+    font-size: {{ section.settings.spt_dr_meta_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.spt_dr_meta_color }};
+    margin: 0 0 2px 0;
+  }
+
+  .spt-dr-exp {
+    font-size: {{ section.settings.spt_dr_meta_size }}px;
+    font-weight: 400;
+    color: {{ section.settings.spt_dr_meta_color }};
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .spt-section {
+      flex-direction: column;
+      height: auto;
+    }
+    .spt-left, .spt-right {
+      flex: 0 0 100%;
+    }
+    .spt-right {
+      min-height: 400px;
+    }
+  }
+</style>
+
+<section class="spt-section full-width">
+
+  <!-- LEFT 60% -->
+  <div class="spt-left">
+
+    <!-- Cyan accent dot -->
+    {% if section.settings.spt_show_dot %}
+      <div class="spt-accent-dot"></div>
+    {% endif %}
+
+    <!-- Heading -->
+    <h2 class="spt-heading">{{ section.settings.spt_heading }}</h2>
+
+    <!-- Blog excerpt -->
+    <div class="spt-excerpt-block">
+      {% if section.settings.spt_blog != blank %}
+        {%- assign spt_blog_obj = blogs[section.settings.spt_blog] -%}
+        {%- assign spt_article  = spt_blog_obj.articles.first -%}
+        {% if spt_article %}
+          <p class="spt-excerpt-wrap">{{ spt_article.excerpt_or_content | strip_html }}</p>
+          <a href="{{ spt_article.url }}" class="spt-read-more">read more...</a>
+        {% else %}
+          <p class="spt-excerpt-wrap">{{ section.settings.spt_fallback_excerpt }}</p>
+          {% if section.settings.spt_fallback_link != blank %}
+            <a href="{{ section.settings.spt_fallback_link }}" class="spt-read-more">read more...</a>
+          {% endif %}
+        {% endif %}
+      {% else %}
+        <p class="spt-excerpt-wrap">{{ section.settings.spt_fallback_excerpt }}</p>
+        {% if section.settings.spt_fallback_link != blank %}
+          <a href="{{ section.settings.spt_fallback_link }}" class="spt-read-more">read more...</a>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <!-- Bottom: thumbnails or info card -->
+    <div class="spt-bottom">
+
+      {% if section.settings.spt_bottom_type == 'thumbnails' %}
+        <div class="spt-thumbs-container" style="position:relative;">
+          <div class="spt-thumbs">
+            {% for block in section.blocks %}
+              {% if block.type == 'thumbnail' %}
+                <div
+                  class="spt-thumb-wrap"
+                  data-hcard="spt-hcard-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {% if block.settings.spt_thumb_img != blank %}
+                    <img
+                      class="spt-thumb-img"
+                      src="{{ block.settings.spt_thumb_img | image_url: width: 300 }}"
+                      alt="{{ block.settings.spt_thumb_title | default: block.settings.spt_thumb_info }}"
+                      width="{{ section.settings.spt_thumb_size }}"
+                      height="{{ section.settings.spt_thumb_size }}"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <div style="width:100%;height:100%;background:#e0e0e0;border-radius:{{ section.settings.spt_thumb_radius }}px;"></div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <!-- Hover info cards — absolutely positioned via JS above each thumb -->
+          {% for block in section.blocks %}
+            {% if block.type == 'thumbnail' %}
+              <div
+                class="spt-thumb-hover-card"
+                id="spt-hcard-{{ block.id }}"
+              >
+                {% if block.settings.spt_thumb_title != blank %}
+                  <p class="spt-hcard-title">{{ block.settings.spt_thumb_title }}</p>
+                {% endif %}
+                <p class="spt-hcard-text">{{ block.settings.spt_thumb_info }}</p>
+                {% if block.settings.spt_thumb_link != blank %}
+                  <a href="{{ block.settings.spt_thumb_link }}" class="spt-hcard-link">read more...</a>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+      {% else %}
+        <div class="spt-info-card">
+          {% if section.settings.spt_info_title != blank %}
+            <p class="spt-info-card-title">{{ section.settings.spt_info_title }}</p>
+          {% endif %}
+          <p class="spt-info-card-text">{{ section.settings.spt_info_text }}</p>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <!-- RIGHT 40% -->
+  <div class="spt-right">
+    {% if section.settings.spt_doctor_image != blank %}
+      <img
+        class="spt-doctor-img"
+        src="{{ section.settings.spt_doctor_image | image_url: width: 1000 }}"
+        alt="{{ section.settings.spt_dr_name }}"
+        width="1000"
+        height="1200"
+        loading="lazy"
+      >
+    {% else %}
+      <div class="spt-doctor-placeholder"></div>
+    {% endif %}
+
+    <!-- Doctor frost glass card -->
+    <div class="spt-doctor-card">
+      <p class="spt-dr-name">{{ section.settings.spt_dr_name }}</p>
+      <p class="spt-dr-specialty">{{ section.settings.spt_dr_specialty }}</p>
+      <p class="spt-dr-exp">{{ section.settings.spt_dr_experience }}</p>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function() {
+  var wraps = document.querySelectorAll('.spt-thumb-wrap');
+  wraps.forEach(function(wrap) {
+    var cardId = wrap.getAttribute('data-hcard');
+    var card = document.getElementById(cardId);
+    if (!card) return;
+
+    wrap.addEventListener('mouseenter', function() {
+      // Hide all cards
+      document.querySelectorAll('.spt-thumb-hover-card').forEach(function(c) { c.style.display = 'none'; });
+
+      // Position this card above the thumbnail
+      var container = wrap.closest('.spt-thumbs-container');
+      var containerRect = container.getBoundingClientRect();
+      var wrapRect = wrap.getBoundingClientRect();
+
+      var cardLeft = wrapRect.left - containerRect.left;
+      var cardBottom = containerRect.bottom - wrapRect.top + 10;
+
+      card.style.display = 'block';
+      card.style.left = cardLeft + 'px';
+      card.style.bottom = (containerRect.height - (wrapRect.top - containerRect.top) + 10) + 'px';
+
+      // Clamp so card doesn't go off left edge
+      var cardWidth = card.offsetWidth;
+      var maxLeft = containerRect.width - cardWidth;
+      if (cardLeft > maxLeft) card.style.left = Math.max(0, maxLeft) + 'px';
+    });
+
+    wrap.addEventListener('mouseleave', function() {
+      card.style.display = 'none';
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Professional Three",
+  "settings": [
+
+    { "type": "header", "content": "── Layout" },
+    { "type": "color", "id": "spt_bg", "label": "Background", "default": "#ffffff" },
+
+    { "type": "header", "content": "── Left Padding" },
+    { "type": "range", "id": "spt_left_pad_v", "label": "Vertical Padding (px)", "min": 0, "max": 120, "step": 4, "default": 60 },
+    { "type": "range", "id": "spt_left_pad_h", "label": "Horizontal Padding (px)", "min": 0, "max": 120, "step": 4, "default": 60 },
+
+    { "type": "header", "content": "── Accent Dot" },
+    { "type": "checkbox", "id": "spt_show_dot", "label": "Show Cyan Dot", "default": true },
+    { "type": "range", "id": "spt_dot_size", "label": "Dot Size (px)", "min": 8, "max": 40, "step": 2, "default": 16 },
+    { "type": "range", "id": "spt_dot_top", "label": "Dot Top (px)", "min": 0, "max": 300, "step": 4, "default": 120 },
+    { "type": "range", "id": "spt_dot_right", "label": "Dot Right (px)", "min": 0, "max": 300, "step": 4, "default": 60 },
+
+    { "type": "header", "content": "── Heading" },
+    { "type": "text", "id": "spt_heading", "label": "Heading", "default": "Healthy skin is a reflection of overall wellness." },
+    { "type": "range", "id": "spt_heading_size", "label": "Font Size (px)", "min": 24, "max": 96, "step": 2, "default": 64 },
+    {
+      "type": "select", "id": "spt_heading_weight", "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "600"
+    },
+    { "type": "color", "id": "spt_heading_color", "label": "Color", "default": "#000000" },
+    { "type": "range", "id": "spt_heading_gap", "label": "Gap Below Heading (px)", "min": 0, "max": 60, "step": 2, "default": 20 },
+
+    { "type": "header", "content": "── Blog Excerpt" },
+    { "type": "blog", "id": "spt_blog", "label": "Select Blog (pulls first article)" },
+    { "type": "textarea", "id": "spt_fallback_excerpt", "label": "Fallback Excerpt", "default": "Shopping for an anti-aging skin care product can feel like a hit-or-miss experience" },
+    { "type": "url", "id": "spt_fallback_link", "label": "Fallback Read More Link" },
+    { "type": "range", "id": "spt_excerpt_size", "label": "Excerpt Font Size (px)", "min": 12, "max": 22, "step": 1, "default": 15 },
+    { "type": "color", "id": "spt_excerpt_color", "label": "Excerpt Color", "default": "#333333" },
+    { "type": "color", "id": "spt_read_more_color", "label": "Read More Color", "default": "#4fffff" },
+
+    { "type": "header", "content": "── Bottom Section" },
+    {
+      "type": "select", "id": "spt_bottom_type", "label": "Bottom Content Type",
+      "options": [
+        { "value": "thumbnails", "label": "Thumbnail Images" },
+        { "value": "info_card", "label": "Info Card" }
+      ],
+      "default": "thumbnails"
+    },
+    { "type": "range", "id": "spt_bottom_gap", "label": "Gap Above Bottom (px)", "min": 0, "max": 200, "step": 4, "default": 40 },
+
+    { "type": "header", "content": "── Thumbnails" },
+    { "type": "range", "id": "spt_thumb_size", "label": "Thumbnail Size (px)", "min": 60, "max": 200, "step": 4, "default": 120 },
+    { "type": "range", "id": "spt_thumb_radius", "label": "Thumbnail Radius (px)", "min": 0, "max": 40, "step": 2, "default": 12 },
+    { "type": "range", "id": "spt_thumb_gap", "label": "Gap Between Thumbnails (px)", "min": 4, "max": 70, "step": 2, "default": 40 },
+    { "type": "range", "id": "spt_thumb_card_width", "label": "Hover Card Width (px)", "min": 200, "max": 500, "step": 10, "default": 380 },
+    { "type": "range", "id": "spt_thumb_frost_opacity", "label": "Frost Opacity (%)", "min": 10, "max": 95, "step": 5, "default": 80 },
+    { "type": "range", "id": "spt_thumb_frost_blur", "label": "Frost Blur (px)", "min": 2, "max": 20, "step": 2, "default": 10 },
+    { "type": "range", "id": "spt_thumb_frost_size", "label": "Frost Text Size (px)", "min": 10, "max": 18, "step": 1, "default": 12 },
+    { "type": "color", "id": "spt_thumb_frost_color", "label": "Frost Text Color", "default": "#000000" },
+
+    { "type": "header", "content": "── Info Card (alternative bottom)" },
+    { "type": "text", "id": "spt_info_title", "label": "Info Card Title", "default": "Did you know?" },
+    { "type": "textarea", "id": "spt_info_text", "label": "Info Card Text", "default": "Your skin is constantly replacing itself, so it is never too late to start a healthy skincare routine." },
+    { "type": "range", "id": "spt_info_card_opacity", "label": "Card Opacity (%)", "min": 10, "max": 95, "step": 5, "default": 80 },
+    { "type": "range", "id": "spt_info_card_blur", "label": "Card Blur (px)", "min": 0, "max": 20, "step": 2, "default": 10 },
+    { "type": "range", "id": "spt_info_card_radius", "label": "Card Radius (px)", "min": 0, "max": 40, "step": 2, "default": 16 },
+    { "type": "range", "id": "spt_info_card_pad", "label": "Card Padding (px)", "min": 8, "max": 40, "step": 2, "default": 20 },
+    { "type": "range", "id": "spt_info_card_width", "label": "Card Max Width (px)", "min": 200, "max": 600, "step": 20, "default": 400 },
+    { "type": "range", "id": "spt_info_title_size", "label": "Title Font Size (px)", "min": 12, "max": 24, "step": 1, "default": 16 },
+    { "type": "color", "id": "spt_info_title_color", "label": "Title Color", "default": "#000000" },
+    { "type": "range", "id": "spt_info_text_size", "label": "Text Font Size (px)", "min": 11, "max": 20, "step": 1, "default": 14 },
+    { "type": "color", "id": "spt_info_text_color", "label": "Text Color", "default": "#333333" },
+
+    { "type": "header", "content": "── Doctor Image" },
+    { "type": "image_picker", "id": "spt_doctor_image", "label": "Doctor Image" },
+    {
+      "type": "select", "id": "spt_img_position", "label": "Image Position",
+      "options": [
+        { "value": "center top", "label": "Top" },
+        { "value": "center center", "label": "Center" },
+        { "value": "center bottom", "label": "Bottom" }
+      ],
+      "default": "center top"
+    },
+
+    { "type": "header", "content": "── Doctor Card" },
+    { "type": "text", "id": "spt_dr_name", "label": "Doctor Name", "default": "Dr. Dakorte Johnson" },
+    { "type": "text", "id": "spt_dr_specialty", "label": "Specialty & University", "default": "Dermetologist, M.D, University of California" },
+    { "type": "text", "id": "spt_dr_experience", "label": "Experience", "default": "10+ Years of experience" },
+    { "type": "range", "id": "spt_dr_card_bottom", "label": "Card Bottom (px)", "min": 10, "max": 120, "step": 2, "default": 30 },
+    { "type": "range", "id": "spt_dr_card_left", "label": "Card Left (px)", "min": 0, "max": 80, "step": 2, "default": 16 },
+    { "type": "range", "id": "spt_dr_card_right", "label": "Card Right (px)", "min": 0, "max": 80, "step": 2, "default": 16 },
+    { "type": "range", "id": "spt_dr_card_max_width", "label": "Card Width (px)", "min": 100, "max": 500, "step": 10, "default": 340 },
+    { "type": "range", "id": "spt_dr_card_opacity", "label": "Card Opacity (%)", "min": 10, "max": 95, "step": 5, "default": 75 },
+    { "type": "range", "id": "spt_dr_card_blur", "label": "Card Blur (px)", "min": 0, "max": 30, "step": 2, "default": 14 },
+    { "type": "range", "id": "spt_dr_card_radius", "label": "Card Radius (px)", "min": 0, "max": 40, "step": 2, "default": 14 },
+    { "type": "range", "id": "spt_dr_card_pad_v", "label": "Card Padding Vertical (px)", "min": 8, "max": 40, "step": 2, "default": 16 },
+    { "type": "range", "id": "spt_dr_card_pad_h", "label": "Card Padding Horizontal (px)", "min": 8, "max": 40, "step": 2, "default": 20 },
+    { "type": "range", "id": "spt_dr_name_size", "label": "Name Font Size (px)", "min": 14, "max": 36, "step": 1, "default": 22 },
+    { "type": "color", "id": "spt_dr_name_color", "label": "Name Color", "default": "#000000" },
+    { "type": "range", "id": "spt_dr_meta_size", "label": "Specialty/Exp Font Size (px)", "min": 11, "max": 20, "step": 1, "default": 14 },
+    { "type": "color", "id": "spt_dr_meta_color", "label": "Specialty/Exp Color", "default": "#000000" }
+
+  ],
+  "blocks": [
+    {
+      "type": "thumbnail",
+      "name": "Thumbnail",
+      "settings": [
+        { "type": "image_picker", "id": "spt_thumb_img", "label": "Image" },
+        { "type": "text", "id": "spt_thumb_title", "label": "Hover Card Heading", "default": "Did you know?" },
+        { "type": "textarea", "id": "spt_thumb_info", "label": "Hover Card Text (2 lines)", "default": "Healthy skin starts with the right routine and consistent care." },
+        { "type": "url", "id": "spt_thumb_link", "label": "Read More Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Professional Three",
+      "blocks": [
+        { "type": "thumbnail", "settings": { "spt_thumb_info": "Healthy skin starts with the right routine." } },
+        { "type": "thumbnail", "settings": { "spt_thumb_info": "Consistent care leads to lasting results." } },
+        { "type": "thumbnail", "settings": { "spt_thumb_info": "Dermatologist-approved ingredients for every skin type." } },
+        { "type": "thumbnail", "settings": { "spt_thumb_info": "Gentle formulas that work with your skin, not against it." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

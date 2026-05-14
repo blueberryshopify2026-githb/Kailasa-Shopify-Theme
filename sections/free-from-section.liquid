@@ -1,0 +1,438 @@
+{% comment %}
+  Free From Section
+  Wide image left + 3 right cards | 4 bottom cards
+  Icon half-outside card top | hover replaces card with frost glass
+  Class suffix: ff
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+  .ff-section {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.ff_bg }};
+    padding: {{ section.settings.ff_padding_v }}px {{ section.settings.ff_padding_h }}px;
+    height: 105vh;
+    min-height: 600px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Heading ── */
+  .ff-heading {
+    font-size: {{ section.settings.ff_heading_size }}px;
+    font-weight: {{ section.settings.ff_heading_weight }};
+    color: {{ section.settings.ff_heading_color }};
+    line-height: 1.2;
+    margin: 0 0 {{ section.settings.ff_heading_gap }}px 0;
+  }
+
+  /* ── Main grid layout ──
+     4 columns, rows auto.
+     Image: col 1-3, row 1
+     Right cards (3): col 4, rows 1-3 (each card = 1 row)
+     Bottom cards (4): col 1-4, row 2 (below image, same row as right card 3 bottom)
+
+     Actually: image + right col side by side, then 4 bottom cards full width.
+     Right col cards = same height as bottom cards.
+     Image height = 3 × (card_height + gap) - gap
+  */
+  .ff-layout {
+    display: grid;
+    grid-template-columns: 1fr {{ section.settings.ff_right_width }}px;
+    grid-template-rows: 1fr auto;
+    gap: {{ section.settings.ff_card_gap }}px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Image: top-left cell */
+  .ff-image-wrap {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: {{ section.settings.ff_img_radius }}px;
+  }
+
+  .ff-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: {{ section.settings.ff_img_radius }}px;
+    display: block;
+  }
+
+  .ff-image-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: {{ section.settings.ff_img_radius }}px;
+    background: #e8e8e8;
+  }
+
+  /* Right column: 3 cards stacked, top-right cell — same card height as bottom */
+  .ff-right-col {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: {{ section.settings.ff_card_gap }}px;
+    min-height: 0;
+  }
+
+  .ff-right-col .ff-card-wrap {
+    flex: none;
+  }
+
+  .ff-right-col .ff-card {
+    height: {{ section.settings.ff_card_height }}px;
+  }
+
+  /* Bottom row: 4 cards spanning full width, bottom row */
+  .ff-bottom-row {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: {{ section.settings.ff_card_gap }}px;
+    flex-shrink: 0;
+  }
+
+  /* ── Card wrap — extra top space for half-out icon ── */
+  .ff-card-wrap {
+    position: relative;
+    padding-top: {{ section.settings.ff_icon_size | divided_by: 2 }}px;
+  }
+
+  .ff-bottom-row .ff-card-wrap {
+    flex: none;
+  }
+
+  .ff-card {
+    position: relative;
+    border: {{ section.settings.ff_card_border_width }}px solid {{ section.settings.ff_card_border_color }};
+    border-radius: {{ section.settings.ff_card_radius }}px;
+    background: {{ section.settings.ff_card_bg }};
+    height: {{ section.settings.ff_card_height }}px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: {{ section.settings.ff_card_pad_v }}px {{ section.settings.ff_card_pad_h }}px;
+    padding-left: {{ section.settings.ff_card_pad_h | plus: section.settings.ff_icon_size | plus: 12 }}px;
+    overflow: visible;
+    cursor: default;
+    transition: border-color 0.25s;
+    box-sizing: border-box;
+  }
+
+  /* Icon: half outside top-left of card */
+  .ff-icon-wrap {
+    position: absolute;
+    top: -{{ section.settings.ff_icon_size | divided_by: 2 }}px;
+    left: {{ section.settings.ff_card_pad_h }}px;
+    width: {{ section.settings.ff_icon_size }}px;
+    height: {{ section.settings.ff_icon_size }}px;
+    flex-shrink: 0;
+    z-index: 3;
+    background: {{ section.settings.ff_card_bg }};
+    border-radius: 50%;
+  }
+
+  .ff-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .ff-icon-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    background: #fff;
+  }
+
+  /* Label */
+  .ff-card-label {
+    font-size: {{ section.settings.ff_label_size }}px;
+    font-weight: {{ section.settings.ff_label_weight }};
+    color: {{ section.settings.ff_label_color }};
+    margin: 0;
+  }
+
+  /* ── Frost hover card — expands UPWARD from card top ── */
+  .ff-hover-card {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: {{ section.settings.ff_card_radius }}px;
+    background: rgba(255,255,255,{{ section.settings.ff_frost_opacity | divided_by: 100.0 }});
+    backdrop-filter: blur({{ section.settings.ff_frost_blur }}px);
+    -webkit-backdrop-filter: blur({{ section.settings.ff_frost_blur }}px);
+    border: {{ section.settings.ff_frost_border_width }}px solid #4fffff;
+    box-shadow: 0 4px 24px rgba(79,255,255,0.3);
+    padding: {{ section.settings.ff_frost_pad }}px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 20;
+  }
+
+  .ff-card-wrap:hover .ff-hover-card {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ff-hover-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ff-hover-icon {
+    width: {{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}px;
+    height: {{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .ff-hover-icon-placeholder {
+    width: {{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}px;
+    height: {{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    flex-shrink: 0;
+  }
+
+  .ff-hover-label {
+    font-size: {{ section.settings.ff_label_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.ff_label_color }};
+    margin: 0;
+  }
+
+  .ff-hover-text {
+    font-size: {{ section.settings.ff_hover_text_size }}px;
+    color: {{ section.settings.ff_hover_text_color }};
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .ff-main-row { flex-direction: column; }
+    .ff-image-wrap { flex: 0 0 100%; }
+    .ff-bottom-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .ff-bottom-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="ff-section full-width">
+
+  <h2 class="ff-heading">{{ section.settings.ff_heading }}</h2>
+
+  <!-- Grid layout: image top-left, right cards top-right, bottom cards full width -->
+  <div class="ff-layout">
+
+    <div class="ff-image-wrap">
+      {% if section.settings.ff_image != blank %}
+        <img
+          class="ff-image"
+          src="{{ section.settings.ff_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.ff_heading }}"
+          width="1200"
+          height="{{ section.settings.ff_img_height }}"
+          loading="lazy"
+        >
+      {% else %}
+        <div class="ff-image-placeholder"></div>
+      {% endif %}
+    </div>
+
+    <div class="ff-right-col">
+      {% for block in section.blocks %}
+        {% if block.settings.ff_position == 'right' %}
+          <div class="ff-card-wrap" {{ block.shopify_attributes }}>
+            <div class="ff-card">
+              <div class="ff-icon-wrap">
+                {% if block.settings.ff_icon != blank %}
+                  <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
+                {% else %}
+                  <div class="ff-icon-placeholder">✦</div>
+                {% endif %}
+              </div>
+              <p class="ff-card-label">{{ block.settings.ff_label }}</p>
+            </div>
+            {% if block.settings.ff_hover_text != blank %}
+              <div class="ff-hover-card">
+                <div class="ff-hover-icon-row">
+                  {% if block.settings.ff_icon != blank %}
+                    <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
+                  {% else %}
+                    <div class="ff-hover-icon-placeholder"></div>
+                  {% endif %}
+                  <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
+                </div>
+                <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Bottom row: 4 cards — grid-column 1/-1, grid-row 2 -->
+    <div class="ff-bottom-row">
+      {% for block in section.blocks %}
+        {% if block.settings.ff_position == 'bottom' %}
+          <div class="ff-card-wrap" {{ block.shopify_attributes }}>
+            <div class="ff-card">
+              <div class="ff-icon-wrap">
+                {% if block.settings.ff_icon != blank %}
+                  <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
+                {% else %}
+                  <div class="ff-icon-placeholder">✦</div>
+                {% endif %}
+              </div>
+              <p class="ff-card-label">{{ block.settings.ff_label }}</p>
+            </div>
+            {% if block.settings.ff_hover_text != blank %}
+              <div class="ff-hover-card">
+                <div class="ff-hover-icon-row">
+                  {% if block.settings.ff_icon != blank %}
+                    <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
+                  {% else %}
+                    <div class="ff-hover-icon-placeholder"></div>
+                  {% endif %}
+                  <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
+                </div>
+                <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Free From Section",
+  "settings": [
+    { "type": "header", "content": "── Section" },
+    { "type": "color", "id": "ff_bg", "label": "Background", "default": "#ffffff" },
+    { "type": "range", "id": "ff_padding_v", "label": "Padding Vertical (px)", "min": 0, "max": 120, "step": 4, "default": 48 },
+    { "type": "range", "id": "ff_padding_h", "label": "Padding Horizontal (px)", "min": 0, "max": 120, "step": 4, "default": 40 },
+    { "type": "range", "id": "ff_col_gap", "label": "Image ↔ Right Cards Gap (px)", "min": 8, "max": 80, "step": 4, "default": 24 },
+    { "type": "range", "id": "ff_row_gap", "label": "Main Row ↔ Bottom Row Gap (px)", "min": 0, "max": 80, "step": 4, "default": 20 },
+    { "type": "range", "id": "ff_left_width", "label": "Image Column Width (%)", "min": 40, "max": 80, "step": 5, "default": 70 },
+    { "type": "range", "id": "ff_right_width", "label": "Right Cards Column Width (px)", "min": 160, "max": 500, "step": 10, "default": 300 },
+
+    { "type": "header", "content": "── Heading" },
+    { "type": "text", "id": "ff_heading", "label": "Heading", "default": "Formulated without specific harmful or irritating ingredients" },
+    { "type": "range", "id": "ff_heading_size", "label": "Font Size (px)", "min": 20, "max": 80, "step": 2, "default": 48 },
+    {
+      "type": "select", "id": "ff_heading_weight", "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    { "type": "color", "id": "ff_heading_color", "label": "Color", "default": "#000000" },
+    { "type": "range", "id": "ff_heading_gap", "label": "Gap Below Heading (px)", "min": 0, "max": 80, "step": 4, "default": 28 },
+
+    { "type": "header", "content": "── Image" },
+    { "type": "image_picker", "id": "ff_image", "label": "Main Image" },
+    { "type": "range", "id": "ff_img_height", "label": "Image Height (px)", "min": 200, "max": 700, "step": 10, "default": 400 },
+    { "type": "range", "id": "ff_img_radius", "label": "Image Border Radius (px)", "min": 0, "max": 40, "step": 2, "default": 16 },
+
+    { "type": "header", "content": "── Cards" },
+    { "type": "range", "id": "ff_card_gap", "label": "Gap Between Cards (px)", "min": 4, "max": 40, "step": 2, "default": 16 },
+    { "type": "range", "id": "ff_card_height", "label": "Card Height (px)", "min": 40, "max": 160, "step": 4, "default": 72 },
+    { "type": "range", "id": "ff_card_pad_v", "label": "Card Padding Vertical (px)", "min": 8, "max": 40, "step": 2, "default": 16 },
+    { "type": "range", "id": "ff_card_pad_h", "label": "Card Padding Horizontal (px)", "min": 8, "max": 40, "step": 2, "default": 20 },
+    { "type": "range", "id": "ff_card_radius", "label": "Card Border Radius (px)", "min": 0, "max": 60, "step": 2, "default": 16 },
+    { "type": "range", "id": "ff_card_border_width", "label": "Card Border Width (px)", "min": 1, "max": 4, "step": 1, "default": 1 },
+    { "type": "color", "id": "ff_card_border_color", "label": "Card Border Color", "default": "#dddddd" },
+    { "type": "color", "id": "ff_card_bg", "label": "Card Background", "default": "#ffffff" },
+
+    { "type": "header", "content": "── Icon" },
+    { "type": "range", "id": "ff_icon_size", "label": "Icon Size (px)", "min": 24, "max": 80, "step": 2, "default": 48 },
+
+    { "type": "header", "content": "── Label" },
+    { "type": "range", "id": "ff_label_size", "label": "Font Size (px)", "min": 12, "max": 28, "step": 1, "default": 17 },
+    {
+      "type": "select", "id": "ff_label_weight", "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    { "type": "color", "id": "ff_label_color", "label": "Color", "default": "#000000" },
+
+    { "type": "header", "content": "── Hover Frost Card" },
+    { "type": "range", "id": "ff_frost_opacity", "label": "Background Opacity (%)", "min": 10, "max": 95, "step": 5, "default": 90 },
+    { "type": "range", "id": "ff_frost_blur", "label": "Blur (px)", "min": 2, "max": 30, "step": 2, "default": 14 },
+    { "type": "range", "id": "ff_frost_border_width", "label": "Border Width (px)", "min": 1, "max": 4, "step": 1, "default": 2 },
+    { "type": "range", "id": "ff_frost_pad", "label": "Padding (px)", "min": 8, "max": 40, "step": 2, "default": 16 },
+    { "type": "range", "id": "ff_hover_text_size", "label": "Text Size (px)", "min": 11, "max": 20, "step": 1, "default": 13 },
+    { "type": "color", "id": "ff_hover_text_color", "label": "Text Color", "default": "#333333" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Free From Card",
+      "settings": [
+        {
+          "type": "select", "id": "ff_position", "label": "Position",
+          "options": [
+            { "value": "bottom", "label": "Bottom Row (4 cards)" },
+            { "value": "right", "label": "Right Column (3 cards)" }
+          ],
+          "default": "bottom"
+        },
+        { "type": "image_picker", "id": "ff_icon", "label": "Icon Image" },
+        { "type": "text", "id": "ff_label", "label": "Label", "default": "Clean & Vegan" },
+        { "type": "textarea", "id": "ff_hover_text", "label": "Hover Description", "default": "Offers a curated selection of 100% vegan skincare products free from animal-derived ingredients." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Free From Section",
+      "blocks": [
+        { "type": "card", "settings": { "ff_position": "bottom", "ff_label": "Clean & Vegan", "ff_hover_text": "Offers a curated selection of 100% vegan skincare products free from animal-derived ingredients." } },
+        { "type": "card", "settings": { "ff_position": "bottom", "ff_label": "Paraben Free", "ff_hover_text": "Formulated without parabens — preservatives linked to skin irritation and hormonal disruption." } },
+        { "type": "card", "settings": { "ff_position": "bottom", "ff_label": "Sulfate Free", "ff_hover_text": "No harsh sulfates that strip your skin's natural moisture barrier and cause dryness." } },
+        { "type": "card", "settings": { "ff_position": "bottom", "ff_label": "Alcohol Free", "ff_hover_text": "No drying alcohols — keeps your skin hydrated and balanced throughout the day." } },
+        { "type": "card", "settings": { "ff_position": "right", "ff_label": "Cruelty Free", "ff_hover_text": "Never tested on animals. Certified cruelty-free by leading international organizations." } },
+        { "type": "card", "settings": { "ff_position": "right", "ff_label": "Fragrance-Free", "ff_hover_text": "No synthetic fragrances — ideal for sensitive skin and those prone to allergic reactions." } },
+        { "type": "card", "settings": { "ff_position": "right", "ff_label": "GMO Free", "ff_hover_text": "All ingredients are sourced from non-GMO origins for a cleaner, more natural formula." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

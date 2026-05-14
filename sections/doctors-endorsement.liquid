@@ -654,27 +654,30 @@
       card.style.width = '{{ section.settings.right_card_width | default: 70 }}%'; // Reset to right card width
     });
 
-    // Show and position other doctors (not current) in cascading effect
+    // Show and position other doctors in rotated order
+    // Cards should appear in sequence: next card first, then following cards, then previous cards at the end
     let cascadeIndex = 0;
-    doctorCards.forEach((card, index) => {
-      if (index !== currentIndex) {
-        card.style.display = 'block';
+    const totalCards = doctorCards.length;
+    
+    for (let i = 1; i < totalCards; i++) {
+      const cardIndex = (currentIndex + i) % totalCards;
+      const card = doctorCards[cardIndex];
+      
+      card.style.display = 'block';
 
-        // Apply flashcard stack effect - show more of each card behind
-        const translateY = cascadeIndex * 8;
-        const translateX = cascadeIndex * 40;
-        // Remove width scaling to maintain consistent card width
-        const opacity = 1;
-        const zIndex = 10 - cascadeIndex;
+      // Apply flashcard stack effect - show more of each card behind
+      const translateY = cascadeIndex * 8;
+      const translateX = cascadeIndex * 40;
+      const opacity = 1;
+      const zIndex = 10 - cascadeIndex;
 
-        card.style.transform = `translateY(${translateY}px) translateX(${translateX}px)`;
-        card.style.opacity = opacity;
-        card.style.zIndex = zIndex;
-        card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      card.style.transform = `translateY(${translateY}px) translateX(${translateX}px)`;
+      card.style.opacity = opacity;
+      card.style.zIndex = zIndex;
+      card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
 
-        cascadeIndex++;
-      }
-    });
+      cascadeIndex++;
+    }
   }
 
   function animateCardSlide() {
@@ -708,7 +711,7 @@
     incomingCard.style.zIndex = '1001';
     incomingCard.style.borderRadius = '32px';
     incomingCard.style.transition = `all ${animationDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-    incomingCard.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.25)';
+    incomingCard.style.boxShadow = 'none';
 
     const outgoingCard = heroCard.cloneNode(true);
     outgoingCard.style.position = 'absolute';
@@ -720,7 +723,7 @@
     outgoingCard.style.zIndex = '999';
     outgoingCard.style.borderRadius = '32px';
     outgoingCard.style.transition = `all ${animationDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-    outgoingCard.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.25)';
+    outgoingCard.style.boxShadow = 'none';
 
     heroSection.appendChild(incomingCard);
     heroSection.appendChild(outgoingCard);
@@ -798,7 +801,7 @@
     movingCard.style.zIndex = '1000';
     movingCard.style.borderRadius = '32px';
     movingCard.style.transition = `all ${animationDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-    movingCard.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.25)';
+    movingCard.style.boxShadow = 'none';
 
     // Update the moving card's content to use main card styling
     const movingCardOverlay = movingCard.querySelector('.card-overlay-content');
@@ -900,9 +903,8 @@
 
   function nextCard() {
     if (doctorCards.length === 0) return;
-    // Infinite loop - cycle through all cards
-    const nextIndex = (currentIndex + 1) % doctorCards.length;
-    currentIndex = nextIndex;
+    // Move to next card in sequence
+    currentIndex = (currentIndex + 1) % doctorCards.length;
     updateDisplay(true); // Use slide animation
   }
 

@@ -1,0 +1,775 @@
+{% comment %}
+  Weekly Calendar Layout Section
+  CSS suffix: -wcl | Font: Montserrat | Cyan: #4fffff
+  Scroll-jacked: section sticks while user scrolls through blocks, releases after last block.
+{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  /* ── STICKY WRAPPER ── */
+  .wcl-outer {
+    position: relative;
+    /* height is set by JS based on block count */
+  }
+
+  .wcl-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    height: {{ section.settings.section_height }}px;
+  }
+
+  /* ── SECTION BASE ── */
+  .section-wcl {
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: {{ section.settings.section_bg_color }};
+    position: relative;
+  }
+
+  /* ── MAIN 50/50 SPLIT ── */
+  .layout-wcl {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+    position: relative;
+  }
+
+  /* ── LEFT PANEL ── */
+  .left-panel-wcl {
+    flex: 0 0 50%;
+    background-color: {{ section.settings.left_bg_color }};
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: {{ section.settings.panel_padding }}px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Each block's text content stacks absolutely, transitions in/out */
+  .wcl-slide {
+    position: absolute;
+    inset: 0;
+    padding: {{ section.settings.panel_padding }}px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    pointer-events: none;
+  }
+
+  .wcl-slide.wcl-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .wcl-slide.wcl-exit {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+
+  /* ── TEXT STYLES (exact sizes from original schema defaults) ── */
+  .left-heading-wcl {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    line-height: 0.9;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 10px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .left-desc-wcl {
+    font-size: {{ section.settings.desc_size }}px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: {{ section.settings.desc_color }};
+    margin: 0 0 32px 0;
+    max-width: 90%;
+  }
+
+  .left-list-wcl {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .left-list-wcl li {
+    font-size: {{ section.settings.list_size }}px;
+    font-weight: 400;
+    color: {{ section.settings.list_color }};
+    line-height: 1.5;
+  }
+
+  /* ── RIGHT PANEL: image background ── */
+  .right-panel-wcl {
+    flex: 0 0 50%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Each image stacks, fades in/out */
+  .wcl-img-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .wcl-img-slide.wcl-active {
+    opacity: 1;
+  }
+
+  .wcl-img-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .wcl-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #d4c4b4 0%, #b8a898 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+  }
+
+  /* ── BOTTOM BADGE ── */
+  .badge-wrap-wcl {
+    position: absolute;
+    bottom: {{ section.settings.badge_bottom }}px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: stretch;
+    z-index: 10;
+  }
+
+  /* ── BADGE BOXES — original shapes restored ── */
+  .badge-label-wcl {
+    background-color: {{ section.settings.badge_label_bg }};
+    color: {{ section.settings.badge_label_color }};
+    font-size: {{ section.settings.badge_label_size }}px;
+    font-weight: 800;
+    letter-spacing: {{ section.settings.badge_label_spacing }}px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    {% comment %} padding: {{ section.settings.badge_padding }}px {{ section.settings.badge_padding | divided_by: 2 }}px; {% endcomment %}
+    min-width: {{ section.settings.badge_width }}px;
+    text-transform: uppercase;
+  }
+
+  /* Label text is static — no animation needed */
+
+  /* Number box: clips so numbers can slide up/down */
+  .badge-number-wcl {
+    background-color: {{ section.settings.badge_number_bg }};
+    color: {{ section.settings.badge_number_color }};
+    font-size: {{ section.settings.badge_number_size }}px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    {% comment %} padding: {{ section.settings.badge_padding }}px {{ section.settings.badge_padding }}px; {% endcomment %}
+    min-width: {{ section.settings.badge_width }}px;
+    line-height: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Slot inside number box — clips the sliding numbers */
+  .badge-num-slot-wcl {
+    position: relative;
+    overflow: hidden;
+    height: 1.1em;
+    /* width is driven by the widest number rendered in normal flow */
+  }
+
+  /* Each number value — all stack on top of each other */
+  .badge-num-val-wcl {
+    display: block;
+    white-space: nowrap;
+    line-height: 1.1;
+    /* default: sitting below, ready to enter */
+    transform: translateY(110%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* The active one sits in normal flow to size the slot width */
+  .badge-num-val-wcl.wcl-active {
+    transform: translateY(0);
+  }
+
+  /* All non-active ones are pulled out of flow and stacked */
+  .badge-num-val-wcl:not(.wcl-active):not(.wcl-exit) {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    text-align: center;
+  }
+
+  /* Exit: slide up and out, also out of flow */
+  .badge-num-val-wcl.wcl-exit {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    text-align: center;
+    transform: translateY(-110%);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .wcl-sticky {
+      height: auto;
+      position: relative;
+      top: auto;
+    }
+
+    .layout-wcl {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .left-panel-wcl {
+      flex: none;
+      width: 100%;
+      min-height: {{ section.settings.section_height | divided_by: 2 }}px;
+    }
+
+    .right-panel-wcl {
+      flex: none;
+      width: 100%;
+      min-height: 300px;
+    }
+
+    .wcl-slide {
+      position: relative;
+      inset: auto;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .wcl-img-slide {
+      position: relative;
+      inset: auto;
+      opacity: 1 !important;
+      min-height: 300px;
+    }
+
+    .badge-wrap-wcl {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .left-heading-wcl {
+      font-size: {{ section.settings.heading_size | times: 0.6 | round }}px;
+    }
+  }
+</style>
+
+{% assign block_count = section.blocks.size %}
+
+<div
+  class="wcl-outer full-width"
+  id="wcl-outer-{{ section.id }}"
+  data-wcl-id="{{ section.id }}"
+  data-wcl-blocks="{{ block_count }}"
+  data-wcl-height="{{ section.settings.section_height }}"
+>
+  <div class="wcl-sticky" id="wcl-sticky-{{ section.id }}">
+    <section
+      class="section-wcl full-width"
+      id="weekly-calendar-layout-{{ section.id }}"
+      aria-label="Weekly Calendar Layout"
+    >
+      <div class="layout-wcl">
+
+        <!-- LEFT: text slides -->
+        <div class="left-panel-wcl" id="wcl-left-{{ section.id }}">
+          {% for block in section.blocks %}
+            <div
+              class="wcl-slide{% if forloop.first %} wcl-active{% endif %}"
+              data-wcl-slide="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >
+              <h2 class="left-heading-wcl">{{ block.settings.heading | default: 'Glowing Routine' }}</h2>
+
+              {% if block.settings.description != blank %}
+                <p class="left-desc-wcl">{{ block.settings.description }}</p>
+              {% endif %}
+
+              {% assign has_list = false %}
+              {% if block.settings.list_item_1 != blank or block.settings.list_item_2 != blank or block.settings.list_item_3 != blank or block.settings.list_item_4 != blank or block.settings.list_item_5 != blank %}
+                {% assign has_list = true %}
+              {% endif %}
+              {% if has_list %}
+                <ul class="left-list-wcl">
+                  {% if block.settings.list_item_1 != blank %}<li>{{ block.settings.list_item_1 }}</li>{% endif %}
+                  {% if block.settings.list_item_2 != blank %}<li>{{ block.settings.list_item_2 }}</li>{% endif %}
+                  {% if block.settings.list_item_3 != blank %}<li>{{ block.settings.list_item_3 }}</li>{% endif %}
+                  {% if block.settings.list_item_4 != blank %}<li>{{ block.settings.list_item_4 }}</li>{% endif %}
+                  {% if block.settings.list_item_5 != blank %}<li>{{ block.settings.list_item_5 }}</li>{% endif %}
+                </ul>
+              {% endif %}
+            </div>
+          {% else %}
+            <!-- Fallback when no blocks added -->
+            <div class="wcl-slide wcl-active">
+              <h2 class="left-heading-wcl">Glowing Routine</h2>
+              <p class="left-desc-wcl">Add week blocks in the theme editor to get started.</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- RIGHT: image slides -->
+        <div class="right-panel-wcl" id="wcl-right-{{ section.id }}">
+          {% for block in section.blocks %}
+            <div
+              class="wcl-img-slide{% if forloop.first %} wcl-active{% endif %}"
+              data-wcl-img="{{ forloop.index0 }}"
+            >
+              {% if block.settings.right_image %}
+                <img
+                  src="{{ block.settings.right_image | image_url: width: 1400 }}"
+                  alt="{{ block.settings.right_image.alt | default: '' }}"
+                  width="{{ block.settings.right_image.width }}"
+                  height="{{ block.settings.right_image.height }}"
+                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                >
+              {% else %}
+                <div class="wcl-img-placeholder">IMAGE {{ forloop.index }}</div>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="wcl-img-slide wcl-active">
+              <div class="wcl-img-placeholder">IMAGE</div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- BOTTOM BADGE -->
+        <div class="badge-wrap-wcl">
+          <!-- Label box: static vertical text, no animation -->
+          <div class="badge-label-wcl" id="wcl-badge-label-{{ section.id }}">
+            {%- if section.blocks.first -%}
+              {{- section.blocks.first.settings.badge_label | default: 'WEEK' -}}
+            {%- else -%}
+              WEEK
+            {%- endif -%}
+          </div>
+          <!-- Number box: slot with slide-up animation -->
+          <div class="badge-number-wcl" id="wcl-badge-num-{{ section.id }}">
+            <div class="badge-num-slot-wcl">
+              {% for block in section.blocks %}
+                <span
+                  class="badge-num-val-wcl{% if forloop.first %} wcl-active{% endif %}"
+                  data-wcl-badge-num="{{ forloop.index0 }}"
+                >{{ block.settings.badge_number | default: forloop.index }}</span>
+              {% else %}
+                <span class="badge-num-val-wcl wcl-active">1</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  var id = '{{ section.id }}';
+  var blockCount = {{ block_count }};
+  if (blockCount < 2) return;
+
+  var outer    = document.getElementById('wcl-outer-' + id);
+  var sectionH = {{ section.settings.section_height }};
+
+  /* 300px of scroll per block — snappy, one normal scroll gesture = next week */
+  var scrollPerBlock = 300;
+  var totalExtra     = scrollPerBlock * (blockCount - 1);
+
+  outer.style.height = (sectionH + totalExtra) + 'px';
+
+  var currentIndex = 0;
+
+  function getSlides()      { return outer.querySelectorAll('.wcl-slide'); }
+  function getImgSlides()   { return outer.querySelectorAll('.wcl-img-slide'); }
+  function getBadgeLabels() { return outer.querySelectorAll('[data-wcl-badge-label]'); }
+  function getBadgeNums()   { return outer.querySelectorAll('[data-wcl-badge-num]'); }
+  function activateIndex(idx) {
+    if (idx === currentIndex) return;
+    var prev = currentIndex;
+    currentIndex = idx;
+
+    /* Text slides */
+    getSlides().forEach(function (s, i) {
+      s.classList.remove('wcl-active', 'wcl-exit');
+      if (i === idx)  s.classList.add('wcl-active');
+      else if (i === prev) s.classList.add('wcl-exit');
+    });
+
+    /* Image slides */
+    getImgSlides().forEach(function (s, i) {
+      s.classList.toggle('wcl-active', i === idx);
+    });
+
+    /* Badge numbers — slide up animation */
+    getBadgeNums().forEach(function (s) {
+      var i = parseInt(s.getAttribute('data-wcl-badge-num'), 10);
+      s.classList.remove('wcl-active', 'wcl-exit');
+      if (i === idx)  s.classList.add('wcl-active');
+      else if (i === prev) s.classList.add('wcl-exit');
+    });
+  }
+
+  function onScroll() {
+    var rect = outer.getBoundingClientRect();
+    var scrolledInto = -rect.top;
+
+    if (scrolledInto < 0) { activateIndex(0); return; }
+    if (scrolledInto >= totalExtra) { activateIndex(blockCount - 1); return; }
+
+    var idx = Math.min(Math.floor(scrolledInto / scrollPerBlock), blockCount - 1);
+    activateIndex(idx);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Weekly Calendar Layout",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 20,
+  "blocks": [
+    {
+      "type": "week",
+      "name": "Week Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Glowing Routine"
+        },
+        {
+          "type": "header",
+          "content": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray."
+        },
+        {
+          "type": "header",
+          "content": "Bullet List"
+        },
+        {
+          "type": "text",
+          "id": "list_item_1",
+          "label": "List Item 1",
+          "default": "Elevate skincare branding with stunning typography"
+        },
+        {
+          "type": "text",
+          "id": "list_item_2",
+          "label": "List Item 2",
+          "default": "Elevate skincare branding with stunning"
+        },
+        {
+          "type": "text",
+          "id": "list_item_3",
+          "label": "List Item 3",
+          "default": "Elevate skincare branding with"
+        },
+        {
+          "type": "text",
+          "id": "list_item_4",
+          "label": "List Item 4"
+        },
+        {
+          "type": "text",
+          "id": "list_item_5",
+          "label": "List Item 5"
+        },
+        {
+          "type": "header",
+          "content": "Right Panel Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "right_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "header",
+          "content": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "badge_label",
+          "label": "Badge Label (e.g. WEEK or DAY)",
+          "default": "WEEK"
+        },
+        {
+          "type": "text",
+          "id": "badge_number",
+          "label": "Badge Number",
+          "default": "1"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Height (px)",
+      "min": 300,
+      "max": 900,
+      "step": 10,
+      "default": 680
+    },
+    {
+      "type": "range",
+      "id": "panel_padding",
+      "label": "Left Panel Padding (px)",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "default": 52
+    },
+    {
+      "type": "header",
+      "content": "Left Panel"
+    },
+    {
+      "type": "color",
+      "id": "left_bg_color",
+      "label": "Left Panel Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Heading Style"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size (px)",
+      "min": 24,
+      "max": 220,
+      "step": 2,
+      "default": 120
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "SemiBold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Description Style"
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "label": "Description Font Size (px)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "List Style"
+    },
+    {
+      "type": "range",
+      "id": "list_size",
+      "label": "List Font Size (px)",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "list_color",
+      "label": "List Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Badge — Label Box"
+    },
+    {
+      "type": "range",
+      "id": "badge_label_size",
+      "label": "Badge Label Font Size (px)",
+      "min": 8,
+      "max": 28,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "badge_label_spacing",
+      "label": "Badge Label Letter Spacing (px)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "badge_label_bg",
+      "label": "Badge Label Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "badge_label_color",
+      "label": "Badge Label Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Badge — Number Box"
+    },
+    {
+      "type": "range",
+      "id": "badge_number_size",
+      "label": "Badge Number Font Size (px)",
+      "min": 24,
+      "max": 120,
+      "step": 2,
+      "default": 92
+    },
+    {
+      "type": "color",
+      "id": "badge_number_bg",
+      "label": "Badge Number Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "badge_number_color",
+      "label": "Badge Number Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Badge — Size & Position"
+    },
+    {
+      "type": "range",
+      "id": "badge_width",
+      "label": "Badge Box Min Width (px)",
+      "min": 40,
+      "max": 160,
+      "step": 4,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "badge_padding",
+      "label": "Badge Padding (px)",
+      "min": 1,
+      "max": 48,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "badge_bottom",
+      "label": "Badge Distance from Bottom (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Weekly Calendar Layout",
+      "blocks": [
+        { "type": "week" },
+        { "type": "week" }
+      ]
+    }
+  ]
+}
+{% endschema %}

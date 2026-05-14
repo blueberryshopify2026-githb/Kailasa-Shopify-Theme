@@ -1,0 +1,381 @@
+{% comment %}
+  Product Infographics Product Page - Frosted glass content panel with background image
+{% endcomment %}
+
+<style>
+  .pipp-section {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    position: relative;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+    width: 100%;
+  }
+
+  .pipp-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    {% if section.settings.background_image %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');
+    {% else %}
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+    {% endif %}
+  }
+
+  .pipp-overlay {
+    display: none;
+  }
+
+  .pipp-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    min-height: 600px;
+  }
+
+  .pipp-content {
+    width: 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .pipp-frost-panel {
+    background: rgba(112, 112, 112, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    padding: {{ section.settings.section_padding_top }}px 40px {{ section.settings.section_padding_bottom }}px 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .pipp-frost-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.1"/></svg>') repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .pipp-frost-panel > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .pipp-heading {
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: 600;
+    color: {{ section.settings.heading_color | default: '#000000' }};
+    line-height: 0.95;
+    letter-spacing: -68;
+    margin: 0 0 20px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    text-align: left;
+  }
+
+  .pipp-description {
+    font-size: {{ section.settings.description_font_size }}px;
+    color: {{ section.settings.description_color | default: '#333333' }};
+    line-height: 1.4;
+    margin: 0 0 30px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .pipp-points-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pipp-point-item {
+    display: block;
+    margin-bottom: 15px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+  }
+
+  .pipp-point-icon {
+    display: none;
+  }
+
+  .pipp-point-text {
+    font-size: {{ section.settings.point_font_size }}px;
+    color: {{ section.settings.point_text_color | default: '#000000' }};
+    font-weight: 500;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .pipp-content {
+      width: 50%;
+    }
+
+    .pipp-frost-panel {
+      padding: {{ section.settings.section_padding_top | divided_by: 2 }}px 25px {{ section.settings.section_padding_bottom | divided_by: 2 }}px 25px;
+    }
+
+    .pipp-heading {
+      font-size: {{ section.settings.heading_font_size | minus: 8 }}px;
+      margin-bottom: 15px;
+    }
+
+    .pipp-description {
+      font-size: {{ section.settings.description_font_size | minus: 2 }}px;
+      margin-bottom: 25px;
+    }
+
+    .pipp-point-item {
+      padding: 10px 15px;
+      margin-bottom: 12px;
+    }
+
+    .pipp-point-text {
+      font-size: {{ section.settings.point_font_size | minus: 1 }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pipp-content {
+      width: 60%;
+    }
+
+    .pipp-frost-panel {
+      padding: {{ section.settings.section_padding_top | divided_by: 3 }}px 20px {{ section.settings.section_padding_bottom | divided_by: 3 }}px 20px;
+    }
+
+    .pipp-heading {
+      font-size: {{ section.settings.heading_font_size | minus: 12 }}px;
+    }
+
+    .pipp-description {
+      font-size: {{ section.settings.description_font_size | minus: 3 }}px;
+    }
+
+    .pipp-point-item {
+      padding: 8px 12px;
+      margin-bottom: 10px;
+    }
+
+    .pipp-point-text {
+      font-size: {{ section.settings.point_font_size | minus: 2 }}px;
+    }
+  }
+</style>
+
+<section class="pipp-section">
+  <div class="pipp-background"></div>
+  <div class="pipp-overlay"></div>
+  
+  <div class="pipp-container">
+    <div class="pipp-content">
+      <div class="pipp-frost-panel">
+        {% if section.settings.heading != blank %}
+          <h2 class="pipp-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        
+        {% if section.settings.description != blank %}
+          <p class="pipp-description">{{ section.settings.description }}</p>
+        {% endif %}
+        
+        {% if section.blocks.size > 0 %}
+          <ul class="pipp-points-list">
+            {% for block in section.blocks %}
+              <li class="pipp-point-item">
+                <div class="pipp-point-icon"></div>
+                <p class="pipp-point-text">{{ block.settings.point_text }}</p>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Product Infographics",
+  "tag": "section",
+  "class": "pipp-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Recommended size: 1920x800px"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Background Overlay",
+      "default": "rgba(255, 255, 255, 0.1)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Elastic Skin Protocol"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Power your day with a skincare ritual that repairs overnight damage, locks in moisture, and builds a strong barrier against environmental aggressors."
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 24,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 58
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Points Styling"
+    },
+    {
+      "type": "range",
+      "id": "point_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Point Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "point_text_color",
+      "label": "Point Text Color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "point_text",
+          "label": "Point Text",
+          "default": "Repair. Renew. Reborn."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Infographics",
+      "blocks": [
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "Repair. Renew. Reborn."
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "The DNA of Youthful Skin"
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "From Damage to Radiance"
+          }
+        },
+        {
+          "type": "point",
+          "settings": {
+            "point_text": "Cellular Repair, Visible Glow"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

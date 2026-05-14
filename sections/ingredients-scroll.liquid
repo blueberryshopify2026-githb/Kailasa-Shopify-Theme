@@ -83,39 +83,6 @@
   }
 
 
-  /* Navigation Buttons - Simple like reference */
-  .carousel-nav {
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    z-index: 2;
-    position: relative;
-    align-self: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-
-  .carousel-nav:hover {
-    background: #333;
-    border-color: #333;
-    color: white;
-    transform: scale(1.05);
-  }
-
-
-  .carousel-nav:active {
-    transform: scale(0.95);
-  }
-
-
   /* Side Cards - Small, grayscale like reference */
   .ingredient-d-card {
     position: relative;
@@ -232,6 +199,23 @@
   .ingredients-track .ingredient-d-card:not(.active) .ingredient-auto-info {
     opacity: 0 !important;
     visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* ONLY allow hover popup on active (centered) cards */
+  .ingredients-track .ingredient-d-card.active .ingredient-auto-info:hover + .ingredient-hover-info {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    z-index: 25 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Disable hover popup on non-active cards */
+  .ingredients-track .ingredient-d-card:not(.active) .ingredient-hover-info {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
     pointer-events: none !important;
   }
 
@@ -1069,14 +1053,6 @@
     <div class="ingredients-carousel">
       <div class="carousel-spacer"></div>
 
-
-      <button class="carousel-nav prev" onclick="moveCarousel(-1, '{{ section.id }}')">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-
-
       <div class="ingredients-container">
         <div class="ingredients-track" id="track-{{ section.id }}">
           <!-- 10 clone sets at the beginning for truly infinite left scroll -->
@@ -1406,14 +1382,6 @@
         </div>
       </div>
 
-
-      <button class="carousel-nav next" onclick="moveCarousel(1, '{{ section.id }}')">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-
-
       <div class="carousel-spacer"></div>
     </div>
 
@@ -1615,7 +1583,7 @@
           frostGlass.style.pointerEvents = 'none';
         }
         
-        // Hide any open hover info
+        // Hide any open hover info on inactive cards
         const hoverInfo = card.querySelector('.ingredient-hover-info');
         if (hoverInfo) {
           hoverInfo.classList.remove('show-details');
@@ -1650,7 +1618,6 @@
     const data = window.ingredientsScrollData[sectionId];
     if (data.isTransitioning) return;
 
-
     const track = document.getElementById('track-' + sectionId);
     const cards = track.querySelectorAll('.ingredient-d-card');
     const originalBlocksCount = data.originalBlocksCount;
@@ -1678,9 +1645,19 @@
         closestIndex = instanceIndex;
       }
     });
-   
-    // Select the closest instance
-    selectIngredient(closestIndex, sectionId, true);
+
+    // Check if the clicked card is already active (centered)
+    const clickedCard = cards[closestIndex];
+    if (clickedCard && clickedCard.classList.contains('active')) {
+      // If already active, show the detailed info
+      const hoverInfo = clickedCard.querySelector('.ingredient-hover-info');
+      if (hoverInfo) {
+        hoverInfo.classList.add('show-details');
+      }
+    } else {
+      // If not active, just center it without showing details
+      selectIngredient(closestIndex, sectionId, true);
+    }
   }
 
 
@@ -1922,11 +1899,9 @@
     // Target ALL ingredient cards, not just active ones
     const ingredientCards = document.querySelectorAll('#ingredients-scroll-{{ section.id }} .ingredient-d-card');
 
-
     ingredientCards.forEach((card) => {
       const frostGlass = card.querySelector('.ingredient-auto-info');
       const hoverInfo = card.querySelector('.ingredient-hover-info');
-
 
       if (frostGlass && hoverInfo) {
         // Remove any existing listeners to prevent duplicates
@@ -1934,32 +1909,34 @@
         card.removeEventListener('mouseleave', card._hoverLeave);
         hoverInfo.removeEventListener('mouseenter', hoverInfo._hoverEnter);
 
-
         // Add new listeners and store references for removal
         frostGlass._hoverEnter = function () {
-          // Only show details if this card is active
+          // ONLY show details if this card is active (centered)
           if (card.classList.contains('active')) {
             hoverInfo.classList.add('show-details');
           }
         };
 
-
         card._hoverLeave = function () {
-          hoverInfo.classList.remove('show-details');
+          // Only hide if this card is active
+          if (card.classList.contains('active')) {
+            hoverInfo.classList.remove('show-details');
+          }
         };
 
-
         hoverInfo._hoverEnter = function () {
-          // Only show details if this card is active
+          // ONLY show details if this card is active (centered)
           if (card.classList.contains('active')) {
             this.classList.add('show-details');
           }
         };
 
-
-        frostGlass.addEventListener('mouseenter', frostGlass._hoverEnter);
-        card.addEventListener('mouseleave', card._hoverLeave);
-        hoverInfo.addEventListener('mouseenter', hoverInfo._hoverEnter);
+        // Only add hover listeners to active cards
+        if (card.classList.contains('active')) {
+          frostGlass.addEventListener('mouseenter', frostGlass._hoverEnter);
+          card.addEventListener('mouseleave', card._hoverLeave);
+          hoverInfo.addEventListener('mouseenter', hoverInfo._hoverEnter);
+        }
       }
     });
   }

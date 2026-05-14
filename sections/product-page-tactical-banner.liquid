@@ -1,0 +1,512 @@
+{% comment %}
+  Product Page Tactical Banner - Interactive product showcase with blinking dots
+  Features: 40/60 layout, product image with interactive dots, hover info panels
+{% endcomment %}
+
+<style>
+  .pptb {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: {{ section.settings.background_color | default: '#ffffff' }};
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 0;
+    overflow-x: hidden;
+  }
+
+  .pptb__background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 1;
+  }
+
+  .pptb__container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Left side - Content */
+  .pptb__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .pptb__heading {
+    font-size: {{ section.settings.heading_size | default: 48 }}px;
+    font-weight: 600;
+    color: {{ section.settings.heading_color | default: '#1a1a1a' }};
+    line-height: 1.1;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.02em;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .pptb__description {
+    font-size: {{ section.settings.description_size | default: 18 }}px;
+    line-height: 1.6;
+    color: {{ section.settings.description_color | default: '#666666' }};
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+  }
+
+  .pptb__description p {
+    margin: 0 0 20px 0;
+  }
+
+  /* Right side - Product with dots */
+  .pptb__product-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pptb__product-container {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .pptb__product-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+  }
+
+  /* Blinking dots - Loading cyan style with outline */
+  .pptb__dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4fffff;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 2px rgba(79, 255, 255, 0.3);
+    cursor: pointer;
+    z-index: 10;
+    animation: pptb-slow-blink 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+  }
+
+  .pptb__dot:hover {
+    animation: pptb-fast-blink 0.5s ease-in-out infinite;
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 0 0 3px rgba(79, 255, 255, 0.5), 0 0 20px rgba(79, 255, 255, 0.4);
+  }
+
+  @keyframes pptb-slow-blink {
+    0%, 100% {
+      opacity: 0.7;
+      box-shadow: 0 0 0 2px rgba(79, 255, 255, 0.3);
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 0 3px rgba(79, 255, 255, 0.5);
+    }
+  }
+
+  @keyframes pptb-fast-blink {
+    0%, 100% {
+      opacity: 0.8;
+      box-shadow: 0 0 0 3px rgba(79, 255, 255, 0.5);
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 0 4px rgba(79, 255, 255, 0.7);
+    }
+  }
+
+  /* Info panels - Smart positioning based on dot location */
+  .pptb__info-panel {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    min-width: 250px;
+    max-width: 300px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 15;
+    pointer-events: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Dots on left side (0-50%) - panels open to the left */
+  .pptb__info-panel--left {
+    transform: translateX(10px) translateY(-50%);
+  }
+
+  .pptb__dot:hover + .pptb__info-panel--left {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) translateY(-50%);
+  }
+
+  /* Dots on right side (50-100%) - panels open to the right */
+  .pptb__info-panel--right {
+    transform: translateX(-10px) translateY(-50%);
+  }
+
+  .pptb__dot:hover + .pptb__info-panel--right {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) translateY(-50%);
+  }
+
+  .pptb__info-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.3;
+  }
+
+  .pptb__info-description {
+    font-size: 14px;
+    color: #666666;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 1024px) {
+    .pptb__container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .pptb__heading {
+      font-size: calc({{ section.settings.heading_size | default: 48 }}px * 0.8);
+    }
+
+    .pptb__description {
+      font-size: calc({{ section.settings.description_size | default: 18 }}px * 0.9);
+    }
+
+    .pptb__product-container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pptb {
+      padding: 40px 0;
+    }
+
+    .pptb__container {
+      padding: 0 15px;
+      gap: 30px;
+    }
+
+    .pptb__heading {
+      font-size: calc({{ section.settings.heading_size | default: 48 }}px * 0.6);
+      margin-bottom: 20px;
+    }
+
+    .pptb__description {
+      font-size: calc({{ section.settings.description_size | default: 18 }}px * 0.8);
+    }
+
+    .pptb__product-container {
+      max-width: 300px;
+    }
+
+    .pptb__dot {
+      width: 14px;
+      height: 14px;
+    }
+
+    .pptb__info-panel {
+      min-width: 200px;
+      max-width: 250px;
+      padding: 15px;
+    }
+
+    .pptb__info-title {
+      font-size: 14px;
+    }
+
+    .pptb__info-description {
+      font-size: 12px;
+    }
+  }
+</style>
+
+<section class="pptb full-width" id="pptb-{{ section.id }}" 
+  {% if section.settings.background_image %}
+    style="background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');"
+  {% endif %}
+>
+  {% if section.settings.background_image %}
+    <div class="pptb__background-overlay"></div>
+  {% endif %}
+  
+  <div class="pptb__container">
+    <!-- Left side - Content -->
+    <div class="pptb__content">
+      {% if section.settings.heading != blank %}
+        <h2 class="pptb__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="pptb__description">{{ section.settings.description }}</div>
+      {% endif %}
+    </div>
+
+    <!-- Right side - Product with interactive dots -->
+    <div class="pptb__product-section">
+      <div class="pptb__product-container">
+        {% if section.settings.product_image %}
+          <img
+            src="{{ section.settings.product_image | image_url: width: 500 }}"
+            alt="{{ section.settings.heading | default: 'Product' }}"
+            class="pptb__product-image"
+            width="500"
+            height="auto"
+          >
+        {% endif %}
+
+        <!-- Interactive dots -->
+        {% for block in section.blocks %}
+          {% assign dot_x = block.settings.dot_position_x | default: 50 %}
+          {% assign dot_y = block.settings.dot_position_y | default: 50 %}
+          
+          <div 
+            class="pptb__dot" 
+            style="top: {{ dot_y }}%; left: {{ dot_x }}%;"
+            {{ block.shopify_attributes }}
+          ></div>
+          
+          {% if dot_x >= 50 %}
+            <!-- Dot on right side - panel opens to the right -->
+            <div 
+              class="pptb__info-panel pptb__info-panel--right"
+              style="top: {{ dot_y }}%; left: calc({{ dot_x }}% + 20px);"
+            >
+              {% if block.settings.info_title != blank %}
+                <h3 class="pptb__info-title">{{ block.settings.info_title }}</h3>
+              {% endif %}
+              
+              {% if block.settings.info_description != blank %}
+                <p class="pptb__info-description">{{ block.settings.info_description }}</p>
+              {% endif %}
+            </div>
+          {% else %}
+            <!-- Dot on left side - panel opens to the left -->
+            <div 
+              class="pptb__info-panel pptb__info-panel--left"
+              style="top: {{ dot_y }}%; right: calc(100% - {{ dot_x }}% + 20px);"
+            >
+              {% if block.settings.info_title != blank %}
+                <h3 class="pptb__info-title">{{ block.settings.info_title }}</h3>
+              {% endif %}
+              
+              {% if block.settings.info_description != blank %}
+                <p class="pptb__info-description">{{ block.settings.info_description }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Tactical Banner",
+  "tag": "section",
+  "class": "pptb-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background & Layout"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Optional background image for the section (recommended: 1920x1080px or larger)"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff",
+      "info": "Background color (used as fallback or overlay base)"
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "2-in-1 Formulation Optimized for Nutrient Delivery",
+      "info": "Main heading for the section"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Seed's ViaCap® delivery system is engineered for targeted release along the GI tract.</p>",
+      "info": "Description text with formatting options"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Product Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image",
+      "info": "Recommended: 500x600px or larger"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info_dot",
+      "name": "Information Dot",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "range",
+          "id": "dot_position_x",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal Position",
+          "default": 50,
+          "info": "Position from left edge (0% = left, 100% = right)"
+        },
+        {
+          "type": "range",
+          "id": "dot_position_y",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical Position",
+          "default": 50,
+          "info": "Position from top edge (0% = top, 100% = bottom)"
+        },
+        {
+          "type": "text",
+          "id": "info_title",
+          "label": "Info Title",
+          "default": "Deep Skin Repair",
+          "info": "Title shown in hover panel"
+        },
+        {
+          "type": "textarea",
+          "id": "info_description",
+          "label": "Info Description",
+          "default": "PDRN works at a cellular level to repair damaged skin and accelerate healing.",
+          "info": "Description shown in hover panel"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Tactical Banner",
+      "blocks": [
+        {
+          "type": "info_dot",
+          "settings": {
+            "dot_position_x": 85,
+            "dot_position_y": 15,
+            "info_title": "Advanced Formula",
+            "info_description": "Scientifically engineered for maximum absorption and effectiveness."
+          }
+        },
+        {
+          "type": "info_dot",
+          "settings": {
+            "dot_position_x": 75,
+            "dot_position_y": 45,
+            "info_title": "Deep Skin Repair",
+            "info_description": "PDRN works at a cellular level to repair damaged skin and accelerate healing."
+          }
+        },
+        {
+          "type": "info_dot",
+          "settings": {
+            "dot_position_x": 90,
+            "dot_position_y": 75,
+            "info_title": "Targeted Delivery",
+            "info_description": "Precision-engineered delivery system for optimal nutrient absorption."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

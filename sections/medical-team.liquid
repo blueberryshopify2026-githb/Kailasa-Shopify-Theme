@@ -15,10 +15,9 @@
 
 
   .medical-team-container {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 20px;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
 
@@ -28,6 +27,7 @@
     margin-bottom: 50px;
     background: transparent;
     width: 100%;
+    padding: 0 20px;
   }
 
 
@@ -52,7 +52,7 @@
   }
 
 
-  .medical-team-title .highlight {
+  .medical-team-title .medical-team-highlight {
     color: {{ section.settings.highlight_color | default: '#4FFFFF' }};
     background: transparent !important;
     background-color: transparent !important;
@@ -61,11 +61,25 @@
     display: inline;
     margin: 0;
     padding: 0;
+    font-family: inherit;
+    line-height: inherit;
+    text-decoration: none;
+    border: none;
+    outline: none;
+  }
+
+  .medical-team-highlight {
+    color: {{ section.settings.highlight_color | default: '#4FFFFF' }};
+    background: transparent;
+    font-weight: 800;
+    display: inline;
+    margin: 0;
+    padding: 0;
   }
 
 
-  .medical-team-title .highlight::before,
-  .medical-team-title .highlight::after {
+  .medical-team-title .medical-team-highlight::before,
+  .medical-team-title .medical-team-highlight::after {
     display: none;
   }
 
@@ -88,9 +102,10 @@
     align-items: center;
     justify-content: center;
     gap: 25px;
-    padding: 0 40px;
-    height: 400px;
-    min-height: 400px;
+    padding: 0 20px;
+    height: 500px;
+    min-height: 500px;
+    width: 100%;
   }
 
 
@@ -101,7 +116,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+    height: 500px;
   }
 
 
@@ -112,7 +127,7 @@
     padding: 15px 0;
     align-items: center;
     justify-content: center;
-    height: 370px;
+    height: 500px;
     opacity: 0;
     visibility: hidden;
     will-change: transform;
@@ -347,11 +362,12 @@
 
   @media (max-width: 768px) {
     .medical-team-section {
-      padding: 60px 15px;
+      padding: 60px 0;
     }
 
     .medical-team-header {
       margin-bottom: 40px;
+      padding: 0 15px;
     }
 
     .medical-team-title {
@@ -364,6 +380,7 @@
 
     .medical-team-carousel {
       gap: 15px;
+      padding: 0 15px;
     }
 
     .medical-team-card {
@@ -413,6 +430,7 @@
   @media (max-width: 480px) {
     .medical-team-carousel {
       gap: 10px;
+      padding: 0 10px;
     }
 
     .medical-team-card {
@@ -467,7 +485,7 @@
       <div class="medical-team-title-wrapper">
         <h2 class="medical-team-title">
           {{ section.settings.title_part1 | default: 'MEET OUR SPECIALISED' }}
-          <span class="highlight">{{ section.settings.title_part2 | default: 'MEDICAL TEAM' }}</span>
+          <span class="medical-team-highlight">{{ section.settings.title_part2 | default: 'MEDICAL TEAM' }}</span>
         </h2>
       </div>
       <p class="medical-team-description">
@@ -478,7 +496,7 @@
 
     <!-- Carousel -->
     <div class="medical-team-carousel">
-      <button class="medical-team-nav prev" onclick="moveMedicalTeam(-1, '{{ section.id }}')">
+      <button class="medical-team-nav" onclick="moveMedicalTeam(-1, '{{ section.id }}')">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M15 18L9 12L15 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -587,7 +605,7 @@
       </div>
 
 
-      <button class="medical-team-nav next" onclick="moveMedicalTeam(1, '{{ section.id }}')">
+      <button class="medical-team-nav" onclick="moveMedicalTeam(1, '{{ section.id }}')">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M9 18L15 12L9 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>

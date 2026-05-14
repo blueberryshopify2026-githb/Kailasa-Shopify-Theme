@@ -1,0 +1,1240 @@
+{% comment %}
+  UGC Content Section - Exact match to reference image
+  Features: Large center card, small side cards, infinite conveyor belt scroll
+{% endcomment %}
+
+
+
+
+<style>
+  .ucs {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.section_background | default: '#ffffff' }};
+    padding: 20px 0 10px 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
+
+
+  .ucs__container {
+    width: 100%;
+    padding: 0; /* Remove padding for full width */
+  }
+
+
+
+
+  /* Header */
+  .ucs__header {
+    text-align: center;
+    padding: 0 20px; /* Only header has padding */
+  }
+
+
+
+
+  .ucs__title {
+    font-size: {{ section.settings.title_font_size | default: 42 }}px;
+    font-weight: 700;
+    color: {{ section.settings.title_color | default: '#000000' }};
+    line-height: 1.2;
+    margin: 0 0 10px 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+
+
+  .ucs__description {
+    font-size: {{ section.settings.description_font_size | default: 16 }}px;
+    color: {{ section.settings.description_color | default: '#666666' }};
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 600px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+
+
+  /* Main Carousel Container - FULL WIDTH with better edge spacing */
+  .ucs__carousel {
+    position: relative;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100vw; /* Full viewport width */
+    margin-left: calc(-50vw + 50%); /* Center full width in any container */
+    padding: 0 50px; /* Add padding to prevent cards from touching edges */
+  }
+
+
+
+
+  .ucs__viewport {
+    flex: 1;
+    overflow: visible;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+  }
+
+
+
+
+  .ucs__track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    gap: 20px;
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+
+
+
+  .ucs__track.initialized {
+    opacity: 1;
+    visibility: visible;
+  }
+
+
+
+
+  /* Card Base Styles */
+  .ucs__card {
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 25px;
+    overflow: hidden;
+    background: #f0f0f0;
+    position: relative;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+
+
+
+  /* ALL SIDE CARDS - Same size, grayscale */
+  .ucs__card:not(.ucs__card--center) {
+    width: 200px;
+    height: 280px;
+    opacity: 0.7;
+    filter: grayscale(100%);
+    transform: scale(0.9);
+  }
+
+
+
+
+  .ucs__card:not(.ucs__card--center):hover {
+    opacity: 0.85;
+    transform: scale(0.95);
+  }
+
+
+
+
+  /* CENTER CARD - Optimized for above the fold */
+  .ucs__card--center {
+    width: 380px !important;
+    height: 500px !important;
+    opacity: 1 !important;
+    filter: grayscale(0) !important;
+    transform: scale(1) !important;
+    z-index: 10 !important;
+  }
+
+
+
+
+  /* Card Content */
+  .ucs__card-media {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+
+
+
+
+  .ucs__card-video,
+  .ucs__card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+
+
+
+  .ucs__card-video {
+    pointer-events: none;
+  }
+
+
+
+
+  .ucs__card--center .ucs__card-video {
+    pointer-events: auto;
+  }
+
+
+
+
+  /* Product Panel - Only visible on centered cards */
+  .ucs__product-panel {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    transition: all 0.5s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+
+
+  /* Only show product panel on center cards that are also centered */
+  .ucs__card--center.centered .ucs__product-panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+
+  /* Hide product panel on side cards */
+  .ucs__card:not(.ucs__card--center) .ucs__product-panel {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    pointer-events: none;
+  }
+
+
+
+
+  .ucs__product-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+
+
+
+  .ucs__product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+
+
+  .ucs__product-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+
+
+
+  .ucs__product-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    line-height: 1.3;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+
+
+  .ucs__product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+
+
+  .ucs__buy-button {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #4fffff;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+
+
+
+  .ucs__buy-button:hover {
+    background: #4fffff;
+    color: #000000;
+    transform: translateY(-1px);
+  }
+
+
+
+
+  /* Placeholder */
+  .ucs__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    color: #999;
+    text-align: center;
+    padding: 40px 20px;
+    height: 100%;
+  }
+
+
+
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .ucs__carousel {
+      height: 550px;
+      padding: 0 30px;
+    }
+   
+    .ucs__card:not(.ucs__card--center) {
+      width: 160px;
+      height: 220px;
+    }
+
+
+
+
+    .ucs__card--center {
+      width: 320px !important;
+      height: 450px !important;
+    }
+
+
+
+
+    .ucs__track {
+      gap: 20px;
+    }
+
+
+
+
+    .ucs__product-panel {
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      padding: 15px;
+      gap: 12px;
+    }
+
+
+
+
+    .ucs__product-image {
+      width: 50px;
+      height: 50px;
+    }
+
+
+
+
+    .ucs__product-title {
+      font-size: 14px;
+    }
+
+
+
+
+    .ucs__product-price {
+      font-size: 16px;
+    }
+
+
+
+
+    .ucs__buy-button {
+      padding: 10px 14px;
+      font-size: 12px;
+    }
+  }
+
+
+
+
+  @media (max-width: 768px) {
+    .ucs__carousel {
+      height: 450px;
+      padding: 0 20px;
+    }
+   
+    .ucs__card:not(.ucs__card--center) {
+      width: 120px;
+      height: 160px;
+    }
+
+
+
+
+    .ucs__card--center {
+      width: 240px !important;
+      height: 320px !important;
+    }
+
+
+
+
+    .ucs__track {
+      gap: 15px;
+    }
+
+
+
+
+    .ucs__product-panel {
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      padding: 12px;
+      gap: 10px;
+    }
+
+
+
+
+    .ucs__product-image {
+      width: 40px;
+      height: 40px;
+    }
+
+
+
+
+    .ucs__product-title {
+      font-size: 12px;
+    }
+
+
+
+
+    .ucs__product-price {
+      font-size: 14px;
+    }
+
+
+
+
+    .ucs__buy-button {
+      padding: 8px 12px;
+      font-size: 10px;
+    }
+  }
+
+
+
+
+  @media (max-width: 480px) {
+    .ucs__carousel {
+      height: 400px;
+      padding: 0 15px;
+    }
+   
+    .ucs__card:not(.ucs__card--center) {
+      width: 80px;
+      height: 120px;
+    }
+
+
+
+
+    .ucs__card--center {
+      width: 180px !important;
+      height: 240px !important;
+    }
+
+
+
+
+    .ucs__track {
+      gap: 10px;
+    }
+
+
+
+
+    .ucs__product-panel {
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      padding: 10px;
+      gap: 8px;
+    }
+
+
+
+
+    .ucs__product-image {
+      width: 35px;
+      height: 35px;
+    }
+
+
+
+
+    .ucs__product-title {
+      font-size: 11px;
+    }
+
+
+
+
+    .ucs__product-price {
+      font-size: 12px;
+    }
+
+
+
+
+    .ucs__buy-button {
+      padding: 6px 10px;
+      font-size: 9px;
+    }
+  }
+</style>
+
+
+
+
+<section class="ucs full-width" id="ucs-{{ section.id }}">
+  <div class="ucs__container">
+    <!-- Header -->
+    {% if section.settings.section_title != blank or section.settings.section_description != blank %}
+      <div class="ucs__header">
+        {% if section.settings.section_title != blank %}
+          <h2 class="ucs__title">{{ section.settings.section_title }}</h2>
+        {% endif %}
+        {% if section.settings.section_description != blank %}
+          <p class="ucs__description">{{ section.settings.section_description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+
+
+
+    <!-- Carousel -->
+    <div class="ucs__carousel">
+      <div class="ucs__viewport">
+        <div class="ucs__track" id="ucs-track-{{ section.id }}">
+          {% if section.blocks.size == 0 %}
+            <div class="ucs__placeholder">
+              <div style="font-size: 18px; font-weight: 600;">No content added yet</div>
+              <div style="font-size: 14px;">Add UGC content blocks to get started</div>
+            </div>
+          {% else %}
+            <!-- Clone sets before for infinite loop (50 sets) -->
+            {% assign card_index = 0 %}
+            {% for i in (1..50) %}
+              {% for block in section.blocks %}
+                <div class="ucs__card clone-card"
+                     data-original-index="{{ forloop.index0 }}"
+                     data-card-index="{{ card_index }}"
+                     data-video-url="{{ block.settings.video_url }}"
+                     data-image-url="{% if block.settings.fallback_image %}{{ block.settings.fallback_image | image_url: width: 350 }}{% endif %}"
+                     data-product-image="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
+                     data-product-title="{{ block.settings.product_title }}"
+                     data-product-price="{{ block.settings.product_price }}"
+                     data-product-url="{{ block.settings.product_url }}"
+                     data-redirect-url="{{ block.settings.redirect_url }}"
+                     onclick="handleUCSCardClick(this, '{{ section.id }}')">
+                  <div class="ucs__card-media">
+                    <!-- Content loaded by JavaScript -->
+                  </div>
+                </div>
+                {% assign card_index = card_index | plus: 1 %}
+              {% endfor %}
+            {% endfor %}
+
+
+
+
+            <!-- Original cards -->
+            {% for block in section.blocks %}
+              <div class="ucs__card original-card {% if forloop.first %}ucs__card--center{% endif %}"
+                   data-index="{{ forloop.index0 }}"
+                   data-card-index="{{ card_index }}"
+                   data-video-url="{{ block.settings.video_url }}"
+                   data-image-url="{% if block.settings.fallback_image %}{{ block.settings.fallback_image | image_url: width: 350 }}{% endif %}"
+                   data-product-image="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
+                   data-product-title="{{ block.settings.product_title }}"
+                   data-product-price="{{ block.settings.product_price }}"
+                   data-product-url="{{ block.settings.product_url }}"
+                   data-redirect-url="{{ block.settings.redirect_url }}"
+                   onclick="handleUCSCardClick(this, '{{ section.id }}')">
+               
+                {% if forloop.first %}
+                  <!-- Center Active Card -->
+                  <div class="ucs__card-media">
+                    {% if block.settings.video_url %}
+                      {% assign video_source = block.settings.video_url %}
+                      {% if video_source contains 'instagram.com' %}
+                        {% assign post_id = video_source | split: '/reel/' | last | split: '/' | first %}
+                        {% if post_id == blank %}
+                          {% assign post_id = video_source | split: '/p/' | last | split: '/' | first %}
+                        {% endif %}
+                        <iframe class="ucs__card-video" src="https://www.instagram.com/p/{{ post_id }}/embed/" frameborder="0" allowfullscreen></iframe>
+                      {% elsif video_source contains 'tiktok.com' %}
+                        <iframe class="ucs__card-video" src="{{ video_source | replace: '/video/', '/embed/v2/' }}" frameborder="0" allowfullscreen></iframe>
+                      {% elsif video_source contains 'youtube.com' or video_source contains 'youtu.be' %}
+                        {% assign video_id = '' %}
+                        {% if video_source contains 'youtu.be/' %}
+                          {% assign video_id = video_source | split: 'youtu.be/' | last | split: '?' | first %}
+                        {% elsif video_source contains 'youtube.com/watch' %}
+                          {% assign video_id = video_source | split: 'v=' | last | split: '&' | first %}
+                        {% elsif video_source contains 'youtube.com/shorts/' %}
+                          {% assign video_id = video_source | split: '/shorts/' | last | split: '?' | first %}
+                        {% endif %}
+                        {% if video_id != blank %}
+                          <iframe class="ucs__card-video" src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1&loop=1&playlist={{ video_id }}&controls=0" frameborder="0" allowfullscreen></iframe>
+                        {% endif %}
+                      {% else %}
+                        <video class="ucs__card-video" autoplay muted loop playsinline preload="metadata">
+                          <source src="{{ video_source }}" type="video/mp4">
+                        </video>
+                      {% endif %}
+                    {% elsif block.settings.fallback_image %}
+                      <img class="ucs__card-image" src="{{ block.settings.fallback_image | image_url: width: 350 }}" alt="UGC Content" width="350" height="450">
+                    {% else %}
+                      <div class="ucs__placeholder">
+                        <div style="font-size: 14px; font-weight: 600;">No Media</div>
+                      </div>
+                    {% endif %}
+                   
+                    {% if block.settings.product_title or block.settings.product_price or block.settings.product_image %}
+                      <div class="ucs__product-panel">
+                        {% if block.settings.product_image %}
+                          <div class="ucs__product-image">
+                            <img src="{{ block.settings.product_image | image_url: width: 100 }}" alt="{{ block.settings.product_title | default: 'Product' }}" width="100" height="100">
+                          </div>
+                        {% endif %}
+                        <div class="ucs__product-info">
+                          {% if block.settings.product_title %}
+                            <div class="ucs__product-title">{{ block.settings.product_title }}</div>
+                          {% endif %}
+                          {% if block.settings.product_price %}
+                            <div class="ucs__product-price">{{ block.settings.product_price }}</div>
+                          {% endif %}
+                        </div>
+                        {% if block.settings.product_url %}
+                          <a href="{{ block.settings.product_url }}" class="ucs__buy-button" target="_blank">BUY NOW</a>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% else %}
+                  <!-- Side Card -->
+                  <div class="ucs__card-media">
+                    {% if block.settings.fallback_image %}
+                      <img class="ucs__card-image" src="{{ block.settings.fallback_image | image_url: width: 350 }}" alt="UGC Content" width="350" height="450">
+                    {% else %}
+                      <div class="ucs__placeholder">
+                        <div style="font-size: 14px; font-weight: 600;">No Media</div>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+              {% assign card_index = card_index | plus: 1 %}
+            {% endfor %}
+
+
+
+
+            <!-- Clone sets after for infinite loop (50 sets) -->
+            {% for i in (1..50) %}
+              {% for block in section.blocks %}
+                <div class="ucs__card clone-card"
+                     data-original-index="{{ forloop.index0 }}"
+                     data-card-index="{{ card_index }}"
+                     data-video-url="{{ block.settings.video_url }}"
+                     data-image-url="{% if block.settings.fallback_image %}{{ block.settings.fallback_image | image_url: width: 350 }}{% endif %}"
+                     data-product-image="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
+                     data-product-title="{{ block.settings.product_title }}"
+                     data-product-price="{{ block.settings.product_price }}"
+                     data-product-url="{{ block.settings.product_url }}"
+                     data-redirect-url="{{ block.settings.redirect_url }}"
+                     onclick="handleUCSCardClick(this, '{{ section.id }}')">
+                  <div class="ucs__card-media">
+                    <!-- Content loaded by JavaScript -->
+                  </div>
+                </div>
+                {% assign card_index = card_index | plus: 1 %}
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+// UGC Content Section - Smooth Conveyor Belt Animation (Based on Medical Team)
+window.ucsData = window.ucsData || {};
+
+
+function initializeUCS(sectionId) {
+  try {
+    const originalBlocksCount = parseInt('{{ section.blocks.size }}');
+    if (originalBlocksCount === 0) return;
+   
+    // Start at the first card of the original set (after 50 clone sets)
+    const currentIndex = 50 * originalBlocksCount;
+
+
+    window.ucsData[sectionId] = {
+      originalBlocksCount: originalBlocksCount,
+      currentIndex: currentIndex,
+      previousIndex: currentIndex,
+      isTransitioning: false
+    };
+
+
+    const track = document.getElementById(`ucs-track-${sectionId}`);
+    if (!track) return;
+   
+    const cards = track.querySelectorAll('.ucs__card');
+    if (cards.length === 0) return;
+
+
+    track.style.transition = 'none';
+
+
+    // Pre-load ALL cards with their content - NEVER rebuild during animation
+    cards.forEach((card, i) => {
+      const videoUrl = card.getAttribute('data-video-url') || '';
+      const imageUrl = card.getAttribute('data-image-url') || '';
+      const productImage = card.getAttribute('data-product-image') || '';
+      const productTitle = card.getAttribute('data-product-title') || '';
+      const productPrice = card.getAttribute('data-product-price') || '';
+      const productUrl = card.getAttribute('data-product-url') || '';
+     
+      // ALL cards get the same content structure - only CSS classes change
+      card.innerHTML = createUniversalCardHTML(videoUrl, imageUrl, productImage, productTitle, productPrice, productUrl);
+     
+      // Set initial states and video controls
+      const video = card.querySelector('video');
+     
+      if (i === currentIndex) {
+        card.classList.add('ucs__card--center');
+        // Play video for center card
+        if (video) {
+          video.play().catch(e => console.log('Initial video play failed:', e));
+        }
+      } else {
+        card.classList.remove('ucs__card--center');
+        // Pause videos for side cards
+        if (video) {
+          video.pause();
+        }
+      }
+    });
+
+
+    // Position immediately without delay
+    centerUCSCard(currentIndex, sectionId, false);
+   
+    // Show the track after positioning
+    setTimeout(() => {
+      track.classList.add('initialized');
+      // Add centered class to initial card to show product panel
+      const initialCard = cards[currentIndex];
+      if (initialCard && initialCard.classList.contains('ucs__card--center')) {
+        initialCard.classList.add('centered');
+      }
+    }, 100);
+   
+  } catch (error) {
+    console.error('Error initializing UCS:', error);
+  }
+}
+
+
+function createUniversalCardHTML(videoUrl, imageUrl, productImage, productTitle, productPrice, productUrl) {
+  let mediaHTML = '';
+ 
+  if (videoUrl) {
+    const videoSource = getVideoSource(videoUrl);
+    if (videoSource && videoSource.type === 'direct') {
+      // Direct video - no autoplay, will be controlled by JavaScript
+      mediaHTML = `<video class="ucs__card-video" muted loop playsinline preload="metadata">
+        <source src="${videoSource.src}" type="video/mp4">
+      </video>`;
+    } else if (videoSource) {
+      // Embedded video - remove autoplay, will be controlled by JavaScript
+      const embedUrl = videoSource.embed.replace('autoplay=1', 'autoplay=0');
+      mediaHTML = `<iframe class="ucs__card-video" src="${embedUrl}" frameborder="0" allowfullscreen></iframe>`;
+    }
+  } else if (imageUrl) {
+    mediaHTML = `<img class="ucs__card-image" src="${imageUrl}" alt="UGC Content" width="450" height="600">`;
+  } else {
+    mediaHTML = `<div class="ucs__placeholder"><div>No Media</div></div>`;
+  }
+
+
+  // Include product panel for ALL cards - CSS will control visibility
+  let productPanelHTML = '';
+  if (productTitle || productPrice || productImage) {
+    productPanelHTML = `
+      <div class="ucs__product-panel">
+        ${productImage ? `<div class="ucs__product-image"><img src="${productImage}" alt="${productTitle || 'Product'}" width="100" height="100"></div>` : ''}
+        <div class="ucs__product-info">
+          ${productTitle ? `<div class="ucs__product-title">${productTitle}</div>` : ''}
+          ${productPrice ? `<div class="ucs__product-price">${productPrice}</div>` : ''}
+        </div>
+        ${productUrl ? `<a href="${productUrl}" class="ucs__buy-button" target="_blank">BUY NOW</a>` : ''}
+      </div>
+    `;
+  }
+
+
+  return `<div class="ucs__card-media">${mediaHTML}${productPanelHTML}</div>`;
+}
+
+
+function getVideoSource(url) {
+  if (!url) return null;
+ 
+  if (url.match(/\.(mp4|webm|ogg|mov)(\?.*)?$/i)) {
+    return { type: 'direct', src: url };
+  }
+ 
+  if (url.includes('instagram.com')) {
+    const postId = url.match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/);
+    if (postId) return { type: 'instagram', embed: `https://www.instagram.com/p/${postId[1]}/embed/` };
+  }
+ 
+  if (url.includes('tiktok.com')) {
+    return { type: 'tiktok', embed: url.replace('/video/', '/embed/v2/') };
+  }
+ 
+  if (url.includes('youtube.com') || url.includes('youtu.be')) {
+    let videoId = null;
+    if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
+    else if (url.includes('youtube.com/watch')) videoId = url.split('v=')[1]?.split('&')[0];
+    else if (url.includes('youtube.com/shorts/')) videoId = url.split('/shorts/')[1].split('?')[0];
+   
+    if (videoId) {
+      return { type: 'youtube', embed: `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0` };
+    }
+  }
+ 
+  return { type: 'direct', src: url };
+}
+
+
+function selectUCSCard(index, sectionId, animate = true) {
+  const track = document.getElementById(`ucs-track-${sectionId}`);
+  const cards = track.querySelectorAll('.ucs__card');
+
+
+  const data = window.ucsData[sectionId];
+  if (data.currentIndex === index && animate) return;
+
+
+  const previousIndex = data.currentIndex;
+
+
+  // Remove centered class from all cards first
+  cards.forEach(card => {
+    card.classList.remove('centered');
+  });
+
+
+  // ONLY UPDATE CSS CLASSES AND VIDEO STATES - NEVER REBUILD CONTENT
+  cards.forEach((card, i) => {
+    const video = card.querySelector('video');
+   
+    if (i === index) {
+      // New active card - add center class and play video
+      card.classList.add('ucs__card--center');
+      if (video) {
+        video.play().catch(e => console.log('Video play failed:', e));
+      }
+    } else {
+      // All other cards - remove center class and pause video
+      card.classList.remove('ucs__card--center');
+      if (video) {
+        video.pause();
+      }
+    }
+  });
+
+
+  data.currentIndex = index;
+ 
+  // Start slide animation immediately
+  requestAnimationFrame(() => {
+    centerUCSCard(index, sectionId, animate);
+   
+    // Add centered class after transition completes for product panel
+    setTimeout(() => {
+      const activeCard = cards[index];
+      if (activeCard && activeCard.classList.contains('ucs__card--center')) {
+        activeCard.classList.add('centered');
+      }
+    }, animate ? 450 : 100);
+  });
+}
+
+
+function centerUCSCard(index, sectionId, animate = true) {
+  const track = document.getElementById(`ucs-track-${sectionId}`);
+  const cards = track.querySelectorAll('.ucs__card');
+  const container = track.parentElement;
+
+
+  if (cards.length === 0) return;
+
+
+  const activeCard = cards[index];
+  if (!activeCard) return;
+
+
+  const data = window.ucsData[sectionId];
+
+
+  const containerWidth = container.offsetWidth;
+  const containerCenter = containerWidth / 2;
+
+
+  const sideCardWidth = 200;
+  const activeCardWidth = 380; // Updated for above the fold optimization
+  const gap = 20; // Reduced for above-the-fold optimization
+
+
+  // Calculate the left edge position of the active card
+  let leftEdgePosition = 0;
+ 
+  for (let i = 0; i < index; i++) {
+    // All cards before the active one are side cards
+    leftEdgePosition += sideCardWidth + gap;
+  }
+
+
+  // Add half of the active card width to get to its center
+  const activeCardCenter = leftEdgePosition + (activeCardWidth / 2);
+
+
+  // Calculate how much to shift to center the active card
+  const targetTransform = containerCenter - activeCardCenter;
+
+
+  if (!animate) {
+    track.style.transition = 'none';
+  } else {
+    track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+  }
+
+
+  track.style.transform = `translateX(${targetTransform}px)`;
+
+
+  if (!animate) {
+    requestAnimationFrame(() => {
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    });
+  }
+
+
+  data.previousIndex = index;
+}
+
+
+function handleUCSCardClick(cardElement, sectionId) {
+  const data = window.ucsData[sectionId];
+  if (data.isTransitioning) return;
+
+
+  const track = document.getElementById(`ucs-track-${sectionId}`);
+  const cards = track.querySelectorAll('.ucs__card');
+  const clickedIndex = Array.from(cards).indexOf(cardElement);
+
+
+  if (clickedIndex === -1) return;
+
+
+  if (clickedIndex === data.currentIndex) {
+    // Center card clicked - redirect
+    const redirectUrl = cardElement.getAttribute('data-redirect-url');
+    if (redirectUrl) window.open(redirectUrl, '_blank');
+  } else {
+    // Side card clicked - slide to center
+    data.isTransitioning = true;
+   
+    // Remove centered class from all cards during transition (like UGC video carousel)
+    cards.forEach(card => {
+      card.classList.remove('centered');
+    });
+   
+    // Handle infinite loop boundaries
+    const originalBlocksCount = data.originalBlocksCount;
+    let actualIndex = clickedIndex;
+    let needsLoop = false;
+    let jumpToIndex = clickedIndex;
+
+
+    // Check if we need to loop for infinite effect
+    if (clickedIndex < 25 * originalBlocksCount) {
+      // Too far left, jump to equivalent position in original set after animation
+      needsLoop = true;
+      jumpToIndex = (50 * originalBlocksCount) + (clickedIndex % originalBlocksCount);
+    } else if (clickedIndex >= (101 * originalBlocksCount)) {
+      // Too far right, jump to equivalent position in original set after animation
+      needsLoop = true;
+      jumpToIndex = (50 * originalBlocksCount) + (clickedIndex % originalBlocksCount);
+    }
+
+
+    // Perform the slide
+    selectUCSCard(clickedIndex, sectionId, true);
+
+
+    if (needsLoop) {
+      // After animation completes, jump to equivalent position
+      setTimeout(() => {
+        track.style.transition = 'none';
+        selectUCSCard(jumpToIndex, sectionId, false);
+       
+        requestAnimationFrame(() => {
+          track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          data.isTransitioning = false;
+        });
+      }, 400);
+    } else {
+      setTimeout(() => {
+        data.isTransitioning = false;
+      }, 450);
+    }
+  }
+}
+
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(() => initializeUCS('{{ section.id }}'), 100);
+});
+</script>
+
+
+
+
+{% schema %}
+{
+  "name": "UGC Content Section",
+  "tag": "section",
+  "class": "ucs-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "User Generated Content"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description",
+      "default": "Discover authentic experiences from our community"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background",
+      "default": "#00d4aa"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button Hover Color",
+      "default": "#00b894"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ugc_content",
+      "name": "UGC Content Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Media Settings"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "Video URL - Supports: Direct .mp4 links, Instagram Reels, TikTok videos, YouTube Shorts"
+        },
+        {
+          "type": "image_picker",
+          "id": "fallback_image",
+          "label": "Fallback Image",
+          "info": "Image to show if no video URL is provided (recommended: 350x450px)"
+        },
+        {
+          "type": "url",
+          "id": "redirect_url",
+          "label": "Content Redirect URL",
+          "info": "Link to redirect when content card is clicked"
+        },
+        {
+          "type": "header",
+          "content": "Product Information"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image",
+          "info": "Product image for the panel (recommended: 100x100px)"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title",
+          "info": "Product name to display in panel"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price",
+          "info": "Product price (e.g., $350)"
+        },
+        {
+          "type": "url",
+          "id": "product_url",
+          "label": "Product Page URL",
+          "info": "Link for the 'BUY NOW' button"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "UGC Content Section",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+

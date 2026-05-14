@@ -199,34 +199,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    position: absolute; /* Stack images on top of each other */
+    position: absolute;
     top: 0;
     left: 0;
-    opacity: 0; /* Start invisible */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth crossfade with subtle scale */
-    transform: scale(1.02); /* Slight scale for premium feel */
-  }
-
-  .content-swatch-main-image:first-child {
-    opacity: 1; /* Show first image by default */
+    opacity: 0;
+    transition: opacity 0.3s ease;
     transform: scale(1);
+    z-index: 1;
   }
 
   .content-swatch-main-image.active {
-    opacity: 1; /* Visible when active */
-    transform: scale(1); /* Normal scale when active */
-    z-index: 2; /* Active image on top */
-  }
-
-  .content-swatch-main-image.previous {
-    opacity: 1; /* Keep previous image visible during transition */
-    transform: scale(1);
-    z-index: 1; /* Previous image below */
-  }
-
-  .content-swatch-main-image.fade-out {
-    opacity: 0; /* Fade out previous image */
-    transform: scale(0.98); /* Slight scale down for premium feel */
+    opacity: 1;
+    z-index: 2;
   }
 
 
@@ -569,7 +553,7 @@
 
 <script>
 function switchContent(cardElement, sectionId) {
-  console.log('switchContent called', cardElement, sectionId); // Debug log
+  console.log('switchContent called', cardElement, sectionId);
   
   // Remove active class from all cards
   const allCards = document.querySelectorAll('.content-swatch-card');
@@ -580,7 +564,7 @@ function switchContent(cardElement, sectionId) {
   
   // Get content index
   const contentIndex = cardElement.getAttribute('data-content');
-  console.log('Content index:', contentIndex); // Debug log
+  console.log('Content index:', contentIndex);
   
   // Switch text content
   const allContent = document.querySelectorAll('.content-swatch-content');
@@ -592,48 +576,38 @@ function switchContent(cardElement, sectionId) {
     }
   });
   
-  // Switch main image with smooth crossfade (no white flash)
-  const currentImage = document.querySelector('.content-swatch-main-image.active');
+  // Switch main image - simple approach, only one visible at a time
+  const allImages = document.querySelectorAll('.content-swatch-main-image');
   const targetImage = document.querySelector(`.content-swatch-main-image[data-content="${contentIndex}"]`);
   
-  console.log('Current image:', currentImage); // Debug log
-  console.log('Target image:', targetImage); // Debug log
+  console.log('Target image:', targetImage);
   
-  if (currentImage && targetImage && currentImage !== targetImage) {
-    console.log('Starting crossfade transition'); // Debug log
+  if (targetImage) {
+    // Hide all images first
+    allImages.forEach(img => {
+      img.classList.remove('active');
+    });
     
-    // Step 1: Mark current image as previous (keeps it visible)
-    currentImage.classList.remove('active');
-    currentImage.classList.add('previous');
-    
-    // Step 2: Show target image (fade in with scale animation)
+    // Show only the target image
     targetImage.classList.add('active');
-    
-    // Step 3: After transition, clean up previous image
-    setTimeout(() => {
-      // Fade out previous image
-      currentImage.classList.add('fade-out');
-      
-      // After fade out completes, reset previous image
-      setTimeout(() => {
-        currentImage.classList.remove('previous', 'fade-out');
-      }, 500); // Match CSS transition duration
-    }, 50); // Small delay to ensure smooth transition
-  } else if (targetImage && !currentImage) {
-    console.log('First time activation'); // Debug log
-    // First time activation
-    targetImage.classList.add('active');
+    console.log('Image switched successfully');
   } else {
-    console.log('No valid transition found'); // Debug log
+    console.log('Target image not found');
   }
 }
 
 
-// Initialize first active card on page load
+// Initialize first active card and image on page load
 document.addEventListener('DOMContentLoaded', function() {
   const firstCard = document.querySelector('.content-swatch-card');
+  const firstImage = document.querySelector('.content-swatch-main-image');
+  
   if (firstCard && !document.querySelector('.content-swatch-card.active')) {
     firstCard.classList.add('active');
+  }
+  
+  if (firstImage && !document.querySelector('.content-swatch-main-image.active')) {
+    firstImage.classList.add('active');
   }
 });
 </script>

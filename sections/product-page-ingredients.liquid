@@ -1,0 +1,697 @@
+{% comment %}
+  Product Page Ingredients Section - Dynamic tiles with conveyor belt animation
+  Features: Background image with content on left (70%), moving tiles on right (30%)
+{% endcomment %}
+
+
+<style>
+  .ppis {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    align-items: center;
+  }
+
+
+  /* Main container with 70/30 split */
+  .ppis__container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    position: relative;
+  }
+
+
+  /* Left side - Background image with content */
+  .ppis__content-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    overflow: hidden;
+  }
+
+
+  .ppis__content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 1;
+  }
+
+
+  .ppis__content-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    color: white;
+  }
+
+
+  .ppis__heading {
+    font-size: {{ section.settings.heading_size | default: 48 }}px;
+    font-weight: 600;
+    color: {{ section.settings.heading_color | default: '#ffffff' }};
+    line-height: 1.1;
+    margin: 0 0 30px 0;
+    letter-spacing: -0.02em;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+  .ppis__description {
+    font-size: {{ section.settings.description_size | default: 18 }}px;
+    line-height: 1.6;
+    color: {{ section.settings.description_color | default: '#ffffff' }};
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.95;
+  }
+
+
+  .ppis__description p {
+    margin: 0 0 20px 0;
+  }
+
+
+  /* Right side - Dynamic tiles conveyor belt */
+  .ppis__tiles-section {
+    position: relative;
+    background: #000000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+
+  .ppis__tiles-container {
+    position: relative;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    margin: 20px;
+  }
+
+  .ppis__tiles-container::before,
+  .ppis__tiles-container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: #ffffff;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .ppis__tiles-container::before {
+    top: 0;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .ppis__tiles-container::after {
+    bottom: 0;
+    border-radius: 0 0 20px 20px;
+  }
+
+
+  .ppis__tiles-track {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    will-change: transform;
+  }
+
+
+
+
+
+  .ppis__tile {
+    border-radius: 18px;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background: #ffffff;
+  }
+
+
+  .ppis__tile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+
+  .ppis__tile-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+
+  .ppis__tile:hover {
+    border-color: #4fffff;
+    box-shadow: 0 8px 32px rgba(79, 255, 255, 0.3);
+  }
+
+
+  .ppis__tile:hover .ppis__tile-overlay {
+    opacity: 1;
+  }
+
+
+  .ppis__tile-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.3;
+  }
+
+
+  .ppis__tile-description {
+    font-size: 14px;
+    color: #cccccc;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+  /* Remove pause animation on hover - handled by JavaScript */
+
+
+  /* Mobile responsive */
+  @media (max-width: 1024px) {
+    .ppis__container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 60% 40%;
+      height: auto;
+      min-height: 100vh;
+    }
+
+
+    .ppis__content-section {
+      padding: 40px 20px;
+    }
+
+
+    .ppis__heading {
+      font-size: calc({{ section.settings.heading_size | default: 48 }}px * 0.7);
+    }
+
+
+    .ppis__description {
+      font-size: calc({{ section.settings.description_size | default: 18 }}px * 0.9);
+    }
+
+
+    .ppis__tiles-section {
+      height: 40vh;
+      padding: 0;
+    }
+
+    .ppis__tiles-container {
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      border-radius: 15px;
+      margin: 15px;
+    }
+
+    .ppis__tiles-container::before,
+    .ppis__tiles-container::after {
+      height: 20px;
+    }
+
+    .ppis__tiles-container::before {
+      border-radius: 15px 15px 0 0;
+    }
+
+    .ppis__tiles-container::after {
+      border-radius: 0 0 15px 15px;
+    }
+
+
+    .ppis__tiles-track {
+      flex-direction: row;
+      top: 0;
+      height: 200%;
+      padding: 0 15px;
+    }
+
+
+    .ppis__tile {
+      min-width: 200px;
+      min-height: 200px;
+      flex-shrink: 0;
+    }
+
+
+    .ppis__tile-overlay {
+      padding: 15px;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .ppis__content-section {
+      padding: 30px 15px;
+    }
+
+
+    .ppis__heading {
+      font-size: calc({{ section.settings.heading_size | default: 48 }}px * 0.5);
+      margin-bottom: 20px;
+    }
+
+
+    .ppis__description {
+      font-size: calc({{ section.settings.description_size | default: 18 }}px * 0.8);
+    }
+
+
+    .ppis__tile {
+      min-width: 180px;
+      min-height: 180px;
+      padding: 15px;
+    }
+
+
+    .ppis__tile-overlay {
+      padding: 10px;
+    }
+
+
+    .ppis__tile-image {
+      border-radius: 13px;
+    }
+
+
+    .ppis__tile-overlay {
+      border-radius: 13px;
+    }
+
+
+    .ppis__tile-title {
+      font-size: 14px;
+    }
+
+
+    .ppis__tile-description {
+      font-size: 12px;
+    }
+  }
+</style>
+
+
+<section class="ppis full-width" id="ppis-{{ section.id }}">
+  {% if section.blocks.size == 0 %}
+    <div style="padding: 60px 20px; text-align: center; color: #000000;">
+      <h2>Product Page Ingredients Section</h2>
+      <p>Add ingredient blocks to get started. Click "Add block" below to create your first ingredient tile.</p>
+    </div>
+  {% else %}
+    <div class="ppis__container">
+      <!-- Left side - Content with background -->
+      <div
+        class="ppis__content-section"
+        {% if section.settings.background_image %}
+          style="background-image: url('{{ section.settings.background_image | image_url: width: 1200 }}');"
+        {% endif %}
+      >
+        <div class="ppis__content-overlay"></div>
+        <div class="ppis__content-wrapper">
+          {% if section.settings.heading != blank %}
+            <h2 class="ppis__heading">{{ section.settings.heading }}</h2>
+          {% endif %}
+
+
+          {% if section.settings.description != blank %}
+            <div class="ppis__description">{{ section.settings.description }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+
+      <!-- Right side - Dynamic tiles conveyor belt -->
+      <div class="ppis__tiles-section">
+        <div class="ppis__tiles-container">
+          <div class="ppis__tiles-track" id="ppis-tiles-track-{{ section.id }}">
+            <!-- Tiles will be dynamically generated by JavaScript for seamless infinite scroll -->
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  const tilesTrack = document.getElementById(`ppis-tiles-track-${sectionId}`);
+  
+  if (!tilesTrack) return;
+
+  // Tile data from Liquid
+  const tileData = [
+    {% for block in section.blocks %}
+    {
+      image: {% if block.settings.tile_image %}'{{ block.settings.tile_image | image_url: width: 300 }}'{% else %}null{% endif %},
+      title: {{ block.settings.tile_title | json }},
+      description: {{ block.settings.tile_description | json }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  if (tileData.length === 0) return;
+
+  // Animation settings
+  const animationSpeed = {{ section.settings.animation_speed | default: 6000 }};
+  const tileHeight = 300; // tile height + gap
+  const tileWidth = 220; // mobile tile width + gap
+  
+  let currentPosition = 0;
+  let animationId;
+  let isAnimating = false;
+  let isMobile = window.innerWidth <= 1024;
+
+  // Create tile HTML
+  function createTileHTML(data) {
+    return `
+      <div class="ppis__tile">
+        ${data.image ? `
+          <img
+            src="${data.image}"
+            alt="${data.title || 'Ingredient'}"
+            class="ppis__tile-image"
+            width="300"
+            height="280"
+          >
+        ` : ''}
+        <div class="ppis__tile-overlay">
+          ${data.title ? `<h3 class="ppis__tile-title">${data.title}</h3>` : ''}
+          ${data.description ? `<p class="ppis__tile-description">${data.description}</p>` : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  // Initialize tiles for infinite scroll
+  function initializeTiles() {
+    const container = tilesTrack.parentElement;
+    const containerSize = isMobile ? container.offsetWidth : container.offsetHeight;
+    const tileSize = isMobile ? tileWidth : tileHeight;
+    
+    // Calculate how many tiles we need to fill 3x the container size for seamless scrolling
+    const tilesNeeded = Math.ceil((containerSize * 3) / tileSize);
+    const totalTiles = Math.max(tilesNeeded, tileData.length * 3);
+    
+    // Clear and rebuild tiles
+    tilesTrack.innerHTML = '';
+    
+    for (let i = 0; i < totalTiles; i++) {
+      const dataIndex = i % tileData.length;
+      tilesTrack.innerHTML += createTileHTML(tileData[dataIndex]);
+    }
+    
+    // Set initial position
+    currentPosition = 0;
+    tilesTrack.style.transform = isMobile ? 'translateX(0px)' : 'translateY(0px)';
+  }
+
+  // Smooth infinite scroll animation
+  function animate() {
+    if (!isAnimating) return;
+    
+    const speed = (isMobile ? tileWidth : tileHeight) / (animationSpeed / 16.67); // 60fps
+    currentPosition -= speed;
+    
+    // Calculate when to reset (after one full cycle of original tiles)
+    const resetDistance = -(tileData.length * (isMobile ? tileWidth : tileHeight));
+    
+    if (currentPosition <= resetDistance) {
+      currentPosition = 0; // Seamless reset to beginning
+    }
+    
+    // Apply transform
+    const transform = isMobile ? `translateX(${currentPosition}px)` : `translateY(${currentPosition}px)`;
+    tilesTrack.style.transform = transform;
+    
+    animationId = requestAnimationFrame(animate);
+  }
+
+  // Start animation
+  function startAnimation() {
+    if (isAnimating) return;
+    isAnimating = true;
+    animate();
+  }
+
+  // Stop animation
+  function stopAnimation() {
+    isAnimating = false;
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+  }
+
+  // Setup hover events
+  function setupHoverEvents() {
+    const tiles = tilesTrack.querySelectorAll('.ppis__tile');
+    tiles.forEach(tile => {
+      tile.addEventListener('mouseenter', stopAnimation);
+      tile.addEventListener('mouseleave', startAnimation);
+    });
+  }
+
+  // Handle responsive changes
+  function handleResize() {
+    const newIsMobile = window.innerWidth <= 1024;
+    
+    if (newIsMobile !== isMobile) {
+      isMobile = newIsMobile;
+      stopAnimation();
+      
+      // Update flex direction
+      tilesTrack.style.flexDirection = isMobile ? 'row' : 'column';
+      
+      // Reinitialize
+      initializeTiles();
+      setupHoverEvents();
+      startAnimation();
+    }
+  }
+
+  // Initialize everything
+  tilesTrack.style.flexDirection = isMobile ? 'row' : 'column';
+  initializeTiles();
+  setupHoverEvents();
+  startAnimation();
+
+  // Handle window resize
+  window.addEventListener('resize', handleResize);
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Product Page Ingredients",
+  "tag": "section",
+  "class": "ppis-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background & Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Recommended: 1200x800px or larger"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Regenerate Your Skin with PDRN Power",
+      "info": "Main heading for the section"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>PDRN is a cutting-edge skin-repair ingredient known for its ability to deeply rejuvenate, restore elasticity, and accelerate cellular renewal. It helps improve skin texture, reduce fine lines, and bring back a youthful, radiant glow from within.</p>",
+      "info": "Description text with formatting options"
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Animation Settings"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "min": 100,
+      "max": 9900,
+      "step": 100,
+      "unit": "ms",
+      "label": "Animation Speed",
+      "default": 6000,
+      "info": "Lower numbers = faster animation (time per tile movement)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient_tile",
+      "name": "Ingredient Tile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "tile_image",
+          "label": "Tile Image",
+          "info": "Recommended: 300x120px"
+        },
+        {
+          "type": "text",
+          "id": "tile_title",
+          "label": "Tile Title",
+          "default": "Ingredient Name",
+          "info": "Name of the ingredient"
+        },
+        {
+          "type": "textarea",
+          "id": "tile_description",
+          "label": "Tile Description",
+          "default": "Brief description of the ingredient and its benefits.",
+          "info": "Short description of the ingredient"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Page Ingredients",
+      "blocks": [
+        {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "PDRN Complex",
+            "tile_description": "Advanced skin repair and cellular regeneration"
+          }
+        },
+        {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "Hyaluronic Acid",
+            "tile_description": "Deep hydration and moisture retention"
+          }
+        },
+        {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "Peptide Complex",
+            "tile_description": "Collagen boost and anti-aging properties"
+          }
+        },
+        {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "Vitamin C",
+            "tile_description": "Antioxidant protection and brightening"
+          }
+        },
+        {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "Niacinamide",
+            "tile_description": "Pore refinement and oil control"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

@@ -5,45 +5,45 @@
 
 <section class="protocol-phases-v2 full-width" id="protocol-phases-v2">
   <!-- Main Title -->
-  <div class="protocol-header">
-    <h1 class="protocol-title">
-      <span class="title-black">{{ section.settings.title_black | default: 'THE 360° SKIN' }}</span>
-      <span class="title-cyan-protocol-phases">{{ section.settings.title_cyan | default: 'LONGEVITY PROTOCOL' }}</span>
-      <sup class="trademark">{{ section.settings.trademark | default: '™' }}</sup>
+  <div class="protocol-header-v2">
+    <h1 class="protocol-title-v2">
+      <span class="title-black-v2">{{ section.settings.title_black | default: 'THE 360° SKIN' }}</span>
+      <span class="title-cyan-protocol-phases-v2">{{ section.settings.title_cyan | default: 'LONGEVITY PROTOCOL' }}</span>
+      <sup class="trademark-v2">{{ section.settings.trademark | default: '™' }}</sup>
     </h1>
   </div>
 
-  <div class="protocol-container">
+  <div class="protocol-container-v2">
     <!-- Left Sidebar -->
-    <div class="phases-sidebar">
-      <div class="sidebar-track">
-        <div class="progress-line" id="progress-line-v2"></div>
+    <div class="phases-sidebar-v2">
+      <div class="sidebar-track-v2">
+        <div class="progress-line-v2" id="progress-line-v2"></div>
       </div>
 
       {% for block in section.blocks %}
-        <div class="phase-item" data-phase="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
-          <div class="phase-number">
+        <div class="phase-item-v2" data-phase="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <div class="phase-number-v2">
             {{ block.settings.phase_number | default: forloop.index | prepend: '00' | slice: -3, 3 }}
           </div>
-          <div class="phase-content">
-            <h3 class="phase-title">{{ block.settings.phase_title | default: 'Phase Title' }}</h3>
-            <p class="phase-subtitle">{{ block.settings.phase_subtitle | default: 'Phase Description' }}</p>
+          <div class="phase-content-v2">
+            <h3 class="phase-title-v2">{{ block.settings.phase_title | default: 'Phase Title' }}</h3>
+            <p class="phase-subtitle-v2">{{ block.settings.phase_subtitle | default: 'Phase Description' }}</p>
           </div>
         </div>
       {% endfor %}
     </div>
 
     <!-- Right Content Area -->
-    <div class="content-area-protocol-phases">
+    <div class="content-area-protocol-phases-v2">
       {% for block in section.blocks %}
-        <div class="phase-content-panel" data-phase="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+        <div class="phase-content-panel-v2" data-phase="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
           {% if block.type == 'phase_1' %}
             <!-- Phase 1: Interactive Layout -->
-            <div class="phase-one-layout">
+            <div class="phase-one-layout-v2">
               <!-- Top Section: Image and Content Side by Side -->
-              <div class="phase-one-top">
+              <div class="phase-one-top-v2">
                 <!-- Left: Main Image -->
-                <div class="phase-one-image">
+                <div class="phase-one-image-v2">
                   {% if block.settings.main_image %}
                     <img
                       src="{{ block.settings.main_image | image_url: width: 400 }}"
@@ -59,10 +59,10 @@
                 </div>
 
                 <!-- Right: Content -->
-                <div class="phase-one-content">
+                <div class="phase-one-content-v2">
                   <!-- Header -->
-                  <div class="phase-header">
-                    <span class="phase-label">{{ block.settings.phase_label | default: 'PHASE I' }}</span>
+                  <div class="phase-header-v2">
+                    <span class="phase-label-v2">{{ block.settings.phase_label | default: 'PHASE I' }}</span>
                     <h2 class="content-title-protocol-phases">
                       {{ block.settings.content_title | default: 'Internal Optimization' }}
                     </h2>
@@ -72,7 +72,7 @@
                   </div>
 
                   <!-- Features List -->
-                  <div class="features-list">
+                  <div class="features-list-v2">
                     <!-- Feature 1 - Always show -->
                     <div class="feature-item-protocol-phases">
                       <div class="feature-icon-protocol-phases">
@@ -88,7 +88,7 @@
                           <div class="icon-placeholder-protocol-phases"></div>
                         {% endif %}
                       </div>
-                      <div class="feature-text">
+                      <div class="feature-text-v2">
                         <h4>{{ block.settings.feature_1_title | default: 'Advanced Cellular Enhancement' }}</h4>
                         <p>
                           {{
@@ -114,7 +114,7 @@
                           <div class="icon-placeholder-protocol-phases"></div>
                         {% endif %}
                       </div>
-                      <div class="feature-text">
+                      <div class="feature-text-v2">
                         <h4>{{ block.settings.feature_2_title | default: 'Longevity Matrix Support' }}</h4>
                         <p>
                           {{
@@ -140,7 +140,7 @@
                           <div class="icon-placeholder-protocol-phases"></div>
                         {% endif %}
                       </div>
-                      <div class="feature-text">
+                      <div class="feature-text-v2">
                         <h4>{{ block.settings.feature_3_title | default: 'Metabolic Optimization' }}</h4>
                         <p>
                           {{
@@ -155,15 +155,15 @@
               </div>
 
               <!-- Bottom Single Container -->
-              <div class="bottom-single-container">
-                <div class="single-stats-box">
-                  <div class="stat-highlight">
-                    <span class="stat-number">{{ block.settings.stat_number | default: '+150%' }}</span>
-                    <span class="stat-label">
+              <div class="bottom-single-container-v2">
+                <div class="single-stats-box-v2">
+                  <div class="stat-highlight-v2">
+                    <span class="stat-number-v2">{{ block.settings.stat_number | default: '+150%' }}</span>
+                    <span class="stat-label-v2">
                       {{- block.settings.stat_label | default: 'Increase in Cellular Vitality' -}}
                     </span>
                   </div>
-                  <p class="stat-description">
+                  <p class="stat-description-v2">
                     {{
                       block.settings.stat_description
                       | default: 'Double-blind, placebo-controlled 4-week clinical study'
@@ -175,9 +175,9 @@
 
           {% elsif block.type == 'phase_2' %}
             <!-- Phase 2: Three Pillar Architecture Layout -->
-            <div class="phase-two-layout">
-              <div class="phase-two-header">
-                <span class="phase-label">{{ block.settings.phase_label | default: 'PHASE II' }}</span>
+            <div class="phase-two-layout-v2">
+              <div class="phase-two-header-v2">
+                <span class="phase-label-v2">{{ block.settings.phase_label | default: 'PHASE II' }}</span>
                 <h2 class="content-title-protocol-phases">
                   {{ block.settings.content_title | default: 'Barrier Reconstitution' }}
                 </h2>
@@ -186,17 +186,17 @@
                 </span>
               </div>
 
-              <div class="three-pillar-section">
-                <h3 class="pillar-title">THE THREE PILLAR ARCHITECTURE</h3>
+              <div class="three-pillar-section-v2">
+                <h3 class="pillar-title-v2">THE THREE PILLAR ARCHITECTURE</h3>
 
-                <div class="pillar-boxes">
+                <div class="pillar-boxes-v2">
                   <!-- LED MASK Box -->
-                  <div class="pillar-box">
-                    <div class="pillar-box-header">
+                  <div class="pillar-box-v2">
+                    <div class="pillar-box-header-v2">
                       <h4>LED MASK</h4>
                       <p>Circular stimulation</p>
                     </div>
-                    <div class="pillar-box-image">
+                    <div class="pillar-box-image-v2">
                       {% if block.settings.pillar_1_image %}
                         <img
                           src="{{ block.settings.pillar_1_image | image_url: width: 300 }}"
@@ -205,12 +205,12 @@
                           height="200"
                         >
                       {% else %}
-                        <div class="pillar-placeholder">
+                        <div class="pillar-placeholder-v2">
                           <span>LED Mask Image</span>
                         </div>
                       {% endif %}
                     </div>
-                    <div class="pillar-box-features">
+                    <div class="pillar-box-features-v2">
                       <ul>
                         <li>{{ block.settings.pillar_1_feature_1 | default: 'Collagen stimulation' }}</li>
                         <li>{{ block.settings.pillar_1_feature_2 | default: 'Microcirculation' }}</li>
@@ -220,12 +220,12 @@
                   </div>
 
                   <!-- SUPPLEMENTS Box -->
-                  <div class="pillar-box">
-                    <div class="pillar-box-header">
+                  <div class="pillar-box-v2">
+                    <div class="pillar-box-header-v2">
                       <h4>SUPPLEMENTS</h4>
                       <p>Internal Optimization</p>
                     </div>
-                    <div class="pillar-box-image">
+                    <div class="pillar-box-image-v2">
                       {% if block.settings.pillar_2_image %}
                         <img
                           src="{{ block.settings.pillar_2_image | image_url: width: 300 }}"
@@ -234,12 +234,12 @@
                           height="200"
                         >
                       {% else %}
-                        <div class="pillar-placeholder">
+                        <div class="pillar-placeholder-v2">
                           <span>Supplements Image</span>
                         </div>
                       {% endif %}
                     </div>
-                    <div class="pillar-box-features">
+                    <div class="pillar-box-features-v2">
                       <ul>
                         <li>{{ block.settings.pillar_2_feature_1 | default: 'Collagen stimulation' }}</li>
                         <li>{{ block.settings.pillar_2_feature_2 | default: 'Microcirculation' }}</li>
@@ -249,12 +249,12 @@
                   </div>
 
                   <!-- PRODUCTS Box -->
-                  <div class="pillar-box">
-                    <div class="pillar-box-header">
+                  <div class="pillar-box-v2">
+                    <div class="pillar-box-header-v2">
                       <h4>PRODUCTS</h4>
                       <p>Internal Optimization</p>
                     </div>
-                    <div class="pillar-box-image">
+                    <div class="pillar-box-image-v2">
                       {% if block.settings.pillar_3_image %}
                         <img
                           src="{{ block.settings.pillar_3_image | image_url: width: 300 }}"
@@ -263,12 +263,12 @@
                           height="200"
                         >
                       {% else %}
-                        <div class="pillar-placeholder">
+                        <div class="pillar-placeholder-v2">
                           <span>Products Image</span>
                         </div>
                       {% endif %}
                     </div>
-                    <div class="pillar-box-features">
+                    <div class="pillar-box-features-v2">
                       <ul>
                         <li>{{ block.settings.pillar_3_feature_1 | default: 'Collagen stimulation' }}</li>
                         <li>{{ block.settings.pillar_3_feature_2 | default: 'Microcirculation' }}</li>
@@ -280,7 +280,7 @@
               </div>
 
               <!-- Bottom Description -->
-              <div class="phase-two-bottom">
+              <div class="phase-two-bottom-v2">
                 <p>
                   {{
                     block.settings.bottom_description
@@ -292,9 +292,9 @@
 
           {% elsif block.type == 'phase_6' %}
             <!-- Phase 6: Special Layout with Two Images and CTA -->
-            <div class="phase-six-layout">
-              <div class="phase-six-header">
-                <span class="phase-label">{{ block.settings.phase_label | default: 'PHASE VI' }}</span>
+            <div class="phase-six-layout-v2">
+              <div class="phase-six-header-v2">
+                <span class="phase-label-v2">{{ block.settings.phase_label | default: 'PHASE VI' }}</span>
                 <h2 class="content-title-protocol-phases">
                   {{ block.settings.content_title | default: 'Matrix Stabilization' }}
                 </h2>
@@ -303,8 +303,8 @@
                 </span>
               </div>
 
-              <div class="phase-six-images">
-                <div class="phase-six-image-container">
+              <div class="phase-six-images-v2">
+                <div class="phase-six-image-container-v2">
                   {% if block.settings.image_1 %}
                     <img
                       src="{{ block.settings.image_1 | image_url: width: 600 }}"
@@ -313,13 +313,13 @@
                       height="300"
                     >
                   {% else %}
-                    <div class="phase-six-placeholder">
+                    <div class="phase-six-placeholder-v2">
                       <span>Upload Phase VI Image 1</span>
                     </div>
                   {% endif %}
                 </div>
                 
-                <div class="phase-six-image-container">
+                <div class="phase-six-image-container-v2">
                   {% if block.settings.image_2 %}
                     <img
                       src="{{ block.settings.image_2 | image_url: width: 600 }}"
@@ -328,16 +328,16 @@
                       height="300"
                     >
                   {% else %}
-                    <div class="phase-six-placeholder">
+                    <div class="phase-six-placeholder-v2">
                       <span>Upload Phase VI Image 2</span>
                     </div>
                   {% endif %}
                 </div>
               </div>
 
-              <div class="phase-six-cta">
+              <div class="phase-six-cta-v2">
                 {% if block.settings.cta_text %}
-                  <a href="{{ block.settings.cta_link | default: '#' }}" class="phase-six-button">
+                  <a href="{{ block.settings.cta_link | default: '#' }}" class="phase-six-button-v2">
                     {{ block.settings.cta_text | default: 'Start Your 90 Days Journey' }}
                   </a>
                 {% endif %}
@@ -346,9 +346,9 @@
 
           {% else %}
             <!-- Phases 3-5: Static Layout -->
-            <div class="static-phase-layout">
-              <div class="static-header">
-                <span class="phase-label">{{ block.settings.phase_label | default: 'PHASE III' }}</span>
+            <div class="static-phase-layout-v2">
+              <div class="static-header-v2">
+                <span class="phase-label-v2">{{ block.settings.phase_label | default: 'PHASE III' }}</span>
                 <h2 class="content-title-protocol-phases">
                   {{ block.settings.content_title | default: 'Phase Title' }}
                 </h2>
@@ -357,23 +357,23 @@
                 </span>
               </div>
 
-              <div class="static-content">
+              <div class="static-content-v2">
                 {% if block.settings.main_image %}
                   <img
                     src="{{ block.settings.main_image | image_url: width: 1200 }}"
                     alt="{{ block.settings.content_title }}"
-                    class="static-image"
+                    class="static-image-v2"
                     width="1200"
                     height="400"
                   >
                 {% else %}
-                  <div class="static-placeholder">
+                  <div class="static-placeholder-v2">
                     <span>Upload {{ block.settings.phase_label }} Image</span>
                   </div>
                 {% endif %}
 
                 {% if block.settings.phase_description %}
-                  <div class="static-description">
+                  <div class="static-description-v2">
                     <p>{{ block.settings.phase_description }}</p>
                   </div>
                 {% endif %}
@@ -387,7 +387,7 @@
 </section>
 
 <!-- Scroll Spacer for smooth phase transitions -->
-<div class="scroll-spacer" style="height: {{ section.blocks.size | times: 600 }}px;"></div>
+<div class="scroll-spacer-v2" style="height: {{ section.blocks.size | times: 600 }}px;"></div>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');

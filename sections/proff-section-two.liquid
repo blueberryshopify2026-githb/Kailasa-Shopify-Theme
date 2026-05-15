@@ -1,0 +1,1124 @@
+{% comment %}
+  Proff Section Two
+  40% left image with frost glass doctor card | 60% right content with curved bullet points
+  Font: Montserrat | Class suffix: pt
+{% endcomment %}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+  .pt-section {
+    font-family: 'Montserrat', sans-serif;
+    background-color: {{ section.settings.pt_section_bg }};
+    height: {{ section.settings.pt_section_height }}vh;
+    min-height: {{ section.settings.pt_section_min_height }}px;
+    max-height: {{ section.settings.pt_section_height }}vh;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .pt-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+  }
+
+  /* ── LEFT IMAGE SIDE ── */
+  .pt-left {
+    flex: 0 0 {{ section.settings.pt_left_width }}%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pt-img-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .pt-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.pt_image_fit }};
+    object-position: {{ section.settings.pt_image_position }};
+    display: block;
+  }
+
+  .pt-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+  }
+
+  /* Doctor frost glass card */
+  .pt-doctor-card {
+    position: absolute;
+    width: 85%;
+    max-width: 400px;
+    bottom: {{ section.settings.pt_doctor_card_bottom }}px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, {{ section.settings.pt_doctor_card_opacity | divided_by: 100.0 }});
+    backdrop-filter: blur({{ section.settings.pt_doctor_card_blur }}px);
+    -webkit-backdrop-filter: blur({{ section.settings.pt_doctor_card_blur }}px);
+    border: {{ section.settings.pt_doctor_card_border_width }}px solid {{ section.settings.pt_accent_color }};
+    border-radius: {{ section.settings.pt_doctor_card_radius }}px;
+    padding: {{ section.settings.pt_doctor_card_pad_v }}px {{ section.settings.pt_doctor_card_pad_h }}px;
+    box-shadow: 0 8px 32px rgba(79, 255, 255, 0.35);
+  }
+
+  .pt-doctor-name {
+    font-size: {{ section.settings.pt_doctor_name_size }}px;
+    font-weight: {{ section.settings.pt_doctor_name_weight }};
+    font-style: italic;
+    color: {{ section.settings.pt_doctor_name_color }};
+    margin: 0 0 5px 0;
+  }
+
+  .pt-doctor-specialty {
+    font-size: {{ section.settings.pt_doctor_meta_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.pt_doctor_meta_color }};
+    margin: 0 0 3px 0;
+  }
+
+  .pt-doctor-exp {
+    font-size: {{ section.settings.pt_doctor_meta_size }}px;
+    font-weight: 400;
+    color: {{ section.settings.pt_doctor_meta_color }};
+    margin: 0;
+  }
+
+  /* ── RIGHT CONTENT SIDE ── */
+  .pt-right {
+    flex: 0 0 {{ 100 | minus: section.settings.pt_left_width }}%;
+    padding: 10px  50px 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: {{ section.settings.pt_right_bg }};
+    position: relative;
+    margin-top:0;
+
+  }
+
+  .pt-heading {
+    font-size: {{ section.settings.pt_heading_size }}px;
+    font-weight: {{ section.settings.pt_heading_weight }};
+    line-height: {{ section.settings.pt_heading_line_height }};
+    color: {{ section.settings.pt_heading_color }};
+    margin: 0 0 {{ section.settings.pt_heading_margin_bottom }}px 0;
+    
+  }
+
+  /* Blog excerpt — max 2 lines then read more inline + standalone below */
+  .pt-blog-block {
+    margin-bottom: {{ section.settings.pt_excerpt_margin_bottom }}px;
+  }
+
+  .pt-excerpt-line {
+    font-size: {{ section.settings.pt_excerpt_size }}px;
+    line-height: 1.6;
+    color: {{ section.settings.pt_excerpt_color }};
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0 0 4px 0;
+  }
+
+  .pt-excerpt-line .pt-read-more-inline {
+    display: inline;
+    font-size: {{ section.settings.pt_excerpt_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.pt_read_more_color }};
+    text-decoration: none;
+    margin-left: 6px;
+    transition: color 0.25s;
+  }
+
+  .pt-read-more-block {
+    display: block;
+    font-size: {{ section.settings.pt_excerpt_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.pt_read_more_color }};
+    text-decoration: none;
+    margin-top: 2px;
+    transition: color 0.25s;
+  }
+
+  /* ── SVG DIAGRAM ── */
+  .pt-diagram-area {
+    position: absolute;
+    bottom: 5px;
+    right: 70px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .pt-diagram-area svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .pt-diagram-area .pt-dot {
+    pointer-events: all;
+  }
+
+  .pt-fo-label {
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.3s ease;
+  }
+
+  .pt-fo-label:hover {
+    transform: scale(1.05);
+  }
+
+  .pt-fo-title {
+    font-size: {{ section.settings.pt_bullet_title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.pt_bullet_title_color }};
+    display: block;
+    white-space: nowrap;
+    transition: transform 0.3s ease;
+  }
+
+  .pt-fo-desc {
+    font-size: {{ section.settings.pt_bullet_desc_size }}px;
+    color: {{ section.settings.pt_bullet_desc_color }};
+    display: block;
+    white-space: nowrap;
+    margin-top: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  /* ── RESPONSIVE ── */
+  
+  /* Tablet landscape and below (1024px) */
+  @media (max-width: 1024px) {
+    .pt-right {
+      padding: 10px 30px 10px;
+    }
+    
+    .pt-heading {
+      font-size: calc({{ section.settings.pt_heading_size }}px * 0.85);
+    }
+    
+    .pt-diagram-area {
+      right: 30px;
+    }
+  }
+  
+  /* Tablet portrait (768px) */
+  @media (max-width: 768px) {
+    .pt-section {
+      height: auto;
+      max-height: none;
+      min-height: auto;
+    }
+    
+    .pt-container {
+      flex-direction: column;
+    }
+    
+    .pt-left {
+      flex: 0 0 100%;
+      min-height: 400px;
+      max-height: 500px;
+    }
+    
+    .pt-right {
+      flex: 0 0 100%;
+      padding: 30px 20px 40px;
+      position: relative;
+    }
+    
+    .pt-heading {
+      font-size: calc({{ section.settings.pt_heading_size }}px * 0.7);
+      margin-bottom: 12px;
+    }
+    
+    .pt-excerpt-line {
+      font-size: calc({{ section.settings.pt_excerpt_size }}px * 0.95);
+    }
+    
+    .pt-blog-block {
+      margin-bottom: 20px;
+    }
+    
+    .pt-doctor-card {
+      width: 90%;
+      max-width: 350px;
+      bottom: 20px;
+      padding: 14px 16px;
+    }
+    
+    .pt-doctor-name {
+      font-size: calc({{ section.settings.pt_doctor_name_size }}px * 0.85);
+    }
+    
+    .pt-doctor-specialty,
+    .pt-doctor-exp {
+      font-size: calc({{ section.settings.pt_doctor_meta_size }}px * 0.9);
+    }
+    
+    /* SVG diagram adjustments for tablet */
+    .pt-diagram-area {
+      position: relative;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+    }
+  }
+  
+  /* Mobile landscape (640px) */
+  @media (max-width: 640px) {
+    .pt-left {
+      min-height: 350px;
+      max-height: 400px;
+    }
+    
+    .pt-right {
+      padding: 25px 16px 30px;
+    }
+    
+    .pt-heading {
+      font-size: calc({{ section.settings.pt_heading_size }}px * 0.6);
+      margin-bottom: 10px;
+    }
+    
+    .pt-excerpt-line {
+      font-size: calc({{ section.settings.pt_excerpt_size }}px * 0.9);
+      -webkit-line-clamp: 3;
+    }
+    
+    .pt-doctor-card {
+      width: 92%;
+      max-width: 320px;
+      bottom: 15px;
+      padding: 12px 14px;
+    }
+    
+    .pt-doctor-name {
+      font-size: calc({{ section.settings.pt_doctor_name_size }}px * 0.75);
+      margin-bottom: 3px;
+    }
+    
+    .pt-doctor-specialty,
+    .pt-doctor-exp {
+      font-size: calc({{ section.settings.pt_doctor_meta_size }}px * 0.85);
+    }
+    
+    .pt-diagram-area {
+      height: 350px;
+    }
+    
+    .pt-fo-title {
+      font-size: calc({{ section.settings.pt_bullet_title_size }}px * 0.9);
+    }
+    
+    .pt-fo-desc {
+      font-size: calc({{ section.settings.pt_bullet_desc_size }}px * 0.9);
+    }
+  }
+  
+  /* Mobile portrait (480px) */
+  @media (max-width: 480px) {
+    .pt-left {
+      min-height: 300px;
+      max-height: 350px;
+    }
+    
+    .pt-right {
+      padding: 20px 12px 25px;
+    }
+    
+    .pt-heading {
+      font-size: calc({{ section.settings.pt_heading_size }}px * 0.5);
+      margin-bottom: 8px;
+    }
+    
+    .pt-excerpt-line {
+      font-size: calc({{ section.settings.pt_excerpt_size }}px * 0.85);
+    }
+    
+    .pt-blog-block {
+      margin-bottom: 15px;
+    }
+    
+    .pt-doctor-card {
+      width: 94%;
+      max-width: 280px;
+      bottom: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+    
+    .pt-doctor-name {
+      font-size: calc({{ section.settings.pt_doctor_name_size }}px * 0.65);
+      margin-bottom: 2px;
+    }
+    
+    .pt-doctor-specialty,
+    .pt-doctor-exp {
+      font-size: calc({{ section.settings.pt_doctor_meta_size }}px * 0.75);
+      margin-bottom: 2px;
+    }
+    
+    .pt-diagram-area {
+      height: 300px;
+      margin-top: 15px;
+    }
+    
+    .pt-fo-title {
+      font-size: calc({{ section.settings.pt_bullet_title_size }}px * 0.8);
+      white-space: normal;
+    }
+    
+    .pt-fo-desc {
+      font-size: calc({{ section.settings.pt_bullet_desc_size }}px * 0.8);
+      white-space: normal;
+    }
+  }
+  
+  /* Small mobile (360px) */
+  @media (max-width: 360px) {
+    .pt-left {
+      min-height: 280px;
+      max-height: 320px;
+    }
+    
+    .pt-right {
+      padding: 16px 10px 20px;
+    }
+    
+    .pt-heading {
+      font-size: calc({{ section.settings.pt_heading_size }}px * 0.45);
+    }
+    
+    .pt-excerpt-line {
+      font-size: calc({{ section.settings.pt_excerpt_size }}px * 0.8);
+    }
+    
+    .pt-doctor-card {
+      width: 95%;
+      max-width: 260px;
+      padding: 8px 10px;
+    }
+    
+    .pt-doctor-name {
+      font-size: calc({{ section.settings.pt_doctor_name_size }}px * 0.6);
+    }
+    
+    .pt-doctor-specialty,
+    .pt-doctor-exp {
+      font-size: calc({{ section.settings.pt_doctor_meta_size }}px * 0.7);
+    }
+    
+    .pt-diagram-area {
+      height: 280px;
+    }
+    
+    .pt-fo-title {
+      font-size: calc({{ section.settings.pt_bullet_title_size }}px * 0.75);
+    }
+    
+    .pt-fo-desc {
+      font-size: calc({{ section.settings.pt_bullet_desc_size }}px * 0.75);
+    }
+  }
+
+  @media (max-width: {{ section.settings.pt_mobile_breakpoint }}px) {
+    .pt-section {
+      height: auto;
+      max-height: none;
+    }
+    .pt-container {
+      flex-direction: column;
+    }
+    .pt-left, .pt-right {
+      flex: 0 0 100%;
+    }
+    .pt-left {
+      min-height: {{ section.settings.pt_mobile_img_height }}px;
+    }
+    .pt-right {
+      padding: 30px 20px;
+    }
+  }
+</style>
+
+<section class="pt-section full-width">
+  <div class="pt-container">
+
+    <!-- ── LEFT IMAGE ── -->
+    <div class="pt-left">
+      <div class="pt-img-wrap">
+        {% if section.settings.pt_doctor_image != blank %}
+          <img
+            src="{{ section.settings.pt_doctor_image | image_url: width: 1000 }}"
+            alt="{{ section.settings.pt_doctor_name }}"
+            width="1000"
+            height="800"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="pt-img-placeholder"></div>
+        {% endif %}
+
+        <div class="pt-doctor-card">
+          <p class="pt-doctor-name">{{ section.settings.pt_doctor_name }}</p>
+          <p class="pt-doctor-specialty">{{ section.settings.pt_doctor_specialty }}</p>
+          <p class="pt-doctor-exp">{{ section.settings.pt_doctor_experience }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RIGHT CONTENT ── -->
+    <div class="pt-right">
+
+      <h2 class="pt-heading">{{ section.settings.pt_heading }}</h2>
+
+      <!-- Blog excerpt: 2 lines + inline read more, then standalone read more below -->
+      <div class="pt-blog-block">
+        {% if section.settings.pt_blog_handle != blank %}
+          {% assign pt_blog = blogs[section.settings.pt_blog_handle] %}
+          {% assign pt_article = pt_blog.articles.first %}
+          {% if pt_article %}
+            {% assign pt_url = pt_article.url %}
+            {% assign pt_text = pt_article.excerpt_or_content | strip_html %}
+          {% else %}
+            {% assign pt_url = section.settings.pt_fallback_link %}
+            {% assign pt_text = section.settings.pt_fallback_excerpt %}
+          {% endif %}
+        {% else %}
+          {% assign pt_url = section.settings.pt_fallback_link %}
+          {% assign pt_text = section.settings.pt_fallback_excerpt %}
+        {% endif %}
+        <p class="pt-excerpt-line">
+          {{ pt_text }}{% if pt_url != blank %}&nbsp;&nbsp;<a href="{{ pt_url }}" class="pt-read-more-inline">read more...</a>{% endif %}
+        </p>
+        {% if pt_url != blank %}
+          <a href="{{ pt_url }}" class="pt-read-more-block">read more</a>
+        {% endif %}
+      </div>
+
+      <!-- SVG: circle + arc + dots + labels in one coordinate system -->
+      <div class="pt-diagram-area">
+        <!--
+          ViewBox 800×480. Circle center (700,300), r=160.
+          Bottom edge: 300+160=460 < 480 ✓. Right edge: 700+160=860 (bleeds ~60px right, fine).
+
+          Arc: r=180 (20px outside circle), center (700,300).
+          Arc from 300° to 120° going CW (sweep=1) = 180° left-side arc.
+            300° (= -60°): x=700+180×cos(-60°)=700+90=790, y=300+180×sin(-60°)=300-156=144 → (790,144) top-right
+            180°:           x=700-180=520, y=300 → (520,300) pure left
+            120°:           x=700+180×cos(120°)=700-90=610, y=300+180×sin(120°)=300+156=456 → (610,456) lower-left
+
+          Arc: M 790 144 A 180 180 0 0 0 610 456
+          (large-arc=0, sweep=0=CCW from top-right, sweeping LEFT, to lower-left)
+
+          Dots evenly at 300°, 210°, 120°:
+            D1 @ 300° (-60°): (790, 144) — top-right
+            D2 @ 210°:        x=700+180×cos(210°)=700-156=544, y=300+180×sin(210°)=300-90=210 → wait
+            SVG y is flipped: sin positive = downward.
+            D2 @ 210° (SVG): x=700+180×cos(210°)=700+180×(-0.866)=700-156=544, y=300+180×sin(210°)=300+180×(-0.5)=300-90=210
+            That's upper-left, not middle. Let me use evenly spaced:
+            Arc spans 300° to 120° CCW = 180° total.
+            Midpoint = 210°: x=700+180×cos(210°)=544, y=300+180×sin(210°)=300-90=210 — upper area
+            
+            Better: use 300°, 180°, 120° for top/middle/bottom:
+            D1 @ 300°: (790, 144)
+            D2 @ 180°: (520, 300)
+            D3 @ 120°: (610, 456)
+        -->
+        <svg
+          viewBox="0 0 800 480"
+          preserveAspectRatio="xMaxYMax meet"
+          aria-hidden="true"
+          style="overflow:visible; width:100%; height:100%; position:absolute; top:0; left:0;"
+        >
+          <defs>
+            <filter id="pt-shad-{{ section.id }}" x="-10%" y="-10%" width="130%" height="130%">
+              <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="rgba(0,0,0,0.15)"/>
+            </filter>
+            <clipPath id="pt-clip-{{ section.id }}">
+              <circle cx="700" cy="300" r="160"/>
+            </clipPath>
+          </defs>
+
+          <!-- Circle shadow + image -->
+          <circle cx="700" cy="300" r="162" fill="white" filter="url(#pt-shad-{{ section.id }})"/>
+          {% if section.settings.pt_circle_image != blank %}
+            <image
+              href="{{ section.settings.pt_circle_image | image_url: width: 500 }}"
+              x="540" y="140" width="320" height="320"
+              clip-path="url(#pt-clip-{{ section.id }})"
+              preserveAspectRatio="xMidYMid slice"
+            />
+          {% else %}
+            <circle cx="700" cy="300" r="160" fill="#f0f0f0"/>
+          {% endif %}
+
+          <!-- Arc: CCW from (790,144) to (610,456), r=180, left-side 180° arc -->
+          <path
+            d="M 790 144 A 180 180 0 0 0 610 456"
+            stroke="{{ section.settings.pt_curve_color }}"
+            stroke-width="{{ section.settings.pt_curve_stroke }}"
+            fill="none"
+          />
+
+          <!-- Dot 1 @ 300°: (790, 144) — top-right -->
+          <circle class="pt-dot" cx="790" cy="144" r="{{ section.settings.pt_dot_size }}" fill="{{ section.settings.pt_dot_color }}" style="cursor:pointer; pointer-events:all; transition:fill 0.2s, transform 0.2s; transform-origin:790px 144px;"/>
+          <!-- Dot 2 @ 180°: (520, 300) — pure left -->
+          <circle class="pt-dot" cx="520" cy="300" r="{{ section.settings.pt_dot_size }}" fill="{{ section.settings.pt_dot_color }}" style="cursor:pointer; pointer-events:all; transition:fill 0.2s, transform 0.2s; transform-origin:520px 300px;"/>
+          <!-- Dot 3 @ 120°: (610, 456) — lower-left -->
+          <circle class="pt-dot" cx="610" cy="456" r="{{ section.settings.pt_dot_size }}" fill="{{ section.settings.pt_dot_color }}" style="cursor:pointer; pointer-events:all; transition:fill 0.2s, transform 0.2s; transform-origin:610px 456px;"/>
+
+          <!-- Label 1: 10-15px above dot1 (790,144) -->
+          {% assign b1 = section.blocks[0] %}
+          {% if b1 %}
+            <foreignObject x="350" y="72" width="420" height="56">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="pt-fo-label" data-dot="1" style="text-align:right; padding-right:20px;">
+                <span class="pt-fo-title">{{ b1.settings.pt_bullet_title }}</span>
+                <span class="pt-fo-desc">{{ b1.settings.pt_bullet_desc }}</span>
+              </div>
+            </foreignObject>
+          {% endif %}
+
+          <!-- Label 2: 20px to the left of dot2 (520,300), vertically centered -->
+          {% assign b2 = section.blocks[1] %}
+          {% if b2 %}
+            <foreignObject x="100" y="272" width="400" height="56">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="pt-fo-label" data-dot="2" style="text-align:right; padding-right:20px;">
+                <span class="pt-fo-title">{{ b2.settings.pt_bullet_title }}</span>
+                <span class="pt-fo-desc">{{ b2.settings.pt_bullet_desc }}</span>
+              </div>
+            </foreignObject>
+          {% endif %}
+
+          <!-- Label 3: 20px to the left of dot3 (610,456), vertically centered -->
+          {% assign b3 = section.blocks[2] %}
+          {% if b3 %}
+            <foreignObject x="200" y="428" width="390" height="56">
+              <div xmlns="http://www.w3.org/1999/xhtml" class="pt-fo-label" data-dot="3" style="text-align:right; padding-right:20px;">
+                <span class="pt-fo-title">{{ b3.settings.pt_bullet_title }}</span>
+                <span class="pt-fo-desc">{{ b3.settings.pt_bullet_desc }}</span>
+              </div>
+            </foreignObject>
+          {% endif %}
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  // Wait for DOM to be fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  
+  function init() {
+    var dots = document.querySelectorAll('.pt-dot');
+    var labels = document.querySelectorAll('.pt-fo-label');
+    
+    if (!dots.length) return;
+    
+    // Create a map of dot index to label
+    var labelMap = {};
+    labels.forEach(function(label) {
+      var dotIndex = label.getAttribute('data-dot');
+      if (dotIndex) {
+        labelMap[dotIndex] = label;
+      }
+    });
+    
+    dots.forEach(function(dot, index) {
+      var dotNum = (index + 1).toString();
+      var correspondingLabel = labelMap[dotNum];
+      
+      // Store original fill color
+      dot.setAttribute('data-orig-fill', dot.getAttribute('fill'));
+      
+      dot.addEventListener('mouseenter', function() {
+        dot.style.fill = '#4fffff';
+        dot.style.transform = 'scale(1.2)';
+        if (correspondingLabel) {
+          correspondingLabel.style.transform = 'scale(1.1)';
+        }
+      });
+      
+      dot.addEventListener('mouseleave', function() {
+        dot.style.fill = dot.getAttribute('data-orig-fill') || '{{ section.settings.pt_dot_color }}';
+        dot.style.transform = 'scale(1)';
+        if (correspondingLabel) {
+          correspondingLabel.style.transform = 'scale(1)';
+        }
+      });
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Proff Section Two",
+  "settings": [
+
+    { "type": "header", "content": "── Layout" },
+    {
+      "type": "range",
+      "id": "pt_section_height",
+      "label": "Section Height (vh)",
+      "min": 50, "max": 100, "step": 5, "default": 100
+    },
+    {
+      "type": "range",
+      "id": "pt_section_min_height",
+      "label": "Min Height (px)",
+      "min": 400, "max": 900, "step": 50, "default": 600
+    },
+    {
+      "type": "range",
+      "id": "pt_left_width",
+      "label": "Left Column Width (%)",
+      "min": 25, "max": 55, "step": 5, "default": 40
+    },
+    {
+      "type": "range",
+      "id": "pt_mobile_breakpoint",
+      "label": "Mobile Breakpoint (px)",
+      "min": 600, "max": 1100, "step": 50, "default": 900
+    },
+    {
+      "type": "range",
+      "id": "pt_mobile_img_height",
+      "label": "Mobile Image Height (px)",
+      "min": 250, "max": 700, "step": 25, "default": 400
+    },
+
+    { "type": "header", "content": "── Colors" },
+    {
+      "type": "color",
+      "id": "pt_section_bg",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pt_right_bg",
+      "label": "Right Panel Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "pt_accent_color",
+      "label": "Accent Color (card border)",
+      "default": "#4fffff"
+    },
+
+    { "type": "header", "content": "── Left Image" },
+    {
+      "type": "image_picker",
+      "id": "pt_doctor_image",
+      "label": "Doctor / Hero Image"
+    },
+    {
+      "type": "select",
+      "id": "pt_image_fit",
+      "label": "Image Fit",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "pt_image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "top center", "label": "Top" },
+        { "value": "bottom center", "label": "Bottom" },
+        { "value": "center left", "label": "Left" },
+        { "value": "center right", "label": "Right" }
+      ],
+      "default": "center center"
+    },
+
+    { "type": "header", "content": "── Doctor Card" },
+    {
+      "type": "text",
+      "id": "pt_doctor_name",
+      "label": "Doctor Name",
+      "default": "Dr. Dakorte Johnson"
+    },
+    {
+      "type": "text",
+      "id": "pt_doctor_specialty",
+      "label": "Specialty & University",
+      "default": "Dermetologist, M.D, University of California"
+    },
+    {
+      "type": "text",
+      "id": "pt_doctor_experience",
+      "label": "Experience",
+      "default": "10+ Years of experience"
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_bottom",
+      "label": "Card Distance from Bottom (px)",
+      "min": 10, "max": 120, "step": 2, "default": 30
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_left",
+      "label": "Card Left Offset (px)",
+      "min": 0, "max": 80, "step": 4, "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_right",
+      "label": "Card Right Offset (px)",
+      "min": 0, "max": 80, "step": 4, "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_opacity",
+      "label": "Card Background Opacity (%)",
+      "min": 5, "max": 80, "step": 5, "default": 70
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_blur",
+      "label": "Card Blur (px)",
+      "min": 0, "max": 40, "step": 2, "default": 14
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_border_width",
+      "label": "Card Border Width (px)",
+      "min": 1, "max": 4, "step": 1, "default": 2
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_radius",
+      "label": "Card Border Radius (px)",
+      "min": 0, "max": 40, "step": 2, "default": 14
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_pad_v",
+      "label": "Card Padding Vertical (px)",
+      "min": 8, "max": 40, "step": 2, "default": 18
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_card_pad_h",
+      "label": "Card Padding Horizontal (px)",
+      "min": 8, "max": 40, "step": 2, "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_name_size",
+      "label": "Doctor Name Font Size (px)",
+      "min": 14, "max": 40, "step": 1, "default": 22
+    },
+    {
+      "type": "select",
+      "id": "pt_doctor_name_weight",
+      "label": "Doctor Name Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "pt_doctor_name_color",
+      "label": "Doctor Name Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "pt_doctor_meta_size",
+      "label": "Specialty / Experience Font Size (px)",
+      "min": 11, "max": 20, "step": 1, "default": 14
+    },
+    {
+      "type": "color",
+      "id": "pt_doctor_meta_color",
+      "label": "Specialty / Experience Color",
+      "default": "#000000"
+    },
+
+    { "type": "header", "content": "── Right Padding" },
+    {
+      "type": "range",
+      "id": "pt_right_pad_top",
+      "label": "Padding Top (px)",
+      "min": 0, "max": 120, "step": 5, "default": 60
+    },
+    {
+      "type": "range",
+      "id": "pt_right_pad_right",
+      "label": "Padding Right (px)",
+      "min": 0, "max": 120, "step": 5, "default": 60
+    },
+    {
+      "type": "range",
+      "id": "pt_right_pad_bottom",
+      "label": "Padding Bottom (px)",
+      "min": 0, "max": 120, "step": 5, "default": 60
+    },
+    {
+      "type": "range",
+      "id": "pt_right_pad_left",
+      "label": "Padding Left (px)",
+      "min": 0, "max": 120, "step": 5, "default": 50
+    },
+
+    { "type": "header", "content": "── Heading" },
+    {
+      "type": "text",
+      "id": "pt_heading",
+      "label": "Heading Text",
+      "default": "Dermatologists agree that sunscreen and moisturizer"
+    },
+    {
+      "type": "range",
+      "id": "pt_heading_size",
+      "label": "Font Size (px)",
+      "min": 24, "max": 90, "step": 2, "default": 48
+    },
+    {
+      "type": "select",
+      "id": "pt_heading_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "text",
+      "id": "pt_heading_line_height",
+      "label": "Line Height",
+      "default": "1.15"
+    },
+    {
+      "type": "color",
+      "id": "pt_heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "pt_heading_margin_bottom",
+      "label": "Margin Below (px)",
+      "min": 0, "max": 60, "step": 2, "default": 16
+    },
+
+    { "type": "header", "content": "── Blog / Excerpt" },
+    {
+      "type": "blog",
+      "id": "pt_blog_handle",
+      "label": "Select Blog (pulls first article)"
+    },
+    {
+      "type": "textarea",
+      "id": "pt_fallback_excerpt",
+      "label": "Fallback Excerpt",
+      "default": "Shopping for an anti-aging skin care product can feel like a hit-or-miss experience"
+    },
+    {
+      "type": "url",
+      "id": "pt_fallback_link",
+      "label": "Fallback Read More Link"
+    },
+    {
+      "type": "range",
+      "id": "pt_excerpt_size",
+      "label": "Excerpt Font Size (px)",
+      "min": 12, "max": 22, "step": 1, "default": 15
+    },
+    {
+      "type": "color",
+      "id": "pt_excerpt_color",
+      "label": "Excerpt Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "pt_read_more_color",
+      "label": "Read More Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "pt_excerpt_margin_bottom",
+      "label": "Excerpt Margin Bottom (px)",
+      "min": 0, "max": 80, "step": 4, "default": 32
+    },
+
+    { "type": "header", "content": "── Bullet Points" },
+    {
+      "type": "range",
+      "id": "pt_bullets_margin_top",
+      "label": "Bullets Margin Top (px)",
+      "min": 0, "max": 100, "step": 4, "default": 20
+    },
+    {
+      "type": "range",
+      "id": "pt_bullet_pad",
+      "label": "Bullet Row Padding (px)",
+      "min": 4, "max": 30, "step": 2, "default": 16
+    },
+    {
+      "type": "range",
+      "id": "pt_bullet_title_size",
+      "label": "Bullet Title Font Size (px)",
+      "min": 12, "max": 24, "step": 1, "default": 14
+    },
+    {
+      "type": "color",
+      "id": "pt_bullet_title_color",
+      "label": "Bullet Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "pt_bullet_desc_size",
+      "label": "Bullet Description Font Size (px)",
+      "min": 10, "max": 18, "step": 1, "default": 12
+    },
+    {
+      "type": "color",
+      "id": "pt_bullet_desc_color",
+      "label": "Bullet Description Color",
+      "default": "#555555"
+    },
+    {
+      "type": "range",
+      "id": "pt_dot_size",
+      "label": "Dot Size (px)",
+      "min": 8, "max": 24, "step": 2, "default": 14
+    },
+    {
+      "type": "color",
+      "id": "pt_dot_color",
+      "label": "Dot Color",
+      "default": "#000000"
+    },
+
+    { "type": "header", "content": "── Curve Line" },
+    {
+      "type": "range",
+      "id": "pt_curve_width",
+      "label": "Curve SVG Width (px)",
+      "min": 80, "max": 300, "step": 10, "default": 180
+    },
+    {
+      "type": "range",
+      "id": "pt_curve_height",
+      "label": "Curve SVG Height (px)",
+      "min": 100, "max": 500, "step": 10, "default": 180
+    },
+    {
+      "type": "color",
+      "id": "pt_curve_color",
+      "label": "Curve Line Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "pt_curve_stroke",
+      "label": "Curve Stroke Width",
+      "min": 1, "max": 6, "step": 1, "default": 2
+    },
+
+    { "type": "header", "content": "── Circle Image" },
+    {
+      "type": "image_picker",
+      "id": "pt_circle_image",
+      "label": "Circle Image (bottom right)"
+    },
+    {
+      "type": "range",
+      "id": "pt_circle_size",
+      "label": "Circle Size (px)",
+      "min": 80, "max": 300, "step": 10, "default": 260
+    }
+
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet Point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "pt_bullet_title",
+          "label": "Title",
+          "default": "Appearance of Smoother skin"
+        },
+        {
+          "type": "text",
+          "id": "pt_bullet_desc",
+          "label": "Description",
+          "default": "anti-aging skin care product can feel like a hit-or-miss"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Proff Section Two",
+      "blocks": [
+        {
+          "type": "bullet",
+          "settings": {
+            "pt_bullet_title": "Appearance of Smoother skin",
+            "pt_bullet_desc": "anti-aging skin care product can feel like a hit-or-miss"
+          }
+        },
+        {
+          "type": "bullet",
+          "settings": {
+            "pt_bullet_title": "Appearance of Smoother",
+            "pt_bullet_desc": "anti-aging skin care product can feel like a hit-o"
+          }
+        },
+        {
+          "type": "bullet",
+          "settings": {
+            "pt_bullet_title": "Appearance of Smoother",
+            "pt_bullet_desc": "anti-aging skin care product can feel like a hit-o"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

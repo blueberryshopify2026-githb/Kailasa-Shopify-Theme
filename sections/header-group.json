@@ -20,7 +20,6 @@
     },
     "kailasa_header_menu_NxDYpg": {
       "type": "kailasa-header-menu",
-      "disabled": true,
       "name": "Kailasa Header Menu",
       "settings": {
         "show_announcement_bar": true,

@@ -1,0 +1,202 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "disabled": true,
+      "settings": {}
+    },
+    "product_buy_box_TzCRnN": {
+      "type": "product-buy-box",
+      "blocks": {
+        "star_rating_7yrPb3": {
+          "type": "star_rating",
+          "settings": {
+            "rating": "5",
+            "show_count": true,
+            "review_count": "231 Reviews"
+          }
+        },
+        "review_text_TbJd7N": {
+          "type": "review_text",
+          "settings": {
+            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
+          }
+        },
+        "review_author_hVTgR7": {
+          "type": "review_author",
+          "settings": {
+            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
+          }
+        },
+        "title_RhVUfw": {
+          "type": "title",
+          "settings": {
+            "title": "Eye serum"
+          }
+        },
+        "description_Ln9n8b": {
+          "type": "description",
+          "settings": {
+            "description": "The light feels gentle and relaxing, not harsh or heating, and it fits comfortably on the face. Over time, my skin has started to look more \"alive\"—that healthy glow"
+          }
+        },
+        "product_image_YfjgEJ": {
+          "type": "product_image",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg.png"
+          }
+        },
+        "variant_atMehT": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "VIP Club Membership",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$49 USD"
+          }
+        },
+        "variant_t6AJCk": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Subscribe and Save",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$79 USD"
+          }
+        },
+        "variant_HzY8R7": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Buy one time",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$99 USD"
+          }
+        },
+        "media_Dbjgri": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        },
+        "media_eGHdeN": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        },
+        "media_7JGftC": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_image": "shopify://shop_images/7_Natural_ingredients_for_Korean_glass_skin.jpg",
+            "media_alt": "Product image",
+            "media_video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "star_rating_7yrPb3",
+        "review_text_TbJd7N",
+        "review_author_hVTgR7",
+        "title_RhVUfw",
+        "description_Ln9n8b",
+        "product_image_YfjgEJ",
+        "variant_atMehT",
+        "variant_t6AJCk",
+        "variant_HzY8R7",
+        "media_Dbjgri",
+        "media_eGHdeN",
+        "media_7JGftC"
+      ],
+      "name": "Product Buy Box",
+      "settings": {
+        "outer_bg_color": "#000000",
+        "outer_padding": 20,
+        "gap_width": 20,
+        "max_width": 1400,
+        "left_bg_color": "#ffffff",
+        "right_bg_color": "#f5f5f5",
+        "star_color": "#4fffff",
+        "title_color": "#000000",
+        "text_color": "#000000",
+        "secondary_text_color": "#666666",
+        "active_color": "#4fffff",
+        "variant_border_color": "#e0e0e0",
+        "variant_bg_color": "#ffffff",
+        "cta_text": "Add to cart",
+        "cta_bg_color": "#4fffff",
+        "cta_text_color": "#000000",
+        "payment_btn_bg": "#ffffff",
+        "nav_strip_bg": "#ffffff"
+      }
+    },
+    "professional_panel_iDFanP": {
+      "type": "professional-panel",
+      "blocks": {
+        "professional_iXax6n": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/sample_6_12.png",
+            "bg_position_x": 50,
+            "bg_position_y": 50,
+            "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "professional_iXax6n"
+      ],
+      "name": "Professional Panel",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "card_bg_color": "#000000",
+        "card_border_radius": 24,
+        "name_font_size": 44,
+        "name_color": "#ffffff",
+        "designation_font_size": 18,
+        "designation_color": "#4fffff",
+        "quote_font_size": 18,
+        "quote_color": "#ffffff",
+        "quote_mark_color": "#4fffff",
+        "cta_font_size": 14,
+        "cta_text_color": "#ffffff",
+        "cta_border_color": "#4fffff",
+        "cta_border_radius": 24,
+        "arrow_bg_color": "#000000",
+        "arrow_border_color": "#4fffff",
+        "arrow_color": "#4fffff"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_buy_box_TzCRnN",
+    "professional_panel_iDFanP"
+  ]
+}

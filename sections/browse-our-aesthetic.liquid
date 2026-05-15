@@ -1,0 +1,635 @@
+{% comment %}
+  Browse Our Aesthetic Section
+  CSS suffix: -boam | Font: Montserrat | Cyan: #4fffff
+{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  .section-boam {
+    font-family: 'Montserrat', sans-serif;
+    background-color: {{ section.settings.bg_color }};
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Outer wrapper: positions big image and right panel side by side */
+  .layout-boam {
+    display: flex;
+    align-items: stretch;
+    min-height: {{ section.settings.big_image_height }}px;
+    padding: {{ section.settings.section_margin }}px 0 {{ section.settings.section_margin }}px {{ section.settings.section_margin }}px;
+    box-sizing: border-box;
+  }
+
+  /* ── LEFT: big image (60%) ── */
+  .big-image-col-boam {
+    flex: 0 0 {{ section.settings.big_image_width }}%;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    height: {{ section.settings.big_image_height }}px;
+  }
+
+  .big-image-boam {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .big-image-placeholder-boam {
+    width: 100%;
+    height: 100%;
+    min-height: {{ section.settings.section_height }}px;
+    background: linear-gradient(135deg, #c8b8a8 0%, #a89888 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+  }
+
+  /* ── RIGHT: content panel (40%) ── */
+  .right-col-boam {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    {% comment %} padding: 0 5px 0 0; {% endcomment %}
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  /* Title + description sit at the top of the right col */
+  .text-block-boam {
+    padding: 2px 0 28px 32px;
+  }
+
+  .heading-boam {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 6px 0;
+    letter-spacing: -0.3px;
+  }
+
+  .description-boam {
+    font-size: {{ section.settings.desc_size }}px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: {{ section.settings.desc_color }};
+    margin: 0;
+  }
+
+  /* ── CENTER CARD: overlaps 30% onto big image ── */
+  /* Wrapper stretches across both columns so we can position the card */
+  .card-row-boam {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    position: relative;
+  }
+
+  /* The card itself: starts at 70% of the section width (30% overlap on big image) */
+  .center-card-boam {
+    position: absolute;
+    left: -{{ section.settings.card_overlap }}%;
+    width: {{ section.settings.card_width }}%;
+    height: {{ section.settings.card_height }}px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #f5f0eb;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+  }
+
+  .center-card-img-boam {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .center-card-img-boam.active-boam {
+    opacity: 1;
+  }
+
+  .center-card-placeholder-boam {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0e8e0 0%, #ddd0c8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* ── CAROUSEL: arrows + 3 visible circle thumbs ── */
+  .carousel-row-boam {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 24px 0 0 32px;
+  }
+
+  .carousel-arrow-boam {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: {{ section.settings.heading_color }};
+    opacity: 0.45;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .carousel-arrow-boam:hover { opacity: 1; }
+
+  .carousel-arrow-boam svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .thumbs-visible-boam {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .thumb-circle-boam {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid transparent;
+    box-sizing: border-box;
+    transition: border-color 0.25s ease, transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .thumb-circle-boam:hover { transform: scale(1.07); }
+
+  .thumb-circle-boam.active-boam {
+    border-color: #4fffff;
+  }
+
+  .thumb-circle-boam img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .thumb-circle-placeholder-boam {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ccc 0%, #aaa 100%);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .layout-boam {
+      flex-direction: column;
+      padding: 24px 20px;
+      min-height: auto;
+    }
+
+    .big-image-col-boam {
+      flex: none;
+      width: 100%;
+      height: 280px;
+      border-radius: 14px;
+    }
+
+    .big-image-placeholder-boam { min-height: 280px; }
+
+    .right-col-boam {
+      flex: none;
+      width: 100%;
+      padding: 0;
+    }
+
+    .text-block-boam { padding: 24px 0 20px 0; }
+
+    .card-row-boam { min-height: 200px; }
+
+    .center-card-boam {
+      position: relative;
+      left: 0;
+      width: 100%;
+    }
+
+    .carousel-row-boam { padding: 20px 0 0 0; justify-content: center; }
+  }
+</style>
+
+<section
+  class="section-boam full-width"
+  id="browse-our-aesthetic-{{ section.id }}"
+  aria-label="{{ section.settings.heading | default: 'Browse Our Aesthetic' }}"
+>
+  <div class="layout-boam">
+
+    <!-- LEFT: big image -->
+    <div class="big-image-col-boam">
+      {% if section.settings.big_image %}
+        <img
+          class="big-image-boam"
+          src="{{ section.settings.big_image | image_url: width: 1400 }}"
+          alt="{{ section.settings.big_image.alt | default: '' }}"
+          width="{{ section.settings.big_image.width }}"
+          height="{{ section.settings.big_image.height }}"
+          loading="eager"
+        >
+      {% else %}
+        <div class="big-image-placeholder-boam">BIG IMAGE</div>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT: text + card + carousel -->
+    <div class="right-col-boam">
+
+      <!-- Title & description -->
+      <div class="text-block-boam">
+        <h2 class="heading-boam">{{ section.settings.heading | default: 'Browse Our Aesthetic' }}</h2>
+        {% if section.settings.description != blank %}
+          <p class="description-boam">{{ section.settings.description }}</p>
+        {% endif %}
+      </div>
+
+      <!-- Center card (overlaps big image) -->
+      <div class="card-row-boam">
+        <div class="center-card-boam" id="boam-card-{{ section.id }}">
+          {% assign has_card_img = false %}
+          {% for i in (1..10) %}
+            {% assign key = 'carousel_image_' | append: i %}
+            {% assign img = section.settings[key] %}
+            {% if img %}
+              {% assign has_card_img = true %}
+              <img
+                class="center-card-img-boam{% if forloop.first %} active-boam{% endif %}"
+                src="{{ img | image_url: width: 900 }}"
+                alt="{{ img.alt | default: '' }}"
+                width="{{ img.width }}"
+                height="{{ img.height }}"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                data-boam-index="{{ forloop.index0 }}"
+              >
+            {% endif %}
+          {% endfor %}
+          {% unless has_card_img %}
+            <div class="center-card-placeholder-boam">CENTER IMAGE</div>
+          {% endunless %}
+        </div>
+      </div>
+
+      <!-- Carousel: arrow + 3 thumbs + arrow -->
+      <div class="carousel-row-boam">
+        <button class="carousel-arrow-boam" id="boam-prev-{{ section.id }}" aria-label="Previous image">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M11 3L5 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="thumbs-visible-boam" id="boam-thumbs-{{ section.id }}">
+          {% for i in (1..10) %}
+            {% assign key = 'carousel_image_' | append: i %}
+            {% assign img = section.settings[key] %}
+            {% if img %}
+              <div
+                class="thumb-circle-boam{% if forloop.first %} active-boam{% endif %}"
+                data-boam-index="{{ forloop.index0 }}"
+                role="button"
+                tabindex="0"
+                aria-label="Image {{ i }}"
+              >
+                <img
+                  src="{{ img | image_url: width: 160 }}"
+                  alt="{{ img.alt | default: '' }}"
+                  width="{{ img.width }}"
+                  height="{{ img.height }}"
+                  loading="lazy"
+                >
+              </div>
+            {% else %}
+              {% if forloop.index <= 3 %}
+                <div
+                  class="thumb-circle-boam{% if forloop.first %} active-boam{% endif %}"
+                  data-boam-index="{{ forloop.index0 }}"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Placeholder {{ i }}"
+                >
+                  <div class="thumb-circle-placeholder-boam"></div>
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <button class="carousel-arrow-boam" id="boam-next-{{ section.id }}" aria-label="Next image">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M7 3l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var sid = '{{ section.id }}';
+  var card = document.getElementById('boam-card-' + sid);
+  var thumbsWrap = document.getElementById('boam-thumbs-' + sid);
+  var prevBtn = document.getElementById('boam-prev-' + sid);
+  var nextBtn = document.getElementById('boam-next-' + sid);
+  if (!card || !thumbsWrap) return;
+
+  var cardImgs = Array.from(card.querySelectorAll('.center-card-img-boam'));
+  var allThumbs = Array.from(thumbsWrap.querySelectorAll('.thumb-circle-boam'));
+  var total = cardImgs.length || allThumbs.length;
+  if (total === 0) return;
+
+  var visibleCount = 3;
+  var activeIndex = 0;
+  var windowStart = 0; /* first visible thumb index */
+
+  /* Show card image at index */
+  function showCard(index) {
+    cardImgs.forEach(function (img) { img.classList.remove('active-boam'); });
+    if (cardImgs[index]) cardImgs[index].classList.add('active-boam');
+  }
+
+  /* Render which 3 thumbs are visible and mark active */
+  function renderThumbs() {
+    allThumbs.forEach(function (t, i) {
+      var pos = i - windowStart;
+      if (pos >= 0 && pos < visibleCount) {
+        t.style.display = '';
+        t.classList.toggle('active-boam', i === activeIndex);
+      } else {
+        t.style.display = 'none';
+      }
+    });
+  }
+
+  /* Navigate to a specific index (loops) */
+  function goTo(index) {
+    activeIndex = ((index % total) + total) % total;
+    /* Slide window so active thumb is always visible */
+    if (activeIndex < windowStart) {
+      windowStart = activeIndex;
+    } else if (activeIndex >= windowStart + visibleCount) {
+      windowStart = activeIndex - visibleCount + 1;
+    }
+    showCard(activeIndex);
+    renderThumbs();
+  }
+
+  /* Arrow buttons */
+  if (prevBtn) prevBtn.addEventListener('click', function () { goTo(activeIndex - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { goTo(activeIndex + 1); });
+
+  /* Thumb clicks */
+  allThumbs.forEach(function (thumb) {
+    thumb.addEventListener('click', function () {
+      goTo(parseInt(thumb.getAttribute('data-boam-index'), 10));
+    });
+    thumb.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        goTo(parseInt(thumb.getAttribute('data-boam-index'), 10));
+      }
+    });
+  });
+
+  /* Init */
+  renderThumbs();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Browse Our Aesthetic",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section Height (px)",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "section_margin",
+      "label": "Outer Margin — top, bottom & left (px)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Title & Description"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Skincare-Focused"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size (px)",
+      "min": 20,
+      "max": 72,
+      "step": 2,
+      "default": 62
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "label": "Description Font Size (px)",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#000"
+    },
+    {
+      "type": "header",
+      "content": "Big Background Image (Left)"
+    },
+    {
+      "type": "range",
+      "id": "big_image_width",
+      "label": "Big Image Width (%)",
+      "min": 30,
+      "max": 70,
+      "step": 1,
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "big_image_height",
+      "label": "Big Image Height (px)",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "default": 570
+    },
+    {
+      "type": "image_picker",
+      "id": "big_image",
+      "label": "Big Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Center Card Size"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Center Card Width (%)",
+      "min": 10,
+      "max": 500,
+      "step": 5,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "card_height",
+      "label": "Center Card Height (px)",
+      "min": 100,
+      "max": 600,
+      "step": 5,
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "card_overlap",
+      "label": "Card Overlap on Big Image (%)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Carousel Images (up to 10)"
+    },
+    {
+      "type": "paragraph",
+      "content": "Each image appears in the center card and as a thumbnail."
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_1",
+      "label": "Carousel Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_2",
+      "label": "Carousel Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_3",
+      "label": "Carousel Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_4",
+      "label": "Carousel Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_5",
+      "label": "Carousel Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_6",
+      "label": "Carousel Image 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_7",
+      "label": "Carousel Image 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_8",
+      "label": "Carousel Image 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_9",
+      "label": "Carousel Image 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "carousel_image_10",
+      "label": "Carousel Image 10"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Browse Our Aesthetic"
+    }
+  ]
+}
+{% endschema %}

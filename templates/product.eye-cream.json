@@ -11,51 +11,8 @@
   "sections": {
     "main": {
       "type": "product",
-      "disabled": true,
-      "settings": {}
-    },
-    "product_buy_box_TzCRnN": {
-      "type": "product-buy-box",
       "blocks": {
-        "star_rating_rixQep": {
-          "type": "star_rating",
-          "settings": {
-            "rating": "5",
-            "show_count": true,
-            "review_count": "231 Reviews"
-          }
-        },
-        "review_text_cPLLD8": {
-          "type": "review_text",
-          "settings": {
-            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
-          }
-        },
-        "review_author_48xyNE": {
-          "type": "review_author",
-          "settings": {
-            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
-          }
-        },
-        "title_RhVUfw": {
-          "type": "title",
-          "settings": {
-            "title": "Eye serum"
-          }
-        },
-        "description_Ln9n8b": {
-          "type": "description",
-          "settings": {
-            "description": "The light feels gentle and relaxing, not harsh or heating, and it fits comfortably on the face. Over time, my skin has started to look more \"alive\"—that healthy glow"
-          }
-        },
-        "product_image_YfjgEJ": {
-          "type": "product_image",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg.png"
-          }
-        },
-        "variant_atMehT": {
+        "variant_MCBBB9": {
           "type": "variant",
           "settings": {
             "variant_name": "VIP Club Membership",
@@ -66,42 +23,47 @@
             "variant_price": "$49 USD"
           }
         },
-        "variant_t6AJCk": {
+        "variant_c6qi7r": {
           "type": "variant",
           "settings": {
-            "variant_name": "Subscribe and Save",
+            "variant_name": "Subscribe and save",
             "variant_detail_1": "",
-            "variant_detail_2": "",
-            "variant_detail_3": "",
-            "variant_detail_4": "Delivered every 30 days",
-            "variant_price": "$79 USD"
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "",
+            "variant_price": "$49 USD"
           }
         },
-        "variant_HzY8R7": {
-          "type": "variant",
+        "star_rating_bkMCVr": {
+          "type": "star_rating",
           "settings": {
-            "variant_name": "Buy one time",
-            "variant_detail_1": "Free SCI Travel Packs",
-            "variant_detail_2": "",
-            "variant_detail_3": "",
-            "variant_detail_4": "",
-            "variant_price": "$99 USD"
+            "rating": "5",
+            "show_count": true,
+            "review_count": "231 Reviews"
+          }
+        },
+        "review_text_pArpAf": {
+          "type": "review_text",
+          "settings": {
+            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
+          }
+        },
+        "review_author_4D9LVn": {
+          "type": "review_author",
+          "settings": {
+            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
           }
         }
       },
       "block_order": [
-        "star_rating_rixQep",
-        "review_text_cPLLD8",
-        "review_author_48xyNE",
-        "title_RhVUfw",
-        "description_Ln9n8b",
-        "product_image_YfjgEJ",
-        "variant_atMehT",
-        "variant_t6AJCk",
-        "variant_HzY8R7"
+        "variant_MCBBB9",
+        "variant_c6qi7r",
+        "star_rating_bkMCVr",
+        "review_text_pArpAf",
+        "review_author_4D9LVn"
       ],
-      "name": "Product Buy Box",
       "settings": {
+        "product": "aha-bha-exfoliating-cleanser",
         "outer_bg_color": "#000000",
         "outer_padding": 20,
         "gap_width": 20,
@@ -166,7 +128,6 @@
   },
   "order": [
     "main",
-    "product_buy_box_TzCRnN",
     "professional_panel_iDFanP"
   ]
 }

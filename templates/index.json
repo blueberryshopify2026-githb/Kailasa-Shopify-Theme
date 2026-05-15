@@ -82,10 +82,10 @@
         "active_circle_color": "#4fffff"
       }
     },
-    "protocol_phases_v2_N9Gnej": {
+    "protocol_phases_v2_wRrFg4": {
       "type": "protocol-phases-v2",
       "blocks": {
-        "phase_1_mcPzTy": {
+        "phase_1_7HALWN": {
           "type": "phase_1",
           "settings": {
             "phase_number": "001",
@@ -105,7 +105,7 @@
             "stat_description": "Double-blind, placebo-controlled 4-week clinical study"
           }
         },
-        "phase_2_dXUk7q": {
+        "phase_2_tKQRnx": {
           "type": "phase_2",
           "settings": {
             "phase_number": "002",
@@ -126,7 +126,7 @@
             "bottom_description": "Buy Kits & Combos Online: Explore a range of skincare & haircare kits & combos products from top brands at Nykaa with best offers. Easy returns policy. Buy Kits & Combos Online. Explore a range of skincare & haircare kits & combos products from top brands at Nykaa with"
           }
         },
-        "phase_3_3Vpfnf": {
+        "phase_3_z8m6ga": {
           "type": "phase_3",
           "settings": {
             "phase_number": "003",
@@ -138,7 +138,7 @@
             "phase_description": "Prepares cellular environment for optimal regeneration through targeted signaling pathway activation and metabolic optimization."
           }
         },
-        "phase_4_QzAN4H": {
+        "phase_4_aWcGM6": {
           "type": "phase_4",
           "settings": {
             "phase_number": "004",
@@ -150,7 +150,7 @@
             "phase_description": "Activates natural regenerative processes through growth factor stimulation and cellular renewal pathway enhancement."
           }
         },
-        "phase_5_YEp8jg": {
+        "phase_5_8AYGi8": {
           "type": "phase_5",
           "settings": {
             "phase_number": "005",
@@ -162,7 +162,7 @@
             "phase_description": "Integrates longevity mechanisms for sustained skin health through telomere support and senescence pathway modulation."
           }
         },
-        "phase_6_wzLKkL": {
+        "phase_6_DmGLgz": {
           "type": "phase_6",
           "settings": {
             "phase_number": "006",
@@ -179,14 +179,13 @@
         }
       },
       "block_order": [
-        "phase_1_mcPzTy",
-        "phase_2_dXUk7q",
-        "phase_3_3Vpfnf",
-        "phase_4_QzAN4H",
-        "phase_5_YEp8jg",
-        "phase_6_wzLKkL"
+        "phase_1_7HALWN",
+        "phase_2_tKQRnx",
+        "phase_3_z8m6ga",
+        "phase_4_aWcGM6",
+        "phase_5_8AYGi8",
+        "phase_6_DmGLgz"
       ],
-      "disabled": true,
       "name": "Protocol Phases V2",
       "settings": {
         "bg_color": "#ffffff",
@@ -244,7 +243,7 @@
         "content_gap": 15,
         "feature_gap": 10,
         "feature_item_padding": 10,
-        "feature_item_bg": "rgba(0,0,0,0)",
+        "feature_item_bg": "transparent",
         "feature_item_radius": 8,
         "feature_icon_gap": 12,
         "feature_icon_size": 40,
@@ -290,7 +289,7 @@
         "mobile_content_title": 24,
         "cta_bg_color": "#4fffff",
         "cta_text_color": "#000000",
-        "cta_hover_bg": "rgba(0,0,0,0)",
+        "cta_hover_bg": "transparent",
         "cta_hover_text": "#4fffff",
         "cta_font_size": 18,
         "cta_font_weight": "600",
@@ -1576,7 +1575,7 @@
   },
   "order": [
     "hero_section_tCPJUm",
-    "protocol_phases_v2_N9Gnej",
+    "protocol_phases_v2_wRrFg4",
     "doctors_endorsement_LtGzx4",
     "skincare_bundle_TqdqX4",
     "skin_by_concern_CT8TWF",

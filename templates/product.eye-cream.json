@@ -34,6 +34,17 @@
             "variant_price": "$49 USD"
           }
         },
+        "variant_CPYPQY": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Buy Once",
+            "variant_detail_1": "",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "",
+            "variant_price": "$49 USD"
+          }
+        },
         "star_rating_bkMCVr": {
           "type": "star_rating",
           "settings": {
@@ -58,6 +69,7 @@
       "block_order": [
         "variant_MCBBB9",
         "variant_c6qi7r",
+        "variant_CPYPQY",
         "star_rating_bkMCVr",
         "review_text_pArpAf",
         "review_author_4D9LVn"

@@ -17,26 +17,6 @@
     "product_buy_box_TzCRnN": {
       "type": "product-buy-box",
       "blocks": {
-        "star_rating_7yrPb3": {
-          "type": "star_rating",
-          "settings": {
-            "rating": "5",
-            "show_count": true,
-            "review_count": "231 Reviews"
-          }
-        },
-        "review_text_TbJd7N": {
-          "type": "review_text",
-          "settings": {
-            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
-          }
-        },
-        "review_author_hVTgR7": {
-          "type": "review_author",
-          "settings": {
-            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
-          }
-        },
         "title_RhVUfw": {
           "type": "title",
           "settings": {
@@ -117,9 +97,6 @@
         }
       },
       "block_order": [
-        "star_rating_7yrPb3",
-        "review_text_TbJd7N",
-        "review_author_hVTgR7",
         "title_RhVUfw",
         "description_Ln9n8b",
         "product_image_YfjgEJ",

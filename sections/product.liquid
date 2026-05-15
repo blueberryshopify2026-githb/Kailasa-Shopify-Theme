@@ -1,52 +1,1656 @@
 {% comment %}
-  This section is used in the product template to render product page with
-  media, content, and add-to-cart form.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
+  Product Buy Box Section - Premium 50:50 split layout
+  Features: Reviews, product info, variant selection, media gallery
+  Dynamic: Uses actual Shopify product data
 {% endcomment %}
 
-<div class="product-images">
-  {% for image in product.images %}
-    {% render 'image', class: 'product-image', image: image %}
-  {% endfor %}
-</div>
+{% unless template.name == 'product' %}
+  <!-- Section not available on this template -->
+{% else %}
 
-<div class="product-info">
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.price | money }}</p>
-  <p>{{ product.description }}</p>
-</div>
+{% assign selected_product = blank %}
+{% if section.settings.product != blank %}
+  {% assign selected_product = all_products[section.settings.product] %}
+{% endif %}
 
-<div class="product-form">
-  {% form 'product', product %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
 
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          value="{{ variant.id }}"
-          {% if variant == current_variant %}
-            selected="selected"
-          {% endif %}
-        >
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
+
+
+<style>
+  .product-buy-box {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.outer_bg_color | default: '#000000' }};
+    padding: {{ section.settings.outer_padding }}px;
+  }
+
+
+
+
+  .buy-box-container {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: {{ section.settings.gap_width }}px;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+
+
+
+  /* Left Side - Product Info */
+  .product-info-side {
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: {{ section.settings.left_bg_color | default: '#ffffff' }};
+    border-radius: 25px;
+    overflow: visible;
+    justify-content: flex-start;
+  }
+
+
+
+
+  /* Spacing between blocks */
+  .product-info-side > .stars-container,
+  .product-info-side > .review-text,
+  .product-info-side > .review-author {
+    margin-bottom: 0;
+  }
+
+
+
+
+  .product-info-side > .review-author {
+    margin-bottom: 16px;
+  }
+
+
+
+
+  .product-info-side > .product-title {
+    margin-bottom: 4px;
+  }
+
+
+
+
+  .product-info-side > .product-description {
+    margin-bottom: 16px;
+  }
+
+
+
+
+  /* Reviews Section */
+  .reviews-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+
+
+
+  .stars-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+
+
+
+  .stars {
+    display: flex;
+    gap: 2px;
+    color: {{ section.settings.star_color | default: '#4fffff' }};
+    font-size: 20px;
+  }
+
+
+
+
+  .stars .half-star {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(90deg, {{ section.settings.star_color | default: '#000000' }} 50%, #d0d0d0 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+
+
+
+  .stars .empty-star {
+    color: #d0d0d0;
+  }
+
+
+
+
+  .review-count {
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ section.settings.text_color | default: '#000000' }};
+  }
+
+
+
+
+  .review-text {
+    font-size: 16px;
+    color: {{ section.settings.secondary_text_color | default: '#666666' }};
+    font-style: italic;
+    line-height: 1;
+    margin: 0;
+  }
+
+
+
+
+  .review-author {
+    font-size: 14px;
+    font-weight: 600;
+    color: {{ section.settings.secondary_text_color | default: '#666666' }};
+    font-style: italic;
+  }
+
+
+
+
+  /* Product Title & Description */
+  .product-title {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: {{ section.settings.title_color | default: '#000000' }};
+    margin: 0;
+  }
+
+
+
+
+  .product-description {
+    font-size: 16px;
+    line-height: 1.3;
+    color: {{ section.settings.text_color | default: '#5c5c5cff' }};
+    margin: 0;
+  }
+
+
+
+
+  /* Product Image & Variants Section */
+  .product-selection-area {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 12px;
+    align-items: start;
+    grid-template-rows: auto auto;
+    margin-top: 12px;
+  }
+
+
+
+
+  .product-thumbnail-wrapper {
+    grid-row: 1 / 3;
+  }
+
+
+
+
+  .variant-options {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+
+
+
+  .button-group {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+
+
+
+  .product-thumbnail-wrapper {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    height: 100%;
+    grid-row: 1 / 3;
+  }
+
+
+
+
+  .product-thumbnail {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+
+
+
+  /* Variant Options */
+  .variant-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: auto;
+    justify-content: flex-start;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+
+
+
+  .variant-option {
+    position: relative;
+    cursor: pointer;
+  }
+
+
+
+
+  .variant-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+
+
+
+  .variant-label {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border: 2px solid {{ section.settings.variant_border_color | default: '#e0e0e0' }};
+    border-radius: 25px;
+    background: {{ section.settings.variant_bg_color | default: '#ffffff' }};
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 52px;
+  }
+
+
+
+
+  .variant-label-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1;
+  }
+
+
+
+
+  .variant-option input[type="radio"]:checked + .variant-label {
+    border-color: {{ section.settings.active_color | default: '#4FFFFF' }};
+    background: {{ section.settings.active_color | default: '#4FFFFF' | color_modify: 'alpha', 0.05 }};
+  }
+
+
+
+
+  .variant-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+
+
+
+  .variant-name-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+
+
+
+  .variant-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ section.settings.text_color | default: '#000000' }};
+  }
+
+
+
+
+  .variant-details {
+    font-size: 13px;
+    color: {{ section.settings.secondary_text_color | default: '#2b2b2bff' }};
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    line-height: 1.3;
+  }
+
+
+
+
+  .variant-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: {{ section.settings.text_color | default: '#000000' }};
+  }
+
+
+
+
+  .radio-indicator {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid {{ section.settings.variant_border_color | default: '#e0e0e0' }};
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+
+
+
+  .variant-option input[type="radio"]:checked + .variant-label .radio-indicator {
+    border-color: {{ section.settings.active_color | default: '#4FFFFF' }};
+  }
+
+
+
+
+  .variant-option input[type="radio"]:checked + .variant-label .radio-indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: {{ section.settings.active_color | default: '#4FFFFF' }};
+    border-radius: 50%;
+  }
+
+
+
+
+  /* Buttons */
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+
+
+
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 12px 18px;
+    background: {{ section.settings.cta_bg_color | default: '#4FFFFF' }};
+    color: {{ section.settings.cta_text_color | default: '#000000' }};
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+
+
+
+  .add-to-cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+
+
+
+  .payment-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+
+
+
+  .payment-btn {
+    padding: 12px;
+    background: {{ section.settings.payment_btn_bg | default: '#ffffff' }};
+    border: 2px solid {{ section.settings.variant_border_color | default: '#e0e0e0' }};
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+  }
+
+
+
+
+  .payment-btn:hover {
+    border-color: {{ section.settings.text_color | default: '#000000' }};
+  }
+
+
+
+
+  .payment-btn img {
+    max-width: 100%;
+    max-height: 24px;
+    object-fit: contain;
+  }
+
+
+
+
+  /* Right Side - Media Gallery */
+  .media-gallery-side {
+    position: relative;
+    background: {{ section.settings.right_bg_color | default: '#f5f5f5' }};
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    overflow: hidden;
+    min-height: 500px;
+  }
+
+
+
+
+  .main-media-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+
+
+
+  .media-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+  }
+
+
+
+
+  .media-item.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 2 !important;
+  }
+
+
+
+
+  .media-item img,
+  .media-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+
+
+  /* Vertical Dot Navigation - Overlaid on Image */
+  .media-dot-navigation {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    {% comment %} transform: translateY(-50%); {% endcomment %}
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 4px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+
+
+
+  .media-dot {
+    width: 8px;
+    height: 8px;
+    background: #000000;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+
+  /* Inactive Video Dot - Just Play Icon (no circle) */
+  .media-dot.is-video:not(.active) {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+    border: none;
+  }
+
+
+
+
+  .media-dot.is-video:not(.active)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid #000000;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+
+
+
+  .media-dot:hover:not(.active) {
+    transform: scale(1.2);
+  }
+
+
+
+
+  /* Active Image Dot - Circle with Dot Inside */
+  .media-dot.active.is-image {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #4fffff;
+    transform: none;
+  }
+
+
+
+
+  .media-dot.active.is-image:hover {
+    transform: none;
+  }
+
+
+
+
+  .media-dot.active.is-image::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #4fffff;
+    border-radius: 50%;
+  }
+
+
+
+
+  /* Active Video Dot - Play Icon */
+  .media-dot.active.is-video {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #4fffff;
+    transform: none;
+  }
+
+
+
+
+  .media-dot.active.is-video:hover {
+    transform: none;
+  }
+
+
+
+
+  .media-dot.active.is-video::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid #4fffff;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+
+
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .buy-box-container {
+      grid-template-columns: 1fr;
+    }
+
+
+
+
+    .product-info-side {
+      padding: 30px;
+      border-radius: 25px;
+    }
+
+
+
+
+    .media-gallery-side {
+      min-height: 600px;
+      border-radius: 25px;
+    }
+  }
+
+
+
+
+  @media (max-width: 768px) {
+    .product-buy-box {
+      padding: {{ section.settings.outer_padding | divided_by: 2 }}px;
+    }
+
+
+
+
+    .buy-box-container {
+      min-height: auto;
+    }
+
+
+
+
+    .product-info-side {
+      padding: 24px;
+    }
+
+
+
+
+    .product-title {
+      font-size: 28px;
+    }
+
+
+
+
+    .product-selection-area {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+
+
+
+    .product-thumbnail-wrapper {
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+
+
+
+    .payment-buttons {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+
+
+  @media (max-width: 480px) {
+    .product-info-side {
+      padding: 20px;
+      gap: 20px;
+    }
+
+
+
+
+    .product-title {
+      font-size: 24px;
+    }
+
+
+
+
+    .product-description {
+      font-size: 14px;
+    }
+
+
+
+
+    .variant-label {
+      padding: 14px 16px;
+    }
+
+
+
+
+    .media-thumb {
+      min-width: 60px;
+      width: 60px;
+      height: 60px;
+    }
+  }
+</style>
+
+
+
+
+<div class="product-buy-box full-width" >
+  {% if template.name != 'product' and selected_product == blank %}
+  <!-- Wrong Template Warning -->
+  <div class="template-warning" style="padding: 60px 20px; text-align: center; color: #ff6b6b; background: #fff5f5; border: 2px solid #ff6b6b; border-radius: 10px; margin: 20px;">
+    <h2 style="margin: 0 0 20px 0; font-size: 24px; color: #ff6b6b;">⚠️ Product Buy Box Section</h2>
+    <p style="margin: 0; font-size: 16px;">This section is designed for product pages. Please select a product from the section settings or use this section on a product page template.</p>
+  </div>
+  {% elsif selected_product %}
+  <div class="buy-box-container">
+    <!-- Left Side: Product Information -->
+    <div class="product-info-side">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'star_rating' %}
+            <!-- Star Rating -->
+            <div class="stars-container" {{ block.shopify_attributes }}>
+              <div class="stars">
+                {% assign rating_text = block.settings.rating | default: "5" %}
+                {% assign rating = rating_text | times: 1.0 %}
+                {% assign full_stars = rating | floor %}
+                {% assign decimal_part = rating | minus: full_stars %}
+                {% assign has_half = false %}
+               
+                {% comment %} Check if we need a half star {% endcomment %}
+                {% if decimal_part >= 0.25 and decimal_part < 0.75 %}
+                  {% assign has_half = true %}
+                {% elsif decimal_part >= 0.75 %}
+                  {% assign full_stars = full_stars | plus: 1 %}
+                {% endif %}
+               
+                {% comment %} Render full stars {% endcomment %}
+                {% for i in (1..full_stars) %}
+                  <span>★</span>
+                {% endfor %}
+               
+                {% comment %} Render half star if needed {% endcomment %}
+                {% if has_half %}
+                  <span class="half-star">★</span>
+                {% endif %}
+               
+                {% comment %} Calculate and render empty stars {% endcomment %}
+                {% assign total_rendered = full_stars %}
+                {% if has_half %}
+                  {% assign total_rendered = total_rendered | plus: 1 %}
+                {% endif %}
+                {% assign empty_stars = 5 | minus: total_rendered %}
+               
+                {% for i in (1..empty_stars) %}
+                  <span class="empty-star">★</span>
+                {% endfor %}
+              </div>
+              {% if block.settings.show_count %}
+                <span class="review-count">{{ block.settings.review_count }}</span>
+              {% endif %}
+            </div>
+
+
+
+
+          {% when 'review_text' %}
+            <!-- Review Text -->
+            <p class="review-text" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+
+
+
+
+          {% when 'review_author' %}
+            <!-- Review Author -->
+            <p class="review-author" {{ block.shopify_attributes }}>{{ block.settings.author }}</p>
+
+
+
+
+        {% endcase %}
       {% endfor %}
-    </select>
 
-    <input type="text" name="quantity" min="1" value="1">
 
-    <input type="submit" value="Add to cart">
-    {{ form | payment_button }}
-  {% endform %}
+
+
+      <!-- Product Title (Always shown) -->
+      <h1 class="product-title">
+        {% if selected_product %}
+          {{ selected_product.title }}
+        {% else %}
+          Select a product to display
+        {% endif %}
+      </h1>
+
+
+
+
+      <!-- Product Description (Always shown) -->
+      <div class="product-description">
+        {% if selected_product and selected_product.description != blank %}
+          {{ selected_product.description | strip_html | truncate: 200 }}
+        {% else %}
+          Product description will appear here when you select a product.
+        {% endif %}
+      </div>
+
+
+
+
+      <!-- Product Selection Area (Always shown) -->
+      <div class="product-selection-area">
+        <!-- Product Thumbnail -->
+        <div class="product-thumbnail-wrapper">
+          {% if selected_product and selected_product.featured_image %}
+            <img src="{{ selected_product.featured_image | image_url: width: 300 }}"
+                 alt="{{ selected_product.featured_image.alt | default: selected_product.title }}"
+                 width="300"
+                 height="300"
+                 class="product-thumbnail">
+          {% else %}
+            <div class="product-thumbnail" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+              <span style="color: #999; font-size: 12px;">Product Image</span>
+            </div>
+          {% endif %}
+        </div>
+
+
+
+
+              <!-- Variant Options -->
+              <div class="variant-options">
+                {% assign has_custom_variants = false %}
+                {% for variant_block in section.blocks %}
+                  {% if variant_block.type == 'variant' %}
+                    {% assign has_custom_variants = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+
+
+
+
+                {% if has_custom_variants %}
+                  <!-- Custom Subscription/Purchase Options -->
+                  {% assign variant_count = 0 %}
+                  {% for variant_block in section.blocks %}
+                    {% if variant_block.type == 'variant' %}
+                      {% assign variant_count = variant_count | plus: 1 %}
+                      <div class="variant-option">
+                        <input type="radio"
+                               name="product-variant"
+                               id="variant-{{ variant_block.id }}"
+                               value="{{ variant_block.settings.variant_name }}"
+                               data-variant-type="custom"
+                               data-price="{{ variant_block.settings.variant_price }}"
+                               {% if variant_count == 1 %}checked{% endif %}>
+                        <label for="variant-{{ variant_block.id }}" class="variant-label">
+                          <div class="variant-label-left">
+                            <div class="radio-indicator"></div>
+                            <div class="variant-info">
+                              <span class="variant-name">{{ variant_block.settings.variant_name }}</span>
+                              {% if variant_block.settings.variant_detail_1 != blank or variant_block.settings.variant_detail_2 != blank or variant_block.settings.variant_detail_3 != blank or variant_block.settings.variant_detail_4 != blank %}
+                                <div class="variant-details">
+                                  {% if variant_block.settings.variant_detail_1 != blank %}
+                                    <span>✓ {{ variant_block.settings.variant_detail_1 }}</span>
+                                  {% endif %}
+                                  {% if variant_block.settings.variant_detail_2 != blank %}
+                                    <span>✓ {{ variant_block.settings.variant_detail_2 }}</span>
+                                  {% endif %}
+                                  {% if variant_block.settings.variant_detail_3 != blank %}
+                                    <span>✓ {{ variant_block.settings.variant_detail_3 }}</span>
+                                  {% endif %}
+                                  {% if variant_block.settings.variant_detail_4 != blank %}
+                                    <span>{{ variant_block.settings.variant_detail_4 }}</span>
+                                  {% endif %}
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                          <span class="variant-price">{{ variant_block.settings.variant_price }}</span>
+                        </label>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                {% elsif selected_product and selected_product.variants.size > 1 %}
+                  <!-- Fallback: Dynamic Product Variants -->
+                  {% for variant in selected_product.variants %}
+                    <div class="variant-option">
+                      <input type="radio"
+                             name="product-variant"
+                             id="variant-{{ variant.id }}"
+                             value="{{ variant.id }}"
+                             data-variant-id="{{ variant.id }}"
+                             data-variant-type="shopify"
+                             data-price="{{ variant.price | money }}"
+                             {% if forloop.first %}checked{% endif %}>
+                      <label for="variant-{{ variant.id }}" class="variant-label">
+                        <div class="variant-label-left">
+                          <div class="radio-indicator"></div>
+                          <div class="variant-info">
+                            <span class="variant-name">{{ variant.title }}</span>
+                            {% if variant.available == false %}
+                              <div class="variant-details">
+                                <span style="color: #ff6b6b;">Out of Stock</span>
+                              </div>
+                            {% endif %}
+                          </div>
+                        </div>
+                        <span class="variant-price">{{ variant.price | money }}</span>
+                      </label>
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  <!-- Default: Single product variant -->
+                  {% if selected_product %}
+                    <div class="variant-option">
+                      <input type="radio"
+                             name="product-variant"
+                             id="variant-default"
+                             value="{{ selected_product.variants.first.id }}"
+                             data-variant-id="{{ selected_product.variants.first.id }}"
+                             data-variant-type="shopify"
+                             data-price="{{ selected_product.variants.first.price | money }}"
+                             checked>
+                      <label for="variant-default" class="variant-label">
+                        <div class="variant-label-left">
+                          <div class="radio-indicator"></div>
+                          <div class="variant-info">
+                            <span class="variant-name">{{ selected_product.title }}</span>
+                          </div>
+                        </div>
+                        <span class="variant-price">{{ selected_product.variants.first.price | money }}</span>
+                      </label>
+                    </div>
+                  {% endif %}
+                {% endif %}
+              </div>
+
+
+
+
+              <!-- Buttons -->
+              <div class="button-group">
+                <button class="add-to-cart-btn" onclick="addToCart()">
+                  {{ section.settings.cta_text | default: 'Add to cart' }}
+                  <span>→</span>
+                </button>
+
+
+
+
+                <div class="payment-buttons">
+                  {% if section.settings.payment_button_1 %}
+                    <button class="payment-btn">
+                      <img src="{{ section.settings.payment_button_1 | image_url: width: 120 }}"
+                           alt="Payment Option 1"
+                           width="120"
+                           height="40">
+                    </button>
+                  {% endif %}
+                  {% if section.settings.payment_button_2 %}
+                    <button class="payment-btn">
+                      <img src="{{ section.settings.payment_button_2 | image_url: width: 120 }}"
+                           alt="Payment Option 2"
+                           width="120"
+                           height="40">
+                    </button>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+    <!-- Right Side: Media Gallery -->
+    <div class="media-gallery-side">
+      <div class="main-media-container">
+        {% assign has_media = false %}
+        {% assign media_count = 0 %}
+       
+        <!-- Dynamic Product Media (Skip first image - it's used as thumbnail) -->
+        {% if selected_product and selected_product.media.size > 1 %}
+          {% assign has_media = true %}
+          {% for media in selected_product.media %}
+            {% unless forloop.first %}
+              {% assign media_count = media_count | plus: 1 %}
+              <div class="media-item {% if media_count == 1 %}active{% endif %}"
+                   data-media-id="product-media-{{ media.id }}"
+                   data-media-type="{% if media.media_type == 'video' %}video{% else %}image{% endif %}">
+                {% if media.media_type == 'video' %}
+                  {{ media | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+                {% else %}
+                  {{ media | image_url: width: 1200 | image_tag: alt: media.alt, width: 1200, height: 1200 }}
+                {% endif %}
+              </div>
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+       
+        <!-- Fallback to static media blocks if no additional product media -->
+        {% unless has_media %}
+          {% for block in section.blocks %}
+            {% if block.type == 'media' %}
+              {% assign has_media = true %}
+              {% assign media_count = media_count | plus: 1 %}
+              <div class="media-item {% if media_count == 1 %}active{% endif %}"
+                   data-media-id="{{ block.id }}"
+                   data-media-type="{{ block.settings.media_type }}">
+                {% if block.settings.media_type == 'image' %}
+                  {% if block.settings.media_image %}
+                    <img src="{{ block.settings.media_image | image_url: width: 1200 }}"
+                         alt="{{ block.settings.media_alt | default: 'Product image' }}"
+                         width="1200"
+                         height="1200">
+                  {% else %}
+                    <div style="width: 100%; height: 100%; background: #e0e0e0; display: flex; align-items: center; justify-content: center;">
+                      <span style="color: #999;">Image placeholder</span>
+                    </div>
+                  {% endif %}
+                {% elsif block.settings.media_type == 'video' %}
+                  {% if block.settings.media_video_url != blank %}
+                    <video autoplay loop muted playsinline>
+                      <source src="{{ block.settings.media_video_url }}" type="video/mp4">
+                    </video>
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endunless %}
+       
+        {% unless has_media %}
+          <div class="media-item active" data-media-type="image" style="width: 100%; height: 100%; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); display: flex; align-items: center; justify-content: center;">
+            <span style="color: #666; font-size: 18px;">
+              {% if selected_product %}
+                {% if selected_product.media.size <= 1 %}
+                  Add more media to {{ selected_product.title }}
+                {% else %}
+                  {{ selected_product.title }} - Additional media
+                {% endif %}
+              {% else %}
+                Select a product or add media blocks
+              {% endif %}
+            </span>
+          </div>
+        {% endunless %}
+      </div>
+
+
+
+
+      <!-- Vertical Dot Navigation - Overlaid on Image -->
+      {% if has_media %}
+        <div class="media-dot-navigation">
+          <!-- Dynamic Product Media Dots (Skip first image) -->
+          {% if selected_product and selected_product.media.size > 1 %}
+            {% assign dot_count = 0 %}
+            {% for media in selected_product.media %}
+              {% unless forloop.first %}
+                {% assign dot_count = dot_count | plus: 1 %}
+                <div class="media-dot {% if dot_count == 1 %}active{% endif %} is-{% if media.media_type == 'video' %}video{% else %}image{% endif %}"
+                     data-media-id="product-media-{{ media.id }}"
+                     data-media-type="{% if media.media_type == 'video' %}video{% else %}image{% endif %}"
+                     onclick="switchMedia('product-media-{{ media.id }}', '{% if media.media_type == 'video' %}video{% else %}image{% endif %}')">
+                </div>
+              {% endunless %}
+            {% endfor %}
+          {% else %}
+            <!-- Fallback to static media blocks -->
+            {% for block in section.blocks %}
+              {% if block.type == 'media' %}
+                <div class="media-dot {% if forloop.first %}active{% endif %} is-{{ block.settings.media_type }}"
+                     data-media-id="{{ block.id }}"
+                     data-media-type="{{ block.settings.media_type }}"
+                     onclick="switchMedia('{{ block.id }}', '{{ block.settings.media_type }}')">
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  {% else %}
+  <!-- No Product Selected State -->
+  <div class="no-product-state" style="padding: 60px 20px; text-align: center; color: #666;">
+    <h2 style="margin: 0 0 20px 0; font-size: 24px; color: #333;">No Product Selected</h2>
+    <p style="margin: 0; font-size: 16px;">Please select a product from the section settings to display the product buy box.</p>
+  </div>
+  {% endif %}
 </div>
+
+
+
+
+<script>
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    // Reset all media items first
+    document.querySelectorAll('.media-item').forEach(item => {
+      item.classList.remove('active');
+      item.style.zIndex = '0';
+      item.style.opacity = '0';
+      item.style.visibility = 'hidden';
+    });
+
+
+
+
+    // Ensure first media item is active
+    const firstMediaItem = document.querySelector('.media-item');
+    const firstMediaDot = document.querySelector('.media-dot');
+   
+    if (firstMediaItem) {
+      firstMediaItem.classList.add('active');
+      firstMediaItem.style.zIndex = '2';
+      firstMediaItem.style.opacity = '1';
+      firstMediaItem.style.visibility = 'visible';
+     
+      const mediaType = firstMediaItem.dataset.mediaType;
+      if (firstMediaDot && mediaType) {
+        firstMediaDot.classList.add('active', 'is-' + mediaType);
+      }
+    }
+  });
+
+
+
+
+  function switchMedia(mediaId, mediaType) {
+    // Remove active class from all media items and reset z-index
+    document.querySelectorAll('.media-item').forEach(item => {
+      item.classList.remove('active');
+      item.style.zIndex = '0';
+      item.style.opacity = '0';
+      item.style.visibility = 'hidden';
+    });
+   
+    // Remove active class from all dots but keep their media type class
+    document.querySelectorAll('.media-dot').forEach(dot => {
+      dot.classList.remove('active');
+      // Re-add the correct media type class based on data attribute
+      const dotMediaType = dot.dataset.mediaType;
+      if (dotMediaType) {
+        dot.classList.remove('is-image', 'is-video');
+        dot.classList.add('is-' + dotMediaType);
+      }
+    });
+
+
+
+
+    // Add active class to selected media and dot
+    const selectedMedia = document.querySelector(`.media-item[data-media-id="${mediaId}"]`);
+    const selectedDot = document.querySelector(`.media-dot[data-media-id="${mediaId}"]`);
+   
+    if (selectedMedia) {
+      selectedMedia.classList.add('active');
+      selectedMedia.style.zIndex = '2';
+      selectedMedia.style.opacity = '1';
+      selectedMedia.style.visibility = 'visible';
+    }
+   
+    if (selectedDot) {
+      selectedDot.classList.add('active');
+    }
+
+
+
+
+    // Pause all videos
+    document.querySelectorAll('.media-item video').forEach(video => {
+      video.pause();
+    });
+
+
+
+
+    // Play video if it's the active media
+    const activeVideo = document.querySelector(`.media-item[data-media-id="${mediaId}"] video`);
+    if (activeVideo) {
+      activeVideo.play();
+    }
+  }
+
+
+
+
+  function addToCart() {
+    const selectedVariant = document.querySelector('input[name="product-variant"]:checked');
+    if (selectedVariant) {
+      const variantType = selectedVariant.dataset.variantType;
+      const variantId = selectedVariant.dataset.variantId;
+     
+      if (variantType === 'shopify' && variantId) {
+        // Add to cart with Shopify variant ID
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: variantId,
+            quantity: 1
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Added to cart:', data);
+          // Trigger cart drawer or redirect
+          window.location.href = '/cart';
+        })
+        .catch(error => {
+          console.error('Error adding to cart:', error);
+          alert('Error adding to cart. Please try again.');
+        });
+      } else if (variantType === 'custom') {
+        // Handle custom subscription/purchase options
+        const variantName = selectedVariant.value;
+        const price = selectedVariant.dataset.price;
+       
+        console.log('Custom variant selected:', variantName, price);
+       
+        // Here you would integrate with your subscription service
+        // For now, show an alert
+        alert(`Selected: ${variantName} - ${price}\n\nThis would integrate with your subscription service.`);
+       
+        // Example: Redirect to subscription signup
+        // window.location.href = `/pages/subscribe?variant=${encodeURIComponent(variantName)}`;
+      } else {
+        // Fallback
+        console.log('Adding to cart:', selectedVariant.value);
+        alert('Added to cart: ' + selectedVariant.value);
+      }
+    }
+  }
+</script>
+
+{% endunless %}
+
+
+
 
 {% schema %}
 {
-  "name": "t:general.product",
-  "settings": [],
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  }
+  "name": "Product Buy Box",
+  "tag": "section",
+  "class": "product-buy-box-section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Selection"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product",
+      "info": "Choose a product to display. If empty, will use the current product page's product."
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "color",
+      "id": "outer_bg_color",
+      "label": "Outer Background Color (Border Effect)",
+      "default": "#000000",
+      "info": "Creates the black border effect around the content"
+    },
+    {
+      "type": "range",
+      "id": "outer_padding",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Outer Padding (Border Thickness)",
+      "default": 20,
+      "info": "Controls the thickness of the black border"
+    },
+    {
+      "type": "range",
+      "id": "gap_width",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap Between Sides",
+      "default": 20,
+      "info": "Space between left and right panels"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 1000,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum Container Width",
+      "default": 1400
+    },
+    {
+      "type": "color",
+      "id": "left_bg_color",
+      "label": "Left Side Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "right_bg_color",
+      "label": "Right Side Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#4fffff"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "secondary_text_color",
+      "label": "Secondary Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Active/Accent Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "variant_border_color",
+      "label": "Variant Border Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "variant_bg_color",
+      "label": "Variant Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Add to Cart Button Text",
+      "default": "Add to cart"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA Background Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Payment Buttons"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_button_1",
+      "label": "Payment Button 1 (e.g., PayPal)"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_button_2",
+      "label": "Payment Button 2 (e.g., Shop Pay)"
+    },
+    {
+      "type": "color",
+      "id": "payment_btn_bg",
+      "label": "Payment Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Media Gallery"
+    },
+    {
+      "type": "color",
+      "id": "nav_strip_bg",
+      "label": "Navigation Strip Background",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "star_rating",
+      "name": "Star Rating",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "rating",
+          "label": "Star Rating",
+          "default": "5",
+          "info": "Enter a number between 0-5 (decimals supported, e.g., 4.5, 4.7)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_count",
+          "label": "Show Review Count",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "review_count",
+          "label": "Review Count Text",
+          "default": "231 Reviews"
+        }
+      ]
+    },
+    {
+      "type": "review_text",
+      "name": "Review Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review Quote",
+          "default": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
+        }
+      ]
+    },
+    {
+      "type": "review_author",
+      "name": "Review Author",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "by Dr. Ananya Mehta, MD (Dermatology)"
+        }
+      ]
+    },
+    {
+      "type": "variant",
+      "name": "Product Variant",
+      "settings": [
+        {
+          "type": "text",
+          "id": "variant_name",
+          "label": "Variant Name",
+          "default": "VIP Club Membership",
+          "info": "e.g., VIP Subscription, Subscribe & Save, Buy One Time"
+        },
+        {
+          "type": "text",
+          "id": "variant_detail_1",
+          "label": "Detail 1",
+          "default": "Free SCI Travel Packs"
+        },
+        {
+          "type": "text",
+          "id": "variant_detail_2",
+          "label": "Detail 2",
+          "default": "Easily edit, skip or cancel anytime"
+        },
+        {
+          "type": "text",
+          "id": "variant_detail_3",
+          "label": "Detail 3",
+          "default": "0-Day Money Back Guarantee"
+        },
+        {
+          "type": "text",
+          "id": "variant_detail_4",
+          "label": "Detail 4",
+          "default": "Delivered every 30 days",
+          "info": "Optional additional detail"
+        },
+        {
+          "type": "text",
+          "id": "variant_price",
+          "label": "Price",
+          "default": "$49 USD"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Buy Box",
+      "blocks": [
+        {
+          "type": "star_rating"
+        },
+        {
+          "type": "review_text"
+        },
+        {
+          "type": "review_author"
+        },
+        {
+          "type": "variant",
+          "settings": {
+            "variant_name": "VIP Club Membership",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$49 USD"
+          }
+        },
+        {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Subscribe and Save",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_price": "$79 USD"
+          }
+        },
+        {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Buy one time",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "0-Day Money Back Guarantee",
+            "variant_price": "$99 USD"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

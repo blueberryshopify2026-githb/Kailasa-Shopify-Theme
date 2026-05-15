@@ -1,382 +1,372 @@
 {% comment %}
-  UGC Video Carousel - Premium horizontal carousel with video cards
-  - Center card: Large, active, autoplay video, clickable to redirect
-  - Side cards: Smaller, dimmed, paused, clickable to move to center
-  - Only center card redirects to link
-  - Side cards move to center when clicked
-  - Clean video preview without Instagram UI, usernames, or follow buttons
+  UGC Video Carousel - Using Medical Team UI with video functionality
+  Features: Center focus card with video content, side cards with thumbnails, infinite scroll		!	
 {% endcomment %}
+
+
+
 
 <style>
   .ugc-video-section {
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
-    background: {{ section.settings.section_background }};
-    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.section_background | default: '#000000' }};
+    padding: 40px 0 30px 0;
     overflow: hidden;
+    min-height: auto;
+    display: flex;
+    align-items: center;
   }
 
+
+
+
   .ugc-video-container {
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+
+
+
+  /* Header */
+  .ugc-video-header {
+    text-align: center;
+    margin-bottom: 50px;
+    background: transparent;
+    width: 100%;
     padding: 0 20px;
   }
 
-  .ugc-video-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
+
+
 
   .ugc-video-title {
     font-size: {{ section.settings.title_font_size }}px;
-    font-weight: 700;
-    color: {{ section.settings.title_color }};
-    margin: 0 0 20px 0;
+    font-weight: 800;
+    color: {{ section.settings.title_color | default: '#ffffff' }};
     line-height: 1.2;
+    margin: 0 auto;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: transparent !important;
+    text-align: center;
+    width: 100%;
   }
+
+
+
 
   .ugc-video-description {
     font-size: {{ section.settings.description_font_size }}px;
-    color: {{ section.settings.description_color }};
-    line-height: 1.5;
-    margin: 0;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    color: {{ section.settings.description_color | default: '#ffffff' }};
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 800px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
   }
 
-  /* Carousel Container */
-  .ugc-video-carousel-container {
+
+
+
+  /* Carousel */
+  .ugc-video-carousel {
     position: relative;
-    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    padding: 0 50px;
-    /* Mask edges to hide cards sliding in/out */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  }
-
-  .ugc-video-carousel-track {
-    position: relative;
+    gap: 25px;
+    padding: 0 20px;
+    height: 500px;
+    min-height: 500px;
     width: 100%;
-    height: 100%;
+  }
+
+
+
+
+  .ugc-video-track-container {
+    flex: 1;
+    overflow: visible;
+    position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+  }
+
+
+
+
+  .ugc-video-track {
+    display: flex;
+    gap: 25px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 15px 0;
     align-items: center;
     justify-content: center;
-  }
-
-  /* Fixed 5-card positioning system - Always 2 left + 1 center + 2 right */
-  .ugc-video-card {
-    position: absolute;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #f5f5f5;
-    cursor: pointer;
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                width 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                opacity 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                filter 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                visibility 0s linear 0.8s,
-                z-index 0s linear 0.4s;
-    top: 50%;
-    left: 50%;
-    transform-origin: center center;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    will-change: transform, width, height, opacity;
-    /* Default visibility before JavaScript positioning */
-    width: 240px;
-    height: 380px;
-    opacity: 1;
-    visibility: visible;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-  }
-
-  /* When becoming visible, remove the delay */
-  .ugc-video-card:not(.pos-left-hidden):not(.pos-right-hidden) {
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                width 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                opacity 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                filter 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                visibility 0s linear 0s,
-                z-index 0s linear 0.4s;
-  }
-
-  /* Position -2: Far left */
-  .ugc-video-card.pos-left-2 {
-    width: 160px;
-    height: 240px;
-    opacity: 0.5;
-    filter: brightness(0.7);
-    transform: translate(-50%, -50%) translateX(-500px) scale(0.8);
-    z-index: 2;
-    visibility: visible;
-    clip-path: none;
-  }
-
-  /* Position -1: Near left */
-  .ugc-video-card.pos-left-1 {
-    width: 180px;
-    height: 280px;
-    opacity: 0.7;
-    filter: brightness(0.85);
-    transform: translate(-50%, -50%) translateX(-270px) scale(0.9);
-    z-index: 4;
-    visibility: visible;
-    clip-path: none;
-  }
-
-  /* Position 0: CENTER - Always sticky in middle */
-  .ugc-video-card.pos-center {
-    width: 300px;
-    height: 400px;
-    opacity: 1;
-    filter: none;
-    transform: translate(-50%, -50%) translateX(0px) scale(1);
-    z-index: 10;
-    visibility: visible;
-    clip-path: none;
-  }
-
-  /* Position +1: Near right */
-  .ugc-video-card.pos-right-1 {
-    width: 180px;
-    height: 280px;
-    opacity: 0.7;
-    filter: brightness(0.85);
-    transform: translate(-50%, -50%) translateX(270px) scale(0.9);
-    z-index: 4;
-    visibility: visible;
-    clip-path: none;
-  }
-
-  /* Position +2: Far right */
-  .ugc-video-card.pos-right-2 {
-    width: 160px;
-    height: 240px;
-    opacity: 0.5;
-    filter: brightness(0.7);
-    transform: translate(-50%, -50%) translateX(500px) scale(0.8);
-    z-index: 2;
-    visibility: visible;
-    clip-path: none;
-  }
-
-  /* Override transitions for far cards - start invisible, fade in */
-  .ugc-video-card.pos-left-2,
-  .ugc-video-card.pos-right-2 {
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                width 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                opacity 0.4s ease-in 0.4s,
-                filter 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                visibility 0s linear 0s,
-                clip-path 0s linear 0s,
-                z-index 0s linear 0.4s;
-  }
-
-  /* Hidden transition positions to prevent cards going behind */
-  .ugc-video-card.pos-left-hidden {
-    width: 140px;
-    height: 220px;
-    opacity: 0 !important;
-    filter: brightness(0.8);
-    transform: translate(-50%, -50%) translateX(-800px) scale(0.7);
-    z-index: -1;
-    visibility: hidden !important;
-    pointer-events: none;
-    display: block;
-  }
-
-  .ugc-video-card.pos-right-hidden {
-    width: 140px;
-    height: 220px;
-    opacity: 0 !important;
-    filter: brightness(0.8);
-    transform: translate(-50%, -50%) translateX(800px) scale(0.7);
-    z-index: -1;
-    visibility: hidden !important;
-    pointer-events: none;
-    display: block;
-  }
-
-  /* Ensure far cards (left-2, right-2) fade in smoothly when coming from hidden */
-  .ugc-video-card.pos-left-2,
-  .ugc-video-card.pos-right-2 {
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                width 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                opacity 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                filter 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                visibility 0s linear 0s,
-                clip-path 0s linear 0s,
-                z-index 0s linear 0.4s;
-  }
-
-  /* When transitioning TO hidden, disable all transitions */
-  .ugc-video-card.pos-left-hidden,
-  .ugc-video-card.pos-right-hidden {
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                width 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                height 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                opacity 0s linear 0s,
-                filter 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
-                visibility 0s linear 0s,
-                clip-path 0s linear 0s,
-                z-index 0s linear 0s;
-  }
-
-  /* Hide cards not in the positioning system */
-  .ugc-video-card:not(.pos-left-hidden):not(.pos-left-2):not(.pos-left-1):not(.pos-center):not(.pos-right-1):not(.pos-right-2):not(.pos-right-hidden) {
-    /* Don't hide cards initially - let JavaScript handle positioning */
-  }
-
-  /* If JavaScript hasn't run after 2 seconds, show first card as fallback */
-  .ugc-video-card:first-child {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* Hide additional cards if JavaScript hasn't positioned them */
-  .ugc-video-card:not(:first-child):not(.pos-left-hidden):not(.pos-left-2):not(.pos-left-1):not(.pos-center):not(.pos-right-1):not(.pos-right-2):not(.pos-right-hidden) {
+    height: 500px;
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
+    will-change: transform;
   }
-
-  /* Video Element */
-  .ugc-video-element {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: inherit;
-  }
-
-  /* Video Embed (for social media) */
-  .ugc-video-embed {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: inherit;
-    border: none;
-    pointer-events: none;
-  }
-
-  .ugc-video-card.pos-center .ugc-video-embed {
-    pointer-events: auto;
-  }
-
-  /* Social media embed indicator */
-  .ugc-video-embed-indicator {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 6px 12px;
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 15;
-    pointer-events: none;
-  }
-
-  .ugc-video-card.pos-center .ugc-video-embed-indicator {
+ 
+  .ugc-video-track.initialized {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
   }
 
-  /* Hide all video controls */
-  .ugc-video-element::-webkit-media-controls {
-    display: none !important;
-  }
-  .ugc-video-element::-webkit-media-controls-panel {
-    display: none !important;
-  }
-  .ugc-video-element::-webkit-media-controls-play-button {
-    display: none !important;
-  }
-  .ugc-video-element::-webkit-media-controls-start-playback-button {
-    display: none !important;
-  }
-  .ugc-video-element::-moz-media-controls {
-    display: none !important;
-  }
 
-  /* Sound Toggle Button - Top Right Corner (only for direct videos) */
-  .ugc-video-sound-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    border: none;
-    border-radius: 50%;
-    color: white;
-    cursor: pointer;
-    display: none; /* Hidden by default, shown by JS for direct videos */
+
+
+  /* Placeholder styles */
+  .ugc-video-placeholder {
+    display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transform: scale(0.8);
+    height: 300px;
+    color: #666;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    margin: 0 20px;
+    padding: 40px;
+  }
+
+
+
+
+  /* Navigation Buttons */
+  .ugc-video-nav {
+    background: {{ section.settings.nav_bg_color | default: '#000000' }};
+    border: 2px solid {{ section.settings.nav_border_color | default: '#4FFFFF' }};
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 15;
+    flex-shrink: 0;
+    z-index: 10;
   }
 
-  .ugc-video-card.pos-center .ugc-video-sound-toggle {
-    opacity: 1;
-    transform: scale(1);
-  }
 
-  .ugc-video-sound-toggle:hover {
-    background: rgba(0, 0, 0, 0.8);
+
+
+  .ugc-video-nav:hover {
     transform: scale(1.1);
+    box-shadow: 0 0 20px {{ section.settings.nav_border_color | default: '#4FFFFF' }};
   }
 
-  .ugc-video-sound-toggle svg {
-    width: 20px;
-    height: 20px;
+
+
+
+  .ugc-video-nav svg {
+    width: 24px;
+    height: 24px;
+    stroke: {{ section.settings.nav_icon_color | default: '#4FFFFF' }};
   }
 
-  /* Video Product Overlay - Bottom of Card (like reference image) */
+
+
+
+  /* Side Cards - Simple Grayscale Videos/Images */
+  .ugc-video-card {
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: transparent;
+    border-radius: 18px;
+    padding: 0;
+    box-shadow: none;
+    width: 240px;
+    height: 280px;
+    opacity: 0.7;
+    filter: grayscale(100%);
+    align-self: center;
+    overflow: hidden;
+  }
+
+
+
+
+  .ugc-video-card:hover {
+    opacity: 0.8;
+    transform: none;
+  }
+
+
+
+
+  .ugc-side-card-content {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 0;
+    background: #f0f0f0;
+  }
+
+
+
+
+  .ugc-side-card-content img,
+  .ugc-side-card-content video,
+  .ugc-side-card-content iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+
+
+  /* Center Active Card - Larger with Full Video and Product Overlay */
+  .ugc-video-card.active {
+    width: 400px !important;
+    height: 480px !important;
+    opacity: 1 !important;
+    filter: grayscale(0) !important;
+    transform: scale(1) !important;
+    z-index: 10 !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    {% comment %} box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5) !important; {% endcomment %}
+    background: #000000 !important;
+    padding: 0 !important;
+    align-self: center !important;
+    margin-bottom: 0 !important;
+  }
+
+
+
+
+  .ugc-video-card.active:hover {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+  }
+
+
+
+
+  .ugc-video-card.active .ugc-side-card-content {
+    display: none !important;
+  }
+ 
+  .ugc-video-card.active .ugc-center-card-content {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+
+
+
+  .ugc-center-card-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+  }
+
+
+
+
+  .ugc-center-card-content img,
+  .ugc-center-card-content video,
+  .ugc-center-card-content iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
+  }
+
+
+
+
+  /* Video Controls Hiding */
+  .ugc-center-card-content video::-webkit-media-controls,
+  .ugc-side-card-content video::-webkit-media-controls {
+    display: none !important;
+  }
+
+
+
+
+  .ugc-center-card-content video::-webkit-media-controls-panel,
+  .ugc-side-card-content video::-webkit-media-controls-panel {
+    display: none !important;
+  }
+
+
+
+
+  .ugc-center-card-content video::-moz-media-controls,
+  .ugc-side-card-content video::-moz-media-controls {
+    display: none !important;
+  }
+
+
+
+
+  .ugc-center-card-content video,
+  .ugc-side-card-content video {
+    pointer-events: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    user-select: none !important;
+  }
+
+
+
+
+  /* Product Overlay - Bottom of Card */
   .ugc-video-product-overlay {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
     background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 15px;
     border-radius: 12px;
-    padding: 12px;
-    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    color: white;
   }
 
-  .ugc-video-card.pos-center .ugc-video-product-overlay {
+
+
+
+  .ugc-video-card.active.centered .ugc-video-product-overlay {
     opacity: 1;
     transform: translateY(0);
   }
+
+
+
 
   .ugc-video-product-info {
     display: flex;
     align-items: center;
     gap: 12px;
   }
+
+
+
 
   .ugc-video-product-thumbnail {
     width: 50px;
@@ -387,6 +377,9 @@
     background: rgba(255, 255, 255, 0.1);
   }
 
+
+
+
   .ugc-video-product-thumbnail img {
     width: 100%;
     height: 100%;
@@ -396,1164 +389,892 @@
     padding: 2px;
   }
 
+
+
+
   .ugc-video-product-details {
     flex: 1;
     min-width: 0;
   }
+
+
+
 
   .ugc-video-product-title {
     font-size: 14px;
     font-weight: 600;
     margin: 0 0 4px 0;
     line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     color: white;
+    font-family: 'Montserrat', sans-serif;
   }
+
+
+
 
   .ugc-video-product-price {
     font-size: 16px;
     font-weight: 700;
     color: #fff;
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
   }
 
+
+
+
   .ugc-video-product-arrow {
-    width: 36px;
+    width: auto;
     height: 36px;
-    background: #FFD700;
-    border: none;
-    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #4FFFFF;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000;
-    font-size: 16px;
-    font-weight: 900;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
     flex-shrink: 0;
     transition: all 0.3s ease;
     cursor: pointer;
     outline: none;
+    padding: 0 12px;
+    font-family: 'Montserrat', sans-serif;
   }
+
+
+
 
   .ugc-video-product-arrow:hover {
-    background: #FFC700;
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+    background: rgba(79, 255, 255, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(79, 255, 255, 0.3);
   }
 
-  .ugc-video-product-arrow:active {
-    transform: scale(0.95);
-  }
 
-  /* Video Navigation Dots */
-  .ugc-video-navigation {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 40px;
-  }
 
-  .ugc-video-nav-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: {{ section.settings.dot_inactive_color }};
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
 
-  .ugc-video-nav-dot.active {
-    background: {{ section.settings.dot_active_color }};
-    transform: scale(1.3);
-  }
-
-  /* Video Loading State */
-  .ugc-video-loading-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    border-radius: inherit;
-    font-size: 14px;
-    text-align: center;
-    gap: 12px;
-    z-index: 1;
-  }
-
-  .ugc-video-loading-placeholder svg {
-    opacity: 0.6;
-    margin-bottom: 8px;
-  }
-
-  .ugc-video-loading-placeholder p {
-    margin: 0;
-    font-weight: 600;
-    font-size: 16px;
-  }
-
-  .ugc-video-loading-placeholder small {
-    font-size: 12px;
-    opacity: 0.8;
-    margin: 0;
-    max-width: 200px;
-    line-height: 1.3;
-  }
-
-  /* Responsive Design - 7-Position Layout */
-  @media (max-width: 1200px) {
-    .ugc-video-carousel-container {
-      padding: 0 30px;
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .ugc-video-header {
+      margin-bottom: 40px;
     }
 
-    .ugc-video-card.pos-left-hidden {
-      width: 100px;
-      height: 150px;
-      transform: translate(-50%, -50%) translateX(-250px) scale(0.8);
-      visibility: visible;
+
+
+
+    .ugc-video-card {
+      width: 200px;
+      height: 240px;
     }
 
-    .ugc-video-card.pos-left-2 {
-      width: 110px;
-      height: 170px;
-      transform: translate(-50%, -50%) translateX(-160px) scale(0.8);
-      visibility: visible;
-    }
 
-    .ugc-video-card.pos-left-1 {
-      width: 130px;
-      height: 200px;
-      transform: translate(-50%, -50%) translateX(-80px) scale(0.9);
-      visibility: visible;
-    }
 
-    .ugc-video-card.pos-center {
-      width: 180px;
-      height: 280px;
-      visibility: visible;
-    }
 
-    .ugc-video-card.pos-right-1 {
-      width: 130px;
-      height: 200px;
-      transform: translate(-50%, -50%) translateX(80px) scale(0.9);
-      visibility: visible;
-    }
-
-    .ugc-video-card.pos-right-2 {
-      width: 110px;
-      height: 170px;
-      transform: translate(-50%, -50%) translateX(160px) scale(0.8);
-      visibility: visible;
-    }
-
-    .ugc-video-card.pos-right-hidden {
-      width: 100px;
-      height: 150px;
-      transform: translate(-50%, -50%) translateX(250px) scale(0.8);
-      visibility: visible;
+    .ugc-video-card.active {
+      width: 350px !important;
+      height: 420px !important;
     }
   }
+
+
+
 
   @media (max-width: 768px) {
-    .ugc-video-carousel-container {
-      height: 300px;
-      padding: 0 20px;
+    .ugc-video-section {
+      padding: 60px 0;
     }
 
-    .ugc-video-card.pos-left-hidden {
-      width: 70px;
-      height: 110px;
-      transform: translate(-50%, -50%) translateX(-180px) scale(0.8);
-      visibility: visible;
-    }
 
-    .ugc-video-card.pos-left-2 {
-      width: 80px;
-      height: 130px;
-      transform: translate(-50%, -50%) translateX(-120px) scale(0.8);
-      visibility: visible;
-    }
 
-    .ugc-video-card.pos-left-1 {
-      width: 100px;
-      height: 160px;
-      transform: translate(-50%, -50%) translateX(-60px) scale(0.9);
-      visibility: visible;
-    }
 
-    .ugc-video-card.pos-center {
-      width: 140px;
-      height: 220px;
-      visibility: visible;
-    }
-
-    .ugc-video-card.pos-right-1 {
-      width: 100px;
-      height: 160px;
-      transform: translate(-50%, -50%) translateX(60px) scale(0.9);
-      visibility: visible;
-    }
-
-    .ugc-video-card.pos-right-2 {
-      width: 80px;
-      height: 130px;
-      transform: translate(-50%, -50%) translateX(120px) scale(0.8);
-      visibility: visible;
-    }
-
-    .ugc-video-card.pos-right-hidden {
-      width: 70px;
-      height: 110px;
-      transform: translate(-50%, -50%) translateX(180px) scale(0.8);
-      visibility: visible;
-    }
-
-    .ugc-video-product-overlay {
-      padding: 20px 10px 10px;
-    }
-
-    .ugc-video-product-title {
-      font-size: 10px;
-    }
-
-    .ugc-video-product-price {
-      font-size: 12px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .ugc-video-carousel-container {
-      height: 250px;
+    .ugc-video-header {
+      margin-bottom: 40px;
       padding: 0 15px;
     }
 
-    .ugc-video-card.pos-left-hidden {
-      width: 50px;
-      height: 80px;
-      transform: translate(-50%, -50%) translateX(-140px) scale(0.8);
-      visibility: visible;
+
+
+
+    .ugc-video-title {
+      font-size: {{ section.settings.title_font_size | minus: 10 }}px;
     }
 
-    .ugc-video-card.pos-left-2 {
-      width: 60px;
-      height: 100px;
-      transform: translate(-50%, -50%) translateX(-90px) scale(0.8);
-      visibility: visible;
+
+
+
+    .ugc-video-description {
+      font-size: {{ section.settings.description_font_size | minus: 2 }}px;
     }
 
-    .ugc-video-card.pos-left-1 {
-      width: 80px;
-      height: 130px;
-      transform: translate(-50%, -50%) translateX(-45px) scale(0.9);
-      visibility: visible;
+
+
+
+    .ugc-video-carousel {
+      gap: 15px;
+      padding: 0 15px;
     }
 
-    .ugc-video-card.pos-center {
-      width: 120px;
-      height: 190px;
-      visibility: visible;
+
+
+
+    .ugc-video-card {
+      width: 200px;
+      height: 240px;
     }
 
-    .ugc-video-card.pos-right-1 {
-      width: 80px;
-      height: 130px;
-      transform: translate(-50%, -50%) translateX(45px) scale(0.9);
-      visibility: visible;
+
+
+
+    .ugc-video-card.active {
+      width: 320px !important;
+      height: 420px !important;
     }
 
-    .ugc-video-card.pos-right-2 {
-      width: 60px;
-      height: 100px;
-      transform: translate(-50%, -50%) translateX(90px) scale(0.8);
-      visibility: visible;
+
+
+
+    .ugc-video-product-overlay {
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      padding: 12px;
     }
 
-    .ugc-video-card.pos-right-hidden {
-      width: 50px;
-      height: 80px;
-      transform: translate(-50%, -50%) translateX(140px) scale(0.8);
-      visibility: visible;
+
+
+
+    .ugc-video-nav {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+
+
+
+  @media (max-width: 480px) {
+    .ugc-video-carousel {
+      gap: 10px;
+      padding: 0 10px;
+    }
+
+
+
+
+    .ugc-video-card {
+      width: 160px;
+      height: 200px;
+    }
+
+
+
+
+    .ugc-video-card.active {
+      width: 260px !important;
+      height: 340px !important;
+    }
+
+
+
+
+    .ugc-video-product-overlay {
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      padding: 10px;
+    }
+
+
+
+
+    .ugc-video-nav {
+      width: 40px;
+      height: 40px;
     }
   }
 </style>
 
-<section class="ugc-video-section">
+
+
+
+<section class="ugc-video-section full-width">
   <div class="ugc-video-container">
-    {% if section.settings.section_title != blank or section.settings.section_description != blank %}
-      <div class="ugc-video-header">
-        {% if section.settings.section_title != blank %}
-          <h2 class="ugc-video-title">{{ section.settings.section_title }}</h2>
-        {% endif %}
-        {% if section.settings.section_description != blank %}
-          <p class="ugc-video-description">{{ section.settings.section_description }}</p>
-        {% endif %}
-      </div>
-    {% endif %}
-
-    {% if section.blocks.size > 0 %}
-      <div class="ugc-video-carousel-container">
-        <div class="ugc-video-carousel-track" id="ugcVideoTrack">
-          {% for block in section.blocks %}
-            <div class="ugc-video-card" 
-                 data-index="{{ forloop.index0 }}"
-                 data-redirect-url="{{ block.settings.redirect_url }}"
-                 data-video-url="{{ block.settings.video_url }}"
-                 data-product-id="{{ block.settings.product.id }}"
-                 data-variant-id="{{ block.settings.variant_id | default: block.settings.product.selected_or_first_available_variant.id }}">
-              
-              {% if block.settings.video_url != blank %}
-                <!-- Video content will be dynamically created by JavaScript -->
-                <div class="ugc-video-content-placeholder" style="display: none;"></div>
-
-                <!-- Sound Toggle Button (Only visible on center card with direct video) -->
-                <button class="ugc-video-sound-toggle" data-card-index="{{ forloop.index0 }}" style="display: none;">
-                  <svg class="sound-off" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-                  </svg>
-                  <svg class="sound-on" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
-                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                  </svg>
-                </button>
-              {% else %}
-                <!-- Loading Placeholder -->
-                <div class="ugc-video-loading-placeholder">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="#ccc">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                  <p>Add Video URL</p>
-                  <small>Direct .mp4 or social media links supported</small>
-                </div>
-              {% endif %}
-
-              <!-- Video Product Overlay (Only visible on center card) -->
-              {% if block.settings.product_title != blank or block.settings.product_price != blank %}
-                <div class="ugc-video-product-overlay">
-                  <div class="ugc-video-product-info">
-                    <div class="ugc-video-product-thumbnail">
-                      {% if block.settings.product_image != blank %}
-                        <img src="{{ block.settings.product_image | image_url: width: 80 }}" 
-                             alt="{{ block.settings.product_title | escape }}"
-                             width="80"
-                             height="80">
-                      {% endif %}
-                    </div>
-                    <div class="ugc-video-product-details">
-                      {% if block.settings.product_title != blank %}
-                        <h3 class="ugc-video-product-title">{{ block.settings.product_title }}</h3>
-                      {% endif %}
-                      {% if block.settings.product_price != blank %}
-                        <p class="ugc-video-product-price">{{ block.settings.product_price }}</p>
-                      {% endif %}
-                    </div>
-                    <button class="ugc-video-product-arrow" 
-                            data-product-url="{{ block.settings.product_url | default: block.settings.product.url }}"
-                            onclick="redirectToProduct(this)">→</button>
-                  </div>
-                </div>
-              {% endif %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      {% if section.blocks.size > 1 %}
-        <div class="ugc-video-navigation">
-          {% for block in section.blocks %}
-            <div class="ugc-video-nav-dot" data-index="{{ forloop.index0 }}"></div>
-          {% endfor %}
-        </div>
+    <!-- Header -->
+    <div class="ugc-video-header">
+      {% if section.settings.section_title != blank %}
+        <h2 class="ugc-video-title">{{ section.settings.section_title }}</h2>
       {% endif %}
-    {% else %}
-      <div style="text-align: center; padding: 60px 20px; color: #666;">
-        <p>Add UGC video cards using the theme editor.</p>
+      {% if section.settings.section_description != blank %}
+        <p class="ugc-video-description">{{ section.settings.section_description }}</p>
+      {% endif %}
+    </div>
+
+
+
+
+    <!-- Carousel -->
+    <div class="ugc-video-carousel">
+      {% if section.blocks.size > 0 %}
+        <button class="ugc-video-nav" onclick="moveUgcVideo(-1, '{{ section.id }}')">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+
+
+
+
+      <div class="ugc-video-track-container">
+        <div class="ugc-video-track" id="ugc-video-track-{{ section.id }}">
+          {% if section.blocks.size == 0 %}
+            <!-- No blocks placeholder -->
+            <div class="ugc-video-placeholder">
+              <div style="font-size: 18px; font-weight: 600;">No video cards added yet</div>
+              <div style="font-size: 14px; opacity: 0.8;">Add UGC Video Cards to display content</div>
+            </div>
+          {% else %}
+            <!-- Clone cards before (for left side infinite scroll) -->
+            {% for block in section.blocks %}
+              <div class="ugc-video-card clone-before"
+                   data-index="{{ forloop.index0 }}"
+                   data-video-url="{{ block.settings.video_url }}"
+                   data-redirect-url="{{ block.settings.redirect_url }}"
+                   onclick="handleUgcVideoCardClick(this, '{{ section.id }}')">
+               
+                <!-- Side Card Content (always present) -->
+                <div class="ugc-side-card-content">
+                  {% comment %}Side card content will be populated by JavaScript{% endcomment %}
+                </div>
+               
+                <!-- Center Card Content (always present) -->
+                <div class="ugc-center-card-content" style="display: none;">
+                  {% comment %}Center card content will be populated by JavaScript{% endcomment %}
+                 
+                  <!-- Video Product Overlay -->
+                  {% if block.settings.product_title != blank or block.settings.product_price != blank %}
+                    <div class="ugc-video-product-overlay">
+                      <div class="ugc-video-product-info">
+                        <div class="ugc-video-product-thumbnail">
+                          {% if block.settings.product_image != blank %}
+                            <img src="{{ block.settings.product_image | image_url: width: 80 }}"
+                                 alt="{{ block.settings.product_title | escape }}"
+                                 width="80"
+                                 height="80">
+                          {% endif %}
+                        </div>
+                        <div class="ugc-video-product-details">
+                          {% if block.settings.product_title != blank %}
+                            <h3 class="ugc-video-product-title">{{ block.settings.product_title }}</h3>
+                          {% endif %}
+                          {% if block.settings.product_price != blank %}
+                            <p class="ugc-video-product-price">{{ block.settings.product_price }}</p>
+                          {% endif %}
+                        </div>
+                        <button class="ugc-video-product-arrow"
+                                data-product-url="{{ block.settings.product_url | default: block.settings.product.url }}"
+                                onclick="redirectToProduct(this)">BUY NOW</button>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+
+
+
+
+            <!-- Original cards -->
+            {% for block in section.blocks %}
+              <div class="ugc-video-card original {% if forloop.first %}active{% endif %}"
+                   data-index="{{ forloop.index0 }}"
+                   data-video-url="{{ block.settings.video_url }}"
+                   data-redirect-url="{{ block.settings.redirect_url }}"
+                   onclick="handleUgcVideoCardClick(this, '{{ section.id }}')">
+               
+                <!-- Side Card Content (always present) -->
+                <div class="ugc-side-card-content">
+                  {% comment %}Side card content will be populated by JavaScript{% endcomment %}
+                </div>
+               
+                <!-- Center Card Content (always present) -->
+                <div class="ugc-center-card-content" {% unless forloop.first %}style="display: none;"{% endunless %}>
+                  {% comment %}Center card content will be populated by JavaScript{% endcomment %}
+                 
+                  <!-- Video Product Overlay -->
+                  {% if block.settings.product_title != blank or block.settings.product_price != blank %}
+                    <div class="ugc-video-product-overlay">
+                      <div class="ugc-video-product-info">
+                        <div class="ugc-video-product-thumbnail">
+                          {% if block.settings.product_image != blank %}
+                            <img src="{{ block.settings.product_image | image_url: width: 80 }}"
+                                 alt="{{ block.settings.product_title | escape }}"
+                                 width="80"
+                                 height="80">
+                          {% endif %}
+                        </div>
+                        <div class="ugc-video-product-details">
+                          {% if block.settings.product_title != blank %}
+                            <h3 class="ugc-video-product-title">{{ block.settings.product_title }}</h3>
+                          {% endif %}
+                          {% if block.settings.product_price != blank %}
+                            <p class="ugc-video-product-price">{{ block.settings.product_price }}</p>
+                          {% endif %}
+                        </div>
+                        <button class="ugc-video-product-arrow"
+                                data-product-url="{{ block.settings.product_url | default: block.settings.product.url }}"
+                                onclick="redirectToProduct(this)">BUY NOW</button>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+
+
+
+
+            <!-- Clone cards after (for right side infinite scroll) -->
+            {% for block in section.blocks %}
+              <div class="ugc-video-card clone-after"
+                   data-index="{{ forloop.index0 }}"
+                   data-video-url="{{ block.settings.video_url }}"
+                   data-redirect-url="{{ block.settings.redirect_url }}"
+                   onclick="handleUgcVideoCardClick(this, '{{ section.id }}')">
+               
+                <!-- Side Card Content (always present) -->
+                <div class="ugc-side-card-content">
+                  {% comment %}Side card content will be populated by JavaScript{% endcomment %}
+                </div>
+               
+                <!-- Center Card Content (always present) -->
+                <div class="ugc-center-card-content" style="display: none;">
+                  {% comment %}Center card content will be populated by JavaScript{% endcomment %}
+                 
+                  <!-- Video Product Overlay -->
+                  {% if block.settings.product_title != blank or block.settings.product_price != blank %}
+                    <div class="ugc-video-product-overlay">
+                      <div class="ugc-video-product-info">
+                        <div class="ugc-video-product-thumbnail">
+                          {% if block.settings.product_image != blank %}
+                            <img src="{{ block.settings.product_image | image_url: width: 80 }}"
+                                 alt="{{ block.settings.product_title | escape }}"
+                                 width="80"
+                                 height="80">
+                          {% endif %}
+                        </div>
+                        <div class="ugc-video-product-details">
+                          {% if block.settings.product_title != blank %}
+                            <h3 class="ugc-video-product-title">{{ block.settings.product_title }}</h3>
+                          {% endif %}
+                          {% if block.settings.product_price != blank %}
+                            <p class="ugc-video-product-price">{{ block.settings.product_price }}</p>
+                          {% endif %}
+                        </div>
+                        <button class="ugc-video-product-arrow"
+                                data-product-url="{{ block.settings.product_url | default: block.settings.product.url }}"
+                                onclick="redirectToProduct(this)">BUY NOW</button>
+                      </div>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
       </div>
-    {% endif %}
+
+
+
+
+      {% if section.blocks.size > 0 %}
+        <button class="ugc-video-nav" onclick="moveUgcVideo(1, '{{ section.id }}')">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {% endif %}
+    </div>
   </div>
 </section>
 
+
+
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const track = document.getElementById('ugcVideoTrack');
-  const cards = document.querySelectorAll('.ugc-video-card');
-  const dots = document.querySelectorAll('.ugc-video-nav-dot');
-  let currentCenterIndex = 0;
+// UGC Video Carousel - Simplified approach without infinite scroll
+window.ugcVideoData = window.ugcVideoData || {};
 
-  if (cards.length === 0) return;
 
-  // Detect video URL type and get appropriate embed/source
-  function getVideoSource(url) {
-    if (!url) return null;
-    
-    // Direct video file (mp4, webm, etc.)
-    if (url.match(/\.(mp4|webm|ogg|mov)(\?.*)?$/i)) {
-      return {
-        type: 'direct',
-        src: url,
-        embed: null
-      };
-    }
-    
-    // Instagram Reel
-    if (url.includes('instagram.com/reel/') || url.includes('instagram.com/p/')) {
-      const postId = url.match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/);
-      if (postId) {
-        return {
-          type: 'instagram',
-          src: url,
-          embed: `https://www.instagram.com/p/${postId[1]}/embed/`
-        };
-      }
-    }
-    
-    // TikTok
-    if (url.includes('tiktok.com')) {
-      return {
-        type: 'tiktok',
-        src: url,
-        embed: url.replace('/video/', '/embed/v2/')
-      };
-    }
-    
-    // YouTube Shorts or regular videos
-    if (url.includes('youtube.com') || url.includes('youtu.be')) {
-      let videoId = null;
-      if (url.includes('youtu.be/')) {
-        videoId = url.split('youtu.be/')[1].split('?')[0];
-      } else if (url.includes('youtube.com/watch')) {
-        videoId = url.split('v=')[1]?.split('&')[0];
-      } else if (url.includes('youtube.com/shorts/')) {
-        videoId = url.split('/shorts/')[1].split('?')[0];
-      }
-      
-      if (videoId) {
-        return {
-          type: 'youtube',
-          src: url,
-          embed: `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0`
-        };
-      }
-    }
-    
-    // Default: try as direct video
+
+
+// Video URL processing function
+function getVideoSource(url) {
+  if (!url) return null;
+ 
+  // Direct video file (mp4, webm, etc.)
+  if (url.match(/\.(mp4|webm|ogg|mov)(\?.*)?$/i)) {
     return {
       type: 'direct',
       src: url,
       embed: null
     };
   }
-
-  // Create video element based on URL type
-  function createVideoElement(card, videoUrl, cardIndex) {
-    const videoSource = getVideoSource(videoUrl);
-    if (!videoSource) return;
-    
-    // Remove existing video content
-    const existingVideo = card.querySelector('.ugc-video-element, .ugc-video-embed');
-    if (existingVideo) {
-      existingVideo.remove();
-    }
-    
-    const soundToggle = card.querySelector('.ugc-video-sound-toggle');
-    
-    if (videoSource.type === 'direct') {
-      // Direct video file - use HTML5 video with autoplay
-      const video = document.createElement('video');
-      video.className = 'ugc-video-element';
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.autoplay = true;
-      video.preload = 'metadata';
-      video.setAttribute('data-card-index', cardIndex);
-      
-      const source = document.createElement('source');
-      source.src = videoSource.src;
-      source.type = 'video/mp4';
-      video.appendChild(source);
-      
-      card.insertBefore(video, card.firstChild);
-      
-      // Show sound toggle for direct videos
-      if (soundToggle) {
-        soundToggle.style.display = 'flex';
-      }
-      
-      // Ensure video is ready for autoplay when it becomes center
-      video.addEventListener('loadeddata', () => {
-        console.log('✅ Video loaded and ready for autoplay (card', cardIndex, ')');
-        // If this card is currently in center position, start playing
-        if (card.classList.contains('pos-center')) {
-          video.currentTime = 0;
-          video.play().catch(e => {
-            console.log('⚠️ Autoplay blocked on load:', e);
-          });
-        }
-      });
-      
-    } else {
-      // Social media embed - use iframe
-      const iframe = document.createElement('iframe');
-      iframe.className = 'ugc-video-embed';
-      iframe.src = videoSource.embed;
-      iframe.frameBorder = '0';
-      iframe.allowFullscreen = true;
-      iframe.allow = 'autoplay; encrypted-media';
-      iframe.style.cssText = `
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: inherit;
-        pointer-events: none;
-      `;
-      iframe.setAttribute('data-card-index', cardIndex);
-      iframe.setAttribute('data-video-type', videoSource.type);
-      
-      card.insertBefore(iframe, card.firstChild);
-      
-      // Hide sound toggle for embeds (they have their own controls)
-      if (soundToggle) {
-        soundToggle.style.display = 'none';
-      }
-      
-      // Add social media indicator
-      const indicator = document.createElement('div');
-      indicator.className = 'ugc-video-embed-indicator';
-      indicator.textContent = videoSource.type.toUpperCase();
-      card.appendChild(indicator);
+ 
+  // Instagram Reel
+  if (url.includes('instagram.com/reel/') || url.includes('instagram.com/p/')) {
+    const postId = url.match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/);
+    if (postId) {
+      return {
+        type: 'instagram',
+        src: url,
+        embed: `https://www.instagram.com/p/${postId[1]}/embed/`
+      };
     }
   }
-
-  // Initialize carousel with 5-card positioning
-  function initCarousel() {
-    console.log('🎬 Initializing UGC Video Carousel - 5 Card Layout');
-    console.log('Total cards:', cards.length);
-    
-    // Process each card and create appropriate video elements
-    cards.forEach((card, index) => {
-      const videoUrl = card.dataset.videoUrl;
-      if (videoUrl) {
-        console.log(`🔗 Processing video URL for card ${index}:`, videoUrl);
-        createVideoElement(card, videoUrl, index);
-      }
-      
-      // Setup error handling for both video and iframe elements
-      const video = card.querySelector('.ugc-video-element');
-      const iframe = card.querySelector('.ugc-video-embed');
-      
-      if (video) {
-        video.addEventListener('error', (e) => {
-          console.log('❌ Video error for card', index, ':', e);
-          showErrorPlaceholder(card, 'Video failed to load');
-        });
-        
-        video.addEventListener('loadeddata', () => {
-          console.log('✅ Video loaded for card', index);
-        });
-      }
-      
-      if (iframe) {
-        iframe.addEventListener('error', (e) => {
-          console.log('❌ Embed error for card', index, ':', e);
-          showErrorPlaceholder(card, 'Embed failed to load');
-        });
-        
-        iframe.addEventListener('load', () => {
-          console.log('✅ Embed loaded for card', index);
-        });
-      }
-    });
-    
-    // Force initial positioning immediately
-    if (cards.length > 0) {
-      // Set first card as center (position-2)
-      updateCarousel(0);
-      console.log('✅ Video Carousel initialized with card 0 in center');
-    } else {
-      console.log('❌ No video cards found to initialize');
+ 
+  // TikTok
+  if (url.includes('tiktok.com')) {
+    return {
+      type: 'tiktok',
+      src: url,
+      embed: url.replace('/video/', '/embed/v2/')
+    };
+  }
+ 
+  // YouTube Shorts or regular videos
+  if (url.includes('youtube.com') || url.includes('youtu.be')) {
+    let videoId = null;
+    if (url.includes('youtu.be/')) {
+      videoId = url.split('youtu.be/')[1].split('?')[0];
+    } else if (url.includes('youtube.com/watch')) {
+      videoId = url.split('v=')[1]?.split('&')[0];
+    } else if (url.includes('youtube.com/shorts/')) {
+      videoId = url.split('/shorts/')[1].split('?')[0];
+    }
+   
+    if (videoId) {
+      return {
+        type: 'youtube',
+        src: url,
+        embed: `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0`
+      };
     }
   }
-  
-  // Show error placeholder
-  function showErrorPlaceholder(card, message) {
-    const placeholder = card.querySelector('.ugc-video-loading-placeholder');
-    if (!placeholder) {
-      const errorDiv = document.createElement('div');
-      errorDiv.className = 'ugc-video-loading-placeholder';
-      errorDiv.innerHTML = `<p>${message}</p><small>Check video URL</small>`;
-      card.appendChild(errorDiv);
-    }
+ 
+  // Facebook
+  if (url.includes('facebook.com')) {
+    return {
+      type: 'facebook',
+      src: url,
+      embed: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&width=400&height=480`
+    };
   }
+ 
+  // Default: try as direct video
+  return {
+    type: 'direct',
+    src: url,
+    embed: null
+  };
+}
 
-  // Pause all videos
-  function pauseAllVideos() {
-    cards.forEach(card => {
-      const video = card.querySelector('.ugc-video-element');
-      if (video && video.pause) {
-        video.pause();
-      }
-    });
+
+
+
+function createVideoElement(videoUrl, isActive = false) {
+  if (!videoUrl || videoUrl.trim() === '') {
+    return `<div style="background: #f0f0f0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666; font-family: 'Montserrat', sans-serif; text-align: center; flex-direction: column; gap: 8px; border-radius: inherit;">
+      <div style="font-size: 16px; font-weight: 600;">No Video URL</div>
+      <div style="font-size: 12px;">Add a video URL to display content</div>
+    </div>`;
   }
-
-  // Play only center video - Enhanced autoplay
-  function playOnlyCenterVideo() {
-    console.log('🎬 Managing video playback - only center card should autoplay');
-    
-    cards.forEach((card, index) => {
-      const video = card.querySelector('.ugc-video-element');
-      const iframe = card.querySelector('.ugc-video-embed');
-      
-      // Check if this card is in center position (has pos-center class)
-      const isCenterCard = card.classList.contains('pos-center');
-      
-      if (isCenterCard) {
-        // Center card: Play video or show embed
-        if (video && video.src) {
-          // Direct video - ensure autoplay
-          video.muted = true;
-          video.loop = true;
-          video.playsInline = true;
-          video.autoplay = true;
-          
-          // Force play with multiple attempts
-          const attemptPlay = () => {
-            if (video.readyState >= 2) {
-              video.currentTime = 0;
-              video.play().then(() => {
-                console.log('▶️ Successfully playing center video (card', index, ')');
-              }).catch(e => {
-                console.log('⚠️ Video autoplay blocked, trying again...', e);
-                // Retry after a short delay
-                setTimeout(() => {
-                  video.play().catch(err => {
-                    console.log('❌ Final autoplay attempt failed:', err);
-                  });
-                }, 500);
-              });
-            } else {
-              // Wait for video to load
-              video.addEventListener('loadeddata', () => {
-                video.currentTime = 0;
-                video.play().then(() => {
-                  console.log('▶️ Successfully playing center video after load (card', index, ')');
-                }).catch(e => {
-                  console.log('⚠️ Video autoplay blocked after load:', e);
-                });
-              }, { once: true });
-              
-              // Force load if needed
-              video.load();
-            }
-          };
-          
-          // Immediate attempt
-          attemptPlay();
-          
-          // Backup attempt after 100ms
-          setTimeout(attemptPlay, 100);
-          
-        } else if (iframe) {
-          // Social media embed - enable interaction
-          iframe.style.pointerEvents = 'auto';
-          console.log('📱 Enabled center embed (card', index, ')');
-        }
-      } else {
-        // Side cards: Pause video or disable embed interaction
-        if (video) {
-          video.pause();
-          video.currentTime = 0;
-          console.log('⏸️ Paused side video (card', index, ')');
-        } else if (iframe) {
-          iframe.style.pointerEvents = 'none';
-          console.log('📱 Disabled side embed (card', index, ')');
-        }
-      }
-    });
+ 
+  const videoSource = getVideoSource(videoUrl);
+  if (!videoSource) {
+    return `<div style="background: #f0f0f0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #666; font-family: 'Montserrat', sans-serif; text-align: center; flex-direction: column; gap: 8px; border-radius: inherit;">
+      <div style="font-size: 16px; font-weight: 600;">Invalid Video URL</div>
+      <div style="font-size: 12px;">Please check the video URL format</div>
+    </div>`;
   }
-
-  // Smooth navigation functions for infinite loop
-  function slideVideoToNext() {
-    const nextIndex = (currentCenterIndex + 1) % cards.length;
-    updateCarousel(nextIndex);
+ 
+  if (videoSource.type === 'direct') {
+    return `<video ${isActive ? 'autoplay' : ''} muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none; border-radius: inherit;"><source src="${videoSource.src}" type="video/mp4"></video>`;
+  } else {
+    return `<iframe src="${videoSource.embed}" frameborder="0" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture" style="width: 100%; height: 100%; object-fit: cover; pointer-events: ${isActive ? 'auto' : 'none'}; border-radius: inherit;" loading="lazy" scrolling="no"></iframe>`;
   }
+}
 
-  function slideVideoToPrev() {
-    const prevIndex = (currentCenterIndex - 1 + cards.length) % cards.length;
-    updateCarousel(prevIndex);
-  }
 
-  // Update carousel with center-outward spreading based on card count
-  function updateCarousel(centerIndex) {
-    console.log('🎯 Centering video card:', centerIndex, 'of', cards.length, 'total cards');
-    
-    // Remove all position classes first (but keep base class)
-    cards.forEach((card) => {
-      card.classList.remove('pos-left-hidden', 'pos-left-2', 'pos-left-1', 'pos-center', 'pos-right-1', 'pos-right-2', 'pos-right-hidden');
-    });
 
-    // Update dots
-    dots.forEach(dot => dot.classList.remove('active'));
-    if (dots[centerIndex]) {
-      dots[centerIndex].classList.add('active');
-    }
 
-    // Center-outward spreading pattern based on number of cards
-    const totalCards = cards.length;
-    
-    if (totalCards === 1) {
-      // 1 card: Just center
-      cards[0].classList.add('pos-center');
-      console.log('✅ 1 card: Center only');
-      
-    } else if (totalCards === 2) {
-      // 2 cards: Center + Left-1
-      const centerCard = cards[centerIndex];
-      const leftCard = cards[(centerIndex - 1 + totalCards) % totalCards];
-      
-      centerCard.classList.add('pos-center');
-      leftCard.classList.add('pos-left-1');
-      console.log('✅ 2 cards: Center + Left-1');
-      
-    } else if (totalCards === 3) {
-      // 3 cards: Center + Left-1 + Right-1
-      const centerCard = cards[centerIndex];
-      const leftCard = cards[(centerIndex - 1 + totalCards) % totalCards];
-      const rightCard = cards[(centerIndex + 1) % totalCards];
-      
-      centerCard.classList.add('pos-center');
-      leftCard.classList.add('pos-left-1');
-      rightCard.classList.add('pos-right-1');
-      console.log('✅ 3 cards: Center + Left-1 + Right-1');
-      
-    } else if (totalCards === 4) {
-      // 4 cards: Center + Left-1 + Right-1 + Left-2
-      const centerCard = cards[centerIndex];
-      const leftCard1 = cards[(centerIndex - 1 + totalCards) % totalCards];
-      const rightCard1 = cards[(centerIndex + 1) % totalCards];
-      const leftCard2 = cards[(centerIndex - 2 + totalCards) % totalCards];
-      
-      centerCard.classList.add('pos-center');
-      leftCard1.classList.add('pos-left-1');
-      rightCard1.classList.add('pos-right-1');
-      leftCard2.classList.add('pos-left-2');
-      console.log('✅ 4 cards: Center + Left-1 + Right-1 + Left-2');
-      
-    } else if (totalCards >= 5) {
-      // 5+ cards: ALWAYS show 5-card layout with hidden positions for smooth cycling
-      const positions = [
-        { offset: -2, class: 'pos-left-2' },       // Far left
-        { offset: -1, class: 'pos-left-1' },       // Near left
-        { offset: 0,  class: 'pos-center' },       // CENTER (sticky)
-        { offset: 1,  class: 'pos-right-1' },      // Near right
-        { offset: 2,  class: 'pos-right-2' }       // Far right
-      ];
-
-      // First, mark cards that will be hidden
-      cards.forEach((card, idx) => {
-        const isInVisibleRange = positions.some(pos => {
-          const cardIndex = (centerIndex + pos.offset + totalCards) % totalCards;
-          return cardIndex === idx;
-        });
-        
-        if (!isInVisibleRange) {
-          // Determine if card should be hidden on left or right
-          let distanceFromCenter = idx - centerIndex;
-          if (distanceFromCenter > totalCards / 2) {
-            distanceFromCenter -= totalCards;
-          } else if (distanceFromCenter < -totalCards / 2) {
-            distanceFromCenter += totalCards;
-          }
-          
-          if (distanceFromCenter < 0) {
-            card.classList.add('pos-left-hidden');
-          } else {
-            card.classList.add('pos-right-hidden');
-          }
-        }
-      });
-
-      // Then assign visible positions
-      positions.forEach(pos => {
-        const cardIndex = (centerIndex + pos.offset + totalCards) % totalCards;
-        const card = cards[cardIndex];
-        
-        if (card) {
-          card.classList.add(pos.class);
-          console.log(`✅ Offset ${pos.offset}: Video Card ${cardIndex} → ${pos.class} ${pos.offset === 0 ? '(CENTER - ACTIVE)' : '(SIDE)'}`);
-        }
-      });
-      
-      console.log('✅ 5+ cards: Fixed 5-card layout with hidden positions for smooth cycling');
-    }
-
-    currentCenterIndex = centerIndex;
-    
-    // Play only center video after positioning with multiple timing attempts
-    setTimeout(() => {
-      playOnlyCenterVideo();
-    }, 100);
-    
-    // Backup autoplay attempts with increasing delays
-    setTimeout(() => {
-      playOnlyCenterVideo();
-    }, 300);
-    
-    setTimeout(() => {
-      playOnlyCenterVideo();
-    }, 600);
-    
-    // Final attempt after transition is complete
-    setTimeout(() => {
-      playOnlyCenterVideo();
-    }, 1000);
-    
-    // Extra aggressive autoplay attempt
-    setTimeout(() => {
-      console.log('🔄 Extra autoplay attempt for center video...');
-      const centerCard = document.querySelector('.ugc-video-card.pos-center');
-      if (centerCard) {
-        const video = centerCard.querySelector('.ugc-video-element');
-        if (video) {
-          video.muted = true;
-          video.loop = true;
-          video.playsInline = true;
-          video.currentTime = 0;
-          video.play().then(() => {
-            console.log('✅ Extra autoplay attempt successful!');
-          }).catch(e => {
-            console.log('❌ Extra autoplay attempt failed:', e);
-            // Try clicking the video to trigger play
-            video.click();
-          });
-        }
-      }
-    }, 2000);
-    
-    console.log('🎯 Video Carousel update complete. Center index:', currentCenterIndex);
-  }
-
-  // Video Card click handlers - smooth adjacent movement
-  cards.forEach((card, index) => {
-    card.addEventListener('click', (e) => {
-      // Prevent clicks on sound toggle
-      if (e.target.closest('.ugc-video-sound-toggle')) return;
-      
-      e.preventDefault();
-      
-      if (index === currentCenterIndex) {
-        // Center card clicked - redirect to link
-        const redirectUrl = card.dataset.redirectUrl;
-        if (redirectUrl) {
-          console.log('🔗 Center video card clicked, redirecting to:', redirectUrl);
-          window.open(redirectUrl, '_blank');
-        } else {
-          console.log('⚠️ Center video card clicked but no redirect URL set');
-        }
-      } else {
-        // Side card clicked - determine shortest path to center
-        const totalCards = cards.length;
-        let distance = index - currentCenterIndex;
-        
-        // Calculate shortest path (considering wrap-around)
-        if (distance > totalCards / 2) {
-          distance -= totalCards;
-        } else if (distance < -totalCards / 2) {
-          distance += totalCards;
-        }
-        
-        console.log('👆 Side video card', index, 'clicked, distance:', distance);
-        
-        // Move step by step for smooth animation
-        if (distance > 0) {
-          // Move right (next)
-          for (let i = 0; i < Math.abs(distance); i++) {
-            setTimeout(() => slideVideoToNext(), i * 100);
-          }
-        } else {
-          // Move left (prev)
-          for (let i = 0; i < Math.abs(distance); i++) {
-            setTimeout(() => slideVideoToPrev(), i * 100);
-          }
-        }
-      }
-    });
-  });
-
-  // Sound toggle handlers (only for direct videos)
-  document.addEventListener('click', function(e) {
-    const soundToggle = e.target.closest('.ugc-video-sound-toggle');
-    if (!soundToggle) return;
-    
-    e.stopPropagation();
-    
-    const cardIndex = parseInt(soundToggle.dataset.cardIndex);
-    if (cardIndex !== currentCenterIndex) return;
-    
-    const video = cards[cardIndex].querySelector('.ugc-video-element');
-    const soundOn = soundToggle.querySelector('.sound-on');
-    const soundOff = soundToggle.querySelector('.sound-off');
-    
-    // Only work with direct video elements, not embeds
-    if (video && video.tagName === 'VIDEO') {
-      video.muted = !video.muted;
-      
-      if (video.muted) {
-        soundOn.style.display = 'none';
-        soundOff.style.display = 'block';
-      } else {
-        soundOn.style.display = 'block';
-        soundOff.style.display = 'none';
-      }
-      
-      console.log('🔊 Video sound toggled:', video.muted ? 'MUTED' : 'UNMUTED');
-    }
-  });
-
-  // Video Dot navigation - smooth movement
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      console.log('🔘 Video Dot', index, 'clicked');
-      
-      // Calculate shortest path to target
-      const totalCards = cards.length;
-      let distance = index - currentCenterIndex;
-      
-      // Calculate shortest path (considering wrap-around)
-      if (distance > totalCards / 2) {
-        distance -= totalCards;
-      } else if (distance < -totalCards / 2) {
-        distance += totalCards;
-      }
-      
-      // Move step by step for smooth animation
-      if (distance > 0) {
-        // Move right (next)
-        for (let i = 0; i < Math.abs(distance); i++) {
-          setTimeout(() => slideVideoToNext(), i * 150);
-        }
-      } else if (distance < 0) {
-        // Move left (prev)
-        for (let i = 0; i < Math.abs(distance); i++) {
-          setTimeout(() => slideVideoToPrev(), i * 150);
-        }
-      }
-    });
-  });
-
-  // Touch/swipe support for smooth infinite loop
-  let startX = 0;
-  let startY = 0;
-  
-  track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-  });
-
-  track.addEventListener('touchend', (e) => {
-    if (!startX || !startY) return;
-    
-    const endX = e.changedTouches[0].clientX;
-    const endY = e.changedTouches[0].clientY;
-    
-    const diffX = startX - endX;
-    const diffY = startY - endY;
-    
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-      if (diffX > 0) {
-        // Swipe left - next card (smooth)
-        slideVideoToNext();
-      } else {
-        // Swipe right - previous card (smooth)
-        slideVideoToPrev();
-      }
-    }
-    
-    startX = 0;
-    startY = 0;
-  });
-
-  // Keyboard navigation for smooth movement
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      slideVideoToPrev();
-    } else if (e.key === 'ArrowRight') {
-      slideVideoToNext();
-    }
-  });
-
-  // Add user interaction handler to enable autoplay
-  document.addEventListener('click', function enableAutoplayOnInteraction() {
-    console.log('👆 User interaction detected, enabling autoplay...');
-    
-    // Try to play center video after user interaction
-    const centerCard = document.querySelector('.ugc-video-card.pos-center');
-    if (centerCard) {
-      const video = centerCard.querySelector('.ugc-video-element');
-      if (video && video.paused) {
-        video.muted = true;
-        video.play().then(() => {
-          console.log('✅ Autoplay enabled after user interaction!');
-        }).catch(e => {
-          console.log('⚠️ Still blocked after user interaction:', e);
-        });
-      }
-    }
-    
-    // Remove this listener after first interaction
-    document.removeEventListener('click', enableAutoplayOnInteraction);
-  }, { once: true });
-
-  // Initialize
-  console.log('🚀 Starting UGC Video Carousel initialization...');
-  
-  // Force immediate positioning for debugging
-  if (cards.length > 0) {
-    console.log('🔧 Force applying 5-card positioning...');
-    updateCarousel(0);
-    
-    // Double-check positioning after 100ms
-    setTimeout(() => {
-      const centerCard = document.querySelector('.ugc-video-card.pos-center');
-      const leftCards = document.querySelectorAll('.ugc-video-card.pos-left-1, .ugc-video-card.pos-left-2');
-      const rightCards = document.querySelectorAll('.ugc-video-card.pos-right-1, .ugc-video-card.pos-right-2');
-      
-      console.log('🔍 Positioning check:');
-      console.log('- Center cards found:', centerCard ? 1 : 0);
-      console.log('- Left cards found:', leftCards.length);
-      console.log('- Right cards found:', rightCards.length);
-      console.log('- Total positioned cards:', leftCards.length + rightCards.length + (centerCard ? 1 : 0));
-      
-      if (!centerCard) {
-        console.log('❌ No center card found, forcing positioning...');
-        cards[0].classList.add('pos-center');
-      }
-    }, 100);
-  }
-  
-  // Try multiple initialization attempts
-  initCarousel();
-  
-  // Fallback initialization after 1 second
-  setTimeout(() => {
-    console.log('🔄 Video Carousel fallback initialization attempt...');
-    if (!document.querySelector('.ugc-video-card.pos-center')) {
-      console.log('⚠️ No center video card found, re-initializing...');
-      initCarousel();
-    } else {
-      console.log('✅ Center video card already positioned correctly');
-    }
-  }, 1000);
-  
-  // Final fallback after 3 seconds
-  setTimeout(() => {
-    console.log('🔄 Final video carousel fallback check...');
-    const centerCard = document.querySelector('.ugc-video-card.pos-center');
-    if (!centerCard) {
-      console.log('❌ Still no center video card, forcing manual positioning...');
-      // Force manual positioning
-      if (cards.length > 0) {
-        cards[0].classList.add('pos-center');
-        console.log('🔧 Manually set first video card as center');
-      }
-    } else {
-      console.log('✅ Video Carousel is working correctly');
-    }
-  }, 3000);
-});
-
-// Redirect to Product Function
-function redirectToProduct(button) {
-  console.log('�  Product arrow clicked');
-  
-  // Get product URL from button attributes
-  const productUrl = button.dataset.productUrl;
-  
-  // Validate URL
-  if (!productUrl) {
-    console.error('❌ Missing product URL');
-    showMessage('Product link not available', 'error');
+function initializeUgcVideo(sectionId) {
+  const originalBlocksCount = parseInt('{{ section.blocks.size }}');
+ 
+  console.log('🎬 Initializing UGC Video Carousel (Infinite Scroll)');
+  console.log('Section ID:', sectionId);
+  console.log('Original blocks count:', originalBlocksCount);
+ 
+  if (originalBlocksCount === 0) {
+    console.log('❌ No video blocks found - carousel cannot initialize');
     return;
   }
-  
-  // Show loading state
-  const originalContent = button.innerHTML;
-  button.innerHTML = '⏳';
-  button.disabled = true;
-  button.style.background = '#ccc';
-  
-  console.log('🔗 Redirecting to product:', productUrl);
-  
-  // Add loading delay for visual feedback
-  setTimeout(() => {
-    // Reset button
-    button.innerHTML = originalContent;
-    button.disabled = false;
-    button.style.background = '#FFD700';
-    
-    // Redirect to product page
-    window.open(productUrl, '_blank');
-  }, 300);
-}
 
-// Show message function
-function showMessage(message, type = 'success') {
-  // Remove existing message if any
-  const existingMessage = document.querySelector('.ugc-message');
-  if (existingMessage) {
-    existingMessage.remove();
+
+
+
+  // Start at the first original card (after clone-before cards)
+  const startIndex = originalBlocksCount;
+
+
+
+
+  window.ugcVideoData[sectionId] = {
+    currentIndex: startIndex,
+    originalBlocksCount: originalBlocksCount,
+    totalCards: originalBlocksCount * 3, // clone-before + original + clone-after
+    isTransitioning: false
+  };
+
+
+
+
+  const track = document.getElementById(`ugc-video-track-${sectionId}`);
+  const cards = track.querySelectorAll('.ugc-video-card');
+
+
+
+
+  console.log('Track element:', track);
+  console.log('Cards found:', cards.length);
+
+
+
+
+  if (cards.length === 0) {
+    console.log('❌ No video cards found in DOM');
+    return;
   }
-  
-  // Create message element
-  const messageEl = document.createElement('div');
-  messageEl.className = 'ugc-message';
-  messageEl.textContent = message;
-  
-  // Style the message
-  messageEl.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: ${type === 'success' ? '#28a745' : '#dc3545'};
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    z-index: 10000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  `;
-  
-  // Add to page
-  document.body.appendChild(messageEl);
-  
-  // Animate in
-  setTimeout(() => {
-    messageEl.style.transform = 'translateX(0)';
-  }, 100);
-  
-  // Remove after 3 seconds
-  setTimeout(() => {
-    messageEl.style.transform = 'translateX(100%)';
-    setTimeout(() => {
-      if (messageEl.parentNode) {
-        messageEl.parentNode.removeChild(messageEl);
-      }
-    }, 300);
-  }, 3000);
-}
-</script>
 
+
+
+
+  // Load content for ALL cards
+  cards.forEach((card, i) => {
+    const videoUrl = card.getAttribute('data-video-url') || '';
+    const sideContent = card.querySelector('.ugc-side-card-content');
+    const centerContent = card.querySelector('.ugc-center-card-content');
+   
+    console.log(`Processing card ${i}, video URL:`, videoUrl);
+   
+    // Load video content for side display
+    if (sideContent) {
+      sideContent.innerHTML = createVideoElement(videoUrl, false);
+    }
+   
+    // Load video content for center display
+    if (centerContent) {
+      const overlay = centerContent.querySelector('.ugc-video-product-overlay');
+      const overlayHTML = overlay ? overlay.outerHTML : '';
+      centerContent.innerHTML = createVideoElement(videoUrl, true) + overlayHTML;
+    }
+  });
+
+
+
+
+  // Set initial active state
+  selectUgcVideoCard(startIndex, sectionId, false);
+ 
+  // Show the track after positioning
+  setTimeout(() => {
+    track.classList.add('initialized');
+    console.log('✅ UGC Video Carousel initialized successfully');
+  }, 100);
+}
+
+
+
+
+function centerUgcVideoCard(index, sectionId, animate = true) {
+  const track = document.getElementById(`ugc-video-track-${sectionId}`);
+  const cards = track.querySelectorAll('.ugc-video-card');
+  const container = track.parentElement;
+
+
+
+
+  if (cards.length === 0) return;
+
+
+
+
+  const containerWidth = container.offsetWidth;
+  const containerCenter = containerWidth / 2;
+  const sideCardWidth = 240;
+  const activeCardWidth = 400;
+  const gap = 25;
+
+
+
+
+  // Calculate the left edge position of the active card
+  let leftEdgePosition = 0;
+  for (let i = 0; i < index; i++) {
+    leftEdgePosition += sideCardWidth + gap;
+  }
+
+
+
+
+  // Add half of the active card width to get to its center
+  const activeCardCenter = leftEdgePosition + (activeCardWidth / 2);
+
+
+
+
+  // Calculate how much to shift to center the active card
+  const targetTransform = containerCenter - activeCardCenter;
+
+
+
+
+  if (!animate) {
+    track.style.transition = 'none';
+  } else {
+    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+  }
+
+
+
+
+  track.style.transform = `translateX(${targetTransform}px)`;
+
+
+
+
+  if (!animate) {
+    requestAnimationFrame(() => {
+      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    });
+  }
+}
+
+
+
+
+function selectUgcVideoCard(index, sectionId, animate = true) {
+  const track = document.getElementById(`ugc-video-track-${sectionId}`);
+  const cards = track.querySelectorAll('.ugc-video-card');
+  const data = window.ugcVideoData[sectionId];
+
+
+  // Remove centered class from all cards first
+  cards.forEach(card => {
+    card.classList.remove('centered');
+  });
+
+
+  // Update active states and show/hide appropriate content
+  cards.forEach((card, i) => {
+    const sideContent = card.querySelector('.ugc-side-card-content');
+    const centerContent = card.querySelector('.ugc-center-card-content');
+   
+    if (i === index) {
+      // New active card - show center content, hide side content
+      card.classList.add('active');
+      if (sideContent) sideContent.style.display = 'none';
+      if (centerContent) centerContent.style.display = 'block';
+      console.log(`✅ Set card ${i} as active (center)`);
+    } else {
+      // All other cards - show side content, hide center content
+      card.classList.remove('active');
+      if (sideContent) sideContent.style.display = 'block';
+      if (centerContent) centerContent.style.display = 'none';
+    }
+  });
+
+
+  data.currentIndex = index;
+ 
+  // Center the carousel
+  requestAnimationFrame(() => {
+    centerUgcVideoCard(index, sectionId, animate);
+   
+    // Add centered class after transition completes to show overlay
+    setTimeout(() => {
+      const activeCard = cards[index];
+      if (activeCard && activeCard.classList.contains('active')) {
+        activeCard.classList.add('centered');
+      }
+    }, animate ? 650 : 100); // Match transition duration
+  });
+}
+
+
+
+
+function moveUgcVideo(direction, sectionId) {
+  const data = window.ugcVideoData[sectionId];
+  if (data.isTransitioning) return;
+
+
+
+
+  data.isTransitioning = true;
+
+
+  // Remove centered class from all cards during transition
+  const track = document.getElementById(`ugc-video-track-${sectionId}`);
+  const cards = track.querySelectorAll('.ugc-video-card');
+  cards.forEach(card => {
+    card.classList.remove('centered');
+  });
+
+
+
+
+  let newIndex = data.currentIndex + direction;
+  const originalBlocksCount = data.originalBlocksCount;
+  const totalCards = originalBlocksCount * 3;
+
+
+
+
+  console.log(`Moving ${direction > 0 ? 'right' : 'left'} from ${data.currentIndex} to ${newIndex}`);
+
+
+
+
+  // Handle boundaries with wrapping
+  if (newIndex >= totalCards) {
+    // Wrap to beginning
+    newIndex = originalBlocksCount; // Start of original cards
+    console.log(`Wrapped right: new index ${newIndex}`);
+  } else if (newIndex < 0) {
+    // Wrap to end
+    newIndex = originalBlocksCount * 2 - 1; // End of original cards
+    console.log(`Wrapped left: new index ${newIndex}`);
+  }
+
+
+
+
+  // Update current index and select the card
+  data.currentIndex = newIndex;
+  selectUgcVideoCard(newIndex, sectionId, true);
+
+
+
+
+  setTimeout(() => {
+    data.isTransitioning = false;
+  }, 650);
+}
+
+
+
+
+function handleUgcVideoCardClick(cardElement, sectionId) {
+  const data = window.ugcVideoData[sectionId];
+  if (data.isTransitioning) return;
+
+
+
+
+  const track = document.getElementById(`ugc-video-track-${sectionId}`);
+  const cards = track.querySelectorAll('.ugc-video-card');
+  const clickedIndex = Array.from(cards).indexOf(cardElement);
+
+
+
+
+  if (clickedIndex === -1) return;
+
+
+
+
+  if (clickedIndex === data.currentIndex) {
+    // Center card clicked - redirect to link
+    const redirectUrl = cardElement.getAttribute('data-redirect-url');
+    if (redirectUrl) {
+      window.open(redirectUrl, '_blank');
+    }
+  } else {
+    // Side card clicked - calculate shortest path to center
+    const originalBlocksCount = data.originalBlocksCount;
+    const currentOriginalIndex = (data.currentIndex - originalBlocksCount + originalBlocksCount) % originalBlocksCount;
+    const clickedOriginalIndex = parseInt(cardElement.getAttribute('data-index'));
+   
+    // Calculate shortest distance
+    let distance = clickedOriginalIndex - currentOriginalIndex;
+    if (distance > originalBlocksCount / 2) {
+      distance -= originalBlocksCount;
+    } else if (distance < -originalBlocksCount / 2) {
+      distance += originalBlocksCount;
+    }
+
+
+
+
+    console.log(`Card clicked: original index ${clickedOriginalIndex}, distance: ${distance}`);
+
+
+
+
+    // Move step by step for smooth animation
+    data.isTransitioning = true;
+
+
+    // Remove centered class from all cards during transition
+    const cards = track.querySelectorAll('.ugc-video-card');
+    cards.forEach(card => {
+      card.classList.remove('centered');
+    });
+   
+    if (distance !== 0) {
+      const direction = distance > 0 ? 1 : -1;
+      const steps = Math.abs(distance);
+     
+      for (let i = 0; i < steps; i++) {
+        setTimeout(() => {
+          const newIndex = data.currentIndex + direction;
+          selectUgcVideoCard(newIndex, sectionId, true);
+          data.currentIndex = newIndex;
+         
+          if (i === steps - 1) {
+            setTimeout(() => {
+              data.isTransitioning = false;
+            }, 650);
+          }
+        }, i * 150);
+      }
+    } else {
+      data.isTransitioning = false;
+    }
+  }
+}
+
+
+
+
+function redirectToProduct(button) {
+  const productUrl = button.dataset.productUrl;
+  if (productUrl) {
+    window.open(productUrl, '_blank');
+  }
+}
+
+
+
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  initializeUgcVideo('{{ section.id }}');
+});
+</script>
 {% schema %}
 {
   "name": "UGC Video Carousel",
@@ -1569,26 +1290,6 @@ function showMessage(message, type = 'success') {
       "id": "section_background",
       "label": "Section Background",
       "default": "#ffffff"
-    },
-    {
-      "type": "range",
-      "id": "section_padding_top",
-      "min": 0,
-      "max": 120,
-      "step": 10,
-      "unit": "px",
-      "label": "Section Padding Top",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "section_padding_bottom",
-      "min": 0,
-      "max": 120,
-      "step": 10,
-      "unit": "px",
-      "label": "Section Padding Bottom",
-      "default": 80
     },
     {
       "type": "header",
@@ -1644,15 +1345,21 @@ function showMessage(message, type = 'success') {
     },
     {
       "type": "color",
-      "id": "dot_active_color",
-      "label": "Active Dot Color",
+      "id": "nav_bg_color",
+      "label": "Navigation Background",
       "default": "#000000"
     },
     {
       "type": "color",
-      "id": "dot_inactive_color",
-      "label": "Inactive Dot Color",
-      "default": "#cccccc"
+      "id": "nav_border_color",
+      "label": "Navigation Border",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "nav_icon_color",
+      "label": "Navigation Icon Color",
+      "default": "#4FFFFF"
     }
   ],
   "blocks": [

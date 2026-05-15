@@ -1,0 +1,535 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Full width section without horizontal scroll */
+.rsip__routine-section-ingredients-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Top Background Image Area - 70% */
+.rsip__background-area {
+  width: 100%;
+  height: 70%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Bottom White Area - 30% */
+.rsip__white-area {
+  width: 100%;
+  height: 30%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Dynamic Text Content */
+.rsip__text-content {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: calc(100% - 520px);
+  text-align: left;
+  max-height: 80%;
+  overflow: visible;
+  z-index: 10;
+}
+
+.rsip__dynamic-title {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #000;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.rsip__dynamic-description {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+  margin: 0;
+  font-weight: 400;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.rsip__tile {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #f8f8f8;
+  border: 3px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100px;
+  height: 100px;
+  justify-self: center;
+}
+
+.rsip__tile.active {
+  border-color: #4fffff;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(79, 255, 255, 0.3);
+}
+
+.rsip__tile:hover:not(.active) {
+  transform: scale(1.02);
+  border-color: #e0e0e0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.rsip__tile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.rsip__tile-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+}
+
+/* CTA Button */
+.rsip__cta-container {
+  position: absolute;
+  right: 80px;
+  bottom: 40px;
+  flex-shrink: 0;
+}
+
+.rsip__cta-button {
+  background: transparent;
+  color: #000;
+  border: 2px solid #4fffff;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.rsip__cta-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Tiles Container - Positioned at the Boundary Between Background and White Area */
+.rsip__tiles-container {
+  position: absolute;
+  right: 80px;
+  top: 70%;
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  gap: 15px;
+  width: 400px;
+  height: 100px;
+  z-index: 20;
+}
+
+.rsip__tile {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #f8f8f8;
+  border: 3px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100px;
+  height: 100px;
+  justify-self: center;
+}
+
+.rsip__tile.active {
+  border-color: #4fffff;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(79, 255, 255, 0.3);
+}
+
+.rsip__tile:hover:not(.active) {
+  transform: scale(1.02);
+  border-color: #e0e0e0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.rsip__tile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 17px;
+}
+
+.rsip__tile-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .rsip__routine-section-ingredients-page {
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .rsip__background-area {
+    height: 60vh;
+  }
+  
+  .rsip__white-area {
+    height: 40vh;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 30px;
+    gap: 30px;
+  }
+  
+  .rsip__text-content {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+  }
+  
+  .rsip__cta-container {
+    position: static;
+    transform: none;
+    align-self: center;
+  }
+  
+  .rsip__tiles-container {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 420px;
+    height: 100px;
+    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .rsip__tile {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .rsip__dynamic-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rsip__background-area {
+    height: 50vh;
+  }
+  
+  .rsip__white-area {
+    height: 50vh;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+  
+  .rsip__text-content {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+  }
+  
+  .rsip__dynamic-title {
+    font-size: 28px;
+  }
+  
+  .rsip__dynamic-description {
+    font-size: 14px;
+  }
+  
+  .rsip__tiles-container {
+    gap: 8px;
+    height: 70px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .rsip__tile {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rsip__tiles-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 120px;
+    gap: 6px;
+  }
+  
+  .rsip__text-content {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+  }
+  
+  .rsip__dynamic-title {
+    font-size: 24px;
+  }
+  
+  .rsip__white-area {
+    padding: 20px 15px;
+  }
+  
+  .rsip__tile-overlay {
+    font-size: 10px;
+    padding: 8px;
+  }
+}
+</style>
+
+<div class="rsip__routine-section-ingredients-page">
+  <!-- Top Background Image Area - 70% -->
+  <div class="rsip__background-area" style="background-image: url('{{ section.settings.background_image | image_url: width: 1200 }}');">
+  </div>
+  
+  <!-- Bottom White Area - 30% -->
+  <div class="rsip__white-area">
+    <!-- Dynamic Text Content -->
+    <div class="rsip__text-content">
+      <h1 class="rsip__dynamic-title" id="dynamic-title">
+        {% if section.blocks.first.settings.tile_title != blank %}
+          {{ section.blocks.first.settings.tile_title }}
+        {% else %}
+          START YOUR MORNING WITH A RITUAL THAT PROTECTS YOUR SKIN
+        {% endif %}
+      </h1>
+      <p class="rsip__dynamic-description" id="dynamic-description">
+        {% if section.blocks.first.settings.tile_description != blank %}
+          {{ section.blocks.first.settings.tile_description }}
+        {% else %}
+          Derived from DNA fragments, PDRN supports tissue regeneration and enhances skin healing at a cellular level.
+        {% endif %}
+      </p>
+    </div>
+    
+    <!-- CTA Button -->
+    <div class="rsip__cta-container">
+      {% if section.settings.cta_link %}
+        <a href="{{ section.settings.cta_link }}" class="rsip__cta-button">
+          {{ section.settings.cta_text | default: 'Regenerate Your Skin' }}
+        </a>
+      {% else %}
+        <button class="rsip__cta-button">
+          {{ section.settings.cta_text | default: 'Regenerate Your Skin' }}
+        </button>
+      {% endif %}
+    </div>
+  </div>
+  
+  <!-- Tiles Container - Spanning Both Areas -->
+  <div class="rsip__tiles-container">
+    {% for block in section.blocks limit: 4 %}
+      <div class="rsip__tile {% if forloop.first %}active{% endif %}" 
+           data-tile-id="{{ block.id }}"
+           data-title="{{ block.settings.tile_title }}"
+           data-description="{{ block.settings.tile_description }}"
+           {{ block.shopify_attributes }}>
+        {% if block.settings.tile_image %}
+          <img src="{{ block.settings.tile_image | image_url: width: 300 }}" 
+               alt="{{ block.settings.tile_title }}" 
+               class="rsip__tile-image"
+               width="300" 
+               height="300">
+          {% if block.settings.tile_label %}
+            <div class="rsip__tile-overlay">{{ block.settings.tile_label }}</div>
+          {% endif %}
+        {% else %}
+          <div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999; font-size: 12px; border-radius: 8px;">
+            Tile {{ forloop.index }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tiles = document.querySelectorAll('.rsip__tile');
+  const dynamicTitle = document.getElementById('dynamic-title');
+  const dynamicDescription = document.getElementById('dynamic-description');
+  
+  tiles.forEach(tile => {
+    tile.addEventListener('click', function() {
+      // Remove active class from all tiles
+      tiles.forEach(t => t.classList.remove('active'));
+      
+      // Add active class to clicked tile
+      this.classList.add('active');
+      
+      // Update dynamic text
+      const title = this.dataset.title;
+      const description = this.dataset.description;
+      
+      if (title && dynamicTitle) {
+        dynamicTitle.textContent = title;
+      }
+      
+      if (description && dynamicDescription) {
+        dynamicDescription.textContent = description;
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Routine Ingredients Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Recommended size: 1200x800px or larger"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Regenerate Your Skin"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "tile_image",
+          "label": "Tile Image"
+        },
+        {
+          "type": "text",
+          "id": "tile_label",
+          "label": "Tile Label (Optional)",
+          "info": "Text overlay on the tile image"
+        },
+        {
+          "type": "text",
+          "id": "tile_title",
+          "label": "Title (Shows in white area when clicked)",
+          "default": "START YOUR MORNING WITH A RITUAL THAT PROTECTS YOUR SKIN"
+        },
+        {
+          "type": "textarea",
+          "id": "tile_description",
+          "label": "Description (Shows in white area when clicked)",
+          "default": "Derived from DNA fragments, PDRN supports tissue regeneration and enhances skin healing at a cellular level."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Routine Ingredients Page",
+      "blocks": [
+        {
+          "type": "tile",
+          "settings": {
+            "tile_label": "Niacinamide",
+            "tile_title": "START YOUR MORNING WITH A RITUAL THAT PROTECTS YOUR SKIN",
+            "tile_description": "Derived from DNA fragments, PDRN supports tissue regeneration and enhances skin healing at a cellular level."
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "tile_title": "EVENING RESTORATION THERAPY",
+            "tile_description": "Advanced nighttime formulas work while you sleep to repair and rejuvenate your skin at the cellular level."
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "tile_title": "WEEKLY INTENSIVE TREATMENT",
+            "tile_description": "Powerful weekly treatments that target specific concerns and accelerate your skin's natural renewal process."
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "tile_title": "DAILY PROTECTION SHIELD",
+            "tile_description": "Essential daily defense that creates a protective barrier against environmental damage and premature aging."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

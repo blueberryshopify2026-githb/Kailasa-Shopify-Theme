@@ -1,0 +1,1736 @@
+{% comment %}
+  Steps Instruction Section - Premium skincare UI with scroll-based step transitions
+  Features: Tab system, scroll within tabs, rich text, static product card, smooth transitions
+{% endcomment %}
+
+<style>
+  .steps-instruction {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+
+  /* Background - Fast cinematic parallax transitions */
+  .steps-instruction__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.03);
+    filter: blur(2px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
+  }
+
+
+  .steps-instruction__background--active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+
+
+  /* Background exit animations - faster */
+  .steps-instruction__background--exit {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.97);
+    filter: blur(3px);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  /* Background enter animations - faster */
+  .steps-instruction__background--enter {
+    opacity: 0;
+    visibility: visible;
+    transform: scale(1.05);
+    filter: blur(4px);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  .steps-instruction__container {
+    max-width: 1200px;
+    padding: 0 20px;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+
+  /* Left Column - Content */
+  .steps-instruction__content {
+    position: relative;
+    z-index: 10;
+    padding-right: 40px;
+  }
+
+
+  /* Text Content Container */
+  .steps-instruction__text-content {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 100px;
+    min-height: 500px;
+  }
+
+
+  /* Text Block - Blur transitions like background */
+  /* Text Block - Fast cinematic directional transitions */
+  .steps-instruction__text-block {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px) scale(0.97);
+    filter: blur(4px);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+  }
+
+
+  .steps-instruction__text-block--active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+    position: relative;
+    z-index: 4;
+  }
+
+
+  /* Exit animations - faster, direction-based */
+  .steps-instruction__text-block--exit-up {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px) scale(0.95);
+    filter: blur(3px);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  .steps-instruction__text-block--exit-down {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(3px);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  /* Enter animations - faster, direction-based */
+  .steps-instruction__text-block--enter-from-top {
+    opacity: 0;
+    visibility: visible;
+    transform: translateY(-30px) scale(0.97);
+    filter: blur(4px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  .steps-instruction__text-block--enter-from-bottom {
+    opacity: 0;
+    visibility: visible;
+    transform: translateY(30px) scale(0.97);
+    filter: blur(4px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  .steps-instruction__heading {
+    font-size: {{ section.settings.heading_size | default: 48 }}px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color | default: '#1a1a1a' }};
+    line-height: 1.1;
+    margin: 0 0 40px 0;
+    letter-spacing: -0.02em;
+    padding-left: 40px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+  .steps-instruction__description {
+    font-size: {{ section.settings.description_size | default: 16 }}px;
+    line-height: 1.6;
+    color: {{ section.settings.description_color | default: '#666' }};
+    font-weight: 500;
+    padding-left: 40px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+  /* Clean paragraphs - no bullets, use schema settings */
+  .steps-instruction__description p {
+    margin: 0 0 16px 0;
+    position: relative;
+    padding-left: 0;
+    font-size: {{ section.settings.description_size | default: 16 }}px;
+    line-height: 1.6;
+    color: {{ section.settings.description_color | default: '#666' }};
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+  /* Remove any pseudo-elements that might add bullets */
+  .steps-instruction__description p::before {
+    display: none;
+    content: none;
+  }
+
+
+  /* Only style actual lists when user explicitly adds them */
+  .steps-instruction__description ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+  }
+
+
+  .steps-instruction__description li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    font-size: {{ section.settings.description_size | default: 16 }}px;
+    line-height: 1.5;
+    color: {{ section.settings.description_color | default: '#666' }};
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+
+  /* Only add bullets to list items, not paragraphs */
+  .steps-instruction__description ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4fffff;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+
+  /* Ensure ordered lists work properly too */
+  .steps-instruction__description ol {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+    counter-reset: list-counter;
+  }
+
+
+  .steps-instruction__description ol li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    counter-increment: list-counter;
+  }
+
+
+  .steps-instruction__description ol li::before {
+    content: counter(list-counter) ".";
+    position: absolute;
+    left: 0;
+    color: #4fffff;
+    font-weight: 700;
+    font-size: {{ section.settings.description_size | default: 16 }}px;
+    line-height: 1.2;
+  }
+
+
+
+
+
+
+  /* Static Product Card Container - Sticky within section */
+  .steps-instruction__product-card-container {
+    position: absolute;
+    bottom: 40px;
+    left: 20px;
+    width: 280px;
+    height: 80px;
+    z-index: 15;
+    padding-left: 40px;
+  }
+
+
+  /* Product Card - Static positioning */
+  .steps-instruction__product-card {
+    background: #ffffff;
+    border: 2px solid #4fffff;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /* Product Content - Fast cinematic depth with rotation */
+  .steps-instruction__product-content {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px) scale(0.9) rotateX(5deg);
+    filter: blur(2px);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    pointer-events: none;
+    z-index: 1;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+
+  .steps-instruction__product-content--active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0px);
+    pointer-events: auto;
+    z-index: 2;
+  }
+
+
+  /* Product exit animations - faster, direction-based */
+  .steps-instruction__product-content--exit-up {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.85) rotateX(-3deg);
+    filter: blur(2px);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  .steps-instruction__product-content--exit-down {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.85) rotateX(3deg);
+    filter: blur(2px);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  /* Product enter animations - faster, direction-based */
+  .steps-instruction__product-content--enter-from-top {
+    opacity: 0;
+    visibility: visible;
+    transform: translateY(-20px) scale(0.9) rotateX(-5deg);
+    filter: blur(3px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  .steps-instruction__product-content--enter-from-bottom {
+    opacity: 0;
+    visibility: visible;
+    transform: translateY(20px) scale(0.9) rotateX(5deg);
+    filter: blur(3px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  .steps-instruction__product-image {
+    width: 60px;
+    height: 80px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+
+  .steps-instruction__product-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.3;
+    flex: 1;
+  }
+
+
+  /* Right Column - Visual with Tabs */
+  .steps-instruction__visual {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: right;
+    justify-content: right;
+  }
+
+
+  /* Tabs Navigation - Right Bottom Corner */
+  .steps-instruction__tabs {
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+    gap: 12px;
+    z-index: 20;
+   
+ 
+  }
+
+
+  .steps-instruction__tab {
+    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    user-select: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .steps-instruction__tab--active {
+    background: rgba(255, 255, 255, 1);
+    color: #000000;
+    border: 2px solid #4fffff;
+    box-shadow: 0 4px 20px rgba(79, 255, 255, 0.3);
+  }
+
+
+  .steps-instruction__tab:hover {
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+
+  .steps-instruction__tab--active:hover {
+    background: #ffffffcc;
+    border-color: #4fffff;
+  }
+
+
+  /* Mobile Styles */
+  @media (max-width: 1024px) {
+    .steps-instruction__container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      height: auto;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+
+    .steps-instruction__content {
+      padding-right: 0;
+      text-align: center;
+    }
+
+
+    .steps-instruction__heading {
+      font-size: calc({{ section.settings.heading_size | default: 48 }}px * 0.75);
+      margin-bottom: 30px;
+    }
+
+
+    .steps-instruction__visual {
+      height: 60vh;
+    }
+
+
+    .steps-instruction__tabs {
+      position: relative;
+      bottom: auto;
+      right: auto;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+
+    .steps-instruction {
+      overflow: visible;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .steps-instruction__heading {
+      font-size: calc({{ section.settings.heading_size | default: 48 }}px * 0.58);
+    }
+
+
+    .steps-instruction__description,
+    .steps-instruction__description p,
+    .steps-instruction__description li {
+      font-size: calc({{ section.settings.description_size | default: 16 }}px * 0.875);
+    }
+
+
+    .steps-instruction__product-card {
+      max-width: 100%;
+      padding: 16px;
+    }
+
+
+    .steps-instruction__product-image {
+      width: 50px;
+      height: 65px;
+    }
+
+
+    .steps-instruction__visual {
+      height: 50vh;
+    }
+
+
+    .steps-instruction__tabs {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+
+    .steps-instruction__tab {
+      padding: 10px 20px;
+      font-size: 12px;
+    }
+  }
+</style>
+
+
+<section class="steps-instruction full-width" id="steps-instruction-{{ section.id }}">
+  {% if section.blocks.size == 0 %}
+    <div style="padding: 60px 20px; text-align: center; color: #000000;">
+      <h2>Steps Instruction Section</h2>
+      <p>Add step blocks to get started. Click "Add block" below to create your first step.</p>
+    </div>
+  {% else %}
+    <!-- Full-width Background Images -->
+    {% for block in section.blocks %}
+      {% if block.settings.background_image %}
+        <div
+          class="steps-instruction__background {% if forloop.first %}steps-instruction__background--active{% endif %}"
+          data-step-index="{{ forloop.index0 }}"
+          data-tab="{{ block.settings.tab_category }}"
+          style="background-image: url('{{ block.settings.background_image | image_url: width: 1920 }}');"
+        ></div>
+      {% endif %}
+    {% endfor %}
+
+
+    <div class="steps-instruction__container">
+      <!-- Left Column - Content -->
+      <div class="steps-instruction__content">
+        <!-- Text Content with Scroll Effects -->
+        <div class="steps-instruction__text-content">
+          {% for block in section.blocks %}
+            <div
+              class="steps-instruction__text-block {% if forloop.first %}steps-instruction__text-block--active{% endif %}"
+              data-step-index="{{ forloop.index0 }}"
+              data-tab="{{ block.settings.tab_category }}"
+            >
+              {% if block.settings.heading != blank %}
+                <h2 class="steps-instruction__heading">{{ block.settings.heading }}</h2>
+              {% endif %}
+
+
+              {% if block.settings.description != blank %}
+                <div class="steps-instruction__description">{{ block.settings.description }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+
+      <!-- Right Column - Visual with Tabs -->
+      <div class="steps-instruction__visual">
+        <!-- Tabs Navigation -->
+        <div class="steps-instruction__tabs">
+          {% assign tab_categories = section.blocks | map: 'settings' | map: 'tab_category' | uniq %}
+          {% for tab_category in tab_categories %}
+            {% assign tab_label = tab_category %}
+            {% case tab_category %}
+              {% when 'am' %}
+                {% assign tab_label = 'AM' %}
+              {% when 'pm' %}
+                {% assign tab_label = 'PM' %}
+              {% when 'pm_light' %}
+                {% assign tab_label = 'PM+ Light' %}
+              {% when 'exfoliate' %}
+                {% assign tab_label = 'Exfoliate' %}
+            {% endcase %}
+
+
+            <button
+              class="steps-instruction__tab {% if forloop.first %}steps-instruction__tab--active{% endif %}"
+              data-tab="{{ tab_category }}"
+              onclick="switchTab('{{ tab_category }}', '{{ section.id }}')"
+            >
+              {{ tab_label }}
+            </button>
+          {% endfor %}
+        </div>
+      </div>
+
+
+      <!-- Sticky Product Card - Fixed within section -->
+      <div class="steps-instruction__product-card-container">
+        <div class="steps-instruction__product-card">
+          {% for block in section.blocks %}
+            {% if block.settings.product_name != blank or block.settings.product_image %}
+              <div
+                class="steps-instruction__product-content {% if forloop.first %}steps-instruction__product-content--active{% endif %}"
+                data-step-index="{{ forloop.index0 }}"
+                data-tab="{{ block.settings.tab_category }}"
+              >
+                {% if block.settings.product_image %}
+                  <img
+                    src="{{ block.settings.product_image | image_url: width: 120 }}"
+                    alt="{{ block.settings.product_name | default: 'Product' }}"
+                    class="steps-instruction__product-image"
+                    width="120"
+                    height="160"
+                  >
+                {% endif %}
+
+
+                {% if block.settings.product_name != blank %}
+                  <h3 class="steps-instruction__product-name">{{ block.settings.product_name }}</h3>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</section>
+<script>
+  let stepsInstructionData = {};
+
+
+// Directional scroll tracking system
+let scrollDirectionTracker = {};
+
+
+function initScrollDirectionTracker(sectionId) {
+  scrollDirectionTracker[sectionId] = {
+    scrollDirection: 0, // -1 = up, 0 = none, 1 = down
+    accumulatedDelta: 0,
+    stepTriggerThreshold: 150, // Minimum accumulated delta to trigger step change
+    directionLockThreshold: 30, // Minimum delta to lock direction
+    isDirectionLocked: false,
+    lockedDirection: 0,
+    lastStepTriggerTime: 0,
+    stepCooldown: 400 // Minimum time between step changes
+  };
+}
+
+
+function updateScrollDirectionFromWheel(sectionId, wheelDeltaY) {
+  const tracker = scrollDirectionTracker[sectionId];
+ 
+  // Determine scroll direction with threshold
+  if (Math.abs(wheelDeltaY) > 10) { // Minimum wheel movement to register
+    if (wheelDeltaY > tracker.directionLockThreshold) {
+      // Scrolling down
+      if (!tracker.isDirectionLocked || tracker.lockedDirection !== 1) {
+        tracker.scrollDirection = 1;
+        tracker.lockedDirection = 1;
+        tracker.isDirectionLocked = true;
+        tracker.accumulatedDelta = wheelDeltaY;
+        console.log('🔒 DIRECTION LOCKED: DOWN');
+      } else if (tracker.lockedDirection === 1) {
+        // Continue accumulating in same direction
+        tracker.accumulatedDelta += wheelDeltaY;
+      }
+    } else if (wheelDeltaY < -tracker.directionLockThreshold) {
+      // Scrolling up
+      if (!tracker.isDirectionLocked || tracker.lockedDirection !== -1) {
+        tracker.scrollDirection = -1;
+        tracker.lockedDirection = -1;
+        tracker.isDirectionLocked = true;
+        tracker.accumulatedDelta = wheelDeltaY;
+        console.log('🔒 DIRECTION LOCKED: UP');
+      } else if (tracker.lockedDirection === -1) {
+        // Continue accumulating in same direction
+        tracker.accumulatedDelta += wheelDeltaY;
+      }
+    }
+  }
+ 
+  return {
+    direction: tracker.lockedDirection,
+    shouldTriggerStep: Math.abs(tracker.accumulatedDelta) >= tracker.stepTriggerThreshold,
+    accumulatedDelta: tracker.accumulatedDelta
+  };
+}
+
+
+function resetScrollDirection(sectionId) {
+  const tracker = scrollDirectionTracker[sectionId];
+  tracker.accumulatedDelta = 0;
+  tracker.isDirectionLocked = false;
+  tracker.lockedDirection = 0;
+  tracker.scrollDirection = 0;
+  console.log('🔓 DIRECTION UNLOCKED');
+}
+
+
+function canTriggerStep(sectionId) {
+  const tracker = scrollDirectionTracker[sectionId];
+  const now = Date.now();
+  return (now - tracker.lastStepTriggerTime) >= tracker.stepCooldown;
+}
+
+
+function markStepTriggered(sectionId) {
+  const tracker = scrollDirectionTracker[sectionId];
+  tracker.lastStepTriggerTime = Date.now();
+}
+
+
+  function initStepsInstruction(sectionId) {
+    console.log('🚀 INITIALIZING STEPS INSTRUCTION SECTION');
+
+
+    const container = document.getElementById(`steps-instruction-${sectionId}`);
+    const textBlocks = container.querySelectorAll('.steps-instruction__text-block');
+    const productBlocks = container.querySelectorAll('.steps-instruction__product-content');
+
+
+    if (textBlocks.length === 0) {
+      console.log('❌ No step blocks found');
+      return;
+    }
+
+
+    // Get unique tabs and organize blocks by tab
+    const tabs = {};
+    textBlocks.forEach((block, index) => {
+      const tabCategory = block.dataset.tab;
+      if (!tabs[tabCategory]) {
+        tabs[tabCategory] = [];
+      }
+      tabs[tabCategory].push(index);
+    });
+
+
+    const firstTab = Object.keys(tabs)[0];
+
+
+    // Store section data
+    stepsInstructionData[sectionId] = {
+      container: container,
+      textBlocks: Array.from(textBlocks),
+      productBlocks: Array.from(productBlocks),
+      tabs: tabs,
+      currentTab: firstTab,
+      currentStepIndex: 0,
+      currentTabStepIndex: 0,
+      totalSteps: textBlocks.length,
+      isAnimating: false,
+      isActive: false,
+      mouseOverSection: false,
+      lastScrollTime: 0,
+      isMobile: window.innerWidth <= 1024,
+      wheelHandler: null,
+    };
+
+
+    const data = stepsInstructionData[sectionId];
+
+
+    // Initialize scroll direction tracker
+    initScrollDirectionTracker(sectionId);
+
+
+    console.log(`📊 Total steps: ${data.totalSteps}`);
+    console.log(`📱 Mobile mode: ${data.isMobile}`);
+    console.log(`🏷️ Tabs:`, Object.keys(tabs));
+
+
+    // Set initial state - show first tab
+    switchTab(firstTab, sectionId, true);
+
+
+    // Setup scroll hijacking (desktop only)
+    if (!data.isMobile) {
+      setupScrollHijacking(sectionId);
+    }
+
+
+    console.log('✅ Steps instruction section initialized');
+  }
+
+
+  function setupScrollHijacking(sectionId) {
+    const data = stepsInstructionData[sectionId];
+
+
+    console.log('🎯 Setting up strict viewport scroll hijacking system');
+
+
+    // Initialize strict viewport tracking
+    data.isStrictlyInViewport = false;
+    data.mouseOverSection = false;
+
+
+    // Mouse enter/leave handlers
+    data.container.addEventListener('mouseenter', () => {
+      data.mouseOverSection = true;
+      console.log('🖱️ Mouse entered section');
+    });
+
+
+    data.container.addEventListener('mouseleave', () => {
+      data.mouseOverSection = false;
+      console.log('🖱️ Mouse left section');
+    });
+
+
+    // Start continuous viewport monitoring
+    startStrictViewportMonitoring(sectionId);
+
+
+    console.log('✅ Strict viewport scroll hijacking system ready');
+  }
+
+
+  function addScrollListener(sectionId) {
+    const data = stepsInstructionData[sectionId];
+    const container = data.container;
+
+
+    // Remove existing listener if any
+    if (data.wheelHandler) {
+      container.removeEventListener('wheel', data.wheelHandler);
+      window.removeEventListener('wheel', data.wheelHandler);
+    }
+
+
+    // Create new wheel handler
+    data.wheelHandler = function (e) {
+      handleScrollEvent(e, sectionId);
+    };
+
+
+    // Add wheel event listener to WINDOW for global scroll capture
+    window.addEventListener('wheel', data.wheelHandler, { passive: false });
+
+
+    console.log('🎧 Global wheel listener added - scroll hijacking active');
+  }
+
+
+  function removeScrollListener(sectionId) {
+    const data = stepsInstructionData[sectionId];
+
+
+    if (data.wheelHandler) {
+      data.container.removeEventListener('wheel', data.wheelHandler);
+      window.removeEventListener('wheel', data.wheelHandler);
+      data.wheelHandler = null;
+      console.log('🎧 Wheel listeners removed');
+    }
+  }
+
+
+  function checkStrictViewportAlignment(sectionId) {
+    const data = stepsInstructionData[sectionId];
+    const rect = data.container.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+
+    // ULTRA STRICT: Section must be the ONLY thing visible (completely fills viewport)
+    // This means NO other sections should be visible at the same time
+    const topMargin = 50;
+    const bottomMargin = 50;
+
+
+    // Check if section completely dominates the viewport
+    const isCompletelyDominant =
+      rect.top <= topMargin && // Section starts at/near top
+      rect.bottom >= viewportHeight - bottomMargin && // Section extends to/near bottom
+      rect.height >= viewportHeight * 0.8; // Section is at least 80% of viewport height
+
+
+    // Additional check: ensure no other content is significantly visible
+    const hasSignificantOverflow =
+      rect.top > 100 || // Too much space above
+      rect.bottom < viewportHeight - 100; // Too much space below
+
+
+    const shouldBeActive = isCompletelyDominant && !hasSignificantOverflow;
+
+
+    // Debug logging
+    console.log('🔍 Ultra Strict Viewport Check:', {
+      sectionTop: Math.round(rect.top),
+      sectionBottom: Math.round(rect.bottom),
+      sectionHeight: Math.round(rect.height),
+      viewportHeight: viewportHeight,
+      isCompletelyDominant: isCompletelyDominant,
+      hasSignificantOverflow: hasSignificantOverflow,
+      shouldBeActive: shouldBeActive,
+      currentlyActive: data.isStrictlyInViewport,
+    });
+
+
+    if (shouldBeActive && !data.isStrictlyInViewport) {
+      // Section completely dominates viewport - activate scroll hijacking
+      console.log('🎯 Section completely dominates viewport - RE-ACTIVATING scroll hijacking');
+
+
+      data.isStrictlyInViewport = true;
+      data.isActive = true;
+
+
+      // Re-initialize scroll direction tracker
+      initScrollDirectionTracker(sectionId);
+
+
+      // Add scroll listener
+      addScrollListener(sectionId);
+    } else if (!shouldBeActive && data.isStrictlyInViewport) {
+      // Section no longer dominates - deactivate immediately
+      console.log('❌ Section no longer dominates viewport - Deactivating scroll hijacking');
+
+
+      data.isStrictlyInViewport = false;
+      data.isActive = false;
+
+
+      // Remove scroll listener and ensure normal scrolling
+      removeScrollListener(sectionId);
+      document.body.style.overflow = '';
+    }
+  }
+
+
+  function snapSectionToTop(sectionId) {
+    const data = stepsInstructionData[sectionId];
+
+
+    console.log('📌 Snapping section to perfect top alignment');
+
+
+    // Smooth scroll to bring section to top
+    data.container.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+
+
+    // Mark as snapped
+    data.isSnappedToTop = true;
+
+
+    // Prevent normal page scrolling while section is active
+    document.body.style.overflow = 'hidden';
+
+
+    console.log('✅ Section snapped and locked to top');
+  }
+
+
+  function startStrictViewportMonitoring(sectionId) {
+    const data = stepsInstructionData[sectionId];
+
+
+    console.log('🔍 Starting ultra-strict viewport monitoring');
+
+
+    // Initialize viewport state
+    data.isStrictlyInViewport = false;
+
+
+    // Create frequent checks to catch when other sections become visible
+    data.viewportChecker = setInterval(() => {
+      checkStrictViewportAlignment(sectionId);
+    }, 100); // More frequent checking to catch viewport changes quickly
+
+
+    // Immediate scroll event checking (no debouncing for strict detection)
+    const scrollHandler = () => {
+      checkStrictViewportAlignment(sectionId);
+    };
+
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    data.scrollHandler = scrollHandler;
+
+
+    // Initial check
+    setTimeout(() => {
+      checkStrictViewportAlignment(sectionId);
+    }, 200);
+  }
+
+
+  function stopStrictViewportMonitoring(sectionId) {
+    const data = stepsInstructionData[sectionId];
+
+
+    if (data.viewportChecker) {
+      clearInterval(data.viewportChecker);
+      data.viewportChecker = null;
+    }
+
+
+    // Remove scroll listener
+    if (data.scrollHandler) {
+      window.removeEventListener('scroll', data.scrollHandler);
+      data.scrollHandler = null;
+    }
+
+
+    // Deactivate scroll hijacking
+    data.isActive = false;
+    data.isStrictlyInViewport = false;
+    data.mouseOverSection = false;
+
+
+    // Remove scroll listener and restore normal scrolling
+    removeScrollListener(sectionId);
+    document.body.style.overflow = '';
+
+
+    console.log('🔓 Viewport monitoring stopped');
+  }
+
+
+  function validateStepIndices(sectionId) {
+    const data = stepsInstructionData[sectionId];
+    const currentTabSteps = data.tabs[data.currentTab];
+   
+    // Ensure currentTabStepIndex is within bounds
+    if (data.currentTabStepIndex < 0) {
+      console.warn(`⚠️ FIXING: currentTabStepIndex was ${data.currentTabStepIndex}, setting to 0`);
+      data.currentTabStepIndex = 0;
+    }
+   
+    if (data.currentTabStepIndex >= currentTabSteps.length) {
+      console.warn(`⚠️ FIXING: currentTabStepIndex was ${data.currentTabStepIndex}, setting to ${currentTabSteps.length - 1}`);
+      data.currentTabStepIndex = currentTabSteps.length - 1;
+    }
+   
+    // Ensure currentStepIndex matches currentTabStepIndex
+    const expectedStepIndex = currentTabSteps[data.currentTabStepIndex];
+    if (data.currentStepIndex !== expectedStepIndex) {
+      console.warn(`⚠️ FIXING: currentStepIndex was ${data.currentStepIndex}, should be ${expectedStepIndex}`);
+      data.currentStepIndex = expectedStepIndex;
+    }
+   
+    return true;
+  }
+
+
+  function handleScrollEvent(e, sectionId) {
+    const data = stepsInstructionData[sectionId];
+
+
+    // Only handle if section is active
+    if (!data.isActive) {
+      return; // Let normal scrolling happen
+    }
+
+
+    // Block if currently animating
+    if (data.isAnimating) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+
+    // Check cooldown period
+    if (!canTriggerStep(sectionId)) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+
+    // Update scroll direction tracking using wheel delta
+    const scrollInfo = updateScrollDirectionFromWheel(sectionId, e.deltaY);
+   
+    console.log(`🎯 WHEEL TRACKING: Direction=${scrollInfo.direction}, Delta=${scrollInfo.accumulatedDelta}, ShouldTrigger=${scrollInfo.shouldTriggerStep}`);
+   
+    // Only proceed if we have a clear direction and sufficient scroll delta
+    if (!scrollInfo.shouldTriggerStep || scrollInfo.direction === 0) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+
+    console.log(`🎯 DIRECTIONAL SCROLL TRIGGERED: Direction=${scrollInfo.direction}, Delta=${scrollInfo.accumulatedDelta}`);
+
+
+    // Prevent default immediately
+    e.preventDefault();
+    e.stopPropagation();
+
+
+    const currentTabSteps = data.tabs[data.currentTab];
+    const currentStepIndex = data.currentTabStepIndex;
+    let newTabStepIndex = currentStepIndex;
+    let shouldProcessStep = false;
+
+
+    // STRICT DIRECTIONAL LOGIC - NO OSCILLATION
+    if (scrollInfo.direction === 1) {
+      // FORWARD ONLY - can only increment
+      if (currentStepIndex < currentTabSteps.length - 1) {
+        newTabStepIndex = currentStepIndex + 1;
+        shouldProcessStep = true;
+        console.log(`⬇️ FORWARD STEP: ${currentStepIndex + 1} → ${newTabStepIndex + 1}`);
+      } else {
+        console.log('⬇️ At last step - RELEASING SCROLL HIJACKING');
+        resetScrollDirection(sectionId);
+        // Completely release scroll hijacking to allow navigation to next section
+        data.isActive = false;
+        data.isStrictlyInViewport = false;
+        removeScrollListener(sectionId);
+        document.body.style.overflow = '';
+        return;
+      }
+    } else if (scrollInfo.direction === -1) {
+      // BACKWARD ONLY - can only decrement
+      if (currentStepIndex > 0) {
+        newTabStepIndex = currentStepIndex - 1;
+        shouldProcessStep = true;
+        console.log(`⬆️ BACKWARD STEP: ${currentStepIndex + 1} → ${newTabStepIndex + 1}`);
+      } else {
+        console.log('⬆️ At first step - RELEASING SCROLL HIJACKING');
+        resetScrollDirection(sectionId);
+        // Completely release scroll hijacking to allow navigation to previous section
+        data.isActive = false;
+        data.isStrictlyInViewport = false;
+        removeScrollListener(sectionId);
+        document.body.style.overflow = '';
+        return;
+      }
+    }
+
+
+    if (shouldProcessStep) {
+      // Lock animation immediately
+      data.isAnimating = true;
+     
+      // Mark step as triggered
+      markStepTriggered(sectionId);
+     
+      // Reset scroll direction for next trigger
+      resetScrollDirection(sectionId);
+     
+      // Update indices atomically
+      data.currentTabStepIndex = newTabStepIndex;
+      data.currentStepIndex = currentTabSteps[newTabStepIndex];
+     
+      console.log(`✅ STEP LOCKED: Now at ${data.currentTabStepIndex + 1}/${currentTabSteps.length}`);
+     
+      // Show the step
+      showStepDirectional(data.currentStepIndex, sectionId, scrollInfo.direction);
+    }
+  }
+
+
+  function showStepDirectional(stepIndex, sectionId, direction) {
+    const data = stepsInstructionData[sectionId];
+
+
+    if (stepIndex < 0 || stepIndex >= data.totalSteps) {
+      data.isAnimating = false;
+      return;
+    }
+
+
+    console.log(`� CINEMATIC STEP TRANSITION ${stepIndex + 1}/${data.totalSteps} (${direction > 0 ? 'FORWARD' : 'BACKWARD'})`);
+
+
+    // Get target elements
+    const targetTextBlock = data.container.querySelector(`.steps-instruction__text-block[data-step-index="${stepIndex}"]`);
+    const targetProductBlock = data.container.querySelector(`.steps-instruction__product-content[data-step-index="${stepIndex}"]`);
+    const targetBackground = data.container.querySelector(`.steps-instruction__background[data-step-index="${stepIndex}"]`);
+
+
+    // Get current active elements
+    const currentTextBlock = data.container.querySelector('.steps-instruction__text-block--active');
+    const currentProductBlock = data.container.querySelector('.steps-instruction__product-content--active');
+    const currentBackground = data.container.querySelector('.steps-instruction__background--active');
+
+
+    // PHASE 1: EXIT CURRENT ELEMENTS (Staggered)
+    console.log('🎬 Phase 1: Exiting current elements');
+   
+    // Background exits first (fastest)
+    if (currentBackground && currentBackground !== targetBackground) {
+      currentBackground.classList.remove('steps-instruction__background--active');
+      currentBackground.classList.add('steps-instruction__background--exit');
+    }
+
+
+    // Product exits with slight delay (middle timing)
+    setTimeout(() => {
+      if (currentProductBlock && currentProductBlock !== targetProductBlock) {
+        currentProductBlock.classList.remove('steps-instruction__product-content--active');
+        if (direction > 0) {
+          currentProductBlock.classList.add('steps-instruction__product-content--exit-up');
+        } else {
+          currentProductBlock.classList.add('steps-instruction__product-content--exit-down');
+        }
+      }
+    }, 100);
+
+
+    // Text exits last (slowest, most noticeable)
+    setTimeout(() => {
+      if (currentTextBlock && currentTextBlock !== targetTextBlock) {
+        currentTextBlock.classList.remove('steps-instruction__text-block--active');
+        if (direction > 0) {
+          currentTextBlock.classList.add('steps-instruction__text-block--exit-up');
+        } else {
+          currentTextBlock.classList.add('steps-instruction__text-block--exit-down');
+        }
+      }
+    }, 200); // Faster phase timing
+
+
+    // PHASE 2: PREPARE NEW ELEMENTS FOR ENTRANCE
+    setTimeout(() => {
+      console.log('🎬 Phase 2: Preparing new elements');
+     
+      // Clear all transition classes from target elements
+      clearAllTransitionClasses(sectionId);
+     
+      // Set entrance states for new elements
+      if (targetBackground) {
+        targetBackground.classList.add('steps-instruction__background--enter');
+      }
+     
+      if (targetProductBlock) {
+        if (direction > 0) {
+          targetProductBlock.classList.add('steps-instruction__product-content--enter-from-bottom');
+        } else {
+          targetProductBlock.classList.add('steps-instruction__product-content--enter-from-top');
+        }
+      }
+     
+      if (targetTextBlock) {
+        if (direction > 0) {
+          targetTextBlock.classList.add('steps-instruction__text-block--enter-from-bottom');
+        } else {
+          targetTextBlock.classList.add('steps-instruction__text-block--enter-from-top');
+        }
+      }
+    }, 250); // Much faster preparation
+
+
+    // PHASE 3: ENTER NEW ELEMENTS (Staggered)
+    setTimeout(() => {
+      console.log('🎬 Phase 3: Entering new elements');
+     
+      // Background enters first (creates foundation)
+      if (targetBackground) {
+        targetBackground.classList.remove('steps-instruction__background--enter');
+        targetBackground.classList.add('steps-instruction__background--active');
+      }
+
+
+      // Product enters with delay (builds depth)
+      setTimeout(() => {
+        if (targetProductBlock) {
+          targetProductBlock.classList.remove(
+            'steps-instruction__product-content--enter-from-bottom',
+            'steps-instruction__product-content--enter-from-top'
+          );
+          targetProductBlock.classList.add('steps-instruction__product-content--active');
+        }
+      }, 80); // Faster stagger
+
+
+      // Text enters last (hero moment)
+      setTimeout(() => {
+        if (targetTextBlock) {
+          targetTextBlock.classList.remove(
+            'steps-instruction__text-block--enter-from-bottom',
+            'steps-instruction__text-block--enter-from-top'
+          );
+          targetTextBlock.classList.add('steps-instruction__text-block--active');
+        }
+      }, 150); // Faster stagger
+
+
+    }, 300); // Faster entrance timing
+
+
+    // PHASE 4: CLEANUP AND RELEASE
+    setTimeout(() => {
+      console.log('🎬 Phase 4: Cleanup and release');
+     
+      // Final cleanup of all transition classes
+      clearAllTransitionClasses(sectionId);
+     
+      // Release animation lock
+      data.isAnimating = false;
+      console.log(`✨ CINEMATIC STEP ${stepIndex + 1} COMPLETED - Ready for next scroll`);
+    }, 600); // Much faster total duration
+  }
+
+
+  function clearAllTransitionClasses(sectionId) {
+    const data = stepsInstructionData[sectionId];
+   
+    // Clear all text transition classes
+    const allTextBlocks = data.container.querySelectorAll('.steps-instruction__text-block');
+    allTextBlocks.forEach(block => {
+      block.classList.remove(
+        'steps-instruction__text-block--exit-up',
+        'steps-instruction__text-block--exit-down',
+        'steps-instruction__text-block--enter-from-top',
+        'steps-instruction__text-block--enter-from-bottom'
+      );
+    });
+   
+    // Clear all product transition classes
+    const allProductBlocks = data.container.querySelectorAll('.steps-instruction__product-content');
+    allProductBlocks.forEach(block => {
+      block.classList.remove(
+        'steps-instruction__product-content--exit-up',
+        'steps-instruction__product-content--exit-down',
+        'steps-instruction__product-content--enter-from-top',
+        'steps-instruction__product-content--enter-from-bottom'
+      );
+    });
+   
+    // Clear all background transition classes
+    const allBackgrounds = data.container.querySelectorAll('.steps-instruction__background');
+    allBackgrounds.forEach(bg => {
+      bg.classList.remove(
+        'steps-instruction__background--exit',
+        'steps-instruction__background--enter'
+      );
+    });
+  }
+
+
+  function showStepWithExtendedLock(stepIndex, sectionId, scrollDirection = 0) {
+    const data = stepsInstructionData[sectionId];
+
+
+    if (stepIndex < 0 || stepIndex >= data.totalSteps) {
+      data.isAnimating = false; // Release lock on invalid step
+      return;
+    }
+
+
+    // Animation flag should already be set by handleScrollEvent
+    console.log(`🎯 SHOWING STEP ${stepIndex + 1}/${data.totalSteps} (Extended Lock Active)`);
+
+
+    // Get target elements
+    const targetTextBlock = data.container.querySelector(
+      `.steps-instruction__text-block[data-step-index="${stepIndex}"]`
+    );
+    const targetProductBlock = data.container.querySelector(
+      `.steps-instruction__product-content[data-step-index="${stepIndex}"]`
+    );
+    const targetBackground = data.container.querySelector(
+      `.steps-instruction__background[data-step-index="${stepIndex}"]`
+    );
+
+
+    // Simple blur transition - same as background
+    hideAllElements(sectionId);
+
+
+    setTimeout(() => {
+      // Show new content with blur transition
+      if (targetTextBlock) targetTextBlock.classList.add('steps-instruction__text-block--active');
+      if (targetProductBlock) targetProductBlock.classList.add('steps-instruction__product-content--active');
+      if (targetBackground) targetBackground.classList.add('steps-instruction__background--active');
+
+
+      // EXTENDED lock time - especially for backward scrolling
+      const lockTime = scrollDirection < 0 ? 900 : 600; // 900ms for backward, 600ms for forward
+     
+      setTimeout(() => {
+        data.isAnimating = false;
+        console.log(`✅ Step ${stepIndex + 1} completed (${scrollDirection < 0 ? 'BACKWARD' : 'FORWARD'} - Extended Lock Released)`);
+      }, lockTime);
+    }, 50);
+  }
+
+
+  function showStep(stepIndex, sectionId, scrollDirection = 0, isTabSwitch = false) {
+    const data = stepsInstructionData[sectionId];
+
+
+    if (stepIndex < 0 || stepIndex >= data.totalSteps) {
+      data.isAnimating = false; // Release lock on invalid step
+      return;
+    }
+
+
+    // Animation flag should already be set by handleScrollEvent
+    console.log(`🎯 SHOWING STEP ${stepIndex + 1}/${data.totalSteps} (Animation LOCKED)`);
+
+
+    // Get target elements
+    const targetTextBlock = data.container.querySelector(
+      `.steps-instruction__text-block[data-step-index="${stepIndex}"]`
+    );
+    const targetProductBlock = data.container.querySelector(
+      `.steps-instruction__product-content[data-step-index="${stepIndex}"]`
+    );
+    const targetBackground = data.container.querySelector(
+      `.steps-instruction__background[data-step-index="${stepIndex}"]`
+    );
+
+
+    // Simple blur transition - same as background
+    hideAllElements(sectionId);
+
+
+    setTimeout(() => {
+      // Show new content with blur transition
+      if (targetTextBlock) targetTextBlock.classList.add('steps-instruction__text-block--active');
+      if (targetProductBlock) targetProductBlock.classList.add('steps-instruction__product-content--active');
+      if (targetBackground) targetBackground.classList.add('steps-instruction__background--active');
+
+
+      // CRITICAL: Release animation lock after transition completes
+      setTimeout(() => {
+        data.isAnimating = false;
+        console.log(`✅ Step ${stepIndex + 1} transition completed (Animation UNLOCKED)`);
+      }, 500); // Increased to 500ms to match throttling
+    }, 50);
+  }
+
+
+  function hideAllElements(sectionId) {
+    const data = stepsInstructionData[sectionId];
+
+
+    // Hide all elements completely
+    const allTextBlocks = data.container.querySelectorAll('.steps-instruction__text-block');
+    const allProductBlocks = data.container.querySelectorAll('.steps-instruction__product-content');
+    const allBackgrounds = data.container.querySelectorAll('.steps-instruction__background');
+
+
+    // Remove active classes from all text blocks
+    allTextBlocks.forEach((block) => {
+      block.classList.remove('steps-instruction__text-block--active');
+    });
+
+
+    // Remove active classes from ALL product blocks (ensure only one is active)
+    allProductBlocks.forEach((block) => {
+      block.classList.remove('steps-instruction__product-content--active');
+    });
+
+
+    // Remove active classes from all backgrounds
+    allBackgrounds.forEach((bg) => {
+      bg.classList.remove('steps-instruction__background--active');
+    });
+
+
+    console.log('🧹 All elements hidden - no overlapping content');
+  }
+
+
+  function switchTab(tabCategory, sectionId, isInitial = false) {
+    const data = stepsInstructionData[sectionId];
+
+
+    if (!data || !data.tabs[tabCategory]) {
+      console.log('❌ Invalid tab category:', tabCategory);
+      return;
+    }
+
+
+    console.log(`🏷️ SWITCHING TO TAB: ${tabCategory}`);
+
+
+    // Update current tab
+    data.currentTab = tabCategory;
+    data.currentTabStepIndex = 0;
+    data.currentStepIndex = data.tabs[tabCategory][0];
+
+
+    // Update tab UI
+    const allTabs = data.container.querySelectorAll('.steps-instruction__tab');
+    allTabs.forEach((tab) => {
+      tab.classList.remove('steps-instruction__tab--active');
+      if (tab.dataset.tab === tabCategory) {
+        tab.classList.add('steps-instruction__tab--active');
+      }
+    });
+
+
+    // Show first step of selected tab
+    showStep(data.currentStepIndex, sectionId, 0, true);
+  }
+
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('📄 DOM loaded, initializing steps instruction...');
+    setTimeout(() => {
+      initStepsInstruction('{{ section.id }}');
+    }, 500);
+  });
+
+
+  // Handle window resize
+  window.addEventListener('resize', function () {
+    const sectionId = '{{ section.id }}';
+    const data = stepsInstructionData[sectionId];
+
+
+    if (data) {
+      const wasMobile = data.isMobile;
+      data.isMobile = window.innerWidth <= 1024;
+
+
+      // If switching between mobile/desktop, reinitialize
+      if (wasMobile !== data.isMobile) {
+        console.log('📱 Device type changed, reinitializing...');
+
+
+        // Clean up existing listeners and monitoring
+        if (data.wheelHandler) {
+          removeScrollListener(sectionId);
+        }
+
+
+        // Stop viewport monitoring
+        stopStrictViewportMonitoring(sectionId);
+
+
+        // Restore body scroll
+        document.body.style.overflow = '';
+
+
+        // Reinitialize
+        setTimeout(() => {
+          initStepsInstruction(sectionId);
+        }, 100);
+      } else if (!data.isMobile) {
+        // Desktop mode - recheck viewport alignment on resize
+        setTimeout(() => {
+          checkStrictViewportAlignment(sectionId);
+        }, 100);
+      }
+    }
+  });
+
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', function () {
+    // Clean up all sections
+    Object.keys(stepsInstructionData).forEach((sectionId) => {
+      stopStrictViewportMonitoring(sectionId);
+    });
+    document.body.style.overflow = '';
+  });
+</script>
+{% schema %}
+{
+  "name": "Steps Instruction",
+  "tag": "section",
+  "class": "steps-instruction-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "Create step-by-step instructions with scroll-based transitions. Each block represents one step with content, images, and navigation."
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "instruction_step",
+      "name": "Instruction Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "tab_category",
+          "label": "Tab Category",
+          "options": [
+            {
+              "value": "am",
+              "label": "AM"
+            },
+            {
+              "value": "pm",
+              "label": "PM"
+            },
+            {
+              "value": "pm_light",
+              "label": "PM+ Light"
+            },
+            {
+              "value": "exfoliate",
+              "label": "Exfoliate"
+            }
+          ],
+          "default": "am",
+          "info": "Select which tab this step belongs to"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image",
+          "info": "Custom background image for this step (recommended: 1200x800px)"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Step Heading",
+          "default": "Nutrition and Digestive daily probiotic and new daily multivitamin",
+          "info": "Main heading for this step"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Step Description",
+          "default": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental</p><p>Use a lightweight moisturizer to keep your skin hydrated, smooth</p><p>Finish with a broad-spectrum SPF 30+ to shield your skin from UV damage</p>",
+          "info": "Rich text description with formatting options - you can add your own bullet points, paragraphs, and styling"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Card Image",
+          "info": "Small product image for the card (recommended: 120x160px)"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "Age-Defy Purity Wash",
+          "info": "Product name shown in the card"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product Link",
+          "info": "Optional link for the product card"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Steps Instruction",
+      "blocks": [
+        {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "heading": "Morning skincare routine",
+            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental damage</p><p>Use a lightweight moisturizer to keep your skin hydrated and smooth</p>",
+            "product_name": "Vitamin C Serum"
+          }
+        },
+        {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "heading": "Morning hydration boost",
+            "description": "<p>Start with a hydrating toner to prep your skin</p><p>Apply hyaluronic acid serum for deep moisture</p><p>Use a refreshing face mist throughout the day</p><p>Don't forget lip balm for complete hydration</p>",
+            "product_name": "Hyaluronic Acid"
+          }
+        },
+        {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "pm",
+            "heading": "Evening skincare routine",
+            "description": "<p>Begin with a deep cleansing oil to remove makeup</p><p>Apply retinol night serum for skin renewal</p><p>Use a rich night moisturizer for overnight repair</p><p>Add eye renewal complex for delicate eye area</p>",
+            "product_name": "Retinol Night Serum"
+          }
+        },
+        {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "exfoliate",
+            "heading": "Weekly exfoliation routine",
+            "description": "<p>Use an exfoliating scrub 2-3 times per week</p><p>Apply AHA/BHA treatment for deeper exfoliation</p><p>Follow with a soothing recovery mask</p><p>Finish with barrier repair cream to restore skin</p>",
+            "product_name": "Exfoliating Scrub"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+

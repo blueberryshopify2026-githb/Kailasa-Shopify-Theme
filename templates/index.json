@@ -186,6 +186,7 @@
         "phase_5_YEp8jg",
         "phase_6_wzLKkL"
       ],
+      "disabled": true,
       "name": "Protocol Phases V2",
       "settings": {
         "bg_color": "#ffffff",
@@ -243,7 +244,7 @@
         "content_gap": 15,
         "feature_gap": 10,
         "feature_item_padding": 10,
-        "feature_item_bg": "transparent",
+        "feature_item_bg": "rgba(0,0,0,0)",
         "feature_item_radius": 8,
         "feature_icon_gap": 12,
         "feature_icon_size": 40,
@@ -289,7 +290,7 @@
         "mobile_content_title": 24,
         "cta_bg_color": "#4fffff",
         "cta_text_color": "#000000",
-        "cta_hover_bg": "transparent",
+        "cta_hover_bg": "rgba(0,0,0,0)",
         "cta_hover_text": "#4fffff",
         "cta_font_size": 18,
         "cta_font_weight": "600",

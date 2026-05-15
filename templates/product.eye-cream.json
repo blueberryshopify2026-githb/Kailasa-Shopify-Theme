@@ -67,33 +67,6 @@
             "variant_detail_4": "Delivered every 30 days",
             "variant_price": "$99 USD"
           }
-        },
-        "media_Dbjgri": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "media_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
-            "media_alt": "Product image",
-            "media_video_url": ""
-          }
-        },
-        "media_eGHdeN": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "media_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
-            "media_alt": "Product image",
-            "media_video_url": ""
-          }
-        },
-        "media_7JGftC": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "media_image": "shopify://shop_images/7_Natural_ingredients_for_Korean_glass_skin.jpg",
-            "media_alt": "Product image",
-            "media_video_url": ""
-          }
         }
       },
       "block_order": [
@@ -102,10 +75,7 @@
         "product_image_YfjgEJ",
         "variant_atMehT",
         "variant_t6AJCk",
-        "variant_HzY8R7",
-        "media_Dbjgri",
-        "media_eGHdeN",
-        "media_7JGftC"
+        "variant_HzY8R7"
       ],
       "name": "Product Buy Box",
       "settings": {

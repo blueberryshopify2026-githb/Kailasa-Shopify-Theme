@@ -20,7 +20,7 @@
           "type": "product_slide",
           "settings": {
             "product": "photon-youth™-pro-led-mask",
-            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1_e144385b-9df0-4354-90f5-db8d7a7edd1d.png",
+            "product_image": "shopify://shop_images/download_60.jpg",
             "card_heading": "Add a subheading",
             "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
             "card_desc2": "Add a little bit of body text"
@@ -30,7 +30,7 @@
           "type": "product_slide",
           "settings": {
             "product": "photon-youth™-pro-led-mask",
-            "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
+            "product_image": "shopify://shop_images/download_63.jpg",
             "card_heading": "Add a subheading",
             "card_desc1": "A kind of science used to prolong the lifespan and delay aging while maintaining the physical, functional, and aesthetic beauty of the body.",
             "card_desc2": "Add a little bit of body text"
@@ -45,7 +45,7 @@
       "settings": {
         "bg_image": "shopify://shop_images/pexels-arina-krasnikova-6663393_a8e5de8d-ebc7-4140-9bc5-f37200146d89.jpg",
         "overlay_color": "#000000",
-        "overlay_opacity": 45,
+        "overlay_opacity": 10,
         "section_height": 560,
         "heading_top": "Unique beauty",
         "heading_top_size": 48,

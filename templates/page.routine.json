@@ -569,6 +569,7 @@
     },
     "inforoutine_section_nXiFHG": {
       "type": "inforoutine-section",
+      "disabled": true,
       "name": "Info Routine Section",
       "settings": {
         "pri_bg": "#ffffff",

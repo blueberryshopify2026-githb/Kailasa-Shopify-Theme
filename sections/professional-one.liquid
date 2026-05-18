@@ -245,14 +245,14 @@
   .pro-one-doctor-name {
     font-size: {{ section.settings.doctor_name_size }}px;
     font-weight: {{ section.settings.doctor_name_weight }};
-    font-style: italic;
+    /* font-style: italic; */
     color: {{ section.settings.doctor_name_color }};
     margin: 0 0 6px 0;
   }
 
   .pro-one-doctor-specialty {
     font-size: {{ section.settings.doctor_meta_size }}px;
-    font-weight: 700;
+    font-weight: 500;
     color: {{ section.settings.doctor_meta_color }};
     margin: 0 0 4px 0;
   }
@@ -771,7 +771,7 @@
       "type": "range",
       "id": "doctor_card_width",
       "label": "Card Width (%)",
-      "min": 50, "max": 100, "step": 2, "default": 66
+      "min": 50, "max": 100, "step": 2, "default": 50
     },
     {
       "type": "range",
@@ -825,7 +825,7 @@
         { "value": "600", "label": "Semi Bold" },
         { "value": "700", "label": "Bold" }
       ],
-      "default": "600"
+      "default": "500"
     },
     {
       "type": "color",

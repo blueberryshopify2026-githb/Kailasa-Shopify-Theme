@@ -232,20 +232,340 @@
     margin: 0;
   }
 
-  /* Responsive */
-  @media (max-width: 900px) {
-    .ff-main-row { flex-direction: column; }
-    .ff-image-wrap { flex: 0 0 100%; }
-    .ff-bottom-row { grid-template-columns: repeat(2, 1fr); }
+  /* ── Mobile Marquee ── */
+  .ff-marquee-container {
+    display: none;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
   }
-  @media (max-width: 600px) {
-    .ff-bottom-row { grid-template-columns: 1fr; }
+
+  .ff-marquee-track {
+    display: flex;
+    gap: 16px;
+    animation: ff-scroll 30s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes ff-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .ff-marquee-card {
+    flex: 0 0 auto;
+    width: 280px;
+    position: relative;
+    padding-top: {{ section.settings.ff_icon_size | divided_by: 2 }}px;
+  }
+
+  .ff-marquee-card .ff-card {
+    height: auto;
+    min-height: 80px;
+    padding: 20px 16px 20px {{ section.settings.ff_card_pad_h | plus: section.settings.ff_icon_size | plus: 12 }}px;
+  }
+
+  /* Close button for tablet touch */
+  .ff-close-btn {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: rgba(0,0,0,0.6);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 25;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .ff-close-btn:hover {
+    background: rgba(0,0,0,0.8);
+  }
+
+  .ff-hover-card.active .ff-close-btn {
+    display: flex;
+  }
+
+  /* ── RESPONSIVE: Mobile First ── */
+  
+  /* Mobile: < 768px */
+  @media (max-width: 767px) {
+    .ff-section {
+      height: auto;
+      min-height: auto;
+      padding: 24px 16px;
+    }
+
+    .ff-heading {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* Hide desktop layout */
+    .ff-layout {
+      display: none;
+    }
+
+    /* Show mobile marquee */
+    .ff-marquee-container {
+      display: block;
+    }
+
+    /* Mobile image */
+    .ff-mobile-image-wrap {
+      display: block;
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .ff-mobile-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ff-mobile-image-placeholder {
+      width: 100%;
+      height: 200px;
+      background: #e8e8e8;
+      border-radius: 12px;
+    }
+
+    /* Adjust marquee card for mobile */
+    .ff-marquee-card {
+      width: 260px;
+    }
+
+    .ff-marquee-card .ff-card {
+      min-height: 70px;
+      padding: 16px 12px 16px 72px;
+      cursor: pointer;
+    }
+
+    .ff-marquee-card .ff-icon-wrap {
+      width: 40px;
+      height: 40px;
+      top: -20px;
+      left: 12px;
+    }
+
+    .ff-marquee-card .ff-card-label {
+      font-size: 14px;
+    }
+
+    /* Enable hover cards on mobile with click */
+    .ff-marquee-card .ff-hover-card {
+      display: flex;
+      pointer-events: none;
+    }
+
+    .ff-marquee-card .ff-hover-card.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .ff-marquee-card .ff-hover-card.active .ff-close-btn {
+      display: flex;
+    }
+  }
+
+  /* Tablet: 768px - 1024px */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .ff-section {
+      height: auto;
+      min-height: auto;
+      padding: 32px 24px;
+    }
+
+    .ff-heading {
+      font-size: 32px;
+      margin-bottom: 24px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* Hide desktop layout */
+    .ff-layout {
+      display: none;
+    }
+
+    /* Show tablet marquee */
+    .ff-marquee-container {
+      display: block;
+    }
+
+    /* Tablet image */
+    .ff-mobile-image-wrap {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 28px;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 280px;
+    }
+
+    .ff-mobile-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ff-mobile-image-placeholder {
+      width: 100%;
+      height: 280px;
+      background: #e8e8e8;
+      border-radius: 16px;
+    }
+
+    /* Tablet marquee cards */
+    .ff-marquee-card {
+      width: 300px;
+    }
+
+    .ff-marquee-card .ff-card {
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.25s;
+    }
+
+    .ff-marquee-card .ff-card:active {
+      transform: scale(0.98);
+    }
+
+    /* Enable hover cards on tablet with touch */
+    .ff-marquee-card .ff-hover-card {
+      display: flex;
+      pointer-events: none;
+    }
+
+    .ff-marquee-card .ff-hover-card.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .ff-marquee-card .ff-hover-card.active .ff-close-btn {
+      display: flex;
+    }
+  }
+
+  /* Desktop: > 1024px */
+  @media (min-width: 1025px) {
+    /* Hide mobile elements */
+    .ff-mobile-image-wrap {
+      display: none;
+    }
+
+    .ff-marquee-container {
+      display: none;
+    }
+
+    /* Show desktop layout */
+    .ff-layout {
+      display: grid;
+    }
   }
 </style>
 
 <section class="ff-section full-width">
 
   <h2 class="ff-heading">{{ section.settings.ff_heading }}</h2>
+
+  <!-- Mobile/Tablet Image -->
+  <div class="ff-mobile-image-wrap">
+    {% if section.settings.ff_image != blank %}
+      <img
+        class="ff-mobile-image"
+        src="{{ section.settings.ff_image | image_url: width: 800 }}"
+        alt="{{ section.settings.ff_heading }}"
+        width="800"
+        height="280"
+        loading="lazy"
+      >
+    {% else %}
+      <div class="ff-mobile-image-placeholder"></div>
+    {% endif %}
+  </div>
+
+  <!-- Mobile/Tablet Marquee -->
+  <div class="ff-marquee-container">
+    <div class="ff-marquee-track">
+      {% for block in section.blocks %}
+        <div class="ff-marquee-card" data-block-id="{{ block.id }}">
+          <div class="ff-card">
+            <div class="ff-icon-wrap">
+              {% if block.settings.ff_icon != blank %}
+                <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
+              {% else %}
+                <div class="ff-icon-placeholder">✦</div>
+              {% endif %}
+            </div>
+            <p class="ff-card-label">{{ block.settings.ff_label }}</p>
+          </div>
+          {% if block.settings.ff_hover_text != blank %}
+            <div class="ff-hover-card">
+              <button class="ff-close-btn" aria-label="Close">&times;</button>
+              <div class="ff-hover-icon-row">
+                {% if block.settings.ff_icon != blank %}
+                  <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
+                {% else %}
+                  <div class="ff-hover-icon-placeholder"></div>
+                {% endif %}
+                <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
+              </div>
+              <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <!-- Duplicate for seamless loop -->
+      {% for block in section.blocks %}
+        <div class="ff-marquee-card" data-block-id="{{ block.id }}-duplicate">
+          <div class="ff-card">
+            <div class="ff-icon-wrap">
+              {% if block.settings.ff_icon != blank %}
+                <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
+              {% else %}
+                <div class="ff-icon-placeholder">✦</div>
+              {% endif %}
+            </div>
+            <p class="ff-card-label">{{ block.settings.ff_label }}</p>
+          </div>
+          {% if block.settings.ff_hover_text != blank %}
+            <div class="ff-hover-card">
+              <button class="ff-close-btn" aria-label="Close">&times;</button>
+              <div class="ff-hover-icon-row">
+                {% if block.settings.ff_icon != blank %}
+                  <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
+                {% else %}
+                  <div class="ff-hover-icon-placeholder"></div>
+                {% endif %}
+                <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
+              </div>
+              <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 
   <!-- Grid layout: image top-left, right cards top-right, bottom cards full width -->
   <div class="ff-layout">
@@ -333,6 +653,55 @@
   </div>
 
 </section>
+
+<script>
+(function() {
+  // Mobile and Tablet touch interaction for hover cards
+  if (window.matchMedia('(max-width: 1024px)').matches) {
+    const marqueeCards = document.querySelectorAll('.ff-marquee-card');
+    
+    marqueeCards.forEach(card => {
+      const cardElement = card.querySelector('.ff-card');
+      const hoverCard = card.querySelector('.ff-hover-card');
+      const closeBtn = card.querySelector('.ff-close-btn');
+      
+      if (cardElement && hoverCard) {
+        // Open hover card on card click
+        cardElement.addEventListener('click', function(e) {
+          e.stopPropagation();
+          
+          // Close all other hover cards
+          document.querySelectorAll('.ff-hover-card.active').forEach(other => {
+            if (other !== hoverCard) {
+              other.classList.remove('active');
+            }
+          });
+          
+          // Toggle current hover card
+          hoverCard.classList.toggle('active');
+        });
+        
+        // Close button
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            hoverCard.classList.remove('active');
+          });
+        }
+      }
+    });
+    
+    // Close hover cards when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.ff-marquee-card')) {
+        document.querySelectorAll('.ff-hover-card.active').forEach(card => {
+          card.classList.remove('active');
+        });
+      }
+    });
+  }
+})();
+</script>
 
 {% schema %}
 {

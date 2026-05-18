@@ -12,9 +12,111 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "professional_one_LDAqKL": {
+      "type": "professional-one",
+      "blocks": {
+        "feature_d38Frf": {
+          "type": "feature",
+          "settings": {
+            "feature_image": "shopify://shop_images/NUNKORO_AQUAFILL_REHYDRATING_CREAM.jpg",
+            "feature_title": "Repair",
+            "feature_description": "Achieve Radiance With Our Signature Skin Boosters & Collagen Therapy. Expert MNRF & Laser Treatments. Safe For All Skin Types."
+          }
+        },
+        "feature_mUnFYf": {
+          "type": "feature",
+          "settings": {
+            "feature_image": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
+            "feature_title": "Reset",
+            "feature_description": "Retinoid or retinol? Achieve Radiance With Our Signature Skin Boosters & Collagen Therapy. Call Skulpted Now. Expert MNRF & Laser Treatments."
+          }
+        },
+        "feature_d4BLA7": {
+          "type": "feature",
+          "settings": {
+            "feature_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
+            "feature_title": "Rejuvinate",
+            "feature_description": "Rejuvenate your skin with our advanced peptide-rich formulas. Restore elasticity, reduce fine lines, and reveal a youthful glow."
+          }
+        }
+      },
+      "block_order": [
+        "feature_d38Frf",
+        "feature_mUnFYf",
+        "feature_d4BLA7"
+      ],
+      "name": "Professional One",
+      "settings": {
+        "section_height": 100,
+        "section_min_height": 600,
+        "left_width": 40,
+        "mobile_breakpoint": 900,
+        "mobile_image_height": 400,
+        "section_bg": "#ffffff",
+        "left_bg": "#ffffff",
+        "accent_color": "#4fffff",
+        "left_padding_top": 50,
+        "left_padding_right": 40,
+        "left_padding_bottom": 40,
+        "left_padding_left": 60,
+        "quote": "Your skin is the fingerprint",
+        "quote_font_size": 54,
+        "quote_font_weight": "600",
+        "quote_line_height": "1.15",
+        "quote_color": "#000000",
+        "quote_margin_bottom": 10,
+        "blog_handle": "the-full-korean-10-step-skin-care-routine",
+        "fallback_excerpt": "Skincare is a part of self-care, which helps in making you feel good both physically and mentally",
+        "fallback_link": "",
+        "excerpt_margin_top": 10,
+        "excerpt_margin_bottom": 36,
+        "excerpt_font_size": 15,
+        "excerpt_color": "#333333",
+        "read_more_font_size": 14,
+        "read_more_color": "#000000",
+        "features_margin_top": 120,
+        "feature_row_gap": 10,
+        "feature_row_padding": 8,
+        "divider_color": "#dddddd",
+        "thumb_size": 52,
+        "thumb_radius": 8,
+        "feature_label_size": 17,
+        "feature_label_weight": "500",
+        "feature_label_color": "#000000",
+        "arrow_size": 20,
+        "arrow_color": "#000000",
+        "card_bg_opacity": 15,
+        "card_blur": 16,
+        "card_border_width": 1,
+        "card_radius": 16,
+        "card_padding": 28,
+        "card_title_size": 20,
+        "card_title_color": "#000000",
+        "card_desc_size": 15,
+        "card_desc_color": "#222222",
+        "doctor_image": "shopify://shop_images/pexels-tima-miroshnichenko-5407222.jpg",
+        "doctor_name": "Dr. Dakorte Johnson",
+        "doctor_specialty": "Dermetologist, M.D, University of California",
+        "doctor_experience": "10+ Years of experience",
+        "doctor_card_bottom": 36,
+        "doctor_card_width": 50,
+        "doctor_card_bg_opacity": 20,
+        "doctor_card_blur": 14,
+        "doctor_card_border_width": 2,
+        "doctor_card_radius": 16,
+        "doctor_card_padding_v": 22,
+        "doctor_card_padding_h": 28,
+        "doctor_name_size": 26,
+        "doctor_name_weight": "500",
+        "doctor_name_color": "#000000",
+        "doctor_meta_size": 15,
+        "doctor_meta_color": "#000000"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "professional_one_LDAqKL"
   ]
 }

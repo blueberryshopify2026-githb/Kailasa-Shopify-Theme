@@ -460,8 +460,8 @@
 </div>
 
 <style>
-  /* Prevent horizontal scrollbar */
-  html, body {
+  /* Prevent horizontal scrollbar - only on body, NOT html, to preserve sticky positioning */
+  body {
     overflow-x: clip;
     max-width: 100%;
   }
@@ -1784,7 +1784,7 @@
   // Header hide/show on scroll
   let lastScrollTop = 0;
   let scrollThreshold = 10;
-  let ticking = false;
+  let headerTicking = false;
   
   function updateHeaderVisibility() {
     const headerWrapper = document.querySelector('.header-wrapper');
@@ -1792,13 +1792,13 @@
     
     // Prevent negative values
     if (currentScroll < 0) {
-      ticking = false;
+      headerTicking = false;
       return;
     }
     
     // Check if scroll difference is significant
     if (Math.abs(currentScroll - lastScrollTop) < scrollThreshold) {
-      ticking = false;
+      headerTicking = false;
       return;
     }
     
@@ -1811,13 +1811,13 @@
     }
     
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    ticking = false;
+    headerTicking = false;
   }
   
   window.addEventListener('scroll', function() {
-    if (!ticking) {
+    if (!headerTicking) {
       window.requestAnimationFrame(updateHeaderVisibility);
-      ticking = true;
+      headerTicking = true;
     }
   }, { passive: true });
 </script>
@@ -2699,3 +2699,4 @@
   ]
 }
 {% endschema %}
+

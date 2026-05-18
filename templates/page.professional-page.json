@@ -113,10 +113,104 @@
         "doctor_meta_size": 15,
         "doctor_meta_color": "#000000"
       }
+    },
+    "proff_section_two_gQGwxN": {
+      "type": "proff-section-two",
+      "blocks": {
+        "bullet_KhHDEB": {
+          "type": "bullet",
+          "settings": {
+            "pt_bullet_title": "Appearance of Smoother skin",
+            "pt_bullet_desc": "anti-aging skin care product can feel like a hit-or-miss"
+          }
+        },
+        "bullet_dFUeGL": {
+          "type": "bullet",
+          "settings": {
+            "pt_bullet_title": "Appearance of Smoother",
+            "pt_bullet_desc": "anti-aging skin care product can feel like a hit-o"
+          }
+        },
+        "bullet_9jpeHY": {
+          "type": "bullet",
+          "settings": {
+            "pt_bullet_title": "Appearance of Smoother",
+            "pt_bullet_desc": "anti-aging skin care product can feel like a hit-o"
+          }
+        }
+      },
+      "block_order": [
+        "bullet_KhHDEB",
+        "bullet_dFUeGL",
+        "bullet_9jpeHY"
+      ],
+      "name": "Proff Section Two",
+      "settings": {
+        "pt_section_height": 100,
+        "pt_section_min_height": 600,
+        "pt_left_width": 40,
+        "pt_mobile_breakpoint": 900,
+        "pt_mobile_img_height": 400,
+        "pt_section_bg": "#ffffff",
+        "pt_right_bg": "#ffffff",
+        "pt_accent_color": "#4fffff",
+        "pt_doctor_image": "shopify://shop_images/pexels-tima-miroshnichenko-5407222.jpg",
+        "pt_image_fit": "cover",
+        "pt_image_position": "center center",
+        "pt_doctor_name": "Dr. Dakorte Johnson",
+        "pt_doctor_specialty": "Dermetologist, M.D, University of California",
+        "pt_doctor_experience": "10+ Years of experience",
+        "pt_doctor_card_bottom": 30,
+        "pt_doctor_card_left": 20,
+        "pt_doctor_card_right": 20,
+        "pt_doctor_card_opacity": 70,
+        "pt_doctor_card_blur": 14,
+        "pt_doctor_card_border_width": 2,
+        "pt_doctor_card_radius": 14,
+        "pt_doctor_card_pad_v": 18,
+        "pt_doctor_card_pad_h": 20,
+        "pt_doctor_name_size": 22,
+        "pt_doctor_name_weight": "600",
+        "pt_doctor_name_color": "#000000",
+        "pt_doctor_meta_size": 14,
+        "pt_doctor_meta_color": "#000000",
+        "pt_right_pad_top": 60,
+        "pt_right_pad_right": 60,
+        "pt_right_pad_bottom": 60,
+        "pt_right_pad_left": 50,
+        "pt_heading": "Dermatologists agree that sunscreen and moisturizer",
+        "pt_heading_size": 48,
+        "pt_heading_weight": "700",
+        "pt_heading_line_height": "1.15",
+        "pt_heading_color": "#000000",
+        "pt_heading_margin_bottom": 16,
+        "pt_blog_handle": "the-full-korean-10-step-skin-care-routine",
+        "pt_fallback_excerpt": "Shopping for an anti-aging skin care product can feel like a hit-or-miss experience",
+        "pt_fallback_link": "",
+        "pt_excerpt_size": 15,
+        "pt_excerpt_color": "#333333",
+        "pt_read_more_color": "#000000",
+        "pt_excerpt_margin_bottom": 32,
+        "pt_bullets_margin_top": 20,
+        "pt_bullet_pad": 16,
+        "pt_bullet_title_size": 14,
+        "pt_bullet_title_color": "#000000",
+        "pt_bullet_desc_size": 12,
+        "pt_bullet_desc_color": "#555555",
+        "pt_dot_size": 14,
+        "pt_dot_color": "#000000",
+        "pt_curve_width": 180,
+        "pt_curve_height": 180,
+        "pt_curve_color": "#000000",
+        "pt_curve_stroke": 2,
+        "pt_circle_image": "shopify://shop_images/download_66.jpg",
+        "pt_circle_size": 260
+      }
     }
   },
   "order": [
     "main",
-    "professional_one_LDAqKL"
+    "professional_one_LDAqKL",
+    "proff_section_two_gQGwxN"
   ]
 }

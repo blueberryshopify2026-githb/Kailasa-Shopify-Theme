@@ -623,12 +623,126 @@
         "container_padding": 40,
         "content_max_height": 150
       }
+    },
+    "free_from_section_pktB4E": {
+      "type": "free-from-section",
+      "blocks": {
+        "card_6jjW3A": {
+          "type": "card",
+          "settings": {
+            "ff_position": "bottom",
+            "ff_icon": "shopify://shop_images/cruelty-free.png",
+            "ff_label": "Clean & Vegan",
+            "ff_hover_text": "Offers a curated selection of 100% vegan skincare products free from animal-derived ingredients."
+          }
+        },
+        "card_w3yk6K": {
+          "type": "card",
+          "settings": {
+            "ff_position": "bottom",
+            "ff_icon": "shopify://shop_images/paraben-free_1.png",
+            "ff_label": "Paraben Free",
+            "ff_hover_text": "Formulated without parabens — preservatives linked to skin irritation and hormonal disruption."
+          }
+        },
+        "card_mEBzGk": {
+          "type": "card",
+          "settings": {
+            "ff_position": "bottom",
+            "ff_icon": "shopify://shop_images/free_1.png",
+            "ff_label": "Sulfate Free",
+            "ff_hover_text": "No harsh sulfates that strip your skin's natural moisture barrier and cause dryness."
+          }
+        },
+        "card_nifPar": {
+          "type": "card",
+          "settings": {
+            "ff_position": "bottom",
+            "ff_icon": "shopify://shop_images/gmo.png",
+            "ff_label": "Alcohol Free",
+            "ff_hover_text": "No drying alcohols — keeps your skin hydrated and balanced throughout the day."
+          }
+        },
+        "card_cJ49FV": {
+          "type": "card",
+          "settings": {
+            "ff_position": "right",
+            "ff_icon": "shopify://shop_images/paraben-free_2.png",
+            "ff_label": "Cruelty Free",
+            "ff_hover_text": "Never tested on animals. Certified cruelty-free by leading international organizations."
+          }
+        },
+        "card_xFW3iz": {
+          "type": "card",
+          "settings": {
+            "ff_position": "right",
+            "ff_icon": "shopify://shop_images/paraben-free_1.png",
+            "ff_label": "Fragrance-Free",
+            "ff_hover_text": "No synthetic fragrances — ideal for sensitive skin and those prone to allergic reactions."
+          }
+        },
+        "card_xjeY9j": {
+          "type": "card",
+          "settings": {
+            "ff_position": "right",
+            "ff_icon": "shopify://shop_images/free_1_223d0f5b-9b62-447e-be2d-ec78a3870fac.png",
+            "ff_label": "GMO Free",
+            "ff_hover_text": "All ingredients are sourced from non-GMO origins for a cleaner, more natural formula."
+          }
+        }
+      },
+      "block_order": [
+        "card_6jjW3A",
+        "card_w3yk6K",
+        "card_mEBzGk",
+        "card_nifPar",
+        "card_cJ49FV",
+        "card_xFW3iz",
+        "card_xjeY9j"
+      ],
+      "name": "Free From Section",
+      "settings": {
+        "ff_bg": "#ffffff",
+        "ff_padding_v": 48,
+        "ff_padding_h": 40,
+        "ff_col_gap": 24,
+        "ff_row_gap": 20,
+        "ff_left_width": 70,
+        "ff_right_width": 300,
+        "ff_heading": "Formulated without specific harmful or irritating ingredients",
+        "ff_heading_size": 48,
+        "ff_heading_weight": "600",
+        "ff_heading_color": "#000000",
+        "ff_heading_gap": 28,
+        "ff_image": "shopify://shop_images/download_60.jpg",
+        "ff_img_height": 400,
+        "ff_img_radius": 16,
+        "ff_card_gap": 16,
+        "ff_card_height": 72,
+        "ff_card_pad_v": 16,
+        "ff_card_pad_h": 20,
+        "ff_card_radius": 16,
+        "ff_card_border_width": 1,
+        "ff_card_border_color": "#dddddd",
+        "ff_card_bg": "#ffffff",
+        "ff_icon_size": 48,
+        "ff_label_size": 17,
+        "ff_label_weight": "600",
+        "ff_label_color": "#000000",
+        "ff_frost_opacity": 90,
+        "ff_frost_blur": 14,
+        "ff_frost_border_width": 2,
+        "ff_frost_pad": 16,
+        "ff_hover_text_size": 13,
+        "ff_hover_text_color": "#333333"
+      }
     }
   },
   "order": [
     "main",
     "ingredients_showcase_a4DpYy",
     "filter_by_concerns_rnQ9T3",
-    "science_formula_dUnNV8"
+    "science_formula_dUnNV8",
+    "free_from_section_pktB4E"
   ]
 }

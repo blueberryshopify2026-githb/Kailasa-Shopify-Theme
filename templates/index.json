@@ -82,69 +82,10 @@
         "active_circle_color": "#4fffff"
       }
     },
-    "dot_line_section_th66ab": {
-      "type": "dot-line-section",
-      "blocks": {
-        "media_block_nV6xcU": {
-          "type": "media_block",
-          "settings": {
-            "dot_label": "Chapter 1",
-            "content_title": "Science-backed probiotics",
-            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
-            "media_type": "image",
-            "background_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
-            "image_url": "",
-            "video_url": ""
-          }
-        },
-        "media_block_ghLLMe": {
-          "type": "media_block",
-          "settings": {
-            "dot_label": "Chapter 2",
-            "content_title": "Science-backed probiotics",
-            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
-            "media_type": "image",
-            "background_image": "shopify://shop_images/Elevate_your_skincare_routine_with_the_tripeptide_gel_cream_for_visibly_improved_hydrated_and_youthful-looking_skin.jpg",
-            "image_url": "",
-            "video_url": ""
-          }
-        },
-        "media_block_aiXj6c": {
-          "type": "media_block",
-          "settings": {
-            "dot_label": "Chapter 3",
-            "content_title": "Science-backed probiotics",
-            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
-            "media_type": "image",
-            "background_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
-            "image_url": "",
-            "video_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "media_block_nV6xcU",
-        "media_block_ghLLMe",
-        "media_block_aiXj6c"
-      ],
-      "name": "Dot Line Section",
-      "settings": {
-        "dot_color": "#4fffff",
-        "description_title_color": "#1a1a1a",
-        "description_text_color": "#4a4a4a",
-        "dot_label_color": "#ffffff",
-        "glass_background_color": "#ffffff",
-        "glass_border_color": "#ffffff",
-        "glass_opacity": 8,
-        "glass_blur": 12,
-        "auto_advance": false,
-        "auto_advance_delay": 5000
-      }
-    },
-    "protocol_phases_v2_wRrFg4": {
+    "protocol_phases_v2_3pWtVN": {
       "type": "protocol-phases-v2",
       "blocks": {
-        "phase_1_7HALWN": {
+        "phase_1_x3Fjwd": {
           "type": "phase_1",
           "settings": {
             "phase_number": "001",
@@ -164,7 +105,7 @@
             "stat_description": "Double-blind, placebo-controlled 4-week clinical study"
           }
         },
-        "phase_2_tKQRnx": {
+        "phase_2_G34Hzr": {
           "type": "phase_2",
           "settings": {
             "phase_number": "002",
@@ -185,7 +126,7 @@
             "bottom_description": "Buy Kits & Combos Online: Explore a range of skincare & haircare kits & combos products from top brands at Nykaa with best offers. Easy returns policy. Buy Kits & Combos Online. Explore a range of skincare & haircare kits & combos products from top brands at Nykaa with"
           }
         },
-        "phase_3_z8m6ga": {
+        "phase_3_9ErNha": {
           "type": "phase_3",
           "settings": {
             "phase_number": "003",
@@ -197,7 +138,7 @@
             "phase_description": "Prepares cellular environment for optimal regeneration through targeted signaling pathway activation and metabolic optimization."
           }
         },
-        "phase_4_aWcGM6": {
+        "phase_4_higNbX": {
           "type": "phase_4",
           "settings": {
             "phase_number": "004",
@@ -209,7 +150,7 @@
             "phase_description": "Activates natural regenerative processes through growth factor stimulation and cellular renewal pathway enhancement."
           }
         },
-        "phase_5_8AYGi8": {
+        "phase_5_GTy9Nj": {
           "type": "phase_5",
           "settings": {
             "phase_number": "005",
@@ -221,7 +162,7 @@
             "phase_description": "Integrates longevity mechanisms for sustained skin health through telomere support and senescence pathway modulation."
           }
         },
-        "phase_6_DmGLgz": {
+        "phase_6_b6PNGH": {
           "type": "phase_6",
           "settings": {
             "phase_number": "006",
@@ -238,12 +179,12 @@
         }
       },
       "block_order": [
-        "phase_1_7HALWN",
-        "phase_2_tKQRnx",
-        "phase_3_z8m6ga",
-        "phase_4_aWcGM6",
-        "phase_5_8AYGi8",
-        "phase_6_DmGLgz"
+        "phase_1_x3Fjwd",
+        "phase_2_G34Hzr",
+        "phase_3_9ErNha",
+        "phase_4_higNbX",
+        "phase_5_GTy9Nj",
+        "phase_6_b6PNGH"
       ],
       "name": "Protocol Phases V2",
       "settings": {
@@ -302,7 +243,7 @@
         "content_gap": 15,
         "feature_gap": 10,
         "feature_item_padding": 10,
-        "feature_item_bg": "rgba(0,0,0,0)",
+        "feature_item_bg": "transparent",
         "feature_item_radius": 8,
         "feature_icon_gap": 12,
         "feature_icon_size": 40,
@@ -348,13 +289,72 @@
         "mobile_content_title": 24,
         "cta_bg_color": "#4fffff",
         "cta_text_color": "#000000",
-        "cta_hover_bg": "rgba(0,0,0,0)",
+        "cta_hover_bg": "transparent",
         "cta_hover_text": "#4fffff",
         "cta_font_size": 18,
         "cta_font_weight": "600",
         "cta_padding_x": 40,
         "cta_padding_y": 15,
         "cta_border_radius": 50
+      }
+    },
+    "dot_line_section_th66ab": {
+      "type": "dot-line-section",
+      "blocks": {
+        "media_block_nV6xcU": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 1",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "background_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
+            "image_url": "",
+            "video_url": ""
+          }
+        },
+        "media_block_ghLLMe": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 2",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "background_image": "shopify://shop_images/Elevate_your_skincare_routine_with_the_tripeptide_gel_cream_for_visibly_improved_hydrated_and_youthful-looking_skin.jpg",
+            "image_url": "",
+            "video_url": ""
+          }
+        },
+        "media_block_aiXj6c": {
+          "type": "media_block",
+          "settings": {
+            "dot_label": "Chapter 3",
+            "content_title": "Science-backed probiotics",
+            "content_description": "From gut to brain to skin health, your microbiome plays a key role in how you feel every day.",
+            "media_type": "image",
+            "background_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
+            "image_url": "",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_block_nV6xcU",
+        "media_block_ghLLMe",
+        "media_block_aiXj6c"
+      ],
+      "name": "Dot Line Section",
+      "settings": {
+        "dot_color": "#4fffff",
+        "description_title_color": "#1a1a1a",
+        "description_text_color": "#4a4a4a",
+        "dot_label_color": "#ffffff",
+        "glass_background_color": "#ffffff",
+        "glass_border_color": "#ffffff",
+        "glass_opacity": 8,
+        "glass_blur": 12,
+        "auto_advance": false,
+        "auto_advance_delay": 5000
       }
     },
     "doctors_endorsement_LtGzx4": {
@@ -1634,8 +1634,8 @@
   },
   "order": [
     "hero_section_tCPJUm",
+    "protocol_phases_v2_3pWtVN",
     "dot_line_section_th66ab",
-    "protocol_phases_v2_wRrFg4",
     "doctors_endorsement_LtGzx4",
     "skincare_bundle_TqdqX4",
     "skin_by_concern_CT8TWF",

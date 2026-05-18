@@ -18,9 +18,8 @@
         "menu": ""
       }
     },
-    "kailasa_header_menu_NxDYpg": {
+    "kailasa_header_menu_fy98WQ": {
       "type": "kailasa-header-menu",
-      "disabled": true,
       "name": "Kailasa Header Menu",
       "settings": {
         "show_announcement_bar": true,
@@ -120,6 +119,6 @@
   },
   "order": [
     "header",
-    "kailasa_header_menu_NxDYpg"
+    "kailasa_header_menu_fy98WQ"
   ]
 }

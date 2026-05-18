@@ -12,126 +12,8 @@
     "main": {
       "type": "product",
       "disabled": true,
-      "settings": {}
-    },
-    "product_buy_box_TzCRnN": {
-      "type": "product-buy-box",
-      "blocks": {
-        "star_rating_7yrPb3": {
-          "type": "star_rating",
-          "settings": {
-            "rating": "5",
-            "show_count": true,
-            "review_count": "231 Reviews"
-          }
-        },
-        "review_text_TbJd7N": {
-          "type": "review_text",
-          "settings": {
-            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
-          }
-        },
-        "review_author_hVTgR7": {
-          "type": "review_author",
-          "settings": {
-            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
-          }
-        },
-        "title_RhVUfw": {
-          "type": "title",
-          "settings": {
-            "title": "photon mask"
-          }
-        },
-        "description_Ln9n8b": {
-          "type": "description",
-          "settings": {
-            "description": "The light feels gentle and relaxing, not harsh or heating, and it fits comfortably on the face. Over time, my skin has started to look more \"alive\"—that healthy glow"
-          }
-        },
-        "product_image_YfjgEJ": {
-          "type": "product_image",
-          "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg.png"
-          }
-        },
-        "variant_atMehT": {
-          "type": "variant",
-          "settings": {
-            "variant_name": "VIP Club Membership",
-            "variant_detail_1": "Free SCI Travel Packs",
-            "variant_detail_2": "Easily edit, skip or cancel anytime",
-            "variant_detail_3": "0-Day Money Back Guarantee",
-            "variant_detail_4": "Delivered every 30 days",
-            "variant_price": "$49 USD"
-          }
-        },
-        "variant_t6AJCk": {
-          "type": "variant",
-          "settings": {
-            "variant_name": "Subscribe and Save",
-            "variant_detail_1": "Free SCI Travel Packs",
-            "variant_detail_2": "Easily edit, skip or cancel anytime",
-            "variant_detail_3": "0-Day Money Back Guarantee",
-            "variant_detail_4": "Delivered every 30 days",
-            "variant_price": "$79 USD"
-          }
-        },
-        "variant_HzY8R7": {
-          "type": "variant",
-          "settings": {
-            "variant_name": "Buy one time",
-            "variant_detail_1": "",
-            "variant_detail_2": "",
-            "variant_detail_3": "",
-            "variant_detail_4": "",
-            "variant_price": "$99 USD"
-          }
-        },
-        "media_Dbjgri": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "media_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
-            "media_alt": "Product image",
-            "media_video_url": ""
-          }
-        },
-        "media_eGHdeN": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "media_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
-            "media_alt": "Product image",
-            "media_video_url": ""
-          }
-        },
-        "media_7JGftC": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "media_image": "shopify://shop_images/7_Natural_ingredients_for_Korean_glass_skin.jpg",
-            "media_alt": "Product image",
-            "media_video_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "star_rating_7yrPb3",
-        "review_text_TbJd7N",
-        "review_author_hVTgR7",
-        "title_RhVUfw",
-        "description_Ln9n8b",
-        "product_image_YfjgEJ",
-        "variant_atMehT",
-        "variant_t6AJCk",
-        "variant_HzY8R7",
-        "media_Dbjgri",
-        "media_eGHdeN",
-        "media_7JGftC"
-      ],
-      "name": "Product Buy Box",
       "settings": {
+        "product": "",
         "outer_bg_color": "#000000",
         "outer_padding": 20,
         "gap_width": 20,
@@ -282,17 +164,17 @@
       "name": "Tab Section",
       "settings": {
         "title": "Photon Youth™ Pro LED Mask",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#181818",
-        "border_color": "#4FFFFF",
+        "border_color": "#4fffff",
         "border_width": 2,
         "inner_tab_active_bg": "#181818",
-        "inner_tab_active_text": "#FFFFFF",
-        "inner_tab_active_dot": "#4FFFFF",
-        "inner_tab_inactive_bg": "#FFFFFF",
+        "inner_tab_active_text": "#ffffff",
+        "inner_tab_active_dot": "#4fffff",
+        "inner_tab_inactive_bg": "#ffffff",
         "inner_tab_inactive_text": "#181818",
         "inner_tab_hover_bg": "#181818",
-        "inner_tab_hover_text": "#FFFFFF",
+        "inner_tab_hover_text": "#ffffff",
         "inner_tab_border_color": "#181818",
         "inner_tab_border_width": 1,
         "title_font_family": "Montserrat, sans-serif",
@@ -340,18 +222,18 @@
         "step_text_size": 24,
         "step_text_color": "#000000",
         "step_number_color": "#000000",
-        "step_highlight_color": "#4FFFFF",
+        "step_highlight_color": "#4fffff",
         "heading_font_size": 32,
         "heading_color": "#000000",
         "description_font_size": 16,
         "description_color": "#666666",
         "cta_font_size": 14,
-        "cta_bg_color": "transparent",
+        "cta_bg_color": "rgba(0,0,0,0)",
         "cta_text_color": "#000000",
-        "cta_border_color": "#4FFFFF",
-        "cta_hover_bg": "#4FFFFF",
+        "cta_border_color": "#4fffff",
+        "cta_hover_bg": "#4fffff",
         "cta_hover_text": "#000000",
-        "cta_hover_border": "#4FFFFF",
+        "cta_hover_border": "#4fffff",
         "cta_border_radius": 24,
         "product_image": "shopify://shop_images/download_32_9a61a17e-3208-4cb9-b9dc-ee03d3973c7a.png",
         "image_width": 100,
@@ -428,17 +310,17 @@
         "name_font_size": 44,
         "name_color": "#ffffff",
         "designation_font_size": 18,
-        "designation_color": "#4FFFFF",
+        "designation_color": "#4fffff",
         "quote_font_size": 18,
         "quote_color": "#ffffff",
-        "quote_mark_color": "#4FFFFF",
+        "quote_mark_color": "#4fffff",
         "cta_font_size": 14,
         "cta_text_color": "#ffffff",
-        "cta_border_color": "#4FFFFF",
+        "cta_border_color": "#4fffff",
         "cta_border_radius": 24,
         "arrow_bg_color": "#000000",
-        "arrow_border_color": "#4FFFFF",
-        "arrow_color": "#4FFFFF"
+        "arrow_border_color": "#4fffff",
+        "arrow_color": "#4fffff"
       }
     },
     "result_timeline_GKg8KF": {
@@ -655,15 +537,47 @@
         "cell_text_font_family": "montserrat_n4",
         "cell_text_font_size": 12
       }
+    },
+    "inforoutine_section_xfUWkw": {
+      "type": "inforoutine-section",
+      "name": "Info Routine Section",
+      "settings": {
+        "pri_bg": "#ffffff",
+        "pri_image": "shopify://shop_images/Gemini_Generated_Image_i3vzdhi3vzdhi3vz_eececf60-5076-4583-936c-cfe78dae1b1a.png",
+        "pri_img_fit": "contain",
+        "pri_am_label": "AM ROUTINE",
+        "pri_pm_label": "PM ROUTINE",
+        "pri_default_mode": "am",
+        "pri_toggle_size": 14,
+        "pri_toggle_right": 24,
+        "pri_ingredient_img": "shopify://shop_images/58fa1a9de3949046d280fa37d1d2136f-removebg-preview_ae8b5eba-a677-4e85-85fd-e4b7c3485165.png",
+        "pri_card_desc": "Ingredients like Vitamin C are often added to morning routines to reduce hyperpigmentation, combat free radicals, and improve radiance.",
+        "pri_card_apply": "Apply1-2 timesdaily",
+        "pri_pm_card_desc": "Night-time ingredients like Retinol help accelerate cell renewal, reduce fine lines, and restore skin while you sleep.",
+        "pri_pm_card_apply": "Applyevery nightbefore bed",
+        "pri_ingredient_img_size": 72,
+        "pri_card_bottom": 48,
+        "pri_card_min_height": 100,
+        "pri_card_width": 50,
+        "pri_card_opacity": 85,
+        "pri_card_blur": 12,
+        "pri_card_radius": 20,
+        "pri_card_pad_h": 24,
+        "pri_card_gap": 16,
+        "pri_card_desc_size": 14,
+        "pri_card_desc_color": "#000000",
+        "pri_card_apply_size": 16,
+        "pri_card_apply_color": "#000000"
+      }
     }
   },
   "order": [
     "main",
-    "product_buy_box_TzCRnN",
     "tab_section_hyhKPN",
     "three_column_media_TwRKMU",
     "professional_panel_PBgJJd",
     "result_timeline_GKg8KF",
-    "comparison_table_tjbgne"
+    "comparison_table_tjbgne",
+    "inforoutine_section_xfUWkw"
   ]
 }

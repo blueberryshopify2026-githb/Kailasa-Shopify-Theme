@@ -1414,6 +1414,202 @@
         "points_font_size": 16,
         "points_font_weight": "400"
       }
+    },
+    "customer_testimonial_fHK4Hn": {
+      "type": "customer-testimonial",
+      "blocks": {
+        "testimonial_JB6DAT": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "1",
+            "ct_bg_image": "shopify://shop_images/NUNKORO_AQUAFILL_REHYDRATING_CREAM.jpg",
+            "ct_quote": "If you want to glow like me, you must take care of your skin",
+            "ct_customer_name": "Emma R."
+          }
+        },
+        "testimonial_XmXA6G": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "1",
+            "ct_bg_image": "shopify://shop_images/DSC08440.webp",
+            "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
+            "ct_customer_name": "Lily K."
+          }
+        },
+        "testimonial_Nq7aFA": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "1",
+            "ct_bg_image": "shopify://shop_images/b6777fdb09e459cfa13b9dc7a71729ac.jpg",
+            "ct_quote": "This product changed my routine completely. My skin has never felt better.",
+            "ct_customer_name": "Mia T."
+          }
+        },
+        "testimonial_fqmTcE": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "1",
+            "ct_bg_image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "ct_quote": "Absolutely love the results. Highly recommend to everyone.",
+            "ct_customer_name": "Zoe P."
+          }
+        },
+        "testimonial_KnAQ7b": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "2",
+            "ct_bg_image": "shopify://shop_images/Red-light-therapy-LED-Mask01.webp",
+            "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
+            "ct_customer_name": "Anna B."
+          }
+        },
+        "testimonial_m4ATbY": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "2",
+            "ct_bg_image": "shopify://shop_images/cbe63f8f7d4e46a876cd1a6b3c983150.jpg",
+            "ct_quote": "My dermatologist recommended this and I can see why. Amazing results.",
+            "ct_customer_name": "Clara S."
+          }
+        },
+        "testimonial_ctH4df": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "2",
+            "ct_bg_image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
+            "ct_quote": "The texture is so light and it absorbs instantly. Love it!",
+            "ct_customer_name": "Nina W."
+          }
+        },
+        "testimonial_Y963tQ": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "2",
+            "ct_bg_image": "shopify://shop_images/61y38NCjsgL._AC_UF350_350_QL50.jpg",
+            "ct_quote": "Best skincare purchase I have made this year without a doubt.",
+            "ct_customer_name": "Jade L."
+          }
+        },
+        "testimonial_9tBjhy": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "3",
+            "ct_bg_image": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
+            "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
+            "ct_customer_name": "Rose H."
+          }
+        },
+        "testimonial_MjeyUU": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "3",
+            "ct_bg_image": "shopify://shop_images/download_54.jpg",
+            "ct_quote": "Glowing skin is always in. This product delivers every single time.",
+            "ct_customer_name": "Faye D."
+          }
+        },
+        "testimonial_f637ib": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "3",
+            "ct_bg_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
+            "ct_quote": "I was skeptical at first but the results speak for themselves.",
+            "ct_customer_name": "Iris C."
+          }
+        },
+        "testimonial_jgkraG": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "3",
+            "ct_bg_image": "shopify://shop_images/pexels-monirathnak-15108322.jpg",
+            "ct_quote": "Gentle on sensitive skin and incredibly effective. A must-have.",
+            "ct_customer_name": "Luna V."
+          }
+        },
+        "testimonial_kPjmcz": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "4",
+            "ct_bg_image": "shopify://shop_images/Youthful-Serum_New-PDP_ModelxProduct1200x1800-600x900-removebg-preview.png",
+            "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
+            "ct_customer_name": "Vera N."
+          }
+        },
+        "testimonial_6dTNaa": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "4",
+            "ct_bg_image": "shopify://shop_images/pexels-monirathnak-30797181.jpg",
+            "ct_quote": "My skin looks so much more radiant since I started using this.",
+            "ct_customer_name": "Stella F."
+          }
+        },
+        "testimonial_L6PkjF": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "4",
+            "ct_bg_image": "shopify://shop_images/pexels-arina-krasnikova-6663393_a8e5de8d-ebc7-4140-9bc5-f37200146d89.jpg",
+            "ct_quote": "Worth every penny. My confidence has gone through the roof.",
+            "ct_customer_name": "Cleo M."
+          }
+        },
+        "testimonial_B3BhJW": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "4",
+            "ct_bg_image": "shopify://shop_images/pexels-darina-belonogova-7520423-removebg-preview_430x_81a532bc-2288-4e27-8dc8-ad0cb7424d8d.webp",
+            "ct_quote": "I recommend this to all my friends. The results are undeniable.",
+            "ct_customer_name": "Aria G."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_JB6DAT",
+        "testimonial_XmXA6G",
+        "testimonial_Nq7aFA",
+        "testimonial_fqmTcE",
+        "testimonial_KnAQ7b",
+        "testimonial_m4ATbY",
+        "testimonial_ctH4df",
+        "testimonial_Y963tQ",
+        "testimonial_9tBjhy",
+        "testimonial_MjeyUU",
+        "testimonial_f637ib",
+        "testimonial_jgkraG",
+        "testimonial_kPjmcz",
+        "testimonial_6dTNaa",
+        "testimonial_L6PkjF",
+        "testimonial_B3BhJW"
+      ],
+      "name": "Customer Testimonial",
+      "settings": {
+        "ct_bg": "#ffffff",
+        "ct_padding_v": 60,
+        "ct_gap": 15,
+        "ct_card_height": 420,
+        "ct_card_radius": 16,
+        "ct_heading": "What Our Customers Say",
+        "ct_subheading": "",
+        "ct_heading_align": "center",
+        "ct_heading_size": 40,
+        "ct_heading_weight": "700",
+        "ct_heading_color": "#000000",
+        "ct_subheading_size": 16,
+        "ct_subheading_color": "#555555",
+        "ct_heading_gap": 40,
+        "ct_frost_opacity": 70,
+        "ct_frost_blur": 12,
+        "ct_frost_radius": 12,
+        "ct_frost_offset": 12,
+        "ct_frost_pad_v": 16,
+        "ct_frost_pad_h": 16,
+        "ct_quote_size": 14,
+        "ct_quote_color": "#000000",
+        "ct_name_size": 13,
+        "ct_name_color": "#4fffff",
+        "ct_speed": 60,
+        "ct_anim_pause": 1000
+      }
     }
   },
   "order": [
@@ -1429,6 +1625,7 @@
     "tab_section_wj6RMq",
     "tab_section_DtLU37",
     "multi_tab_section_BQJGBt",
-    "vip_section_G4MkWg"
+    "vip_section_G4MkWg",
+    "customer_testimonial_fHK4Hn"
   ]
 }

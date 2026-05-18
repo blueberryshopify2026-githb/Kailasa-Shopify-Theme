@@ -206,11 +206,119 @@
         "pt_circle_image": "shopify://shop_images/download_66.jpg",
         "pt_circle_size": 260
       }
+    },
+    "professional_three_pmdjVq": {
+      "type": "professional-three",
+      "blocks": {
+        "thumbnail_WYb3at": {
+          "type": "thumbnail",
+          "settings": {
+            "spt_thumb_img": "shopify://shop_images/Elevate_your_skincare_routine_with_the_tripeptide_gel_cream_for_visibly_improved_hydrated_and_youthful-looking_skin.jpg",
+            "spt_thumb_title": "Did you know?",
+            "spt_thumb_info": "Healthy skin starts with the right routine.",
+            "spt_thumb_link": ""
+          }
+        },
+        "thumbnail_EheXNT": {
+          "type": "thumbnail",
+          "settings": {
+            "spt_thumb_img": "shopify://shop_images/b6777fdb09e459cfa13b9dc7a71729ac.jpg",
+            "spt_thumb_title": "Did you know?",
+            "spt_thumb_info": "Consistent care leads to lasting results.",
+            "spt_thumb_link": ""
+          }
+        },
+        "thumbnail_PwNiNV": {
+          "type": "thumbnail",
+          "settings": {
+            "spt_thumb_img": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
+            "spt_thumb_title": "Did you know?",
+            "spt_thumb_info": "Dermatologist-approved ingredients for every skin type.",
+            "spt_thumb_link": ""
+          }
+        },
+        "thumbnail_XhAkF8": {
+          "type": "thumbnail",
+          "settings": {
+            "spt_thumb_img": "shopify://shop_images/Red-light-therapy-LED-Mask01.webp",
+            "spt_thumb_title": "Did you know?",
+            "spt_thumb_info": "Gentle formulas that work with your skin, not against it.",
+            "spt_thumb_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "thumbnail_WYb3at",
+        "thumbnail_EheXNT",
+        "thumbnail_PwNiNV",
+        "thumbnail_XhAkF8"
+      ],
+      "name": "Professional Three",
+      "settings": {
+        "spt_bg": "#ffffff",
+        "spt_left_pad_v": 60,
+        "spt_left_pad_h": 60,
+        "spt_show_dot": true,
+        "spt_dot_size": 16,
+        "spt_dot_top": 120,
+        "spt_dot_right": 60,
+        "spt_heading": "Healthy skin is a reflection of overall wellness.",
+        "spt_heading_size": 64,
+        "spt_heading_weight": "600",
+        "spt_heading_color": "#000000",
+        "spt_heading_gap": 20,
+        "spt_blog": "the-full-korean-10-step-skin-care-routine",
+        "spt_fallback_excerpt": "Shopping for an anti-aging skin care product can feel like a hit-or-miss experience",
+        "spt_fallback_link": "",
+        "spt_excerpt_size": 15,
+        "spt_excerpt_color": "#333333",
+        "spt_read_more_color": "#4fffff",
+        "spt_bottom_type": "thumbnails",
+        "spt_bottom_gap": 40,
+        "spt_thumb_size": 120,
+        "spt_thumb_radius": 12,
+        "spt_thumb_gap": 40,
+        "spt_thumb_card_width": 380,
+        "spt_thumb_frost_opacity": 80,
+        "spt_thumb_frost_blur": 10,
+        "spt_thumb_frost_size": 12,
+        "spt_thumb_frost_color": "#000000",
+        "spt_info_title": "Did you know?",
+        "spt_info_text": "Your skin is constantly replacing itself, so it is never too late to start a healthy skincare routine.",
+        "spt_info_card_opacity": 80,
+        "spt_info_card_blur": 10,
+        "spt_info_card_radius": 16,
+        "spt_info_card_pad": 20,
+        "spt_info_card_width": 400,
+        "spt_info_title_size": 16,
+        "spt_info_title_color": "#000000",
+        "spt_info_text_size": 14,
+        "spt_info_text_color": "#333333",
+        "spt_doctor_image": "shopify://shop_images/Female-Doctor-PNG-Transparent-1.png",
+        "spt_img_position": "center top",
+        "spt_dr_name": "Dr. Dakorte Johnson",
+        "spt_dr_specialty": "Dermetologist, M.D, University of California",
+        "spt_dr_experience": "10+ Years of experience",
+        "spt_dr_card_bottom": 30,
+        "spt_dr_card_left": 16,
+        "spt_dr_card_right": 16,
+        "spt_dr_card_max_width": 370,
+        "spt_dr_card_opacity": 75,
+        "spt_dr_card_blur": 14,
+        "spt_dr_card_radius": 14,
+        "spt_dr_card_pad_v": 16,
+        "spt_dr_card_pad_h": 20,
+        "spt_dr_name_size": 22,
+        "spt_dr_name_color": "#000000",
+        "spt_dr_meta_size": 14,
+        "spt_dr_meta_color": "#000000"
+      }
     }
   },
   "order": [
     "main",
     "professional_one_LDAqKL",
-    "proff_section_two_gQGwxN"
+    "proff_section_two_gQGwxN",
+    "professional_three_pmdjVq"
   ]
 }

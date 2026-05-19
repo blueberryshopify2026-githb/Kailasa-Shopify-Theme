@@ -2667,9 +2667,10 @@
       "blocks": {
         "point_W8kgLL": {
           "type": "point",
+          "name": "Point 1",
           "settings": {
             "point_text": "Want an easy way to support your daily nutrition",
-            "point_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg"
+            "point_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg"
           }
         },
         "point_bJtkk7": {
@@ -2697,7 +2698,7 @@
           "type": "point",
           "settings": {
             "point_text": "Are on GLP-1s and want additional nutritional support",
-            "point_image": "shopify://shop_images/Quel_masque_LED_choisir___Suivez_notre_guide_430x_aa9fbe61-4adf-438c-9117-0b3c4ecefd38.webp"
+            "point_image": "shopify://shop_images/NUNKORO_AQUAFILL_REHYDRATING_CREAM.jpg"
           }
         }
       },
@@ -2714,7 +2715,7 @@
         "subtitle": "We formulated AG1 Next Gen to support your health with advanced nutrition in every scoop.* It's a match if you:",
         "button_text": "Get Started",
         "button_link": "",
-        "default_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
+        "default_image": "shopify://shop_images/What_is_Clean_Beauty_Is_and_Why_It_s_Important.jpg",
         "font_family": "montserrat_n4",
         "title_font_size": 48,
         "title_font_weight": "700",

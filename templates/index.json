@@ -938,6 +938,22 @@
             "number_vertical_position": 20
           }
         },
+        "product_4nj8ER": {
+          "type": "product",
+          "settings": {
+            "tab_selector": "pm",
+            "product": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_gozm71gozm71gozm_1.png",
+            "image_width": 100,
+            "image_height": 100,
+            "custom_product_name": "",
+            "step_number": "3",
+            "number_font_size": 90,
+            "number_color": "#4fffff",
+            "number_horizontal_position": 25,
+            "number_vertical_position": 20
+          }
+        },
         "product_cF768A": {
           "type": "product",
           "settings": {
@@ -947,7 +963,7 @@
             "image_width": 100,
             "image_height": 100,
             "custom_product_name": "",
-            "step_number": "3",
+            "step_number": "4",
             "number_font_size": 90,
             "number_color": "#4fffff",
             "number_horizontal_position": 25,
@@ -963,7 +979,7 @@
             "image_width": 100,
             "image_height": 100,
             "custom_product_name": "",
-            "step_number": "2",
+            "step_number": "1",
             "number_font_size": 90,
             "number_color": "#4fffff",
             "number_horizontal_position": 25,
@@ -979,7 +995,7 @@
             "image_width": 100,
             "image_height": 100,
             "custom_product_name": "",
-            "step_number": "1",
+            "step_number": "2",
             "number_font_size": 90,
             "number_color": "#4fffff",
             "number_horizontal_position": 25,
@@ -995,7 +1011,7 @@
             "image_width": 100,
             "image_height": 100,
             "custom_product_name": "",
-            "step_number": "5",
+            "step_number": "3",
             "number_font_size": 90,
             "number_color": "#4fffff",
             "number_horizontal_position": 25,
@@ -1027,7 +1043,7 @@
             "image_width": 100,
             "image_height": 100,
             "custom_product_name": "",
-            "step_number": "3",
+            "step_number": "2",
             "number_font_size": 90,
             "number_color": "#4fffff",
             "number_horizontal_position": 25,
@@ -1044,6 +1060,7 @@
         "product_3Da3VY",
         "product_YiiUPQ",
         "product_9JeztH",
+        "product_4nj8ER",
         "product_cF768A",
         "product_wB9FM9",
         "product_ghYQ99",

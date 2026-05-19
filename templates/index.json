@@ -1566,7 +1566,7 @@
         "background_color": "#ffffff",
         "text_color": "#181818",
         "border_color": "#4fffff",
-        "border_width": 2,
+        "border_width": 3,
         "inner_tab_active_bg": "#181818",
         "inner_tab_active_text": "#ffffff",
         "inner_tab_active_dot": "#4fffff",

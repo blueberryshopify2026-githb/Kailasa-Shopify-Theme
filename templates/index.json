@@ -1547,6 +1547,7 @@
           "name": "About",
           "settings": {
             "tab_name": "About",
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_28_2025_11_54_28_AM.png",
             "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout.",
             "layout": "image-text",
             "content_font_family": "inherit",

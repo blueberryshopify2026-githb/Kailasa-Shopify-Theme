@@ -747,18 +747,6 @@
             "product_code": "NEW",
             "show_new_badge": true
           }
-        },
-        "product_y9AnYG": {
-          "type": "product",
-          "settings": {
-            "concern": "dullness",
-            "product": "",
-            "custom_subtitle": "",
-            "custom_rating": "4.5",
-            "custom_reviews": "1,234",
-            "product_code": "NEW",
-            "show_new_badge": true
-          }
         }
       },
       "block_order": [
@@ -786,8 +774,7 @@
         "product_Mp3qYM",
         "product_NGyzVi",
         "product_arFJBn",
-        "product_fEacWP",
-        "product_y9AnYG"
+        "product_fEacWP"
       ],
       "name": "Skin by Concern",
       "settings": {

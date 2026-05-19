@@ -513,7 +513,7 @@
             "title": "Address the root causes of aging",
             "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
             "media_type": "image",
-            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
+            "media_image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"
@@ -557,7 +557,8 @@
           "settings": {
             "title": "Maintain skin-neutral pH",
             "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
-            "media_type": "placeholder",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/DSC08440.webp",
             "video_file": "",
             "cgi_file": "",
             "placeholder_text": "Image/Video/CGI Placeholder"

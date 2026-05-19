@@ -533,6 +533,8 @@
         "sunburn_after_image": "shopify://shop_images/2aa9d98f20b03d3210c7d6cf1e76e23c.jpg",
         "sunburn_title": "Soothe Sun Damage",
         "sunburn_description": "Repair and protect sun-damaged skin with our healing formulas that restore and prevent further damage.",
+        "acne_before_image": "shopify://shop_images/nunstudio.jpg",
+        "acne_after_image": "shopify://shop_images/SHOP_CAPSULE_PARFUMS.jpg",
         "acne_title": "Clear Acne & Blemishes",
         "acne_description": "Achieve clearer, healthier skin with our targeted acne treatments that reduce breakouts and prevent future blemishes.",
         "tile_bg_color": "#ffffff",

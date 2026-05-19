@@ -1564,7 +1564,7 @@
           "name": "Usage",
           "settings": {
             "tab_name": "Usage",
-            "image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
+            "image": "shopify://shop_images/download_66.jpg",
             "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,",
             "layout": "text-image",
             "content_font_family": "inherit",
@@ -1579,7 +1579,7 @@
           "type": "faq-block",
           "settings": {
             "tab_name": "FAQ",
-            "image": "shopify://shop_images/skin_pigmentation_before_after.jpg",
+            "image": "shopify://shop_images/9919143ee60b1045d50652f846cb65bd.jpg",
             "layout": "image-faq",
             "faq_bg_color": "#ffffff",
             "question_text_color": "#181818",

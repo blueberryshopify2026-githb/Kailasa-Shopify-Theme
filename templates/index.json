@@ -1548,7 +1548,7 @@
           "settings": {
             "tab_name": "About",
             "image": "shopify://shop_images/ChatGPT_Image_Jul_28_2025_11_54_28_AM.png",
-            "text_content": "<b>Add your content here.</b> This text will appear alongside the image in a 50-50 layout. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,",
+            "text_content": "<h1>Add your content here.</h1> <br>This text will appear alongside the image in a 50-50 layout. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,",
             "layout": "image-text",
             "content_font_family": "inherit",
             "content_font_weight": 400,

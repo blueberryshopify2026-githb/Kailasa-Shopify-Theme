@@ -1502,7 +1502,7 @@
           "name": "About",
           "settings": {
             "tab_name": "About",
-            "image": "shopify://shop_images/ChatGPT_Image_Jul_28_2025_11_54_28_AM.png",
+            "image": "shopify://shop_images/download_63.jpg",
             "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,",
             "layout": "image-text",
             "content_font_family": "inherit",
@@ -1518,7 +1518,7 @@
           "settings": {
             "tab_name": "Ingredients",
             "layout": "ingredients-image",
-            "main_image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
+            "main_image": "shopify://shop_images/See_All_The_Cool_Skincare_Products.jpg",
             "main_image_alt": "Product ingredients",
             "ingredients_title": "KEY INGREDIENTS",
             "ingredient_image_size": 60,

@@ -2741,6 +2741,7 @@
           "type": "testimonial",
           "settings": {
             "ct_column": "1",
+            "ct_bg_image": "shopify://shop_images/Youthful-Serum_New-PDP_ModelxProduct1200x1800-600x900-removebg-preview.png",
             "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
             "ct_customer_name": "Lily K."
           }

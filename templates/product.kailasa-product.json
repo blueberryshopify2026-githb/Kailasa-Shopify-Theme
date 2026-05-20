@@ -11,6 +11,45 @@
   "sections": {
     "main": {
       "type": "product",
+      "blocks": {
+        "review_author_WWhmwK": {
+          "type": "review_author",
+          "settings": {
+            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
+          }
+        },
+        "star_rating_9Uyrgz": {
+          "type": "star_rating",
+          "settings": {
+            "rating": "5",
+            "show_count": true,
+            "review_count": "231 Reviews"
+          }
+        },
+        "review_text_p6q6Wb": {
+          "type": "review_text",
+          "settings": {
+            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
+          }
+        },
+        "variant_XeegqL": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "VIP Club Membership",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$49 USD"
+          }
+        }
+      },
+      "block_order": [
+        "review_author_WWhmwK",
+        "star_rating_9Uyrgz",
+        "review_text_p6q6Wb",
+        "variant_XeegqL"
+      ],
       "settings": {
         "product": "aha-bha-exfoliating-cleanser",
         "outer_bg_color": "#000000",

@@ -696,6 +696,53 @@
         "description_color": "#ffffff",
         "animation_speed": 6000
       }
+    },
+    "product_page_tactical_banner_8RXJmB": {
+      "type": "product-page-tactical-banner",
+      "blocks": {
+        "info_dot_8Kiqcd": {
+          "type": "info_dot",
+          "settings": {
+            "dot_position_x": 85,
+            "dot_position_y": 15,
+            "info_title": "Advanced Formula",
+            "info_description": "Scientifically engineered for maximum absorption and effectiveness."
+          }
+        },
+        "info_dot_3FbFNP": {
+          "type": "info_dot",
+          "settings": {
+            "dot_position_x": 75,
+            "dot_position_y": 45,
+            "info_title": "Deep Skin Repair",
+            "info_description": "PDRN works at a cellular level to repair damaged skin and accelerate healing."
+          }
+        },
+        "info_dot_ANrF8m": {
+          "type": "info_dot",
+          "settings": {
+            "dot_position_x": 90,
+            "dot_position_y": 75,
+            "info_title": "Targeted Delivery",
+            "info_description": "Precision-engineered delivery system for optimal nutrient absorption."
+          }
+        }
+      },
+      "block_order": [
+        "info_dot_8Kiqcd",
+        "info_dot_3FbFNP",
+        "info_dot_ANrF8m"
+      ],
+      "name": "Product Tactical Banner",
+      "settings": {
+        "background_color": "#ffffff",
+        "heading": "2-in-1 Formulation Optimized for Nutrient Delivery",
+        "description": "<p>Seed's ViaCap® delivery system is engineered for targeted release along the GI tract.</p>",
+        "heading_size": 48,
+        "heading_color": "#1a1a1a",
+        "description_size": 18,
+        "description_color": "#666666"
+      }
     }
   },
   "order": [
@@ -706,6 +753,7 @@
     "professional_panel_PBgJJd",
     "result_timeline_GKg8KF",
     "inforoutine_section_xfUWkw",
-    "product_page_ingredients_kgmPwy"
+    "product_page_ingredients_kgmPwy",
+    "product_page_tactical_banner_8RXJmB"
   ]
 }

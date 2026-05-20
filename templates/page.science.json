@@ -847,14 +847,14 @@
           "type": "routine_tab",
           "settings": {
             "title": "EXFOLIATE",
-            "product_1": "",
-            "product_2": "",
-            "product_3": "",
-            "product_4": "",
+            "product_1": "eye-serum",
+            "product_2": "aha-bha-exfoliating-cleanser",
+            "product_3": "photon-youth™-pro-led-mask",
+            "product_4": "infinite-youth-concentrate",
             "product_5": "",
             "product_6": "",
             "show_divider": true,
-            "rich_text": "",
+            "rich_text": "<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,</p>",
             "background_color": "#fefefe",
             "text_color": "#666666"
           }

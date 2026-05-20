@@ -13,6 +13,246 @@
       "type": "page",
       "settings": {}
     },
+    "steps_instruction_DB9bfY": {
+      "type": "steps-instruction",
+      "blocks": {
+        "instruction_step_HHJ79F": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "heading": "Morning skincare routine",
+            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental damage</p><p>Use a lightweight moisturizer to keep your skin hydrated and smooth</p>",
+            "product_name": "Vitamin C Serum",
+            "product_link": ""
+          }
+        },
+        "instruction_step_crLMXa": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "heading": "Morning hydration boost",
+            "description": "<p>Start with a hydrating toner to prep your skin</p><p>Apply hyaluronic acid serum for deep moisture</p><p>Use a refreshing face mist throughout the day</p><p>Don't forget lip balm for complete hydration</p>",
+            "product_name": "Hyaluronic Acid",
+            "product_link": ""
+          }
+        },
+        "instruction_step_QRg667": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "pm",
+            "heading": "Evening skincare routine",
+            "description": "<p>Begin with a deep cleansing oil to remove makeup</p><p>Apply retinol night serum for skin renewal</p><p>Use a rich night moisturizer for overnight repair</p><p>Add eye renewal complex for delicate eye area</p>",
+            "product_name": "Retinol Night Serum",
+            "product_link": ""
+          }
+        },
+        "instruction_step_KezerL": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "exfoliate",
+            "heading": "Weekly exfoliation routine",
+            "description": "<p>Use an exfoliating scrub 2-3 times per week</p><p>Apply AHA/BHA treatment for deeper exfoliation</p><p>Follow with a soothing recovery mask</p><p>Finish with barrier repair cream to restore skin</p>",
+            "product_name": "Exfoliating Scrub",
+            "product_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "instruction_step_HHJ79F",
+        "instruction_step_crLMXa",
+        "instruction_step_QRg667",
+        "instruction_step_KezerL"
+      ],
+      "name": "Steps Instruction",
+      "settings": {
+        "heading_size": 48,
+        "heading_color": "#1a1a1a",
+        "description_size": 16,
+        "description_color": "#666666"
+      }
+    },
+    "science_formula_qhcFJp": {
+      "type": "science-formula",
+      "blocks": {
+        "science_item_wFeHcy": {
+          "type": "science_item",
+          "settings": {
+            "title": "Address the root causes of aging",
+            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_CnaakK": {
+          "type": "science_item",
+          "settings": {
+            "title": "Deliver bioavailable actives",
+            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_cYizAP": {
+          "type": "science_item",
+          "settings": {
+            "title": "Target multiple pathways",
+            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_kLiAMd": {
+          "type": "science_item",
+          "settings": {
+            "title": "Respect the microbiome",
+            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_GXwJUz": {
+          "type": "science_item",
+          "settings": {
+            "title": "Maintain skin-neutral pH",
+            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_czTHr7": {
+          "type": "science_item",
+          "settings": {
+            "title": "Optimize for layering or cocktailing",
+            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        }
+      },
+      "block_order": [
+        "science_item_wFeHcy",
+        "science_item_CnaakK",
+        "science_item_cYizAP",
+        "science_item_kLiAMd",
+        "science_item_GXwJUz",
+        "science_item_czTHr7"
+      ],
+      "name": "FAQs",
+      "settings": {
+        "main_title": "We have the formula for long-term skin health. And we follow it.",
+        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
+        "default_media_type": "image",
+        "default_media_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
+        "default_video_file": "",
+        "default_cgi_file": "",
+        "default_placeholder_text": "Default Media Placeholder",
+        "content_ratio": 50,
+        "media_ratio": 50,
+        "grid_gap": 20,
+        "block_width": 100,
+        "media_margin_left": 0,
+        "section_padding_vertical": 60,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "active_border_color": "#ffffff",
+        "active_title_color": "#4fffff",
+        "active_shadow_color": "#4fffff4d",
+        "media_border_color": "#4fffff",
+        "media_shadow_color": "#4fffff33",
+        "title_size": 36,
+        "subtitle_size": 16,
+        "subtitle_margin_bottom": 20,
+        "block_title_size": 16,
+        "description_size": 12,
+        "section_padding": 20,
+        "header_margin": 10,
+        "blocks_gap": 4,
+        "header_padding": 18,
+        "container_padding": 40,
+        "content_max_height": 150
+      }
+    },
+    "weekly_calendar_layout_3V9AgP": {
+      "type": "weekly-calendar-layout",
+      "blocks": {
+        "week_B3cRta": {
+          "type": "week",
+          "settings": {
+            "heading": "Glowing Routine",
+            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "badge_label": "WEEK",
+            "badge_number": "1"
+          }
+        },
+        "week_eVxmCA": {
+          "type": "week",
+          "settings": {
+            "heading": "Glowing Routine",
+            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "badge_label": "WEEK",
+            "badge_number": "1"
+          }
+        }
+      },
+      "block_order": [
+        "week_B3cRta",
+        "week_eVxmCA"
+      ],
+      "name": "Weekly Calendar Layout",
+      "settings": {
+        "section_bg_color": "#000000",
+        "section_height": 680,
+        "panel_padding": 52,
+        "left_bg_color": "#000000",
+        "heading_size": 120,
+        "heading_weight": "400",
+        "heading_color": "#ffffff",
+        "desc_size": 15,
+        "desc_color": "#ffffff",
+        "list_size": 16,
+        "list_color": "#ffffff",
+        "badge_label_size": 22,
+        "badge_label_spacing": 2,
+        "badge_label_bg": "#ffffff",
+        "badge_label_color": "#000000",
+        "badge_number_size": 92,
+        "badge_number_bg": "#000000",
+        "badge_number_color": "#ffffff",
+        "badge_width": 120,
+        "badge_padding": 10,
+        "badge_bottom": 80
+      }
+    },
     "how_to_use_FHUUPg": {
       "type": "how-to-use",
       "blocks": {
@@ -364,127 +604,6 @@
         "accent_color": "#4fffff"
       }
     },
-    "science_formula_qhcFJp": {
-      "type": "science-formula",
-      "blocks": {
-        "science_item_wFeHcy": {
-          "type": "science_item",
-          "settings": {
-            "title": "Address the root causes of aging",
-            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
-            "media_type": "image",
-            "media_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_CnaakK": {
-          "type": "science_item",
-          "settings": {
-            "title": "Deliver bioavailable actives",
-            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
-            "media_type": "image",
-            "media_image": "shopify://shop_images/TheraFace_Mask_Glo___Clinically_Proven_LED_Mask_by_Therabody.jpg",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_cYizAP": {
-          "type": "science_item",
-          "settings": {
-            "title": "Target multiple pathways",
-            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
-            "media_type": "image",
-            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_kLiAMd": {
-          "type": "science_item",
-          "settings": {
-            "title": "Respect the microbiome",
-            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
-            "media_type": "image",
-            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_GXwJUz": {
-          "type": "science_item",
-          "settings": {
-            "title": "Maintain skin-neutral pH",
-            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
-            "media_type": "image",
-            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_czTHr7": {
-          "type": "science_item",
-          "settings": {
-            "title": "Optimize for layering or cocktailing",
-            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
-            "media_type": "image",
-            "media_image": "shopify://shop_images/Futuristic_beauty_treatment_in_serenity.png",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        }
-      },
-      "block_order": [
-        "science_item_wFeHcy",
-        "science_item_CnaakK",
-        "science_item_cYizAP",
-        "science_item_kLiAMd",
-        "science_item_GXwJUz",
-        "science_item_czTHr7"
-      ],
-      "name": "FAQs",
-      "settings": {
-        "main_title": "We have the formula for long-term skin health. And we follow it.",
-        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
-        "default_media_type": "image",
-        "default_media_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
-        "default_video_file": "",
-        "default_cgi_file": "",
-        "default_placeholder_text": "Default Media Placeholder",
-        "content_ratio": 50,
-        "media_ratio": 50,
-        "grid_gap": 20,
-        "block_width": 100,
-        "media_margin_left": 0,
-        "section_padding_vertical": 60,
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "title_color": "#ffffff",
-        "subtitle_color": "#ffffff",
-        "active_border_color": "#ffffff",
-        "active_title_color": "#4fffff",
-        "active_shadow_color": "#4fffff4d",
-        "media_border_color": "#4fffff",
-        "media_shadow_color": "#4fffff33",
-        "title_size": 36,
-        "subtitle_size": 16,
-        "subtitle_margin_bottom": 20,
-        "block_title_size": 16,
-        "description_size": 12,
-        "section_padding": 20,
-        "header_margin": 10,
-        "blocks_gap": 4,
-        "header_padding": 18,
-        "container_padding": 40,
-        "content_max_height": 150
-      }
-    },
     "ugc_video_carousel_Ak76GQ": {
       "type": "ugc-video-carousel",
       "blocks": {
@@ -603,8 +722,10 @@
   },
   "order": [
     "main",
-    "how_to_use_FHUUPg",
+    "steps_instruction_DB9bfY",
     "science_formula_qhcFJp",
+    "weekly_calendar_layout_3V9AgP",
+    "how_to_use_FHUUPg",
     "ugc_video_carousel_Ak76GQ",
     "inforoutine_section_nXiFHG"
   ]

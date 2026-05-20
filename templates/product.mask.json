@@ -704,6 +704,7 @@
         "ingredient_tile_a9fJxT": {
           "type": "ingredient_tile",
           "settings": {
+            "tile_image": "shopify://shop_images/pexels-tima-miroshnichenko-8376318.jpg",
             "tile_title": "Hyaluronic Acid",
             "tile_description": "Deep hydration and moisture retention"
           }

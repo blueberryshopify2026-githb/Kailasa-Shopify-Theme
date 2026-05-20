@@ -12,7 +12,7 @@
     "main": {
       "type": "product",
       "settings": {
-        "product": "",
+        "product": "aha-bha-exfoliating-cleanser",
         "outer_bg_color": "#000000",
         "outer_padding": 20,
         "gap_width": 20,

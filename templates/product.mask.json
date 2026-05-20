@@ -799,13 +799,15 @@
       ],
       "name": "Product Tactical Banner",
       "settings": {
+        "background_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
         "background_color": "#ffffff",
         "heading": "2-in-1 Formulation Optimized for Nutrient Delivery",
         "description": "<p>Seed's ViaCap® delivery system is engineered for targeted release along the GI tract.</p>",
         "heading_size": 48,
         "heading_color": "#1a1a1a",
         "description_size": 18,
-        "description_color": "#666666"
+        "description_color": "#666666",
+        "product_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg"
       }
     }
   },

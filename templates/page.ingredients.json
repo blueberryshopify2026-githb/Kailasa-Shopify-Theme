@@ -743,6 +743,59 @@
         "ff_hover_text_size": 13,
         "ff_hover_text_color": "#333333"
       }
+    },
+    "routine_section_ingredients_page_MDECLq": {
+      "type": "routine-section-ingredients-page",
+      "blocks": {
+        "tile_MaqJpD": {
+          "type": "tile",
+          "settings": {
+            "tile_image": "shopify://shop_images/download_17_5eac7c5d-b7f6-46ac-8352-400d19047f81.jpg",
+            "tile_label": "Niacinamide",
+            "tile_title": "START YOUR MORNING WITH A RITUAL THAT PROTECTS YOUR SKIN",
+            "tile_description": "Derived from DNA fragments, PDRN supports tissue regeneration and enhances skin healing at a cellular level."
+          }
+        },
+        "tile_hnYNTq": {
+          "type": "tile",
+          "settings": {
+            "tile_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
+            "tile_label": "Peptides",
+            "tile_title": "EVENING RESTORATION THERAPY",
+            "tile_description": "Advanced nighttime formulas work while you sleep to repair and rejuvenate your skin at the cellular level."
+          }
+        },
+        "tile_daVf4x": {
+          "type": "tile",
+          "settings": {
+            "tile_image": "shopify://shop_images/NUNKORO_AQUAFILL_REHYDRATING_CREAM.jpg",
+            "tile_label": "Retinol",
+            "tile_title": "WEEKLY INTENSIVE TREATMENT",
+            "tile_description": "Powerful weekly treatments that target specific concerns and accelerate your skin's natural renewal process."
+          }
+        },
+        "tile_fprLUN": {
+          "type": "tile",
+          "settings": {
+            "tile_image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
+            "tile_label": "Ceramides",
+            "tile_title": "DAILY PROTECTION SHIELD",
+            "tile_description": "Essential daily defense that creates a protective barrier against environmental damage and premature aging."
+          }
+        }
+      },
+      "block_order": [
+        "tile_MaqJpD",
+        "tile_hnYNTq",
+        "tile_daVf4x",
+        "tile_fprLUN"
+      ],
+      "name": "Routine Ingredients Page",
+      "settings": {
+        "background_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
+        "cta_text": "Regenerate Your Skin",
+        "cta_link": ""
+      }
     }
   },
   "order": [
@@ -750,6 +803,7 @@
     "ingredients_showcase_a4DpYy",
     "filter_by_concerns_rnQ9T3",
     "science_formula_dUnNV8",
-    "free_from_section_pktB4E"
+    "free_from_section_pktB4E",
+    "routine_section_ingredients_page_MDECLq"
   ]
 }

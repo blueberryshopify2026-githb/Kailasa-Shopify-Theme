@@ -696,7 +696,7 @@
         "ingredient_tile_LB6UNn": {
           "type": "ingredient_tile",
           "settings": {
-            "tile_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
+            "tile_image": "shopify://shop_images/download_65_c933a30c-62db-4e8d-8e16-0551e10e04e7.jpg",
             "tile_title": "PDRN Complex",
             "tile_description": "Advanced skin repair and cellular regeneration"
           }
@@ -704,7 +704,7 @@
         "ingredient_tile_a9fJxT": {
           "type": "ingredient_tile",
           "settings": {
-            "tile_image": "shopify://shop_images/pexels-tima-miroshnichenko-8376318.jpg",
+            "tile_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
             "tile_title": "Hyaluronic Acid",
             "tile_description": "Deep hydration and moisture retention"
           }
@@ -712,6 +712,7 @@
         "ingredient_tile_mRdkty": {
           "type": "ingredient_tile",
           "settings": {
+            "tile_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
             "tile_title": "Peptide Complex",
             "tile_description": "Collagen boost and anti-aging properties"
           }
@@ -719,8 +720,17 @@
         "ingredient_tile_ckwGLX": {
           "type": "ingredient_tile",
           "settings": {
+            "tile_image": "shopify://shop_images/download_64.jpg",
             "tile_title": "Vitamin C",
             "tile_description": "Antioxidant protection and brightening"
+          }
+        },
+        "ingredient_tile_htBWBK": {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_image": "shopify://shop_images/SHOP_CAPSULE_PARFUMS.jpg",
+            "tile_title": "Ingredient Name",
+            "tile_description": "Brief description of the ingredient and its benefits."
           }
         },
         "ingredient_tile_qiUiMK": {
@@ -736,6 +746,7 @@
         "ingredient_tile_a9fJxT",
         "ingredient_tile_mRdkty",
         "ingredient_tile_ckwGLX",
+        "ingredient_tile_htBWBK",
         "ingredient_tile_qiUiMK"
       ],
       "name": "Product Page Ingredients",

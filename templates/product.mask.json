@@ -11,8 +11,47 @@
   "sections": {
     "main": {
       "type": "product",
+      "blocks": {
+        "variant_ckhNH8": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "VIP Club Membership",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "0-Day Money Back Guarantee",
+            "variant_detail_4": "Delivered every 30 days",
+            "variant_price": "$49 USD"
+          }
+        },
+        "review_text_HAwA3D": {
+          "type": "review_text",
+          "settings": {
+            "text": "reduce fine lines, and restore a healthy, youthful glow with consistent use."
+          }
+        },
+        "review_author_YtXRAg": {
+          "type": "review_author",
+          "settings": {
+            "author": "by Dr. Ananya Mehta, MD (Dermatology)"
+          }
+        },
+        "star_rating_YyFYEN": {
+          "type": "star_rating",
+          "settings": {
+            "rating": "5",
+            "show_count": true,
+            "review_count": "231 Reviews"
+          }
+        }
+      },
+      "block_order": [
+        "variant_ckhNH8",
+        "review_text_HAwA3D",
+        "review_author_YtXRAg",
+        "star_rating_YyFYEN"
+      ],
       "settings": {
-        "product": "aha-bha-exfoliating-cleanser",
+        "product": "eye-serum",
         "outer_bg_color": "#000000",
         "outer_padding": 20,
         "gap_width": 20,
@@ -29,6 +68,8 @@
         "cta_text": "Add to cart",
         "cta_bg_color": "#4fffff",
         "cta_text_color": "#000000",
+        "payment_button_1": "shopify://shop_images/5cecf2c1ee40676bcef484efe1853bff.png",
+        "payment_button_2": "shopify://shop_images/gp.png",
         "payment_btn_bg": "#ffffff",
         "nav_strip_bg": "#ffffff"
       }

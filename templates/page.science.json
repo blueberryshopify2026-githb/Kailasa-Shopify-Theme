@@ -268,6 +268,123 @@
         "cta_border_radius": 50
       }
     },
+    "science_formula_Bcwrqp": {
+      "type": "science-formula",
+      "blocks": {
+        "science_item_Qf6cd7": {
+          "type": "science_item",
+          "settings": {
+            "title": "Address the root causes of aging",
+            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_JV6zyY": {
+          "type": "science_item",
+          "settings": {
+            "title": "Deliver bioavailable actives",
+            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_FTEHaB": {
+          "type": "science_item",
+          "settings": {
+            "title": "Target multiple pathways",
+            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_xyTFzJ": {
+          "type": "science_item",
+          "settings": {
+            "title": "Respect the microbiome",
+            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_F6RdH6": {
+          "type": "science_item",
+          "settings": {
+            "title": "Maintain skin-neutral pH",
+            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
+            "media_type": "image",
+            "media_image": "shopify://shop_images/DSC08440.webp",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        },
+        "science_item_AdgYEJ": {
+          "type": "science_item",
+          "settings": {
+            "title": "Optimize for layering or cocktailing",
+            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
+            "media_type": "placeholder",
+            "video_file": "",
+            "cgi_file": "",
+            "placeholder_text": "Image/Video/CGI Placeholder"
+          }
+        }
+      },
+      "block_order": [
+        "science_item_Qf6cd7",
+        "science_item_JV6zyY",
+        "science_item_FTEHaB",
+        "science_item_xyTFzJ",
+        "science_item_F6RdH6",
+        "science_item_AdgYEJ"
+      ],
+      "name": "Science Formula",
+      "settings": {
+        "main_title": "We have the formula for long-term skin health. And we follow it.",
+        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
+        "default_media_type": "image",
+        "default_media_image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
+        "default_video_file": "",
+        "default_cgi_file": "",
+        "default_placeholder_text": "Default Media Placeholder",
+        "content_ratio": 50,
+        "media_ratio": 50,
+        "grid_gap": 20,
+        "block_width": 100,
+        "media_margin_left": 0,
+        "section_padding_vertical": 60,
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "active_border_color": "#ffffff",
+        "active_title_color": "#4fffff",
+        "active_shadow_color": "#4fffff4d",
+        "media_border_color": "#4fffff",
+        "media_shadow_color": "#4fffff33",
+        "title_size": 36,
+        "subtitle_size": 16,
+        "subtitle_margin_bottom": 20,
+        "block_title_size": 16,
+        "description_size": 12,
+        "section_padding": 20,
+        "header_margin": 10,
+        "blocks_gap": 4,
+        "header_padding": 18,
+        "container_padding": 40,
+        "content_max_height": 150
+      }
+    },
     "dual_container_slider_cy9Tc7": {
       "type": "dual-container-slider",
       "blocks": {
@@ -504,123 +621,6 @@
         "button_active_hover_background": "rgba(0,0,0,0)"
       }
     },
-    "science_formula_Bcwrqp": {
-      "type": "science-formula",
-      "blocks": {
-        "science_item_Qf6cd7": {
-          "type": "science_item",
-          "settings": {
-            "title": "Address the root causes of aging",
-            "description": "Scientists have identified the biological hallmarks that drive aging. We focused on the ones that skincare has the unique power to address and built our formulas around them. This is the targeted longevity skincare is supposed to deliver.",
-            "media_type": "image",
-            "media_image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_JV6zyY": {
-          "type": "science_item",
-          "settings": {
-            "title": "Deliver bioavailable actives",
-            "description": "Advanced delivery systems ensure active ingredients penetrate effectively and reach their target sites within the skin for maximum efficacy.",
-            "media_type": "placeholder",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_FTEHaB": {
-          "type": "science_item",
-          "settings": {
-            "title": "Target multiple pathways",
-            "description": "Our multi-pathway approach addresses various aspects of skin aging simultaneously for comprehensive anti-aging benefits.",
-            "media_type": "placeholder",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_xyTFzJ": {
-          "type": "science_item",
-          "settings": {
-            "title": "Respect the microbiome",
-            "description": "Formulations that work in harmony with your skin's natural microbiome to maintain healthy barrier function.",
-            "media_type": "placeholder",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_F6RdH6": {
-          "type": "science_item",
-          "settings": {
-            "title": "Maintain skin-neutral pH",
-            "description": "pH-balanced formulations that support your skin's natural acid mantle for optimal barrier function and comfort.",
-            "media_type": "image",
-            "media_image": "shopify://shop_images/DSC08440.webp",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        },
-        "science_item_AdgYEJ": {
-          "type": "science_item",
-          "settings": {
-            "title": "Optimize for layering or cocktailing",
-            "description": "Designed to work synergistically with other products in your routine for enhanced results and compatibility.",
-            "media_type": "placeholder",
-            "video_file": "",
-            "cgi_file": "",
-            "placeholder_text": "Image/Video/CGI Placeholder"
-          }
-        }
-      },
-      "block_order": [
-        "science_item_Qf6cd7",
-        "science_item_JV6zyY",
-        "science_item_FTEHaB",
-        "science_item_xyTFzJ",
-        "science_item_F6RdH6",
-        "science_item_AdgYEJ"
-      ],
-      "name": "Science Formula",
-      "settings": {
-        "main_title": "We have the formula for long-term skin health. And we follow it.",
-        "subtitle": "Every formulation begins with a question: What does skin need that current products don't deliver? We find the answers in our philosophy.",
-        "default_media_type": "image",
-        "default_media_image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
-        "default_video_file": "",
-        "default_cgi_file": "",
-        "default_placeholder_text": "Default Media Placeholder",
-        "content_ratio": 50,
-        "media_ratio": 50,
-        "grid_gap": 20,
-        "block_width": 100,
-        "media_margin_left": 0,
-        "section_padding_vertical": 60,
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "title_color": "#ffffff",
-        "subtitle_color": "#ffffff",
-        "active_border_color": "#ffffff",
-        "active_title_color": "#4fffff",
-        "active_shadow_color": "#4fffff4d",
-        "media_border_color": "#4fffff",
-        "media_shadow_color": "#4fffff33",
-        "title_size": 36,
-        "subtitle_size": 16,
-        "subtitle_margin_bottom": 20,
-        "block_title_size": 16,
-        "description_size": 12,
-        "section_padding": 20,
-        "header_margin": 10,
-        "blocks_gap": 4,
-        "header_padding": 18,
-        "container_padding": 40,
-        "content_max_height": 150
-      }
-    },
     "medical_team_wn8Fb9": {
       "type": "medical-team",
       "blocks": {
@@ -791,16 +791,101 @@
         "cell_text_font_family": "montserrat_n4",
         "cell_text_font_size": 12
       }
+    },
+    "routine_science_page_Yq6KUc": {
+      "type": "routine-science-page",
+      "blocks": {
+        "routine_tab_GtMAxy": {
+          "type": "routine_tab",
+          "settings": {
+            "title": "AM",
+            "product_1": "",
+            "product_2": "",
+            "product_3": "",
+            "product_4": "",
+            "product_5": "",
+            "product_6": "",
+            "show_divider": true,
+            "rich_text": "",
+            "background_color": "#fefefe",
+            "text_color": "#333333"
+          }
+        },
+        "routine_tab_BXmc6j": {
+          "type": "routine_tab",
+          "settings": {
+            "title": "PM",
+            "product_1": "",
+            "product_2": "",
+            "product_3": "",
+            "product_4": "",
+            "product_5": "",
+            "product_6": "",
+            "show_divider": true,
+            "rich_text": "",
+            "background_color": "#ffffff",
+            "text_color": "#444444"
+          }
+        },
+        "routine_tab_a8DKdJ": {
+          "type": "routine_tab",
+          "settings": {
+            "title": "PM + LIGHT",
+            "product_1": "",
+            "product_2": "",
+            "product_3": "",
+            "product_4": "",
+            "product_5": "",
+            "product_6": "",
+            "show_divider": true,
+            "rich_text": "",
+            "background_color": "#ffffff",
+            "text_color": "#555555"
+          }
+        },
+        "routine_tab_3c4URX": {
+          "type": "routine_tab",
+          "settings": {
+            "title": "EXFOLIATE",
+            "product_1": "",
+            "product_2": "",
+            "product_3": "",
+            "product_4": "",
+            "product_5": "",
+            "product_6": "",
+            "show_divider": true,
+            "rich_text": "",
+            "background_color": "#fefefe",
+            "text_color": "#666666"
+          }
+        }
+      },
+      "block_order": [
+        "routine_tab_GtMAxy",
+        "routine_tab_BXmc6j",
+        "routine_tab_a8DKdJ",
+        "routine_tab_3c4URX"
+      ],
+      "name": "Routine Science Page",
+      "settings": {
+        "section_title": "Your Routine",
+        "explore_title": "Explore",
+        "explore_link": "",
+        "explore_bg_color": "#000000",
+        "explore_text_color": "#ffffff",
+        "explore_border_color": "#4fffff"
+      }
     }
   },
   "order": [
     "main",
     "science_page_hero_TjK7yy",
     "protocol_phases_v2_kHCXeK",
+    "science_formula_Bcwrqp",
     "dual_container_slider_cy9Tc7",
     "product_infographic_iQbYcj",
-    "science_formula_Bcwrqp",
     "medical_team_wn8Fb9",
-    "comparison_table_4GTUqW"
+    "comparison_table_4GTUqW",
+    "routine_science_page_Yq6KUc"
   ]
 }

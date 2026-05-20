@@ -2724,6 +2724,187 @@
         "points_font_size": 16,
         "points_font_weight": "400"
       }
+    },
+    "customer_testimonial_pzxKE4": {
+      "type": "customer-testimonial",
+      "blocks": {
+        "testimonial_pLaeqR": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "1",
+            "ct_bg_image": "shopify://shop_images/110bd15f9d5cf96c77c15688944bb35b.jpg",
+            "ct_quote": "If you want to glow like me, you must take care of your skin",
+            "ct_customer_name": "Emma R."
+          }
+        },
+        "testimonial_4Etmcd": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "1",
+            "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
+            "ct_customer_name": "Lily K."
+          }
+        },
+        "testimonial_dhiwgX": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "1",
+            "ct_quote": "This product changed my routine completely. My skin has never felt better.",
+            "ct_customer_name": "Mia T."
+          }
+        },
+        "testimonial_ikNxNY": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "1",
+            "ct_quote": "Absolutely love the results. Highly recommend to everyone.",
+            "ct_customer_name": "Zoe P."
+          }
+        },
+        "testimonial_zCPFwi": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "2",
+            "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
+            "ct_customer_name": "Anna B."
+          }
+        },
+        "testimonial_qtNHBr": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "2",
+            "ct_quote": "My dermatologist recommended this and I can see why. Amazing results.",
+            "ct_customer_name": "Clara S."
+          }
+        },
+        "testimonial_7Em8dK": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "2",
+            "ct_quote": "The texture is so light and it absorbs instantly. Love it!",
+            "ct_customer_name": "Nina W."
+          }
+        },
+        "testimonial_XeYFNz": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "2",
+            "ct_quote": "Best skincare purchase I have made this year without a doubt.",
+            "ct_customer_name": "Jade L."
+          }
+        },
+        "testimonial_MWhPTF": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "3",
+            "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
+            "ct_customer_name": "Rose H."
+          }
+        },
+        "testimonial_d7jMkF": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "3",
+            "ct_quote": "Glowing skin is always in. This product delivers every single time.",
+            "ct_customer_name": "Faye D."
+          }
+        },
+        "testimonial_wPxzBw": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "3",
+            "ct_quote": "I was skeptical at first but the results speak for themselves.",
+            "ct_customer_name": "Iris C."
+          }
+        },
+        "testimonial_HTdbkG": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "3",
+            "ct_quote": "Gentle on sensitive skin and incredibly effective. A must-have.",
+            "ct_customer_name": "Luna V."
+          }
+        },
+        "testimonial_Wefcj7": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "4",
+            "ct_quote": "I think skin-care is really important. It's good to do masks to give your skin",
+            "ct_customer_name": "Vera N."
+          }
+        },
+        "testimonial_Nhc64A": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "4",
+            "ct_quote": "My skin looks so much more radiant since I started using this.",
+            "ct_customer_name": "Stella F."
+          }
+        },
+        "testimonial_FYzcG3": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "4",
+            "ct_quote": "Worth every penny. My confidence has gone through the roof.",
+            "ct_customer_name": "Cleo M."
+          }
+        },
+        "testimonial_GnpeNa": {
+          "type": "testimonial",
+          "settings": {
+            "ct_column": "4",
+            "ct_quote": "I recommend this to all my friends. The results are undeniable.",
+            "ct_customer_name": "Aria G."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_pLaeqR",
+        "testimonial_4Etmcd",
+        "testimonial_dhiwgX",
+        "testimonial_ikNxNY",
+        "testimonial_zCPFwi",
+        "testimonial_qtNHBr",
+        "testimonial_7Em8dK",
+        "testimonial_XeYFNz",
+        "testimonial_MWhPTF",
+        "testimonial_d7jMkF",
+        "testimonial_wPxzBw",
+        "testimonial_HTdbkG",
+        "testimonial_Wefcj7",
+        "testimonial_Nhc64A",
+        "testimonial_FYzcG3",
+        "testimonial_GnpeNa"
+      ],
+      "name": "Customer Testimonial",
+      "settings": {
+        "ct_bg": "#ffffff",
+        "ct_padding_v": 60,
+        "ct_gap": 15,
+        "ct_card_height": 420,
+        "ct_card_radius": 16,
+        "ct_heading": "What Our Customers Say",
+        "ct_subheading": "",
+        "ct_heading_align": "center",
+        "ct_heading_size": 40,
+        "ct_heading_weight": "700",
+        "ct_heading_color": "#000000",
+        "ct_subheading_size": 16,
+        "ct_subheading_color": "#555555",
+        "ct_heading_gap": 40,
+        "ct_frost_opacity": 70,
+        "ct_frost_blur": 12,
+        "ct_frost_radius": 12,
+        "ct_frost_offset": 12,
+        "ct_frost_pad_v": 16,
+        "ct_frost_pad_h": 16,
+        "ct_quote_size": 14,
+        "ct_quote_color": "#000000",
+        "ct_name_size": 13,
+        "ct_name_color": "#4fffff",
+        "ct_speed": 60,
+        "ct_anim_pause": 1000
+      }
     }
   },
   "order": [
@@ -2739,6 +2920,7 @@
     "tab_section_zx6Pab",
     "multi_tab_section_BQJGBt",
     "comparison_table_8gLMQK",
-    "vip_section_G4MkWg"
+    "vip_section_G4MkWg",
+    "customer_testimonial_pzxKE4"
   ]
 }

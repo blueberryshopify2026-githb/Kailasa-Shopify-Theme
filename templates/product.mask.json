@@ -401,32 +401,36 @@
         },
         "week_CWNKr3": {
           "type": "week",
+          "name": "Week 2",
           "settings": {
-            "week_label": "Week 1",
+            "week_label": "Week 2",
             "week_title": "Maintains Immune Function*",
             "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function|Shields against environmental stress.|Fuels microbial metabolism of nutrients|Shields against environmental stress."
           }
         },
         "week_mRdMkp": {
           "type": "week",
+          "name": "Week 3",
           "settings": {
-            "week_label": "Week 1",
+            "week_label": "Week 3",
             "week_title": "Maintains Immune Function*",
             "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function|Shields against environmental stress.|Fuels microbial metabolism of nutrients|Shields against environmental stress."
           }
         },
         "week_t4Kmmj": {
           "type": "week",
+          "name": "Week 4",
           "settings": {
-            "week_label": "Week 1",
+            "week_label": "Week 4",
             "week_title": "Maintains Immune Function*",
             "week_description": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function"
           }
         },
         "week_43qdqH": {
           "type": "week",
+          "name": "Week 5",
           "settings": {
-            "week_label": "Week 2",
+            "week_label": "Week 5",
             "week_title": "Enhanced Nutrient Absorption*",
             "week_description": "Improves digestive health|Supports microbiome balance|Increases energy levels"
           }

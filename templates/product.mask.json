@@ -105,7 +105,7 @@
           "type": "image-text-block",
           "settings": {
             "tab_name": "About",
-            "image": "shopify://shop_images/Quel_masque_LED_choisir___Suivez_notre_guide_430x_aa9fbe61-4adf-438c-9117-0b3c4ecefd38.webp",
+            "image": "shopify://shop_images/mist-app-2_1440x_c51abb51-bdfd-4f44-8521-ae5475998ddf.webp",
             "text_content": "Add your content here. This text will appear alongside the image in a 50-50 layout. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
             "layout": "image-text",
             "content_font_family": "inherit",
@@ -180,7 +180,7 @@
           "type": "faq-block",
           "settings": {
             "tab_name": "FAQ",
-            "image": "shopify://shop_images/Quel_masque_LED_choisir___Suivez_notre_guide.jpg",
+            "image": "shopify://shop_images/Photography_2025-2026_by_nus__All_rights_reserved.jpg",
             "layout": "image-faq",
             "faq_bg_color": "#ffffff",
             "question_text_color": "#181818",

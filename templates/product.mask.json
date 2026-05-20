@@ -696,6 +696,7 @@
         "ingredient_tile_LB6UNn": {
           "type": "ingredient_tile",
           "settings": {
+            "tile_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
             "tile_title": "PDRN Complex",
             "tile_description": "Advanced skin repair and cellular regeneration"
           }
@@ -738,6 +739,7 @@
       ],
       "name": "Product Page Ingredients",
       "settings": {
+        "background_image": "shopify://shop_images/ChatGPT_Image_Apr_23_2026_03_17_45_PM_a8e83627-992c-4e83-ae40-1ef153328fb4.png",
         "heading": "Regenerate Your Skin with PDRN Power",
         "description": "<p>PDRN is a cutting-edge skin-repair ingredient known for its ability to deeply rejuvenate, restore elasticity, and accelerate cellular renewal. It helps improve skin texture, reduce fine lines, and bring back a youthful, radiant glow from within.</p>",
         "heading_size": 48,

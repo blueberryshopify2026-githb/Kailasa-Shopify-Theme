@@ -767,7 +767,7 @@
         "info_dot_8Kiqcd": {
           "type": "info_dot",
           "settings": {
-            "dot_position_x": 85,
+            "dot_position_x": 49,
             "dot_position_y": 15,
             "info_title": "Advanced Formula",
             "info_description": "Scientifically engineered for maximum absorption and effectiveness."
@@ -776,7 +776,7 @@
         "info_dot_3FbFNP": {
           "type": "info_dot",
           "settings": {
-            "dot_position_x": 75,
+            "dot_position_x": 44,
             "dot_position_y": 45,
             "info_title": "Deep Skin Repair",
             "info_description": "PDRN works at a cellular level to repair damaged skin and accelerate healing."
@@ -785,7 +785,7 @@
         "info_dot_ANrF8m": {
           "type": "info_dot",
           "settings": {
-            "dot_position_x": 90,
+            "dot_position_x": 56,
             "dot_position_y": 75,
             "info_title": "Targeted Delivery",
             "info_description": "Precision-engineered delivery system for optimal nutrient absorption."

@@ -799,14 +799,14 @@
           "type": "routine_tab",
           "settings": {
             "title": "AM",
-            "product_1": "",
-            "product_2": "",
-            "product_3": "",
-            "product_4": "",
-            "product_5": "",
-            "product_6": "",
+            "product_1": "aha-bha-exfoliating-cleanser",
+            "product_2": "eye-serum",
+            "product_3": "infinite-youth-concentrate",
+            "product_4": "photon-youth™-pro-led-mask",
+            "product_5": "eye-serum",
+            "product_6": "infinite-youth-concentrate",
             "show_divider": true,
-            "rich_text": "",
+            "rich_text": "<p>gtgtghhhgh</p>",
             "background_color": "#fefefe",
             "text_color": "#333333"
           }

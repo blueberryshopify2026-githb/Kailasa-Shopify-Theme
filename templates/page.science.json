@@ -811,20 +811,20 @@
             "text_color": "#333333"
           }
         },
-        "routine_tab_BXmc6j": {
+        "routine_tab_cDinKz": {
           "type": "routine_tab",
           "settings": {
             "title": "PM",
-            "product_1": "",
-            "product_2": "",
-            "product_3": "",
-            "product_4": "",
-            "product_5": "",
-            "product_6": "",
+            "product_1": "aha-bha-exfoliating-cleanser",
+            "product_2": "eye-serum",
+            "product_3": "infinite-youth-concentrate",
+            "product_4": "photon-youth™-pro-led-mask",
+            "product_5": "infinite-youth-concentrate",
+            "product_6": "aha-bha-exfoliating-cleanser",
             "show_divider": true,
-            "rich_text": "",
-            "background_color": "#ffffff",
-            "text_color": "#444444"
+            "rich_text": "<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>",
+            "background_color": "#fefefe",
+            "text_color": "#333333"
           }
         },
         "routine_tab_a8DKdJ": {
@@ -862,7 +862,7 @@
       },
       "block_order": [
         "routine_tab_GtMAxy",
-        "routine_tab_BXmc6j",
+        "routine_tab_cDinKz",
         "routine_tab_a8DKdJ",
         "routine_tab_3c4URX"
       ],

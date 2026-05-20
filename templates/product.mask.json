@@ -305,6 +305,134 @@
         "image_height": 100
       }
     },
+    "comparison_table_tjbgne": {
+      "type": "comparison-table",
+      "blocks": {
+        "ingredient_row_mktqPa": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Ceramide",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_7mRxtx": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "pdrn",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_Ww3AT6": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Retinol",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_fBR8xn": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Hyaluronic ACID",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "cross",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_We463P": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Vitamins",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "check",
+            "supplements_text": "",
+            "skincare_type": "cross",
+            "skincare_text": "",
+            "mask_type": "text",
+            "mask_text": "Ingredient Description"
+          }
+        },
+        "ingredient_row_PnQYBa": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
+            "cellular_harmony_type": "text",
+            "cellular_harmony_text": "Ingredient Description Color here",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        },
+        "ingredient_row_WhQTGT": {
+          "type": "ingredient_row",
+          "settings": {
+            "ingredient_name": "Minerals",
+            "cellular_harmony_type": "check",
+            "cellular_harmony_text": "",
+            "supplements_type": "text",
+            "supplements_text": "Ingredient Description Color here",
+            "skincare_type": "check",
+            "skincare_text": "",
+            "mask_type": "check",
+            "mask_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_row_mktqPa",
+        "ingredient_row_7mRxtx",
+        "ingredient_row_Ww3AT6",
+        "ingredient_row_fBR8xn",
+        "ingredient_row_We463P",
+        "ingredient_row_PnQYBa",
+        "ingredient_row_WhQTGT"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "section_heading": "Cellular Harmony Advantage",
+        "column_1_title": "Cellular Harmony",
+        "column_2_title": "Supplements",
+        "column_3_title": "Skincare",
+        "column_4_title": "Mask",
+        "title_font_family": "montserrat_n4",
+        "title_font_size": 60,
+        "column_heading_font_family": "montserrat_n4",
+        "column_heading_font_size": 16,
+        "ingredient_font_family": "montserrat_n4",
+        "ingredient_font_size": 15,
+        "cell_text_font_family": "montserrat_n4",
+        "cell_text_font_size": 12
+      }
+    },
     "professional_panel_PBgJJd": {
       "type": "professional-panel",
       "blocks": {
@@ -480,134 +608,6 @@
         "list_font_weight": "400"
       }
     },
-    "comparison_table_tjbgne": {
-      "type": "comparison-table",
-      "blocks": {
-        "ingredient_row_mktqPa": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Ceramide",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_7mRxtx": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "pdrn",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_Ww3AT6": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Retinol",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_fBR8xn": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Hyaluronic ACID",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "cross",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_We463P": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
-          }
-        },
-        "ingredient_row_PnQYBa": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
-            "cellular_harmony_type": "text",
-            "cellular_harmony_text": "Ingredient Description Color here",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_WhQTGT": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Minerals",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description Color here",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "ingredient_row_mktqPa",
-        "ingredient_row_7mRxtx",
-        "ingredient_row_Ww3AT6",
-        "ingredient_row_fBR8xn",
-        "ingredient_row_We463P",
-        "ingredient_row_PnQYBa",
-        "ingredient_row_WhQTGT"
-      ],
-      "name": "Comparison Table",
-      "settings": {
-        "section_heading": "Cellular Harmony Advantage",
-        "column_1_title": "Cellular Harmony",
-        "column_2_title": "Supplements",
-        "column_3_title": "Skincare",
-        "column_4_title": "Mask",
-        "title_font_family": "montserrat_n4",
-        "title_font_size": 60,
-        "column_heading_font_family": "montserrat_n4",
-        "column_heading_font_size": 16,
-        "ingredient_font_family": "montserrat_n4",
-        "ingredient_font_size": 15,
-        "cell_text_font_family": "montserrat_n4",
-        "cell_text_font_size": 12
-      }
-    },
     "inforoutine_section_xfUWkw": {
       "type": "inforoutine-section",
       "name": "Info Routine Section",
@@ -639,15 +639,73 @@
         "pri_card_apply_size": 16,
         "pri_card_apply_color": "#000000"
       }
+    },
+    "product_page_ingredients_kgmPwy": {
+      "type": "product-page-ingredients",
+      "blocks": {
+        "ingredient_tile_LB6UNn": {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "PDRN Complex",
+            "tile_description": "Advanced skin repair and cellular regeneration"
+          }
+        },
+        "ingredient_tile_a9fJxT": {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "Hyaluronic Acid",
+            "tile_description": "Deep hydration and moisture retention"
+          }
+        },
+        "ingredient_tile_mRdkty": {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "Peptide Complex",
+            "tile_description": "Collagen boost and anti-aging properties"
+          }
+        },
+        "ingredient_tile_ckwGLX": {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "Vitamin C",
+            "tile_description": "Antioxidant protection and brightening"
+          }
+        },
+        "ingredient_tile_qiUiMK": {
+          "type": "ingredient_tile",
+          "settings": {
+            "tile_title": "Niacinamide",
+            "tile_description": "Pore refinement and oil control"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_tile_LB6UNn",
+        "ingredient_tile_a9fJxT",
+        "ingredient_tile_mRdkty",
+        "ingredient_tile_ckwGLX",
+        "ingredient_tile_qiUiMK"
+      ],
+      "name": "Product Page Ingredients",
+      "settings": {
+        "heading": "Regenerate Your Skin with PDRN Power",
+        "description": "<p>PDRN is a cutting-edge skin-repair ingredient known for its ability to deeply rejuvenate, restore elasticity, and accelerate cellular renewal. It helps improve skin texture, reduce fine lines, and bring back a youthful, radiant glow from within.</p>",
+        "heading_size": 48,
+        "heading_color": "#ffffff",
+        "description_size": 18,
+        "description_color": "#ffffff",
+        "animation_speed": 6000
+      }
     }
   },
   "order": [
     "main",
     "tab_section_hyhKPN",
     "three_column_media_TwRKMU",
+    "comparison_table_tjbgne",
     "professional_panel_PBgJJd",
     "result_timeline_GKg8KF",
-    "comparison_table_tjbgne",
-    "inforoutine_section_xfUWkw"
+    "inforoutine_section_xfUWkw",
+    "product_page_ingredients_kgmPwy"
   ]
 }

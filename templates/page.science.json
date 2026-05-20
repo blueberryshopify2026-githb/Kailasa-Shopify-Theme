@@ -831,14 +831,14 @@
           "type": "routine_tab",
           "settings": {
             "title": "PM + LIGHT",
-            "product_1": "",
-            "product_2": "",
-            "product_3": "",
-            "product_4": "",
-            "product_5": "",
-            "product_6": "",
+            "product_1": "aha-bha-exfoliating-cleanser",
+            "product_2": "eye-serum",
+            "product_3": "infinite-youth-concentrate",
+            "product_4": "photon-youth™-pro-led-mask",
+            "product_5": "infinite-youth-concentrate",
+            "product_6": "aha-bha-exfoliating-cleanser",
             "show_divider": true,
-            "rich_text": "",
+            "rich_text": "<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form,<br/><br/></p>",
             "background_color": "#ffffff",
             "text_color": "#555555"
           }

@@ -752,7 +752,7 @@
           "settings": {
             "tile_image": "shopify://shop_images/download_17_5eac7c5d-b7f6-46ac-8352-400d19047f81.jpg",
             "tile_label": "Niacinamide",
-            "tile_title": "START YOUR MORNING WITH A RITUAL THAT PROTECTS YOUR SKIN",
+            "tile_title": "START YOUR MORNING",
             "tile_description": "Derived from DNA fragments, PDRN supports tissue regeneration and enhances skin healing at a cellular level."
           }
         },
@@ -792,7 +792,7 @@
       ],
       "name": "Routine Ingredients Page",
       "settings": {
-        "background_image": "shopify://shop_images/Visual_identity_system_for_a_modern_science-first_nutritional_supplements_brand.jpg",
+        "background_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
         "cta_text": "Regenerate Your Skin",
         "cta_link": ""
       }

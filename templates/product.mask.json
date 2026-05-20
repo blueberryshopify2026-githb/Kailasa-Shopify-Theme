@@ -23,6 +23,28 @@
             "variant_price": "$49 USD"
           }
         },
+        "variant_iywnCC": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "Subscription",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "Easily edit, skip or cancel anytime",
+            "variant_detail_3": "",
+            "variant_detail_4": "",
+            "variant_price": "$49 USD"
+          }
+        },
+        "variant_nBTKdQ": {
+          "type": "variant",
+          "settings": {
+            "variant_name": "One Time",
+            "variant_detail_1": "Free SCI Travel Packs",
+            "variant_detail_2": "",
+            "variant_detail_3": "",
+            "variant_detail_4": "",
+            "variant_price": "$49 USD"
+          }
+        },
         "review_text_HAwA3D": {
           "type": "review_text",
           "settings": {
@@ -46,6 +68,8 @@
       },
       "block_order": [
         "variant_ckhNH8",
+        "variant_iywnCC",
+        "variant_nBTKdQ",
         "review_text_HAwA3D",
         "review_author_YtXRAg",
         "star_rating_YyFYEN"

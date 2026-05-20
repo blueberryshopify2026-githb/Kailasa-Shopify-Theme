@@ -120,7 +120,7 @@
           "name": "Acne",
           "settings": {
             "concern_name": "Acne",
-            "image_1": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
+            "image_1": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d-removebg-preview-removebg-preview.png",
             "popup_1_stat1_icon": "shopify://shop_images/skincare-routine.png",
             "popup_1_stat1_value": "+96%",
             "popup_1_stat1_label": "MEGADOSE OF VITAMIN C",
@@ -171,6 +171,7 @@
         },
         "concern_iHHpga": {
           "type": "concern",
+          "name": "Dryness",
           "settings": {
             "concern_name": "Dryness",
             "image_1": "shopify://shop_images/ee78b72411d68a5fc5ce582dc0670065.jpg",
@@ -224,6 +225,7 @@
         },
         "concern_YKJCpa": {
           "type": "concern",
+          "name": "Oily Skin",
           "settings": {
             "concern_name": "Oily Skin",
             "image_1": "shopify://shop_images/Instagram_2.jpg",
@@ -277,6 +279,7 @@
         },
         "concern_WVVXAf": {
           "type": "concern",
+          "name": "Hyperpigmentation",
           "settings": {
             "concern_name": "Hyperpigmentation",
             "image_1": "shopify://shop_images/download_29.jpg",
@@ -290,7 +293,7 @@
             "popup_1_stat3_value": "+96%",
             "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
             "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
-            "image_2": "shopify://shop_images/Federico_Berardi___Oeuvre_n-2381.jpg",
+            "image_2": "shopify://shop_images/ChatGPT_Image_Apr_22_2026_01_55_13_PM_829bb6c6-e94e-4ad0-91cf-54eddfcc80cc.png",
             "popup_2_stat1_icon": "shopify://shop_images/skincare-routine.png",
             "popup_2_stat1_value": "+96%",
             "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",
@@ -330,6 +333,7 @@
         },
         "concern_gU9Ahq": {
           "type": "concern",
+          "name": "Sensitivity",
           "settings": {
             "concern_name": "Sensitivity",
             "image_1": "shopify://shop_images/See_All_The_Cool_Skincare_Products.jpg",
@@ -383,6 +387,7 @@
         },
         "concern_c6Nzbm": {
           "type": "concern",
+          "name": "Wrinkles/fine lines",
           "settings": {
             "concern_name": "Wrinkles/fine lines",
             "image_1": "shopify://shop_images/Instagram_2.jpg",
@@ -436,6 +441,7 @@
         },
         "concern_RBafH9": {
           "type": "concern",
+          "name": "Enlarged Pores",
           "settings": {
             "concern_name": "Enlarged Pores",
             "image_1": "shopify://shop_images/e2cd32528b3c7d10f871717fa217a735.jpg",
@@ -449,7 +455,7 @@
             "popup_1_stat3_value": "+96%",
             "popup_1_stat3_label": "MEGADOSE OF VITAMIN C",
             "popup_1_description": "Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone. Give your skin a megadose of Vitamin C. Our 20% Vitamin C + E Ferulic Acid serum brightens skin, builds collagen, and evens out tone.",
-            "image_2": "shopify://shop_images/Ectoin_and_niacinamide_work_together_to_strengthen_the_skin_barrier_ectoin_locks_in_moisture_while_niacinamide_enhances_ceramide_and_elastin_production_for_healthier_skin.jpg",
+            "image_2": "shopify://shop_images/download_21_57c08ecb-c648-4347-b62d-0367c853d206.jpg",
             "popup_2_stat1_icon": "shopify://shop_images/skincare-routine.png",
             "popup_2_stat1_value": "+96%",
             "popup_2_stat1_label": "MEGADOSE OF VITAMIN C",

@@ -437,8 +437,9 @@
         },
         "week_rJcJQ8": {
           "type": "week",
+          "name": "Week 6",
           "settings": {
-            "week_label": "Week 3",
+            "week_label": "Week 6",
             "week_title": "Optimal Wellness*",
             "week_description": "Complete system optimization|Long-term health benefits|Sustained energy and vitality"
           }

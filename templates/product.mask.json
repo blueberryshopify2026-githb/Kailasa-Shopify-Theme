@@ -640,6 +640,56 @@
         "pri_card_apply_color": "#000000"
       }
     },
+    "product_infographics_product_page_8FKEVC": {
+      "type": "product-infographics-product-page",
+      "blocks": {
+        "point_nVzcDE": {
+          "type": "point",
+          "settings": {
+            "point_text": "Repair. Renew. Reborn."
+          }
+        },
+        "point_YcUiFq": {
+          "type": "point",
+          "settings": {
+            "point_text": "The DNA of Youthful Skin"
+          }
+        },
+        "point_nHVCnj": {
+          "type": "point",
+          "settings": {
+            "point_text": "From Damage to Radiance"
+          }
+        },
+        "point_XkLT7E": {
+          "type": "point",
+          "settings": {
+            "point_text": "Cellular Repair, Visible Glow"
+          }
+        }
+      },
+      "block_order": [
+        "point_nVzcDE",
+        "point_YcUiFq",
+        "point_nHVCnj",
+        "point_XkLT7E"
+      ],
+      "name": "Product Infographics",
+      "settings": {
+        "background_image": "shopify://shop_images/ChatGPT_Image_Apr_23_2026_01_39_44_PM_b2c0488d-3873-4398-b718-3f46b31f88c1.png",
+        "overlay_color": "rgba(255, 255, 255, 0.1)",
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "heading": "Elastic Skin Protocol",
+        "description": "Power your day with a skincare ritual that repairs overnight damage, locks in moisture, and builds a strong barrier against environmental aggressors.",
+        "heading_font_size": 58,
+        "heading_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#333333",
+        "point_font_size": 14,
+        "point_text_color": "#000000"
+      }
+    },
     "product_page_ingredients_kgmPwy": {
       "type": "product-page-ingredients",
       "blocks": {
@@ -743,55 +793,6 @@
         "description_size": 18,
         "description_color": "#666666"
       }
-    },
-    "product_infographics_product_page_8FKEVC": {
-      "type": "product-infographics-product-page",
-      "blocks": {
-        "point_nVzcDE": {
-          "type": "point",
-          "settings": {
-            "point_text": "Repair. Renew. Reborn."
-          }
-        },
-        "point_YcUiFq": {
-          "type": "point",
-          "settings": {
-            "point_text": "The DNA of Youthful Skin"
-          }
-        },
-        "point_nHVCnj": {
-          "type": "point",
-          "settings": {
-            "point_text": "From Damage to Radiance"
-          }
-        },
-        "point_XkLT7E": {
-          "type": "point",
-          "settings": {
-            "point_text": "Cellular Repair, Visible Glow"
-          }
-        }
-      },
-      "block_order": [
-        "point_nVzcDE",
-        "point_YcUiFq",
-        "point_nHVCnj",
-        "point_XkLT7E"
-      ],
-      "name": "Product Infographics",
-      "settings": {
-        "overlay_color": "rgba(255, 255, 255, 0.1)",
-        "section_padding_top": 80,
-        "section_padding_bottom": 80,
-        "heading": "Elastic Skin Protocol",
-        "description": "Power your day with a skincare ritual that repairs overnight damage, locks in moisture, and builds a strong barrier against environmental aggressors.",
-        "heading_font_size": 58,
-        "heading_color": "#000000",
-        "description_font_size": 16,
-        "description_color": "#333333",
-        "point_font_size": 14,
-        "point_text_color": "#000000"
-      }
     }
   },
   "order": [
@@ -802,8 +803,8 @@
     "professional_panel_PBgJJd",
     "result_timeline_GKg8KF",
     "inforoutine_section_xfUWkw",
+    "product_infographics_product_page_8FKEVC",
     "product_page_ingredients_kgmPwy",
-    "product_page_tactical_banner_8RXJmB",
-    "product_infographics_product_page_8FKEVC"
+    "product_page_tactical_banner_8RXJmB"
   ]
 }

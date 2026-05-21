@@ -147,6 +147,7 @@
             "list_item_3": "Elevate skincare branding with",
             "list_item_4": "",
             "list_item_5": "",
+            "right_image": "shopify://shop_images/Biggest_Discounts_of_the_year___Niche_Beauty_Lab_1.jpg",
             "badge_label": "WEEK",
             "badge_number": "1"
           }
@@ -154,15 +155,16 @@
         "week_eVxmCA": {
           "type": "week",
           "settings": {
-            "heading": "Glowing Routine",
-            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
+            "heading": "Tea Tree Extract",
+            "description": "A natural antibacterial ingredient that helps calm acne, reduce redness, control excess oil, and soothe irritated skin.",
             "list_item_1": "Elevate skincare branding with stunning typography",
             "list_item_2": "Elevate skincare branding with stunning",
             "list_item_3": "Elevate skincare branding with",
             "list_item_4": "",
             "list_item_5": "",
+            "right_image": "shopify://shop_images/NUNKORO_AQUAFILL_REHYDRATING_CREAM.jpg",
             "badge_label": "WEEK",
-            "badge_number": "1"
+            "badge_number": "2"
           }
         }
       },

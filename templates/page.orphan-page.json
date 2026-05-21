@@ -694,11 +694,17 @@
             "open_bg_image": "shopify://shop_images/Nourish_Skin_Hair_and_Nails.jpg",
             "open_title": "Business",
             "open_description": "Comprehensive business banking solutions with advanced features for growing companies and enterprises.",
+            "icon_1_image": "shopify://shop_images/skincare-routine.png",
             "icon_1_text": "Analytics",
+            "icon_2_image": "shopify://shop_images/free_1_223d0f5b-9b62-447e-be2d-ec78a3870fac.png",
             "icon_2_text": "Business",
+            "icon_3_image": "shopify://shop_images/paraben-free_1.png",
             "icon_3_text": "Transfer",
+            "icon_4_image": "shopify://shop_images/gmo.png",
             "icon_4_text": "Growth",
+            "icon_5_image": "shopify://shop_images/cruelty-free.png",
             "icon_5_text": "Protected",
+            "icon_6_image": "shopify://shop_images/free_1.png",
             "icon_6_text": "Fast"
           }
         },

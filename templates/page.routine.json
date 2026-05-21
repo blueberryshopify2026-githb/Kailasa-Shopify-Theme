@@ -376,6 +376,21 @@
             "name_position_y": -170
           }
         },
+        "step_qtRVf7": {
+          "type": "step",
+          "settings": {
+            "tab_id": "pm",
+            "step_label": "Cleanser",
+            "product_name": "Product Name",
+            "product_description": "",
+            "product_link": "",
+            "video_url": "",
+            "image_position_x": -100,
+            "image_position_y": -360,
+            "name_position_x": 100,
+            "name_position_y": -300
+          }
+        },
         "step_RnXzJ8": {
           "type": "step",
           "settings": {
@@ -504,6 +519,21 @@
             "name_position_y": -170
           }
         },
+        "step_pexaYC": {
+          "type": "step",
+          "settings": {
+            "tab_id": "pm",
+            "step_label": "Cleanser",
+            "product_name": "Product Name",
+            "product_description": "",
+            "product_link": "",
+            "video_url": "",
+            "image_position_x": -100,
+            "image_position_y": -360,
+            "name_position_x": 100,
+            "name_position_y": -300
+          }
+        },
         "step_iPBJiR": {
           "type": "step",
           "settings": {
@@ -578,6 +608,7 @@
         "step_TAhpM3",
         "step_67JKLM",
         "step_C6HTma",
+        "step_qtRVf7",
         "step_RnXzJ8",
         "step_ftLYhL",
         "step_XPGDKL",
@@ -586,6 +617,7 @@
         "step_GXF8T4",
         "step_zE4t3e",
         "step_LQ6QfM",
+        "step_pexaYC",
         "step_iPBJiR",
         "step_B9ketY",
         "step_mdRWyG",

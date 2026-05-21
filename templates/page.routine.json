@@ -16,10 +16,22 @@
     "steps_instruction_DB9bfY": {
       "type": "steps-instruction",
       "blocks": {
+        "instruction_step_MyWf9p": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "background_image": "shopify://shop_images/pexels-tima-miroshnichenko-8376318.jpg",
+            "heading": "Nutrition and Digestive daily probiotic and new daily multivitamin",
+            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental</p><p>Use a lightweight moisturizer to keep your skin hydrated, smooth</p><p>Finish with a broad-spectrum SPF 30+ to shield your skin from UV damage</p>",
+            "product_name": "Age-Defy Purity Wash",
+            "product_link": ""
+          }
+        },
         "instruction_step_HHJ79F": {
           "type": "instruction_step",
           "settings": {
             "tab_category": "am",
+            "background_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
             "heading": "Morning skincare routine",
             "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental damage</p><p>Use a lightweight moisturizer to keep your skin hydrated and smooth</p>",
             "product_name": "Vitamin C Serum",
@@ -30,6 +42,7 @@
           "type": "instruction_step",
           "settings": {
             "tab_category": "am",
+            "background_image": "shopify://shop_images/Elevate_your_skincare_routine_with_the_tripeptide_gel_cream_for_visibly_improved_hydrated_and_youthful-looking_skin.jpg",
             "heading": "Morning hydration boost",
             "description": "<p>Start with a hydrating toner to prep your skin</p><p>Apply hyaluronic acid serum for deep moisture</p><p>Use a refreshing face mist throughout the day</p><p>Don't forget lip balm for complete hydration</p>",
             "product_name": "Hyaluronic Acid",
@@ -40,6 +53,7 @@
           "type": "instruction_step",
           "settings": {
             "tab_category": "pm",
+            "background_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
             "heading": "Evening skincare routine",
             "description": "<p>Begin with a deep cleansing oil to remove makeup</p><p>Apply retinol night serum for skin renewal</p><p>Use a rich night moisturizer for overnight repair</p><p>Add eye renewal complex for delicate eye area</p>",
             "product_name": "Retinol Night Serum",
@@ -58,6 +72,7 @@
         }
       },
       "block_order": [
+        "instruction_step_MyWf9p",
         "instruction_step_HHJ79F",
         "instruction_step_crLMXa",
         "instruction_step_QRg667",

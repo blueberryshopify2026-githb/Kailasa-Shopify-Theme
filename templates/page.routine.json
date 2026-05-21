@@ -166,11 +166,59 @@
             "badge_label": "WEEK",
             "badge_number": "2"
           }
+        },
+        "week_kfgBh9": {
+          "type": "week",
+          "settings": {
+            "heading": "Centella Asiatica",
+            "description": "A soothing botanical extract that calms irritation, reduces redness, repairs damaged skin, and supports faster healing of sensitive skin.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "right_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
+            "badge_label": "WEEK",
+            "badge_number": "3"
+          }
+        },
+        "week_4jzHxN": {
+          "type": "week",
+          "settings": {
+            "heading": "Glowing Routine",
+            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "right_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
+            "badge_label": "WEEK",
+            "badge_number": "4"
+          }
+        },
+        "week_AegNFE": {
+          "type": "week",
+          "settings": {
+            "heading": "Alpha Arbutin",
+            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "right_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
+            "badge_label": "WEEK",
+            "badge_number": "5"
+          }
         }
       },
       "block_order": [
         "week_B3cRta",
-        "week_eVxmCA"
+        "week_eVxmCA",
+        "week_kfgBh9",
+        "week_4jzHxN",
+        "week_AegNFE"
       ],
       "name": "Weekly Calendar Layout",
       "settings": {

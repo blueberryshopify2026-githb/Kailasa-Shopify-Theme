@@ -13,91 +13,6 @@
       "type": "page",
       "settings": {}
     },
-    "steps_instruction_DB9bfY": {
-      "type": "steps-instruction",
-      "blocks": {
-        "instruction_step_xXrhFi": {
-          "type": "instruction_step",
-          "settings": {
-            "tab_category": "am",
-            "background_image": "shopify://shop_images/premium_photo-1661473820951-99a3565f3fca.avif",
-            "heading": "Nutrition and Digestive daily probiotic and new daily multivitamin",
-            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental</p><p>Use a lightweight moisturizer to keep your skin hydrated, smooth</p><p>Finish with a broad-spectrum SPF 30+ to shield your skin from UV damage</p>",
-            "product_name": "Age-Defy Purity Wash",
-            "product_link": ""
-          }
-        },
-        "instruction_step_MyWf9p": {
-          "type": "instruction_step",
-          "settings": {
-            "tab_category": "am",
-            "background_image": "shopify://shop_images/pexels-tima-miroshnichenko-8376318.jpg",
-            "heading": "Nutrition and Digestive daily probiotic and new daily multivitamin",
-            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental</p><p>Use a lightweight moisturizer to keep your skin hydrated, smooth</p><p>Finish with a broad-spectrum SPF 30+ to shield your skin from UV damage</p>",
-            "product_name": "Age-Defy Purity Wash",
-            "product_link": ""
-          }
-        },
-        "instruction_step_HHJ79F": {
-          "type": "instruction_step",
-          "settings": {
-            "tab_category": "am",
-            "background_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
-            "heading": "Morning skincare routine",
-            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental damage</p><p>Use a lightweight moisturizer to keep your skin hydrated and smooth</p>",
-            "product_name": "Vitamin C Serum",
-            "product_link": ""
-          }
-        },
-        "instruction_step_crLMXa": {
-          "type": "instruction_step",
-          "settings": {
-            "tab_category": "am",
-            "background_image": "shopify://shop_images/Elevate_your_skincare_routine_with_the_tripeptide_gel_cream_for_visibly_improved_hydrated_and_youthful-looking_skin.jpg",
-            "heading": "Morning hydration boost",
-            "description": "<p>Start with a hydrating toner to prep your skin</p><p>Apply hyaluronic acid serum for deep moisture</p><p>Use a refreshing face mist throughout the day</p><p>Don't forget lip balm for complete hydration</p>",
-            "product_name": "Hyaluronic Acid",
-            "product_link": ""
-          }
-        },
-        "instruction_step_QRg667": {
-          "type": "instruction_step",
-          "settings": {
-            "tab_category": "pm",
-            "background_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
-            "heading": "Evening skincare routine",
-            "description": "<p>Begin with a deep cleansing oil to remove makeup</p><p>Apply retinol night serum for skin renewal</p><p>Use a rich night moisturizer for overnight repair</p><p>Add eye renewal complex for delicate eye area</p>",
-            "product_name": "Retinol Night Serum",
-            "product_link": ""
-          }
-        },
-        "instruction_step_KezerL": {
-          "type": "instruction_step",
-          "settings": {
-            "tab_category": "exfoliate",
-            "heading": "Weekly exfoliation routine",
-            "description": "<p>Use an exfoliating scrub 2-3 times per week</p><p>Apply AHA/BHA treatment for deeper exfoliation</p><p>Follow with a soothing recovery mask</p><p>Finish with barrier repair cream to restore skin</p>",
-            "product_name": "Exfoliating Scrub",
-            "product_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "instruction_step_xXrhFi",
-        "instruction_step_MyWf9p",
-        "instruction_step_HHJ79F",
-        "instruction_step_crLMXa",
-        "instruction_step_QRg667",
-        "instruction_step_KezerL"
-      ],
-      "name": "Steps Instruction",
-      "settings": {
-        "heading_size": 48,
-        "heading_color": "#1a1a1a",
-        "description_size": 16,
-        "description_color": "#666666"
-      }
-    },
     "science_formula_qhcFJp": {
       "type": "science-formula",
       "blocks": {
@@ -715,7 +630,6 @@
     },
     "inforoutine_section_nXiFHG": {
       "type": "inforoutine-section",
-      "disabled": true,
       "name": "Info Routine Section",
       "settings": {
         "pri_bg": "#ffffff",
@@ -745,15 +659,100 @@
         "pri_card_apply_size": 16,
         "pri_card_apply_color": "#000000"
       }
+    },
+    "steps_instruction_DB9bfY": {
+      "type": "steps-instruction",
+      "blocks": {
+        "instruction_step_xXrhFi": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "background_image": "shopify://shop_images/premium_photo-1661473820951-99a3565f3fca.avif",
+            "heading": "Nutrition and Digestive daily probiotic and new daily multivitamin",
+            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental</p><p>Use a lightweight moisturizer to keep your skin hydrated, smooth</p><p>Finish with a broad-spectrum SPF 30+ to shield your skin from UV damage</p>",
+            "product_name": "Age-Defy Purity Wash",
+            "product_link": ""
+          }
+        },
+        "instruction_step_MyWf9p": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "background_image": "shopify://shop_images/pexels-tima-miroshnichenko-8376318.jpg",
+            "heading": "Nutrition and Digestive daily probiotic and new daily multivitamin",
+            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental</p><p>Use a lightweight moisturizer to keep your skin hydrated, smooth</p><p>Finish with a broad-spectrum SPF 30+ to shield your skin from UV damage</p>",
+            "product_name": "Age-Defy Purity Wash",
+            "product_link": ""
+          }
+        },
+        "instruction_step_HHJ79F": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "background_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
+            "heading": "Morning skincare routine",
+            "description": "<p>Remove overnight oil, sweat, and impurities with a mild cleanser</p><p>Use a hydrating toner to restore your skin's pH levels</p><p>Apply a vitamin C or antioxidant-rich serum to protect against environmental damage</p><p>Use a lightweight moisturizer to keep your skin hydrated and smooth</p>",
+            "product_name": "Vitamin C Serum",
+            "product_link": ""
+          }
+        },
+        "instruction_step_crLMXa": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "am",
+            "background_image": "shopify://shop_images/Elevate_your_skincare_routine_with_the_tripeptide_gel_cream_for_visibly_improved_hydrated_and_youthful-looking_skin.jpg",
+            "heading": "Morning hydration boost",
+            "description": "<p>Start with a hydrating toner to prep your skin</p><p>Apply hyaluronic acid serum for deep moisture</p><p>Use a refreshing face mist throughout the day</p><p>Don't forget lip balm for complete hydration</p>",
+            "product_name": "Hyaluronic Acid",
+            "product_link": ""
+          }
+        },
+        "instruction_step_QRg667": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "pm",
+            "background_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
+            "heading": "Evening skincare routine",
+            "description": "<p>Begin with a deep cleansing oil to remove makeup</p><p>Apply retinol night serum for skin renewal</p><p>Use a rich night moisturizer for overnight repair</p><p>Add eye renewal complex for delicate eye area</p>",
+            "product_name": "Retinol Night Serum",
+            "product_link": ""
+          }
+        },
+        "instruction_step_KezerL": {
+          "type": "instruction_step",
+          "settings": {
+            "tab_category": "exfoliate",
+            "heading": "Weekly exfoliation routine",
+            "description": "<p>Use an exfoliating scrub 2-3 times per week</p><p>Apply AHA/BHA treatment for deeper exfoliation</p><p>Follow with a soothing recovery mask</p><p>Finish with barrier repair cream to restore skin</p>",
+            "product_name": "Exfoliating Scrub",
+            "product_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "instruction_step_xXrhFi",
+        "instruction_step_MyWf9p",
+        "instruction_step_HHJ79F",
+        "instruction_step_crLMXa",
+        "instruction_step_QRg667",
+        "instruction_step_KezerL"
+      ],
+      "name": "Steps Instruction",
+      "settings": {
+        "heading_size": 48,
+        "heading_color": "#1a1a1a",
+        "description_size": 16,
+        "description_color": "#666666"
+      }
     }
   },
   "order": [
     "main",
-    "steps_instruction_DB9bfY",
     "science_formula_qhcFJp",
     "weekly_calendar_layout_3V9AgP",
     "how_to_use_FHUUPg",
     "ugc_video_carousel_Ak76GQ",
-    "inforoutine_section_nXiFHG"
+    "inforoutine_section_nXiFHG",
+    "steps_instruction_DB9bfY"
   ]
 }

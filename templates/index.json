@@ -153,6 +153,7 @@
         "media_block_XMJLGM",
         "media_block_4yLpk4"
       ],
+      "disabled": true,
       "name": "Dot Line Section",
       "settings": {
         "dot_color": "#4fffff",

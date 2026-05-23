@@ -14,6 +14,117 @@
       "disabled": true,
       "settings": {}
     },
+    "weekly_calendar_layout_3V9AgP": {
+      "type": "weekly-calendar-layout",
+      "blocks": {
+        "week_B3cRta": {
+          "type": "week",
+          "settings": {
+            "heading": "Glowing Routine",
+            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "right_image": "shopify://shop_images/Biggest_Discounts_of_the_year___Niche_Beauty_Lab_1.jpg",
+            "badge_label": "WEEK",
+            "badge_number": "1"
+          }
+        },
+        "week_eVxmCA": {
+          "type": "week",
+          "settings": {
+            "heading": "Tea Tree Extract",
+            "description": "A natural antibacterial ingredient that helps calm acne, reduce redness, control excess oil, and soothe irritated skin.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "right_image": "shopify://shop_images/NUNKORO_AQUAFILL_REHYDRATING_CREAM.jpg",
+            "badge_label": "WEEK",
+            "badge_number": "2"
+          }
+        },
+        "week_kfgBh9": {
+          "type": "week",
+          "settings": {
+            "heading": "Centella Asiatica",
+            "description": "A soothing botanical extract that calms irritation, reduces redness, repairs damaged skin, and supports faster healing of sensitive skin.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "right_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
+            "badge_label": "WEEK",
+            "badge_number": "3"
+          }
+        },
+        "week_4jzHxN": {
+          "type": "week",
+          "settings": {
+            "heading": "Glowing Routine",
+            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "right_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
+            "badge_label": "WEEK",
+            "badge_number": "4"
+          }
+        },
+        "week_AegNFE": {
+          "type": "week",
+          "settings": {
+            "heading": "Alpha Arbutin",
+            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
+            "list_item_1": "Elevate skincare branding with stunning typography",
+            "list_item_2": "Elevate skincare branding with stunning",
+            "list_item_3": "Elevate skincare branding with",
+            "list_item_4": "",
+            "list_item_5": "",
+            "right_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
+            "badge_label": "WEEK",
+            "badge_number": "5"
+          }
+        }
+      },
+      "block_order": [
+        "week_B3cRta",
+        "week_eVxmCA",
+        "week_kfgBh9",
+        "week_4jzHxN",
+        "week_AegNFE"
+      ],
+      "name": "Weekly Calendar Layout",
+      "settings": {
+        "section_bg_color": "#000000",
+        "section_height": 680,
+        "panel_padding": 52,
+        "left_bg_color": "#000000",
+        "heading_size": 120,
+        "heading_weight": "400",
+        "heading_color": "#ffffff",
+        "desc_size": 15,
+        "desc_color": "#ffffff",
+        "list_size": 16,
+        "list_color": "#ffffff",
+        "badge_label_size": 22,
+        "badge_label_spacing": 2,
+        "badge_label_bg": "#ffffff",
+        "badge_label_color": "#000000",
+        "badge_number_size": 92,
+        "badge_number_bg": "#000000",
+        "badge_number_color": "#ffffff",
+        "badge_width": 120,
+        "badge_padding": 10,
+        "badge_bottom": 80
+      }
+    },
     "science_formula_qhcFJp": {
       "type": "science-formula",
       "blocks": {
@@ -133,117 +244,6 @@
         "header_padding": 18,
         "container_padding": 40,
         "content_max_height": 150
-      }
-    },
-    "weekly_calendar_layout_3V9AgP": {
-      "type": "weekly-calendar-layout",
-      "blocks": {
-        "week_B3cRta": {
-          "type": "week",
-          "settings": {
-            "heading": "Glowing Routine",
-            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
-            "list_item_1": "Elevate skincare branding with stunning typography",
-            "list_item_2": "Elevate skincare branding with stunning",
-            "list_item_3": "Elevate skincare branding with",
-            "list_item_4": "",
-            "list_item_5": "",
-            "right_image": "shopify://shop_images/Biggest_Discounts_of_the_year___Niche_Beauty_Lab_1.jpg",
-            "badge_label": "WEEK",
-            "badge_number": "1"
-          }
-        },
-        "week_eVxmCA": {
-          "type": "week",
-          "settings": {
-            "heading": "Tea Tree Extract",
-            "description": "A natural antibacterial ingredient that helps calm acne, reduce redness, control excess oil, and soothe irritated skin.",
-            "list_item_1": "Elevate skincare branding with stunning typography",
-            "list_item_2": "Elevate skincare branding with stunning",
-            "list_item_3": "Elevate skincare branding with",
-            "list_item_4": "",
-            "list_item_5": "",
-            "right_image": "shopify://shop_images/NUNKORO_AQUAFILL_REHYDRATING_CREAM.jpg",
-            "badge_label": "WEEK",
-            "badge_number": "2"
-          }
-        },
-        "week_kfgBh9": {
-          "type": "week",
-          "settings": {
-            "heading": "Centella Asiatica",
-            "description": "A soothing botanical extract that calms irritation, reduces redness, repairs damaged skin, and supports faster healing of sensitive skin.",
-            "list_item_1": "Elevate skincare branding with stunning typography",
-            "list_item_2": "Elevate skincare branding with stunning",
-            "list_item_3": "Elevate skincare branding with",
-            "list_item_4": "",
-            "list_item_5": "",
-            "right_image": "shopify://shop_images/ba951ce6a4a1d81564d2315978bbbed7.jpg",
-            "badge_label": "WEEK",
-            "badge_number": "3"
-          }
-        },
-        "week_4jzHxN": {
-          "type": "week",
-          "settings": {
-            "heading": "Glowing Routine",
-            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
-            "list_item_1": "Elevate skincare branding with stunning typography",
-            "list_item_2": "Elevate skincare branding with stunning",
-            "list_item_3": "Elevate skincare branding with",
-            "list_item_4": "",
-            "list_item_5": "",
-            "right_image": "shopify://shop_images/belif_Milky_Niacinamide_Sunscreen_SPF_40_Lightweight_Invisible_Sun_Serum_for_Face.jpg",
-            "badge_label": "WEEK",
-            "badge_number": "4"
-          }
-        },
-        "week_AegNFE": {
-          "type": "week",
-          "settings": {
-            "heading": "Alpha Arbutin",
-            "description": "Set of skincare products including cleansing foam, body wash, serum, lotion, gel, and mist spray.",
-            "list_item_1": "Elevate skincare branding with stunning typography",
-            "list_item_2": "Elevate skincare branding with stunning",
-            "list_item_3": "Elevate skincare branding with",
-            "list_item_4": "",
-            "list_item_5": "",
-            "right_image": "shopify://shop_images/pexels-may-sevilla-495684611-20377674_1_fc3bbda9-439e-424f-8470-759526ad906e.jpg",
-            "badge_label": "WEEK",
-            "badge_number": "5"
-          }
-        }
-      },
-      "block_order": [
-        "week_B3cRta",
-        "week_eVxmCA",
-        "week_kfgBh9",
-        "week_4jzHxN",
-        "week_AegNFE"
-      ],
-      "name": "Weekly Calendar Layout",
-      "settings": {
-        "section_bg_color": "#000000",
-        "section_height": 680,
-        "panel_padding": 52,
-        "left_bg_color": "#000000",
-        "heading_size": 120,
-        "heading_weight": "400",
-        "heading_color": "#ffffff",
-        "desc_size": 15,
-        "desc_color": "#ffffff",
-        "list_size": 16,
-        "list_color": "#ffffff",
-        "badge_label_size": 22,
-        "badge_label_spacing": 2,
-        "badge_label_bg": "#ffffff",
-        "badge_label_color": "#000000",
-        "badge_number_size": 92,
-        "badge_number_bg": "#000000",
-        "badge_number_color": "#ffffff",
-        "badge_width": 120,
-        "badge_padding": 10,
-        "badge_bottom": 80
       }
     },
     "how_to_use_FHUUPg": {
@@ -852,8 +852,8 @@
   },
   "order": [
     "main",
-    "science_formula_qhcFJp",
     "weekly_calendar_layout_3V9AgP",
+    "science_formula_qhcFJp",
     "how_to_use_FHUUPg",
     "ugc_video_carousel_Ak76GQ",
     "inforoutine_section_nXiFHG",

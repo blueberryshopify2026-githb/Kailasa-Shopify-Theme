@@ -102,10 +102,19 @@
         "professional_iXax6n": {
           "type": "professional",
           "settings": {
-            "background_image": "shopify://shop_images/sample_6_12.png",
-            "bg_position_x": 50,
-            "bg_position_y": 50,
+            "background_image": "shopify://shop_images/Female-Doctor-PNG-Transparent-1.png",
             "name": "Belinda Tan, MD, PhD",
+            "designation": "Scientific Advisor",
+            "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
+            "cta_text": "SKINBOOSTER SERUM",
+            "cta_link": ""
+          }
+        },
+        "professional_bWwWWg": {
+          "type": "professional",
+          "settings": {
+            "background_image": "shopify://shop_images/Female-Doctor-PNG-Transparent-1.png",
+            "name": "Rekha Gupta, MD, PhD",
             "designation": "Scientific Advisor",
             "quote": "Every CISL formula begins with proven K-Medical techniques, refined in our lab to transform clinical-grade expertise into high-performance skincare",
             "cta_text": "SKINBOOSTER SERUM",
@@ -114,7 +123,8 @@
         }
       },
       "block_order": [
-        "professional_iXax6n"
+        "professional_iXax6n",
+        "professional_bWwWWg"
       ],
       "name": "Professional Panel",
       "settings": {
@@ -134,7 +144,27 @@
         "cta_border_radius": 24,
         "arrow_bg_color": "#000000",
         "arrow_border_color": "#4fffff",
-        "arrow_color": "#4fffff"
+        "arrow_color": "#4fffff",
+        "tab_name_font_size": 36,
+        "tab_designation_font_size": 16,
+        "tab_quote_font_size": 15,
+        "tab_quote_mark_size": 26,
+        "tab_cta_font_size": 13,
+        "tab_card_padding_v": 50,
+        "tab_card_padding_h": 36,
+        "tab_card_inner_padding_v": 44,
+        "tab_card_inner_padding_h": 32,
+        "tab_card_gap": 24,
+        "tab_arrow_size": 50,
+        "mob_name_font_size": 22,
+        "mob_designation_font_size": 13,
+        "mob_quote_font_size": 12,
+        "mob_quote_mark_size": 20,
+        "mob_cta_font_size": 11,
+        "mob_card_padding_v": 28,
+        "mob_card_padding_h": 20,
+        "mob_card_gap": 12,
+        "mob_arrow_size": 44
       }
     },
     "comparison_table_aQEkFg": {

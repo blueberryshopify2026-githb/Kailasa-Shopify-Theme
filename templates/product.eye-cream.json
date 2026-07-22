@@ -167,54 +167,6 @@
         "mob_arrow_size": 44
       }
     },
-    "medical_team_WFTnw9": {
-      "type": "medical-team",
-      "blocks": {
-        "team_member_VGyAFA": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/male-doctor-holding-clipboard.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_zHEGHm": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/pexels-tima-miroshnichenko-5407222.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        }
-      },
-      "block_order": [
-        "team_member_VGyAFA",
-        "team_member_zHEGHm"
-      ],
-      "name": "Medical Team",
-      "settings": {
-        "section_bg_color": "#000000",
-        "title_part1": "MEET OUR SPECIALISED",
-        "title_part2": "MEDICAL TEAM",
-        "title_font_size": 40,
-        "title_color": "#ffffff",
-        "highlight_color": "#4FFFFF",
-        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
-        "description_font_size": 18,
-        "description_color": "#ffffff",
-        "nav_bg_color": "#000000",
-        "nav_border_color": "#4FFFFF",
-        "nav_icon_color": "#4FFFFF",
-        "mob_card_width": 62,
-        "mob_card_height": 75,
-        "mob_frost_name_size": 16,
-        "mob_frost_desig_size": 12,
-        "tab_side_width": 26,
-        "tab_active_width": 40,
-        "tab_frost_name_size": 20,
-        "tab_frost_desig_size": 14
-      }
-    },
     "ugc_content_section_zfURVr": {
       "type": "ugc-content-section",
       "blocks": {
@@ -312,12 +264,60 @@
         "mob_buy_button_size": 11,
         "mob_dot_active_color": "#333333"
       }
+    },
+    "medical_team_WFTnw9": {
+      "type": "medical-team",
+      "blocks": {
+        "team_member_VGyAFA": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/male-doctor-holding-clipboard.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        },
+        "team_member_zHEGHm": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/pexels-tima-miroshnichenko-5407222.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_VGyAFA",
+        "team_member_zHEGHm"
+      ],
+      "name": "Medical Team",
+      "settings": {
+        "section_bg_color": "#000000",
+        "title_part1": "MEET OUR SPECIALISED",
+        "title_part2": "MEDICAL TEAM",
+        "title_font_size": 40,
+        "title_color": "#ffffff",
+        "highlight_color": "#4FFFFF",
+        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
+        "description_font_size": 18,
+        "description_color": "#ffffff",
+        "nav_bg_color": "#000000",
+        "nav_border_color": "#4FFFFF",
+        "nav_icon_color": "#4FFFFF",
+        "mob_card_width": 62,
+        "mob_card_height": 75,
+        "mob_frost_name_size": 16,
+        "mob_frost_desig_size": 12,
+        "tab_side_width": 26,
+        "tab_active_width": 40,
+        "tab_frost_name_size": 20,
+        "tab_frost_desig_size": 14
+      }
     }
   },
   "order": [
     "main",
     "professional_panel_iDFanP",
-    "medical_team_WFTnw9",
-    "ugc_content_section_zfURVr"
+    "ugc_content_section_zfURVr",
+    "medical_team_WFTnw9"
   ]
 }

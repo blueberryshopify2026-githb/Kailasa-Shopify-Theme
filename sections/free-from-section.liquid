@@ -5,14 +5,16 @@
   Class suffix: ff
 {% endcomment %}
 
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 
   .ff-section {
     font-family: 'Montserrat', sans-serif;
     background: {{ section.settings.ff_bg }};
     padding: {{ section.settings.ff_padding_v }}px {{ section.settings.ff_padding_h }}px;
-    height: 105vh;
+    height: 110vh;
     min-height: 600px;
     box-sizing: border-box;
     display: flex;
@@ -20,33 +22,32 @@
     overflow: hidden;
   }
 
+
   /* ── Heading ── */
   .ff-heading {
     font-size: {{ section.settings.ff_heading_size }}px;
     font-weight: {{ section.settings.ff_heading_weight }};
     color: {{ section.settings.ff_heading_color }};
     line-height: 1.2;
-    margin: 0 0 {{ section.settings.ff_heading_gap }}px 0;
+    margin: 0 20 {{ section.settings.ff_heading_gap }}px 0;
+    /* border:1px solid red; */
+    padding-bottom: 20px;
   }
 
-  /* ── Main grid layout ──
-     4 columns, rows auto.
-     Image: col 1-3, row 1
-     Right cards (3): col 4, rows 1-3 (each card = 1 row)
-     Bottom cards (4): col 1-4, row 2 (below image, same row as right card 3 bottom)
 
-     Actually: image + right col side by side, then 4 bottom cards full width.
-     Right col cards = same height as bottom cards.
-     Image height = 3 × (card_height + gap) - gap
+  /* ── Main grid layout ──
+     Image left, right col with 3 stacked cards.
+     Bottom row: 2 cards under image + 1 card under right column.
   */
   .ff-layout {
     display: grid;
-    grid-template-columns: 1fr {{ section.settings.ff_right_width }}px;
+    grid-template-columns: 1fr 405px;
     grid-template-rows: 1fr auto;
     gap: {{ section.settings.ff_card_gap }}px;
     flex: 1;
     min-height: 0;
   }
+
 
   /* Image: top-left cell */
   .ff-image-wrap {
@@ -57,6 +58,7 @@
     border-radius: {{ section.settings.ff_img_radius }}px;
   }
 
+
   .ff-image {
     width: 100%;
     height: 100%;
@@ -65,12 +67,14 @@
     display: block;
   }
 
+
   .ff-image-placeholder {
     width: 100%;
     height: 100%;
     border-radius: {{ section.settings.ff_img_radius }}px;
     background: #e8e8e8;
   }
+
 
   /* Right column: 3 cards stacked, top-right cell — same card height as bottom */
   .ff-right-col {
@@ -83,23 +87,46 @@
     min-height: 0;
   }
 
+
   .ff-right-col .ff-card-wrap {
     flex: none;
+    width: 405px;
   }
+
 
   .ff-right-col .ff-card {
     height: {{ section.settings.ff_card_height }}px;
   }
 
-  /* Bottom row: 4 cards spanning full width, bottom row */
+
+  /* Bottom row: 2 cards under image, 1 card under right column */
   .ff-bottom-row {
-    grid-column: 1 / -1;
+    grid-column: 1;
     grid-row: 2;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: {{ section.settings.ff_card_gap }}px;
+    display: flex;
+    justify-content: space-between;
     flex-shrink: 0;
   }
+
+  .ff-bottom-row .ff-card-wrap {
+    width: 405px;
+    flex-shrink: 0;
+  }
+
+  /* Third bottom card positioned in right column */
+  .ff-bottom-right {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .ff-bottom-right .ff-card-wrap {
+    width: 405px;
+  }
+
+  .ff-bottom-right .ff-card {
+    height: {{ section.settings.ff_card_height }}px;
+  }
+
 
   /* ── Card wrap — extra top space for half-out icon ── */
   .ff-card-wrap {
@@ -107,9 +134,11 @@
     padding-top: {{ section.settings.ff_icon_size | divided_by: 2 }}px;
   }
 
+
   .ff-bottom-row .ff-card-wrap {
     flex: none;
   }
+
 
   .ff-card {
     position: relative;
@@ -129,6 +158,7 @@
     box-sizing: border-box;
   }
 
+
   /* Icon: half outside top-left of card */
   .ff-icon-wrap {
     position: absolute;
@@ -142,12 +172,14 @@
     border-radius: 50%;
   }
 
+
   .ff-icon {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
   }
+
 
   .ff-icon-placeholder {
     width: 100%;
@@ -161,6 +193,7 @@
     background: #fff;
   }
 
+
   /* Label */
   .ff-card-label {
     font-size: {{ section.settings.ff_label_size }}px;
@@ -168,6 +201,7 @@
     color: {{ section.settings.ff_label_color }};
     margin: 0;
   }
+
 
   /* ── Frost hover card — expands UPWARD from card top ── */
   .ff-hover-card {
@@ -192,10 +226,12 @@
     z-index: 20;
   }
 
+
   .ff-card-wrap:hover .ff-hover-card {
     opacity: 1;
     visibility: visible;
   }
+
 
   .ff-hover-icon-row {
     display: flex;
@@ -203,12 +239,14 @@
     gap: 10px;
   }
 
+
   .ff-hover-icon {
     width: {{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}px;
     height: {{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}px;
     object-fit: contain;
     flex-shrink: 0;
   }
+
 
   .ff-hover-icon-placeholder {
     width: {{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}px;
@@ -218,12 +256,15 @@
     flex-shrink: 0;
   }
 
+
   .ff-hover-label {
     font-size: {{ section.settings.ff_label_size }}px;
     font-weight: 700;
     color: {{ section.settings.ff_label_color }};
     margin: 0;
   }
+  
+
 
   .ff-hover-text {
     font-size: {{ section.settings.ff_hover_text_size }}px;
@@ -231,6 +272,7 @@
     line-height: 1.55;
     margin: 0;
   }
+
 
   /* ── Mobile Marquee ── */
   .ff-marquee-container {
@@ -241,6 +283,16 @@
     padding: 20px 0;
   }
 
+  /* Mobile/Tablet elements hidden by default on desktop */
+  .ff-mobile-image-wrap {
+    display: none;
+  }
+
+  .ff-mobile-cards-grid {
+    display: none;
+  }
+
+
   .ff-marquee-track {
     display: flex;
     gap: 16px;
@@ -248,10 +300,12 @@
     will-change: transform;
   }
 
+
   @keyframes ff-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
+
 
   .ff-marquee-card {
     flex: 0 0 auto;
@@ -260,11 +314,13 @@
     padding-top: {{ section.settings.ff_icon_size | divided_by: 2 }}px;
   }
 
+
   .ff-marquee-card .ff-card {
     height: auto;
     min-height: 80px;
     padding: 20px 16px 20px {{ section.settings.ff_card_pad_h | plus: section.settings.ff_icon_size | plus: 12 }}px;
   }
+
 
   /* Close button for tablet touch */
   .ff-close-btn {
@@ -287,101 +343,152 @@
     transition: background 0.2s;
   }
 
+
   .ff-close-btn:hover {
     background: rgba(0,0,0,0.8);
   }
+
 
   .ff-hover-card.active .ff-close-btn {
     display: flex;
   }
 
+
   /* ── RESPONSIVE: Mobile First ── */
-  
+ 
   /* Mobile: < 768px */
   @media (max-width: 767px) {
     .ff-section {
       height: auto;
       min-height: auto;
-      padding: 24px 16px;
+      padding: {{ section.settings.ff_mobile_padding_v }}px {{ section.settings.ff_mobile_padding_h }}px;
     }
 
+
     .ff-heading {
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 20px;
+      margin-bottom: 16px;
       text-align: center;
-      line-height: 1.3;
+      line-height: 1.25;
+      padding: 0 10px;
     }
+
 
     /* Hide desktop layout */
     .ff-layout {
-      display: none;
+      display: none !important;
     }
 
-    /* Show mobile marquee */
-    .ff-marquee-container {
-      display: block;
-    }
 
-    /* Mobile image */
+    /* Show and style mobile image */
     .ff-mobile-image-wrap {
-      display: block;
+      display: block !important;
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       border-radius: 12px;
       overflow: hidden;
-      height: 200px;
+      height: 170px;
     }
+
 
     .ff-mobile-image {
       width: 100%;
-      height: 200px;
+      height: 170px;
       object-fit: cover;
       display: block;
     }
 
+
     .ff-mobile-image-placeholder {
       width: 100%;
-      height: 200px;
+      height: 180px;
       background: #e8e8e8;
       border-radius: 12px;
     }
 
-    /* Adjust marquee card for mobile */
-    .ff-marquee-card {
-      width: 260px;
+
+    /* Hide marquee */
+    .ff-marquee-container {
+      display: none !important;
     }
 
-    .ff-marquee-card .ff-card {
-      min-height: 70px;
-      padding: 16px 12px 16px 72px;
+
+    /* Show mobile card grid: 2 columns × 3 rows */
+    .ff-mobile-cards-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+
+    .ff-mobile-cards-grid .ff-card-wrap {
+      padding-top: 18px;
+    }
+
+
+    .ff-mobile-cards-grid .ff-card {
+      height: 72px;
+      padding: 10px;
+      padding-left: 48px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
     }
 
-    .ff-marquee-card .ff-icon-wrap {
-      width: 40px;
-      height: 40px;
-      top: -20px;
-      left: 12px;
+
+    .ff-mobile-cards-grid .ff-icon-wrap {
+      width: 36px;
+      height: 36px;
+      top: -18px;
+      left: 10px;
     }
 
-    .ff-marquee-card .ff-card-label {
-      font-size: 14px;
+
+    .ff-mobile-cards-grid .ff-card-label {
+      font-size: 13px;
+      font-weight: {{ section.settings.ff_label_weight }};
+      line-height: 1.3;
     }
 
-    /* Enable hover cards on mobile with click */
-    .ff-marquee-card .ff-hover-card {
+
+    /* Enable hover cards on mobile with click/touch */
+    .ff-mobile-cards-grid .ff-hover-card {
       display: flex;
       pointer-events: none;
     }
 
-    .ff-marquee-card .ff-hover-card.active {
+
+    .ff-mobile-cards-grid .ff-hover-card.active {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
     }
 
-    .ff-marquee-card .ff-hover-card.active .ff-close-btn {
+
+    .ff-mobile-cards-grid .ff-hover-card.active .ff-close-btn {
       display: flex;
+    }
+
+
+    .ff-mobile-cards-grid .ff-hover-icon {
+      width: 25px;
+      height: 25px;
+    }
+
+
+    .ff-mobile-cards-grid .ff-hover-icon-placeholder {
+      width: 25px;
+      height: 25px;
+    }
+
+
+    .ff-mobile-cards-grid .ff-hover-label {
+      font-size: 13px;
+    }
+
+
+    .ff-mobile-cards-grid .ff-hover-text {
+      font-size: 11px;
     }
   }
 
@@ -389,87 +496,154 @@
   @media (min-width: 768px) and (max-width: 1024px) {
     .ff-section {
       height: auto;
-      min-height: auto;
-      padding: 32px 24px;
+      min-height: 0;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: visible;
     }
 
     .ff-heading {
-      font-size: 32px;
-      margin-bottom: 24px;
-      text-align: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+      text-align: left;
+      line-height: 1.25;
+      display: block;
+      width: 100%;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hide mobile elements */
+    .ff-mobile-image-wrap {
+      display: none !important;
+    }
+
+    .ff-mobile-cards-grid {
+      display: none !important;
+    }
+
+    .ff-marquee-container {
+      display: none !important;
+    }
+
+    /* Desktop L-shaped layout - responsive for tablet */
+    .ff-layout {
+      display: grid !important;
+      grid-template-columns: 60% 38%;
+      grid-template-rows: 320px auto;
+      gap: 12px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .ff-image-wrap {
+      grid-column: 1;
+      grid-row: 1;
+      overflow: hidden;
+      border-radius: 12px;
+      height: 310px;
+    }
+
+    .ff-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .ff-right-col {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .ff-right-col .ff-card-wrap {
+      flex: none;
+      width: 100%;
+    }
+
+    .ff-right-col .ff-card {
+      height: 68px;
+    }
+
+    .ff-bottom-row {
+      grid-column: 1;
+      grid-row: 2;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .ff-bottom-row .ff-card-wrap {
+      flex: 1;
+    }
+
+    .ff-bottom-right {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .ff-bottom-right .ff-card-wrap {
+      width: 100%;
+    }
+
+    .ff-bottom-right .ff-card {
+      height: 68px;
+    }
+
+    .ff-card {
+      height: 68px;
+      padding: 10px 12px;
+      padding-left: 54px;
+    }
+
+    .ff-icon-wrap {
+      width: 36px;
+      height: 36px;
+      top: -18px;
+      left: 12px;
+    }
+
+    .ff-card-label {
+      font-size: 14px;
       line-height: 1.3;
     }
 
-    /* Hide desktop layout */
-    .ff-layout {
-      display: none;
+    .ff-hover-card {
+      padding: 10px;
     }
 
-    /* Show tablet marquee */
-    .ff-marquee-container {
-      display: block;
+    .ff-hover-icon {
+      width: 25px;
+      height: 25px;
     }
 
-    /* Tablet image */
-    .ff-mobile-image-wrap {
-      display: block;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto 28px;
-      border-radius: 16px;
-      overflow: hidden;
-      height: 280px;
+    .ff-hover-label {
+      font-size: 14px;
     }
 
-    .ff-mobile-image {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .ff-mobile-image-placeholder {
-      width: 100%;
-      height: 280px;
-      background: #e8e8e8;
-      border-radius: 16px;
-    }
-
-    /* Tablet marquee cards */
-    .ff-marquee-card {
-      width: 300px;
-    }
-
-    .ff-marquee-card .ff-card {
-      cursor: pointer;
-      transition: transform 0.2s, border-color 0.25s;
-    }
-
-    .ff-marquee-card .ff-card:active {
-      transform: scale(0.98);
-    }
-
-    /* Enable hover cards on tablet with touch */
-    .ff-marquee-card .ff-hover-card {
-      display: flex;
-      pointer-events: none;
-    }
-
-    .ff-marquee-card .ff-hover-card.active {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    .ff-marquee-card .ff-hover-card.active .ff-close-btn {
-      display: flex;
+    .ff-hover-text {
+      font-size: 10px;
     }
   }
+      width: {{ section.settings.ff_tablet_icon_size | times: 70 | divided_by: 100 }}px;
+
+
 
   /* Desktop: > 1024px */
   @media (min-width: 1025px) {
     /* Hide mobile elements */
     .ff-mobile-image-wrap {
+      display: none;
+    }
+
+    .ff-mobile-cards-grid {
       display: none;
     }
 
@@ -484,9 +658,12 @@
   }
 </style>
 
+
 <section class="ff-section full-width">
 
+
   <h2 class="ff-heading">{{ section.settings.ff_heading }}</h2>
+
 
   <!-- Mobile/Tablet Image -->
   <div class="ff-mobile-image-wrap">
@@ -504,71 +681,43 @@
     {% endif %}
   </div>
 
-  <!-- Mobile/Tablet Marquee -->
-  <div class="ff-marquee-container">
-    <div class="ff-marquee-track">
-      {% for block in section.blocks %}
-        <div class="ff-marquee-card" data-block-id="{{ block.id }}">
-          <div class="ff-card">
-            <div class="ff-icon-wrap">
-              {% if block.settings.ff_icon != blank %}
-                <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
-              {% else %}
-                <div class="ff-icon-placeholder">✦</div>
-              {% endif %}
-            </div>
-            <p class="ff-card-label">{{ block.settings.ff_label }}</p>
+
+  <!-- Mobile/Tablet Card Grid (2 columns) -->
+  <div class="ff-mobile-cards-grid">
+    {% for block in section.blocks %}
+      <div class="ff-card-wrap" data-block-id="{{ block.id }}">
+        <div class="ff-card">
+          <div class="ff-icon-wrap">
+            {% if block.settings.ff_icon != blank %}
+              <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
+            {% else %}
+              <div class="ff-icon-placeholder">✦</div>
+            {% endif %}
           </div>
-          {% if block.settings.ff_hover_text != blank %}
-            <div class="ff-hover-card">
-              <button class="ff-close-btn" aria-label="Close">&times;</button>
-              <div class="ff-hover-icon-row">
-                {% if block.settings.ff_icon != blank %}
-                  <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
-                {% else %}
-                  <div class="ff-hover-icon-placeholder"></div>
-                {% endif %}
-                <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
-              </div>
-              <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
-            </div>
-          {% endif %}
+          <p class="ff-card-label">{{ block.settings.ff_label }}</p>
         </div>
-      {% endfor %}
-      <!-- Duplicate for seamless loop -->
-      {% for block in section.blocks %}
-        <div class="ff-marquee-card" data-block-id="{{ block.id }}-duplicate">
-          <div class="ff-card">
-            <div class="ff-icon-wrap">
+        {% if block.settings.ff_hover_text != blank %}
+          <div class="ff-hover-card">
+            <button class="ff-close-btn" aria-label="Close">&times;</button>
+            <div class="ff-hover-icon-row">
               {% if block.settings.ff_icon != blank %}
-                <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
+                <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
               {% else %}
-                <div class="ff-icon-placeholder">✦</div>
+                <div class="ff-hover-icon-placeholder"></div>
               {% endif %}
+              <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
             </div>
-            <p class="ff-card-label">{{ block.settings.ff_label }}</p>
+            <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
           </div>
-          {% if block.settings.ff_hover_text != blank %}
-            <div class="ff-hover-card">
-              <button class="ff-close-btn" aria-label="Close">&times;</button>
-              <div class="ff-hover-icon-row">
-                {% if block.settings.ff_icon != blank %}
-                  <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
-                {% else %}
-                  <div class="ff-hover-icon-placeholder"></div>
-                {% endif %}
-                <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
-              </div>
-              <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
+        {% endif %}
+      </div>
+    {% endfor %}
   </div>
+
 
   <!-- Grid layout: image top-left, right cards top-right, bottom cards full width -->
   <div class="ff-layout">
+
 
     <div class="ff-image-wrap">
       {% if section.settings.ff_image != blank %}
@@ -584,6 +733,7 @@
         <div class="ff-image-placeholder"></div>
       {% endif %}
     </div>
+
 
     <div class="ff-right-col">
       {% for block in section.blocks %}
@@ -617,70 +767,115 @@
       {% endfor %}
     </div>
 
-    <!-- Bottom row: 4 cards — grid-column 1/-1, grid-row 2 -->
+
+    <!-- Bottom row: 2 cards under image -->
     <div class="ff-bottom-row">
+      {% assign bottom_count = 0 %}
       {% for block in section.blocks %}
         {% if block.settings.ff_position == 'bottom' %}
-          <div class="ff-card-wrap" {{ block.shopify_attributes }}>
-            <div class="ff-card">
-              <div class="ff-icon-wrap">
-                {% if block.settings.ff_icon != blank %}
-                  <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
-                {% else %}
-                  <div class="ff-icon-placeholder">✦</div>
-                {% endif %}
-              </div>
-              <p class="ff-card-label">{{ block.settings.ff_label }}</p>
-            </div>
-            {% if block.settings.ff_hover_text != blank %}
-              <div class="ff-hover-card">
-                <div class="ff-hover-icon-row">
+          {% if bottom_count < 2 %}
+            <div class="ff-card-wrap" {{ block.shopify_attributes }}>
+              <div class="ff-card">
+                <div class="ff-icon-wrap">
                   {% if block.settings.ff_icon != blank %}
-                    <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
+                    <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
                   {% else %}
-                    <div class="ff-hover-icon-placeholder"></div>
+                    <div class="ff-icon-placeholder">✦</div>
                   {% endif %}
-                  <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
                 </div>
-                <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
+                <p class="ff-card-label">{{ block.settings.ff_label }}</p>
               </div>
-            {% endif %}
-          </div>
+              {% if block.settings.ff_hover_text != blank %}
+                <div class="ff-hover-card">
+                  <div class="ff-hover-icon-row">
+                    {% if block.settings.ff_icon != blank %}
+                      <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
+                    {% else %}
+                      <div class="ff-hover-icon-placeholder"></div>
+                    {% endif %}
+                    <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
+                  </div>
+                  <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
+                </div>
+              {% endif %}
+            </div>
+            {% assign bottom_count = bottom_count | plus: 1 %}
+          {% endif %}
         {% endif %}
       {% endfor %}
     </div>
 
+    <!-- Third bottom card: positioned under right column -->
+    {% assign bottom_count = 0 %}
+    {% for block in section.blocks %}
+      {% if block.settings.ff_position == 'bottom' %}
+        {% assign bottom_count = bottom_count | plus: 1 %}
+        {% if bottom_count == 3 %}
+          <div class="ff-bottom-right">
+            <div class="ff-card-wrap" {{ block.shopify_attributes }}>
+              <div class="ff-card">
+                <div class="ff-icon-wrap">
+                  {% if block.settings.ff_icon != blank %}
+                    <img class="ff-icon" src="{{ block.settings.ff_icon | image_url: width: 120 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size }}" height="{{ section.settings.ff_icon_size }}">
+                  {% else %}
+                    <div class="ff-icon-placeholder">✦</div>
+                  {% endif %}
+                </div>
+                <p class="ff-card-label">{{ block.settings.ff_label }}</p>
+              </div>
+              {% if block.settings.ff_hover_text != blank %}
+                <div class="ff-hover-card">
+                  <div class="ff-hover-icon-row">
+                    {% if block.settings.ff_icon != blank %}
+                      <img class="ff-hover-icon" src="{{ block.settings.ff_icon | image_url: width: 80 }}" alt="{{ block.settings.ff_label }}" width="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}" height="{{ section.settings.ff_icon_size | times: 70 | divided_by: 100 }}">
+                    {% else %}
+                      <div class="ff-hover-icon-placeholder"></div>
+                    {% endif %}
+                    <p class="ff-hover-label">{{ block.settings.ff_label }}</p>
+                  </div>
+                  <p class="ff-hover-text">{{ block.settings.ff_hover_text }}</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+
   </div>
 
+
 </section>
+
 
 <script>
 (function() {
   // Mobile and Tablet touch interaction for hover cards
   if (window.matchMedia('(max-width: 1024px)').matches) {
     const marqueeCards = document.querySelectorAll('.ff-marquee-card');
-    
+   
     marqueeCards.forEach(card => {
       const cardElement = card.querySelector('.ff-card');
       const hoverCard = card.querySelector('.ff-hover-card');
       const closeBtn = card.querySelector('.ff-close-btn');
-      
+     
       if (cardElement && hoverCard) {
         // Open hover card on card click
         cardElement.addEventListener('click', function(e) {
           e.stopPropagation();
-          
+         
           // Close all other hover cards
           document.querySelectorAll('.ff-hover-card.active').forEach(other => {
             if (other !== hoverCard) {
               other.classList.remove('active');
             }
           });
-          
+         
           // Toggle current hover card
           hoverCard.classList.toggle('active');
         });
-        
+       
         // Close button
         if (closeBtn) {
           closeBtn.addEventListener('click', function(e) {
@@ -690,7 +885,7 @@
         }
       }
     });
-    
+   
     // Close hover cards when clicking outside
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.ff-marquee-card')) {
@@ -703,6 +898,7 @@
 })();
 </script>
 
+
 {% schema %}
 {
   "name": "Free From Section",
@@ -714,7 +910,8 @@
     { "type": "range", "id": "ff_col_gap", "label": "Image ↔ Right Cards Gap (px)", "min": 8, "max": 80, "step": 4, "default": 24 },
     { "type": "range", "id": "ff_row_gap", "label": "Main Row ↔ Bottom Row Gap (px)", "min": 0, "max": 80, "step": 4, "default": 20 },
     { "type": "range", "id": "ff_left_width", "label": "Image Column Width (%)", "min": 40, "max": 80, "step": 5, "default": 70 },
-    { "type": "range", "id": "ff_right_width", "label": "Right Cards Column Width (px)", "min": 160, "max": 500, "step": 10, "default": 300 },
+    { "type": "range", "id": "ff_right_width", "label": "Right Cards Column Width (px)", "min": 160, "max": 600, "step": 10, "default": 420 },
+
 
     { "type": "header", "content": "── Heading" },
     { "type": "text", "id": "ff_heading", "label": "Heading", "default": "Formulated without specific harmful or irritating ingredients" },
@@ -731,14 +928,17 @@
     { "type": "color", "id": "ff_heading_color", "label": "Color", "default": "#000000" },
     { "type": "range", "id": "ff_heading_gap", "label": "Gap Below Heading (px)", "min": 0, "max": 80, "step": 4, "default": 28 },
 
+
     { "type": "header", "content": "── Image" },
     { "type": "image_picker", "id": "ff_image", "label": "Main Image" },
-    { "type": "range", "id": "ff_img_height", "label": "Image Height (px)", "min": 200, "max": 700, "step": 10, "default": 400 },
+    { "type": "range", "id": "ff_img_height", "label": "Image Height (px)", "min": 200, "max": 900, "step": 10, "default": 600 },
     { "type": "range", "id": "ff_img_radius", "label": "Image Border Radius (px)", "min": 0, "max": 40, "step": 2, "default": 16 },
 
+
     { "type": "header", "content": "── Cards" },
-    { "type": "range", "id": "ff_card_gap", "label": "Gap Between Cards (px)", "min": 4, "max": 40, "step": 2, "default": 16 },
-    { "type": "range", "id": "ff_card_height", "label": "Card Height (px)", "min": 40, "max": 160, "step": 4, "default": 72 },
+    { "type": "range", "id": "ff_card_gap", "label": "Gap Between Right Cards (px)", "min": 4, "max": 40, "step": 2, "default": 16 },
+    { "type": "range", "id": "ff_bottom_card_gap", "label": "Gap Between Bottom Cards (px)", "min": 4, "max": 80, "step": 4, "default": 32 },
+    { "type": "range", "id": "ff_card_height", "label": "Card Height (px)", "min": 40, "max": 160, "step": 4, "default": 88 },
     { "type": "range", "id": "ff_card_pad_v", "label": "Card Padding Vertical (px)", "min": 8, "max": 40, "step": 2, "default": 16 },
     { "type": "range", "id": "ff_card_pad_h", "label": "Card Padding Horizontal (px)", "min": 8, "max": 40, "step": 2, "default": 20 },
     { "type": "range", "id": "ff_card_radius", "label": "Card Border Radius (px)", "min": 0, "max": 60, "step": 2, "default": 16 },
@@ -746,8 +946,10 @@
     { "type": "color", "id": "ff_card_border_color", "label": "Card Border Color", "default": "#dddddd" },
     { "type": "color", "id": "ff_card_bg", "label": "Card Background", "default": "#ffffff" },
 
+
     { "type": "header", "content": "── Icon" },
     { "type": "range", "id": "ff_icon_size", "label": "Icon Size (px)", "min": 24, "max": 80, "step": 2, "default": 48 },
+
 
     { "type": "header", "content": "── Label" },
     { "type": "range", "id": "ff_label_size", "label": "Font Size (px)", "min": 12, "max": 28, "step": 1, "default": 17 },
@@ -761,6 +963,7 @@
       "default": "600"
     },
     { "type": "color", "id": "ff_label_color", "label": "Color", "default": "#000000" },
+
 
     { "type": "header", "content": "── Hover Frost Card" },
     { "type": "range", "id": "ff_frost_opacity", "label": "Background Opacity (%)", "min": 10, "max": 95, "step": 5, "default": 90 },
@@ -796,7 +999,6 @@
         { "type": "card", "settings": { "ff_position": "bottom", "ff_label": "Clean & Vegan", "ff_hover_text": "Offers a curated selection of 100% vegan skincare products free from animal-derived ingredients." } },
         { "type": "card", "settings": { "ff_position": "bottom", "ff_label": "Paraben Free", "ff_hover_text": "Formulated without parabens — preservatives linked to skin irritation and hormonal disruption." } },
         { "type": "card", "settings": { "ff_position": "bottom", "ff_label": "Sulfate Free", "ff_hover_text": "No harsh sulfates that strip your skin's natural moisture barrier and cause dryness." } },
-        { "type": "card", "settings": { "ff_position": "bottom", "ff_label": "Alcohol Free", "ff_hover_text": "No drying alcohols — keeps your skin hydrated and balanced throughout the day." } },
         { "type": "card", "settings": { "ff_position": "right", "ff_label": "Cruelty Free", "ff_hover_text": "Never tested on animals. Certified cruelty-free by leading international organizations." } },
         { "type": "card", "settings": { "ff_position": "right", "ff_label": "Fragrance-Free", "ff_hover_text": "No synthetic fragrances — ideal for sensitive skin and those prone to allergic reactions." } },
         { "type": "card", "settings": { "ff_position": "right", "ff_label": "GMO Free", "ff_hover_text": "All ingredients are sourced from non-GMO origins for a cleaner, more natural formula." } }
@@ -805,3 +1007,6 @@
   ]
 }
 {% endschema %}
+
+
+

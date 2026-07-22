@@ -40,7 +40,7 @@
 
   .pro-one-quote {
     font-size: {{ section.settings.quote_font_size }}px;
-    font-weight: {{ section.settings.quote_font_weight }};
+    font-weight: 700;
     line-height: {{ section.settings.quote_line_height }};
     color: {{ section.settings.quote_color }};
     margin: 0 0 {{ section.settings.quote_margin_bottom }}px 0;
@@ -53,7 +53,8 @@
   }
 
   .pro-one-excerpt {
-    font-size: {{ section.settings.excerpt_font_size }}px;
+    font-size: 18px;
+    font-weight: 400;
     line-height: 1.65;
     color: {{ section.settings.excerpt_color }};
     display: -webkit-box;
@@ -67,18 +68,19 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: {{ section.settings.read_more_font_size }}px;
+    font-size: 16px;
     font-weight: 700;
-    color: {{ section.settings.read_more_color }};
-    text-decoration: none;
-    border-bottom: 2px solid {{ section.settings.read_more_color }};
+    color: #000000;
+    text-decoration: underline;
+    text-decoration-color: #4fffff;
+    text-underline-offset: 3px;
+    border-bottom: none;
     padding-bottom: 1px;
-    transition: color 0.25s, border-color 0.25s;
+    transition: color 0.25s;
   }
 
   .pro-one-read-more:hover {
     color: {{ section.settings.accent_color }};
-    border-color: {{ section.settings.accent_color }};
   }
 
   .pro-one-read-more-dots {
@@ -97,12 +99,6 @@
     flex-direction: column;
     position: relative;
     z-index: 2;
-    transition: opacity 0.3s ease;
-  }
-
-  .pro-one-features-list.pro-one-list-hidden {
-    opacity: 0;
-    pointer-events: none;
   }
 
   .pro-one-feature-row {
@@ -112,6 +108,7 @@
     padding: {{ section.settings.feature_row_padding }}px 0;
     border-bottom: 1px solid {{ section.settings.divider_color }};
     cursor: default;
+    position: relative;
   }
 
   .pro-one-feature-row:first-child {
@@ -150,11 +147,12 @@
     align-items: center;
     justify-content: center;
     font-size: {{ section.settings.arrow_size }}px;
-    font-weight: 600;
+    font-weight: 700;
     color: {{ section.settings.arrow_color }};
     line-height: 1;
     transition: color 0.25s, transform 0.25s;
     font-family: 'Montserrat', sans-serif;
+    min-width: 32px;
   }
 
   .pro-one-arrow-btn:hover {
@@ -162,22 +160,40 @@
     transform: translateX(4px);
   }
 
+  /* Close button — hidden on desktop, shown on mobile */
+  .pro-one-card-close {
+    display: none;
+  }
+
+  .pro-one-feature-row:last-child .pro-one-hover-card {
+    top: auto;
+    bottom: 0;
+  }
+
   /* Frost glass hover card */
   .pro-one-hover-card {
     position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, {{ section.settings.card_bg_opacity | divided_by: 100.0 }});
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur({{ section.settings.card_blur }}px);
     -webkit-backdrop-filter: blur({{ section.settings.card_blur }}px);
     border: {{ section.settings.card_border_width }}px solid {{ section.settings.accent_color }};
     border-radius: {{ section.settings.card_radius }}px;
-    padding: {{ section.settings.card_padding }}px;
-    box-shadow: 0 8px 32px rgba(79, 255, 255, 0.35), inset 0 0 0 1px rgba(255,255,255,0.3);
+    padding: 18px 40px 18px 18px;
+    box-shadow: 0 4px 20px rgba(79, 255, 255, 0.25);
     opacity: 0;
     visibility: hidden;
-    z-index: 3;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
     pointer-events: none;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .pro-one-hover-card.pro-one-card-visible {
@@ -187,14 +203,14 @@
   }
 
   .pro-one-card-title {
-    font-size: {{ section.settings.card_title_size }}px;
+    font-size: 22px;
     font-weight: 700;
     color: {{ section.settings.card_title_color }};
     margin: 0 0 12px 0;
   }
 
   .pro-one-card-desc {
-    font-size: {{ section.settings.card_desc_size }}px;
+    font-size: 16px;
     line-height: 1.65;
     color: {{ section.settings.card_desc_color }};
     margin: 0;
@@ -213,6 +229,25 @@
     position: relative;
   }
 
+  .pro-one-img-wrap--mobile {
+    display: none !important;
+  }
+
+  #proDoctorCardMobile {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #proDoctorModal {
+    display: none !important;
+  }
+
+  .pro-one-img-wrap--desktop {
+    display: block;
+  }
+
   .pro-one-img-wrap img {
     width: 100%;
     height: 100%;
@@ -229,45 +264,91 @@
   /* Doctor frost glass card */
   .pro-one-doctor-card {
     position: absolute;
+    width: auto;
+    max-width: 95%;
     bottom: {{ section.settings.doctor_card_bottom }}px;
     left: 50%;
     transform: translateX(-50%);
-    width: {{ section.settings.doctor_card_width }}%;
-    background: rgba(255, 255, 255, {{ section.settings.doctor_card_bg_opacity | divided_by: 100.0 }});
-    backdrop-filter: blur({{ section.settings.doctor_card_blur }}px);
-    -webkit-backdrop-filter: blur({{ section.settings.doctor_card_blur }}px);
-    border: {{ section.settings.doctor_card_border_width }}px solid {{ section.settings.accent_color }};
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2px solid #4fffff;
     border-radius: {{ section.settings.doctor_card_radius }}px;
-    padding: {{ section.settings.doctor_card_padding_v }}px {{ section.settings.doctor_card_padding_h }}px;
-    box-shadow: 0 8px 32px rgba(79, 255, 255, 0.4);
+    padding: 16px 20px;
+    box-shadow: 0 8px 32px rgba(79, 255, 255, 0.35);
+    display: inline-flex;
+    box-sizing: border-box;
+  }
+
+  .pro-one-dr-card-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .pro-one-dr-card-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #00bcd4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pro-one-dr-card-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pro-one-dr-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #00bcd4;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: block;
+    margin: 0 0 6px 0;
   }
 
   .pro-one-doctor-name {
     font-size: {{ section.settings.doctor_name_size }}px;
-    font-weight: {{ section.settings.doctor_name_weight }};
-    /* font-style: italic; */
+    font-weight: 700;
     color: {{ section.settings.doctor_name_color }};
-    margin: 0 0 6px 0;
+    margin: 0 0 4px 0;
+    white-space: nowrap;
   }
 
   .pro-one-doctor-specialty {
     font-size: {{ section.settings.doctor_meta_size }}px;
-    font-weight: 500;
+    font-weight: 400;
     color: {{ section.settings.doctor_meta_color }};
-    margin: 0 0 4px 0;
+    margin: 0;
+    white-space: nowrap;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
   }
 
   .pro-one-doctor-exp {
     font-size: {{ section.settings.doctor_meta_size }}px;
     font-weight: 400;
     color: {{ section.settings.doctor_meta_color }};
-    margin: 0;
+    margin: 8px 0 0 0;
+    white-space: nowrap;
   }
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: {{ section.settings.mobile_breakpoint }}px) {
+
+  /* ── TABLET: 768px–1024px, stacked like mobile but scaled up ── */
+  @media (min-width: 768px) and (max-width: 1024px) {
     .pro-one-section {
       height: auto;
+      min-height: auto;
       max-height: none;
     }
 
@@ -275,17 +356,446 @@
       flex-direction: column;
     }
 
-    .pro-one-left,
+    .pro-one-left {
+      flex: 0 0 auto;
+      flex-direction: column;
+      gap: 0;
+      padding: 20px;
+      overflow: visible;
+      align-items: center;
+    }
+
+    .pro-one-left-content {
+      max-width: 100%;
+      text-align: center;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+
+    .pro-one-quote {
+      font-size: 36px;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .pro-one-blog-block {
+      margin-top: 10px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .pro-one-excerpt {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-line-clamp: 4;
+      text-align: center;
+    }
+
+    .pro-one-read-more {
+      font-size: 15px;
+      font-weight: 700;
+      justify-content: center;
+      display: flex;
+      border-bottom: none;
+      width: 100%;
+    }
+
     .pro-one-right {
-      flex: 0 0 100%;
+      flex: 0 0 auto;
+      width: 100%;
+      display: none;
+    }
+
+    .pro-one-img-wrap--mobile {
+      display: block !important;
+      width: 100%;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      height: 480px;
+      min-height: 480px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    #proDoctorCardMobile {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    #proDoctorModal {
+      display: none !important;
+    }
+
+    .pro-one-img-wrap--desktop {
+      display: none;
+    }
+
+    .pro-one-doctor-card {
+      width: auto;
+      max-width: 93%;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: inline-flex;
+    }
+
+    .pro-one-dr-card-row { display: flex; flex-direction: row; align-items: center; gap: 14px; }
+    .pro-one-dr-card-icon { width: 44px; height: 44px; border: 2px solid #00bcd4; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; }
+    .pro-one-dr-card-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .pro-one-dr-card-label { font-size: 10px; margin: 0 0 4px 0; }
+    .pro-one-doctor-name { font-size: 20px; margin: 0 0 4px 0; }
+    .pro-one-doctor-specialty { font-size: 13px; margin: 0; padding-bottom: 6px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .pro-one-doctor-exp { font-size: 13px; margin: 6px 0 0 0; }
+
+    .pro-one-features-wrap {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      position: relative;
+      overflow: visible;
+      padding-bottom: 0;
+    }
+
+    .pro-one-features-list {
+      width: 100%;
+      overflow: visible;
+      margin-bottom: 0;
+    }
+
+    .pro-one-feature-row {
+      width: 100%;
+      gap: 16px;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: visible;
+    }
+
+    .pro-one-feature-row:first-child {
+      border-top: 1px solid {{ section.settings.divider_color }};
+    }
+
+    .pro-one-feature-row:last-child {
+      border-bottom: 1px solid {{ section.settings.divider_color }};
+    }
+
+    .pro-one-feature-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+    }
+
+    .pro-one-feature-thumb-placeholder {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+    }
+
+    .pro-one-feature-label {
+      font-size: 22px;
+      flex: 1;
+      text-align: left;
+    }
+
+    .pro-one-arrow-btn {
+      font-size: 50px;
+      font-weight: 700;
+      padding: 6px 8px;
+      flex-shrink: 0;
+      display: block;
+      min-width: 36px;
+    }
+
+    .pro-one-hover-card {
+      padding: 22px 44px 22px 22px;
+      background: rgba(255, 255, 255, 0.95) !important;
+    }
+
+    .pro-one-card-title {
+      font-size: 26px;
+      color: #000000;
+      margin: 0 0 12px 0;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .pro-one-card-desc {
+      font-size: 20px;
+      color: #333333;
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    .pro-one-card-close {
+      display: flex;
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 18px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  /* ── MOBILE only: 320px–767px ── */
+  @media (max-width: 767px) {
+    .pro-one-section {
+      height: auto;
+      min-height: unset;
+      max-height: none;
+      padding-bottom: 0;
+    }
+
+    .pro-one-container {
+      flex-direction: column;
     }
 
     .pro-one-left {
-      padding: 30px 20px;
+      flex: 0 0 auto;
+      flex-direction: column;
+      gap: 0;
+      padding: 20px;
+      overflow: visible;
+      align-items: center;
     }
 
-    .pro-one-img-wrap {
-      min-height: {{ section.settings.mobile_image_height }}px;
+    .pro-one-left-content {
+      max-width: 100%;
+      text-align: center;
+      margin-bottom: clamp(10px, 2vw, 16px);
+      width: 100%;
+    }
+
+    .pro-one-quote {
+      font-size: clamp(20px, 5.5vw, 28px);
+      line-height: 1.2;
+      margin-bottom: clamp(8px, 2vw, 12px);
+      text-align: center;
+    }
+
+    .pro-one-blog-block {
+      margin-top: clamp(4px, 1.5vw, 8px);
+      margin-bottom: clamp(8px, 2vw, 14px);
+      text-align: center;
+    }
+
+    .pro-one-excerpt {
+      font-size: clamp(14px, 3.5vw, 17px);
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-line-clamp: 3;
+      text-align: center;
+    }
+
+    .pro-one-read-more {
+      font-size: clamp(13px, 3.2vw, 15px);
+      font-weight: 700;
+      justify-content: center;
+      display: flex;
+      border-bottom: none;
+      width: 100%;
+    }
+
+    .pro-one-right {
+      flex: 0 0 auto;
+      width: 100%;
+      display: none;
+    }
+
+    .pro-one-img-wrap--mobile {
+      display: block !important;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      height: clamp(200px, 38vh, 360px);
+      min-height: clamp(200px, 38vh, 360px);
+      border-radius: clamp(8px, 2vw, 12px);
+      overflow: hidden;
+      margin-bottom: clamp(12px, 2.5vw, 20px);
+      position: relative;
+    }
+
+    #proDoctorCardMobile {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    .pro-one-img-wrap--desktop {
+      display: none;
+    }
+
+    .pro-one-doctor-card {
+      width: auto;
+      max-width: 94%;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid #00bcd4;
+      display: inline-flex;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .pro-one-dr-card-row { display: flex; flex-direction: row; align-items: center; gap: 10px; }
+
+    .pro-one-dr-card-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #00bcd4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pro-one-dr-card-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+    .pro-one-dr-card-label { font-size: 9px; letter-spacing: 0.07em; white-space: nowrap; margin: 0 0 3px 0; display: block; }
+
+    .pro-one-doctor-name { font-size: 15px; font-weight: 700; margin: 0 0 3px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .pro-one-doctor-specialty { font-size: 11px; font-weight: 400; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-bottom: 4px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+
+    .pro-one-doctor-exp { font-size: 11px; margin: 4px 0 0 0; white-space: nowrap; }
+
+    /* MOBILE FEATURES PANEL */
+    .pro-one-features-wrap {
+      width: 100%;
+      position: relative;
+      margin-top: 0;
+      overflow: visible;
+      padding-bottom: 0;
+    }
+
+    .pro-one-features-list {
+      width: 100%;
+      overflow: visible;
+      margin-bottom: 0;
+    }
+      margin-top: 0;
+      overflow: visible;
+    }
+
+    .pro-one-features-list {
+      width: 100%;
+      overflow: visible;
+    }
+
+    .pro-one-feature-row {
+      width: 100%;
+      gap: clamp(8px, 2.5vw, 14px);
+      padding: clamp(8px, 2vh, 13px) 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: visible;
+    }
+
+    .pro-one-feature-row:first-child {
+      border-top: 1px solid {{ section.settings.divider_color }};
+    }
+
+    .pro-one-feature-row:last-child {
+      border-bottom: 1px solid {{ section.settings.divider_color }};
+    }
+
+    .pro-one-feature-thumb {
+      width: clamp(36px, 10vw, 50px);
+      height: clamp(36px, 10vw, 50px);
+      border-radius: 6px;
+    }
+
+    .pro-one-feature-thumb-placeholder {
+      width: clamp(36px, 10vw, 50px);
+      height: clamp(36px, 10vw, 50px);
+      border-radius: 6px;
+    }
+
+    .pro-one-feature-label {
+      font-size: clamp(13px, 3.5vw, 16px);
+      flex: 1;
+      text-align: left;
+    }
+
+    .pro-one-arrow-btn {
+      font-size: clamp(39px, 11vw, 50px);
+      font-weight: 700;
+      padding: 4px 6px;
+      flex-shrink: 0;
+      display: block;
+      min-width: 36px;
+    }
+
+    .pro-one-hover-card.pro-one-card-visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .pro-one-card-close {
+      display: flex;
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 16px;
+      width: 22px;
+      height: 22px;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .pro-one-hover-card {
+      padding: clamp(14px, 3vw, 20px) clamp(30px, 8vw, 40px) clamp(14px, 3vw, 20px) clamp(14px, 3vw, 20px);
+      background: rgba(255, 255, 255, 0.95) !important;
+    }
+
+    .pro-one-card-title {
+      font-size: 18px;
+      color: #000000;
+      margin: 0 0 12px 0;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .pro-one-card-desc {
+      font-size: 15px;
+      color: #333333;
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    /* DOCTOR DETAILS MODAL */
+    .pro-one-doctor-modal {
+      display: none !important;
     }
   }
 </style>
@@ -296,17 +806,26 @@
     <!-- ── LEFT ── -->
     <div class="pro-one-left">
 
-      <h2 class="pro-one-quote">{{ section.settings.quote }}</h2>
+      <div class="pro-one-left-content">
+        <h2 class="pro-one-quote">{{ section.settings.quote }}</h2>
 
-      <div class="pro-one-blog-block">
-        {% if section.settings.blog_handle != blank %}
-          {% assign selected_blog = blogs[section.settings.blog_handle] %}
-          {% assign blog_article = selected_blog.articles.first %}
-          {% if blog_article %}
-            <p class="pro-one-excerpt">{{ blog_article.excerpt_or_content | strip_html }}</p>
-            <a href="{{ blog_article.url }}" class="pro-one-read-more">
-              read more<span class="pro-one-read-more-dots">....</span>
-            </a>
+        <div class="pro-one-blog-block">
+          {% if section.settings.blog_handle != blank %}
+            {% assign selected_blog = blogs[section.settings.blog_handle] %}
+            {% assign blog_article = selected_blog.articles.first %}
+            {% if blog_article %}
+              <p class="pro-one-excerpt">{{ blog_article.excerpt_or_content | strip_html }}</p>
+              <a href="{{ blog_article.url }}" class="pro-one-read-more">
+                read more<span class="pro-one-read-more-dots">....</span>
+              </a>
+            {% else %}
+              <p class="pro-one-excerpt">{{ section.settings.fallback_excerpt }}</p>
+              {% if section.settings.fallback_link != blank %}
+                <a href="{{ section.settings.fallback_link }}" class="pro-one-read-more">
+                  read more<span class="pro-one-read-more-dots">....</span>
+                </a>
+              {% endif %}
+            {% endif %}
           {% else %}
             <p class="pro-one-excerpt">{{ section.settings.fallback_excerpt }}</p>
             {% if section.settings.fallback_link != blank %}
@@ -315,14 +834,50 @@
               </a>
             {% endif %}
           {% endif %}
+        </div>
+      </div>
+
+      <!-- MOBILE IMAGE - shown between text and features -->
+      <div class="pro-one-img-wrap pro-one-img-wrap--mobile">
+        {% if section.settings.doctor_image != blank %}
+          <img
+            src="{{ section.settings.doctor_image | image_url: width: 1200 }}"
+            alt="{{ section.settings.doctor_name }}"
+            width="1200"
+            height="800"
+            loading="lazy"
+          >
         {% else %}
-          <p class="pro-one-excerpt">{{ section.settings.fallback_excerpt }}</p>
-          {% if section.settings.fallback_link != blank %}
-            <a href="{{ section.settings.fallback_link }}" class="pro-one-read-more">
-              read more<span class="pro-one-read-more-dots">....</span>
-            </a>
-          {% endif %}
+          <div class="pro-one-img-placeholder"></div>
         {% endif %}
+
+        <div class="pro-one-doctor-card" id="proDoctorCardMobile">
+          <div class="pro-one-dr-card-row">
+            <div class="pro-one-dr-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2L4 5.5V11C4 15.55 7.41 19.74 12 21C16.59 19.74 20 15.55 20 11V5.5L12 2Z" stroke="#4fffff" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                <path d="M12 8V16M8 12H16" stroke="#4fffff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="pro-one-dr-card-body">
+              <span class="pro-one-dr-card-label">Expert Care You Can Trust</span>
+              <p class="pro-one-doctor-name">{{ section.settings.doctor_name }}</p>
+              <p class="pro-one-doctor-specialty">{{ section.settings.doctor_specialty }}</p>
+              <p class="pro-one-doctor-exp">{{ section.settings.doctor_experience }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOCTOR DETAILS MODAL - MOBILE ONLY -->
+      <div class="pro-one-doctor-modal" id="proDoctorModal">
+        <div class="pro-one-doctor-modal-overlay"></div>
+        <div class="pro-one-doctor-modal-content">
+          <button class="pro-one-doctor-modal-close" id="proDoctorModalClose">✕</button>
+          <h3 class="pro-one-doctor-modal-name">{{ section.settings.doctor_name }}</h3>
+          <p class="pro-one-doctor-modal-specialty">{{ section.settings.doctor_specialty }}</p>
+          <p class="pro-one-doctor-modal-exp">{{ section.settings.doctor_experience }}</p>
+        </div>
       </div>
 
       <div class="pro-one-features-wrap" id="proOneFeaturesWrap">
@@ -351,23 +906,21 @@
                 aria-label="Learn more about {{ block.settings.feature_title }}"
                 data-target="{{ forloop.index0 }}"
               >&#8250;</button>
+
+              <div class="pro-one-hover-card" data-card="{{ forloop.index0 }}">
+                <h3 class="pro-one-card-title">{{ block.settings.feature_title }}</h3>
+                <p class="pro-one-card-desc">{{ block.settings.feature_description }}</p>
+              </div>
             </div>
           {% endfor %}
         </div>
-
-        {% for block in section.blocks %}
-          <div class="pro-one-hover-card" data-card="{{ forloop.index0 }}">
-            <h3 class="pro-one-card-title">{{ block.settings.feature_title }}</h3>
-            <p class="pro-one-card-desc">{{ block.settings.feature_description }}</p>
-          </div>
-        {% endfor %}
       </div>
 
     </div>
 
-    <!-- ── RIGHT ── -->
+    <!-- ── RIGHT (DESKTOP ONLY) ── -->
     <div class="pro-one-right">
-      <div class="pro-one-img-wrap">
+      <div class="pro-one-img-wrap pro-one-img-wrap--desktop">
         {% if section.settings.doctor_image != blank %}
           <img
             src="{{ section.settings.doctor_image | image_url: width: 1200 }}"
@@ -381,9 +934,20 @@
         {% endif %}
 
         <div class="pro-one-doctor-card">
-          <p class="pro-one-doctor-name">{{ section.settings.doctor_name }}</p>
-          <p class="pro-one-doctor-specialty">{{ section.settings.doctor_specialty }}</p>
-          <p class="pro-one-doctor-exp">{{ section.settings.doctor_experience }}</p>
+          <div class="pro-one-dr-card-row">
+            <div class="pro-one-dr-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2L4 5.5V11C4 15.55 7.41 19.74 12 21C16.59 19.74 20 15.55 20 11V5.5L12 2Z" stroke="#4fffff" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                <path d="M12 8V16M8 12H16" stroke="#4fffff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="pro-one-dr-card-body">
+              <span class="pro-one-dr-card-label">Expert Care You Can Trust</span>
+              <p class="pro-one-doctor-name">{{ section.settings.doctor_name }}</p>
+              <p class="pro-one-doctor-specialty">{{ section.settings.doctor_specialty }}</p>
+              <p class="pro-one-doctor-exp">{{ section.settings.doctor_experience }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -393,36 +957,71 @@
 
 <script>
 (function () {
-  var list    = document.getElementById('proOneFeaturesList');
   var cards   = document.querySelectorAll('.pro-one-hover-card');
   var buttons = document.querySelectorAll('.pro-one-arrow-btn');
   var activeCard = null;
+  var isMobile = window.innerWidth <= 1024;
+  window.addEventListener('resize', function () { isMobile = window.innerWidth <= 1024; });
 
   function showCard(index) {
     hideAll();
     var card = document.querySelector('.pro-one-hover-card[data-card="' + index + '"]');
     if (!card) return;
     card.classList.add('pro-one-card-visible');
-    list.classList.add('pro-one-list-hidden');
     activeCard = index;
   }
 
   function hideAll() {
     cards.forEach(function (c) { c.classList.remove('pro-one-card-visible'); });
-    list.classList.remove('pro-one-list-hidden');
     activeCard = null;
   }
 
+  // DESKTOP: hover to show/hide
   buttons.forEach(function (btn) {
     btn.addEventListener('mouseenter', function () {
+      if (isMobile) return;
       showCard(parseInt(btn.getAttribute('data-target'), 10));
     });
   });
 
-  var wrap = document.getElementById('proOneFeaturesWrap');
-  if (wrap) {
-    wrap.addEventListener('mouseleave', function () { hideAll(); });
-  }
+  document.querySelectorAll('.pro-one-feature-row').forEach(function (row) {
+    row.addEventListener('mouseleave', function () {
+      if (isMobile) return;
+      hideAll();
+    });
+  });
+
+  // MOBILE: click to toggle
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      if (!isMobile) return;
+      e.stopPropagation();
+      var index = parseInt(btn.getAttribute('data-target'), 10);
+      if (activeCard === index) { hideAll(); } else { showCard(index); }
+    });
+  });
+
+  // MOBILE: close on outside click
+  document.addEventListener('click', function (e) {
+    if (!isMobile || activeCard === null) return;
+    var visibleCard = document.querySelector('.pro-one-hover-card.pro-one-card-visible');
+    if (visibleCard && !visibleCard.contains(e.target)) hideAll();
+  });
+
+  // Add close button (✕) — mobile only
+  cards.forEach(function (card) {
+    if (!card.querySelector('.pro-one-card-close')) {
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'pro-one-card-close';
+      closeBtn.setAttribute('aria-label', 'Close');
+      closeBtn.innerHTML = '&#215;';
+      closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        hideAll();
+      });
+      card.appendChild(closeBtn);
+    }
+  });
 })();
 </script>
 

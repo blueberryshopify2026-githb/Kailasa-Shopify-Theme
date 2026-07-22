@@ -13,15 +13,16 @@
     background: {{ section.settings.spt_bg }};
     height: 100vh;
     min-height: 600px;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     box-sizing: border-box;
     display: flex;
     align-items: stretch;
   }
 
-  /* ── LEFT 60% ── */
+  /* ── LEFT 55% ── */
   .spt-left {
-    flex: 0 0 60%;
+    flex: 0 0 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,19 +30,17 @@
     position: relative;
   }
 
-
-
   .spt-heading {
     font-size: {{ section.settings.spt_heading_size }}px;
     font-weight: {{ section.settings.spt_heading_weight }};
     color: {{ section.settings.spt_heading_color }};
-    line-height: 1.1;
+    line-height: 1.2;
     margin: 0 0 {{ section.settings.spt_heading_gap }}px 0;
   }
 
   /* Blog excerpt — 2 lines max */
   .spt-excerpt-wrap {
-    font-size: {{ section.settings.spt_excerpt_size }}px;
+    font-size: max({{ section.settings.spt_excerpt_size }}px, 17px);
     color: {{ section.settings.spt_excerpt_color }};
     line-height: 1.6;
     display: -webkit-box;
@@ -55,21 +54,22 @@
     display: block;
     font-size: {{ section.settings.spt_excerpt_size }}px;
     font-weight: 700;
-    color: {{ section.settings.spt_read_more_color }};
-    text-decoration: none;
+    color: #000000;
+    text-decoration: underline;
+    text-decoration-color: #00bcd4;
+    text-underline-offset: 3px;
     margin-top: 4px;
-    transition: color 0.2s;
+    transition: opacity 0.2s;
   }
 
-  .spt-read-more:hover { color: #4fffff; }
+  .spt-read-more:hover { opacity: 0.75; }
 
   /* ── Bottom area: thumbnails OR info card ── */
   .spt-bottom {
-    margin-top:70px;
+    margin-top: 20px;
     padding-top: {{ section.settings.spt_bottom_gap }}px;
     padding-bottom: 10px;
-    /* border: 1px solid red; */
-   }
+  }
 
   /* Thumbnails row */
   .spt-thumbs {
@@ -77,7 +77,6 @@
     gap: {{ section.settings.spt_thumb_gap }}px;
     align-items: flex-end;
     padding-bottom: 10px;
-    /* margin-top: 100px; */
     margin-bottom: 10px;
   }
 
@@ -86,9 +85,22 @@
     width: {{ section.settings.spt_thumb_size }}px;
     height: {{ section.settings.spt_thumb_size }}px;
     border-radius: {{ section.settings.spt_thumb_radius }}px;
-    overflow: hidden;
+    overflow: visible;
     flex-shrink: 0;
     cursor: pointer;
+  }
+
+  /* Desktop: thumbs fill available width equally, bigger gap */
+  @media (min-width: 1025px) {
+    .spt-thumbs {
+      gap: 28px;
+    }
+
+    .spt-thumb-wrap {
+      flex: 1 1 0;
+      width: auto;
+      min-width: 0;
+    }
   }
 
   .spt-thumb-img {
@@ -104,59 +116,83 @@
     transform: scale(1.05);
   }
 
-  /* Hover info card — positioned via JS above each thumbnail */
+  /* Hover info card — inside thumbnail, hidden by default */
   .spt-thumb-hover-card {
     display: none;
     position: absolute;
-    width: {{ section.settings.spt_thumb_card_width }}px;
-    background: rgba(255,255,255,{{ section.settings.spt_thumb_frost_opacity | divided_by: 100.0 }});
+    bottom: calc(100% + 8px);
+    left: 0;
+    width: max-content;
+    min-width: 100%;
+    max-width: 320px;
+    background: rgba(255,255,255,0.97);
     backdrop-filter: blur({{ section.settings.spt_thumb_frost_blur }}px);
     -webkit-backdrop-filter: blur({{ section.settings.spt_thumb_frost_blur }}px);
     border: 2px solid #4fffff;
     border-radius: {{ section.settings.spt_thumb_radius }}px;
-    padding: 16px 20px;
+    padding: 10px 14px;
     z-index: 30;
-    box-shadow: 0 4px 20px rgba(79,255,255,0.25);
+    box-shadow: 0 4px 16px rgba(0,188,212,0.25);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+
+  /* Visible state */
+  .spt-thumb-hover-card.spt-active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Desktop: show above on hover */
+  @media (min-width: 1025px) {
+    .spt-thumb-wrap:hover .spt-thumb-hover-card {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   .spt-hcard-title {
-    font-size: {{ section.settings.spt_thumb_frost_size | plus: 2 }}px;
+    font-size: 15px;
     font-weight: 700;
     color: {{ section.settings.spt_thumb_frost_color }};
     text-align: center;
-    margin: 0 0 8px 0;
+    margin: 0 0 4px 0;
   }
 
   .spt-hcard-text {
-    font-size: {{ section.settings.spt_thumb_frost_size }}px;
+    font-size: 13px;
     font-weight: 400;
     color: {{ section.settings.spt_thumb_frost_color }};
     text-align: center;
-    line-height: 1.55;
-    margin: 0 0 8px 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    line-height: 1.4;
+    margin: 0;
   }
 
   .spt-hcard-link {
     display: block;
-    font-size: {{ section.settings.spt_thumb_frost_size }}px;
+    font-size: 12px;
     font-weight: 700;
     color: #000;
-    text-decoration: none;
-    transition: color 0.2s;
+    text-decoration: underline;
+    text-decoration-color: #00bcd4;
+    text-underline-offset: 2px;
+    text-align: center;
+    margin-top: 4px;
+    transition: opacity 0.2s;
   }
 
-  .spt-hcard-link:hover { color: #4fffff; }
+  .spt-hcard-link:hover { opacity: 0.7; }
 
   /* Info card (alternative bottom) */
   .spt-info-card {
     background: rgba(255,255,255,{{ section.settings.spt_info_card_opacity | divided_by: 100.0 }});
     backdrop-filter: blur({{ section.settings.spt_info_card_blur }}px);
     -webkit-backdrop-filter: blur({{ section.settings.spt_info_card_blur }}px);
-    border: 2px solid #4fffff;
+    border: 2px solid #00bcd4;
     border-radius: {{ section.settings.spt_info_card_radius }}px;
     padding: {{ section.settings.spt_info_card_pad }}px;
     max-width: {{ section.settings.spt_info_card_width }}px;
@@ -177,10 +213,17 @@
     margin: 0;
   }
 
-  /* ── RIGHT 40% ── */
+  /* ── RIGHT 45% ── */
   .spt-right {
-    flex: 0 0 40%;
+    flex: 0 0 45%;
     position: relative;
+    overflow: visible;
+  }
+
+  /* Clip only the image, not the card */
+  .spt-right-img-clip {
+    position: absolute;
+    inset: 0;
     overflow: hidden;
   }
 
@@ -198,55 +241,469 @@
     background: #f0f0f0;
   }
 
-  /* Doctor frost glass card — centered, wider */
+  /* Doctor frost glass card — copied from pt-doctor-card desktop */
   .spt-doctor-card {
     position: absolute;
+    width: auto;
+    max-width: 90%;
     bottom: {{ section.settings.spt_dr_card_bottom }}px;
     left: 50%;
     transform: translateX(-50%);
-    width: {{ section.settings.spt_dr_card_max_width }}px;
-    background: rgba(255,255,255,{{ section.settings.spt_dr_card_opacity | divided_by: 100.0 }});
-    backdrop-filter: blur({{ section.settings.spt_dr_card_blur }}px);
-    -webkit-backdrop-filter: blur({{ section.settings.spt_dr_card_blur }}px);
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 2px solid #4fffff;
     border-radius: {{ section.settings.spt_dr_card_radius }}px;
     padding: {{ section.settings.spt_dr_card_pad_v }}px {{ section.settings.spt_dr_card_pad_h }}px;
-    box-shadow: 0 4px 24px rgba(79,255,255,0.3);
+    box-shadow: 0 8px 32px rgba(79,255,255,0.35);
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .spt-dr-card-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #4fffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spt-dr-card-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .spt-dr-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #00bcd4;
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+    display: block;
+    white-space: nowrap;
   }
 
   .spt-dr-name {
     font-size: {{ section.settings.spt_dr_name_size }}px;
-    font-weight: 600;
-    font-style: italic;
+    font-weight: 700;
+    font-style: normal;
     color: {{ section.settings.spt_dr_name_color }};
     margin: 0 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .spt-dr-specialty {
     font-size: {{ section.settings.spt_dr_meta_size }}px;
-    font-weight: 700;
+    font-weight: 400;
     color: {{ section.settings.spt_dr_meta_color }};
-    margin: 0 0 2px 0;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .spt-dr-exp {
     font-size: {{ section.settings.spt_dr_meta_size }}px;
     font-weight: 400;
     color: {{ section.settings.spt_dr_meta_color }};
-    margin: 0;
+    margin: 6px 0 0 0;
+    padding-top: 6px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    white-space: nowrap;
   }
 
-  @media (max-width: 900px) {
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
     .spt-section {
       flex-direction: column;
       height: auto;
+      overflow: visible;
     }
-    .spt-left, .spt-right {
-      flex: 0 0 100%;
-    }
+
+    /* Image block FIRST — matches pt-left mobile size */
     .spt-right {
-      min-height: 400px;
+      flex: none;
+      width: 94%;
+      min-height: 420px;
+      max-height: 85vw;
+      order: 1;
+      position: relative;
+      overflow: visible;
+      border-radius: 20px;
+      margin: 16px auto 0;
     }
+
+    .spt-right-img-clip {
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .spt-doctor-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: {{ section.settings.spt_mob_img_radius }}px;
+    }
+
+    /* Doctor frost glass card — always visible */
+    .spt-doctor-card {
+      width: auto;
+      max-width: 92%;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid #4fffff;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .spt-dr-card-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #4fffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spt-dr-card-body { flex: 1; min-width: 0; }
+
+    .spt-dr-card-label { font-size: 8px; letter-spacing: 0.07em; white-space: nowrap; margin-bottom: 2px; }
+
+    .spt-dr-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .spt-dr-specialty { font-size: 11px; font-weight: 400; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .spt-dr-exp { font-size: 11px; margin: 4px 0 0 0; padding-top: 4px; border-top: 1px solid rgba(0,0,0,0.1); white-space: nowrap; }
+
+    /* Text block SECOND */
+    .spt-left {
+      flex: none;
+      width: 100%;
+      padding: {{ section.settings.spt_mob_pad_v }}px {{ section.settings.spt_mob_pad_h }}px 0;
+      order: 2;
+    }
+
+    .spt-heading {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .spt-excerpt-wrap {
+      font-size: 16px;
+      text-align: center;
+      -webkit-line-clamp: 3;
+      margin-bottom: 4px;
+    }
+
+    .spt-excerpt-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Read more: black text, cyan underline */
+    .spt-read-more {
+      color: #000000 !important;
+      text-decoration: underline;
+      text-decoration-color: #00bcd4;
+      text-underline-offset: 3px;
+      font-size: 13px;
+    }
+    .spt-read-more:hover { color: #00bcd4 !important; }
+
+    /* Thumbnails THIRD — 2x2 grid */
+    .spt-bottom {
+      order: 3;
+      margin-top: {{ section.settings.spt_mob_bottom_gap }}px;
+      padding: 0 {{ section.settings.spt_mob_pad_h }}px {{ section.settings.spt_mob_pad_h }}px;
+    }
+
+    .spt-thumbs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: {{ section.settings.spt_mob_thumb_gap }}px;
+      align-items: unset;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    /* Each thumbnail fills its grid cell */
+    .spt-thumb-wrap {
+      width: 100% !important;
+      height: {{ section.settings.spt_mob_thumb_height }}px !important;
+      border-radius: {{ section.settings.spt_thumb_radius }}px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Hover card: fills the full thumbnail on tap */
+    .spt-thumb-hover-card {
+      display: none;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+      height: 100% !important;
+      transform: none !important;
+      border-radius: {{ section.settings.spt_thumb_radius }}px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 12px !important;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.95) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .spt-thumb-hover-card.spt-active {
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    .spt-hcard-title {
+      font-size: max({{ section.settings.spt_mob_hcard_size }}px, 15px);
+      text-align: center;
+      margin: 0 0 6px 0;
+    }
+
+    .spt-hcard-text {
+      font-size: max({{ section.settings.spt_mob_hcard_size | minus: 1 }}px, 13px);
+      text-align: center;
+      margin: 0 0 4px 0;
+    }
+
+    .spt-hcard-link {
+      font-size: {{ section.settings.spt_mob_hcard_size | minus: 1 }}px;
+      text-align: center;
+      color: #000;
+      text-decoration: underline;
+      text-decoration-color: #00bcd4;
+    }
+  }
+
+  /* ── TABLET: 769px–1024px ── */
+  @media (min-width: 769px) and (max-width: 1024px) {
+
+    /* Stack column: image → text → thumbnails */
+    .spt-section {
+      flex-direction: column;
+      height: auto;
+      overflow: visible;
+    }
+
+    /* Image FIRST */
+    .spt-right {
+      flex: none;
+      width: 94%;
+      min-height: 520px;
+      max-height: 60vw;
+      order: 1;
+      position: relative;
+      overflow: visible;
+      border-radius: 20px;
+      margin: 20px auto 0;
+    }
+
+    .spt-right-img-clip {
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .spt-doctor-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 20px;
+    }
+
+    /* Doctor frost card on tablet — always visible */
+    .spt-doctor-card {
+      width: auto;
+      max-width: 85%;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid #4fffff;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .spt-dr-card-icon { width: 44px; height: 44px; border: 2px solid #4fffff; }
+    .spt-dr-card-label { font-size: 10px; }
+    .spt-dr-name { font-size: 20px; }
+    .spt-dr-specialty { font-size: 14px; }
+    .spt-dr-exp { font-size: 14px; margin-top: 6px; padding-top: 6px; }
+
+    /* Text block SECOND */
+    .spt-left {
+      flex: none;
+      width: 94%;
+      order: 2;
+      margin: 0 auto;
+      padding: 28px 0 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .spt-heading {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .spt-excerpt-wrap {
+      font-size: 19px;
+      text-align: center;
+      -webkit-line-clamp: 3;
+    }
+
+    .spt-excerpt-block { align-items: center; }
+
+    .spt-read-more {
+      font-size: 17px;
+      color: #000000 !important;
+      text-decoration: underline;
+      text-decoration-color: #00bcd4;
+      text-underline-offset: 3px;
+      text-align: center;
+    }
+
+    /* Thumbnails THIRD — 4 in one row */
+    .spt-bottom {
+      width: 100%;
+      margin: 32px 0 0;
+      padding: 0 0 32px;
+    }
+
+    .spt-thumbs {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: stretch;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .spt-thumb-wrap {
+      flex: 1 1 0;
+      width: auto !important;
+      height: 200px !important;
+      border-radius: {{ section.settings.spt_thumb_radius }}px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Hover card on tablet — fills the full thumbnail on tap */
+    .spt-thumb-hover-card {
+      display: none;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+      height: 100% !important;
+      transform: none !important;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 12px !important;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.95) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: {{ section.settings.spt_thumb_radius }}px;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .spt-thumb-hover-card.spt-active {
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    .spt-hcard-title {
+      font-size: 17px;
+      text-align: center;
+      margin: 0 0 6px 0;
+    }
+
+    .spt-hcard-text {
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .spt-hcard-link {
+      font-size: 14px;
+    }
+  }
+
+  /* Narrow mobile: 320px–479px */
+  @media (max-width: 479px) {
+    .spt-right {
+      min-height: 360px;
+      max-height: 88vw;
+    }
+    .spt-heading { font-size: 20px; }
+    .spt-excerpt-wrap, .spt-read-more { font-size: 15px; }
+    .spt-dr-name { font-size: 14px; }
+    .spt-dr-specialty, .spt-dr-exp { font-size: 10px; }
+  }
+
+  /* Very small: ≤360px */
+  @media (max-width: 360px) {
+    .spt-right { min-height: 300px; }
+    .spt-heading { font-size: 18px; }
+    .spt-excerpt-wrap, .spt-read-more { font-size: 14px; }
+    .spt-dr-name { font-size: 13px; }
   }
 </style>
 
@@ -289,15 +746,11 @@
     <div class="spt-bottom">
 
       {% if section.settings.spt_bottom_type == 'thumbnails' %}
-        <div class="spt-thumbs-container" style="position:relative;">
+        <div class="spt-thumbs-container">
           <div class="spt-thumbs">
             {% for block in section.blocks %}
               {% if block.type == 'thumbnail' %}
-                <div
-                  class="spt-thumb-wrap"
-                  data-hcard="spt-hcard-{{ block.id }}"
-                  {{ block.shopify_attributes }}
-                >
+                <div class="spt-thumb-wrap" {{ block.shopify_attributes }}>
                   {% if block.settings.spt_thumb_img != blank %}
                     <img
                       class="spt-thumb-img"
@@ -310,28 +763,20 @@
                   {% else %}
                     <div style="width:100%;height:100%;background:#e0e0e0;border-radius:{{ section.settings.spt_thumb_radius }}px;"></div>
                   {% endif %}
+                  <!-- Hover card lives INSIDE the thumb so it overlays its own container -->
+                  <div class="spt-thumb-hover-card">
+                    {% if block.settings.spt_thumb_title != blank %}
+                      <p class="spt-hcard-title">{{ block.settings.spt_thumb_title }}</p>
+                    {% endif %}
+                    <p class="spt-hcard-text">{{ block.settings.spt_thumb_info }}</p>
+                    {% if block.settings.spt_thumb_link != blank %}
+                      <a href="{{ block.settings.spt_thumb_link }}" class="spt-hcard-link">read more...</a>
+                    {% endif %}
+                  </div>
                 </div>
               {% endif %}
             {% endfor %}
           </div>
-
-          <!-- Hover info cards — absolutely positioned via JS above each thumb -->
-          {% for block in section.blocks %}
-            {% if block.type == 'thumbnail' %}
-              <div
-                class="spt-thumb-hover-card"
-                id="spt-hcard-{{ block.id }}"
-              >
-                {% if block.settings.spt_thumb_title != blank %}
-                  <p class="spt-hcard-title">{{ block.settings.spt_thumb_title }}</p>
-                {% endif %}
-                <p class="spt-hcard-text">{{ block.settings.spt_thumb_info }}</p>
-                {% if block.settings.spt_thumb_link != blank %}
-                  <a href="{{ block.settings.spt_thumb_link }}" class="spt-hcard-link">read more...</a>
-                {% endif %}
-              </div>
-            {% endif %}
-          {% endfor %}
         </div>
 
       {% else %}
@@ -348,24 +793,35 @@
 
   <!-- RIGHT 40% -->
   <div class="spt-right">
-    {% if section.settings.spt_doctor_image != blank %}
-      <img
-        class="spt-doctor-img"
-        src="{{ section.settings.spt_doctor_image | image_url: width: 1000 }}"
-        alt="{{ section.settings.spt_dr_name }}"
-        width="1000"
-        height="1200"
-        loading="lazy"
-      >
-    {% else %}
-      <div class="spt-doctor-placeholder"></div>
-    {% endif %}
+    <div class="spt-right-img-clip">
+      {% if section.settings.spt_doctor_image != blank %}
+        <img
+          class="spt-doctor-img"
+          src="{{ section.settings.spt_doctor_image | image_url: width: 1000 }}"
+          alt="{{ section.settings.spt_dr_name }}"
+          width="1000"
+          height="1200"
+          loading="lazy"
+        >
+      {% else %}
+        <div class="spt-doctor-placeholder"></div>
+      {% endif %}
+    </div>
 
     <!-- Doctor frost glass card -->
     <div class="spt-doctor-card">
-      <p class="spt-dr-name">{{ section.settings.spt_dr_name }}</p>
-      <p class="spt-dr-specialty">{{ section.settings.spt_dr_specialty }}</p>
-      <p class="spt-dr-exp">{{ section.settings.spt_dr_experience }}</p>
+      <div class="spt-dr-card-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2L4 5.5V11C4 15.55 7.41 19.74 12 21C16.59 19.74 20 15.55 20 11V5.5L12 2Z" stroke="#4fffff" stroke-width="2" stroke-linejoin="round" fill="none"/>
+          <path d="M12 8V16M8 12H16" stroke="#4fffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="spt-dr-card-body">
+        <p class="spt-dr-card-label">Expert Care You Can Trust</p>
+        <p class="spt-dr-name">{{ section.settings.spt_dr_name }}</p>
+        <p class="spt-dr-specialty">{{ section.settings.spt_dr_specialty }}</p>
+        <p class="spt-dr-exp">{{ section.settings.spt_dr_experience }}</p>
+      </div>
     </div>
   </div>
 
@@ -373,38 +829,62 @@
 
 <script>
 (function() {
-  var wraps = document.querySelectorAll('.spt-thumb-wrap');
-  wraps.forEach(function(wrap) {
-    var cardId = wrap.getAttribute('data-hcard');
-    var card = document.getElementById(cardId);
-    if (!card) return;
+  function initSptCards() {
+    var isMobileOrTablet = window.innerWidth <= 1024;
 
-    wrap.addEventListener('mouseenter', function() {
-      // Hide all cards
-      document.querySelectorAll('.spt-thumb-hover-card').forEach(function(c) { c.style.display = 'none'; });
+    // ── Thumbnail hover cards ──
+    var wraps = document.querySelectorAll('.spt-thumb-wrap');
+    if (!wraps.length) return;
 
-      // Position this card above the thumbnail
-      var container = wrap.closest('.spt-thumbs-container');
-      var containerRect = container.getBoundingClientRect();
-      var wrapRect = wrap.getBoundingClientRect();
+    wraps.forEach(function(wrap) {
+      var card = wrap.querySelector('.spt-thumb-hover-card');
+      if (!card) return;
 
-      var cardLeft = wrapRect.left - containerRect.left;
-      var cardBottom = containerRect.bottom - wrapRect.top + 10;
-
-      card.style.display = 'block';
-      card.style.left = cardLeft + 'px';
-      card.style.bottom = (containerRect.height - (wrapRect.top - containerRect.top) + 10) + 'px';
-
-      // Clamp so card doesn't go off left edge
-      var cardWidth = card.offsetWidth;
-      var maxLeft = containerRect.width - cardWidth;
-      if (cardLeft > maxLeft) card.style.left = Math.max(0, maxLeft) + 'px';
+      if (isMobileOrTablet) {
+        // Touch: toggle card inside the thumbnail
+        wrap.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isActive = card.classList.contains('spt-active');
+          // Close all others
+          document.querySelectorAll('.spt-thumb-hover-card.spt-active').forEach(function(c) {
+            c.classList.remove('spt-active');
+          });
+          if (!isActive) card.classList.add('spt-active');
+        });
+      } else {
+        // Desktop: hover shows card above thumbnail via CSS :hover
+        // JS fallback for browsers that need it
+        wrap.addEventListener('mouseenter', function() {
+          document.querySelectorAll('.spt-thumb-hover-card.spt-active').forEach(function(c) {
+            c.classList.remove('spt-active');
+          });
+          card.classList.add('spt-active');
+        });
+        wrap.addEventListener('mouseleave', function() {
+          card.classList.remove('spt-active');
+        });
+      }
     });
 
-    wrap.addEventListener('mouseleave', function() {
-      card.style.display = 'none';
-    });
-  });
+    // Close on outside tap (mobile/tablet)
+    if (isMobileOrTablet) {
+      document.addEventListener('click', function() {
+        document.querySelectorAll('.spt-thumb-hover-card.spt-active').forEach(function(c) {
+          c.classList.remove('spt-active');
+        });
+      });
+    }
+  }
+
+  // Works on first load AND after Shopify theme editor re-renders sections
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSptCards);
+  } else {
+    initSptCards();
+  }
+
+  // Shopify theme editor section re-render
+  document.addEventListener('shopify:section:load', initSptCards);
 })();
 </script>
 
@@ -428,7 +908,7 @@
 
     { "type": "header", "content": "── Heading" },
     { "type": "text", "id": "spt_heading", "label": "Heading", "default": "Healthy skin is a reflection of overall wellness." },
-    { "type": "range", "id": "spt_heading_size", "label": "Font Size (px)", "min": 24, "max": 96, "step": 2, "default": 64 },
+    { "type": "range", "id": "spt_heading_size", "label": "Font Size (px)", "min": 24, "max": 96, "step": 2, "default": 48 },
     {
       "type": "select", "id": "spt_heading_weight", "label": "Font Weight",
       "options": [
@@ -450,7 +930,7 @@
     { "type": "url", "id": "spt_fallback_link", "label": "Fallback Read More Link" },
     { "type": "range", "id": "spt_excerpt_size", "label": "Excerpt Font Size (px)", "min": 12, "max": 22, "step": 1, "default": 15 },
     { "type": "color", "id": "spt_excerpt_color", "label": "Excerpt Color", "default": "#333333" },
-    { "type": "color", "id": "spt_read_more_color", "label": "Read More Color", "default": "#4fffff" },
+    { "type": "color", "id": "spt_read_more_color", "label": "Read More Color", "default": "#00bcd4" },
 
     { "type": "header", "content": "── Bottom Section" },
     {
@@ -514,7 +994,20 @@
     { "type": "range", "id": "spt_dr_name_size", "label": "Name Font Size (px)", "min": 14, "max": 36, "step": 1, "default": 22 },
     { "type": "color", "id": "spt_dr_name_color", "label": "Name Color", "default": "#000000" },
     { "type": "range", "id": "spt_dr_meta_size", "label": "Specialty/Exp Font Size (px)", "min": 11, "max": 20, "step": 1, "default": 14 },
-    { "type": "color", "id": "spt_dr_meta_color", "label": "Specialty/Exp Color", "default": "#000000" }
+    { "type": "color", "id": "spt_dr_meta_color", "label": "Specialty/Exp Color", "default": "#000000" },
+
+    { "type": "header", "content": "── Mobile Settings" },
+    { "type": "range", "id": "spt_mob_pad_v", "label": "Mobile Vertical Padding (px)", "min": 12, "max": 60, "step": 4, "default": 24 },
+    { "type": "range", "id": "spt_mob_pad_h", "label": "Mobile Horizontal Padding (px)", "min": 8, "max": 40, "step": 2, "default": 16 },
+    { "type": "range", "id": "spt_mob_heading_size", "label": "Mobile Heading Size (px)", "min": 16, "max": 52, "step": 2, "default": 22 },
+    { "type": "range", "id": "spt_mob_excerpt_size", "label": "Mobile Excerpt Size (px)", "min": 10, "max": 18, "step": 1, "default": 13 },
+    { "type": "range", "id": "spt_mob_img_height", "label": "Mobile Image Height (px)", "min": 280, "max": 600, "step": 20, "default": 420 },
+    { "type": "range", "id": "spt_mob_img_radius", "label": "Mobile Image Radius (px)", "min": 0, "max": 32, "step": 2, "default": 16 },
+    { "type": "range", "id": "spt_mob_dr_card_bottom", "label": "Mobile Doctor Card Bottom (px)", "min": 8, "max": 60, "step": 2, "default": 16 },
+    { "type": "range", "id": "spt_mob_bottom_gap", "label": "Mobile Bottom Section Gap (px)", "min": 8, "max": 60, "step": 4, "default": 20 },
+    { "type": "range", "id": "spt_mob_thumb_height", "label": "Mobile Thumbnail Height (px)", "min": 100, "max": 240, "step": 4, "default": 152 },
+    { "type": "range", "id": "spt_mob_thumb_gap", "label": "Mobile Thumbnail Gap (px)", "min": 4, "max": 24, "step": 2, "default": 10 },
+    { "type": "range", "id": "spt_mob_hcard_size", "label": "Mobile Hover Card Text Size (px)", "min": 9, "max": 16, "step": 1, "default": 12 }
 
   ],
   "blocks": [
@@ -542,3 +1035,4 @@
   ]
 }
 {% endschema %}
+

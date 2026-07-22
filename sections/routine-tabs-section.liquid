@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   Routine Tabs Section - Fully responsive with dynamic tab switching
   Matches reference image with customizable content per tab
 {% endcomment %}
@@ -11,7 +11,7 @@
     position: relative;
     z-index: 1;
     clear: both;
-    margin-top: 40px;
+    {% comment %} margin-top: 40px; {% endcomment %}
     isolation: isolate;
     overflow: visible;
   }
@@ -213,12 +213,13 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 10;
     position: relative;
+    border-radius: 16px;
   }
 
   .routine-product-card {
     text-align: center;
     width: 100%;
-    max-width: 160px;
+    max-width: 260px;
     cursor: pointer;
     position: relative; /* For positioning the number */
   }
@@ -239,7 +240,7 @@
 
   .routine-product-image-container {
     width: 100%;
-    height: 200px;
+    height: 250px;
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 0px;
@@ -278,6 +279,7 @@
     line-height: 1;
     margin: 0;
     margin-top: 2px;
+    margin-bottom: 10px;
 
     font-size: 15px;
     font-weight: 500;
@@ -309,8 +311,322 @@
     font-style: italic;
   }
 
+  /* Carousel Dot Base Styles (shared across mobile and tablet) */
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: {{ section.settings.mobile_dot_inactive_color | default: '#cccccc' }};
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: inline-block;
+  }
+
+  .carousel-dot.active {
+    background: {{ section.settings.mobile_dot_active_color | default: '#4FFFFF' }};
+  }
+
   /* Responsive Design */
   @media (max-width: 768px) {
+    .routine-tabs-section {
+      padding: {{ section.settings.mobile_section_padding_top | default: 40 }}px 0 {{ section.settings.mobile_section_padding_bottom | default: 40 }}px !important;
+    }
+
+    .routine-tabs-container {
+      padding: 0 {{ section.settings.mobile_container_padding | default: 6 }}px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Mobile Header */
+    .routine-section-header {
+      text-align: {{ section.settings.mobile_header_alignment | default: 'center' }};
+      margin-bottom: 16px;
+    }
+
+    .routine-section-title {
+      font-size: {{ section.settings.mobile_section_title_size | default: 36 }}px !important;
+      color: {{ section.settings.mobile_section_title_color | default: '#000000' }} !important;
+      margin: 0 0 15px 0;
+    }
+
+    .routine-section-description {
+      font-size: {{ section.settings.mobile_section_description_size | default: 16 }}px !important;
+      color: {{ section.settings.mobile_section_description_color | default: '#000000' }} !important;
+    }
+
+    /* Mobile Tab Navigation - Ultra compact for 4 tabs */
+    .routine-tabs-nav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 2px;
+      margin-bottom: 14px;
+      width: 100%;
+      justify-content: space-between;
+      overflow: visible;
+      box-sizing: border-box;
+      padding: 0 2px;
+    }
+
+    .routine-tab-button {
+      background: {{ section.settings.mobile_inactive_tab_bg | default: '#ffffff' }};
+      color: {{ section.settings.mobile_inactive_tab_text | default: '#000000' }};
+      border: 1px solid {{ section.settings.mobile_tab_border_color | default: '#000000' }};
+      border-radius: {{ section.settings.mobile_tab_border_radius | default: 6 }}px;
+      padding: 6px 2px;
+      font-size: 9px !important;
+      font-weight: 700;
+      min-height: 32px;
+      flex: 1;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1;
+      box-sizing: border-box;
+      max-width: calc(25% - 1px);
+      margin: 0;
+    }
+
+    /* Ultra-compact tab sizing with dynamic font scaling */
+    .routine-tab-button[data-tab="am"],
+    .routine-tab-button[data-tab="pm"] {
+      padding: 6px 2px;
+      font-size: 10px !important;
+    }
+
+    .routine-tab-button[data-tab="pm-light"] {
+      padding: 6px 1px;
+      font-size: 9px !important;
+    }
+
+    .routine-tab-button[data-tab="exfoliate"] {
+      padding: 6px 1px;
+      font-size: 8px !important;
+    }
+
+    .routine-tab-button.active {
+      background: {{ section.settings.mobile_active_tab_bg | default: '#000000' }} !important;
+      color: {{ section.settings.mobile_active_tab_text | default: '#ffffff' }} !important;
+      border-color: {{ section.settings.mobile_active_tab_bg | default: '#000000' }} !important;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    .tab-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .routine-tab-button.active::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: {{ section.settings.mobile_cyan_dot_color | default: '#4FFFFF' }};
+      flex-shrink: 0;
+    }
+
+    .routine-tab-button:hover {
+      background: {{ section.settings.mobile_active_tab_bg | default: '#000000' }};
+      color: {{ section.settings.mobile_active_tab_text | default: '#ffffff' }};
+      border-color: {{ section.settings.mobile_active_tab_bg | default: '#000000' }};
+    }
+
+    /* Mobile Layout - Vertical Stack */
+    .routine-split-layout {
+      grid-template-columns: 1fr;
+      gap: 0;
+      height: auto;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+
+    .routine-image-container {
+      height: {{ section.settings.mobile_image_height | default: 250 }}px;
+      order: 1;
+      border-radius: {{ section.settings.mobile_image_border_radius | default: 15 }}px;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+
+    .routine-content-card {
+      background-color: {{ section.settings.mobile_content_card_bg | default: '#D3FFFF' }} !important;
+      padding: 18px 20px;
+      order: 2;
+      margin-top: 8px;
+      margin-left: 4px;
+      margin-right: 4px;
+      border-radius: {{ section.settings.mobile_content_border_radius | default: 15 }}px;
+      text-align: {{ section.settings.mobile_content_alignment | default: 'center' }};
+      align-items: {{ section.settings.mobile_content_alignment | default: 'center' }};
+    }
+
+    .routine-content-heading {
+      font-size: {{ section.settings.mobile_heading_font_size | default: 24 }}px !important;
+      color: {{ section.settings.mobile_heading_color | default: '#000000' }} !important;
+      margin: 0 0 8px 0;
+    }
+
+    .routine-content-description {
+      font-size: {{ section.settings.mobile_description_font_size | default: 14 }}px !important;
+      color: {{ section.settings.mobile_description_color | default: '#333333' }} !important;
+      margin: 0 0 12px 0;
+    }
+
+    .routine-cta-button {
+      background: {{ section.settings.mobile_cta_bg_color | default: '#000000' }} !important;
+      color: {{ section.settings.mobile_cta_text_color | default: '#ffffff' }} !important;
+      font-size: {{ section.settings.mobile_cta_font_size | default: 14 }}px !important;
+      padding: {{ section.settings.mobile_cta_padding | default: 12 }}px {{ section.settings.mobile_cta_padding | default: 24 }}px;
+      border-radius: {{ section.settings.mobile_cta_border_radius | default: 25 }}px;
+      align-self: center;
+      margin-top: 0;
+    }
+
+    /* Mobile Products Grid - Sliding Carousel */
+    .routine-products-grid {
+      display: block !important;
+      margin-bottom: 20px;
+    }
+
+    .mobile-products-carousel {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .mobile-products-wrapper {
+      display: flex;
+      transition: transform 0.3s ease;
+      gap: 0;
+      width: 100%;
+    }
+
+    .mobile-products-slide {
+      display: flex;
+      gap: 10px;
+      min-width: 100%;
+      width: 100%;
+      justify-content: center;
+      padding: 6px 12px;
+      box-sizing: border-box;
+    }
+
+    .routine-product-link {
+      width: calc(50% - 5px);
+      flex-shrink: 0;
+      flex-grow: 0;
+      display: flex;
+    }
+
+    .routine-product-card {
+      width: 100%;
+      max-width: none;
+      flex-shrink: 0;
+      height: 160px;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 3px solid transparent;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
+      padding: 0 0 32px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      box-sizing: border-box;
+      position: relative;
+      overflow: visible;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .routine-product-card.active {
+      border-color: #4FFFFF !important;
+      box-shadow: 0 4px 20px rgba(79, 255, 255, 0.45), 0 1px 4px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    .routine-product-number {
+      position: absolute !important;
+      font-size: 75px !important;
+      color: {{ section.settings.mobile_product_number_color | default: '#4FFFFF' }} !important;
+      z-index: 1 !important;
+      line-height: 1 !important;
+      pointer-events: none !important;
+      user-select: none !important;
+    }
+
+    .routine-product-image-container {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 32px !important;
+      width: 100% !important;
+      height: auto !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+      margin-bottom: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      z-index: 2 !important;
+    }
+
+    .routine-product-image {
+      width: 55% !important;
+      height: 80% !important;
+      max-width: 55% !important;
+      max-height: 80% !important;
+      object-fit: contain !important;
+    }
+
+    .routine-product-name {
+      position: absolute !important;
+      bottom: 8px !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 3;
+      font-size: 11px !important;
+      color: {{ section.settings.mobile_product_name_color | default: '#000000' }} !important;
+      font-weight: 600 !important;
+      text-align: center;
+      line-height: 1.2;
+      width: 100%;
+      padding: 0 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+    }
+
+    /* Mobile Carousel Dots */
+    .mobile-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: {{ section.settings.mobile_dot_inactive_color | default: '#cccccc' }};
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: {{ section.settings.mobile_dot_active_color | default: '#4FFFFF' }};
+    }
+
+    /* Hide desktop-specific elements on mobile */
     .routine-split-layout {
       grid-template-columns: 1fr;
       gap: 15px;
@@ -329,21 +645,21 @@
     .routine-products-grid.products-4,
     .routine-products-grid.products-5,
     .routine-products-grid.products-6 {
-      grid-template-columns: repeat(2, 1fr);
+      display: block !important;
     }
 
     .routine-tabs-nav {
-      gap: 6px;
+      gap: 2px;
     }
 
     .routine-tab-button {
-      padding: 12px 20px;
-      font-size: 13px;
-      min-width: 120px;
+      padding: 6px 2px;
+      font-size: 10px !important;
+      min-width: auto;
     }
 
     .routine-tab-button.active {
-      padding-left: 32px;
+      position: relative;
     }
   }
 
@@ -356,6 +672,237 @@
 
     .routine-content-card {
       padding: 30px 20px;
+    }
+
+    /* Extra small mobile optimization */
+    .routine-tabs-nav {
+      gap: 1px;
+      padding: 0 1px;
+    }
+
+    .routine-tab-button {
+      font-size: 8px !important;
+      padding: 5px 1px !important;
+      min-height: 30px !important;
+      max-width: calc(25% - 1px);
+      border-radius: 4px;
+    }
+
+    .routine-tab-button[data-tab="am"],
+    .routine-tab-button[data-tab="pm"] {
+      padding: 5px 1px !important;
+      font-size: 9px !important;
+    }
+
+    .routine-tab-button[data-tab="pm-light"] {
+      padding: 5px 1px !important;
+      font-size: 8px !important;
+    }
+
+    .routine-tab-button[data-tab="exfoliate"] {
+      padding: 5px 1px !important;
+      font-size: 7px !important;
+    }
+
+    .routine-tab-button.active {
+      position: relative;
+    }
+
+    .routine-tabs-container {
+      padding: 0 6px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .routine-tabs-nav {
+      gap: 0;
+      padding: 0;
+    }
+
+    .routine-tab-button {
+      font-size: 7px !important;
+      padding: 4px 0 !important;
+      min-height: 28px !important;
+      max-width: 25%;
+      border-radius: 3px;
+      border-width: 0.5px;
+    }
+
+    .routine-tab-button[data-tab="am"],
+    .routine-tab-button[data-tab="pm"] {
+      padding: 4px 0 !important;
+      font-size: 8px !important;
+    }
+
+    .routine-tab-button[data-tab="pm-light"] {
+      padding: 4px 0 !important;
+      font-size: 7px !important;
+    }
+
+    .routine-tab-button[data-tab="exfoliate"] {
+      padding: 4px 0 !important;
+      font-size: 6px !important;
+    }
+
+    .routine-tab-button.active {
+      position: relative;
+    }
+
+    .routine-tab-button.active::before {
+      width: 4px;
+      height: 4px;
+    }
+
+    .routine-tabs-container {
+      padding: 0 4px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1280px) {
+    /* Tablet: override grid to single column so carousel takes full width */
+    .routine-products-grid {
+      display: block !important;
+    }
+
+    /* Force override inline grid-template-columns */
+    .routine-products-grid[style] {
+      display: block !important;
+      grid-template-columns: unset !important;
+    }
+
+    /* Tablet: show tablet carousel, hide mobile carousel and desktop grid */
+    .tablet-products-carousel {
+      display: block !important;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .mobile-products-carousel {
+      display: none !important;
+    }
+
+    /* Hide ALL direct children of products grid except carousels */
+    .routine-products-grid > *:not(.tablet-products-carousel):not(.mobile-products-carousel) {
+      display: none !important;
+    }
+
+    /* Explicitly hide desktop product links and cards */
+    .routine-products-grid > .routine-product-link,
+    .routine-products-grid > .routine-product-card {
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    .tablet-products-wrapper {
+      display: flex;
+      gap: 0;
+      transition: transform 0.3s ease;
+      width: 100%;
+    }
+
+    .tablet-products-slide {
+      display: flex;
+      gap: 12px;
+      min-width: 100%;
+      width: 100%;
+      padding: 8px 12px;
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    /* Direct card (no link wrapper) — fixed width so size never changes with count */
+    .tablet-products-slide > .routine-product-card,
+    .tablet-products-slide .routine-product-link {
+      display: flex !important;
+      flex: 0 0 {{ section.settings.tablet_card_width | default: 190 }}px;
+      width: {{ section.settings.tablet_card_width | default: 190 }}px;
+      min-width: {{ section.settings.tablet_card_width | default: 190 }}px;
+      max-width: {{ section.settings.tablet_card_width | default: 190 }}px;
+    }
+
+    .tablet-products-slide .routine-product-card {
+      display: flex !important;
+      width: 100% !important;
+      max-width: none !important;
+      min-height: 220px;
+      height: 220px !important;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 3px solid transparent;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+      padding: 0 0 40px 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      box-sizing: border-box;
+      position: relative;
+      overflow: visible;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tablet-products-slide .routine-product-card.active {
+      border-color: #4FFFFF !important;
+      box-shadow: 0 4px 20px rgba(79,255,255,0.45), 0 1px 4px rgba(0,0,0,0.06) !important;
+    }
+
+    .tablet-products-slide .routine-product-number {
+      z-index: 1 !important;
+      line-height: 1 !important;
+      pointer-events: none !important;
+    }
+
+    .tablet-products-slide .routine-product-image-container {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 40px !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 160px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      z-index: 2 !important;
+      overflow: visible !important;
+    }
+
+    .tablet-products-slide .routine-product-image {
+      width: 60% !important;
+      height: auto !important;
+      max-width: 60% !important;
+      max-height: 140px !important;
+      object-fit: contain !important;
+    }
+
+    .tablet-products-slide .routine-product-name {
+      position: absolute !important;
+      bottom: 10px !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 3;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      text-align: center;
+      padding: 0 8px;
+      white-space: normal !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .tablet-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
     }
   }
 </style>
@@ -376,10 +923,10 @@
 
     <!-- Tab Navigation -->
     <div class="routine-tabs-nav">
-      <button class="routine-tab-button active" data-tab="am">{{ section.settings.tab_1_label }}</button>
-      <button class="routine-tab-button" data-tab="pm">{{ section.settings.tab_2_label }}</button>
-      <button class="routine-tab-button" data-tab="pm-light">{{ section.settings.tab_3_label }}</button>
-      <button class="routine-tab-button" data-tab="exfoliate">{{ section.settings.tab_4_label }}</button>
+      <button class="routine-tab-button active" data-tab="am"><span class="tab-label">{{ section.settings.tab_1_label }}</span></button>
+      <button class="routine-tab-button" data-tab="pm"><span class="tab-label">{{ section.settings.tab_2_label }}</span></button>
+      <button class="routine-tab-button" data-tab="pm-light"><span class="tab-label">{{ section.settings.tab_3_label }}</span></button>
+      <button class="routine-tab-button" data-tab="exfoliate"><span class="tab-label">{{ section.settings.tab_4_label }}</span></button>
     </div>
 
     <!-- AM Tab Content -->
@@ -387,11 +934,13 @@
       <div class="routine-split-layout">
         <div class="routine-image-container">
           {% if section.settings.am_image %}
-            <img src="{{ section.settings.am_image | image_url: width: 600, height: 400 }}" 
-                 alt="{{ section.settings.am_heading }}" 
-                 width="600" 
-                 height="400"
-                 class="routine-image">
+            <img
+              src="{{ section.settings.am_image | image_url: width: 600, height: 400 }}"
+              alt="{{ section.settings.am_heading }}"
+              width="600"
+              height="400"
+              class="routine-image"
+            >
           {% endif %}
         </div>
         <div class="routine-content-card">
@@ -402,64 +951,177 @@
           </a>
         </div>
       </div>
-      
+
       {% assign am_products_count = 0 %}
       {% for block in section.blocks %}
         {% if block.settings.tab_selector == 'am' %}
           {% assign am_products_count = am_products_count | plus: 1 %}
         {% endif %}
       {% endfor %}
-      
+
       {% if am_products_count > 0 %}
         <div class="routine-products-grid" style="grid-template-columns: repeat({{ am_products_count | at_most: 6 }}, 1fr);">
+          <!-- Mobile Carousel Structure -->
+          <div class="mobile-products-carousel" style="display: none;">
+            <div class="mobile-products-wrapper" id="am-carousel-wrapper">
+              {% assign slide_count = 0 %}
+              {% assign products_per_slide = 2 %}
+              {% assign current_slide_products = 0 %}
+              {% assign am_products = '' %}
+              
+              {% comment %} First, collect all AM products {% endcomment %}
+              {% for block in section.blocks %}
+                {% if block.settings.tab_selector == 'am' %}
+                  {% assign am_products = am_products | append: block.id | append: ',' %}
+                {% endif %}
+              {% endfor %}
+              
+              {% assign am_products_array = am_products | split: ',' %}
+              {% assign total_products = am_products_array.size | minus: 1 %}
+              
+              {% if total_products > 0 %}
+                {% assign am_slides = '' %}
+                {% assign current_slide_products = 0 %}
+                {% assign slide_content = '' %}
+                
+                {% for block in section.blocks %}
+                  {% if block.settings.tab_selector == 'am' %}
+                    {% capture product_html %}
+                      {% if block.settings.product %}
+                        <a href="{{ block.settings.product.url }}" class="routine-product-link">
+                      {% endif %}
+                      <div class="routine-product-card" {{ block.shopify_attributes }} data-image-width="{{ block.settings.image_width | default: 100 }}" data-image-height="{{ block.settings.image_height | default: 100 }}" style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                        <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
+                          {{ block.settings.step_number }}
+                        </div>
+                        <div class="routine-product-image-container">
+                          {% if block.settings.product_image %}
+                            <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                          {% elsif block.settings.product.featured_image %}
+                            <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                          {% else %}
+                            <div class="routine-product-placeholder"><p>No Image</p></div>
+                          {% endif %}
+                        </div>
+                        <div class="routine-product-name">
+                          {% if block.settings.custom_product_name != blank %}
+                            {{ block.settings.custom_product_name }}
+                          {% else %}
+                            {{ block.settings.product.title | default: 'Product Name' }}
+                          {% endif %}
+                        </div>
+                      </div>
+                      {% if block.settings.product %}
+                        </a>
+                      {% endif %}
+                    {% endcapture %}
+                    
+                    {% assign slide_content = slide_content | append: product_html %}
+                    {% assign current_slide_products = current_slide_products | plus: 1 %}
+                    
+                    {% if current_slide_products == products_per_slide %}
+                      {% capture slide_html %}<div class="mobile-products-slide">{{ slide_content }}</div>{% endcapture %}
+                      {% assign am_slides = am_slides | append: slide_html %}
+                      {% assign slide_content = '' %}
+                      {% assign current_slide_products = 0 %}
+                      {% assign slide_count = slide_count | plus: 1 %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+                
+                {% comment %} Handle remaining products in last slide {% endcomment %}
+                {% if current_slide_products > 0 %}
+                  {% capture slide_html %}<div class="mobile-products-slide">{{ slide_content }}</div>{% endcapture %}
+                  {% assign am_slides = am_slides | append: slide_html %}
+                  {% assign slide_count = slide_count | plus: 1 %}
+                {% endif %}
+                
+                {{ am_slides }}
+              {% endif %}
+            </div>
+            
+            {% if slide_count > 0 %}
+              <div class="mobile-carousel-dots" id="am-carousel-dots">
+                {% for i in (1..slide_count) %}
+                  <span class="carousel-dot{% if i == 1 %} active{% endif %}" data-slide="{{ i | minus: 1 }}"></span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Tablet Carousel Structure (3 per slide) -->
+          <div class="tablet-products-carousel" style="display: none;">
+            <div class="tablet-products-wrapper" id="am-tablet-wrapper">
+              {% assign tablet_slide_count = 0 %}
+              {% assign tablet_per_slide = 3 %}
+              {% assign tablet_current = 0 %}
+              {% assign tablet_slide_content = '' %}
+              {% for block in section.blocks %}
+                {% if block.settings.tab_selector == 'am' %}
+                  {% capture tablet_product_html %}
+                    {% if block.settings.product %}<a href="{{ block.settings.product.url }}" class="routine-product-link">{% endif %}
+                    <div class="routine-product-card tablet-card" {{ block.shopify_attributes }} style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                      <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">{{ block.settings.step_number }}</div>
+                      <div class="routine-product-image-container">
+                        {% if block.settings.product_image %}<img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image">
+                        {% elsif block.settings.product.featured_image %}<img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image">
+                        {% else %}<div class="routine-product-placeholder"><p>No Image</p></div>{% endif %}
+                      </div>
+                      <div class="routine-product-name">{% if block.settings.custom_product_name != blank %}{{ block.settings.custom_product_name }}{% else %}{{ block.settings.product.title | default: 'Product Name' }}{% endif %}</div>
+                    </div>
+                    {% if block.settings.product %}</a>{% endif %}
+                  {% endcapture %}
+                  {% assign tablet_slide_content = tablet_slide_content | append: tablet_product_html %}
+                  {% assign tablet_current = tablet_current | plus: 1 %}
+                  {% if tablet_current == tablet_per_slide %}
+                    <div class="tablet-products-slide">{{ tablet_slide_content }}</div>
+                    {% assign tablet_slide_content = '' %}
+                    {% assign tablet_current = 0 %}
+                    {% assign tablet_slide_count = tablet_slide_count | plus: 1 %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% if tablet_current > 0 %}
+                <div class="tablet-products-slide">{{ tablet_slide_content }}</div>
+                {% assign tablet_slide_count = tablet_slide_count | plus: 1 %}
+              {% endif %}
+            </div>
+            {% if tablet_slide_count > 0 %}
+              <div class="tablet-carousel-dots" id="am-tablet-dots">
+                {% for i in (1..tablet_slide_count) %}
+                  <span class="carousel-dot{% if i == 1 %} active{% endif %}" data-slide="{{ i | minus: 1 }}"></span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Desktop Grid (existing structure) -->
           {% for block in section.blocks %}
             {% if block.settings.tab_selector == 'am' %}
               {% if block.settings.product %}
                 <a href="{{ block.settings.product.url }}" class="routine-product-link">
               {% endif %}
-                <div class="routine-product-card" 
-                     {{ block.shopify_attributes }}
-                     data-image-width="{{ block.settings.image_width | default: 100 }}"
-                     data-image-height="{{ block.settings.image_height | default: 100 }}"
-                     style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
-                  <!-- Large number behind product -->
-                  <div class="routine-product-number" 
-                       style="font-size: {{ block.settings.number_font_size | default: 80 }}px; 
-                              color: {{ block.settings.number_color | default: '#4FFFFF' }}; 
-                              top: {{ block.settings.number_vertical_position | default: 20 }}%; 
-                              left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
-                    {{ block.settings.step_number }}
-                  </div>
-                  
-                  <div class="routine-product-image-container">
-                    {% if block.settings.product_image %}
-                      <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" 
-                           alt="{{ block.settings.product.title | default: 'Product' }}" 
-                           width="300" 
-                           height="300"
-                           class="routine-product-image"
-                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
-                    {% elsif block.settings.product.featured_image %}
-                      <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
-                           alt="{{ block.settings.product.title | default: 'Product' }}" 
-                           width="300" 
-                           height="300"
-                           class="routine-product-image"
-                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
-                    {% else %}
-                      <div class="routine-product-placeholder">
-                        <p>No Image</p>
-                      </div>
-                    {% endif %}
-                  </div>
-                  <div class="routine-product-name">
-                    {% if block.settings.custom_product_name != blank %}
-                      {{ block.settings.custom_product_name }}
-                    {% else %}
-                      {{ block.settings.product.title | default: 'Product Name' }}
-                    {% endif %}
-                  </div>
+              <div class="routine-product-card" {{ block.shopify_attributes }} data-image-width="{{ block.settings.image_width | default: 100 }}" data-image-height="{{ block.settings.image_height | default: 100 }}" style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
+                  {{ block.settings.step_number }}
                 </div>
+                <div class="routine-product-image-container">
+                  {% if block.settings.product_image %}
+                    <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                  {% elsif block.settings.product.featured_image %}
+                    <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_width | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                  {% else %}
+                    <div class="routine-product-placeholder"><p>No Image</p></div>
+                  {% endif %}
+                </div>
+                <div class="routine-product-name">
+                  {% if block.settings.custom_product_name != blank %}
+                    {{ block.settings.custom_product_name }}
+                  {% else %}
+                    {{ block.settings.product.title | default: 'Product Name' }}
+                  {% endif %}
+                </div>
+              </div>
               {% if block.settings.product %}
                 </a>
               {% endif %}
@@ -477,11 +1139,13 @@
       <div class="routine-split-layout">
         <div class="routine-image-container">
           {% if section.settings.pm_image %}
-            <img src="{{ section.settings.pm_image | image_url: width: 600, height: 400 }}" 
-                 alt="{{ section.settings.pm_heading }}" 
-                 width="600" 
-                 height="400"
-                 class="routine-image">
+            <img
+              src="{{ section.settings.pm_image | image_url: width: 600, height: 400 }}"
+              alt="{{ section.settings.pm_heading }}"
+              width="600"
+              height="400"
+              class="routine-image"
+            >
           {% endif %}
         </div>
         <div class="routine-content-card">
@@ -492,64 +1156,209 @@
           </a>
         </div>
       </div>
-      
+
       {% assign pm_products_count = 0 %}
       {% for block in section.blocks %}
         {% if block.settings.tab_selector == 'pm' %}
           {% assign pm_products_count = pm_products_count | plus: 1 %}
         {% endif %}
       {% endfor %}
-      
+
       {% if pm_products_count > 0 %}
         <div class="routine-products-grid" style="grid-template-columns: repeat({{ pm_products_count | at_most: 6 }}, 1fr);">
+          <!-- Mobile Carousel Structure -->
+          <div class="mobile-products-carousel" style="display: none;">
+            <div class="mobile-products-wrapper" id="pm-carousel-wrapper">
+              {% assign slide_count = 0 %}
+              {% assign products_per_slide = 2 %}
+              {% assign current_slide_products = 0 %}
+              {% assign pm_products = '' %}
+              
+              {% comment %} First, collect all PM products {% endcomment %}
+              {% for block in section.blocks %}
+                {% if block.settings.tab_selector == 'pm' %}
+                  {% assign pm_products = pm_products | append: block.id | append: ',' %}
+                {% endif %}
+              {% endfor %}
+              
+              {% assign pm_products_array = pm_products | split: ',' %}
+              {% assign total_products = pm_products_array.size | minus: 1 %}
+              
+              {% if total_products > 0 %}
+                {% assign pm_slides = '' %}
+                {% assign current_slide_products = 0 %}
+                {% assign slide_content = '' %}
+                
+                {% for block in section.blocks %}
+                  {% if block.settings.tab_selector == 'pm' %}
+                    {% capture product_html %}
+                      {% if block.settings.product %}
+                        <a href="{{ block.settings.product.url }}" class="routine-product-link">
+                      {% endif %}
+                      <div class="routine-product-card" {{ block.shopify_attributes }} data-image-width="{{ block.settings.image_width | default: 100 }}" data-image-height="{{ block.settings.image_height | default: 100 }}" style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                        <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
+                          {{ block.settings.step_number }}
+                        </div>
+                        <div class="routine-product-image-container">
+                          {% if block.settings.product_image %}
+                            <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                          {% elsif block.settings.product.featured_image %}
+                            <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                          {% else %}
+                            <div class="routine-product-placeholder"><p>No Image</p></div>
+                          {% endif %}
+                        </div>
+                        <div class="routine-product-name">
+                          {% if block.settings.custom_product_name != blank %}
+                            {{ block.settings.custom_product_name }}
+                          {% else %}
+                            {{ block.settings.product.title | default: 'Product Name' }}
+                          {% endif %}
+                        </div>
+                      </div>
+                      {% if block.settings.product %}
+                        </a>
+                      {% endif %}
+                    {% endcapture %}
+                    
+                    {% assign slide_content = slide_content | append: product_html %}
+                    {% assign current_slide_products = current_slide_products | plus: 1 %}
+                    
+                    {% if current_slide_products == products_per_slide %}
+                      {% capture slide_html %}<div class="mobile-products-slide">{{ slide_content }}</div>{% endcapture %}
+                      {% assign pm_slides = pm_slides | append: slide_html %}
+                      {% assign slide_content = '' %}
+                      {% assign current_slide_products = 0 %}
+                      {% assign slide_count = slide_count | plus: 1 %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+                
+                {% comment %} Handle remaining products in last slide {% endcomment %}
+                {% if current_slide_products > 0 %}
+                  {% capture slide_html %}<div class="mobile-products-slide">{{ slide_content }}</div>{% endcapture %}
+                  {% assign pm_slides = pm_slides | append: slide_html %}
+                  {% assign slide_count = slide_count | plus: 1 %}
+                {% endif %}
+                
+                {{ pm_slides }}
+              {% endif %}
+            </div>
+            
+            {% if slide_count > 0 %}
+              <div class="mobile-carousel-dots" id="pm-carousel-dots">
+                {% for i in (1..slide_count) %}
+                  <span class="carousel-dot{% if i == 1 %} active{% endif %}" data-slide="{{ i | minus: 1 }}"></span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Tablet Carousel Structure (3 per slide) -->
+          <div class="tablet-products-carousel" style="display: none;">
+            <div class="tablet-products-wrapper" id="pm-tablet-wrapper">
+              {% assign tablet_slide_count = 0 %}
+              {% assign tablet_per_slide = 3 %}
+              {% assign tablet_current = 0 %}
+              {% assign tablet_slide_content = '' %}
+              {% for block in section.blocks %}
+                {% if block.settings.tab_selector == 'pm' %}
+                  {% capture tablet_product_html %}
+                    {% if block.settings.product %}<a href="{{ block.settings.product.url }}" class="routine-product-link">{% endif %}
+                    <div class="routine-product-card tablet-card" {{ block.shopify_attributes }} style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                      <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">{{ block.settings.step_number }}</div>
+                      <div class="routine-product-image-container">
+                        {% if block.settings.product_image %}<img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image">
+                        {% elsif block.settings.product.featured_image %}<img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image">
+                        {% else %}<div class="routine-product-placeholder"><p>No Image</p></div>{% endif %}
+                      </div>
+                      <div class="routine-product-name">{% if block.settings.custom_product_name != blank %}{{ block.settings.custom_product_name }}{% else %}{{ block.settings.product.title | default: 'Product Name' }}{% endif %}</div>
+                    </div>
+                    {% if block.settings.product %}</a>{% endif %}
+                  {% endcapture %}
+                  {% assign tablet_slide_content = tablet_slide_content | append: tablet_product_html %}
+                  {% assign tablet_current = tablet_current | plus: 1 %}
+                  {% if tablet_current == tablet_per_slide %}
+                    <div class="tablet-products-slide">{{ tablet_slide_content }}</div>
+                    {% assign tablet_slide_content = '' %}
+                    {% assign tablet_current = 0 %}
+                    {% assign tablet_slide_count = tablet_slide_count | plus: 1 %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% if tablet_current > 0 %}
+                <div class="tablet-products-slide">{{ tablet_slide_content }}</div>
+                {% assign tablet_slide_count = tablet_slide_count | plus: 1 %}
+              {% endif %}
+            </div>
+            {% if tablet_slide_count > 0 %}
+              <div class="tablet-carousel-dots" id="pm-tablet-dots">
+                {% for i in (1..tablet_slide_count) %}
+                  <span class="carousel-dot{% if i == 1 %} active{% endif %}" data-slide="{{ i | minus: 1 }}"></span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Desktop Grid (existing structure) -->
           {% for block in section.blocks %}
             {% if block.settings.tab_selector == 'pm' %}
               {% if block.settings.product %}
                 <a href="{{ block.settings.product.url }}" class="routine-product-link">
               {% endif %}
-                <div class="routine-product-card" 
-                     {{ block.shopify_attributes }}
-                     data-image-width="{{ block.settings.image_width | default: 100 }}"
-                     data-image-height="{{ block.settings.image_height | default: 100 }}"
-                     style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
-                  <!-- Large number behind product -->
-                  <div class="routine-product-number" 
-                       style="font-size: {{ block.settings.number_font_size | default: 80 }}px; 
-                              color: {{ block.settings.number_color | default: '#4FFFFF' }}; 
-                              top: {{ block.settings.number_vertical_position | default: 20 }}%; 
-                              left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
-                    {{ block.settings.step_number }}
-                  </div>
-                  
-                  <div class="routine-product-image-container">
-                    {% if block.settings.product_image %}
-                      <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" 
-                           alt="{{ block.settings.product.title | default: 'Product' }}" 
-                           width="300" 
-                           height="300"
-                           class="routine-product-image"
-                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
-                    {% elsif block.settings.product.featured_image %}
-                      <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
-                           alt="{{ block.settings.product.title | default: 'Product' }}" 
-                           width="300" 
-                           height="300"
-                           class="routine-product-image"
-                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
-                    {% else %}
-                      <div class="routine-product-placeholder">
-                        <p>No Image</p>
-                      </div>
-                    {% endif %}
-                  </div>
-                  <div class="routine-product-name">
-                    {% if block.settings.custom_product_name != blank %}
-                      {{ block.settings.custom_product_name }}
-                    {% else %}
-                      {{ block.settings.product.title | default: 'Product Name' }}
-                    {% endif %}
-                  </div>
+              <div
+                class="routine-product-card"
+                {{ block.shopify_attributes }}
+                data-image-width="{{ block.settings.image_width | default: 100 }}"
+                data-image-height="{{ block.settings.image_height | default: 100 }}"
+                style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};"
+              >
+                <!-- Large number behind product -->
+                <div
+                  class="routine-product-number"
+                  style="
+                    font-size: {{ block.settings.number_font_size | default: 80 }}px;
+                    color: {{ block.settings.number_color | default: '#4FFFFF' }};
+                    top: {{ block.settings.number_vertical_position | default: 20 }}%;
+                    left: {{ block.settings.number_horizontal_position | default: 25 }}%;
+                  "
+                >
+                  {{ block.settings.step_number }}
                 </div>
+
+                <div class="routine-product-image-container">
+                  {% if block.settings.product_image %}
+                    <img
+                      src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}"
+                      alt="{{ block.settings.product.title | default: 'Product' }}"
+                      width="300"
+                      height="300"
+                      class="routine-product-image"
+                      style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;"
+                    >
+                  {% elsif block.settings.product.featured_image %}
+                    <img
+                      src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}"
+                      alt="{{ block.settings.product.title | default: 'Product' }}"
+                      width="300"
+                      height="300"
+                      class="routine-product-image"
+                      style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;"
+                    >
+                  {% else %}
+                    <div class="routine-product-placeholder">
+                      <p>No Image</p>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="routine-product-name">
+                  {% if block.settings.custom_product_name != blank %}
+                    {{ block.settings.custom_product_name }}
+                  {% else %}
+                    {{ block.settings.product.title | default: 'Product Name' }}
+                  {% endif %}
+                </div>
+              </div>
               {% if block.settings.product %}
                 </a>
               {% endif %}
@@ -568,11 +1377,13 @@
       <div class="routine-split-layout">
         <div class="routine-image-container">
           {% if section.settings.pm_light_image %}
-            <img src="{{ section.settings.pm_light_image | image_url: width: 600, height: 400 }}" 
-                 alt="{{ section.settings.pm_light_heading }}" 
-                 width="600" 
-                 height="400"
-                 class="routine-image">
+            <img
+              src="{{ section.settings.pm_light_image | image_url: width: 600, height: 400 }}"
+              alt="{{ section.settings.pm_light_heading }}"
+              width="600"
+              height="400"
+              class="routine-image"
+            >
           {% endif %}
         </div>
         <div class="routine-content-card">
@@ -583,64 +1394,209 @@
           </a>
         </div>
       </div>
-      
+
       {% assign pm_light_products_count = 0 %}
       {% for block in section.blocks %}
         {% if block.settings.tab_selector == 'pm_light' %}
           {% assign pm_light_products_count = pm_light_products_count | plus: 1 %}
         {% endif %}
       {% endfor %}
-      
+
       {% if pm_light_products_count > 0 %}
         <div class="routine-products-grid" style="grid-template-columns: repeat({{ pm_light_products_count | at_most: 6 }}, 1fr);">
+          <!-- Mobile Carousel Structure -->
+          <div class="mobile-products-carousel" style="display: none;">
+            <div class="mobile-products-wrapper" id="pm-light-carousel-wrapper">
+              {% assign slide_count = 0 %}
+              {% assign products_per_slide = 2 %}
+              {% assign current_slide_products = 0 %}
+              {% assign pm_light_products = '' %}
+              
+              {% comment %} First, collect all PM_LIGHT products {% endcomment %}
+              {% for block in section.blocks %}
+                {% if block.settings.tab_selector == 'pm_light' %}
+                  {% assign pm_light_products = pm_light_products | append: block.id | append: ',' %}
+                {% endif %}
+              {% endfor %}
+              
+              {% assign pm_light_products_array = pm_light_products | split: ',' %}
+              {% assign total_products = pm_light_products_array.size | minus: 1 %}
+              
+              {% if total_products > 0 %}
+                {% assign pm_light_slides = '' %}
+                {% assign current_slide_products = 0 %}
+                {% assign slide_content = '' %}
+                
+                {% for block in section.blocks %}
+                  {% if block.settings.tab_selector == 'pm_light' %}
+                    {% capture product_html %}
+                      {% if block.settings.product %}
+                        <a href="{{ block.settings.product.url }}" class="routine-product-link">
+                      {% endif %}
+                      <div class="routine-product-card" {{ block.shopify_attributes }} data-image-width="{{ block.settings.image_width | default: 100 }}" data-image-height="{{ block.settings.image_height | default: 100 }}" style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                        <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
+                          {{ block.settings.step_number }}
+                        </div>
+                        <div class="routine-product-image-container">
+                          {% if block.settings.product_image %}
+                            <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                          {% elsif block.settings.product.featured_image %}
+                            <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                          {% else %}
+                            <div class="routine-product-placeholder"><p>No Image</p></div>
+                          {% endif %}
+                        </div>
+                        <div class="routine-product-name">
+                          {% if block.settings.custom_product_name != blank %}
+                            {{ block.settings.custom_product_name }}
+                          {% else %}
+                            {{ block.settings.product.title | default: 'Product Name' }}
+                          {% endif %}
+                        </div>
+                      </div>
+                      {% if block.settings.product %}
+                        </a>
+                      {% endif %}
+                    {% endcapture %}
+                    
+                    {% assign slide_content = slide_content | append: product_html %}
+                    {% assign current_slide_products = current_slide_products | plus: 1 %}
+                    
+                    {% if current_slide_products == products_per_slide %}
+                      {% capture slide_html %}<div class="mobile-products-slide">{{ slide_content }}</div>{% endcapture %}
+                      {% assign pm_light_slides = pm_light_slides | append: slide_html %}
+                      {% assign slide_content = '' %}
+                      {% assign current_slide_products = 0 %}
+                      {% assign slide_count = slide_count | plus: 1 %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+                
+                {% comment %} Handle remaining products in last slide {% endcomment %}
+                {% if current_slide_products > 0 %}
+                  {% capture slide_html %}<div class="mobile-products-slide">{{ slide_content }}</div>{% endcapture %}
+                  {% assign pm_light_slides = pm_light_slides | append: slide_html %}
+                  {% assign slide_count = slide_count | plus: 1 %}
+                {% endif %}
+                
+                {{ pm_light_slides }}
+              {% endif %}
+            </div>
+            
+            {% if slide_count > 0 %}
+              <div class="mobile-carousel-dots" id="pm-light-carousel-dots">
+                {% for i in (1..slide_count) %}
+                  <span class="carousel-dot{% if i == 1 %} active{% endif %}" data-slide="{{ i | minus: 1 }}"></span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Tablet Carousel Structure (3 per slide) -->
+          <div class="tablet-products-carousel" style="display: none;">
+            <div class="tablet-products-wrapper" id="pm-light-tablet-wrapper">
+              {% assign tablet_slide_count = 0 %}
+              {% assign tablet_per_slide = 3 %}
+              {% assign tablet_current = 0 %}
+              {% assign tablet_slide_content = '' %}
+              {% for block in section.blocks %}
+                {% if block.settings.tab_selector == 'pm_light' %}
+                  {% capture tablet_product_html %}
+                    {% if block.settings.product %}<a href="{{ block.settings.product.url }}" class="routine-product-link">{% endif %}
+                    <div class="routine-product-card tablet-card" {{ block.shopify_attributes }} style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                      <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">{{ block.settings.step_number }}</div>
+                      <div class="routine-product-image-container">
+                        {% if block.settings.product_image %}<img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image">
+                        {% elsif block.settings.product.featured_image %}<img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image">
+                        {% else %}<div class="routine-product-placeholder"><p>No Image</p></div>{% endif %}
+                      </div>
+                      <div class="routine-product-name">{% if block.settings.custom_product_name != blank %}{{ block.settings.custom_product_name }}{% else %}{{ block.settings.product.title | default: 'Product Name' }}{% endif %}</div>
+                    </div>
+                    {% if block.settings.product %}</a>{% endif %}
+                  {% endcapture %}
+                  {% assign tablet_slide_content = tablet_slide_content | append: tablet_product_html %}
+                  {% assign tablet_current = tablet_current | plus: 1 %}
+                  {% if tablet_current == tablet_per_slide %}
+                    <div class="tablet-products-slide">{{ tablet_slide_content }}</div>
+                    {% assign tablet_slide_content = '' %}
+                    {% assign tablet_current = 0 %}
+                    {% assign tablet_slide_count = tablet_slide_count | plus: 1 %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% if tablet_current > 0 %}
+                <div class="tablet-products-slide">{{ tablet_slide_content }}</div>
+                {% assign tablet_slide_count = tablet_slide_count | plus: 1 %}
+              {% endif %}
+            </div>
+            {% if tablet_slide_count > 0 %}
+              <div class="tablet-carousel-dots" id="pm-light-tablet-dots">
+                {% for i in (1..tablet_slide_count) %}
+                  <span class="carousel-dot{% if i == 1 %} active{% endif %}" data-slide="{{ i | minus: 1 }}"></span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Desktop Grid (existing structure) -->
           {% for block in section.blocks %}
             {% if block.settings.tab_selector == 'pm_light' %}
               {% if block.settings.product %}
                 <a href="{{ block.settings.product.url }}" class="routine-product-link">
               {% endif %}
-                <div class="routine-product-card" 
-                     {{ block.shopify_attributes }}
-                     data-image-width="{{ block.settings.image_width | default: 100 }}"
-                     data-image-height="{{ block.settings.image_height | default: 100 }}"
-                     style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
-                  <!-- Large number behind product -->
-                  <div class="routine-product-number" 
-                       style="font-size: {{ block.settings.number_font_size | default: 80 }}px; 
-                              color: {{ block.settings.number_color | default: '#4FFFFF' }}; 
-                              top: {{ block.settings.number_vertical_position | default: 20 }}%; 
-                              left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
-                    {{ block.settings.step_number }}
-                  </div>
-                  
-                  <div class="routine-product-image-container">
-                    {% if block.settings.product_image %}
-                      <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" 
-                           alt="{{ block.settings.product.title | default: 'Product' }}" 
-                           width="300" 
-                           height="300"
-                           class="routine-product-image"
-                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
-                    {% elsif block.settings.product.featured_image %}
-                      <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
-                           alt="{{ block.settings.product.title | default: 'Product' }}" 
-                           width="300" 
-                           height="300"
-                           class="routine-product-image"
-                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
-                    {% else %}
-                      <div class="routine-product-placeholder">
-                        <p>No Image</p>
-                      </div>
-                    {% endif %}
-                  </div>
-                  <div class="routine-product-name">
-                    {% if block.settings.custom_product_name != blank %}
-                      {{ block.settings.custom_product_name }}
-                    {% else %}
-                      {{ block.settings.product.title | default: 'Product Name' }}
-                    {% endif %}
-                  </div>
+              <div
+                class="routine-product-card"
+                {{ block.shopify_attributes }}
+                data-image-width="{{ block.settings.image_width | default: 100 }}"
+                data-image-height="{{ block.settings.image_height | default: 100 }}"
+                style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};"
+              >
+                <!-- Large number behind product -->
+                <div
+                  class="routine-product-number"
+                  style="
+                    font-size: {{ block.settings.number_font_size | default: 80 }}px;
+                    color: {{ block.settings.number_color | default: '#4FFFFF' }};
+                    top: {{ block.settings.number_vertical_position | default: 20 }}%;
+                    left: {{ block.settings.number_horizontal_position | default: 25 }}%;
+                  "
+                >
+                  {{ block.settings.step_number }}
                 </div>
+
+                <div class="routine-product-image-container">
+                  {% if block.settings.product_image %}
+                    <img
+                      src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}"
+                      alt="{{ block.settings.product.title | default: 'Product' }}"
+                      width="300"
+                      height="300"
+                      class="routine-product-image"
+                      style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;"
+                    >
+                  {% elsif block.settings.product.featured_image %}
+                    <img
+                      src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}"
+                      alt="{{ block.settings.product.title | default: 'Product' }}"
+                      width="300"
+                      height="300"
+                      class="routine-product-image"
+                      style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;"
+                    >
+                  {% else %}
+                    <div class="routine-product-placeholder">
+                      <p>No Image</p>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="routine-product-name">
+                  {% if block.settings.custom_product_name != blank %}
+                    {{ block.settings.custom_product_name }}
+                  {% else %}
+                    {{ block.settings.product.title | default: 'Product Name' }}
+                  {% endif %}
+                </div>
+              </div>
               {% if block.settings.product %}
                 </a>
               {% endif %}
@@ -659,11 +1615,13 @@
       <div class="routine-split-layout">
         <div class="routine-image-container">
           {% if section.settings.exfoliate_image %}
-            <img src="{{ section.settings.exfoliate_image | image_url: width: 600, height: 400 }}" 
-                 alt="{{ section.settings.exfoliate_heading }}" 
-                 width="600" 
-                 height="400"
-                 class="routine-image">
+            <img
+              src="{{ section.settings.exfoliate_image | image_url: width: 600, height: 400 }}"
+              alt="{{ section.settings.exfoliate_heading }}"
+              width="600"
+              height="400"
+              class="routine-image"
+            >
           {% endif %}
         </div>
         <div class="routine-content-card">
@@ -674,64 +1632,209 @@
           </a>
         </div>
       </div>
-      
+
       {% assign exfoliate_products_count = 0 %}
       {% for block in section.blocks %}
         {% if block.settings.tab_selector == 'exfoliate' %}
           {% assign exfoliate_products_count = exfoliate_products_count | plus: 1 %}
         {% endif %}
       {% endfor %}
-      
+
       {% if exfoliate_products_count > 0 %}
         <div class="routine-products-grid" style="grid-template-columns: repeat({{ exfoliate_products_count | at_most: 6 }}, 1fr);">
+          <!-- Mobile Carousel Structure -->
+          <div class="mobile-products-carousel" style="display: none;">
+            <div class="mobile-products-wrapper" id="exfoliate-carousel-wrapper">
+              {% assign slide_count = 0 %}
+              {% assign products_per_slide = 2 %}
+              {% assign current_slide_products = 0 %}
+              {% assign exfoliate_products = '' %}
+              
+              {% comment %} First, collect all EXFOLIATE products {% endcomment %}
+              {% for block in section.blocks %}
+                {% if block.settings.tab_selector == 'exfoliate' %}
+                  {% assign exfoliate_products = exfoliate_products | append: block.id | append: ',' %}
+                {% endif %}
+              {% endfor %}
+              
+              {% assign exfoliate_products_array = exfoliate_products | split: ',' %}
+              {% assign total_products = exfoliate_products_array.size | minus: 1 %}
+              
+              {% if total_products > 0 %}
+                {% assign exfoliate_slides = '' %}
+                {% assign current_slide_products = 0 %}
+                {% assign slide_content = '' %}
+                
+                {% for block in section.blocks %}
+                  {% if block.settings.tab_selector == 'exfoliate' %}
+                    {% capture product_html %}
+                      {% if block.settings.product %}
+                        <a href="{{ block.settings.product.url }}" class="routine-product-link">
+                      {% endif %}
+                      <div class="routine-product-card" {{ block.shopify_attributes }} data-image-width="{{ block.settings.image_width | default: 100 }}" data-image-height="{{ block.settings.image_height | default: 100 }}" style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                        <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
+                          {{ block.settings.step_number }}
+                        </div>
+                        <div class="routine-product-image-container">
+                          {% if block.settings.product_image %}
+                            <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                          {% elsif block.settings.product.featured_image %}
+                            <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image" style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
+                          {% else %}
+                            <div class="routine-product-placeholder"><p>No Image</p></div>
+                          {% endif %}
+                        </div>
+                        <div class="routine-product-name">
+                          {% if block.settings.custom_product_name != blank %}
+                            {{ block.settings.custom_product_name }}
+                          {% else %}
+                            {{ block.settings.product.title | default: 'Product Name' }}
+                          {% endif %}
+                        </div>
+                      </div>
+                      {% if block.settings.product %}
+                        </a>
+                      {% endif %}
+                    {% endcapture %}
+                    
+                    {% assign slide_content = slide_content | append: product_html %}
+                    {% assign current_slide_products = current_slide_products | plus: 1 %}
+                    
+                    {% if current_slide_products == products_per_slide %}
+                      {% capture slide_html %}<div class="mobile-products-slide">{{ slide_content }}</div>{% endcapture %}
+                      {% assign exfoliate_slides = exfoliate_slides | append: slide_html %}
+                      {% assign slide_content = '' %}
+                      {% assign current_slide_products = 0 %}
+                      {% assign slide_count = slide_count | plus: 1 %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+                
+                {% comment %} Handle remaining products in last slide {% endcomment %}
+                {% if current_slide_products > 0 %}
+                  {% capture slide_html %}<div class="mobile-products-slide">{{ slide_content }}</div>{% endcapture %}
+                  {% assign exfoliate_slides = exfoliate_slides | append: slide_html %}
+                  {% assign slide_count = slide_count | plus: 1 %}
+                {% endif %}
+                
+                {{ exfoliate_slides }}
+              {% endif %}
+            </div>
+            
+            {% if slide_count > 0 %}
+              <div class="mobile-carousel-dots" id="exfoliate-carousel-dots">
+                {% for i in (1..slide_count) %}
+                  <span class="carousel-dot{% if i == 1 %} active{% endif %}" data-slide="{{ i | minus: 1 }}"></span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Tablet Carousel Structure (3 per slide) -->
+          <div class="tablet-products-carousel" style="display: none;">
+            <div class="tablet-products-wrapper" id="exfoliate-tablet-wrapper">
+              {% assign tablet_slide_count = 0 %}
+              {% assign tablet_per_slide = 3 %}
+              {% assign tablet_current = 0 %}
+              {% assign tablet_slide_content = '' %}
+              {% for block in section.blocks %}
+                {% if block.settings.tab_selector == 'exfoliate' %}
+                  {% capture tablet_product_html %}
+                    {% if block.settings.product %}<a href="{{ block.settings.product.url }}" class="routine-product-link">{% endif %}
+                    <div class="routine-product-card tablet-card" {{ block.shopify_attributes }} style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
+                      <div class="routine-product-number" style="font-size: {{ block.settings.number_font_size | default: 80 }}px; color: {{ block.settings.number_color | default: '#4FFFFF' }}; top: {{ block.settings.number_vertical_position | default: 20 }}%; left: {{ block.settings.number_horizontal_position | default: 25 }}%;">{{ block.settings.step_number }}</div>
+                      <div class="routine-product-image-container">
+                        {% if block.settings.product_image %}<img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image">
+                        {% elsif block.settings.product.featured_image %}<img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.product.title | default: 'Product' }}" width="300" height="300" class="routine-product-image">
+                        {% else %}<div class="routine-product-placeholder"><p>No Image</p></div>{% endif %}
+                      </div>
+                      <div class="routine-product-name">{% if block.settings.custom_product_name != blank %}{{ block.settings.custom_product_name }}{% else %}{{ block.settings.product.title | default: 'Product Name' }}{% endif %}</div>
+                    </div>
+                    {% if block.settings.product %}</a>{% endif %}
+                  {% endcapture %}
+                  {% assign tablet_slide_content = tablet_slide_content | append: tablet_product_html %}
+                  {% assign tablet_current = tablet_current | plus: 1 %}
+                  {% if tablet_current == tablet_per_slide %}
+                    <div class="tablet-products-slide">{{ tablet_slide_content }}</div>
+                    {% assign tablet_slide_content = '' %}
+                    {% assign tablet_current = 0 %}
+                    {% assign tablet_slide_count = tablet_slide_count | plus: 1 %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% if tablet_current > 0 %}
+                <div class="tablet-products-slide">{{ tablet_slide_content }}</div>
+                {% assign tablet_slide_count = tablet_slide_count | plus: 1 %}
+              {% endif %}
+            </div>
+            {% if tablet_slide_count > 0 %}
+              <div class="tablet-carousel-dots" id="exfoliate-tablet-dots">
+                {% for i in (1..tablet_slide_count) %}
+                  <span class="carousel-dot{% if i == 1 %} active{% endif %}" data-slide="{{ i | minus: 1 }}"></span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Desktop Grid (existing structure) -->
           {% for block in section.blocks %}
             {% if block.settings.tab_selector == 'exfoliate' %}
               {% if block.settings.product %}
                 <a href="{{ block.settings.product.url }}" class="routine-product-link">
               {% endif %}
-                <div class="routine-product-card" 
-                     {{ block.shopify_attributes }}
-                     data-image-width="{{ block.settings.image_width | default: 100 }}"
-                     data-image-height="{{ block.settings.image_height | default: 100 }}"
-                     style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};">
-                  <!-- Large number behind product -->
-                  <div class="routine-product-number" 
-                       style="font-size: {{ block.settings.number_font_size | default: 80 }}px; 
-                              color: {{ block.settings.number_color | default: '#4FFFFF' }}; 
-                              top: {{ block.settings.number_vertical_position | default: 20 }}%; 
-                              left: {{ block.settings.number_horizontal_position | default: 25 }}%;">
-                    {{ block.settings.step_number }}
-                  </div>
-                  
-                  <div class="routine-product-image-container">
-                    {% if block.settings.product_image %}
-                      <img src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}" 
-                           alt="{{ block.settings.product.title | default: 'Product' }}" 
-                           width="300" 
-                           height="300"
-                           class="routine-product-image"
-                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
-                    {% elsif block.settings.product.featured_image %}
-                      <img src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}" 
-                           alt="{{ block.settings.product.title | default: 'Product' }}" 
-                           width="300" 
-                           height="300"
-                           class="routine-product-image"
-                           style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;">
-                    {% else %}
-                      <div class="routine-product-placeholder">
-                        <p>No Image</p>
-                      </div>
-                    {% endif %}
-                  </div>
-                  <div class="routine-product-name">
-                    {% if block.settings.custom_product_name != blank %}
-                      {{ block.settings.custom_product_name }}
-                    {% else %}
-                      {{ block.settings.product.title | default: 'Product Name' }}
-                    {% endif %}
-                  </div>
+              <div
+                class="routine-product-card"
+                {{ block.shopify_attributes }}
+                data-image-width="{{ block.settings.image_width | default: 100 }}"
+                data-image-height="{{ block.settings.image_height | default: 100 }}"
+                style="--image-width: {{ block.settings.image_width | default: 100 }}; --image-height: {{ block.settings.image_height | default: 100 }};"
+              >
+                <!-- Large number behind product -->
+                <div
+                  class="routine-product-number"
+                  style="
+                    font-size: {{ block.settings.number_font_size | default: 80 }}px;
+                    color: {{ block.settings.number_color | default: '#4FFFFF' }};
+                    top: {{ block.settings.number_vertical_position | default: 20 }}%;
+                    left: {{ block.settings.number_horizontal_position | default: 25 }}%;
+                  "
+                >
+                  {{ block.settings.step_number }}
                 </div>
+
+                <div class="routine-product-image-container">
+                  {% if block.settings.product_image %}
+                    <img
+                      src="{{ block.settings.product_image | image_url: width: 300, height: 300 }}"
+                      alt="{{ block.settings.product.title | default: 'Product' }}"
+                      width="300"
+                      height="300"
+                      class="routine-product-image"
+                      style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;"
+                    >
+                  {% elsif block.settings.product.featured_image %}
+                    <img
+                      src="{{ block.settings.product.featured_image | image_url: width: 300, height: 300 }}"
+                      alt="{{ block.settings.product.title | default: 'Product' }}"
+                      width="300"
+                      height="300"
+                      class="routine-product-image"
+                      style="width: {{ block.settings.image_width | default: 100 }}%; height: {{ block.settings.image_height | default: 100 }}%; max-width: {{ block.settings.image_width | default: 100 }}%; max-height: {{ block.settings.image_height | default: 100 }}%;"
+                    >
+                  {% else %}
+                    <div class="routine-product-placeholder">
+                      <p>No Image</p>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="routine-product-name">
+                  {% if block.settings.custom_product_name != blank %}
+                    {{ block.settings.custom_product_name }}
+                  {% else %}
+                    {{ block.settings.product.title | default: 'Product Name' }}
+                  {% endif %}
+                </div>
+              </div>
               {% if block.settings.product %}
                 </a>
               {% endif %}
@@ -748,18 +1851,18 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const tabButtons = document.querySelectorAll('.routine-tab-button');
     const tabContents = document.querySelectorAll('.routine-content');
 
-    tabButtons.forEach(button => {
-      button.addEventListener('click', function() {
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', function () {
         const targetTab = this.getAttribute('data-tab');
-        
+
         // Remove active class from all buttons and contents
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-        
+        tabButtons.forEach((btn) => btn.classList.remove('active'));
+        tabContents.forEach((content) => content.classList.remove('active'));
+
         // Add active class to clicked button and corresponding content
         this.classList.add('active');
         const targetContent = document.querySelector(`[data-content="${targetTab}"]`);
@@ -769,15 +1872,131 @@
       });
     });
 
+    // Mobile carousel functionality
+    function initMobileCarousel() {
+      if (window.innerWidth <= 768) {
+        // Show mobile carousel, hide desktop grid and tablet carousel
+        document.querySelectorAll('.mobile-products-carousel').forEach(carousel => {
+          carousel.style.display = 'block';
+        });
+        document.querySelectorAll('.tablet-products-carousel').forEach(carousel => {
+          carousel.style.display = 'none';
+        });
+        document.querySelectorAll('.routine-products-grid > .routine-product-link, .routine-products-grid > .routine-product-card').forEach(item => {
+          if (!item.closest('.mobile-products-carousel') && !item.closest('.tablet-products-carousel')) {
+            item.style.display = 'none';
+          }
+        });
+
+        // Initialize mobile carousel for each tab
+        ['am', 'pm', 'pm-light', 'exfoliate'].forEach(tab => {
+          initCarousel(`${tab}-carousel-wrapper`, `${tab}-carousel-dots`, true);
+        });
+
+      } else if (window.innerWidth <= 1280) {
+        // Tablet: show tablet carousel, hide mobile and desktop
+        document.querySelectorAll('.mobile-products-carousel').forEach(carousel => {
+          carousel.style.display = 'none';
+        });
+        document.querySelectorAll('.tablet-products-carousel').forEach(carousel => {
+          carousel.style.display = 'block';
+        });
+        document.querySelectorAll('.routine-products-grid > .routine-product-link, .routine-products-grid > .routine-product-card').forEach(item => {
+          if (!item.closest('.mobile-products-carousel') && !item.closest('.tablet-products-carousel')) {
+            item.style.display = 'none';
+          }
+        });
+
+        // Initialize tablet carousel for each tab
+        ['am', 'pm', 'pm-light', 'exfoliate'].forEach(tab => {
+          initCarousel(`${tab}-tablet-wrapper`, `${tab}-tablet-dots`, true);
+        });
+
+      } else {
+        // Desktop: show desktop grid, hide carousels
+        document.querySelectorAll('.mobile-products-carousel').forEach(carousel => {
+          carousel.style.display = 'none';
+        });
+        document.querySelectorAll('.tablet-products-carousel').forEach(carousel => {
+          carousel.style.display = 'none';
+        });
+        document.querySelectorAll('.routine-products-grid > .routine-product-link, .routine-products-grid > .routine-product-card').forEach(item => {
+          if (!item.closest('.mobile-products-carousel') && !item.closest('.tablet-products-carousel')) {
+            item.style.display = 'block';
+          }
+        });
+      }
+    }
+
+    function initCarousel(wrapperId, dotsId, enableTouch) {
+      const wrapper = document.getElementById(wrapperId);
+      const dotsContainer = document.getElementById(dotsId);
+      if (!wrapper || !dotsContainer) return;
+
+      // Avoid re-initializing
+      if (wrapper.dataset.carouselInit === 'true') return;
+      wrapper.dataset.carouselInit = 'true';
+
+      let currentSlide = 0;
+      const slides = wrapper.querySelectorAll('.mobile-products-slide, .tablet-products-slide');
+      const dotElements = dotsContainer.querySelectorAll('.carousel-dot');
+
+      function updateCarousel() {
+        wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dotElements.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+      }
+
+      dotElements.forEach((dot, i) => {
+        dot.addEventListener('click', () => { currentSlide = i; updateCarousel(); });
+      });
+
+      if (enableTouch) {
+        // Attach touch to the carousel container (parent of wrapper) for reliability
+        const container = wrapper.parentElement;
+        const touchTarget = container || wrapper;
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+
+        touchTarget.addEventListener('touchstart', e => {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          isDragging = true;
+        }, { passive: true });
+
+        touchTarget.addEventListener('touchmove', e => {
+          if (!isDragging) return;
+          const diffX = Math.abs(startX - e.touches[0].clientX);
+          const diffY = Math.abs(startY - e.touches[0].clientY);
+          // Only prevent scroll if horizontal swipe is dominant
+          if (diffX > diffY && diffX > 10) {
+            e.preventDefault();
+          }
+        }, { passive: false });
+
+        touchTarget.addEventListener('touchend', e => {
+          if (!isDragging) return;
+          isDragging = false;
+          const diff = startX - e.changedTouches[0].clientX;
+          const diffY = Math.abs(startY - e.changedTouches[0].clientY);
+          if (Math.abs(diff) > 30 && Math.abs(diff) > diffY) {
+            if (diff > 0 && currentSlide < slides.length - 1) currentSlide++;
+            else if (diff < 0 && currentSlide > 0) currentSlide--;
+            updateCarousel();
+          }
+        }, { passive: true });
+      }
+    }
+
     // Apply dynamic image sizing
     function applyImageSizing() {
       const productCards = document.querySelectorAll('.routine-product-card[data-image-width][data-image-height]');
-      
-      productCards.forEach(card => {
+
+      productCards.forEach((card) => {
         const imageWidth = card.dataset.imageWidth || 100;
         const imageHeight = card.dataset.imageHeight || 100;
         const image = card.querySelector('.routine-product-image');
-        
+
         if (image) {
           image.style.width = `${imageWidth}%`;
           image.style.height = `${imageHeight}%`;
@@ -787,12 +2006,25 @@
       });
     }
 
-    // Apply sizing on load and when tabs change
+    // Initialize on load
+    initMobileCarousel();
     applyImageSizing();
-    
-    tabButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        setTimeout(applyImageSizing, 100); // Small delay to ensure content is visible
+
+    // Re-initialize on resize
+    window.addEventListener('resize', () => {
+      // Reset init flags so carousels re-initialize for new breakpoint
+      document.querySelectorAll('[data-carousel-init]').forEach(el => el.removeAttribute('data-carousel-init'));
+      initMobileCarousel();
+      applyImageSizing();
+    });
+
+    // Apply sizing on tab change
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        setTimeout(() => {
+          applyImageSizing();
+          initMobileCarousel();
+        }, 100);
       });
     });
   });
@@ -1310,6 +2542,411 @@
       "type": "url",
       "id": "exfoliate_cta_link",
       "label": "Exfoliate CTA Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings"
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_width",
+      "label": "Tablet Card Width",
+      "min": 160,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "default": 190,
+      "info": "Fixed width for each product card on tablet — stays the same regardless of how many cards are in a slide"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Section Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Section Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_padding",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Container Padding",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Mobile Header"
+    },
+    {
+      "type": "select",
+      "id": "mobile_header_alignment",
+      "label": "Mobile Header Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_title_size",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "mobile_section_title_color",
+      "label": "Mobile Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_description_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "mobile_section_description_color",
+      "label": "Mobile Description Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Tab Navigation"
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_border_radius",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Tab Border Radius",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_font_size",
+      "min": 6,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Tab Font Size",
+      "default": 9
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_font_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Mobile Tab Font Weight",
+      "default": 900
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_padding",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Tab Padding",
+      "default": 6
+    },
+    {
+      "type": "color",
+      "id": "mobile_active_tab_bg",
+      "label": "Mobile Active Tab Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "mobile_active_tab_text",
+      "label": "Mobile Active Tab Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "mobile_inactive_tab_bg",
+      "label": "Mobile Inactive Tab Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "mobile_inactive_tab_text",
+      "label": "Mobile Inactive Tab Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "mobile_tab_border_color",
+      "label": "Mobile Tab Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "mobile_cyan_dot_color",
+      "label": "Mobile Active Tab Dot Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Content Card"
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "min": 150,
+      "max": 350,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Image Height",
+      "default": 250
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Image Border Radius",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "mobile_content_card_bg",
+      "label": "Mobile Content Card Background",
+      "default": "#D3FFFF"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Content Padding",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Content Border Radius",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "label": "Mobile Content Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_font_size",
+      "min": 20,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Heading Font Size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "mobile_heading_color",
+      "label": "Mobile Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "mobile_description_color",
+      "label": "Mobile Description Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "mobile_cta_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile CTA Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "mobile_cta_bg_color",
+      "label": "Mobile CTA Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "mobile_cta_text_color",
+      "label": "Mobile CTA Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "mobile_cta_padding",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile CTA Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_cta_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile CTA Border Radius",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Mobile Products"
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_number_size",
+      "min": 40,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Product Number Size",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "mobile_product_number_color",
+      "label": "Mobile Product Number Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_image_height",
+      "min": 120,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Product Image Height",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Product Border Radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_name_font_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Product Name Font Size",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "mobile_product_name_color",
+      "label": "Mobile Product Name Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_name_font_weight",
+      "min": 300,
+      "max": 700,
+      "step": 100,
+      "label": "Mobile Product Name Font Weight",
+      "default": 500
+    },
+    {
+      "type": "color",
+      "id": "mobile_dot_active_color",
+      "label": "Mobile Carousel Active Dot Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "mobile_dot_inactive_color",
+      "label": "Mobile Carousel Inactive Dot Color",
+      "default": "#cccccc"
     }
   ],
   "blocks": [
@@ -1592,3 +3229,6 @@
   ]
 }
 {% endschema %}
+
+
+

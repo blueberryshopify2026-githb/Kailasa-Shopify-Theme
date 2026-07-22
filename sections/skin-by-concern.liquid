@@ -1,23 +1,23 @@
 <style>
-  .skin-by-concern-section {
+  .sbc-skin-by-concern-section {
     padding: 0;
     background: #ffffff;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     position: relative;
     z-index: 1;
     width: 100%;
     min-height: 100vh;
-    margin-top: 80px; /* Add space from previous section */
+    {% comment %} margin-top: 80px; /* Add space from previous section */ {% endcomment %}
   }
 
-  .skin-by-concern-container {
+  .sbc-skin-by-concern-container {
     width: 100%;
     margin: 0;
     padding: 0;
   }
 
   /* Full Width Tab Navigation */
-  .concern-tabs {
+  .sbc-concern-tabs {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 8px;
@@ -31,7 +31,7 @@
     background: white;
   }
 
-  .concern-tab {
+  .sbc-concern-tab {
     background: white;
     color: #000;
     border: 1px solid #000;
@@ -53,20 +53,20 @@
     min-height: 44px;
   }
 
-  .concern-tab:hover:not(.active) {
+  .sbc-concern-tab:hover:not(.active) {
     background: #000;
     color: white;
     border-color: #000;
   }
 
-  .concern-tab.active {
+  .sbc-concern-tab.active {
     background: #000;
     color: white;
     border-color: #000;
     z-index: 2;
   }
 
-  .concern-tab.active::before {
+  .sbc-concern-tab.active::before {
     content: '';
     width: 8px;
     height: 8px;
@@ -76,7 +76,7 @@
   }
 
   /* Main Content Layout */
-  .concern-content {
+  .sbc-concern-content {
     display: flex;
     width: 100%;
     min-height: calc(100vh - 60px);
@@ -86,7 +86,7 @@
   }
 
   /* Before/After Image Section - Sticky within section */
-  .before-after-section {
+  .sbc-before-after-section {
     width: 50%;
     height: calc(100vh - 60px);
     display: flex;
@@ -100,7 +100,7 @@
     align-self: flex-start;
   }
 
-  .before-after-container {
+  .sbc-before-after-container {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -111,11 +111,11 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    touch-action: pan-x;
-    cursor: ew-resize;
+    touch-action: pan-y;
+    cursor: default;
   }
 
-  .before-after-image {
+  .before-sbc-after-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -127,38 +127,39 @@
   }
 
   /* After image - always fully visible as base layer */
-  .after-image {
+  .sbc-after-image {
     z-index: 1;
   }
 
   /* Before image - clipped to show only left portion up to divider */
-  .before-image {
+  .sbc-before-image {
     z-index: 2;
     clip-path: inset(0 50% 0 0);
     will-change: clip-path;
     transform: translateZ(0);
   }
 
-  .slider-handle {
+  .sbc-slider-handle {  
     position: absolute;
     top: 0;
     left: 50%;
     width: 3px;
     height: 100%;
     background: rgba(255, 255, 255, 0.9);
-    cursor: ew-resize;
+    cursor: default;
     transform: translateX(-50%);
     z-index: 10;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
     transition: background 0.2s ease;
+    pointer-events: none;
   }
 
-  .slider-handle:hover {
+  .sbc-slider-handle:hover {
     background: rgba(255, 255, 255, 1);
     width: 4px;
   }
 
-  .slider-button {
+  .sbc-slider-button {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -173,18 +174,20 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    pointer-events: all;
+    touch-action: none;
     z-index: 11;
     transition: all 0.2s ease;
   }
 
-  .slider-button:hover {
+  .sbc-slider-button:hover {
     background: rgba(255, 255, 255, 1);
     border-color: #00B8CC;
     transform: translate(-50%, -50%) scale(1.1);
   }
 
-  .slider-button::before,
-  .slider-button::after {
+  .sbc-slider-button::before,
+  .sbc-slider-button::after {
     content: '';
     position: absolute;
     width: 8px;
@@ -192,15 +195,15 @@
     background: #00E0FF;
   }
 
-  .slider-button::before {
+  .sbc-slider-button::before {
     transform: rotate(45deg) translateX(-2px);
   }
 
-  .slider-button::after {
+  .sbc-slider-button::after {
     transform: rotate(-45deg) translateX(-2px);
   }
 
-  .image-labels {
+  .sbc-image-labels {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
@@ -208,11 +211,11 @@
     color: #666;
   }
 
-  .label-left {
+  .sbc-label-left {
     font-weight: 600;
   }
 
-  .label-right {
+  .sbc-label-right {
     font-weight: 600;
     text-align: right;
   }
@@ -235,7 +238,7 @@
   }
 
   /* Sticky Title and Description */
-  .products-header {
+  .sbc-products-header {
     margin-top: 0;
     padding-top: 30px;
     position: sticky;
@@ -257,7 +260,7 @@
   }
 
   /* Create a large white mask above the header */
-  .products-header::before {
+  .sbc-products-header::before {
     content: '';
     position: absolute;
     top: -100px;
@@ -268,7 +271,7 @@
     z-index: 51;
   }
 
-  .concern-products-title {
+  .sbc-concern-products-title {
     font-size:35px;
     font-weight: 900;
     color: #333333;
@@ -276,7 +279,7 @@
     line-height: 1.1;
   }
 
-  .products-description {
+  .sbc-products-description {
     font-size: 17px;
     color: #666666;
     line-height: 1.3;
@@ -286,7 +289,7 @@
   }
 
   /* Products Container with padding */
-  .products-content {
+  .sbc-products-content {
     padding: 20px 15px 40px 15px;
     position: relative;
     flex: 1;
@@ -300,13 +303,13 @@
   }
 
   /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
-  .products-content::-webkit-scrollbar {
+  .sbc-products-content::-webkit-scrollbar {
     display: none;
   }
 
   /* Remove scroll indicators - they're causing visual clutter */
 
-  .products-scroll-container {
+  .sbc-products-scroll-container {
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -316,7 +319,7 @@
     position: relative;
   }
 
-  .products-row {
+  .sbc-products-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
@@ -332,7 +335,7 @@
   }
 
 
-  .products-row.visible {
+  .sbc-products-row.visible {
     opacity: 1;
     transform: translateY(0);
   }
@@ -366,7 +369,7 @@
 
 
 
-  .product-code {
+  .sbc-product-code {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -380,7 +383,7 @@
   }
 
 
-  .product-content {
+  .sbc-product-content {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -391,7 +394,7 @@
 
 
 
-  .product-header {
+  .sbc-product-header {
     margin-top: 15px;
     flex-shrink: 0;
   }
@@ -429,7 +432,7 @@
     flex-shrink: 0;
   }
 
-  .product-button {
+  .sbc-product-button {
     {% comment %} background: rgba(0, 0, 0, 0.9); {% endcomment %}
     background: #4FFFFF;
     color: rgba(0, 0, 0, 0.9);
@@ -444,322 +447,707 @@
     border: none;
   }
 
-  .product-button:hover {
+  .sbc-product-button:hover {
     background: cyan;
     color: #000000;
     transform: translateY(-2px);
   }
 
-  .product-price {
+  .sbc-product-price {
     font-size: 13px;
     font-weight: 400;
     color: black;
     margin: 0;
   }
 
-  .product-subtitle {
+  .sbc-product-subtitle {
     display: none;
   }
 
-  .product-rating {
+  .sbc-product-rating {
     display: none;
 
   }
 
   /* Hidden content for other concerns */
-  .concern-data {
+  .sbc-concern-data {
     display: none;
   }
 
-  .concern-data.active {
+  .sbc-concern-data.active {
     display: block;
   }
 
   /* Ensure section ends after last product */
-  .products-row:last-child {
+  .sbc-products-row:last-child {
     margin-bottom: 0;
   }
 
-  .products-scroll-container:after {
+  .sbc-products-scroll-container:after {
     content: '';
     display: block;
     height: 40px;
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .skin-by-concern-section {
+  /* =============================================
+     TABLET ONLY - 769px to 1024px
+     Desktop code above is NOT touched
+     Mobile code below is NOT touched
+     ============================================= */
+  @media (min-width: 769px) and (max-width: 1024px) {
+
+    /* --- Section reset --- */
+    .sbc-skin-by-concern-section {
       min-height: auto;
       margin-top: 0;
     }
 
-    .skin-by-concern-container {
+    .sbc-skin-by-concern-container {
       padding: 0;
     }
 
-
-    .concern-tabs {
+    /* --- Tabs: all 6 in one row, full width --- */
+    .sbc-concern-tabs {
+      display: grid !important;
+      grid-template-columns: repeat(6, 1fr) !important;
+      gap: 6px !important;
+      padding: 14px 16px !important;
       position: sticky;
       top: 0;
-      margin-bottom: 0;
-      overflow-x: auto;
-      padding: 0 12px;
-      display: flex;
-      gap: 8px;
+      z-index: 100;
+      background: #ffffff;
+      overflow: hidden !important;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      width: 100% !important;
+      box-sizing: border-box !important;
     }
 
-    .concern-tab {
-      padding: 12px 20px;
-      font-size: 14px;
-      min-width: 120px;
-      flex: none;
+    .sbc-concern-tab {
+      padding: 9px 6px !important;
+      font-size: 13px !important;
+      font-weight: 500;
+      min-width: 0 !important;
+      width: 100% !important;
+      min-height: 40px !important;
+      border-radius: 8px !important;
+      white-space: normal !important;
+      word-break: break-word;
+      text-align: center !important;
+      justify-content: center;
+      align-items: center;
+      gap: 4px !important;
+      line-height: 1.2 !important;
+      display: flex !important;
+    }
+
+    .sbc-concern-tab.active::before {
+      width: 7px !important;
+      height: 7px !important;
+      flex-shrink: 0;
+      min-width: 7px;
+    }
+
+    /* --- Main content stacks vertically --- */
+    .sbc-concern-content {
+      flex-direction: column !important;
+      min-height: auto !important;
+      gap: 0;
+    }
+
+    /* --- Before/After: full width --- */
+    .sbc-before-after-section {
+      position: relative !important;
+      width: 100% !important;
+      height: auto !important;
+      padding: 20px 20px 0 20px !important;
+      top: auto !important;
+      left: auto !important;
+      align-self: auto !important;
+    }
+
+    .sbc-before-after-container {
+      height: {{ section.settings.tablet_before_after_height | default: 600 }}px !important;
+      min-height: unset !important;
+      max-height: unset !important;
       border-radius: 16px;
     }
 
-
-    .concern-content {
-      flex-direction: column;
-      min-height: auto;
-      margin-top: 0;
+    .sbc-image-labels {
+      margin-top: 12px;
+      font-size: 13px;
+      padding: 0 4px;
     }
 
-
-    .before-after-section {
-    position: relative;
-    width: 100%;
-    height: 50vh;
-    padding: 20px;
-    top: 0;
-    left: 0;
-    }
-
-    .before-after-container {
-      height: 40vh;
-      min-height: 250px;
-      max-height: 350px;
-    }
-
+    /* --- Products section: full width --- */
     .sbc-products-section {
+      position: relative !important;
+      width: 100% !important;
+      min-height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      padding: 0 !important;
+    }
+
+    /* --- Products header: centered below image --- */
+    .sbc-products-header {
+      position: relative !important;
+      top: auto !important;
+      background: #ffffff !important;
+      z-index: 1 !important;
+      padding: 24px 20px 14px 20px !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      text-align: center;
+    }
+
+    .sbc-products-header::before {
+      display: none !important;
+    }
+
+    .sbc-concern-products-title {
+      font-size: {{ section.settings.tablet_title_font_size | default: 36 }}px !important;
+      font-weight: 900 !important;
+      color: #1a1a1a !important;
+      margin-bottom: 10px !important;
+      line-height: 1.15 !important;
+      text-align: center;
+    }
+
+    .sbc-products-description {
+      font-size: {{ section.settings.tablet_description_font_size | default: 16 }}px !important;
+      color: #666666 !important;
+      line-height: 1.5 !important;
+      margin: 0 !important;
+      text-align: center;
+    }
+
+    /* --- Products content: no scroll, carousel handles it --- */
+    .sbc-products-content {
+      overflow: visible !important;
+      padding: 0 !important;
+      flex: none !important;
+      transform: none !important;
+    }
+
+    /* --- Tablet carousel wrapper --- */
+    .sbc-tablet-carousel-wrapper {
       position: relative;
       width: 100%;
-      min-height: 60vh;
-      max-height: 60vh;
-      overflow: visible;
-      padding: 0;
+      overflow: hidden;
+      padding: 20px 0 0 0;
+    }
+
+    .sbc-tablet-carousel-track {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
     }
 
-    .concern-products-title {
-      font-size: 24px;
+    .sbc-tablet-carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
-    .products-header {
-      position: sticky;
-      top: 0;
-      background: white;
-      z-index: 50;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      flex-shrink: 0;
-      /* Ensure header is not affected by transforms */
-      transform: none !important;
-      will-change: auto;
-      /* Add white mask to hide content behind */
-      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
-      padding-left: 12px;
-      padding-right: 12px;
-      /* Add white mask above the header */
-      background: white;
-      /* Extend the background upward */
-      padding-top: 25px;
+    /* --- Nav dots --- */
+    .sbc-tablet-carousel-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 20px 0 28px 0;
     }
 
-    /* Create a large white mask above the header for mobile */
-    .products-header::before {
-      content: '';
-      position: absolute;
-      top: -80px;
-      left: 0;
-      right: 0;
-      height: 100px;
-      background: white;
-      z-index: 51;
+    .sbc-tablet-carousel-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: {{ section.settings.tablet_dot_inactive_color | default: '#d0d0d0' }};
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      border: none;
+      padding: 0;
     }
 
-    .products-content {
-      flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-      /* Hide scrollbar while keeping scroll functionality */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* Internet Explorer 10+ */
+    .sbc-tablet-carousel-dot.active {
+      background: {{ section.settings.tablet_dot_active_color | default: '#00E0FF' }};
+      transform: scale(1.3);
     }
 
-    /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
-    .products-content::-webkit-scrollbar {
-      display: none;
-    }
-
-    .products-content {
-      padding: 1px 12px 40px 12px;
-    }
-
-    .products-row {
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      height: auto;
-      padding: 5px 2px;
-    }
-
+    /* --- Product card on tablet --- */
     .sbc-product-card {
-      max-width: none;
-      padding: 8px;
-      max-height: 320px;
+      max-height: none !important;
+      height: auto !important;
+      padding: 16px 12px 18px 12px !important;
+      border-radius: 16px !important;
+      box-shadow: 4px 4px 12px rgba(204, 226, 226, 0.8) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      background: #ffffff !important;
+    }
+
+    .sbc-product-content {
+      align-items: center;
+      width: 100%;
+    }
+
+    .sbc-product-header {
+      margin-top: 10px;
+    }
+
+    .sbc-product-title {
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: var(--tile-text-color, #1a1a1a) !important;
+      text-align: center !important;
+      margin: 0 0 8px 0 !important;
+      line-height: 1.3 !important;
     }
 
     .sbc-product-image {
-      height: 160px;
+      height: {{ section.settings.tablet_card_image_height | default: 160 }}px !important;
+      min-height: unset !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      object-fit: contain !important;
+      margin: 10px auto !important;
+      padding: 8px !important;
+      flex: none !important;
+    }
+
+    .sbc-product-footer {
+      margin-top: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .sbc-product-button {
+      font-size: 12px !important;
+      padding: 8px 20px !important;
+      border-radius: 20px !important;
+      margin-bottom: 8px !important;
+      display: inline-block;
+    }
+
+    .sbc-product-price {
+      font-size: 11px !important;
+      color: #555 !important;
+    }
+
+    .sbc-product-code {
+      font-size: 10px !important;
+      top: 10px !important;
+      right: 10px !important;
+    }
+
+    /* Hide desktop sbc-products-row on tablet (carousel JS rebuilds it) */
+    .sbc-products-row {
+      display: none !important;
     }
 
   }
 
-  @media (max-width: 480px) {
-    .concern-tab {
-      padding: 10px 12px;
-      font-size: 13px;
-      min-width: 100px;
+  /* =============================================
+     MOBILE ONLY - max-width: 768px
+     Desktop code above is NOT touched
+     ============================================= */
+  @media (max-width: 768px) {
+
+    /* --- Section reset --- */
+    .sbc-skin-by-concern-section {
+      min-height: auto;
+      margin-top: 0;
     }
 
-    .before-after-container {
-      height: 35vh;
-      min-height: 200px;
-      max-height: 280px;
+    .sbc-skin-by-concern-container {
+      padding: 0;
+    }
+
+    /* --- Tabs: all 6 fit in one row --- */
+    .sbc-concern-tabs {
+      display: grid !important;
+      grid-template-columns: repeat(6, 1fr) !important;
+      gap: 3px !important;
+      padding: 8px 6px !important;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      overflow: hidden !important;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .sbc-concern-tab {
+      flex: none;
+      padding: 0 2px !important;
+      font-size: 8px !important;
+      font-weight: 500;
+      min-width: 0 !important;
+      width: 100% !important;
+      min-height: 30px !important;
+      border-radius: 6px !important;
+      white-space: normal !important;
+      overflow: hidden;
+      word-break: break-word;
+      text-align: center !important;
+      justify-content: center;
+      align-items: center;
+      gap: 2px !important;
+      line-height: 1.2 !important;
+      display: flex !important;
+    }
+
+    .sbc-concern-tab.active::before {
+      width: 5px !important;
+      height: 5px !important;
+      flex-shrink: 0;
+      min-width: 5px;
+    }
+
+    /* --- Main content stacks vertically --- */
+    .sbc-concern-content {
+      flex-direction: column !important;
+      min-height: auto !important;
+      gap: 0;
+    }
+
+    /* --- Before/After image: full width --- */
+    .sbc-before-after-section {
+      position: relative !important;
+      width: 100% !important;
+      height: auto !important;
+      padding: 16px 16px 0 16px !important;
+      top: auto !important;
+      left: auto !important;
+      align-self: auto !important;
+    }
+
+    .sbc-before-after-container {
+      height: {{ section.settings.mobile_before_after_height | default: 260 }}px !important;
+      min-height: unset !important;
+      max-height: unset !important;
+      border-radius: 16px;
+    }
+
+    .sbc-image-labels {
+      margin-top: 10px;
+      font-size: 12px;
+      padding: 0 4px;
+    }
+
+    /* --- Products section: full width, no overflow clipping --- */
+    .sbc-products-section {
+      position: relative !important;
+      width: 100% !important;
+      min-height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+      padding: 0 !important;
+    }
+
+    /* --- Products header: title + description, centered --- */
+    .sbc-products-header {
+      position: relative !important;
+      top: auto !important;
+      background: #ffffff !important;
+      z-index: 1 !important;
+      padding: 20px 16px 12px 16px !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      text-align: center;
+    }
+
+    .sbc-products-header::before {
+      display: none !important;
+    }
+
+    .sbc-concern-products-title {
+      font-size: {{ section.settings.mobile_title_font_size | default: 28 }}px !important;
+      font-weight: 900 !important;
+      color: #1a1a1a !important;
+      margin-bottom: 8px !important;
+      line-height: 1.15 !important;
+      text-align: center;
+    }
+
+    .sbc-products-description {
+      font-size: {{ section.settings.mobile_description_font_size | default: 14 }}px !important;
+      color: #666666 !important;
+      line-height: 1.5 !important;
+      margin: 0 !important;
+      text-align: center;
+    }
+
+    /* --- Products content: no scroll, let carousel handle it --- */
+    .sbc-products-content {
+      overflow: visible !important;
+      padding: 0 !important;
+      flex: none !important;
+      transform: none !important;
+    }
+
+    /* --- Carousel wrapper (added by JS on mobile) --- */
+    .sbc-mobile-carousel-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 16px 0 0 0;
+    }
+
+    .sbc-mobile-carousel-track {
+      display: flex;
+      flex-direction: row;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .sbc-mobile-carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    /* --- Nav dots --- */
+    .sbc-mobile-carousel-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 0 24px 0;
+    }
+
+    .sbc-mobile-carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: {{ section.settings.mobile_dot_inactive_color | default: '#d0d0d0' }};
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      border: none;
+      padding: 0;
+    }
+
+    .sbc-mobile-carousel-dot.active {
+      background: {{ section.settings.mobile_dot_active_color | default: '#00E0FF' }};
+      transform: scale(1.3);
+    }
+
+    /* --- Product card on mobile --- */
+    .sbc-product-card {
+      max-height: none !important;
+      height: auto !important;
+      padding: 14px 10px 16px 10px !important;
+      border-radius: 16px !important;
+      box-shadow: 4px 4px 12px rgba(204, 226, 226, 0.8) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      background: #ffffff !important;
+    }
+
+    .sbc-product-content {
+      align-items: center;
+      width: 100%;
+    }
+
+    .sbc-product-header {
+      margin-top: 8px;
+    }
+
+    .sbc-product-title {
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      color: var(--tile-text-color, #1a1a1a) !important;
+      text-align: center !important;
+      margin: 0 0 6px 0 !important;
+      line-height: 1.3 !important;
     }
 
     .sbc-product-image {
-      height: 140px;
+      height: {{ section.settings.mobile_card_image_height | default: 130 }}px !important;
+      min-height: unset !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      object-fit: contain !important;
+      margin: 8px auto !important;
+      padding: 6px !important;
+      flex: none !important;
     }
+
+    .sbc-product-footer {
+      margin-top: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .sbc-product-button {
+      font-size: 11px !important;
+      padding: 7px 16px !important;
+      border-radius: 20px !important;
+      margin-bottom: 6px !important;
+      display: inline-block;
+    }
+
+    .sbc-product-price {
+      font-size: 10px !important;
+      color: #555 !important;
+    }
+
+    .sbc-product-code {
+      font-size: 9px !important;
+      top: 8px !important;
+      right: 8px !important;
+    }
+
+    /* Hide the desktop sbc-products-row layout on mobile (carousel JS rebuilds it) */
+    .sbc-products-row {
+      display: none !important;
+    }
+
   }
 
 </style>
 
 <div
-  class="skin-by-concern-section full-width"
+  class="sbc-skin-by-concern-section full-width"
   id="skin-by-concern-{{ section.id }}"
   style="--tile-bg-color: {{ section.settings.tile_bg_color | default: '#ffffff' }}; --tile-text-color: {{ section.settings.tile_text_color | default: '#000000' }}; --tile-radius: {{ section.settings.tile_radius | default: 16 }}px;"
 >
-  <div class="skin-by-concern-container">
+  <div class="sbc-skin-by-concern-container">
     <!-- Full Width Tab Navigation -->
-    <div class="concern-tabs">
+    <div class="sbc-concern-tabs">
       <div
-        class="concern-tab active"
+        class="sbc-concern-tab active"
         data-concern="dullness"
         onclick="return switchConcern('dullness', '{{ section.id }}')"
       >
         Dullness
       </div>
-      <div class="concern-tab" data-concern="wrinkles" onclick="return switchConcern('wrinkles', '{{ section.id }}')">
+      <div class="sbc-concern-tab" data-concern="wrinkles" onclick="return switchConcern('wrinkles', '{{ section.id }}')">
         Wrinkles
       </div>
-      <div class="concern-tab" data-concern="undereye" onclick="return switchConcern('undereye', '{{ section.id }}')">
+      <div class="sbc-concern-tab" data-concern="undereye" onclick="return switchConcern('undereye', '{{ section.id }}')">
         Undereye
       </div>
       <div
-        class="concern-tab"
+        class="sbc-concern-tab"
         data-concern="anti-aging"
         onclick="return switchConcern('anti-aging', '{{ section.id }}')"
       >
         Anti-aging
       </div>
-      <div class="concern-tab" data-concern="sunburn" onclick="return switchConcern('sunburn', '{{ section.id }}')">
+      <div class="sbc-concern-tab" data-concern="sunburn" onclick="return switchConcern('sunburn', '{{ section.id }}')">
         Sunburn
       </div>
-      <div class="concern-tab" data-concern="acne" onclick="return switchConcern('acne', '{{ section.id }}')">Acne</div>
+      <div class="sbc-concern-tab" data-concern="acne" onclick="return switchConcern('acne', '{{ section.id }}')">Acne</div>
     </div>
 
     <!-- Main Content -->
-    <div class="concern-content">
+    <div class="sbc-concern-content">
       <!-- Sticky Before/After Image Section -->
-      <div class="before-after-section">
-        <div class="before-after-container" id="before-after-container-{{ section.id }}">
+      <div class="sbc-before-after-section">
+        {%- if section.settings.dullness_before_image -%}
+          {%- assign before_src = section.settings.dullness_before_image | image_url: width: 500, height: 400 -%}
+        {%- else -%}
+          {%- assign before_src = 'placeholder-before.svg' | asset_url -%}
+        {%- endif -%}
+        {%- if section.settings.dullness_after_image -%}
+          {%- assign after_src = section.settings.dullness_after_image | image_url: width: 500, height: 400 -%}
+        {%- else -%}
+          {%- assign after_src = 'placeholder-after.svg' | asset_url -%}
+        {%- endif -%}
+        <div class="sbc-before-after-container" id="sbc-before-after-container-{{ section.id }}">
           <img
-            src="{% if section.settings.dullness_before_image %}{{ section.settings.dullness_before_image | image_url: width: 500, height: 400 }}{% else %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666'%3EBefore Image%3C/text%3E%3C/svg%3E{% endif %}"
+            src="{{ before_src }}"
             alt="Before"
-            class="before-after-image before-image"
-            id="before-image-{{ section.id }}"
+            class="before-sbc-after-image sbc-before-image"
+            id="sbc-before-image-{{ section.id }}"
             width="500"
             height="400"
           >
           <img
-            src="{% if section.settings.dullness_after_image %}{{ section.settings.dullness_after_image | image_url: width: 500, height: 400 }}{% else %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23e8f8ff'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666'%3EAfter Image%3C/text%3E%3C/svg%3E{% endif %}"
+            src="{{ after_src }}"
             alt="After"
-            class="before-after-image after-image"
-            id="after-image-{{ section.id }}"
+            class="before-sbc-after-image sbc-after-image"
+            id="sbc-after-image-{{ section.id }}"
             width="500"
             height="400"
           >
-          <div class="slider-handle" id="slider-handle-{{ section.id }}">
-            <div class="slider-button"></div>
+          <div class="sbc-slider-handle" id="sbc-slider-handle-{{ section.id }}">
+            <div class="sbc-slider-button"></div>
           </div>
         </div>
-        <div class="image-labels">
-          <div class="label-left">Day 1</div>
-          <div class="label-right">After 4 Weeks of FIRM + BRIGHT</div>
+        <div class="sbc-image-labels">
+          <div class="sbc-label-left">Day 1</div>
+          <div class="sbc-label-right">After 4 Weeks of FIRM + BRIGHT</div>
         </div>
       </div>
 
       <!-- Scrollable Products Section -->
       <div class="sbc-products-section">
         <!-- Sticky Header -->
-        <div class="products-header">
-          <h2 class="concern-products-title" id="concern-products-title-{{ section.id }}">Recommended Products</h2>
-          <p class="products-description" id="products-description-{{ section.id }}">
+        <div class="sbc-products-header">
+          <h2 class="sbc-concern-products-title" id="sbc-concern-products-title-{{ section.id }}">Recommended Products</h2>
+          <p class="sbc-products-description" id="sbc-products-description-{{ section.id }}">
             Discover our curated selection of products specifically designed to address your skin concerns and achieve
             visible results.
           </p>
         </div>
 
         <!-- Products Content -->
-        <div class="products-content">
+        <div class="sbc-products-content">
           <!-- Dullness Products -->
-          <div class="concern-data active" data-concern="dullness">
-            <div class="products-scroll-container" id="products-dullness-{{ section.id }}">
+          <div class="sbc-concern-data active" data-concern="dullness">
+            <div class="sbc-products-scroll-container" id="products-dullness-{{ section.id }}">
               <!-- Products will be populated by JavaScript -->
             </div>
           </div>
 
           <!-- Wrinkles Products -->
-          <div class="concern-data" data-concern="wrinkles">
-            <div class="products-scroll-container" id="products-wrinkles-{{ section.id }}">
+          <div class="sbc-concern-data" data-concern="wrinkles">
+            <div class="sbc-products-scroll-container" id="products-wrinkles-{{ section.id }}">
               <!-- Products will be populated by JavaScript -->
             </div>
           </div>
 
           <!-- Undereye Products -->
-          <div class="concern-data" data-concern="undereye">
-            <div class="products-scroll-container" id="products-undereye-{{ section.id }}">
+          <div class="sbc-concern-data" data-concern="undereye">
+            <div class="sbc-products-scroll-container" id="products-undereye-{{ section.id }}">
               <!-- Products will be populated by JavaScript -->
             </div>
           </div>
 
           <!-- Anti-aging Products -->
-          <div class="concern-data" data-concern="anti-aging">
-            <div class="products-scroll-container" id="products-anti-aging-{{ section.id }}">
+          <div class="sbc-concern-data" data-concern="anti-aging">
+            <div class="sbc-products-scroll-container" id="products-anti-aging-{{ section.id }}">
               <!-- Products will be populated by JavaScript -->
             </div>
           </div>
 
           <!-- Sunburn Products -->
-          <div class="concern-data" data-concern="sunburn">
-            <div class="products-scroll-container" id="products-sunburn-{{ section.id }}">
+          <div class="sbc-concern-data" data-concern="sunburn">
+            <div class="sbc-products-scroll-container" id="products-sunburn-{{ section.id }}">
               <!-- Products will be populated by JavaScript -->
             </div>
           </div>
 
           <!-- Acne Products -->
-          <div class="concern-data" data-concern="acne">
-            <div class="products-scroll-container" id="products-acne-{{ section.id }}">
+          <div class="sbc-concern-data" data-concern="acne">
+            <div class="sbc-products-scroll-container" id="products-acne-{{ section.id }}">
               <!-- Products will be populated by JavaScript -->
             </div>
           </div>
@@ -976,7 +1364,7 @@
     currentConcern = concern;
    
     // Update active tab
-    const tabs = document.querySelectorAll(`#skin-by-concern-${sectionId} .concern-tab`);
+    const tabs = document.querySelectorAll(`#skin-by-concern-${sectionId} .sbc-concern-tab`);
     tabs.forEach(tab => {
       tab.classList.remove('active');
       if (tab.dataset.concern === concern) {
@@ -991,7 +1379,7 @@
     updateProductsHeader(concern, sectionId);
    
     // Show/hide concern data
-    const concernDataElements = document.querySelectorAll(`#skin-by-concern-${sectionId} .concern-data`);
+    const concernDataElements = document.querySelectorAll(`#skin-by-concern-${sectionId} .sbc-concern-data`);
     concernDataElements.forEach(element => {
       element.classList.remove('active');
       if (element.dataset.concern === concern) {
@@ -999,9 +1387,32 @@
       }
     });
 
-    // NO SCROLLING - Stay in current position to avoid navigation to hero section
-    // Just update the content without any scroll behavior
-   
+    // Reset scroll position to top for all viewports when switching tabs
+    const productsContent = document.querySelector(`#skin-by-concern-${sectionId} .sbc-products-content`);
+    if (productsContent) productsContent.scrollTop = 0;
+
+    // Reset before/after slider to center (50%) on every tab switch
+    const sliderContainer = document.getElementById(`sbc-before-after-container-${sectionId}`);
+    if (sliderContainer && sliderContainer._resetSlider) sliderContainer._resetSlider();
+
+    // Also reset any mobile/tablet carousel tracks back to first slide
+    const mobileTrack = document.querySelector(`#skin-by-concern-${sectionId} .sbc-mobile-carousel-track`);
+    if (mobileTrack) mobileTrack.style.transform = 'translateX(0%)';
+    const tabletTrack = document.querySelector(`#skin-by-concern-${sectionId} .sbc-tablet-carousel-track`);
+    if (tabletTrack) tabletTrack.style.transform = 'translateX(0%)';
+
+    // Desktop: scroll window so the section's top edge is flush with viewport top.
+    // The sticky tabs bar will naturally sit at top:0 from there.
+    // Skip on initial page load — only scroll on user-triggered tab switches.
+    if (window.innerWidth > 1024 && !switchConcern._isInitCall) {
+      const sectionEl = document.getElementById(`skin-by-concern-${sectionId}`);
+      if (sectionEl) {
+        let docTop = 0;
+        let el = sectionEl;
+        while (el) { docTop += el.offsetTop; el = el.offsetParent; }
+        window.scrollTo({ top: docTop, behavior: 'instant' });
+      }
+    }
     // Update products
     updateProducts(concern, sectionId);
    
@@ -1012,12 +1423,12 @@
   // Update before/after images
   function updateImages(concern, sectionId) {
     const data = concernData[concern];
-    const beforeImg = document.getElementById(`before-image-${sectionId}`);
-    const afterImg = document.getElementById(`after-image-${sectionId}`);
+    const beforeImg = document.getElementById(`sbc-before-image-${sectionId}`);
+    const afterImg = document.getElementById(`sbc-after-image-${sectionId}`);
    
     // Use placeholder images if no images are set
-    const defaultBefore = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666'%3EBefore Image%3C/text%3E%3C/svg%3E";
-    const defaultAfter = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23e8f8ff'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666'%3EAfter Image%3C/text%3E%3C/svg%3E";
+    const defaultBefore = "{{ 'placeholder-before.svg' | asset_url }}";
+    const defaultAfter = "{{ 'placeholder-after.svg' | asset_url }}";
    
     if (data.beforeImage && data.beforeImage !== '' && !data.beforeImage.includes('undefined')) {
       beforeImg.src = data.beforeImage;
@@ -1035,8 +1446,8 @@
   // Update products title and description
   function updateProductsHeader(concern, sectionId) {
     const data = concernData[concern];
-    const titleElement = document.getElementById(`concern-products-title-${sectionId}`);
-    const descriptionElement = document.getElementById(`products-description-${sectionId}`);
+    const titleElement = document.getElementById(`sbc-concern-products-title-${sectionId}`);
+    const descriptionElement = document.getElementById(`sbc-products-description-${sectionId}`);
    
     if (titleElement && data.title) {
       titleElement.textContent = data.title;
@@ -1082,7 +1493,7 @@
    
     for (let i = 0; i < products.length; i += 2) {
       const row = document.createElement('div');
-      row.className = 'products-row';
+      row.className = 'sbc-products-row';
      
       const productsInRow = products.slice(i, i + 2);
      
@@ -1102,15 +1513,15 @@
         const isNew = product.isNew !== false;
        
         productCard.innerHTML = `
-          <div class="product-code">${productCode}</div>
-          <div class="product-content">
-            <div class="product-header">
+          <div class="sbc-product-code">${productCode}</div>
+          <div class="sbc-product-content">
+            <div class="sbc-product-header">
               <div class="sbc-product-title">${product.title}</div>
             </div>
             <img src="${customMedia}" alt="${product.title}" class="sbc-product-image" width="220" height="220">
             <div class="sbc-product-footer">
-              <div class="product-button">Shop Now</div>
-              <div class="product-price">${product.price ? `Starting at ${product.price} per month` : ''}</div>
+              <div class="sbc-product-button">Shop Now</div>
+              <div class="sbc-product-price">${product.price ? `Starting at ${product.price} per month` : ''}</div>
             </div>
           </div>
         `;
@@ -1121,7 +1532,7 @@
       container.appendChild(row);
       currentProductRows.push(row);
     }
-   
+
     // Initialize scroll animation for the products
     initializeScrollAnimation(sectionId);
   }
@@ -1130,7 +1541,7 @@
   function initializeScrollAnimation(sectionId) {
     const sectionElement = document.getElementById(`skin-by-concern-${sectionId}`);
     const productsSection = document.querySelector(`#skin-by-concern-${sectionId} .sbc-products-section`);
-    const beforeAfterSection = document.querySelector(`#skin-by-concern-${sectionId} .before-after-section`);
+    const beforeAfterSection = document.querySelector(`#skin-by-concern-${sectionId} .sbc-before-after-section`);
    
     if (!productsSection || !sectionElement || !beforeAfterSection) return;
    
@@ -1157,10 +1568,10 @@
 
   // Initialize slider functionality
   function initializeSlider(sectionId) {
-    const container = document.getElementById(`before-after-container-${sectionId}`);
-    const handle = document.getElementById(`slider-handle-${sectionId}`);
-    const beforeImage = document.getElementById(`before-image-${sectionId}`);
-    const afterImage = document.getElementById(`after-image-${sectionId}`);
+    const container = document.getElementById(`sbc-before-after-container-${sectionId}`);
+    const handle = document.getElementById(`sbc-slider-handle-${sectionId}`);
+    const beforeImage = document.getElementById(`sbc-before-image-${sectionId}`);
+    const afterImage = document.getElementById(`sbc-after-image-${sectionId}`);
    
     if (!container || !handle || !beforeImage || !afterImage) return;
 
@@ -1191,71 +1602,66 @@
       updateSlider(percentage);
     }
 
-    // Mouse events
-    handle.addEventListener('mousedown', (e) => {
+    // Only the circular button triggers drag — not the full-height line
+    const button = handle.querySelector('.sbc-slider-button') || handle;
+
+    let dragStartX = 0;
+    let hasDragged = false;
+
+    // Mouse events — drag starts only from the button circle
+    button.addEventListener('mousedown', (e) => {
       isSliding = true;
+      hasDragged = false;
+      dragStartX = e.clientX;
       e.preventDefault();
       e.stopPropagation();
       document.body.style.cursor = 'ew-resize';
     });
 
-    // Allow clicking anywhere on the container to move the slider
-    container.addEventListener('mousedown', (e) => {
-      if (e.target === container || e.target.classList.contains('before-after-image')) {
-        isSliding = true;
-        const percentage = getPercentageFromEvent(e.clientX);
-        updateSlider(percentage);
-        e.preventDefault();
-        document.body.style.cursor = 'ew-resize';
-      }
-    });
-
-
     document.addEventListener('mousemove', (e) => {
-      if (isSliding) {
-        handleMove(e.clientX);
-        e.preventDefault();
-      }
+      if (!isSliding) return;
+      // Only move slider after actual drag movement of 3px+
+      if (!hasDragged && Math.abs(e.clientX - dragStartX) < 3) return;
+      hasDragged = true;
+      handleMove(e.clientX);
+      e.preventDefault();
     }, { passive: false });
-
 
     document.addEventListener('mouseup', () => {
       if (isSliding) {
         isSliding = false;
+        hasDragged = false;
         document.body.style.cursor = '';
       }
     });
 
-    // Touch events for mobile
+    // Touch events — only the button circle starts a drag, requires actual movement
     let touchStartX = 0;
+    let touchHasDragged = false;
 
-    handle.addEventListener('touchstart', (e) => {
+    button.addEventListener('touchstart', (e) => {
       isSliding = true;
+      touchHasDragged = false;
       touchStartX = e.touches[0].clientX;
       e.preventDefault();
       e.stopPropagation();
-    });
-
-    container.addEventListener('touchstart', (e) => {
-      if (e.target === container || e.target.classList.contains('before-after-image')) {
-        isSliding = true;
-        touchStartX = e.touches[0].clientX;
-        const percentage = getPercentageFromEvent(e.touches[0].clientX);
-        updateSlider(percentage);
-        e.preventDefault();
-      }
-    });
+    }, { passive: false });
 
     document.addEventListener('touchmove', (e) => {
-      if (isSliding && e.touches.length > 0) {
-        handleMove(e.touches[0].clientX);
-        e.preventDefault();
-      }
+      if (!isSliding || !e.touches.length) return;
+      const dx = Math.abs(e.touches[0].clientX - touchStartX);
+      const dy = Math.abs(e.touches[0].clientY - (e.touches[0].clientY || 0));
+      // Only block scroll if it's a confirmed horizontal drag on the slider
+      if (!touchHasDragged && dx < 3) return;
+      touchHasDragged = true;
+      handleMove(e.touches[0].clientX);
+      e.preventDefault(); // only blocks scroll during actual slider drag
     }, { passive: false });
 
     document.addEventListener('touchend', () => {
       if (isSliding) {
         isSliding = false;
+        touchHasDragged = false;
       }
     });
 
@@ -1266,11 +1672,14 @@
 
     // Initialize at 50%
     updateSlider(50);
+
+    // Expose reset function so switchConcern can reset slider to center on tab change
+    container._resetSlider = () => updateSlider(50);
   }
 
   // Initialize tab event listeners to prevent navigation issues
   function initializeTabListeners(sectionId) {
-    const tabs = document.querySelectorAll(`#skin-by-concern-${sectionId} .concern-tab`);
+    const tabs = document.querySelectorAll(`#skin-by-concern-${sectionId} .sbc-concern-tab`);
     tabs.forEach(tab => {
       tab.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1282,10 +1691,365 @@
     });
   }
 
-  // Initialize tab positioning within section
+  // ── MOBILE CAROUSEL ──────────────────────────────────────────
+  // Runs only on mobile (≤768px). Rebuilds product display as a
+  // swipeable carousel with 2-per-slide and nav dots.
+  // Desktop updateProducts() is NOT modified.
+
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  function buildMobileCarousel(concern, sectionId) {
+    if (!isMobile()) return;
+
+    const data = concernData[concern];
+    if (!data) return;
+
+    // Target the sbc-concern-data container
+    const concernDataEl = document.querySelector(
+      `#skin-by-concern-${sectionId} .sbc-concern-data[data-concern="${concern}"]`
+    );
+    if (!concernDataEl) return;
+
+    const products = data.products && data.products.length > 0 ? data.products : [];
+
+    // Remove any previous carousel
+    const existing = concernDataEl.querySelector('.sbc-mobile-carousel-wrapper');
+    if (existing) existing.remove();
+
+    if (products.length === 0) {
+      concernDataEl.innerHTML = '<div style="padding:30px;text-align:center;color:#666;font-size:14px;">No products configured for this concern.</div>';
+      return;
+    }
+
+    // Build slides: 2 products per slide
+    const slides = [];
+    for (let i = 0; i < products.length; i += 2) {
+      slides.push(products.slice(i, i + 2));
+    }
+
+    // Wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = 'sbc-mobile-carousel-wrapper';
+
+    // Track
+    const track = document.createElement('div');
+    track.className = 'sbc-mobile-carousel-track';
+
+    slides.forEach((slideProducts) => {
+      const slide = document.createElement('div');
+      slide.className = 'sbc-mobile-carousel-slide';
+
+      slideProducts.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'sbc-product-card';
+        if (product.url && product.url !== '#') {
+          card.onclick = () => window.location.href = product.url;
+        }
+        const media = product.customImage || product.image;
+        card.innerHTML = `
+          <div class="sbc-product-content">
+            <div class="sbc-product-header">
+              <div class="sbc-product-title">${product.title}</div>
+            </div>
+            <img src="${media}" alt="${product.title}" class="sbc-product-image" width="160" height="160" loading="lazy">
+            <div class="sbc-product-footer">
+              <div class="sbc-product-button">Shop Now</div>
+              <div class="sbc-product-price">${product.price ? 'Starting at ' + product.price + ' per month' : ''}</div>
+            </div>
+          </div>
+        `;
+        slide.appendChild(card);
+      });
+
+      track.appendChild(slide);
+    });
+
+    wrapper.appendChild(track);
+
+    // Dots
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'sbc-mobile-carousel-dots';
+
+    let currentSlide = 0;
+
+    function goToSlide(index) {
+      currentSlide = Math.max(0, Math.min(index, slides.length - 1));
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dotsContainer.querySelectorAll('.sbc-mobile-carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'sbc-mobile-carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    wrapper.appendChild(dotsContainer);
+
+    // Touch swipe
+    let touchStartX = 0;
+    let touchDeltaX = 0;
+    let isSwiping = false;
+
+    wrapper.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchDeltaX = 0;
+      isSwiping = true;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchmove', (e) => {
+      if (!isSwiping) return;
+      touchDeltaX = e.touches[0].clientX - touchStartX;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchend', () => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      if (Math.abs(touchDeltaX) > 40) {
+        if (touchDeltaX < 0) {
+          goToSlide(currentSlide + 1);
+        } else {
+          goToSlide(currentSlide - 1);
+        }
+      }
+      touchDeltaX = 0;
+    });
+
+    // Replace container contents with carousel
+    concernDataEl.innerHTML = '';
+    concernDataEl.appendChild(wrapper);
+  }
+
+  function buildAllMobileCarousels(sectionId) {
+    if (!isMobile()) return;
+    const concerns = ['dullness', 'wrinkles', 'undereye', 'anti-aging', 'sunburn', 'acne'];
+    concerns.forEach(c => buildMobileCarousel(c, sectionId));
+  }
+
+  // ── Hook into existing switchConcern to also update mobile header ──
+  const _origSwitchConcern = switchConcern;
+  switchConcern = function(concern, sectionId, event) {
+    const result = _origSwitchConcern(concern, sectionId, event);
+
+    if (isMobile()) {
+      updateProductsHeader(concern, sectionId);
+      const concernDataEl = document.querySelector(
+        `#skin-by-concern-${sectionId} .sbc-concern-data[data-concern="${concern}"]`
+      );
+      if (concernDataEl && !concernDataEl.querySelector('.sbc-mobile-carousel-wrapper')) {
+        buildMobileCarousel(concern, sectionId);
+      } else if (concernDataEl) {
+        // Reset existing carousel to slide 1 and update dots
+        const track = concernDataEl.querySelector('.sbc-mobile-carousel-track');
+        if (track) track.style.transform = 'translateX(0%)';
+        const dots = concernDataEl.querySelectorAll('.sbc-mobile-carousel-dot');
+        dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+      }
+    } else if (isTablet()) {
+      updateProductsHeader(concern, sectionId);
+      const concernDataEl = document.querySelector(
+        `#skin-by-concern-${sectionId} .sbc-concern-data[data-concern="${concern}"]`
+      );
+      if (concernDataEl && !concernDataEl.querySelector('.sbc-tablet-carousel-wrapper')) {
+        buildTabletCarousel(concern, sectionId);
+      } else if (concernDataEl) {
+        // Reset existing tablet carousel to slide 1 and update dots
+        const track = concernDataEl.querySelector('.sbc-tablet-carousel-track');
+        if (track) track.style.transform = 'translateX(0%)';
+        const dots = concernDataEl.querySelectorAll('.sbc-tablet-carousel-dot');
+        dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+      }
+    }
+    // Desktop: scroll reset already done in core switchConcern above
+
+    return result;
+  };
+
+  // Initialize mobile carousels on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionId = '{{ section.id }}';
+    if (isMobile()) {
+      buildAllMobileCarousels(sectionId);
+    }
+  });
+
+  // Re-init on resize crossing the 768px boundary
+  (function() {
+    let wasMobile = window.innerWidth <= 768;
+    window.addEventListener('resize', function() {
+      const nowMobile = window.innerWidth <= 768;
+      if (nowMobile !== wasMobile) {
+        wasMobile = nowMobile;
+        if (nowMobile) {
+          buildAllMobileCarousels('{{ section.id }}');
+        }
+      }
+    });
+  })();
+  // ── TABLET CAROUSEL ──────────────────────────────────────────
+  // Runs only on tablet (769px–1024px). 3 products per slide.
+  // Desktop and mobile code are NOT modified.
+
+  function isTablet() {
+    return window.innerWidth >= 769 && window.innerWidth <= 1024;
+  }
+
+  function buildTabletCarousel(concern, sectionId) {
+    if (!isTablet()) return;
+
+    const data = concernData[concern];
+    if (!data) return;
+
+    const concernDataEl = document.querySelector(
+      `#skin-by-concern-${sectionId} .sbc-concern-data[data-concern="${concern}"]`
+    );
+    if (!concernDataEl) return;
+
+    const products = data.products && data.products.length > 0 ? data.products : [];
+
+    // Remove any previous tablet carousel
+    const existing = concernDataEl.querySelector('.sbc-tablet-carousel-wrapper');
+    if (existing) existing.remove();
+
+    if (products.length === 0) {
+      concernDataEl.innerHTML = '<div style="padding:40px;text-align:center;color:#666;font-size:15px;">No products configured for this concern.</div>';
+      return;
+    }
+
+    // Build slides: 3 products per slide
+    const slides = [];
+    for (let i = 0; i < products.length; i += 3) {
+      slides.push(products.slice(i, i + 3));
+    }
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'sbc-tablet-carousel-wrapper';
+
+    const track = document.createElement('div');
+    track.className = 'sbc-tablet-carousel-track';
+
+    slides.forEach((slideProducts) => {
+      const slide = document.createElement('div');
+      slide.className = 'sbc-tablet-carousel-slide';
+
+      slideProducts.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'sbc-product-card';
+        if (product.url && product.url !== '#') {
+          card.onclick = () => window.location.href = product.url;
+        }
+        const media = product.customImage || product.image;
+        card.innerHTML = `
+          <div class="sbc-product-content">
+            <div class="sbc-product-header">
+              <div class="sbc-product-title">${product.title}</div>
+            </div>
+            <img src="${media}" alt="${product.title}" class="sbc-product-image" width="180" height="180" loading="lazy">
+            <div class="sbc-product-footer">
+              <div class="sbc-product-button">Shop Now</div>
+              <div class="sbc-product-price">${product.price ? 'Starting at ' + product.price + ' per month' : ''}</div>
+            </div>
+          </div>
+        `;
+        slide.appendChild(card);
+      });
+
+      track.appendChild(slide);
+    });
+
+    wrapper.appendChild(track);
+
+    // Dots
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'sbc-tablet-carousel-dots';
+
+    let currentSlide = 0;
+
+    function goToSlide(index) {
+      currentSlide = Math.max(0, Math.min(index, slides.length - 1));
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dotsContainer.querySelectorAll('.sbc-tablet-carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'sbc-tablet-carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    wrapper.appendChild(dotsContainer);
+
+    // Touch swipe
+    let tStartX = 0;
+    let tDeltaX = 0;
+    let tSwiping = false;
+
+    wrapper.addEventListener('touchstart', (e) => {
+      tStartX = e.touches[0].clientX;
+      tDeltaX = 0;
+      tSwiping = true;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchmove', (e) => {
+      if (!tSwiping) return;
+      tDeltaX = e.touches[0].clientX - tStartX;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchend', () => {
+      if (!tSwiping) return;
+      tSwiping = false;
+      if (Math.abs(tDeltaX) > 50) {
+        goToSlide(tDeltaX < 0 ? currentSlide + 1 : currentSlide - 1);
+      }
+      tDeltaX = 0;
+    });
+
+    concernDataEl.innerHTML = '';
+    concernDataEl.appendChild(wrapper);
+  }
+
+  function buildAllTabletCarousels(sectionId) {
+    if (!isTablet()) return;
+    ['dullness', 'wrinkles', 'undereye', 'anti-aging', 'sunburn', 'acne'].forEach(c => {
+      buildTabletCarousel(c, sectionId);
+    });
+  }
+
+  // Initialize tablet carousels on load
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionId = '{{ section.id }}';
+    if (isTablet()) {
+      buildAllTabletCarousels(sectionId);
+    }
+  });
+
+  // Re-init on resize crossing tablet boundary
+  (function() {
+    let wasTablet = window.innerWidth >= 769 && window.innerWidth <= 1024;
+    window.addEventListener('resize', function() {
+      const nowTablet = window.innerWidth >= 769 && window.innerWidth <= 1024;
+      if (nowTablet !== wasTablet) {
+        wasTablet = nowTablet;
+        if (nowTablet) {
+          buildAllTabletCarousels('{{ section.id }}');
+        }
+      }
+    });
+  })();
+  // ── END TABLET CAROUSEL ───────────────────────────────────────
   function initializeTabPositioning(sectionId) {
     const sectionElement = document.getElementById(`skin-by-concern-${sectionId}`);
-    const tabsElement = sectionElement.querySelector('.concern-tabs');
+    const tabsElement = sectionElement.querySelector('.sbc-concern-tabs');
    
     if (!sectionElement || !tabsElement) return;
    
@@ -1323,8 +2087,12 @@
     // Initialize tab positioning
     initializeTabPositioning(sectionId);
    
-    // Load initial content
-    switchConcern('dullness', sectionId);
+    // Load initial content — use rAF so layout is settled before scroll resets fire
+    requestAnimationFrame(() => {
+      switchConcern._isInitCall = true;
+      switchConcern('dullness', sectionId);
+      switchConcern._isInitCall = false;
+    });
   });
 
   // Also initialize if DOM is already loaded
@@ -1334,14 +2102,22 @@
       initializeSlider(sectionId);
       initializeTabListeners(sectionId);
       initializeTabPositioning(sectionId);
-      switchConcern('dullness', sectionId);
+      requestAnimationFrame(() => {
+        switchConcern._isInitCall = true;
+        switchConcern('dullness', sectionId);
+        switchConcern._isInitCall = false;
+      });
     });
   } else {
     const sectionId = '{{ section.id }}';
     initializeSlider(sectionId);
     initializeTabListeners(sectionId);
     initializeTabPositioning(sectionId);
-    switchConcern('dullness', sectionId);
+    requestAnimationFrame(() => {
+      switchConcern._isInitCall = true;
+      switchConcern('dullness', sectionId);
+      switchConcern._isInitCall = false;
+    });
   }
 </script>
 
@@ -1532,6 +2308,118 @@
       "step": 2,
       "unit": "px",
       "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "label": "Mobile Title Font Size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_font_size",
+      "label": "Mobile Description Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_image_height",
+      "label": "Mobile Card Image Height",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 130
+    },
+    {
+      "type": "range",
+      "id": "mobile_before_after_height",
+      "label": "Mobile Before/After Image Height",
+      "min": 180,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "color",
+      "id": "mobile_dot_active_color",
+      "label": "Mobile Carousel Active Dot Color",
+      "default": "#00E0FF"
+    },
+    {
+      "type": "color",
+      "id": "mobile_dot_inactive_color",
+      "label": "Mobile Carousel Inactive Dot Color",
+      "default": "#d0d0d0"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings"
+    },
+    {
+      "type": "range",
+      "id": "tablet_title_font_size",
+      "label": "Tablet Title Font Size",
+      "min": 24,
+      "max": 52,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "tablet_description_font_size",
+      "label": "Tablet Description Font Size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_image_height",
+      "label": "Tablet Card Image Height",
+      "min": 100,
+      "max": 260,
+      "step": 10,
+      "unit": "px",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "tablet_before_after_height",
+      "label": "Tablet Before/After Image Height",
+      "min": 200,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "tablet_dot_active_color",
+      "label": "Tablet Carousel Active Dot Color",
+      "default": "#00E0FF"
+    },
+    {
+      "type": "color",
+      "id": "tablet_dot_inactive_color",
+      "label": "Tablet Carousel Inactive Dot Color",
+      "default": "#d0d0d0"
     }
   ],
   "blocks": [

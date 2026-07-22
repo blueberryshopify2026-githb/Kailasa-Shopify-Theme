@@ -3,6 +3,7 @@
   Features: 40/60 layout, product image with interactive dots, hover info panels
 {% endcomment %}
 
+
 <style>
   .pptb {
     position: relative;
@@ -19,6 +20,7 @@
     overflow-x: hidden;
   }
 
+
   .pptb__background-overlay {
     position: absolute;
     top: 0;
@@ -28,6 +30,7 @@
     background: rgba(255, 255, 255, 0.3);
     z-index: 1;
   }
+
 
   .pptb__container {
     width: 100%;
@@ -42,11 +45,13 @@
     z-index: 2;
   }
 
+
   /* Left side - Content */
   .pptb__content {
     position: relative;
     z-index: 2;
   }
+
 
   .pptb__heading {
     font-size: {{ section.settings.heading_size | default: 48 }}px;
@@ -58,6 +63,7 @@
     font-family: 'Montserrat', sans-serif;
   }
 
+
   .pptb__description {
     font-size: {{ section.settings.description_size | default: 18 }}px;
     line-height: 1.6;
@@ -67,9 +73,11 @@
     margin: 0;
   }
 
+
   .pptb__description p {
     margin: 0 0 20px 0;
   }
+
 
   /* Right side - Product with dots */
   .pptb__product-section {
@@ -79,11 +87,13 @@
     align-items: center;
   }
 
+
   .pptb__product-container {
     position: relative;
     max-width: 500px;
     width: 100%;
   }
+
 
   .pptb__product-image {
     width: 100%;
@@ -92,9 +102,38 @@
     border-radius: 12px;
   }
 
+
+  /* Dot wrapper - sits at the dot's x/y position */
+  .pptb__dot-wrapper {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+
+
+  /* Large invisible touch target around each dot */
+  .pptb__dot-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: transparent;
+    z-index: 20;
+  }
+
+
   /* Blinking dots - Loading cyan style with outline */
   .pptb__dot {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -104,15 +143,10 @@
     cursor: pointer;
     z-index: 10;
     animation: pptb-slow-blink 3s ease-in-out infinite;
+    pointer-events: auto;
     transition: all 0.3s ease;
-    transform: translate(-50%, -50%);
   }
 
-  .pptb__dot:hover {
-    animation: pptb-fast-blink 0.5s ease-in-out infinite;
-    transform: translate(-50%, -50%) scale(1.2);
-    box-shadow: 0 0 0 3px rgba(79, 255, 255, 0.5), 0 0 20px rgba(79, 255, 255, 0.4);
-  }
 
   @keyframes pptb-slow-blink {
     0%, 100% {
@@ -125,6 +159,7 @@
     }
   }
 
+
   @keyframes pptb-fast-blink {
     0%, 100% {
       opacity: 0.8;
@@ -135,6 +170,7 @@
       box-shadow: 0 0 0 4px rgba(79, 255, 255, 0.7);
     }
   }
+
 
   /* Info panels - Smart positioning based on dot location */
   .pptb__info-panel {
@@ -153,29 +189,48 @@
     z-index: 15;
     pointer-events: none;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* vertically center panel on the dot */
+    top: 50%;
   }
 
-  /* Dots on left side (0-50%) - panels open to the left */
+
+  /* Dot on left side — panel opens to the LEFT of the dot */
   .pptb__info-panel--left {
-    transform: translateX(10px) translateY(-50%);
+    right: calc(100% + 14px);
+    transform: translateY(-50%) translateX(-8px);
   }
 
-  .pptb__dot:hover + .pptb__info-panel--left {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0) translateY(-50%);
-  }
 
-  /* Dots on right side (50-100%) - panels open to the right */
+  /* Dot on right side — panel opens to the RIGHT of the dot */
   .pptb__info-panel--right {
-    transform: translateX(-10px) translateY(-50%);
+    left: calc(100% + 14px);
+    transform: translateY(-50%) translateX(8px);
   }
 
-  .pptb__dot:hover + .pptb__info-panel--right {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0) translateY(-50%);
+
+  /* Desktop hover — only on real pointer/mouse devices */
+  @media (hover: hover) and (pointer: fine) {
+    .pptb__dot-wrapper:hover .pptb__info-panel--left {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-50%) translateX(0);
+    }
+
+
+    .pptb__dot-wrapper:hover .pptb__info-panel--right {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-50%) translateX(0);
+    }
+
+
+    .pptb__dot-wrapper:hover .pptb__dot {
+      animation: pptb-fast-blink 0.5s ease-in-out infinite;
+      transform: scale(1.2);
+      box-shadow: 0 0 0 3px rgba(79, 255, 255, 0.5), 0 0 20px rgba(79, 255, 255, 0.4);
+    }
   }
+
 
   .pptb__info-title {
     font-size: 16px;
@@ -186,6 +241,7 @@
     line-height: 1.3;
   }
 
+
   .pptb__info-description {
     font-size: 14px;
     color: #666666;
@@ -195,6 +251,33 @@
     font-family: 'Montserrat', sans-serif;
   }
 
+
+  /* ── Touch tap-to-open panels (mobile & tablet ≤1024px) ──────────────────
+     .pptb--tap-open is added by JS on tap. Desktop hover is CSS-only, untouched.
+  ──────────────────────────────────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    /* Enlarge touch target on mobile/tablet */
+    .pptb__dot-wrapper::before {
+      width: 64px !important;
+      height: 64px !important;
+    }
+
+
+    .pptb__dot-wrapper.pptb--tap-open .pptb__info-panel--left {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(-50%) translateX(0) !important;
+    }
+
+
+    .pptb__dot-wrapper.pptb--tap-open .pptb__info-panel--right {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(-50%) translateX(0) !important;
+    }
+  }
+
+
   /* Mobile responsive */
   @media (max-width: 1024px) {
     .pptb__container {
@@ -203,13 +286,16 @@
       text-align: center;
     }
 
+
     .pptb__heading {
       font-size: calc({{ section.settings.heading_size | default: 48 }}px * 0.8);
     }
 
+
     .pptb__description {
       font-size: calc({{ section.settings.description_size | default: 18 }}px * 0.9);
     }
+
 
     .pptb__product-container {
       max-width: 400px;
@@ -217,33 +303,40 @@
     }
   }
 
+
   @media (max-width: 768px) {
     .pptb {
       padding: 40px 0;
     }
+
 
     .pptb__container {
       padding: 0 15px;
       gap: 30px;
     }
 
+
     .pptb__heading {
       font-size: calc({{ section.settings.heading_size | default: 48 }}px * 0.6);
       margin-bottom: 20px;
     }
 
+
     .pptb__description {
       font-size: calc({{ section.settings.description_size | default: 18 }}px * 0.8);
     }
+
 
     .pptb__product-container {
       max-width: 300px;
     }
 
+
     .pptb__dot {
       width: 14px;
       height: 14px;
     }
+
 
     .pptb__info-panel {
       min-width: 200px;
@@ -251,17 +344,199 @@
       padding: 15px;
     }
 
+
     .pptb__info-title {
       font-size: 14px;
     }
+
 
     .pptb__info-description {
       font-size: 12px;
     }
   }
+
+
+  /* ── TABLET ONLY: 481px – 1024px ─────────────────────────────────────────
+     Heading centered + larger, product bigger, dots + panels scaled up.
+     Desktop (>1024px) and mobile (≤480px) are NOT touched.
+  ──────────────────────────────────────────────────────────────────────── */
+  @media (min-width: 481px) and (max-width: 1024px) {
+
+
+    /* Stack layout, centered */
+    .pptb__container {
+      grid-template-columns: 1fr !important;
+      gap: 36px !important;
+      padding: 0 30px !important;
+      text-align: center !important;
+    }
+
+
+    /* Reduce section height */
+    .pptb {
+      min-height: unset !important;
+      padding: 40px 0 !important;
+    }
+
+
+    .pptb__content {
+      text-align: center !important;
+    }
+
+
+    /* Heading: bigger and centered */
+    .pptb__heading {
+      font-size: {{ section.settings.tab_heading_size | default: 46 }}px !important;
+      line-height: 1.15 !important;
+      margin-bottom: 16px !important;
+    }
+
+
+    .pptb__description {
+      font-size: {{ section.settings.tab_description_size | default: 22 }}px !important;
+      max-width: 680px !important;
+      margin: 0 auto !important;
+    }
+
+
+    /* Product image: much larger, centered */
+    .pptb__product-section {
+      display: flex !important;
+      justify-content: center !important;
+    }
+
+
+    .pptb__product-container {
+      max-width: 65vw !important;
+      width: 65vw !important;
+      margin: 0 auto !important;
+    }
+
+
+    /* Dots: larger */
+    .pptb__dot {
+      width: 22px !important;
+      height: 22px !important;
+    }
+
+
+    /* Panels: larger text and padding */
+    .pptb__info-panel {
+      min-width: 280px !important;
+      max-width: 340px !important;
+      padding: 22px 24px !important;
+    }
+
+
+    .pptb__info-title {
+      font-size: {{ section.settings.tab_panel_title_size | default: 18 }}px !important;
+    }
+
+
+    .pptb__info-description {
+      font-size: {{ section.settings.tab_panel_desc_size | default: 15 }}px !important;
+    }
+  }
+
+
+  /* ── MOBILE ONLY ≤480px: reference layout ─────────────────────────────
+     Text centered top, image wider centered below, dots + panels unchanged.
+     Desktop/tablet NOT touched. Uses pptb__ existing classes only.
+  ──────────────────────────────────────────────────────────────────────── */
+  @media (max-width: 480px) {
+
+
+    .pptb {
+      padding: 32px 0 40px !important;
+      min-height: unset !important;
+    }
+
+
+    .pptb__container {
+      grid-template-columns: 1fr !important;
+      gap: 24px !important;
+      padding: 0 20px !important;
+    }
+
+
+    /* Text: centered */
+    .pptb__content {
+      text-align: center !important;
+    }
+
+
+    .pptb__heading {
+      font-size: {{ section.settings.mob_heading_size | default: 26 }}px !important;
+      margin-bottom: 14px !important;
+      line-height: 1.2 !important;
+    }
+
+
+    .pptb__description {
+      font-size: {{ section.settings.mob_description_size | default: 15 }}px !important;
+      line-height: 1.5 !important;
+    }
+
+
+    /* Image: wider, centered */
+    .pptb__product-section {
+      order: 2 !important;
+    }
+
+
+    .pptb__product-container {
+      max-width: 85vw !important;
+      width: 85vw !important;
+      margin: 0 auto !important;
+    }
+
+
+    /* Dots: same size as 768px */
+    .pptb__dot {
+      width: 14px !important;
+      height: 14px !important;
+    }
+
+
+    /* Info panels: smaller on mobile */
+    .pptb__info-panel {
+      min-width: 130px !important;
+      max-width: 160px !important;
+      padding: 10px 12px !important;
+    }
+
+
+    .pptb__info-title {
+      font-size: {{ section.settings.mob_panel_title_size | default: 11 }}px !important;
+      margin-bottom: 3px !important;
+    }
+
+
+    .pptb__info-description {
+      font-size: {{ section.settings.mob_panel_desc_size | default: 10 }}px !important;
+      line-height: 1.4 !important;
+    }
+
+
+    /* On mobile: left-side panels go LEFT, right-side panels go RIGHT — same as desktop */
+    /* Panels start hidden — shown via JS tap class .pptb--tap-open only */
+    .pptb__info-panel--left {
+      left: auto !important;
+      right: calc(100% + 8px) !important;
+      transform: translateY(-50%) translateX(0) !important;
+    }
+
+
+    .pptb__info-panel--right {
+      left: calc(100% + 8px) !important;
+      right: auto !important;
+      transform: translateY(-50%) translateX(0) !important;
+    }
+  }
 </style>
 
-<section class="pptb full-width" id="pptb-{{ section.id }}" 
+
+<section class="pptb full-width" id="pptb-{{ section.id }}"
   {% if section.settings.background_image %}
     style="background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');"
   {% endif %}
@@ -269,7 +544,7 @@
   {% if section.settings.background_image %}
     <div class="pptb__background-overlay"></div>
   {% endif %}
-  
+ 
   <div class="pptb__container">
     <!-- Left side - Content -->
     <div class="pptb__content">
@@ -277,10 +552,12 @@
         <h2 class="pptb__heading">{{ section.settings.heading }}</h2>
       {% endif %}
 
+
       {% if section.settings.description != blank %}
         <div class="pptb__description">{{ section.settings.description }}</div>
       {% endif %}
     </div>
+
 
     <!-- Right side - Product with interactive dots -->
     <div class="pptb__product-section">
@@ -295,51 +572,103 @@
           >
         {% endif %}
 
+
         <!-- Interactive dots -->
         {% for block in section.blocks %}
           {% assign dot_x = block.settings.dot_position_x | default: 50 %}
           {% assign dot_y = block.settings.dot_position_y | default: 50 %}
-          
-          <div 
-            class="pptb__dot" 
-            style="top: {{ dot_y }}%; left: {{ dot_x }}%;"
-            {{ block.shopify_attributes }}
-          ></div>
-          
+         
           {% if dot_x >= 50 %}
-            <!-- Dot on right side - panel opens to the right -->
-            <div 
-              class="pptb__info-panel pptb__info-panel--right"
-              style="top: {{ dot_y }}%; left: calc({{ dot_x }}% + 20px);"
-            >
-              {% if block.settings.info_title != blank %}
-                <h3 class="pptb__info-title">{{ block.settings.info_title }}</h3>
-              {% endif %}
-              
-              {% if block.settings.info_description != blank %}
-                <p class="pptb__info-description">{{ block.settings.info_description }}</p>
-              {% endif %}
-            </div>
+            {% assign panel_side = 'right' %}
           {% else %}
-            <!-- Dot on left side - panel opens to the left -->
-            <div 
-              class="pptb__info-panel pptb__info-panel--left"
-              style="top: {{ dot_y }}%; right: calc(100% - {{ dot_x }}% + 20px);"
-            >
+            {% assign panel_side = 'left' %}
+          {% endif %}
+
+
+          <!-- Dot + panel wrapper: positioned at the dot location -->
+          <div class="pptb__dot-wrapper" style="top: {{ dot_y }}%; left: {{ dot_x }}%;">
+            <div class="pptb__dot" {{ block.shopify_attributes }}></div>
+            <div class="pptb__info-panel pptb__info-panel--{{ panel_side }}">
               {% if block.settings.info_title != blank %}
                 <h3 class="pptb__info-title">{{ block.settings.info_title }}</h3>
               {% endif %}
-              
               {% if block.settings.info_description != blank %}
                 <p class="pptb__info-description">{{ block.settings.info_description }}</p>
               {% endif %}
             </div>
-          {% endif %}
+          </div>
+
+
         {% endfor %}
       </div>
     </div>
   </div>
 </section>
+
+
+<script>
+(function() {
+  function resetPanels() {
+    /* Remove any JS-applied inline styles so CSS takes full control */
+    document.querySelectorAll('#pptb-{{ section.id }} .pptb__info-panel').forEach(function(panel) {
+      panel.style.removeProperty('left');
+      panel.style.removeProperty('right');
+    });
+  }
+  document.addEventListener('DOMContentLoaded', resetPanels);
+  window.addEventListener('resize', function() {
+    resetPanels();
+    /* Also close any open tap-panels when switching breakpoints */
+    closeTapPanels();
+  });
+
+
+  /* ── Touch/click toggle for mobile & tablet only ──────────────────────────
+     Desktop uses CSS :hover — untouched.
+     On touch devices, tap dot to open panel, tap elsewhere to close.
+  ──────────────────────────────────────────────────────────────────────────── */
+  var TOUCH_MAX = 1024;
+
+
+  function isTouchBreakpoint() {
+    return window.innerWidth <= TOUCH_MAX;
+  }
+
+
+  function closeTapPanels() {
+    document.querySelectorAll('#pptb-{{ section.id }} .pptb__dot-wrapper.pptb--tap-open')
+      .forEach(function(w) { w.classList.remove('pptb--tap-open'); });
+  }
+
+
+  function handleTap(e) {
+    if (!isTouchBreakpoint()) return;
+    var wrapper = e.target.closest('.pptb__dot-wrapper');
+    if (wrapper) {
+      e.preventDefault();
+      e.stopPropagation();
+      var isOpen = wrapper.classList.contains('pptb--tap-open');
+      closeTapPanels();
+      if (!isOpen) wrapper.classList.add('pptb--tap-open');
+      return;
+    }
+    closeTapPanels();
+  }
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var section = document.getElementById('pptb-{{ section.id }}');
+    if (!section) return;
+
+
+    /* touchend fires instantly on real devices without the 300ms click delay */
+    section.addEventListener('touchend', handleTap, { passive: false });
+    /* click as fallback (devtools touch simulation, stylus, etc.) */
+    section.addEventListener('click', handleTap);
+  });
+})();
+</script>
+
 
 {% schema %}
 {
@@ -427,6 +756,94 @@
       "id": "product_image",
       "label": "Product Image",
       "info": "Recommended: 500x600px or larger"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Typography (481px – 1024px)"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Heading Size",
+      "default": 66
+    },
+    {
+      "type": "range",
+      "id": "tab_description_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Description Size",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "tab_panel_title_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Panel Title Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tab_panel_desc_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Panel Description Size",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Mobile Typography (≤480px)"
+    },
+    {
+      "type": "range",
+      "id": "mob_heading_size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Heading Size",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "mob_description_size",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mob_panel_title_size",
+      "min": 8,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Panel Title Size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mob_panel_desc_size",
+      "min": 8,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Panel Description Size",
+      "default": 10
     }
   ],
   "blocks": [
@@ -443,7 +860,7 @@
           "step": 1,
           "unit": "%",
           "label": "Horizontal Position",
-          "default": 50,
+          "default": 44,
           "info": "Position from left edge (0% = left, 100% = right)"
         },
         {
@@ -454,7 +871,7 @@
           "step": 1,
           "unit": "%",
           "label": "Vertical Position",
-          "default": 50,
+          "default": 15,
           "info": "Position from top edge (0% = top, 100% = bottom)"
         },
         {
@@ -510,3 +927,4 @@
   ]
 }
 {% endschema %}
+

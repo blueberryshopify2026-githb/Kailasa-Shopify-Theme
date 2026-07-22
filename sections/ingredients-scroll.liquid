@@ -100,7 +100,6 @@
     align-self: flex-end;
   }
 
-
   .ingredient-d-card:hover {
     filter: grayscale(0.7);
     transform: scale(1.05);
@@ -130,7 +129,7 @@
 
   .ingredient-d-card.active:hover {
     transform: scale(1) !important;
-    filter: grayscale(0) !important;
+    filter: grayscale(0) !important;`
   }
 
 
@@ -264,6 +263,16 @@
 
   /* Show full description when frost glass is hovered */
   .ingredient-d-card.active .ingredient-hover-info.show-details {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    z-index: 25 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Same for mobile and tablet active cards */
+  .is-mobile-card.is-active .ingredient-hover-info.show-details,
+  .is-tablet-card.is-tablet-active .ingredient-hover-info.show-details {
     opacity: 1 !important;
     visibility: visible !important;
     display: flex !important;
@@ -406,6 +415,7 @@
 
     .ingredients-title {
       font-size: 32px !important;
+      font-weight: 700;
       margin-bottom: 15px;
     }
 
@@ -505,6 +515,7 @@
 
     .ingredients-title {
       font-size: 28px !important;
+      font-weight: 700;
       margin-bottom: 12px;
     }
 
@@ -658,6 +669,328 @@
     }
   }
 
+  /* =============================================
+     MOBILE ONLY - max-width: 768px
+     Desktop code above is NOT touched
+     ============================================= */
+  @media (max-width: 768px) {
+
+    /* Section */
+    .ingredients-scroll-section {
+      padding: {{ section.settings.mobile_section_padding | default: 40 }}px 0 !important;
+    }
+
+    /* Header — bigger, more breathing room */
+    .ingredients-header {
+      margin-bottom: 28px !important;
+      padding: 0 32px !important;
+    }
+
+    .ingredients-title {
+      font-size: {{ section.settings.mobile_title_size | default: 28 }}px !important;
+      font-weight: {{ section.settings.mobile_title_weight | default: '800' }} !important;
+      text-align: center !important;
+      line-height: 1.15 !important;
+      margin-bottom: 16px !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    .ingredients-description {
+      font-size: {{ section.settings.mobile_desc_size | default: 15 }}px !important;
+      font-weight: {{ section.settings.mobile_desc_weight | default: '400' }} !important;
+      text-align: center !important;
+      max-width: 100% !important;
+      line-height: 1.6 !important;
+      color: #666 !important;
+    }
+
+    /* Hide the desktop carousel entirely on mobile */
+    .ingredients-carousel {
+      display: none !important;
+    }
+
+    /* Mobile carousel wrapper — fixed height prevents button jumping */
+    .is-mobile-carousel {
+      display: block !important;
+      width: 100vw !important;
+      margin-left: calc(-50vw + 50%) !important;
+      overflow: hidden !important;
+      position: relative !important;
+      padding: 20px 0 !important;
+      height: {{ section.settings.mobile_center_card_size | default: 260 }}px !important;
+      box-sizing: content-box !important;
+      touch-action: pan-y !important;
+    }
+
+    .is-mobile-track {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      height: 100% !important;
+      transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+      will-change: transform !important;
+    }
+
+    /* Side cards — vertically centered, aligned with active card bottom */
+    .is-mobile-card {
+      flex: 0 0 {{ section.settings.mobile_side_card_size | default: 150 }}px !important;
+      width: {{ section.settings.mobile_side_card_size | default: 150 }}px !important;
+      height: {{ section.settings.mobile_side_card_size | default: 150 }}px !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      filter: grayscale(1) !important;
+      opacity: 0.7 !important;
+      /* Only animate width/height/opacity/border-radius — NOT filter (causes paint on real devices) */
+      transition: width 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  height 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  flex-basis 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  border-radius 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+      cursor: pointer !important;
+      position: relative !important;
+      flex-shrink: 0 !important;
+      align-self: flex-end !important;
+      transform: translateZ(0) !important;
+      will-change: width, height, opacity !important;
+    }
+
+    /* Center/active card */
+    .is-mobile-card.is-active {
+      flex: 0 0 {{ section.settings.mobile_center_card_size | default: 260 }}px !important;
+      width: {{ section.settings.mobile_center_card_size | default: 260 }}px !important;
+      height: {{ section.settings.mobile_center_card_size | default: 260 }}px !important;
+      filter: grayscale(0) !important;
+      opacity: 1 !important;
+      border-radius: 20px !important;
+      border: 2px solid rgba(255, 255, 255, 0.3) !important;
+      align-self: flex-end !important;
+    }
+
+    .is-mobile-card img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+
+    /* Frost glass — only on active card */
+    .is-mobile-card .is-mobile-frost {
+      position: absolute !important;
+      bottom: 14px !important;
+      left: 14px !important;
+      right: 14px !important;
+      background: rgba(255, 255, 255, 0.3) !important;
+      backdrop-filter: blur(15px) !important;
+      -webkit-backdrop-filter: blur(15px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      border-radius: 12px !important;
+      padding: 12px 14px !important;
+      opacity: 0 !important;
+      transition: opacity 0.3s ease !important;
+      pointer-events: none !important;
+    }
+
+    .is-mobile-card.is-active .is-mobile-frost {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+
+    .is-mobile-frost h3 {
+      margin: 0 0 4px 0 !important;
+      font-size: {{ section.settings.mobile_card_name_size | default: 17 }}px !important;
+      font-weight: 700 !important;
+      color: white !important;
+      font-family: 'Montserrat', sans-serif !important;
+      line-height: 1.2 !important;
+    }
+
+    .is-mobile-frost p {
+      margin: 0 !important;
+      font-size: {{ section.settings.mobile_card_subtitle_size | default: 13 }}px !important;
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    /* Button */
+    .supplement-facts-container {
+      margin-top: 28px !important;
+      padding: 0 20px !important;
+    }
+
+    .supplement-facts-button {
+      font-size: {{ section.settings.mobile_button_font_size | default: 15 }}px !important;
+      font-weight: {{ section.settings.mobile_button_font_weight | default: '600' }} !important;
+      padding: 14px 28px !important;
+      border-color: {{ section.settings.mobile_button_border_color | default: '#4fffff' }} !important;
+      color: {{ section.settings.mobile_button_text_color | default: '#333333' }} !important;
+      max-width: 100% !important;
+      letter-spacing: 0.5px !important;
+    }
+
+  }
+
+  /* =============================================
+     TABLET ONLY - 769px to 1024px
+     Exact same UI as mobile. Desktop NOT touched.
+     ============================================= */
+  @media (min-width: 769px) and (max-width: 1024px) {
+
+    .ingredients-scroll-section {
+      padding: {{ section.settings.tablet_section_padding | default: 50 }}px 0 !important;
+    }
+
+    .ingredients-header {
+      margin-bottom: 32px !important;
+      padding: 0 48px !important;
+    }
+
+    .ingredients-title {
+      font-size: {{ section.settings.tablet_title_size | default: 36 }}px !important;
+      font-weight: {{ section.settings.tablet_title_weight | default: '800' }} !important;
+      text-align: center !important;
+      line-height: 1.15 !important;
+      margin-bottom: 18px !important;
+      letter-spacing: -0.02em !important;
+    }
+
+    .ingredients-description {
+      font-size: {{ section.settings.tablet_desc_size | default: 17 }}px !important;
+      font-weight: {{ section.settings.tablet_desc_weight | default: '400' }} !important;
+      text-align: center !important;
+      max-width: 100% !important;
+      line-height: 1.6 !important;
+      color: #666 !important;
+    }
+
+    /* Hide desktop carousel on tablet */
+    .ingredients-carousel {
+      display: none !important;
+    }
+
+    /* Hide mobile carousel on tablet */
+    .is-mobile-carousel {
+      display: none !important;
+    }
+
+    /* Tablet carousel — full width, fixed height */
+    .is-tablet-carousel {
+      display: block !important;
+      width: 100vw !important;
+      margin-left: calc(-50vw + 50%) !important;
+      overflow: hidden !important;
+      position: relative !important;
+      padding: 20px 0 !important;
+      height: {{ section.settings.tablet_center_card_size | default: 340 }}px !important;
+      box-sizing: content-box !important;
+      touch-action: pan-y !important;
+    }
+
+    .is-tablet-track {
+      display: flex !important;
+      align-items: flex-end !important;
+      gap: 16px !important;
+      height: 100% !important;
+      transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+      will-change: transform !important;
+    }
+
+    /* Side cards */
+    .is-tablet-card {
+      flex: 0 0 {{ section.settings.tablet_side_card_size | default: 220 }}px !important;
+      width: {{ section.settings.tablet_side_card_size | default: 220 }}px !important;
+      height: {{ section.settings.tablet_side_card_size | default: 220 }}px !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      filter: grayscale(1) !important;
+      opacity: 0.75 !important;
+      /* Explicit compositable properties only — avoids paint on filter change */
+      transition: width 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  height 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  flex-basis 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  border-radius 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+      cursor: pointer !important;
+      position: relative !important;
+      flex-shrink: 0 !important;
+      transform: translateZ(0) !important;
+      will-change: width, height, opacity !important;
+    }
+
+    /* Active/center card */
+    .is-tablet-card.is-tablet-active {
+      flex: 0 0 {{ section.settings.tablet_center_card_size | default: 340 }}px !important;
+      width: {{ section.settings.tablet_center_card_size | default: 340 }}px !important;
+      height: {{ section.settings.tablet_center_card_size | default: 340 }}px !important;
+      filter: grayscale(0) !important;
+      opacity: 1 !important;
+      border-radius: 22px !important;
+      border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .is-tablet-card img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+
+    /* Frost glass */
+    .is-tablet-card .is-tablet-frost {
+      position: absolute !important;
+      bottom: 16px !important;
+      left: 16px !important;
+      right: 16px !important;
+      background: rgba(255, 255, 255, 0.3) !important;
+      backdrop-filter: blur(15px) !important;
+      -webkit-backdrop-filter: blur(15px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      border-radius: 14px !important;
+      padding: 14px 18px !important;
+      opacity: 0 !important;
+      transition: opacity 0.3s ease !important;
+      pointer-events: none !important;
+    }
+
+    .is-tablet-card.is-tablet-active .is-tablet-frost {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+
+    .is-tablet-frost h3 {
+      margin: 0 0 5px 0 !important;
+      font-size: {{ section.settings.tablet_card_name_size | default: 20 }}px !important;
+      font-weight: 700 !important;
+      color: white !important;
+      font-family: 'Montserrat', sans-serif !important;
+      line-height: 1.2 !important;
+    }
+
+    .is-tablet-frost p {
+      margin: 0 !important;
+      font-size: {{ section.settings.tablet_card_subtitle_size | default: 15 }}px !important;
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .supplement-facts-container {
+      margin-top: 32px !important;
+      padding: 0 24px !important;
+    }
+
+    .supplement-facts-button {
+      font-size: {{ section.settings.tablet_button_font_size | default: 16 }}px !important;
+      font-weight: {{ section.settings.tablet_button_font_weight | default: '600' }} !important;
+      padding: 16px 32px !important;
+      border-color: {{ section.settings.tablet_button_border_color | default: '#4fffff' }} !important;
+      color: {{ section.settings.tablet_button_text_color | default: '#333333' }} !important;
+      max-width: 100% !important;
+      letter-spacing: 0.5px !important;
+    }
+
+  }
+
 
   /* View Supplement Facts Button Container */
   .supplement-facts-container {
@@ -693,8 +1026,8 @@
 
 
   .supplement-facts-button:hover {
-    background: #000000;
-    color: white;
+    background: #4fffff;
+    color: black;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
@@ -1055,7 +1388,7 @@
 
       <div class="ingredients-container">
         <div class="ingredients-track" id="track-{{ section.id }}">
-          <!-- 10 clone sets at the beginning for truly infinite left scroll -->
+          <!-- 10 clone sets at beginning for truly infinite left scroll -->
           {% for i in (1..10) %}
             {% for block in section.blocks %}
               <div
@@ -1097,7 +1430,7 @@
                     {% if block.settings.subtitle %}
                       <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
                     {% endif %}
-                    <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
+                    <button class="close-hover" onmousedown="event.stopPropagation()" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
@@ -1120,135 +1453,6 @@
               </div>
             {% endfor %}
           {% endfor %}
-
-
-          <!-- Second set of clones at the beginning -->
-          {% for block in section.blocks %}
-            <div
-              class="ingredient-d-card clone-card"
-              data-original-index="{{ forloop.index0 }}"
-              onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
-            >
-              <div class="ingredient-d-image">
-                {% if block.settings.image %}
-                  <img
-                    src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
-                    alt="{{ block.settings.name }}"
-                    loading="lazy"
-                    width="400"
-                    height="400"
-                  >
-                {% else %}
-                  <div class="ingredients-scroll-placeholder-image"></div>
-                {% endif %}
-              </div>
-
-
-              <!-- Auto Info Display (always visible on center card) -->
-              <div class="ingredient-auto-info">
-                <div class="auto-info-header">
-                  <h3>{{ block.settings.name }}</h3>
-                  {% if block.settings.subtitle %}
-                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
-                  {% endif %}
-                </div>
-              </div>
-
-
-              <!-- Full Info on Hover -->
-              <div class="ingredient-hover-info">
-                <div class="hover-info-header">
-                  <h3>{{ block.settings.name }}</h3>
-                  {% if block.settings.subtitle %}
-                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
-                  {% endif %}
-                  <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
-                </div>
-                <div class="hover-info-content">
-                  <div class="ingredient-full-desc">
-                    {{ block.settings.full_description }}
-                  </div>
-                  {% if block.settings.studies_count %}
-                    <div class="studies-info">
-                      <p>
-                        There are {{ block.settings.studies_count }} studies on {{ block.settings.name | downcase }} and
-                        counting.
-                      </p>
-                    </div>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-
-
-          <!-- Third set of clones at the beginning -->
-          {% for block in section.blocks %}
-            <div
-              class="ingredient-d-card clone-card"
-              data-original-index="{{ forloop.index0 }}"
-              onclick="selectIngredientClone({{ forloop.index0 }}, '{{ section.id }}')"
-            >
-              <div class="ingredient-d-image">
-                {% if block.settings.image %}
-                  <img
-                    src="{{ block.settings.image | image_url: width: 400, height: 400 }}"
-                    alt="{{ block.settings.name }}"
-                    loading="lazy"
-                    width="400" 
-                    height="400"
-                  >
-                {% else %}
-                  <div class="ingredients-scroll-placeholder-image"></div>
-                {% endif %}
-              </div>
-
-
-              <!-- Auto Info Display (always visible on center card) -->
-              <div class="ingredient-auto-info">
-                <div class="auto-info-header">
-                  <h3>{{ block.settings.name }}</h3>
-                  {% if block.settings.subtitle %}
-                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
-                  {% endif %}
-                </div>
-              </div>
-
-
-              <!-- Full Info on Hover -->
-              <div class="ingredient-hover-info">
-                <div class="hover-info-header">
-                  <h3>{{ block.settings.name }}</h3>
-                  {% if block.settings.subtitle %}
-                    <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
-                  {% endif %}
-                  <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
-                </div>
-                <div class="hover-info-content">
-                  <div class="ingredient-full-desc">
-                    {{ block.settings.full_description }}
-                  </div>
-                  {% if block.settings.studies_count %}
-                    <div class="studies-info">
-                      <p>
-                        There are {{ block.settings.studies_count }} studies on {{ block.settings.name | downcase }} and
-                        counting.
-                      </p>
-                    </div>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-
 
           <!-- Original cards -->
           {% for block in section.blocks %}
@@ -1290,7 +1494,7 @@
                   {% if block.settings.subtitle %}
                     <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
                   {% endif %}
-                  <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
+                  <button class="close-hover" onmousedown="event.stopPropagation()" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                       <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -1356,7 +1560,7 @@
                     {% if block.settings.subtitle %}
                       <p class="ingredient-subtitle">{{ block.settings.subtitle }}</p>
                     {% endif %}
-                    <button class="close-hover" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
+                    <button class="close-hover" onmousedown="event.stopPropagation()" onclick="event.stopPropagation(); closeHoverInfo('{{ section.id }}')">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
@@ -1385,6 +1589,16 @@
       <div class="carousel-spacer"></div>
     </div>
 
+
+    <!-- Mobile Carousel (shown only on mobile via JS) -->
+    <div class="is-mobile-carousel" id="is-mobile-carousel-{{ section.id }}" style="display:none;">
+      <div class="is-mobile-track" id="is-mobile-track-{{ section.id }}"></div>
+    </div>
+
+    <!-- Tablet Carousel (shown only on tablet via JS) -->
+    <div class="is-tablet-carousel" id="is-tablet-carousel-{{ section.id }}" style="display:none;">
+      <div class="is-tablet-track" id="is-tablet-track-{{ section.id }}"></div>
+    </div>
 
     <!-- View Supplement Facts Button -->
     <div class="supplement-facts-container">
@@ -1488,9 +1702,8 @@
 
   function initializeIngredientsScroll(sectionId) {
     const originalBlocksCount = parseInt('{{ section.blocks.size }}');
-    // With 10 clone sets at beginning + 1 original set + 10 clone sets at end = 21 total sets
-    // Start in the middle of the original set (11th set, which is index 10 * originalBlocksCount)
-    const currentIndex = (10 * originalBlocksCount) + Math.floor(originalBlocksCount / 2);
+    // Start on the first card of the original set (10 clone sets before it)
+    const currentIndex = (10 * originalBlocksCount) + 0;
 
 
     // Store data for this section
@@ -1499,7 +1712,7 @@
       currentIndex: currentIndex,
       previousIndex: currentIndex,
       isTransitioning: false,
-      totalSets: 21, // 10 clone sets + 1 original + 10 clone sets
+      totalSets: 21, // 10 clone sets before + 1 original + 10 clone sets after
       cloneSetsBeforeOriginal: 10,
       cloneSetsAfterOriginal: 10,
     };
@@ -1538,71 +1751,63 @@
     const track = document.getElementById('track-' + sectionId);
     const cards = track.querySelectorAll('.ingredient-d-card');
 
-
     if (index < 0 || index >= cards.length) return;
-
 
     const data = window.ingredientsScrollData[sectionId];
 
-
     // Prevent rapid successive calls that could cause flickering
     if (data.currentIndex === index && animate) return;
-
 
     // Store previous index before updating
     const previousIndex = data.currentIndex;
     data.previousIndex = previousIndex;
 
-
-    // Update active class immediately for smooth conveyor belt effect
+    // Remove active from previous card immediately so it shrinks in sync
     cards.forEach((card, i) => {
-      if (i === index) {
-        card.classList.add('active');
-        
-        // Show frost glass on active card
-        const frostGlass = card.querySelector('.ingredient-auto-info');
-        if (frostGlass) {
-          frostGlass.style.opacity = '1';
-          frostGlass.style.visibility = 'visible';
-          frostGlass.style.pointerEvents = 'auto';
-        }
-        
-        // Hide any open hover info
-        const hoverInfo = card.querySelector('.ingredient-hover-info');
-        if (hoverInfo) {
-          hoverInfo.classList.remove('show-details');
-        }
-      } else {
+      if (i !== index) {
         card.classList.remove('active');
-        
-        // Hide frost glass on inactive cards
         const frostGlass = card.querySelector('.ingredient-auto-info');
         if (frostGlass) {
           frostGlass.style.opacity = '0';
           frostGlass.style.visibility = 'hidden';
           frostGlass.style.pointerEvents = 'none';
         }
-        
-        // Hide any open hover info on inactive cards
         const hoverInfo = card.querySelector('.ingredient-hover-info');
-        if (hoverInfo) {
-          hoverInfo.classList.remove('show-details');
-        }
+        if (hoverInfo) hoverInfo.classList.remove('show-details');
       }
     });
 
+    // Add active immediately so the card starts growing in sync with the track slide.
+    // The CSS transition on .ingredient-d-card handles the smooth size change.
+    const targetCard = cards[index];
+    if (targetCard) {
+      targetCard.classList.add('active');
+      // Frost glass appears after the slide settles
+      const frostGlass = targetCard.querySelector('.ingredient-auto-info');
+      if (frostGlass) {
+        frostGlass.style.opacity = '0';
+        frostGlass.style.visibility = 'hidden';
+        frostGlass.style.pointerEvents = 'none';
+        setTimeout(() => {
+          frostGlass.style.opacity = '1';
+          frostGlass.style.visibility = 'visible';
+          frostGlass.style.pointerEvents = 'auto';
+        }, 580);
+      }
+      const hoverInfo = targetCard.querySelector('.ingredient-hover-info');
+      if (hoverInfo) hoverInfo.classList.remove('show-details');
+      if (sectionId === '{{ section.id }}') setTimeout(setupFrostGlassHover, 680);
+    }
 
     // Update current index
     data.currentIndex = index;
 
-
-    // Center the selected card with smooth sliding
-    centerCard(index, sectionId, animate);
-
-
-    // Refresh hover behavior after card selection
-    if (sectionId === '{{ section.id }}') {
-      setTimeout(setupFrostGlassHover, 100);
+    // Give the browser one frame to register the .active class (and thus the new card width)
+    // before centerCard calculates the transform — this keeps the slide target accurate.
+    if (animate) {
+      requestAnimationFrame(() => centerCard(index, sectionId, animate));
+    } else {
+      centerCard(index, sectionId, animate);
     }
   }
 
@@ -1652,6 +1857,7 @@
       // If already active, show the detailed info
       const hoverInfo = clickedCard.querySelector('.ingredient-hover-info');
       if (hoverInfo) {
+        clickedCard._manuallyOpened = true;
         hoverInfo.classList.add('show-details');
       }
     } else {
@@ -1666,45 +1872,29 @@
     const cards = track.querySelectorAll('.ingredient-d-card');
     const container = track.parentElement;
 
-
     if (cards.length === 0) return;
 
-
-    // Get the actual card being centered
     const activeCard = cards[index];
     if (!activeCard) return;
 
-
     const data = window.ingredientsScrollData[sectionId];
 
-
-    // Always calculate exact center position for smooth infinite loop
     const containerWidth = container.offsetWidth;
     const containerCenter = containerWidth / 2;
 
+    const sideCardWidth = 180;  // non-active card width
+    const activeCardWidth = 340; // active card width (CSS target)
+    const gap = 40;
 
-    const sideCardWidth = 180; // Side card width
-    const activeCardWidth = 340; // Active card width
-    const gap = 40; // Gap between cards
-
-
-    // Calculate position to center the active card perfectly
+    // Calculate position treating the target card as active-sized (340px)
+    // so the track moves exactly to where the grown card will be centred.
     let totalWidthBefore = 0;
-
-
-    // Add width of all cards before the active card (using side card width)
     for (let i = 0; i < index; i++) {
       totalWidthBefore += sideCardWidth + gap;
     }
-
-
-    // Add half of the ACTIVE card width to get to its center
     totalWidthBefore += activeCardWidth / 2;
 
-
-    // Calculate the transform needed to center the active card
     const targetTransform = containerCenter - totalWidthBefore;
-
 
     if (!animate) {
       track.style.transition = 'none';
@@ -1712,9 +1902,7 @@
       track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     }
 
-
     track.style.transform = `translateX(${targetTransform}px)`;
-
 
     if (!animate) {
       setTimeout(() => {
@@ -1722,24 +1910,15 @@
       }, 50);
     }
 
-
-    // Store the previous index for future movements
     data.previousIndex = index;
 
-
-    // Check if we need to handle infinite loop repositioning for truly endless scrolling
     if (animate) {
       setTimeout(() => {
-        if (!data.isTransitioning) {
-          handleInfiniteLoopRepositioning(index, sectionId);
-        }
+        if (!data.isTransitioning) handleInfiniteLoopRepositioning(index, sectionId);
       }, 650);
     } else {
-      // For immediate positioning, check after a short delay
       setTimeout(() => {
-        if (!data.isTransitioning) {
-          handleInfiniteLoopRepositioning(index, sectionId);
-        }
+        if (!data.isTransitioning) handleInfiniteLoopRepositioning(index, sectionId);
       }, 100);
     }
   }
@@ -1911,21 +2090,22 @@
 
         // Add new listeners and store references for removal
         frostGlass._hoverEnter = function () {
-          // ONLY show details if this card is active (centered)
           if (card.classList.contains('active')) {
             hoverInfo.classList.add('show-details');
           }
         };
 
-        card._hoverLeave = function () {
-          // Only hide if this card is active
+        card._hoverLeave = function (e) {
+          // Don't close if mouse moved into the hoverInfo overlay itself
+          if (hoverInfo.contains(e.relatedTarget)) return;
+          // Don't close if hoverInfo was manually opened (has content visible and user is reading)
+          if (card._manuallyOpened) return;
           if (card.classList.contains('active')) {
             hoverInfo.classList.remove('show-details');
           }
         };
 
         hoverInfo._hoverEnter = function () {
-          // ONLY show details if this card is active (centered)
           if (card.classList.contains('active')) {
             this.classList.add('show-details');
           }
@@ -1961,27 +2141,22 @@
 
   // Close hover info function
   function closeHoverInfo(sectionId) {
-    console.log('Closing hover info for section:', sectionId);
-    
-    // Find all hover info overlays in this section and hide them
     const section = document.getElementById('ingredients-scroll-' + sectionId);
-    if (section) {
-      const hoverInfos = section.querySelectorAll('.ingredient-hover-info');
-      hoverInfos.forEach(hoverInfo => {
-        hoverInfo.classList.remove('show-details');
-      });
-      
-      // Make sure the frost glass is visible on the active card
-      const activeCard = section.querySelector('.ingredient-d-card.active');
-      if (activeCard) {
-        const frostGlass = activeCard.querySelector('.ingredient-auto-info');
-        if (frostGlass) {
-          frostGlass.style.opacity = '1';
-          frostGlass.style.visibility = 'visible';
-        }
+    if (!section) return;
+    section.querySelectorAll('.ingredient-hover-info').forEach(h => {
+      h.classList.remove('show-details');
+    });
+    // Reset manual open flags
+    section.querySelectorAll('.ingredient-d-card').forEach(c => {
+      c._manuallyOpened = false;
+    });
+    const activeCard = section.querySelector('.ingredient-d-card.active');
+    if (activeCard) {
+      const frostGlass = activeCard.querySelector('.ingredient-auto-info');
+      if (frostGlass) {
+        frostGlass.style.opacity = '1';
+        frostGlass.style.visibility = 'visible';
       }
-      
-      console.log('✅ Hover info closed, frost glass restored');
     }
   }
 
@@ -2005,7 +2180,676 @@
   }
 
 
-  // Close modal when clicking outside the content
+  // ── MOBILE CAROUSEL ─────────────────────────────────────────────
+  // Builds cards in JS with 10 clone sets each side = ~21 total sets.
+  // Active card always centered. Side cards half-visible.
+
+  (function() {
+    const IS_SECTION_ID = '{{ section.id }}';
+    const IS_CLONE_SETS = 10;
+    const IS_GAP = 12;
+    // Card sizes — evaluated at init time based on actual viewport
+    let IS_CENTER_SIZE = {{ section.settings.mobile_center_card_size | default: 260 }};
+    let IS_SIDE_SIZE = {{ section.settings.mobile_side_card_size | default: 150 }};
+    const IS_TABLET_CENTER = {{ section.settings.tablet_center_card_size | default: 340 }};
+    const IS_TABLET_SIDE = {{ section.settings.tablet_side_card_size | default: 200 }};
+
+    // Raw block data from Liquid
+    const IS_BLOCKS = [
+      {% for block in section.blocks %}
+      {
+        index: {{ forloop.index0 }},
+        image: "{% if block.settings.image %}{{ block.settings.image | image_url: width: 400, height: 400 }}{% endif %}",
+        name: {{ block.settings.name | json }},
+        subtitle: {{ block.settings.subtitle | default: '' | json }},
+        fullDesc: {{ block.settings.full_description | default: '' | json }},
+        studiesCount: {{ block.settings.studies_count | default: 0 }}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ];
+
+    if (IS_BLOCKS.length === 0) return;
+
+    let isActiveIndex = IS_CLONE_SETS * IS_BLOCKS.length;
+    let isTouchStartX = 0;
+    let isTouchDeltaX = 0;
+    let isInitialized = false;
+    let isFrostTapped = false;
+    let isSliding = false; // true during a slide — blocks frost tap from opening overlay
+    let isCurrentOffsetX = 0; // JS-tracked translateX — avoids getComputedStyle reads
+    // Cached DOM refs set once in isInit — never looked up per-frame
+    let _isMobTrack = null;
+    let _isMobWrapper = null;
+
+    function isBuildCard(block, trackIdx) {
+      const div = document.createElement('div');
+      div.className = 'is-mobile-card';
+      div.dataset.origIndex = block.index;
+      div.dataset.trackIndex = trackIdx;
+
+      if (block.image) {
+        const img = document.createElement('img');
+        img.src = block.image;
+        img.alt = block.name;
+        img.loading = 'lazy';
+        img.width = 400;
+        img.height = 400;
+        div.appendChild(img);
+      } else {
+        const ph = document.createElement('div');
+        ph.className = 'ingredients-scroll-placeholder-image';
+        div.appendChild(ph);
+      }
+
+      // Frost glass — tap to show full info
+      const frost = document.createElement('div');
+      frost.className = 'is-mobile-frost';
+      frost.style.cursor = 'pointer';
+      const h3 = document.createElement('h3');
+      h3.textContent = block.name;
+      frost.appendChild(h3);
+      if (block.subtitle) {
+        const p = document.createElement('p');
+        p.textContent = block.subtitle;
+        frost.appendChild(p);
+      }
+      div.appendChild(frost);
+
+      // Full info overlay (same as desktop ingredient-hover-info)
+      const hoverInfo = document.createElement('div');
+      hoverInfo.className = 'ingredient-hover-info';
+
+      const hh = document.createElement('div');
+      hh.className = 'hover-info-header';
+      const hh3 = document.createElement('h3');
+      hh3.textContent = block.name;
+      hh.appendChild(hh3);
+      if (block.subtitle) {
+        const sp = document.createElement('p');
+        sp.className = 'ingredient-subtitle';
+        sp.textContent = block.subtitle;
+        hh.appendChild(sp);
+      }
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'close-hover';
+      closeBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      closeBtn.addEventListener('mousedown', e => e.stopPropagation());
+      closeBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        hoverInfo.classList.remove('show-details');
+        hoverInfo.style.display = 'none';
+      });
+      hh.appendChild(closeBtn);
+      hoverInfo.appendChild(hh);
+
+      const hc = document.createElement('div');
+      hc.className = 'hover-info-content';
+      const desc = document.createElement('div');
+      desc.className = 'ingredient-full-desc';
+      desc.innerHTML = block.fullDesc || '';
+      hc.appendChild(desc);
+      if (block.studiesCount) {
+        const st = document.createElement('div');
+        st.className = 'studies-info';
+        st.innerHTML = '<p>There are ' + block.studiesCount + ' studies on ' + block.name.toLowerCase() + ' and counting.</p>';
+        hc.appendChild(st);
+      }
+      hoverInfo.appendChild(hc);
+      div.appendChild(hoverInfo);
+
+      // Tap/click frost glass → show full info overlay (active card only, never during a slide)
+      let frostTouchX = 0;
+      frost.addEventListener('touchstart', e => { frostTouchX = e.touches[0].clientX; }, { passive: true });
+      frost.addEventListener('touchend', e => {
+        const moved = Math.abs(e.changedTouches[0].clientX - frostTouchX);
+        if (moved > 10) return; // was a swipe, not a tap
+        if (isSliding) return;  // slide in progress — ignore tap
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+        if (!div.classList.contains('is-active')) {
+          isSlideTo(trackIdx, true);
+          return;
+        }
+        hoverInfo.style.display = 'flex';
+        hoverInfo.classList.add('show-details');
+      });
+      frost.addEventListener('click', e => {
+        e.stopPropagation();
+        if (isSliding) return; // slide in progress — ignore click
+        if (!div.classList.contains('is-active')) { isSlideTo(trackIdx, true); return; }
+        hoverInfo.style.display = 'flex';
+        hoverInfo.classList.add('show-details');
+      });
+
+      // Card tap → slide (inactive cards only, never during a slide)
+      div.addEventListener('touchend', e => {
+        if (div.classList.contains('is-active')) return;
+        if (isSliding) return;
+        if (Math.abs(isTouchDeltaX) < 10) isSlideTo(trackIdx, true);
+      });
+      div.addEventListener('click', e => {
+        if (div.classList.contains('is-active')) return;
+        if (isSliding) return;
+        isSlideTo(trackIdx, true);
+      });
+
+      return div;
+    }
+
+    function isApplyStates(prevIdx) {
+      if (!_isMobTrack) return;
+      const cards = _isMobTrack.children;
+      if (prevIdx !== undefined && cards[prevIdx]) cards[prevIdx].classList.remove('is-active');
+      if (cards[isActiveIndex]) cards[isActiveIndex].classList.add('is-active');
+    }
+
+    function isSlideTo(idx, animate) {
+      const prevIdx = isActiveIndex;
+      isActiveIndex = idx;
+      isApplyStates(prevIdx);
+
+      isSliding = true;
+      if (animate) setTimeout(() => { isSliding = false; }, 350);
+      else isSliding = false;
+
+      const wrapperW = _isMobWrapper ? _isMobWrapper.offsetWidth : window.innerWidth;
+      let offset = 0;
+      for (let i = 0; i < idx; i++) offset += IS_SIDE_SIZE + IS_GAP;
+      offset -= (wrapperW / 2) - (IS_CENTER_SIZE / 2);
+
+      const targetX = -offset;
+      isCurrentOffsetX = targetX; // keep JS tracker in sync
+
+      if (!_isMobTrack) return;
+      _isMobTrack.style.transition = animate ? 'transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+      _isMobTrack.style.transform = 'translateX(' + targetX + 'px)';
+    }
+
+    function isJumpIfNeeded() {
+      // Not needed — 100 clone sets each side = 200+ sets total
+      // No one will ever reach the end, so no jump needed
+    }
+
+    window.isMobileSelectCard = function(origIdx, sid) {
+      if (sid !== IS_SECTION_ID) return;
+      if (!_isMobTrack) return;
+      const cards = _isMobTrack.children;
+      let best = -1, bestDist = Infinity;
+      for (let i = 0; i < cards.length; i++) {
+        if (parseInt(cards[i].dataset.origIndex) === origIdx) {
+          const d = Math.abs(i - isActiveIndex);
+          if (d < bestDist) { bestDist = d; best = i; }
+        }
+      }
+      if (best !== -1) isSlideTo(best, true);
+    };
+
+    function isInit() {
+      if (!window.innerWidth || window.innerWidth > 768) return;
+      if (isInitialized) return;
+      isInitialized = true;
+
+      const wrapper = document.getElementById('is-mobile-carousel-' + IS_SECTION_ID);
+      const track = document.getElementById('is-mobile-track-' + IS_SECTION_ID);
+      if (!wrapper || !track) return;
+
+      // Cache refs for use in isSlideTo and touch handlers — zero per-frame getElementById
+      _isMobWrapper = wrapper;
+      _isMobTrack   = track;
+
+      wrapper.style.display = 'block';
+
+      // Hide desktop carousel
+      const desk = document.querySelector('#ingredients-scroll-' + IS_SECTION_ID + ' .ingredients-carousel');
+      if (desk) desk.style.display = 'none';
+
+      // Build: clone sets before + original + clone sets after
+      const totalSets = IS_CLONE_SETS * 2 + 1;
+      track.innerHTML = '';
+      for (let s = 0; s < totalSets; s++) {
+        IS_BLOCKS.forEach((block) => {
+          const trackIdx = s * IS_BLOCKS.length + block.index;
+          track.appendChild(isBuildCard(block, trackIdx));
+        });
+      }
+
+      // ── Touch drag — all DOM refs cached once, zero getElementById in handlers ──
+      // touch-action: pan-y lets the browser handle vertical scroll on compositor thread.
+      // Horizontal drag is handled here with passive: true on touchmove (no preventDefault).
+      wrapper.style.touchAction = 'pan-y';
+
+      let isTouchStartX = 0;
+      let isTouchStartY = 0;
+      let isTouchLocked = false;   // horizontal drag confirmed
+      let isScrollLocked = false;  // vertical scroll confirmed
+      let isBaseOffset = 0;        // translateX at touchstart — stored in JS, zero DOM reads
+      let isLastTouchX = 0;
+      let isLastTouchTime = 0;
+      let isVelocityX = 0;
+
+      wrapper.addEventListener('touchstart', e => {
+        const t0 = e.touches[0];
+        isTouchStartX   = t0.clientX;
+        isTouchStartY   = t0.clientY;
+        isLastTouchX    = t0.clientX;
+        isLastTouchTime = e.timeStamp;
+        isTouchDeltaX   = 0;
+        isVelocityX     = 0;
+        isTouchLocked   = false;
+        isScrollLocked  = false;
+        isBaseOffset    = isCurrentOffsetX; // JS-tracked value — no DOM read
+        track.style.transition = 'none';
+      }, { passive: true });
+
+      wrapper.addEventListener('touchmove', e => {
+        const t0 = e.touches[0];
+        const dx = t0.clientX - isTouchStartX;
+        const dy = t0.clientY - isTouchStartY;
+
+        // Direction lock after 5px
+        if (!isTouchLocked && !isScrollLocked && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+          if (Math.abs(dx) >= Math.abs(dy)) {
+            isTouchLocked = true;
+          } else {
+            isScrollLocked = true;
+            return; // let browser own the scroll
+          }
+        }
+        if (isScrollLocked || !isTouchLocked) return;
+
+        isTouchDeltaX = dx;
+        const dt = e.timeStamp - isLastTouchTime;
+        if (dt > 0) isVelocityX = (t0.clientX - isLastTouchX) / dt;
+        isLastTouchX    = t0.clientX;
+        isLastTouchTime = e.timeStamp;
+
+        // Direct transform — no getElementById, no layout read
+        track.style.transform = 'translateX(' + (isBaseOffset + dx) + 'px)';
+      }, { passive: true }); // passive: true — browser composites the touch freely
+
+      wrapper.addEventListener('touchend', () => {
+        if (isFrostTapped) { isFrostTapped = false; isTouchDeltaX = 0; return; }
+
+        const openOverlay = wrapper.querySelector('.ingredient-hover-info.show-details');
+        if (openOverlay) {
+          openOverlay.classList.remove('show-details');
+          openOverlay.style.display = 'none';
+          isTouchDeltaX = 0;
+          return;
+        }
+
+        if (!isTouchLocked) { isTouchDeltaX = 0; return; }
+
+        isTouchLocked  = false;
+        isScrollLocked = false;
+
+        const isFlick  = Math.abs(isVelocityX) > 0.2;
+        const hasMoved = Math.abs(isTouchDeltaX) > 8;
+
+        if (isFlick || hasMoved) {
+          isSlideTo(isActiveIndex + (isTouchDeltaX < 0 ? 1 : -1), true);
+        } else {
+          isSlideTo(isActiveIndex, true);
+        }
+        isTouchDeltaX = 0;
+        isVelocityX   = 0;
+      }, { passive: true });
+
+      // Wait two frames for browser to paint and apply CSS before centering
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          isSlideTo(isActiveIndex, false);
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', isInit);
+    } else {
+      isInit();
+    }
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth <= 768 && !isInitialized) isInit();
+    });
+
+    // ── Breakpoint cross: mobile ← tablet ──
+    // When viewport shrinks from tablet into mobile, reset isInitialized so
+    // isInit() can run again, and ensure the mobile wrapper is shown while
+    // tablet + desktop wrappers are hidden.
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) return;
+      const mobWrapper = document.getElementById('is-mobile-carousel-' + IS_SECTION_ID);
+      const tabWrapper = document.getElementById('is-tablet-carousel-' + IS_SECTION_ID);
+      const deskCarousel = document.querySelector('#ingredients-scroll-' + IS_SECTION_ID + ' .ingredients-carousel');
+      if (tabWrapper && tabWrapper.style.display !== 'none') {
+        tabWrapper.style.display = 'none';
+      }
+      if (deskCarousel && deskCarousel.style.display !== 'none') {
+        deskCarousel.style.display = 'none';
+      }
+      if (mobWrapper) {
+        if (!isInitialized) {
+          isInit();
+        } else {
+          mobWrapper.style.display = 'block';
+          // Re-center after resize settles
+          clearTimeout(window._isMobResizeTimer);
+          window._isMobResizeTimer = setTimeout(function() {
+            isSlideTo(isActiveIndex, false);
+          }, 200);
+        }
+      }
+    });
+  })();
+  // ── END MOBILE CAROUSEL ───────────────────────────────────────────
+
+  // ── TABLET CAROUSEL ──────────────────────────────────────────────
+  // Completely separate from mobile. Uses .is-tablet-card and .is-tablet-active.
+  (function() {
+    const TC_ID = '{{ section.id }}';
+    const TC_CLONES = 10;
+    const TC_GAP = 16;
+    const TC_CENTER = {{ section.settings.tablet_center_card_size | default: 340 }};
+    const TC_SIDE = {{ section.settings.tablet_side_card_size | default: 220 }};
+
+    const TC_BLOCKS = [
+      {% for block in section.blocks %}
+      {
+        index: {{ forloop.index0 }},
+        image: "{% if block.settings.image %}{{ block.settings.image | image_url: width: 400, height: 400 }}{% endif %}",
+        name: {{ block.settings.name | json }},
+        subtitle: {{ block.settings.subtitle | default: '' | json }},
+        fullDesc: {{ block.settings.full_description | default: '' | json }},
+        studiesCount: {{ block.settings.studies_count | default: 0 }}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ];
+
+    if (TC_BLOCKS.length === 0) return;
+
+    let tcActive = TC_CLONES * TC_BLOCKS.length;
+    let tcTouchStartX = 0;
+    let tcTouchDeltaX = 0;
+    let tcReady = false;
+    let tcSliding = false;
+    let tcCurrentOffsetX = 0; // JS-tracked translateX — avoids getComputedStyle reads
+    // Cached DOM refs set once in tcInit — never looked up per-frame
+    let _tcTrack = null;
+    let _tcWrapper = null;
+
+    function tcBuildCard(block, idx) {
+      const div = document.createElement('div');
+      div.className = 'is-tablet-card';
+      div.dataset.tcIdx = idx;
+      div.dataset.tcOrig = block.index;
+
+      if (block.image) {
+        const img = document.createElement('img');
+        img.src = block.image;
+        img.alt = block.name;
+        img.loading = 'lazy';
+        div.appendChild(img);
+      } else {
+        const ph = document.createElement('div');
+        ph.className = 'ingredients-scroll-placeholder-image';
+        div.appendChild(ph);
+      }
+
+      // Frost glass
+      const frost = document.createElement('div');
+      frost.className = 'is-tablet-frost';
+      frost.style.cursor = 'pointer';
+      const h3 = document.createElement('h3');
+      h3.textContent = block.name;
+      frost.appendChild(h3);
+      if (block.subtitle) {
+        const p = document.createElement('p');
+        p.textContent = block.subtitle;
+        frost.appendChild(p);
+      }
+      div.appendChild(frost);
+
+      // Full info overlay
+      const hoverInfo = document.createElement('div');
+      hoverInfo.className = 'ingredient-hover-info';
+
+      const hh = document.createElement('div');
+      hh.className = 'hover-info-header';
+      const hh3 = document.createElement('h3');
+      hh3.textContent = block.name;
+      hh.appendChild(hh3);
+      if (block.subtitle) {
+        const sp = document.createElement('p');
+        sp.className = 'ingredient-subtitle';
+        sp.textContent = block.subtitle;
+        hh.appendChild(sp);
+      }
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'close-hover';
+      closeBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      closeBtn.addEventListener('mousedown', e => e.stopPropagation());
+      closeBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        hoverInfo.classList.remove('show-details');
+        hoverInfo.style.display = 'none';
+      });
+      hh.appendChild(closeBtn);
+      hoverInfo.appendChild(hh);
+
+      const hc = document.createElement('div');
+      hc.className = 'hover-info-content';
+      const desc = document.createElement('div');
+      desc.className = 'ingredient-full-desc';
+      desc.innerHTML = block.fullDesc || '';
+      hc.appendChild(desc);
+      if (block.studiesCount) {
+        const st = document.createElement('div');
+        st.className = 'studies-info';
+        st.innerHTML = '<p>There are ' + block.studiesCount + ' studies on ' + block.name.toLowerCase() + ' and counting.</p>';
+        hc.appendChild(st);
+      }
+      hoverInfo.appendChild(hc);
+      div.appendChild(hoverInfo);
+
+      // Tap/click frost → show overlay (active card only, never during a slide)
+      let tcFrostTouchX = 0;
+      frost.addEventListener('touchstart', e => { tcFrostTouchX = e.touches[0].clientX; }, { passive: true });
+      frost.addEventListener('touchend', e => {
+        const moved = Math.abs(e.changedTouches[0].clientX - tcFrostTouchX);
+        if (moved > 10) return;
+        if (tcSliding) return; // slide in progress — ignore tap
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+        if (!div.classList.contains('is-tablet-active')) {
+          tcSlide(idx, true);
+          return;
+        }
+        hoverInfo.style.display = 'flex';
+        hoverInfo.classList.add('show-details');
+      });
+      frost.addEventListener('click', e => {
+        e.stopPropagation();
+        if (tcSliding) return; // slide in progress — ignore click
+        if (!div.classList.contains('is-tablet-active')) { tcSlide(idx, true); return; }
+        hoverInfo.style.display = 'flex';
+        hoverInfo.classList.add('show-details');
+      });
+
+      div.addEventListener('click', e => {
+        if (div.classList.contains('is-tablet-active')) return;
+        if (tcSliding) return;
+        tcSlide(idx, true);
+      });
+      div.addEventListener('touchend', e => {
+        if (div.classList.contains('is-tablet-active')) return;
+        if (tcSliding) return;
+        if (Math.abs(tcTouchDeltaX) < 10) tcSlide(idx, true);
+      });
+      return div;
+    }
+
+    function tcApply(prevIdx) {
+      if (!_tcTrack) return;
+      const cards = _tcTrack.children;
+      if (prevIdx !== undefined && cards[prevIdx]) cards[prevIdx].classList.remove('is-tablet-active');
+      if (cards[tcActive]) cards[tcActive].classList.add('is-tablet-active');
+    }
+
+    function tcSlide(idx, animate) {
+      const prev = tcActive;
+      tcActive = idx;
+      tcApply(prev);
+
+      tcSliding = true;
+      if (animate) setTimeout(() => { tcSliding = false; }, 350);
+      else tcSliding = false;
+
+      const w = _tcWrapper ? _tcWrapper.offsetWidth : window.innerWidth;
+      let offset = 0;
+      for (let i = 0; i < idx; i++) offset += TC_SIDE + TC_GAP;
+      offset -= (w / 2) - (TC_CENTER / 2);
+
+      const targetX = -offset;
+      tcCurrentOffsetX = targetX; // keep JS tracker in sync
+
+      if (!_tcTrack) return;
+      _tcTrack.style.transition = animate ? 'transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+      _tcTrack.style.transform = 'translateX(' + targetX + 'px)';
+    }
+
+    function tcInit() {
+      if (window.innerWidth < 769 || window.innerWidth > 1024) return;
+      if (tcReady) return;
+      tcReady = true;
+
+      const wrapper = document.getElementById('is-tablet-carousel-' + TC_ID);
+      const track = document.getElementById('is-tablet-track-' + TC_ID);
+      if (!wrapper || !track) return;
+
+      // Cache refs for use in tcSlide and touch handlers — zero per-frame getElementById
+      _tcWrapper = wrapper;
+      _tcTrack   = track;
+
+      wrapper.style.display = 'block';
+
+      const desk = document.querySelector('#ingredients-scroll-' + TC_ID + ' .ingredients-carousel');
+      if (desk) desk.style.display = 'none';
+
+      const total = TC_CLONES * 2 + 1;
+      track.innerHTML = '';
+      for (let s = 0; s < total; s++) {
+        TC_BLOCKS.forEach(block => {
+          const idx = s * TC_BLOCKS.length + block.index;
+          track.appendChild(tcBuildCard(block, idx));
+        });
+      }
+
+      let tcTouchStartY = 0;
+      let tcTouchLocked = false;
+      let tcScrollLocked = false;
+      let tcBaseOffset = 0;
+      let tcFrostTapped = false;
+      let tcLastTouchX = 0;
+      let tcLastTouchTime = 0;
+      let tcVelocityX = 0;
+
+      // touch-action: pan-y — browser owns vertical scroll on compositor thread
+      wrapper.style.touchAction = 'pan-y';
+
+      wrapper.addEventListener('touchstart', e => {
+        const t0 = e.touches[0];
+        tcTouchStartX   = t0.clientX;
+        tcTouchStartY   = t0.clientY;
+        tcLastTouchX    = t0.clientX;
+        tcLastTouchTime = e.timeStamp;
+        tcTouchDeltaX   = 0;
+        tcVelocityX     = 0;
+        tcTouchLocked   = false;
+        tcScrollLocked  = false;
+        tcBaseOffset    = tcCurrentOffsetX; // JS-tracked — no getComputedStyle
+        track.style.transition = 'none';
+      }, { passive: true });
+
+      wrapper.addEventListener('touchmove', e => {
+        const t0 = e.touches[0];
+        const dx = t0.clientX - tcTouchStartX;
+        const dy = t0.clientY - tcTouchStartY;
+
+        if (!tcTouchLocked && !tcScrollLocked && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+          if (Math.abs(dx) >= Math.abs(dy)) {
+            tcTouchLocked = true;
+          } else {
+            tcScrollLocked = true;
+            return;
+          }
+        }
+        if (tcScrollLocked || !tcTouchLocked) return;
+
+        tcTouchDeltaX = dx;
+        const dt = e.timeStamp - tcLastTouchTime;
+        if (dt > 0) tcVelocityX = (t0.clientX - tcLastTouchX) / dt;
+        tcLastTouchX    = t0.clientX;
+        tcLastTouchTime = e.timeStamp;
+
+        // Cached track ref — no getElementById
+        track.style.transform = 'translateX(' + (tcBaseOffset + dx) + 'px)';
+      }, { passive: true }); // passive: true — compositor thread free
+
+      wrapper.addEventListener('touchend', () => {
+        const openOverlay = wrapper.querySelector('.ingredient-hover-info.show-details');
+        if (openOverlay) {
+          openOverlay.classList.remove('show-details');
+          openOverlay.style.display = 'none';
+          tcTouchDeltaX = 0;
+          return;
+        }
+
+        if (!tcTouchLocked) { tcTouchDeltaX = 0; return; }
+
+        tcTouchLocked  = false;
+        tcScrollLocked = false;
+
+        const isFlick  = Math.abs(tcVelocityX) > 0.2;
+        const hasMoved = Math.abs(tcTouchDeltaX) > 8;
+
+        if (isFlick || hasMoved) {
+          tcSlide(tcActive + (tcTouchDeltaX < 0 ? 1 : -1), true);
+        } else {
+          tcSlide(tcActive, true);
+        }
+        tcTouchDeltaX = 0;
+        tcVelocityX   = 0;
+      }, { passive: true });
+
+      requestAnimationFrame(() => requestAnimationFrame(() => tcSlide(tcActive, false)));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tcInit);
+    } else {
+      tcInit();
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 769 && window.innerWidth <= 1024 && !tcReady) tcInit();
+
+      // ── Breakpoint cross: tablet → mobile or tablet → desktop ──
+      // Hide tablet wrapper when viewport leaves the 769–1024px range
+      if (window.innerWidth < 769 || window.innerWidth > 1024) {
+        const tabWrapper = document.getElementById('is-tablet-carousel-' + TC_ID);
+        if (tabWrapper && tabWrapper.style.display !== 'none') {
+          tabWrapper.style.display = 'none';
+        }
+        // Show desktop carousel if we crossed into desktop range
+        if (window.innerWidth > 1024) {
+          const deskCarousel = document.querySelector('#ingredients-scroll-' + TC_ID + ' .ingredients-carousel');
+          if (deskCarousel) deskCarousel.style.display = '';
+        }
+      }
+    });
+  })();
+  // ── END TABLET CAROUSEL ───────────────────────────────────────────
   document.addEventListener('click', function (event) {
     const modal = document.getElementById('supplement-facts-modal');
     if (modal && event.target === modal) {
@@ -2162,20 +3006,249 @@
       "id": "description_weight",
       "label": "Description Font Weight",
       "options": [
-        {
-          "value": "300",
-          "label": "Light"
-        },
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "500",
-          "label": "Medium"
-        }
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" }
       ],
       "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Section Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "min": 20,
+      "max": 52,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 28
+    },
+    {
+      "type": "select",
+      "id": "mobile_title_weight",
+      "label": "Mobile Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "range",
+      "id": "mobile_desc_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "mobile_desc_weight",
+      "label": "Mobile Description Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "mobile_center_card_size",
+      "min": 200,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Center Card Size",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_card_size",
+      "min": 100,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile Side Card Size",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_name_size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Card Name Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_subtitle_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Card Subtitle Font Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Button Font Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "mobile_button_font_weight",
+      "label": "Mobile Button Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "mobile_button_border_color",
+      "label": "Mobile Button Border Color",
+      "default": "#4fffff"
+    },
+    {
+      "type": "color",
+      "id": "mobile_button_text_color",
+      "label": "Mobile Button Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings"
+    },
+    {
+      "type": "range",
+      "id": "tablet_section_padding",
+      "min": 20, "max": 80, "step": 5, "unit": "px",
+      "label": "Tablet Section Padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "tablet_title_size",
+      "min": 24, "max": 60, "step": 2, "unit": "px",
+      "label": "Tablet Title Font Size",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_weight",
+      "label": "Tablet Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "range",
+      "id": "tablet_desc_size",
+      "min": 12, "max": 22, "step": 1, "unit": "px",
+      "label": "Tablet Description Font Size",
+      "default": 17
+    },
+    {
+      "type": "select",
+      "id": "tablet_desc_weight",
+      "label": "Tablet Description Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "tablet_center_card_size",
+      "min": 240, "max": 420, "step": 10, "unit": "px",
+      "label": "Tablet Center Card Size",
+      "default": 340
+    },
+    {
+      "type": "range",
+      "id": "tablet_side_card_size",
+      "min": 120, "max": 260, "step": 10, "unit": "px",
+      "label": "Tablet Side Card Size",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_name_size",
+      "min": 14, "max": 28, "step": 1, "unit": "px",
+      "label": "Tablet Card Name Font Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_subtitle_size",
+      "min": 11, "max": 20, "step": 1, "unit": "px",
+      "label": "Tablet Card Subtitle Font Size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "tablet_button_font_size",
+      "min": 12, "max": 22, "step": 1, "unit": "px",
+      "label": "Tablet Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "tablet_button_font_weight",
+      "label": "Tablet Button Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "tablet_button_border_color",
+      "label": "Tablet Button Border Color",
+      "default": "#4fffff"
+    },
+    {
+      "type": "color",
+      "id": "tablet_button_text_color",
+      "label": "Tablet Button Text Color",
+      "default": "#333333"
     }
   ],
   "blocks": [
@@ -2245,6 +3318,3 @@
   ]
 }
 {% endschema %}
-
-
-

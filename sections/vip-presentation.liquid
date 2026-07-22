@@ -1,102 +1,89 @@
-{% comment %}
-  VIP Presentation Section - 50:50 split with sliding blocks
-  Features: Multiple content blocks with sliding animations, arrow navigation, camera reel effect
+﻿{% comment %}
+  VIP Presentation Section
+  Layout: 50/50 grid — left has text + navigation (arrow + preview), right has main image
+  Animation: slides enter from right, exit to left. Always rightward. Infinite loop.
 {% endcomment %}
 
+
 <style>
+  #vip-{{ section.id }} {
+    font-family: 'Montserrat', sans-serif;
+    background: {{ section.settings.section_bg_color | default: '#ffffff' }};
+    box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+  }
 
-.vip-presentation-section {
-  font-family: 'Montserrat', sans-serif;
-  background: {{ section.settings.section_bg_color | default: '#ffffff' }};
-  padding: 20px 0;
-  overflow: hidden;
-  height: 100vh;
-  max-height: 100vh;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-}
 
-  .vip-presentation-container {
+  #vip-{{ section.id }} .vip-container {
+    width: 100%;
     max-width: 1600px;
     margin: 0 auto;
-    padding: 10px 40px;
+    padding: 0 40px;
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    align-items: stretch;
-    width: 100%;
-    box-sizing: border-box;
     height: calc(100vh - 40px);
-    max-height: calc(100vh - 40px);
   }
 
-  /* Left Content */
-  .vip-presentation-left {
+
+  /* ─── LEFT COLUMN ─── */
+  #vip-{{ section.id }} .vip-left {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    position: relative;
-    padding: 0;
     justify-content: space-between;
     height: 100%;
+    overflow: hidden;
   }
 
-  .vip-presentation-content {
+
+  /* text area */
+  #vip-{{ section.id }} .vip-text-area {
     position: relative;
-    overflow: hidden;
     flex: 1;
+    overflow: hidden;
     max-height: 450px;
   }
 
-  .vip-presentation-slide {
+
+  #vip-{{ section.id }} .vip-text-slide {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     opacity: 0;
-    transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease;
     overflow: hidden;
-    z-index: 1;
   }
+  #vip-{{ section.id }} .vip-text-slide.active { opacity: 1; }
 
-  .vip-presentation-slide.active {
-    opacity: 1;
-    position: absolute;
-    z-index: 2;
-  }
 
-  .vip-presentation-heading {
+  #vip-{{ section.id }} .vip-heading {
     font-size: {{ section.settings.heading_font_size }}px;
     font-weight: 800;
     color: {{ section.settings.heading_color | default: '#000000' }};
     line-height: 1.2;
-    margin: 0 0 20px 0;
+    margin: 0 0 20px;
     font-family: 'Montserrat', sans-serif;
   }
 
-  .vip-presentation-key-points {
+
+  #vip-{{ section.id }} .vip-key-points {
     font-size: {{ section.settings.key_points_font_size }}px;
     color: {{ section.settings.key_points_color | default: '#333333' }};
     line-height: 1.6;
-    margin: 0;
     font-family: 'Montserrat', sans-serif;
   }
-
-  .vip-presentation-key-points ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .vip-presentation-key-points li {
+  #vip-{{ section.id }} .vip-key-points ul { list-style: none; padding: 0; margin: 0; }
+  #vip-{{ section.id }} .vip-key-points li {
     position: relative;
     padding-left: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
   }
-
-  .vip-presentation-key-points li:before {
+  #vip-{{ section.id }} .vip-key-points li::before {
     content: '•';
     position: absolute;
     left: 0;
@@ -105,533 +92,603 @@
     font-size: 1.2em;
   }
 
-  .vip-presentation-navigation {
+
+  /* navigation row */
+  #vip-{{ section.id }} .vip-nav {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 5px;
+    gap: 10px;
+    flex-shrink: 0;
     margin-top: 15px;
-    width: 100%;
   }
 
-  .vip-presentation-arrow {
-    width: auto;
-    height: auto;
+
+  /* arrow sits beside preview image — NOT overlaid */
+  #vip-{{ section.id }} .vip-arrow {
+    flex-shrink: 0;
     background: none;
     border: none;
-    outline: none;
-    box-shadow: none;
-    border-radius: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    position: relative;
     padding: 0;
-    margin: 0;
+    cursor: pointer;
+    line-height: 0;
+    transition: transform 0.3s ease;
   }
-
-  .vip-presentation-arrow:hover {
-    transform: scale(1.05);
-  }
-
-  .vip-presentation-arrow img {
-    width: 180px;
-    height: 180px;
+  #vip-{{ section.id }} .vip-arrow:hover { transform: scale(1.05); }
+  #vip-{{ section.id }} .vip-arrow img {
+    width: 150px;
+    height: 150px;
     object-fit: contain;
     display: block;
   }
 
-  .vip-presentation-preview-container {
+
+  /* preview image box — fills remaining nav row width */
+  #vip-{{ section.id }} .vip-preview-box {
     position: relative;
-    width: calc(70% - 10px);
+    flex: 1;
     height: 180px;
     overflow: hidden;
     border-radius: {{ section.settings.preview_border_radius }}px;
-    margin-left: auto;
   }
 
-  .vip-presentation-preview-track {
-    display: flex;
+
+  /* ─── SLIDE ANIMATION (shared by preview + main) ─── */
+  /* default: waiting off-screen to the LEFT */
+  #vip-{{ section.id }} .vip-img-slide {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transform: translateX(-100%);
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #vip-{{ section.id }} .vip-img-slide img {
+    width: 100%;
     height: 100%;
-    will-change: transform;
+    object-fit: cover;
+    display: block;
   }
-
-  .vip-presentation-preview {
-    width: calc(100% / {{ section.blocks.size | times: 10 }});
-    height: 180px;
-    border-radius: {{ section.settings.preview_border_radius }}px;
-    overflow: hidden;
+  /* visible */
+  #vip-{{ section.id }} .vip-img-slide.active {
+    transform: translateX(0);
+  }
+  /* exiting: pushed off-screen to the RIGHT */
+  #vip-{{ section.id }} .vip-img-slide.exit {
+    transform: translateX(100%);
+  }
+  /* grayscale only for preview */
+  #vip-{{ section.id }} .vip-preview-box .vip-img-slide {
+    filter: grayscale(100%);
     cursor: pointer;
-    transition: all 0.3s ease;
-    filter: grayscale(100%);
-    opacity: 0.8;
-    position: relative;
-    flex-shrink: 0;
   }
 
-  .vip-presentation-preview.active {
-    filter: grayscale(100%);
-    opacity: 1;
-  }
 
-  .vip-presentation-preview:hover {
-    filter: grayscale(100%);
-    opacity: 0.9;
-    transform: scale(1.02);
-  }
-
-  .vip-presentation-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .vip-presentation-right {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
+  /* ─── RIGHT COLUMN ─── */
+  #vip-{{ section.id }} .vip-right {
     height: 100%;
     overflow: hidden;
-  }
-
-  .vip-presentation-main-image-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 500px;
     border-radius: {{ section.settings.main_image_border_radius }}px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .vip-presentation-main-track {
-    display: flex;
-    height: 100%;
-    will-change: transform;
-  }
-
-  .vip-presentation-main-image {
-    width: calc(100% / {{ section.blocks.size | times: 10 }});
-    height: 100%;
-    flex-shrink: 0;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     position: relative;
   }
 
-  .vip-presentation-main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 
-  .vip-presentation-main-cta {
+  /* CTA button */
+  #vip-{{ section.id }} .vip-cta {
     position: absolute;
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    background: #000000;
-    color: #ffffff;
+    background: #000;
+    color: #fff;
     padding: 12px 24px;
     border-radius: 25px;
     font-size: 14px;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
     white-space: nowrap;
     z-index: 10;
     text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
   }
-
-  .vip-presentation-main-cta:hover {
-    background: #333333;
+  #vip-{{ section.id }} .vip-cta:hover {
+    background: #333;
     transform: translateX(-50%) scale(1.05);
   }
 
-  /* Responsive */
+
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
-    .vip-presentation-container {
+    #vip-{{ section.id }} {
+      height: auto;
+      padding: 60px 0;
+    }
+    #vip-{{ section.id }} .vip-container {
       grid-template-columns: 1fr;
-      gap: 60px;
-      padding: 40px 40px;
+      height: auto;
+      gap: 40px;
+    }
+    #vip-{{ section.id }} .vip-left {
+      height: auto;
+    }
+    #vip-{{ section.id }} .vip-text-area {
+      min-height: 200px;
+    }
+    #vip-{{ section.id }} .vip-right {
+      height: 400px;
+    }
+    #vip-{{ section.id }} .vip-cta { bottom: 20px; }
+  }
+
+
+  /* ─── TABLET ONLY: 769px – 1024px ─── */
+  /* Keeps the desktop two-column layout, scaled and optimised for tablet */
+  @media (min-width: 769px) and (max-width: 1024px) {
+
+
+    /* Section: full viewport height, same as desktop */
+    #vip-{{ section.id }} {
+      height: auto !important;
+      padding: 40px 0 !important;
+      overflow: visible !important;
+    }
+
+
+    /* Container: two equal columns, tighter padding */
+    #vip-{{ section.id }} .vip-container {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 24px !important;
+      padding: 0 24px !important;
+      height: auto !important;
+      max-width: 100% !important;
+      align-items: end !important;
+    }
+
+
+    /* Left column */
+    #vip-{{ section.id }} .vip-left {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-end !important;
+      height: auto !important;
+      overflow: visible !important;
+    }
+
+
+    /* Text area */
+    #vip-{{ section.id }} .vip-text-area {
+      position: relative !important;
+      flex: none !important;
+      overflow: hidden !important;
+      height: 300px !important;
+      max-height: 300px !important;
+      min-height: unset !important;
+    }
+
+
+    /* Text slides stay absolute — JS unchanged */
+    #vip-{{ section.id }} .vip-text-slide {
+      position: absolute !important;
+      inset: 0 !important;
+      display: block !important;
+    }
+
+
+    /* Scale heading and key points for tablet */
+    #vip-{{ section.id }} .vip-heading {
+      font-size: {{ section.settings.heading_font_size | minus: 12 }}px !important;
+      margin: 0 0 14px !important;
+    }
+
+
+    #vip-{{ section.id }} .vip-key-points {
+      font-size: {{ section.settings.key_points_font_size | minus: 2 }}px !important;
+      line-height: 1.5 !important;
+    }
+
+
+    #vip-{{ section.id }} .vip-key-points li {
+      margin-bottom: 10px !important;
+    }
+
+
+    /* Nav row: arrow left, preview right — same as desktop */
+    #vip-{{ section.id }} .vip-nav {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      flex-shrink: 0 !important;
+      margin-top: 12px !important;
+      position: static !important;
+    }
+
+
+    /* Arrow: beside preview, not overlaid */
+    #vip-{{ section.id }} .vip-arrow {
+      position: static !important;
+      flex-shrink: 0 !important;
+    }
+    #vip-{{ section.id }} .vip-arrow img {
+      width: 80px !important;
+      height: 80px !important;
+    }
+
+
+    /* Preview box: fills remaining row width */
+    #vip-{{ section.id }} .vip-preview-box {
+      position: relative !important;
+      flex: 1 !important;
+      width: auto !important;
+      height: 150px !important;
+      overflow: hidden !important;
+      border-radius: {{ section.settings.preview_border_radius }}px !important;
+    }
+
+
+    /* Right column: main image */
+    #vip-{{ section.id }} .vip-right {
+      height: 500px !important;
+      overflow: hidden !important;
+      border-radius: {{ section.settings.main_image_border_radius }}px !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1) !important;
+      position: relative !important;
+    }
+
+
+    /* CTA button */
+    #vip-{{ section.id }} .vip-cta {
+      bottom: 28px !important;
+      font-size: 13px !important;
+      padding: 10px 22px !important;
+    }
+  }
+  /* ─── END TABLET ─── */
+
+
+  @media (max-width: 768px) {
+
+
+    /* Section: auto height, scrollable */
+    #vip-{{ section.id }} {
+      height: auto;
+      padding: 0;
+      overflow: visible;
       align-items: flex-start;
     }
 
-    .vip-presentation-section {
-      padding: 60px 0;
+
+    /* Container: single flex column — reorders left/right without new HTML */
+    #vip-{{ section.id }} .vip-container {
+      display: flex;
+      flex-direction: column;
+      grid-template-columns: unset;
+      gap: 0;
+      padding: 0;
       height: auto;
-      min-height: auto;
+      max-width: 100%;
     }
 
-    .vip-presentation-left {
+
+    /* ── 1. Main image — top, full width with padding, rounded corners ── */
+    #vip-{{ section.id }} .vip-right {
+      order: 1;
+      width: calc(100% - 32px);
+      margin: 16px 16px 0;
+      height: 70vw;
+      max-height: 420px;
+      min-height: 220px;
+      border-radius: 16px;
+      box-shadow: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    /* CTA stays overlaid at bottom of main image */
+    #vip-{{ section.id }} .vip-cta {
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      padding: 10px 22px;
+    }
+    #vip-{{ section.id }} .vip-cta:hover {
+      transform: translateX(-50%) scale(1.05);
+    }
+
+
+    /* ── 2. Left column: heading + key points, then nav row ── */
+    #vip-{{ section.id }} .vip-left {
+      order: 2;
+      height: auto;
+      overflow: visible;
+      padding: 20px 16px 0;
+      gap: 0;
       justify-content: flex-start;
     }
 
-    .vip-presentation-content {
-      min-height: auto;
+
+    /* Text area: auto height driven by content — slides stack in flow */
+    #vip-{{ section.id }} .vip-text-area {
+      position: relative;
+      flex: none;
+      max-height: none;
+      min-height: unset;
+      height: auto;
     }
 
-    .vip-presentation-slide {
-      min-height: auto;
+
+    /* Text slides: relative positioning on mobile so content flows naturally */
+    #vip-{{ section.id }} .vip-text-slide {
+      position: relative;
+      inset: unset;
+      display: none;
+    }
+    #vip-{{ section.id }} .vip-text-slide.active {
+      display: block;
+      opacity: 1;
     }
 
-    .vip-presentation-main-image-container {
-      height: 400px;
-      max-height: 400px;
+
+    #vip-{{ section.id }} .vip-heading {
+      font-size: {{ section.settings.heading_font_size | minus: 10 }}px;
+      margin-bottom: 12px;
     }
 
-    .vip-presentation-main-cta {
-      bottom: 20px;
-    }
-  }
 
-  @media (max-width: 768px) {
-    .vip-presentation-container {
-      padding: 20px;
-      gap: 40px;
-    }
-
-    .vip-presentation-heading {
-      font-size: {{ section.settings.heading_font_size | minus: 8 }}px;
-    }
-
-    .vip-presentation-key-points {
+    #vip-{{ section.id }} .vip-key-points {
       font-size: {{ section.settings.key_points_font_size | minus: 2 }}px;
     }
 
-    .vip-presentation-content {
-      min-height: auto;
+
+    /* ── 3. Nav: preview full width, arrow overlaid bottom-left ── */
+    #vip-{{ section.id }} .vip-nav {
+      display: block;
+      position: relative;
+      margin-top: 16px;
+      padding-bottom: 24px;
     }
 
-    .vip-presentation-slide {
-      min-height: auto;
+
+    #vip-{{ section.id }} .vip-preview-box {
+      width: 100%;
+      flex: none;
+      height: 160px;
+      min-height: 120px;
+      border-radius: {{ section.settings.preview_border_radius }}px;
     }
 
-    .vip-presentation-navigation {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 15px;
-    }
 
-    .vip-presentation-preview-container {
-      width: 200px;
-      height: 120px;
+    /* Arrow: absolutely overlaid at bottom-left of preview */
+    #vip-{{ section.id }} .vip-arrow {
+      position: absolute;
+      bottom: 40px;
+      left: 16px;
+      z-index: 10;
+      flex-shrink: unset;
     }
-
-    .vip-presentation-preview {
-      height: 120px;
-    }
-
-    .vip-presentation-arrow {
-      width: 120px;
-      height: 90px;
-    }
-
-    .vip-presentation-arrow img {
-      width: 120px;
-      height: 90px;
-    }
-
-    .vip-presentation-main-cta {
-      bottom: 15px;
-      padding: 10px 20px;
-      font-size: 12px;
+    #vip-{{ section.id }} .vip-arrow img {
+      width: 60px;
+      height: 60px;
     }
   }
 </style>
 
-<section class="vip-presentation-section">
-  <div class="vip-presentation-container">
-    <!-- Left Content -->
-    <div class="vip-presentation-left">
-      <div class="vip-presentation-content">
+
+<div id="vip-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="vip-container">
+
+
+    <!-- LEFT: text + navigation -->
+    <div class="vip-left">
+
+
+      <!-- Text slides -->
+      <div class="vip-text-area">
         {% for block in section.blocks %}
           {% if block.type == 'vip_slide' %}
-            <div class="vip-presentation-slide {% if forloop.first %}active{% endif %}" 
-                 data-block-id="{{ forloop.index0 }}"
+            <div class="vip-text-slide {% if forloop.first %}active{% endif %}"
+                 data-index="{{ forloop.index0 }}"
                  {{ block.shopify_attributes }}>
               {% if block.settings.heading != blank %}
-                <h2 class="vip-presentation-heading">{{ block.settings.heading }}</h2>
+                <h2 class="vip-heading">{{ block.settings.heading }}</h2>
               {% endif %}
-
               {% if block.settings.key_points != blank %}
-                <div class="vip-presentation-key-points">
-                  {{ block.settings.key_points }}
-                </div>
+                <div class="vip-key-points">{{ block.settings.key_points }}</div>
               {% endif %}
             </div>
           {% endif %}
         {% endfor %}
       </div>
 
-      <div class="vip-presentation-navigation">
+
+      <!-- Arrow beside preview — desktop layout -->
+      <div class="vip-nav">
         {% if section.settings.arrow_icon %}
-          <div class="vip-presentation-arrow" onclick="changeSlide('{{ section.id }}')">
-            <img src="{{ section.settings.arrow_icon | image_url }}" 
-                 alt="Arrow Icon"
-                 width="180"
-                 height="180">
-          </div>
+          <button class="vip-arrow" onclick="vipNext('{{ section.id }}')" aria-label="Next slide">
+            <img src="{{ section.settings.arrow_icon | image_url }}" alt="" width="100" height="100">
+          </button>
         {% endif %}
 
-        <div class="vip-presentation-preview-container">
-          <div class="vip-presentation-preview-track" id="preview-track-{{ section.id }}" style="width: calc(100% * {{ section.blocks.size | times: 10 }});">
-            {% comment %} Create multiple clone sets for seamless infinite right sliding {% endcomment %}
-            {% for clone_set in (1..10) %}
-              {% for block in section.blocks %}
-                {% if block.type == 'vip_slide' and block.settings.preview_image %}
-                  <div class="vip-presentation-preview {% if clone_set == 1 and forloop.first %}active{% endif %}" 
-                       data-block-id="{{ forloop.index0 }}"
-                       data-clone-set="{{ clone_set }}"
-                       onclick="goToSlide('{{ section.id }}', {{ forloop.index0 }})">
-                    <img src="{{ block.settings.preview_image | image_url: width: 600 }}" 
-                         alt="{{ block.settings.heading | strip_html }}"
-                         width="600"
-                         height="400"
-                         loading="lazy">
-                  </div>
-                {% endif %}
-              {% endfor %}
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Right Image -->
-    <div class="vip-presentation-right">
-      <div class="vip-presentation-main-image-container">
-        <div class="vip-presentation-main-track" id="main-track-{{ section.id }}" style="width: calc(100% * {{ section.blocks.size | times: 10 }});">
-          {% comment %} Create multiple clone sets for seamless infinite right sliding {% endcomment %}
-          {% for clone_set in (1..10) %}
-            {% for block in section.blocks %}
-              {% if block.type == 'vip_slide' and block.settings.main_image %}
-                <div class="vip-presentation-main-image" 
-                     data-block-id="{{ forloop.index0 }}"
-                     data-clone-set="{{ clone_set }}">
-                  <img src="{{ block.settings.main_image | image_url: width: 800 }}" 
+        <div class="vip-preview-box">
+          {% for block in section.blocks %}
+            {% if block.type == 'vip_slide' %}
+              <div class="vip-img-slide {% if forloop.first %}active{% endif %}"
+                   data-index="{{ forloop.index0 }}"
+                   onclick="vipGoTo('{{ section.id }}', {{ forloop.index0 }})">
+                {% if block.settings.preview_image %}
+                  <img src="{{ block.settings.preview_image | image_url: width: 600 }}"
                        alt="{{ block.settings.heading | strip_html }}"
-                       width="800"
-                       height="800"
-                       loading="lazy">
-                </div>
-              {% endif %}
-            {% endfor %}
+                       width="600" height="400" loading="lazy">
+                {% endif %}
+              </div>
+            {% endif %}
           {% endfor %}
         </div>
-        
-        <!-- Fixed CTA Button inside image container -->
-        {% for block in section.blocks %}
-          {% if forloop.first %}
-            {% if block.settings.main_cta_text != blank %}
-              <a href="{{ block.settings.main_cta_link }}" class="vip-presentation-main-cta" id="main-cta-{{ section.id }}">
-                {{ block.settings.main_cta_text }}
-              </a>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
       </div>
-    </div>
+
+
+    </div><!-- /vip-left -->
+
+
+    <!-- RIGHT: main image -->
+    <div class="vip-right">
+      {% for block in section.blocks %}
+        {% if block.type == 'vip_slide' %}
+          <div class="vip-img-slide {% if forloop.first %}active{% endif %}"
+               data-index="{{ forloop.index0 }}">
+            {% if block.settings.main_image %}
+              <img src="{{ block.settings.main_image | image_url: width: 800 }}"
+                   alt="{{ block.settings.heading | strip_html }}"
+                   width="800" height="800" loading="lazy">
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+
+      {% for block in section.blocks %}
+        {% if forloop.first and block.settings.main_cta_text != blank %}
+          <a href="{{ block.settings.main_cta_link }}" class="vip-cta">
+            {{ block.settings.main_cta_text }}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div><!-- /vip-right -->
+
+
   </div>
-</section>
+</div>
+
 
 <script>
-let sliderState = {};
+(function () {
+  var _state = {};
 
-function initializeSlider(sectionId) {
-  const totalSlides = document.querySelectorAll('.vip-presentation-slide').length;
-  
-  sliderState[sectionId] = {
-    currentSlide: 0,
-    totalSlides: totalSlides,
-    currentPosition: 0, // Track current position in the cloned track
-    isAnimating: false,
-    totalClones: 10 // Number of clone sets we created
+
+  function getEls(id) {
+    var root = document.getElementById('vip-' + id);
+    if (!root) return null;
+    return {
+      text:    Array.from(root.querySelectorAll('.vip-text-area .vip-text-slide')),
+      preview: Array.from(root.querySelectorAll('.vip-preview-box .vip-img-slide')),
+      main:    Array.from(root.querySelectorAll('.vip-right .vip-img-slide'))
+    };
+  }
+
+
+  function slideOut(el) {
+    /* push outgoing slide to the RIGHT */
+    el.classList.add('exit');
+    el.classList.remove('active');
+    setTimeout(function () {
+      /* animation done — snap back off-screen LEFT without animating */
+      el.classList.remove('exit');
+      el.style.transition = 'none';
+      el.style.transform  = 'translateX(-100%)';
+      el.offsetWidth; /* reflow */
+      el.style.transition = '';
+      el.style.transform  = '';
+    }, 720);
+  }
+
+
+  function slideIn(el) {
+    /* ensure incoming slide starts from the LEFT before transitioning in */
+    el.style.transition = 'none';
+    el.style.transform  = 'translateX(-100%)';
+    el.offsetWidth; /* reflow */
+    el.style.transition = '';
+    el.style.transform  = '';
+    el.classList.add('active');
+  }
+
+
+  function goTo(id, to) {
+    var st = _state[id];
+    if (!st || st.busy || to === st.cur) return;
+    st.busy = true;
+
+
+    var els  = getEls(id);
+    var from = st.cur;
+    st.cur   = to;
+
+
+    /* images: slide transition */
+    slideOut(els.preview[from]);
+    slideIn(els.preview[to]);
+
+
+    slideOut(els.main[from]);
+    slideIn(els.main[to]);
+
+
+    /* text: crossfade */
+    els.text[from].classList.remove('active');
+    els.text[to].classList.add('active');
+
+
+    setTimeout(function () { st.busy = false; }, 720);
+  }
+
+
+  window.vipNext = function (id) {
+    var st = _state[id];
+    if (!st) return;
+    goTo(id, (st.cur + 1) % st.total);
   };
-  
-  // Set initial position - start from a middle clone set to allow movement in both directions
-  const previewTrack = document.getElementById(`preview-track-${sectionId}`);
-  const mainTrack = document.getElementById(`main-track-${sectionId}`);
-  
-  if (previewTrack && mainTrack) {
-    // DISABLE transitions first to prevent initial animation
-    previewTrack.style.transition = 'none';
-    mainTrack.style.transition = 'none';
-    
-    // Start from the 5th clone set (middle) to allow for right movement
-    const startPosition = 5 * totalSlides;
-    sliderState[sectionId].currentPosition = startPosition;
-    
-    const slideWidth = 100 / (totalSlides * sliderState[sectionId].totalClones);
-    const initialTransform = -(startPosition * slideWidth);
-    
-    // Set initial position WITHOUT animation
-    previewTrack.style.transform = `translateX(${initialTransform}%)`;
-    mainTrack.style.transform = `translateX(${initialTransform}%)`;
-    
-    // Force reflow to ensure the position is applied
-    previewTrack.offsetHeight;
-    mainTrack.offsetHeight;
-    
-    // Re-enable transitions after a short delay
-    setTimeout(() => {
-      previewTrack.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-      mainTrack.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-    }, 100);
-  }
-  
-  updateSlider(sectionId);
-}
 
-function changeSlide(sectionId) {
-  if (sliderState[sectionId].isAnimating) return;
-  
-  const state = sliderState[sectionId];
-  const previewTrack = document.getElementById(`preview-track-${sectionId}`);
-  const mainTrack = document.getElementById(`main-track-${sectionId}`);
-  
-  if (!previewTrack || !mainTrack) return;
-  
-  state.isAnimating = true;
-  
-  // Move to next slide
-  state.currentSlide = (state.currentSlide + 1) % state.totalSlides;
-  state.currentPosition = state.currentPosition - 1; // Move backwards in the track (right direction)
-  
-  // Calculate slide width as percentage
-  const slideWidth = 100 / (state.totalSlides * state.totalClones);
-  const newPosition = -(state.currentPosition * slideWidth); // This will be more positive (moving right)
-  
-  // Apply smooth transition
-  previewTrack.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-  mainTrack.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-  
-  previewTrack.style.transform = `translateX(${newPosition}%)`;
-  mainTrack.style.transform = `translateX(${newPosition}%)`;
-  
-  // Update text content immediately
-  updateSlider(sectionId);
-  
-  // Check if we need to reset position for infinite loop
-  setTimeout(() => {
-    // If we're getting too close to the beginning, jump to a later clone set
-    if (state.currentPosition <= state.totalSlides) {
-      // Reset to later position without animation
-      const resetPosition = state.currentPosition + (state.totalSlides * 5); // Jump forward 5 clone sets
-      state.currentPosition = resetPosition;
-      
-      previewTrack.style.transition = 'none';
-      mainTrack.style.transition = 'none';
-      
-      const resetTransform = -(resetPosition * slideWidth);
-      previewTrack.style.transform = `translateX(${resetTransform}%)`;
-      mainTrack.style.transform = `translateX(${resetTransform}%)`;
-      
-      // Force reflow
-      previewTrack.offsetHeight;
-      mainTrack.offsetHeight;
-      
-      // Re-enable transitions
-      setTimeout(() => {
-        previewTrack.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-        mainTrack.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
-      }, 50);
+
+  window.vipGoTo = function (id, idx) {
+    goTo(id, idx);
+  };
+
+
+  function init(id) {
+    var els = getEls(id);
+    if (!els) return;
+
+
+    _state[id] = { cur: 0, total: els.text.length, busy: false };
+
+
+    /* ensure clean starting state */
+    function resetSlides(arr) {
+      arr.forEach(function (el, i) {
+        el.classList.remove('active', 'exit');
+        el.style.transition = 'none';
+        el.style.transform  = i === 0 ? 'translateX(0)' : 'translateX(-100%)';
+        el.offsetWidth;
+        el.style.transition = '';
+        el.style.transform  = '';
+        if (i === 0) el.classList.add('active');
+      });
     }
-    
-    state.isAnimating = false;
-  }, 1200);
-}
 
-function goToSlide(sectionId, slideIndex) {
-  if (sliderState[sectionId].isAnimating) return;
-  
-  const state = sliderState[sectionId];
-  
-  // Find the closest instance of the target slide
-  const currentCloneSet = Math.floor(state.currentPosition / state.totalSlides);
-  const targetPosition = (currentCloneSet * state.totalSlides) + slideIndex;
-  
-  state.currentSlide = slideIndex;
-  state.currentPosition = targetPosition;
-  state.isAnimating = true;
-  
-  const previewTrack = document.getElementById(`preview-track-${sectionId}`);
-  const mainTrack = document.getElementById(`main-track-${sectionId}`);
-  
-  if (previewTrack && mainTrack) {
-    const slideWidth = 100 / (state.totalSlides * state.totalClones);
-    const newPosition = -(targetPosition * slideWidth);
-    
-    previewTrack.style.transform = `translateX(${newPosition}%)`;
-    mainTrack.style.transform = `translateX(${newPosition}%)`;
+
+    resetSlides(els.preview);
+    resetSlides(els.main);
+    els.text.forEach(function (el, i) {
+      el.classList.toggle('active', i === 0);
+    });
   }
-  
-  updateSlider(sectionId);
-  
-  setTimeout(() => {
-    state.isAnimating = false;
-  }, 1200);
-}
 
-function updateSlider(sectionId) {
-  const state = sliderState[sectionId];
-  
-  // Get all content slides
-  const contentSlides = document.querySelectorAll('.vip-presentation-slide');
-  const currentActiveSlide = document.querySelector('.vip-presentation-slide.active');
-  const targetSlide = contentSlides[state.currentSlide];
-  
-  if (currentActiveSlide && targetSlide && currentActiveSlide !== targetSlide) {
-    // Step 1: EXIT - Remove active class from current slide (fade out)
-    currentActiveSlide.classList.remove('active');
-    
-    // Step 2: ENTER - Very short delay to avoid overlap but minimize blank time
-    setTimeout(() => {
-      targetSlide.classList.add('active');
-    }, 50); // Minimal delay - just enough to avoid overlap
-  } else if (targetSlide && !currentActiveSlide) {
-    // First load case - no delay needed
-    targetSlide.classList.add('active');
-  }
-  
-  // Update active states for preview images
-  updateActiveStates(sectionId);
-}
 
-function updateActiveStates(sectionId) {
-  const state = sliderState[sectionId];
-  
-  // Update preview active state
-  const previewImages = document.querySelectorAll('.vip-presentation-preview');
-  previewImages.forEach((preview, index) => {
-    const blockId = parseInt(preview.getAttribute('data-block-id'));
-    if (blockId !== null && !isNaN(blockId)) {
-      preview.classList.toggle('active', blockId === state.currentSlide);
-    }
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-section-id]').forEach(function (el) {
+      var id = el.getAttribute('data-section-id');
+      if (id && el.id === 'vip-' + id) init(id);
+    });
   });
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('.vip-presentation-section');
-  sections.forEach(section => {
-    const sectionId = section.querySelector('[id*="preview-track-"]')?.id.replace('preview-track-', '');
-    if (sectionId) {
-      initializeSlider(sectionId);
-    }
-  });
-});
+})();
 </script>
+
 
 {% schema %}
 {
   "name": "VIP Presentation",
-  "tag": "section",
-  "class": "vip-presentation-section",
   "settings": [
     {
       "type": "header",
@@ -734,7 +791,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": 20
     }
   ],
-  "blocks": [
+ "blocks": [
     {
       "type": "vip_slide",
       "name": "VIP Slide",
@@ -761,8 +818,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "text",
           "id": "preview_cta_text",
           "label": "Preview CTA Text",
-          "default": "Become a Member",
-          "info": "Text shown on the preview image button"
+          "default": "Become a Member"
         },
         {
           "type": "image_picker",
@@ -774,14 +830,12 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "text",
           "id": "main_cta_text",
           "label": "Main CTA Text",
-          "default": "Become a Member",
-          "info": "Text shown on the main image button"
+          "default": "Become a Member"
         },
         {
           "type": "url",
           "id": "main_cta_link",
-          "label": "Main CTA Link",
-          "info": "Link for the main image button"
+          "label": "Main CTA Link"
         }
       ]
     }
@@ -790,17 +844,18 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "name": "VIP Presentation",
       "blocks": [
-        {
-          "type": "vip_slide"
-        },
-        {
-          "type": "vip_slide"
-        },
-        {
-          "type": "vip_slide"
-        }
+        { "type": "vip_slide" },
+        { "type": "vip_slide" },
+        { "type": "vip_slide" }
       ]
     }
   ]
 }
 {% endschema %}
+
+
+
+
+
+
+

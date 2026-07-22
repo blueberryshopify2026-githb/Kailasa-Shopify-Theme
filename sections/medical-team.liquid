@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   Medical Team Section - Infinite carousel with center focus card and frosted glass overlay
 {% endcomment %}
 
@@ -427,53 +427,216 @@
   }
 
 
-  @media (max-width: 480px) {
-    .medical-team-carousel {
-      gap: 10px;
-      padding: 0 10px;
+  /* ─── MOBILE ONLY: ≤768px ─────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .medical-team-carousel { display: none !important; }
+
+    .medical-team-section {
+      display: block !important;
+      overflow: visible !important;
+      padding: 40px 0 50px !important;
     }
 
-    .medical-team-card {
-      width: 160px;
-      height: 200px;
+    .medical-team-container { display: block !important; }
+
+    .medical-team-header  { margin-bottom: 32px !important; padding: 0 20px !important; }
+    .medical-team-title   { font-size: {{ section.settings.title_font_size | minus: 6 }}px !important; }
+    .medical-team-description { font-size: {{ section.settings.description_font_size | minus: 2 }}px !important; }
+
+    .mt-mob-carousel {
+      display: block !important;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      height: {{ section.settings.mob_card_height | default: 75 }}vw;
     }
 
-    .medical-team-card.active {
-      width: 260px !important;
-      height: 340px !important;
+    .mt-mob-track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      will-change: transform;
+      position: absolute;
+      left: 50%;
+      top: 50%;
     }
 
-    .side-card-image {
-      height: 120px;
+    .mt-mob-spacer {
+      display: none;
     }
 
-    .side-card-name {
-      font-size: 13px;
+    .mt-mob-card {
+      flex: 0 0 {{ section.settings.mob_card_width | default: 62 }}vw;
+      width: {{ section.settings.mob_card_width | default: 62 }}vw;
+      height: {{ section.settings.mob_card_height | default: 75 }}vw;
+      min-height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      filter: grayscale(100%);
+      opacity: 0.5;
+      transition: filter 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+      background: #111;
+      cursor: pointer;
+      flex-shrink: 0;
     }
 
-    .side-card-designation {
-      font-size: 11px;
+    .mt-mob-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
     }
 
-    .center-card-frost {
-      bottom: 15px;
-      left: 15px;
-      right: 15px;
-      padding: 15px;
+    .mt-mob-card.mt-mob-active {
+      filter: grayscale(0) !important;
+      opacity: 1 !important;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
+      z-index: 5;
     }
 
-    .center-card-name {
-      font-size: 18px;
+    .mt-mob-frost {
+      display: none;
+      position: absolute;
+      bottom: 16px;
+      left: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .mt-mob-card.mt-mob-active .mt-mob-frost { display: block; }
+
+    .mt-mob-frost-name {
+      font-size: {{ section.settings.mob_frost_name_size | default: 16 }}px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 3px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .mt-mob-frost-desig {
+      font-size: {{ section.settings.mob_frost_desig_size | default: 12 }}px;
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .mt-mob-carousel { display: none; }
+  }
+
+  /* ─── TABLET ONLY: 769px – 1024px ─────────────────────────────
+     Same pattern as mobile. Desktop and mobile NOT changed.
+     New classes use mt-tab- prefix.
+  ─────────────────────────────────────────────────────────────── */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* Hide desktop carousel */
+    .medical-team-carousel { display: none !important; }
+
+    .medical-team-section {
+      display: block !important;
+      overflow: visible !important;
+      padding: 50px 0 60px !important;
     }
 
-    .center-card-designation {
-      font-size: 12px;
+    .medical-team-container { display: block !important; }
+
+    .medical-team-header  { margin-bottom: 40px !important; }
+
+    /* Tablet carousel wrapper */
+    .mt-tab-carousel {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      height: 52vw;
     }
 
-    .medical-team-nav {
-      width: 40px;
-      height: 40px;
+    .mt-tab-track {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      will-change: transform;
+      position: absolute;
+      left: 50%;
+      top: 50%;
     }
+
+    /* Side cards */
+    .mt-tab-card {
+      flex: 0 0 {{ section.settings.tab_side_width | default: 26 }}vw;
+      width: {{ section.settings.tab_side_width | default: 26 }}vw;
+      height: 34vw;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      filter: grayscale(100%);
+      opacity: 0.5;
+      transition: filter 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+      background: #111;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .mt-tab-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Active center card */
+    .mt-tab-card.mt-tab-active {
+      flex: 0 0 {{ section.settings.tab_active_width | default: 40 }}vw !important;
+      width: {{ section.settings.tab_active_width | default: 40 }}vw !important;
+      height: 52vw !important;
+      filter: grayscale(0) !important;
+      opacity: 1 !important;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.5) !important;
+      z-index: 5;
+    }
+
+    /* Frosted glass */
+    .mt-tab-frost {
+      display: none;
+      position: absolute;
+      bottom: 20px;
+      left: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 18px 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .mt-tab-card.mt-tab-active .mt-tab-frost { display: block; }
+
+    .mt-tab-frost-name {
+      font-size: {{ section.settings.tab_frost_name_size | default: 20 }}px;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 4px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .mt-tab-frost-desig {
+      font-size: {{ section.settings.tab_frost_desig_size | default: 14 }}px;
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+
+  /* Hide tablet carousel outside tablet range */
+  .mt-tab-carousel { display: none; }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .mt-tab-carousel { display: block; }
   }
 </style>
 
@@ -612,10 +775,59 @@
       </button>
     </div>
   </div>
+
+  {% comment %}── MOBILE CAROUSEL (≤768px) — desktop carousel hidden at this breakpoint ──{% endcomment %}
+  <div class="mt-mob-carousel" id="mt-mob-{{ section.id }}">
+    <div class="mt-mob-track" id="mt-mob-track-{{ section.id }}">
+      <div class="mt-mob-spacer"></div>
+      {% for block in section.blocks %}
+        <div class="mt-mob-card {% if forloop.first %}mt-mob-active{% endif %}"
+             data-mob-index="{{ forloop.index0 }}"
+             data-name="{{ block.settings.name | escape }}"
+             data-desig="{{ block.settings.designation | escape }}">
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | image_url: width: 600 }}"
+                 alt="{{ block.settings.name | escape }}"
+                 width="600" height="750"
+                 loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+          {% endif %}
+          <div class="mt-mob-frost">
+            <p class="mt-mob-frost-name">{{ block.settings.name }}</p>
+            <p class="mt-mob-frost-desig">{{ block.settings.designation }}</p>
+          </div>
+        </div>
+      {% endfor %}
+      <div class="mt-mob-spacer"></div>
+    </div>
+  </div>
+  {% comment %}── TABLET CAROUSEL (769px–1024px) ──{% endcomment %}
+  <div class="mt-tab-carousel" id="mt-tab-{{ section.id }}">
+    <div class="mt-tab-track" id="mt-tab-track-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="mt-tab-card {% if forloop.first %}mt-tab-active{% endif %}"
+             data-tab-index="{{ forloop.index0 }}"
+             data-name="{{ block.settings.name | escape }}"
+             data-desig="{{ block.settings.designation | escape }}">
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | image_url: width: 800 }}"
+                 alt="{{ block.settings.name | escape }}"
+                 width="800" height="1000"
+                 loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+          {% endif %}
+          <div class="mt-tab-frost">
+            <p class="mt-tab-frost-name">{{ block.settings.name }}</p>
+            <p class="mt-tab-frost-desig">{{ block.settings.designation }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
 </section>
 
 
 <script>
+(function() {
 // Medical Team Carousel - Exact copy of ingredients logic
 window.medicalTeamData = window.medicalTeamData || {};
 
@@ -890,11 +1102,358 @@ function handleCardClick(cardElement, sectionId) {
   }, 650);
 }
 
+// Expose onclick-bound functions to global scope
+window.moveMedicalTeam = moveMedicalTeam;
+window.handleCardClick = handleCardClick;
 
-// Initialize
+// ── Breakpoint-aware init — only reinit when breakpoint CHANGES ──────────────
+var _currentBP = null; // 'mobile' | 'tablet' | 'desktop'
+
+function getBreakpoint() {
+  var w = window.innerWidth;
+  if (w <= 768)              return 'mobile';
+  if (w >= 769 && w <= 1024) return 'tablet';
+  return 'desktop';
+}
+
+function handleBreakpointInit(sid) {
+  var bp = getBreakpoint();
+  if (bp === _currentBP) return; // same breakpoint — do nothing
+  _currentBP = bp;
+
+  if (bp === 'mobile') {
+    destroyDesktopCarousel(sid);
+    destroyTabCarousel(sid);
+    initMobCarousel(sid);
+  } else if (bp === 'tablet') {
+    destroyDesktopCarousel(sid);
+    destroyMobCarousel(sid);
+    initTabCarousel(sid);
+  } else {
+    destroyMobCarousel(sid);
+    destroyTabCarousel(sid);
+    initializeMedicalTeam(sid);
+  }
+}
+
+// Destroy helpers — only clean up state/transforms, never touch the DOM of
+// the carousel that is about to be reinited (initMob handles its own DOM).
+function destroyDesktopCarousel(sid) {
+  var track = document.getElementById('medical-track-' + sid);
+  if (track) {
+    track.style.transform = '';
+    track.style.transition = '';
+    track.classList.remove('initialized');
+  }
+  if (window.medicalTeamData && window.medicalTeamData[sid]) {
+    delete window.medicalTeamData[sid];
+  }
+}
+
+function destroyMobCarousel(sid) {
+  var track = document.getElementById('mt-mob-track-' + sid);
+  if (track) {
+    track.style.transform = '';
+    track.style.transition = '';
+  }
+}
+
+function destroyTabCarousel(sid) {
+  var track = document.getElementById('mt-tab-track-' + sid);
+  if (track) {
+    track.style.transform = '';
+    track.style.transition = '';
+  }
+}
+
+// Initialize on load
 document.addEventListener('DOMContentLoaded', function() {
-  initializeMedicalTeam('{{ section.id }}');
+  handleBreakpointInit('{{ section.id }}');
 });
+
+// Resize: only fires reinit when breakpoint boundary is crossed
+var resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    handleBreakpointInit('{{ section.id }}');
+  }, 200);
+});
+
+// ── Mobile Carousel ──────────────────────────────────────────────────────────
+var _mobCardData = null;
+
+function initMobCarousel(sid) {
+  if (window.innerWidth > 768) return;
+
+  var track = document.getElementById('mt-mob-track-' + sid);
+  if (!track) return;
+
+  // Capture original card data once
+  if (!_mobCardData) {
+    var origEls = Array.from(track.querySelectorAll('.mt-mob-card:not(.mt-mob-clone)'));
+    if (!origEls.length) origEls = Array.from(track.querySelectorAll('.mt-mob-card'));
+    if (!origEls.length) return;
+    _mobCardData = origEls.map(function(c) {
+      return {
+        img:   c.querySelector('img') ? c.querySelector('img').outerHTML : '',
+        name:  c.querySelector('.mt-mob-frost-name') ? c.querySelector('.mt-mob-frost-name').textContent : '',
+        desig: c.querySelector('.mt-mob-frost-desig') ? c.querySelector('.mt-mob-frost-desig').textContent : ''
+      };
+    });
+  }
+
+  var N = _mobCardData.length;
+  if (N === 0) return;
+
+  // ── N+4 clone structure — same as ugc-content-section ────────────────────
+  var PREPEND = 2, APPEND = 2;
+  var SIDE_VW  = {{ section.settings.mob_card_width | default: 62 }} / 100;
+  var CTR_VW   = {{ section.settings.mob_card_width | default: 62 }} / 100; // same width, grayscale differs
+  var GAP      = 12;
+
+  function buildCard(dataIdx, extraClass) {
+    var d = _mobCardData[((dataIdx % N) + N) % N];
+    var div = document.createElement('div');
+    div.className = 'mt-mob-card' + (extraClass ? ' ' + extraClass : '');
+    div.innerHTML = d.img +
+      '<div class="mt-mob-frost">' +
+        '<p class="mt-mob-frost-name">' + d.name + '</p>' +
+        '<p class="mt-mob-frost-desig">' + d.desig + '</p>' +
+      '</div>';
+    return div;
+  }
+
+  track.innerHTML = '';
+  var cards = [];
+  for (var p = PREPEND; p >= 1; p--) { var c = buildCard(N - p, 'mt-mob-clone'); track.appendChild(c); cards.push(c); }
+  for (var i = 0; i < N; i++)         { var c = buildCard(i, '');               track.appendChild(c); cards.push(c); }
+  for (var a = 0; a < APPEND; a++)    { var c = buildCard(a, 'mt-mob-clone');   track.appendChild(c); cards.push(c); }
+
+  var current   = PREPEND; // real card 0
+  var animating = false;
+
+  // ── centerMob: position:absolute left:50% top:50% ─────────────────────────
+  // translateX = -(index × (cardW+gap) + cardW/2), translateY = -50%
+  function centerMob(idx, anim) {
+    var cardW = Math.round(window.innerWidth * SIDE_VW);
+    var tx    = -(idx * (cardW + GAP) + cardW / 2);
+    track.style.transition = anim
+      ? 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)'
+      : 'none';
+    track.style.transform = 'translateX(' + tx + 'px) translateY(-50%)';
+    if (!anim) {
+      requestAnimationFrame(function() {
+        track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
+      });
+    }
+  }
+
+  function applyStates(idx) {
+    cards.forEach(function(c, i) { c.classList.toggle('mt-mob-active', i === idx); });
+  }
+
+  // ── go: pre-jump before animating — no blink ─────────────────────────────
+  function go(dir) {
+    if (animating) return;
+    animating = true;
+
+    if (dir === 1 && current === PREPEND + N - 1) {
+      var jumpTo = current - N;
+      var cardW  = Math.round(window.innerWidth * SIDE_VW);
+      var jumpTx = -(jumpTo * (cardW + GAP) + cardW / 2);
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+      track.getBoundingClientRect();
+      current = jumpTo;
+    } else if (dir === -1 && current === PREPEND) {
+      var jumpTo = current + N;
+      var cardW  = Math.round(window.innerWidth * SIDE_VW);
+      var jumpTx = -(jumpTo * (cardW + GAP) + cardW / 2);
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+      track.getBoundingClientRect();
+      current = jumpTo;
+    }
+
+    current += dir;
+    applyStates(current);
+    track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
+    centerMob(current, true);
+
+    setTimeout(function() { animating = false; }, 520);
+  }
+
+  // Click
+  track.addEventListener('click', function(e) {
+    var card = e.target.closest('.mt-mob-card');
+    if (!card || animating) return;
+    var idx = cards.indexOf(card);
+    if (idx === -1 || idx === current) return;
+    go(idx > current ? 1 : -1);
+  });
+
+  // Swipe
+  var sx = 0, sy = 0, swDir = null;
+  track.parentElement.addEventListener('touchstart', function(e) {
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; swDir = null;
+  }, { passive: true });
+  track.parentElement.addEventListener('touchmove', function(e) {
+    if (swDir === 'v') return;
+    var dx = Math.abs(e.touches[0].clientX - sx), dy = Math.abs(e.touches[0].clientY - sy);
+    if (!swDir && dx < 5 && dy < 5) return;
+    if (!swDir) swDir = dx >= dy ? 'h' : 'v';
+    if (swDir === 'h') e.preventDefault();
+  }, { passive: false });
+  track.parentElement.addEventListener('touchend', function(e) {
+    if (swDir !== 'h' || animating) return;
+    if (Math.abs(e.changedTouches[0].clientX - sx) > 35)
+      go(e.changedTouches[0].clientX < sx ? 1 : -1);
+  }, { passive: true });
+
+  // Init
+  applyStates(current);
+  centerMob(current, false);
+}
+
+// ── Tablet Carousel (769px–1024px) — same pattern as mobile ─────────────────
+function initTabCarousel(sid) {
+  if (window.innerWidth < 769 || window.innerWidth > 1024) return;
+
+  var track = document.getElementById('mt-tab-track-' + sid);
+  if (!track) return;
+
+  // Collect original cards (strip old clones first)
+  Array.from(track.querySelectorAll('.mt-tab-clone')).forEach(function(c) { c.parentNode.removeChild(c); });
+  track.style.transform = ''; track.style.transition = '';
+
+  var origCards = Array.from(track.querySelectorAll('.mt-tab-card'));
+  var N = origCards.length;
+  if (N === 0) return;
+
+  var origData = origCards.map(function(c) {
+    return {
+      img:   c.querySelector('img') ? c.querySelector('img').outerHTML : '',
+      name:  c.querySelector('.mt-tab-frost-name') ? c.querySelector('.mt-tab-frost-name').textContent : '',
+      desig: c.querySelector('.mt-tab-frost-desig') ? c.querySelector('.mt-tab-frost-desig').textContent : ''
+    };
+  });
+
+  var PREPEND    = 2, APPEND = 2;
+  var SIDE_VW    = {{ section.settings.tab_side_width | default: 26 }} / 100;
+  var CTR_VW     = {{ section.settings.tab_active_width | default: 40 }} / 100;
+  var GAP        = 16;
+
+  function buildTabCard(dataIdx, extraClass) {
+    var d = origData[((dataIdx % N) + N) % N];
+    var el = document.createElement('div');
+    el.className = 'mt-tab-card' + (extraClass ? ' ' + extraClass : '');
+    el.innerHTML = d.img +
+      '<div class="mt-tab-frost">' +
+        '<p class="mt-tab-frost-name">' + d.name + '</p>' +
+        '<p class="mt-tab-frost-desig">' + d.desig + '</p>' +
+      '</div>';
+    return el;
+  }
+
+  // Rebuild track with N+4 structure
+  track.innerHTML = '';
+  var cards = [];
+  for (var p = PREPEND; p >= 1; p--) { var c = buildTabCard(N - p, 'mt-tab-clone'); track.appendChild(c); cards.push(c); }
+  for (var i = 0; i < N; i++)         { var c = buildTabCard(i, '');                track.appendChild(c); cards.push(c); }
+  for (var a = 0; a < APPEND; a++)    { var c = buildTabCard(a, 'mt-tab-clone');    track.appendChild(c); cards.push(c); }
+
+  var current   = PREPEND;
+  var animating = false;
+
+  // ── centerTab: position:absolute left:50% top:50% ─────────────────────────
+  // Side cards use SIDE_VW, active card uses CTR_VW
+  // translateX = -(index × (sideW+gap) + ctrW/2) — active card always ctrW
+  function centerTab(idx, anim) {
+    var sideW = Math.round(window.innerWidth * SIDE_VW);
+    var ctrW  = Math.round(window.innerWidth * CTR_VW);
+    var tx    = -(idx * (sideW + GAP) + ctrW / 2);
+    track.style.transition = anim
+      ? 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)'
+      : 'none';
+    track.style.transform = 'translateX(' + tx + 'px) translateY(-50%)';
+    if (!anim) {
+      requestAnimationFrame(function() {
+        track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
+      });
+    }
+  }
+
+  function applyStates(idx) {
+    cards.forEach(function(c, i) { c.classList.toggle('mt-tab-active', i === idx); });
+  }
+
+  // ── go: pre-jump before animating — no blink ─────────────────────────────
+  function go(dir) {
+    if (animating) return;
+    animating = true;
+
+    if (dir === 1 && current === PREPEND + N - 1) {
+      var jumpTo = current - N;
+      var sideW  = Math.round(window.innerWidth * SIDE_VW);
+      var ctrW   = Math.round(window.innerWidth * CTR_VW);
+      var jumpTx = -(jumpTo * (sideW + GAP) + ctrW / 2);
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+      track.getBoundingClientRect();
+      current = jumpTo;
+    } else if (dir === -1 && current === PREPEND) {
+      var jumpTo = current + N;
+      var sideW  = Math.round(window.innerWidth * SIDE_VW);
+      var ctrW   = Math.round(window.innerWidth * CTR_VW);
+      var jumpTx = -(jumpTo * (sideW + GAP) + ctrW / 2);
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+      track.getBoundingClientRect();
+      current = jumpTo;
+    }
+
+    current += dir;
+    applyStates(current);
+    track.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)';
+    centerTab(current, true);
+
+    setTimeout(function() { animating = false; }, 520);
+  }
+
+  // Click
+  track.addEventListener('click', function(e) {
+    var card = e.target.closest('.mt-tab-card');
+    if (!card || animating) return;
+    var idx = cards.indexOf(card);
+    if (idx === -1 || idx === current) return;
+    go(idx > current ? 1 : -1);
+  });
+
+  // Swipe
+  var sx = 0, sy = 0, swDir = null;
+  track.parentElement.addEventListener('touchstart', function(e) {
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; swDir = null;
+  }, { passive: true });
+  track.parentElement.addEventListener('touchmove', function(e) {
+    if (swDir === 'v') return;
+    var dx = Math.abs(e.touches[0].clientX - sx), dy = Math.abs(e.touches[0].clientY - sy);
+    if (!swDir && dx < 5 && dy < 5) return;
+    if (!swDir) swDir = dx >= dy ? 'h' : 'v';
+    if (swDir === 'h') e.preventDefault();
+  }, { passive: false });
+  track.parentElement.addEventListener('touchend', function(e) {
+    if (swDir !== 'h' || animating) return;
+    if (Math.abs(e.changedTouches[0].clientX - sx) > 35)
+      go(e.changedTouches[0].clientX < sx ? 1 : -1);
+  }, { passive: true });
+
+  // Init
+  applyStates(current);
+  centerTab(current, false);
+}
+
+})(); // end IIFE
 </script>
 
 
@@ -938,7 +1497,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "step": 2,
       "unit": "px",
       "label": "Title Font Size",
-      "default": 48
+      "default": 40
     },
     {
       "type": "color",
@@ -999,6 +1558,62 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "nav_icon_color",
       "label": "Navigation Icon Color",
       "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mob_card_width",
+      "label": "Mobile Card Width (vw)",
+      "min": 50, "max": 85, "step": 1, "unit": "vw", "default": 62
+    },
+    {
+      "type": "range",
+      "id": "mob_card_height",
+      "label": "Mobile Card Height (vw)",
+      "min": 60, "max": 110, "step": 5, "unit": "vw", "default": 75
+    },
+    {
+      "type": "range",
+      "id": "mob_frost_name_size",
+      "label": "Mobile Frost Name Font Size",
+      "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mob_frost_desig_size",
+      "label": "Mobile Frost Designation Font Size",
+      "min": 10, "max": 18, "step": 1, "unit": "px", "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings"
+    },
+    {
+      "type": "range",
+      "id": "tab_side_width",
+      "label": "Tablet Side Card Width (vw)",
+      "min": 15, "max": 35, "step": 1, "unit": "vw", "default": 26
+    },
+    {
+      "type": "range",
+      "id": "tab_active_width",
+      "label": "Tablet Active Card Width (vw)",
+      "min": 30, "max": 60, "step": 1, "unit": "vw", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "tab_frost_name_size",
+      "label": "Tablet Frost Name Font Size",
+      "min": 14, "max": 28, "step": 1, "unit": "px", "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tab_frost_desig_size",
+      "label": "Tablet Frost Designation Font Size",
+      "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14
     }
   ],
   "blocks": [

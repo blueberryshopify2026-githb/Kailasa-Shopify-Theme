@@ -110,7 +110,7 @@
             "cta_link": ""
           }
         },
-        "professional_bWwWWg": {
+        "professional_pTFkqK": {
           "type": "professional",
           "settings": {
             "background_image": "shopify://shop_images/Female-Doctor-PNG-Transparent-1.png",
@@ -124,7 +124,7 @@
       },
       "block_order": [
         "professional_iXax6n",
-        "professional_bWwWWg"
+        "professional_pTFkqK"
       ],
       "name": "Professional Panel",
       "settings": {
@@ -167,186 +167,82 @@
         "mob_arrow_size": 44
       }
     },
-    "comparison_table_aQEkFg": {
-      "type": "comparison-table",
+    "medical_team_WFTnw9": {
+      "type": "medical-team",
       "blocks": {
-        "ingredient_row_mqw4m4": {
-          "type": "ingredient_row",
+        "team_member_VGyAFA": {
+          "type": "team_member",
           "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
+            "image": "shopify://shop_images/male-doctor-holding-clipboard.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
           }
         },
-        "ingredient_row_wXkDJ3": {
-          "type": "ingredient_row",
+        "team_member_6DVffb": {
+          "type": "team_member",
           "settings": {
-            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
-            "cellular_harmony_type": "text",
-            "cellular_harmony_text": "Ingredient Description Color here",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
+            "image": "shopify://shop_images/pexels-tima-miroshnichenko-5407222.jpg",
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
           }
         },
-        "ingredient_row_hW4FgR": {
-          "type": "ingredient_row",
+        "team_member_76R3ri": {
+          "type": "team_member",
           "settings": {
-            "ingredient_name": "Greens & Superfoods Digestive Enzymes",
-            "cellular_harmony_type": "text",
-            "cellular_harmony_text": "Ingredient Description Color here",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
           }
         },
-        "ingredient_row_n4dt8y": {
-          "type": "ingredient_row",
+        "team_member_V4nWQh": {
+          "type": "team_member",
           "settings": {
-            "ingredient_name": "Minerals",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description Color here",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
           }
         },
-        "ingredient_row_fNcL4t": {
-          "type": "ingredient_row",
+        "team_member_fBjQXg": {
+          "type": "team_member",
           "settings": {
-            "ingredient_name": "Minerals",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description Color here",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
-          }
-        },
-        "ingredient_row_pQdBRq": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
-          }
-        },
-        "ingredient_row_3Fc9UW": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Vitamins",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "check",
-            "supplements_text": "",
-            "skincare_type": "cross",
-            "skincare_text": "",
-            "mask_type": "text",
-            "mask_text": "Ingredient Description"
-          }
-        },
-        "ingredient_row_WPgtBa": {
-          "type": "ingredient_row",
-          "settings": {
-            "ingredient_name": "Minerals",
-            "cellular_harmony_type": "check",
-            "cellular_harmony_text": "",
-            "supplements_type": "text",
-            "supplements_text": "Ingredient Description Color here",
-            "skincare_type": "check",
-            "skincare_text": "",
-            "mask_type": "check",
-            "mask_text": ""
+            "name": "Dr. John Doe, MD",
+            "designation": "Clinical Advisor"
           }
         }
       },
       "block_order": [
-        "ingredient_row_mqw4m4",
-        "ingredient_row_wXkDJ3",
-        "ingredient_row_hW4FgR",
-        "ingredient_row_n4dt8y",
-        "ingredient_row_fNcL4t",
-        "ingredient_row_pQdBRq",
-        "ingredient_row_3Fc9UW",
-        "ingredient_row_WPgtBa"
+        "team_member_VGyAFA",
+        "team_member_6DVffb",
+        "team_member_76R3ri",
+        "team_member_V4nWQh",
+        "team_member_fBjQXg"
       ],
-      "name": "Comparison Table",
+      "name": "Medical Team",
       "settings": {
-        "section_heading": "Cellular Harmony Advantage",
-        "column_1_title": "Cellular Harmony",
-        "column_2_title": "Supplements",
-        "column_3_title": "Skincare",
-        "column_4_title": "Mask",
-        "title_font_family": "montserrat_n4",
-        "title_font_size": 60,
-        "column_heading_font_family": "montserrat_n4",
-        "column_heading_font_size": 16,
-        "ingredient_font_family": "montserrat_n4",
-        "ingredient_font_size": 15,
-        "cell_text_font_family": "montserrat_n4",
-        "cell_text_font_size": 12
-      }
-    },
-    "inforoutine_section_drDwYQ": {
-      "type": "inforoutine-section",
-      "name": "Info Routine Section",
-      "settings": {
-        "pri_bg": "#ffffff",
-        "pri_image": "shopify://shop_images/Gemini_Generated_Image_i3vzdhi3vzdhi3vz_eececf60-5076-4583-936c-cfe78dae1b1a.png",
-        "pri_img_fit": "contain",
-        "pri_am_label": "AM ROUTINE",
-        "pri_pm_label": "PM ROUTINE",
-        "pri_default_mode": "am",
-        "pri_toggle_size": 14,
-        "pri_toggle_right": 24,
-        "pri_ingredient_img": "shopify://shop_images/272910a7972efc8b32caa397f19b8b2d-removebg-preview-removebg-preview.png",
-        "pri_card_desc": "Ingredients like Vitamin C are often added to morning routines to reduce hyperpigmentation, combat free radicals, and improve radiance.",
-        "pri_card_apply": "Apply1-2 timesdaily",
-        "pri_pm_card_desc": "Night-time ingredients like Retinol help accelerate cell renewal, reduce fine lines, and restore skin while you sleep.",
-        "pri_pm_card_apply": "Applyevery nightbefore bed",
-        "pri_ingredient_img_size": 72,
-        "pri_card_bottom": 48,
-        "pri_card_min_height": 100,
-        "pri_card_width": 50,
-        "pri_card_opacity": 85,
-        "pri_card_blur": 12,
-        "pri_card_radius": 20,
-        "pri_card_pad_h": 24,
-        "pri_card_gap": 16,
-        "pri_card_desc_size": 14,
-        "pri_card_desc_color": "#000000",
-        "pri_card_apply_size": 16,
-        "pri_card_apply_color": "#000000"
+        "section_bg_color": "#000000",
+        "title_part1": "MEET OUR SPECIALISED",
+        "title_part2": "MEDICAL TEAM",
+        "title_font_size": 40,
+        "title_color": "#ffffff",
+        "highlight_color": "#4FFFFF",
+        "description": "The science of probiotics demands precision. In collaboration with leading scientists and research partners from around the world",
+        "description_font_size": 18,
+        "description_color": "#ffffff",
+        "nav_bg_color": "#000000",
+        "nav_border_color": "#4FFFFF",
+        "nav_icon_color": "#4FFFFF",
+        "mob_card_width": 62,
+        "mob_card_height": 75,
+        "mob_frost_name_size": 16,
+        "mob_frost_desig_size": 12,
+        "tab_side_width": 26,
+        "tab_active_width": 40,
+        "tab_frost_name_size": 20,
+        "tab_frost_desig_size": 14
       }
     }
   },
   "order": [
     "main",
     "professional_panel_iDFanP",
-    "comparison_table_aQEkFg",
-    "inforoutine_section_drDwYQ"
+    "medical_team_WFTnw9"
   ]
 }

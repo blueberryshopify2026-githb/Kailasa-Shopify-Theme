@@ -4,8 +4,10 @@
   Font: Montserrat | Class suffix: pt
 {% endcomment %}
 
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
 
   .pt-section {
     font-family: 'Montserrat', sans-serif;
@@ -17,12 +19,14 @@
     box-sizing: border-box;
   }
 
+
   .pt-container {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: stretch;
   }
+
 
   /* ── LEFT IMAGE SIDE ── */
   .pt-left {
@@ -31,11 +35,13 @@
     overflow: hidden;
   }
 
+
   .pt-img-wrap {
     width: 100%;
     height: 100%;
     position: relative;
   }
+
 
   .pt-img-wrap img {
     width: 100%;
@@ -45,17 +51,19 @@
     display: block;
   }
 
+
   .pt-img-placeholder {
     width: 100%;
     height: 100%;
     background: #f0f0f0;
   }
 
+
   /* Doctor frost glass card */
   .pt-doctor-card {
     position: absolute;
-    width: 85%;
-    max-width: 400px;
+    width: auto;
+    max-width: 90%;
     bottom: {{ section.settings.pt_doctor_card_bottom }}px;
     left: 50%;
     transform: translateX(-50%);
@@ -66,15 +74,36 @@
     border-radius: {{ section.settings.pt_doctor_card_radius }}px;
     padding: {{ section.settings.pt_doctor_card_pad_v }}px {{ section.settings.pt_doctor_card_pad_h }}px;
     box-shadow: 0 8px 32px rgba(79, 255, 255, 0.35);
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
   }
+
+
+  /* Hide mobile-only card elements on desktop */
+  .pt-doctor-card-icon,
+  .pt-doctor-card-label {
+    flex-shrink: 0;
+    display: flex;
+  }
+
+
+  /* Desktop: card body fills the card as before */
+  .pt-doctor-card-body {
+    flex: 1;
+    min-width: 0;
+  }
+
 
   .pt-doctor-name {
     font-size: {{ section.settings.pt_doctor_name_size }}px;
     font-weight: {{ section.settings.pt_doctor_name_weight }};
-    font-style: italic;
+    font-style: normal;
     color: {{ section.settings.pt_doctor_name_color }};
     margin: 0 0 5px 0;
   }
+
 
   .pt-doctor-specialty {
     font-size: {{ section.settings.pt_doctor_meta_size }}px;
@@ -83,11 +112,56 @@
     margin: 0 0 3px 0;
   }
 
+
   .pt-doctor-exp {
     font-size: {{ section.settings.pt_doctor_meta_size }}px;
     font-weight: 400;
     color: {{ section.settings.pt_doctor_meta_color }};
     margin: 0;
+  }
+
+
+  .pt-doctor-card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #00bcd4;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pt-doctor-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #00bcd4;
+    text-transform: uppercase;
+    margin: 0 0 6px 0;
+    font-family: 'Montserrat', sans-serif;
+    white-space: nowrap;
+    display: block;
+  }
+
+  .pt-doctor-name {
+    white-space: nowrap;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+  }
+
+  .pt-doctor-specialty {
+    font-weight: 400;
+    white-space: nowrap;
+    font-size: 15px;
+    margin: 0 0 8px 0;
+  }
+
+  .pt-doctor-exp {
+    margin: 0;
+    padding-top: 0;
+    border-top: none;
+    white-space: nowrap;
+    font-size: 15px;
   }
 
   /* ── RIGHT CONTENT SIDE ── */
@@ -101,7 +175,9 @@
     position: relative;
     margin-top:0;
 
+
   }
+
 
   .pt-heading {
     font-size: {{ section.settings.pt_heading_size }}px;
@@ -109,13 +185,15 @@
     line-height: {{ section.settings.pt_heading_line_height }};
     color: {{ section.settings.pt_heading_color }};
     margin: 0 0 {{ section.settings.pt_heading_margin_bottom }}px 0;
-    
+   
   }
+
 
   /* Blog excerpt — max 2 lines then read more inline + standalone below */
   .pt-blog-block {
     margin-bottom: {{ section.settings.pt_excerpt_margin_bottom }}px;
   }
+
 
   .pt-excerpt-line {
     font-size: {{ section.settings.pt_excerpt_size }}px;
@@ -128,25 +206,32 @@
     margin: 0 0 4px 0;
   }
 
+
   .pt-excerpt-line .pt-read-more-inline {
     display: inline;
     font-size: {{ section.settings.pt_excerpt_size }}px;
     font-weight: 700;
-    color: {{ section.settings.pt_read_more_color }};
-    text-decoration: none;
+    color: #000000;
+    text-decoration: underline;
+    text-decoration-color: #00bcd4;
+    text-underline-offset: 3px;
     margin-left: 6px;
-    transition: color 0.25s;
+    transition: opacity 0.25s;
   }
+
 
   .pt-read-more-block {
     display: block;
     font-size: {{ section.settings.pt_excerpt_size }}px;
     font-weight: 700;
-    color: {{ section.settings.pt_read_more_color }};
-    text-decoration: none;
+    color: #000000;
+    text-decoration: underline;
+    text-decoration-color: #00bcd4;
+    text-underline-offset: 3px;
     margin-top: 2px;
-    transition: color 0.25s;
+    transition: opacity 0.25s;
   }
+
 
   /* ── SVG DIAGRAM ── */
   .pt-diagram-area {
@@ -159,6 +244,7 @@
     overflow: visible;
   }
 
+
   .pt-diagram-area svg {
     width: 100%;
     height: 100%;
@@ -166,18 +252,22 @@
     pointer-events: none;
   }
 
+
   .pt-diagram-area .pt-dot {
     pointer-events: all;
   }
+
 
   .pt-fo-label {
     font-family: 'Montserrat', sans-serif;
     transition: transform 0.3s ease;
   }
 
+
   .pt-fo-label:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
   }
+
 
   .pt-fo-title {
     font-size: {{ section.settings.pt_bullet_title_size }}px;
@@ -188,6 +278,7 @@
     transition: transform 0.3s ease;
   }
 
+
   .pt-fo-desc {
     font-size: {{ section.settings.pt_bullet_desc_size }}px;
     color: {{ section.settings.pt_bullet_desc_color }};
@@ -197,243 +288,24 @@
     transition: transform 0.3s ease;
   }
 
+
   /* ── RESPONSIVE ── */
-  
+ 
   /* Tablet landscape and below (1024px) */
   @media (max-width: 1024px) {
     .pt-right {
       padding: 10px 30px 10px;
     }
-    
+   
     .pt-heading {
       font-size: calc({{ section.settings.pt_heading_size }}px * 0.85);
     }
-    
+   
     .pt-diagram-area {
       right: 30px;
     }
   }
-  
-  /* Tablet portrait (768px) */
-  @media (max-width: 768px) {
-    .pt-section {
-      height: auto;
-      max-height: none;
-      min-height: auto;
-    }
-    
-    .pt-container {
-      flex-direction: column;
-    }
-    
-    .pt-left {
-      flex: 0 0 100%;
-      min-height: 400px;
-      max-height: 500px;
-    }
-    
-    .pt-right {
-      flex: 0 0 100%;
-      padding: 30px 20px 40px;
-      position: relative;
-    }
-    
-    .pt-heading {
-      font-size: calc({{ section.settings.pt_heading_size }}px * 0.7);
-      margin-bottom: 12px;
-    }
-    
-    .pt-excerpt-line {
-      font-size: calc({{ section.settings.pt_excerpt_size }}px * 0.95);
-    }
-    
-    .pt-blog-block {
-      margin-bottom: 20px;
-    }
-    
-    .pt-doctor-card {
-      width: 90%;
-      max-width: 350px;
-      bottom: 20px;
-      padding: 14px 16px;
-    }
-    
-    .pt-doctor-name {
-      font-size: calc({{ section.settings.pt_doctor_name_size }}px * 0.85);
-    }
-    
-    .pt-doctor-specialty,
-    .pt-doctor-exp {
-      font-size: calc({{ section.settings.pt_doctor_meta_size }}px * 0.9);
-    }
-    
-    /* SVG diagram adjustments for tablet */
-    .pt-diagram-area {
-      position: relative;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 400px;
-      margin-top: 20px;
-    }
-  }
-  
-  /* Mobile landscape (640px) */
-  @media (max-width: 640px) {
-    .pt-left {
-      min-height: 350px;
-      max-height: 400px;
-    }
-    
-    .pt-right {
-      padding: 25px 16px 30px;
-    }
-    
-    .pt-heading {
-      font-size: calc({{ section.settings.pt_heading_size }}px * 0.6);
-      margin-bottom: 10px;
-    }
-    
-    .pt-excerpt-line {
-      font-size: calc({{ section.settings.pt_excerpt_size }}px * 0.9);
-      -webkit-line-clamp: 3;
-    }
-    
-    .pt-doctor-card {
-      width: 92%;
-      max-width: 320px;
-      bottom: 15px;
-      padding: 12px 14px;
-    }
-    
-    .pt-doctor-name {
-      font-size: calc({{ section.settings.pt_doctor_name_size }}px * 0.75);
-      margin-bottom: 3px;
-    }
-    
-    .pt-doctor-specialty,
-    .pt-doctor-exp {
-      font-size: calc({{ section.settings.pt_doctor_meta_size }}px * 0.85);
-    }
-    
-    .pt-diagram-area {
-      height: 350px;
-    }
-    
-    .pt-fo-title {
-      font-size: calc({{ section.settings.pt_bullet_title_size }}px * 0.9);
-    }
-    
-    .pt-fo-desc {
-      font-size: calc({{ section.settings.pt_bullet_desc_size }}px * 0.9);
-    }
-  }
-  
-  /* Mobile portrait (480px) */
-  @media (max-width: 480px) {
-    .pt-left {
-      min-height: 300px;
-      max-height: 350px;
-    }
-    
-    .pt-right {
-      padding: 20px 12px 25px;
-    }
-    
-    .pt-heading {
-      font-size: calc({{ section.settings.pt_heading_size }}px * 0.5);
-      margin-bottom: 8px;
-    }
-    
-    .pt-excerpt-line {
-      font-size: calc({{ section.settings.pt_excerpt_size }}px * 0.85);
-    }
-    
-    .pt-blog-block {
-      margin-bottom: 15px;
-    }
-    
-    .pt-doctor-card {
-      width: 94%;
-      max-width: 280px;
-      bottom: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-    }
-    
-    .pt-doctor-name {
-      font-size: calc({{ section.settings.pt_doctor_name_size }}px * 0.65);
-      margin-bottom: 2px;
-    }
-    
-    .pt-doctor-specialty,
-    .pt-doctor-exp {
-      font-size: calc({{ section.settings.pt_doctor_meta_size }}px * 0.75);
-      margin-bottom: 2px;
-    }
-    
-    .pt-diagram-area {
-      height: 300px;
-      margin-top: 15px;
-    }
-    
-    .pt-fo-title {
-      font-size: calc({{ section.settings.pt_bullet_title_size }}px * 0.8);
-      white-space: normal;
-    }
-    
-    .pt-fo-desc {
-      font-size: calc({{ section.settings.pt_bullet_desc_size }}px * 0.8);
-      white-space: normal;
-    }
-  }
-  
-  /* Small mobile (360px) */
-  @media (max-width: 360px) {
-    .pt-left {
-      min-height: 280px;
-      max-height: 320px;
-    }
-    
-    .pt-right {
-      padding: 16px 10px 20px;
-    }
-    
-    .pt-heading {
-      font-size: calc({{ section.settings.pt_heading_size }}px * 0.45);
-    }
-    
-    .pt-excerpt-line {
-      font-size: calc({{ section.settings.pt_excerpt_size }}px * 0.8);
-    }
-    
-    .pt-doctor-card {
-      width: 95%;
-      max-width: 260px;
-      padding: 8px 10px;
-    }
-    
-    .pt-doctor-name {
-      font-size: calc({{ section.settings.pt_doctor_name_size }}px * 0.6);
-    }
-    
-    .pt-doctor-specialty,
-    .pt-doctor-exp {
-      font-size: calc({{ section.settings.pt_doctor_meta_size }}px * 0.7);
-    }
-    
-    .pt-diagram-area {
-      height: 280px;
-    }
-    
-    .pt-fo-title {
-      font-size: calc({{ section.settings.pt_bullet_title_size }}px * 0.75);
-    }
-    
-    .pt-fo-desc {
-      font-size: calc({{ section.settings.pt_bullet_desc_size }}px * 0.75);
-    }
-  }
+
 
   @media (max-width: {{ section.settings.pt_mobile_breakpoint }}px) {
     .pt-section {
@@ -453,10 +325,489 @@
       padding: 30px 20px;
     }
   }
+
+
+  /* ── TABLET: 768px–1024px ── */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .pt-section {
+      height: auto;
+      max-height: none;
+      min-height: auto;
+    }
+
+
+    .pt-container {
+      flex-direction: column;
+    }
+
+
+    .pt-left {
+      flex: 0 0 auto;
+      width: 94%;
+      margin: 20px auto 0;
+      min-height: 520px;
+      max-height: 60vw;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+
+    .pt-doctor-card {
+      width: auto;
+      max-width: 90%;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+    }
+
+
+    .pt-doctor-card-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid #00bcd4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .pt-doctor-card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+
+    .pt-doctor-card-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      color: #00bcd4;
+      text-transform: uppercase;
+      margin: 0 0 3px 0;
+      font-family: 'Montserrat', sans-serif;
+      display: block;
+      white-space: nowrap;
+    }
+
+
+    .pt-doctor-name {
+      font-size: 20px;
+      font-weight: 700;
+      font-style: normal;
+      margin: 0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .pt-doctor-specialty {
+      font-size: 14px;
+      font-weight: 400;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .pt-doctor-exp {
+      font-size: 14px;
+      margin: 6px 0 0 0;
+      padding-top: 6px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      white-space: nowrap;
+    }
+
+
+    .pt-right {
+      flex: 0 0 auto;
+      width: 94%;
+      margin: 0 auto;
+      padding: 28px 0 0;
+      overflow: visible;
+      text-align: center;
+      position: static;
+    }
+
+
+    .pt-heading {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+
+    .pt-excerpt-line {
+      font-size: 16px;
+      -webkit-line-clamp: 3;
+      text-align: center;
+    }
+
+
+    .pt-excerpt-line .pt-read-more-inline {
+      display: none;
+    }
+
+
+    .pt-read-more-block {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000000;
+      text-decoration: underline;
+      text-decoration-color: #00bcd4;
+      text-underline-offset: 3px;
+      margin-top: 8px;
+      display: block;
+      text-align: center;
+    }
+
+
+    .pt-blog-block {
+      margin-bottom: 0;
+    }
+
+
+    .pt-diagram-area {
+      position: relative;
+      bottom: auto;
+      right: auto;
+      width: 100%;
+      height: 460px;
+      margin-top: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+
+    .pt-diagram-area svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+
+    .pt-fo-title {
+      font-size: 22px;
+      font-weight: 700;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+
+    .pt-fo-desc {
+      font-size: 17px;
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+
+
+  /* ── MOBILE: 320px–767px ── */
+  @media (max-width: 767px) {
+    .pt-section {
+      height: auto;
+      max-height: none;
+      min-height: auto;
+      overflow: visible;
+    }
+
+
+    .pt-container {
+      flex-direction: column;
+      gap: 0;
+    }
+
+
+    /* ── Image block ── */
+    .pt-left {
+      flex: 0 0 auto;
+      width: 94%;
+      margin: 16px auto 0;
+      min-height: 420px;
+      max-height: 85vw;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+
+    /* ── Frost glass card: fit to content ── */
+    .pt-doctor-card {
+      width: auto;
+      max-width: 92%;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+
+
+    .pt-doctor-card-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #00bcd4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .pt-doctor-card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+
+    .pt-doctor-card-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      color: #00bcd4;
+      text-transform: uppercase;
+      margin: 0 0 2px 0;
+      font-family: 'Montserrat', sans-serif;
+      display: block;
+      white-space: nowrap;
+    }
+
+
+    .pt-doctor-name {
+      font-size: 15px;
+      font-weight: 700;
+      font-style: normal;
+      margin: 0 0 3px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .pt-doctor-specialty {
+      font-size: 11px;
+      font-weight: 400;
+      margin: 0 0 0 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+
+    .pt-doctor-exp {
+      font-size: 11px;
+      margin: 4px 0 0 0;
+      padding-top: 4px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      white-space: nowrap;
+    }
+
+
+    /* ── Content block ── */
+    .pt-right {
+      flex: 0 0 auto;
+      width: 94%;
+      margin: 0 auto;
+      padding: 20px 0 0;
+      /* Override desktop overflow:hidden so SVG is not clipped */
+      overflow: visible;
+      text-align: center;
+      /* Remove position:relative so absolute SVG inside diagram-area works */
+      position: static;
+    }
+
+
+    .pt-heading {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+
+    .pt-excerpt-line {
+      font-size: 13px;
+      -webkit-line-clamp: 3;
+      text-align: center;
+    }
+
+
+    .pt-excerpt-line .pt-read-more-inline {
+      display: none;
+    }
+
+
+    .pt-read-more-block {
+      font-size: 13px;
+      font-weight: 700;
+      color: #000000;
+      text-decoration: underline;
+      text-decoration-color: #00bcd4;
+      text-underline-offset: 3px;
+      margin-top: 6px;
+      display: block;
+      text-align: center;
+    }
+
+
+    .pt-blog-block {
+      margin-bottom: 0;
+    }
+
+
+    /* ── SVG diagram: natural flow, no gap ── */
+    .pt-diagram-area {
+      position: relative;
+      bottom: auto;
+      right: auto;
+      width: calc(100% - 10px);
+      margin-right: 10px;
+      height: 0;
+      padding-bottom: 125%; /* 500/400 = 1.25 aspect ratio */
+      margin-top: 0;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .pt-diagram-area svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+
+    .pt-diagram-area svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+
+    .pt-fo-title {
+      font-size: 16px;
+      font-weight: 700;
+      white-space: normal;
+      word-break: normal;
+      max-width: 100%;
+      line-height: 1.25;
+    }
+
+
+    .pt-fo-desc {
+      font-size: 13px;
+      white-space: normal;
+      word-break: normal;
+      max-width: 100%;
+      line-height: 1.3;
+    }
+  }
+
+
+  /* Narrow mobile: 320px–479px */
+  @media (max-width: 479px) {
+    .pt-left {
+      min-height: 360px;
+      max-height: 88vw;
+    }
+
+
+    .pt-doctor-name {
+      font-size: 14px;
+    }
+
+
+    .pt-doctor-specialty,
+    .pt-doctor-exp {
+      font-size: 10px;
+    }
+
+
+    .pt-heading {
+      font-size: 20px;
+    }
+
+
+    .pt-diagram-area {
+      padding-bottom: 125%;
+    }
+
+
+    .pt-fo-title {
+      font-size: 15px;
+    }
+
+
+    .pt-fo-desc {
+      font-size: 12px;
+    }
+  }
+
+
+  /* Very small: 320px–360px */
+  @media (max-width: 360px) {
+    .pt-left {
+      min-height: 300px;
+    }
+
+
+    .pt-heading {
+      font-size: 18px;
+    }
+
+
+    .pt-doctor-name {
+      font-size: 13px;
+    }
+
+
+    .pt-diagram-area {
+      padding-bottom: 125%;
+    }
+
+
+    .pt-fo-title {
+      font-size: 14px;
+    }
+
+
+    .pt-fo-desc {
+      font-size: 11px;
+    }
+  }
 </style>
+
 
 <section class="pt-section full-width">
   <div class="pt-container">
+
 
     <!-- ── LEFT IMAGE ── -->
     <div class="pt-left">
@@ -473,18 +824,31 @@
           <div class="pt-img-placeholder"></div>
         {% endif %}
 
+
         <div class="pt-doctor-card">
-          <p class="pt-doctor-name">{{ section.settings.pt_doctor_name }}</p>
-          <p class="pt-doctor-specialty">{{ section.settings.pt_doctor_specialty }}</p>
-          <p class="pt-doctor-exp">{{ section.settings.pt_doctor_experience }}</p>
+          <div class="pt-doctor-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L4 5.5V11C4 15.55 7.41 19.74 12 21C16.59 19.74 20 15.55 20 11V5.5L12 2Z" stroke="#4fffff" stroke-width="2" stroke-linejoin="round" fill="none"/>
+              <path d="M12 8V16M8 12H16" stroke="#4fffff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pt-doctor-card-body">
+            <p class="pt-doctor-card-label">Expert Care You Can Trust</p>
+            <p class="pt-doctor-name">{{ section.settings.pt_doctor_name }}</p>
+            <p class="pt-doctor-specialty">{{ section.settings.pt_doctor_specialty }}</p>
+            <p class="pt-doctor-exp">{{ section.settings.pt_doctor_experience }}</p>
+          </div>
         </div>
       </div>
     </div>
 
+
     <!-- ── RIGHT CONTENT ── -->
     <div class="pt-right">
 
+
       <h2 class="pt-heading">{{ section.settings.pt_heading }}</h2>
+
 
       <!-- Blog excerpt: 2 lines + inline read more, then standalone read more below -->
       <div class="pt-blog-block">
@@ -506,9 +870,10 @@
           {{ pt_text }}{% if pt_url != blank %}&nbsp;&nbsp;<a href="{{ pt_url }}" class="pt-read-more-inline">read more...</a>{% endif %}
         </p>
         {% if pt_url != blank %}
-          <a href="{{ pt_url }}" class="pt-read-more-block">read more</a>
+          <a href="{{ pt_url }}" class="pt-read-more-block">read more...</a>
         {% endif %}
       </div>
+
 
       <!-- SVG: circle + arc + dots + labels in one coordinate system -->
       <div class="pt-diagram-area">
@@ -516,14 +881,17 @@
           ViewBox 800×480. Circle center (700,300), r=160.
           Bottom edge: 300+160=460 < 480 ✓. Right edge: 700+160=860 (bleeds ~60px right, fine).
 
+
           Arc: r=180 (20px outside circle), center (700,300).
           Arc from 300° to 120° going CW (sweep=1) = 180° left-side arc.
             300° (= -60°): x=700+180×cos(-60°)=700+90=790, y=300+180×sin(-60°)=300-156=144 → (790,144) top-right
             180°:           x=700-180=520, y=300 → (520,300) pure left
             120°:           x=700+180×cos(120°)=700-90=610, y=300+180×sin(120°)=300+156=456 → (610,456) lower-left
 
+
           Arc: M 790 144 A 180 180 0 0 0 610 456
           (large-arc=0, sweep=0=CCW from top-right, sweeping LEFT, to lower-left)
+
 
           Dots evenly at 300°, 210°, 120°:
             D1 @ 300° (-60°): (790, 144) — top-right
@@ -533,7 +901,7 @@
             That's upper-left, not middle. Let me use evenly spaced:
             Arc spans 300° to 120° CCW = 180° total.
             Midpoint = 210°: x=700+180×cos(210°)=544, y=300+180×sin(210°)=300-90=210 — upper area
-            
+           
             Better: use 300°, 180°, 120° for top/middle/bottom:
             D1 @ 300°: (790, 144)
             D2 @ 180°: (520, 300)
@@ -554,6 +922,7 @@
             </clipPath>
           </defs>
 
+
           <!-- Circle shadow + image -->
           <circle cx="700" cy="300" r="162" fill="white" filter="url(#pt-shad-{{ section.id }})"/>
           {% if section.settings.pt_circle_image != blank %}
@@ -567,6 +936,7 @@
             <circle cx="700" cy="300" r="160" fill="#f0f0f0"/>
           {% endif %}
 
+
           <!-- Arc: CCW from (790,144) to (610,456), r=180, left-side 180° arc -->
           <path
             d="M 790 144 A 180 180 0 0 0 610 456"
@@ -575,6 +945,7 @@
             fill="none"
           />
 
+
           <!-- Dot 1 @ 300°: (790, 144) — top-right -->
           <circle class="pt-dot" cx="790" cy="144" r="{{ section.settings.pt_dot_size }}" fill="{{ section.settings.pt_dot_color }}" style="cursor:pointer; pointer-events:all; transition:fill 0.2s, transform 0.2s; transform-origin:790px 144px;"/>
           <!-- Dot 2 @ 180°: (520, 300) — pure left -->
@@ -582,10 +953,11 @@
           <!-- Dot 3 @ 120°: (610, 456) — lower-left -->
           <circle class="pt-dot" cx="610" cy="456" r="{{ section.settings.pt_dot_size }}" fill="{{ section.settings.pt_dot_color }}" style="cursor:pointer; pointer-events:all; transition:fill 0.2s, transform 0.2s; transform-origin:610px 456px;"/>
 
-          <!-- Label 1: 10-15px above dot1 (790,144) -->
+
+          <!-- Label 1: pushed up just enough to clear the circle top — dot1 at y=144 -->
           {% assign b1 = section.blocks[0] %}
           {% if b1 %}
-            <foreignObject x="350" y="72" width="420" height="56">
+            <foreignObject x="300" y="50" width="480" height="110">
               <div xmlns="http://www.w3.org/1999/xhtml" class="pt-fo-label" data-dot="1" style="text-align:right; padding-right:20px;">
                 <span class="pt-fo-title">{{ b1.settings.pt_bullet_title }}</span>
                 <span class="pt-fo-desc">{{ b1.settings.pt_bullet_desc }}</span>
@@ -593,10 +965,11 @@
             </foreignObject>
           {% endif %}
 
+
           <!-- Label 2: 20px to the left of dot2 (520,300), vertically centered -->
           {% assign b2 = section.blocks[1] %}
           {% if b2 %}
-            <foreignObject x="100" y="272" width="400" height="56">
+            <foreignObject x="60" y="258" width="440" height="110">
               <div xmlns="http://www.w3.org/1999/xhtml" class="pt-fo-label" data-dot="2" style="text-align:right; padding-right:20px;">
                 <span class="pt-fo-title">{{ b2.settings.pt_bullet_title }}</span>
                 <span class="pt-fo-desc">{{ b2.settings.pt_bullet_desc }}</span>
@@ -604,10 +977,11 @@
             </foreignObject>
           {% endif %}
 
+
           <!-- Label 3: 20px to the left of dot3 (610,456), vertically centered -->
           {% assign b3 = section.blocks[2] %}
           {% if b3 %}
-            <foreignObject x="200" y="428" width="390" height="56">
+            <foreignObject x="150" y="418" width="440" height="110">
               <div xmlns="http://www.w3.org/1999/xhtml" class="pt-fo-label" data-dot="3" style="text-align:right; padding-right:20px;">
                 <span class="pt-fo-title">{{ b3.settings.pt_bullet_title }}</span>
                 <span class="pt-fo-desc">{{ b3.settings.pt_bullet_desc }}</span>
@@ -617,65 +991,208 @@
         </svg>
       </div>
 
+
     </div>
   </div>
 </section>
 
+
 <script>
 (function() {
-  // Wait for DOM to be fully loaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
-  
+ 
   function init() {
     var dots = document.querySelectorAll('.pt-dot');
     var labels = document.querySelectorAll('.pt-fo-label');
-    
+   
     if (!dots.length) return;
-    
-    // Create a map of dot index to label
+   
+    // Mobile: adjust SVG viewBox to show content at proper scale
+    var svg = document.querySelector('.pt-diagram-area svg');
+    if (svg) {
+
+      // ── Save original attribute values once so we can restore on tablet/desktop ──
+      var origValues = null;
+      function saveOriginals() {
+        if (origValues) return;
+        var circles = svg.querySelectorAll('circle');
+        var clipCircle = svg.querySelector('clipPath circle');
+        var circleImg = svg.querySelector('image');
+        var arc = svg.querySelector('path');
+        var dots = svg.querySelectorAll('.pt-dot');
+        var fos = svg.querySelectorAll('foreignObject');
+
+        origValues = {
+          circles: Array.from(circles).map(function(c) {
+            return { cx: c.getAttribute('cx'), cy: c.getAttribute('cy'), r: c.getAttribute('r') };
+          }),
+          clipCircle: clipCircle ? { cx: clipCircle.getAttribute('cx'), cy: clipCircle.getAttribute('cy'), r: clipCircle.getAttribute('r') } : null,
+          img: circleImg ? { x: circleImg.getAttribute('x'), y: circleImg.getAttribute('y'), w: circleImg.getAttribute('width'), h: circleImg.getAttribute('height') } : null,
+          arc: arc ? arc.getAttribute('d') : null,
+          dots: Array.from(dots).map(function(d) { return { cx: d.getAttribute('cx'), cy: d.getAttribute('cy') }; }),
+          fos: Array.from(fos).map(function(f) { return { x: f.getAttribute('x'), y: f.getAttribute('y'), w: f.getAttribute('width'), h: f.getAttribute('height') }; })
+        };
+      }
+
+      function restoreOriginals() {
+        if (!origValues) return;
+        var circles = svg.querySelectorAll('circle');
+        circles.forEach(function(c, i) {
+          if (origValues.circles[i]) {
+            if (origValues.circles[i].cx) c.setAttribute('cx', origValues.circles[i].cx);
+            if (origValues.circles[i].cy) c.setAttribute('cy', origValues.circles[i].cy);
+            if (origValues.circles[i].r)  c.setAttribute('r',  origValues.circles[i].r);
+          }
+        });
+        var clipCircle = svg.querySelector('clipPath circle');
+        if (clipCircle && origValues.clipCircle) {
+          clipCircle.setAttribute('cx', origValues.clipCircle.cx);
+          clipCircle.setAttribute('cy', origValues.clipCircle.cy);
+          clipCircle.setAttribute('r',  origValues.clipCircle.r);
+        }
+        var circleImg = svg.querySelector('image');
+        if (circleImg && origValues.img) {
+          circleImg.setAttribute('x', origValues.img.x);
+          circleImg.setAttribute('y', origValues.img.y);
+          circleImg.setAttribute('width', origValues.img.w);
+          circleImg.setAttribute('height', origValues.img.h);
+        }
+        var arc = svg.querySelector('path');
+        if (arc && origValues.arc) arc.setAttribute('d', origValues.arc);
+        var dots = svg.querySelectorAll('.pt-dot');
+        dots.forEach(function(d, i) {
+          if (origValues.dots[i]) {
+            d.setAttribute('cx', origValues.dots[i].cx);
+            d.setAttribute('cy', origValues.dots[i].cy);
+          }
+        });
+        var fos = svg.querySelectorAll('foreignObject');
+        fos.forEach(function(f, i) {
+          if (origValues.fos[i]) {
+            f.setAttribute('x', origValues.fos[i].x);
+            f.setAttribute('y', origValues.fos[i].y);
+            f.setAttribute('width', origValues.fos[i].w);
+            f.setAttribute('height', origValues.fos[i].h);
+          }
+        });
+      }
+
+      var mobileApplied = false;
+
+      function adjustSvgViewBox() {
+        if (window.innerWidth <= 767) {
+          // Save originals before first mutation
+          saveOriginals();
+          mobileApplied = true;
+
+          // Mobile-optimised layout: redesign coordinate space for phone screen
+          var W = 400, H = 500;
+          var cx = 280, cy = 260, r = 130, ra = 148;
+
+          var d1x = Math.round(cx + ra * Math.cos(-60 * Math.PI/180));
+          var d1y = Math.round(cy + ra * Math.sin(-60 * Math.PI/180));
+          var d2x = Math.round(cx - ra);
+          var d2y = cy;
+          var d3x = Math.round(cx + ra * Math.cos(120 * Math.PI/180));
+          var d3y = Math.round(cy + ra * Math.sin(120 * Math.PI/180));
+
+          svg.querySelectorAll('circle').forEach(function(c) {
+            var oldR = parseFloat(c.getAttribute('r'));
+            if (oldR > 50) {
+              c.setAttribute('cx', cx);
+              c.setAttribute('cy', cy);
+              c.setAttribute('r', oldR >= 160 ? 132 : 130);
+              c.style.transformOrigin = cx + 'px ' + cy + 'px';
+            }
+          });
+
+          var clipCircle = svg.querySelector('clipPath circle');
+          if (clipCircle) { clipCircle.setAttribute('cx', cx); clipCircle.setAttribute('cy', cy); clipCircle.setAttribute('r', 130); }
+
+          var circleImg = svg.querySelector('image');
+          if (circleImg) { circleImg.setAttribute('x', cx - 130); circleImg.setAttribute('y', cy - 130); circleImg.setAttribute('width', 260); circleImg.setAttribute('height', 260); }
+
+          var arc = svg.querySelector('path');
+          if (arc) arc.setAttribute('d', 'M ' + d1x + ' ' + d1y + ' A ' + ra + ' ' + ra + ' 0 0 0 ' + d3x + ' ' + d3y);
+
+          var dotEls = svg.querySelectorAll('.pt-dot');
+          var dotPositions = [[d1x,d1y],[d2x,d2y],[d3x,d3y]];
+          dotEls.forEach(function(dot, i) {
+            if (dotPositions[i]) {
+              dot.setAttribute('cx', dotPositions[i][0]);
+              dot.setAttribute('cy', dotPositions[i][1]);
+              dot.style.transformOrigin = dotPositions[i][0] + 'px ' + dotPositions[i][1] + 'px';
+            }
+          });
+
+          var fos = svg.querySelectorAll('foreignObject');
+          var labelW = 200;
+          if (fos[0]) { fos[0].setAttribute('x', d1x - labelW); fos[0].setAttribute('y', d1y - 90); fos[0].setAttribute('width', labelW); fos[0].setAttribute('height', 90); }
+          if (fos[1]) { fos[1].setAttribute('x', 0); fos[1].setAttribute('y', d2y - 45); fos[1].setAttribute('width', d2x - 10); fos[1].setAttribute('height', 90); }
+          if (fos[2]) { fos[2].setAttribute('x', 0); fos[2].setAttribute('y', d3y - 10); fos[2].setAttribute('width', d3x - 10); fos[2].setAttribute('height', 90); }
+
+          svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+          svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+        } else {
+          // Restore original positions before applying tablet/desktop viewBox
+          if (mobileApplied) {
+            restoreOriginals();
+            mobileApplied = false;
+          }
+          if (window.innerWidth <= 1024) {
+            svg.setAttribute('viewBox', '60 30 760 450');
+            svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+          } else {
+            svg.setAttribute('viewBox', '0 0 800 480');
+            svg.setAttribute('preserveAspectRatio', 'xMaxYMax meet');
+          }
+        }
+      }
+
+      // Delay initial call to ensure browser has measured true layout width
+      setTimeout(adjustSvgViewBox, 50);
+      window.addEventListener('resize', adjustSvgViewBox);
+    }
+
+
     var labelMap = {};
     labels.forEach(function(label) {
       var dotIndex = label.getAttribute('data-dot');
-      if (dotIndex) {
-        labelMap[dotIndex] = label;
-      }
+      if (dotIndex) labelMap[dotIndex] = label;
     });
-    
+   
     dots.forEach(function(dot, index) {
       var dotNum = (index + 1).toString();
       var correspondingLabel = labelMap[dotNum];
-      
-      // Store original fill color
       dot.setAttribute('data-orig-fill', dot.getAttribute('fill'));
-      
+     
       dot.addEventListener('mouseenter', function() {
         dot.style.fill = '#4fffff';
         dot.style.transform = 'scale(1.2)';
-        if (correspondingLabel) {
-          correspondingLabel.style.transform = 'scale(1.1)';
-        }
+        if (correspondingLabel) correspondingLabel.style.transform = 'scale(1.1)';
       });
-      
+     
       dot.addEventListener('mouseleave', function() {
         dot.style.fill = dot.getAttribute('data-orig-fill') || '{{ section.settings.pt_dot_color }}';
         dot.style.transform = 'scale(1)';
-        if (correspondingLabel) {
-          correspondingLabel.style.transform = 'scale(1)';
-        }
+        if (correspondingLabel) correspondingLabel.style.transform = 'scale(1)';
       });
     });
   }
 })();
 </script>
 
+
 {% schema %}
 {
   "name": "Proff Section Two",
   "settings": [
+
 
     { "type": "header", "content": "── Layout" },
     {
@@ -709,6 +1226,7 @@
       "min": 250, "max": 700, "step": 25, "default": 400
     },
 
+
     { "type": "header", "content": "── Colors" },
     {
       "type": "color",
@@ -728,6 +1246,7 @@
       "label": "Accent Color (card border)",
       "default": "#4fffff"
     },
+
 
     { "type": "header", "content": "── Left Image" },
     {
@@ -759,6 +1278,7 @@
       ],
       "default": "center center"
     },
+
 
     { "type": "header", "content": "── Doctor Card" },
     {
@@ -870,6 +1390,7 @@
       "default": "#000000"
     },
 
+
     { "type": "header", "content": "── Right Padding" },
     {
       "type": "range",
@@ -895,6 +1416,7 @@
       "label": "Padding Left (px)",
       "min": 0, "max": 120, "step": 5, "default": 50
     },
+
 
     { "type": "header", "content": "── Heading" },
     {
@@ -940,6 +1462,7 @@
       "min": 0, "max": 60, "step": 2, "default": 16
     },
 
+
     { "type": "header", "content": "── Blog / Excerpt" },
     {
       "type": "blog",
@@ -981,6 +1504,7 @@
       "label": "Excerpt Margin Bottom (px)",
       "min": 0, "max": 80, "step": 4, "default": 32
     },
+
 
     { "type": "header", "content": "── Bullet Points" },
     {
@@ -1032,6 +1556,7 @@
       "default": "#000000"
     },
 
+
     { "type": "header", "content": "── Curve Line" },
     {
       "type": "range",
@@ -1058,6 +1583,7 @@
       "min": 1, "max": 6, "step": 1, "default": 2
     },
 
+
     { "type": "header", "content": "── Circle Image" },
     {
       "type": "image_picker",
@@ -1070,6 +1596,7 @@
       "label": "Circle Size (px)",
       "min": 80, "max": 300, "step": 10, "default": 260
     }
+
 
   ],
   "blocks": [
@@ -1122,3 +1649,6 @@
   ]
 }
 {% endschema %}
+
+
+

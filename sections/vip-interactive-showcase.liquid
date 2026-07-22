@@ -1,9 +1,10 @@
-{% comment %} Using system fonts for better performance {% endcomment %}
+{% comment %} Montserrat font {% endcomment %}
 
 <style>
-  
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
   .vip-showcase {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: white;
     height: 100vh;
     display: flex;
@@ -24,16 +25,13 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    transform: translateZ(0);
+    isolation: isolate;
   }
 
-  .vip-left img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.6s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
+  /* Mobile-only sibling text block — hidden on desktop */
+  .vip-bottom-content {
+    display: none;
   }
 
   .vip-right {
@@ -41,10 +39,36 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 40px 40px 20px 40px;
+    padding: 10px 40px 30px 40px;
     height: 100vh;
     position: relative;
+    overflow: hidden;
   }
+
+  /* Desktop text block inside .vip-right — sits at bottom */
+  .vip-bottom-content-desktop {
+    text-align: center;
+    width: 100%;
+    padding: 20px 0 0 0;
+    margin-top: 16px;
+    flex-shrink: 0;
+  }
+
+  .vip-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: opacity 0.6s ease;
+  }
+
+  .vip-left img.img-behind  { opacity: 1; z-index: 1; }
+  .vip-left img.img-front   { opacity: 0; z-index: 2; }
 
   .vip-icons-container {
     display: flex;
@@ -117,8 +141,25 @@
     object-fit: contain;
     margin: 15px auto 0;
     display: block;
-    transition: all 0.1s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: opacity 0.6s ease;
   }
+
+  /* wrapper so absolute-positioned product images stack correctly */
+  .vip-product-image-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 180px;
+    height: 180px;
+    margin: 10px auto 0;
+  }
+
+  .vip-product-image.img-behind  { opacity: 1; z-index: 1; }
+  .vip-product-image.img-front   { opacity: 0; z-index: 2; }
 
   .vip-product-name {
     font-size: {{ section.settings.product_name_size | default: 24 }}px;
@@ -132,136 +173,262 @@
     font-size: {{ section.settings.product_subtitle_size | default: 16 }}px;
     color: {{ section.settings.product_subtitle_color | default: '#666' }};
     font-style: normal;
-    margin-bottom: 15px;
+    text-transform: none;
+    margin-bottom: 10px;
     transition: all 0.6s ease;
   }
 
-  .vip-bottom-content {
-    text-align: left;
-    margin-top: 20px;
-    padding: 0 20px 20px 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
   .vip-main-heading {
-    font-size: {{ section.settings.main_heading_size | default: 32 }}px;
+    font-size: {{ section.settings.main_heading_size | default: 24 }}px;
     font-weight: 700;
     color: {{ section.settings.main_heading_color | default: '#333' }};
-    margin-bottom: 15px;
+    margin: 20px 10px 10px 10px;
+    line-height: 1.4;
     transition: all 0.6s ease;
   }
 
   .vip-main-subheading {
-    font-size: {{ section.settings.main_subheading_size | default: 18 }}px;
+    font-size: {{ section.settings.main_subheading_size | default: 20 }}px;
     color: {{ section.settings.main_subheading_color | default: '#666' }};
-    font-style: italic;
-    line-height: 1.6;
+    font-style: normal;
+    text-transform: none;
+    line-height: 1.4;
+    margin-bottom: 0;
     transition: all 0.6s ease;
   }
 
-  @media (max-width: 768px) {
+  @media (min-width: 360px) and (max-width: 767px) {
     .vip-showcase {
-      height: 100vh;
+      height: auto;
+      overflow: visible;
     }
 
     .vip-container {
-      grid-template-columns: 1fr;
-      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    /* Show mobile-only text block, hide desktop copy inside .vip-right */
+    .vip-bottom-content {
+      display: block;
+      order: 1;
+      padding: 24px 20px 20px;
+      text-align: center;
+    }
+
+    .vip-bottom-content-desktop {
+      display: none !important;
     }
 
     .vip-left {
-      height: 50vh;
+      order: 2;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      width: calc(100% - 32px);
+      align-self: center;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
     }
 
     .vip-right {
-      padding: 20px;
-      height: 50vh;
+      order: 3;
+      height: auto;
+      padding: 0 16px 24px;
+      align-items: stretch;
       justify-content: flex-start;
     }
 
-    .vip-icons-container {
-      gap: 15px;
-      margin-bottom: 15px;
-      flex-wrap: nowrap;
-    }
-
-    .vip-icon-block {
-      width: 65px;
-      height: 65px;
-    }
-
-    .vip-icon-block img {
-      width: 35px;
-      height: 35px;
-    }
-
-    .vip-content-container {
-      padding: 15px;
-      max-width: 100%;
-    }
-
-    .vip-bottom-content {
-      padding: 0 15px 15px 15px;
-      margin-top: 15px;
-    }
-
-    .vip-product-image {
-      max-width: 120px;
-      height: 120px;
-    }
-
-    .vip-product-name {
-      font-size: 20px;
-    }
-
-    .vip-product-subtitle {
-      font-size: 14px;
-    }
-
     .vip-main-heading {
-      font-size: 26px;
+      font-size: 22px;
+      margin-bottom: 10px;
     }
 
     .vip-main-subheading {
-      font-size: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .vip-icons-container {
+      gap: 10px;
+      margin: 20px 0 16px;
+      justify-content: center;
+    }
+
+    .vip-icon-block {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+    }
+
+    .vip-icon-block img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .vip-content-container {
+      padding: 20px 16px;
+      max-width: 100%;
+      transform: none;
+      margin-bottom: 0;
+    }
+
+    .vip-content-container.active {
+      transform: none;
+    }
+
+    .vip-product-name {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .vip-product-subtitle {
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .vip-product-image {
+      max-width: 130px;
+      height: 150px;
+      margin: 10px auto 0;
+    }
+
+    .vip-product-image-wrap {
+      max-width: 130px;
+      height: 150px;
+    }
+  }
+
+  /* Tablet: 768px–1024px — same stacked layout as mobile, scaled up */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .vip-showcase {
+      height: auto;
+      overflow: visible;
+    }
+
+    .vip-container {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    .vip-bottom-content {
+      display: block;
+      order: 1;
+      padding: 36px 40px 28px;
+      text-align: center;
+    }
+
+    .vip-bottom-content-desktop {
+      display: none !important;
+    }
+
+    .vip-left {
+      order: 2;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      width: calc(100% - 64px);
+      align-self: center;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .vip-right {
+      order: 3;
+      height: auto;
+      padding: 0 40px 40px;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+
+    .vip-main-heading {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .vip-main-subheading {
+      font-size: 22px;
+      line-height: 1.7;
+    }
+
+    .vip-icons-container {
+      gap: 18px;
+      margin: 28px 0 22px;
+      justify-content: center;
+    }
+
+    .vip-icon-block {
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+    }
+
+    .vip-icon-block img {
+      width: 38px;
+      height: 38px;
+    }
+
+    .vip-content-container {
+      padding: 28px 24px;
+      max-width: 100%;
+      transform: none;
+      margin-bottom: 0;
+    }
+
+    .vip-content-container.active {
+      transform: none;
+    }
+
+    .vip-product-name {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .vip-product-subtitle {
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    .vip-product-image {
+      max-width: 180px;
+      height: 200px;
+      margin: 14px auto 0;
+    }
+
+    .vip-product-image-wrap {
+      max-width: 180px;
+      height: 200px;
     }
   }
 </style>
 
 <section class="vip-showcase full-width">
   <div class="vip-container">
+
     <div class="vip-left">
-      {% if section.settings.main_image_1 %}
-        <img
-          id="vip-main-image"
-          src="{{ section.settings.main_image_1 | image_url: width: 1200 }}"
-          alt="{{ section.settings.main_image_1.alt | default: 'VIP Showcase' }}"
-          width="1200"
-          height="800"
-          loading="lazy"
-        >
-      {% elsif section.settings.default_main_image %}
-        <img
-          id="vip-main-image"
-          src="{{ section.settings.default_main_image | image_url: width: 1200 }}"
-          alt="{{ section.settings.default_main_image.alt | default: 'VIP Showcase' }}"
-          width="1200"
-          height="800"
-          loading="lazy"
-        >
+      {% assign first_src = section.settings.main_image_1 | default: section.settings.default_main_image %}
+      {% if first_src %}
+        <img id="vip-main-behind" class="img-behind" src="{{ first_src | image_url: width: 1200 }}" alt="VIP Showcase" width="1200" height="800" loading="eager">
+        <img id="vip-main-front"  class="img-front"  src="{{ first_src | image_url: width: 1200 }}" alt="VIP Showcase" width="1200" height="800" loading="eager">
       {% else %}
-        <img
-          id="vip-main-image"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' fill='%23999'%3EUpload Lifestyle Image%3C/text%3E%3C/svg%3E"
-          alt="Upload Lifestyle Image"
-          width="1200"
-          height="800"
-          loading="lazy"
-        >
+        <img id="vip-main-behind" class="img-behind" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' fill='%23999'%3EUpload Lifestyle Image%3C/text%3E%3C/svg%3E" alt="Placeholder" width="1200" height="800">
+        <img id="vip-main-front"  class="img-front"  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' fill='%23999'%3EUpload Lifestyle Image%3C/text%3E%3C/svg%3E" alt="Placeholder" width="1200" height="800">
       {% endif %}
+    </div>
+
+    <!-- Lifted out of .vip-right so we can reorder it on mobile -->
+    <div class="vip-bottom-content">
+      <h2 class="vip-main-heading">
+        {{ section.settings.main_heading_1 | default: 'A NEW PHILOSOPHY ON SKINCARE' }}
+      </h2>
+      <p class="vip-main-subheading">
+        {{
+          section.settings.main_subheading_1
+          | default: 'Rhode is a line of curated skincare essentials. Formulated for a variety of skin types and needs with high performance ingredients, it is a daily routine that nourishes your skin barrier over time.'
+        }}
+      </p>
     </div>
 
     <div class="vip-right">
@@ -299,30 +466,23 @@
           {{ first_block.settings.product_subtitle | default: 'The Dewy Hydration Layer' }}
         </p>
 
-        {% if first_block.settings.product_image %}
-          <img
-            id="vip-product-image"
-            class="vip-product-image"
-            src="{{ first_block.settings.product_image | image_url: width: 500 }}"
-            alt="{{ first_block.settings.product_image.alt | default: 'Product' }}"
-            width="250"
-            height="250"
-            loading="lazy"
-          >
+        {% assign prod_src = first_block.settings.product_image %}
+        {% if prod_src %}
+          <div class="vip-product-image-wrap">
+            <img id="vip-product-behind" class="vip-product-image img-behind" src="{{ prod_src | image_url: width: 500 }}" alt="Product" width="250" height="250" loading="eager">
+            <img id="vip-product-front"  class="vip-product-image img-front"  src="{{ prod_src | image_url: width: 500 }}" alt="Product" width="250" height="250" loading="eager">
+          </div>
         {% else %}
-          <img
-            id="vip-product-image"
-            class="vip-product-image"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Crect width='250' height='250' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='16' fill='%23999'%3EProduct Image%3C/text%3E%3C/svg%3E"
-            alt="Product"
-            width="250"
-            height="250"
-            loading="lazy"
-          >
+          {% assign placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Crect width='250' height='250' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='16' fill='%23999'%3EProduct Image%3C/text%3E%3C/svg%3E" %}
+          <div class="vip-product-image-wrap">
+            <img id="vip-product-behind" class="vip-product-image img-behind" src="{{ placeholder }}" alt="Product" width="250" height="250">
+            <img id="vip-product-front"  class="vip-product-image img-front"  src="{{ placeholder }}" alt="Product" width="250" height="250">
+          </div>
         {% endif %}
       </div>
 
-      <div class="vip-bottom-content">
+      <!-- Desktop-only text block (bottom of right column) -->
+      <div class="vip-bottom-content-desktop">
         <h2 id="vip-main-heading" class="vip-main-heading">
           {{ section.settings.main_heading_1 | default: 'A NEW PHILOSOPHY ON SKINCARE' }}
         </h2>
@@ -334,6 +494,7 @@
         </p>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -341,12 +502,14 @@
   document.addEventListener('DOMContentLoaded', function () {
     const iconBlocks = document.querySelectorAll('.vip-icon-block');
     const container = document.getElementById('vip-content');
-    const productImage = document.getElementById('vip-product-image');
+    const mainBehind = document.getElementById('vip-main-behind');
+    const mainFront  = document.getElementById('vip-main-front');
+    const prodBehind = document.getElementById('vip-product-behind');
+    const prodFront  = document.getElementById('vip-product-front');
     const productName = document.getElementById('vip-product-name');
     const productSubtitle = document.getElementById('vip-product-subtitle');
-    const mainHeading = document.getElementById('vip-main-heading');
-    const mainSubheading = document.getElementById('vip-main-subheading');
-    const mainImage = document.getElementById('vip-main-image');
+    const mainHeadings = document.querySelectorAll('.vip-main-heading');
+    const mainSubheadings = document.querySelectorAll('.vip-main-subheading');
 
     // Auto-timer settings from schema
     const autoTimerEnabled = {{ section.settings.auto_timer_enabled | default: true }};
@@ -357,34 +520,34 @@
     const contentData = [
       {% for block in section.blocks %}
         {
-          productImage: '{{ block.settings.product_image | image_url: width: 500 }}' || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Crect width='250' height='250' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='16' fill='%23999'%3EProduct {{ forloop.index }}%3C/text%3E%3C/svg%3E",
-          productName: '{{ block.settings.product_name | escape }}' || 'Product {{ forloop.index }}',
-          productSubtitle: '{{ block.settings.product_subtitle | escape }}' || 'Product Subtitle {{ forloop.index }}',
+          productImage: '{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 500 }}{% endif %}',
+          productName: '{{ block.settings.product_name | escape }}',
+          productSubtitle: '{{ block.settings.product_subtitle | escape }}',
           {% case forloop.index %}
             {% when 1 %}
-              mainHeading: '{{ section.settings.main_heading_1 | escape }}' || 'Main Heading 1',
-              mainSubheading: '{{ section.settings.main_subheading_1 | escape }}' || 'Main subheading for product 1.',
-              mainImage: '{{ section.settings.main_image_1 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+              mainHeading: '{{ section.settings.main_heading_1 | escape }}',
+              mainSubheading: '{{ section.settings.main_subheading_1 | escape }}',
+              mainImage: '{% if section.settings.main_image_1 %}{{ section.settings.main_image_1 | image_url: width: 1200 }}{% elsif section.settings.default_main_image %}{{ section.settings.default_main_image | image_url: width: 1200 }}{% endif %}'
             {% when 2 %}
-              mainHeading: '{{ section.settings.main_heading_2 | escape }}' || 'Main Heading 2',
-              mainSubheading: '{{ section.settings.main_subheading_2 | escape }}' || 'Main subheading for product 2.',
-              mainImage: '{{ section.settings.main_image_2 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+              mainHeading: '{{ section.settings.main_heading_2 | escape }}',
+              mainSubheading: '{{ section.settings.main_subheading_2 | escape }}',
+              mainImage: '{% if section.settings.main_image_2 %}{{ section.settings.main_image_2 | image_url: width: 1200 }}{% elsif section.settings.default_main_image %}{{ section.settings.default_main_image | image_url: width: 1200 }}{% endif %}'
             {% when 3 %}
-              mainHeading: '{{ section.settings.main_heading_3 | escape }}' || 'Main Heading 3',
-              mainSubheading: '{{ section.settings.main_subheading_3 | escape }}' || 'Main subheading for product 3.',
-              mainImage: '{{ section.settings.main_image_3 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+              mainHeading: '{{ section.settings.main_heading_3 | escape }}',
+              mainSubheading: '{{ section.settings.main_subheading_3 | escape }}',
+              mainImage: '{% if section.settings.main_image_3 %}{{ section.settings.main_image_3 | image_url: width: 1200 }}{% elsif section.settings.default_main_image %}{{ section.settings.default_main_image | image_url: width: 1200 }}{% endif %}'
             {% when 4 %}
-              mainHeading: '{{ section.settings.main_heading_4 | escape }}' || 'Main Heading 4',
-              mainSubheading: '{{ section.settings.main_subheading_4 | escape }}' || 'Main subheading for product 4.',
-              mainImage: '{{ section.settings.main_image_4 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+              mainHeading: '{{ section.settings.main_heading_4 | escape }}',
+              mainSubheading: '{{ section.settings.main_subheading_4 | escape }}',
+              mainImage: '{% if section.settings.main_image_4 %}{{ section.settings.main_image_4 | image_url: width: 1200 }}{% elsif section.settings.default_main_image %}{{ section.settings.default_main_image | image_url: width: 1200 }}{% endif %}'
             {% when 5 %}
-              mainHeading: '{{ section.settings.main_heading_5 | escape }}' || 'Main Heading 5',
-              mainSubheading: '{{ section.settings.main_subheading_5 | escape }}' || 'Main subheading for product 5.',
-              mainImage: '{{ section.settings.main_image_5 | image_url: width: 1200 }}' || '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+              mainHeading: '{{ section.settings.main_heading_5 | escape }}',
+              mainSubheading: '{{ section.settings.main_subheading_5 | escape }}',
+              mainImage: '{% if section.settings.main_image_5 %}{{ section.settings.main_image_5 | image_url: width: 1200 }}{% elsif section.settings.default_main_image %}{{ section.settings.default_main_image | image_url: width: 1200 }}{% endif %}'
             {% else %}
               mainHeading: 'Main Heading {{ forloop.index }}',
               mainSubheading: 'Main subheading for product {{ forloop.index }}.',
-              mainImage: '{{ section.settings.default_main_image | image_url: width: 1200 }}'
+              mainImage: '{% if section.settings.default_main_image %}{{ section.settings.default_main_image | image_url: width: 1200 }}{% endif %}'
           {% endcase %}
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}
@@ -395,54 +558,62 @@
     let isUserInteracting = false;
     let restartTimeout = null;
 
-    // Function to update content
+    // Preload all images upfront so transitions are instant
+    function preloadAll() {
+      contentData.forEach(d => {
+        if (d.mainImage    && d.mainImage.trim()    && !d.mainImage.includes('data:'))    { new Image().src = d.mainImage; }
+        if (d.productImage && d.productImage.trim() && !d.productImage.includes('data:')) { new Image().src = d.productImage; }
+      });
+    }
+
+    // Crossfade: load next src into the front layer, fade it in, then flip roles
+    function crossfade(behind, front, newSrc, done) {
+      if (!newSrc || !newSrc.trim() || newSrc.includes('data:') || front.src.includes(newSrc)) {
+        if (done) done();
+        return;
+      }
+      front.src = newSrc;
+      // Wait one frame so the browser registers the new src before transitioning
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          front.style.opacity = '1';
+          front.addEventListener('transitionend', function handler() {
+            front.removeEventListener('transitionend', handler);
+            // Flip: behind takes the new image, front resets to invisible
+            behind.src = newSrc;
+            front.style.opacity = '0';
+            if (done) done();
+          });
+        });
+      });
+    }
+
+    let transitioning = false;
+
     function updateContent(index) {
       if (index >= contentData.length) return;
-      
-      // Remove active class from all blocks
+
       iconBlocks.forEach((b) => b.classList.remove('active'));
-
-      // Add active class to current block
-      if (iconBlocks[index]) {
-        iconBlocks[index].classList.add('active');
-      }
-
-      // Ensure container has active class
+      if (iconBlocks[index]) iconBlocks[index].classList.add('active');
       container.classList.add('active');
 
-      // Update content with smooth transition
       const data = contentData[index];
       if (!data) return;
 
-      // Fade out
-      productImage.style.opacity = '0';
-      productName.style.opacity = '0';
-      productSubtitle.style.opacity = '0';
-      mainHeading.style.opacity = '0';
-      mainSubheading.style.opacity = '0';
-      mainImage.style.opacity = '0';
+      // Helper: convert any casing to Title Case
+      function toTitleCase(str) {
+        return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+      }
 
-      setTimeout(() => {
-        // Update content
-        if (data.productImage && !data.productImage.includes('data:image/svg+xml')) {
-          productImage.src = data.productImage;
-        }
-        productName.textContent = data.productName;
-        productSubtitle.textContent = data.productSubtitle;
-        mainHeading.textContent = data.mainHeading;
-        mainSubheading.textContent = data.mainSubheading;
-        if (data.mainImage && !data.mainImage.includes('data:image/svg+xml')) {
-          mainImage.src = data.mainImage;
-        }
+      // Update text immediately (no visible change — text is mid-swap)
+      productName.textContent     = toTitleCase(data.productName);
+      productSubtitle.textContent = data.productSubtitle;
+      mainHeadings.forEach(el    => el.textContent = toTitleCase(data.mainHeading));
+      mainSubheadings.forEach(el => el.textContent = data.mainSubheading);
 
-        // Fade in
-        productImage.style.opacity = '1';
-        productName.style.opacity = '1';
-        productSubtitle.style.opacity = '1';
-        mainHeading.style.opacity = '1';
-        mainSubheading.style.opacity = '1';
-        mainImage.style.opacity = '1';
-      }, 300);
+      // Crossfade both images simultaneously
+      crossfade(mainBehind, mainFront, data.mainImage);
+      crossfade(prodBehind, prodFront, data.productImage);
     }
 
     // Auto-timer function with proper cleanup
@@ -516,6 +687,7 @@
 
     // Initialize
     if (contentData.length > 0) {
+      preloadAll();
       updateContent(0);
       if (autoTimerEnabled) {
         startAutoTimer();

@@ -5,7 +5,8 @@
 <section class="product-infographic-section full-width">
   <div class="infographic-container">
     <div class="frosted-glass-card">
-      <!-- Product Image -->
+
+      <!-- Col 1 on desktop: Product Image -->
       <div class="product-image-wrapper">
         {% if section.settings.product_image %}
           <img
@@ -21,78 +22,71 @@
         {% endif %}
       </div>
 
-      <!-- Center Content -->
-      <div class="center-content">
-        <h2 class="section-title" id="centerTitle">{{ section.settings.title }}</h2>
-        <div class="title-underline"></div>
-        <p class="section-description" id="centerDescription">{{ section.settings.description }}</p>
-
-        <!-- Benefit Points -->
-        {% if section.settings.show_benefits %}
-          <div class="benefit-points" id="benefitPoints">
-            <div class="benefit-item-infographic" id="benefit1">
-              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span class="benefit-text" id="benefit1Text">Advanced molecular technology</span>
+      <!-- Col 2 on desktop / Top frost panel on mobile -->
+      <div class="mobile-top-panel">
+        <div class="center-content">
+          <h2 class="section-title" id="centerTitle">{{ section.settings.title }}</h2>
+          <div class="title-underline"></div>
+          <p class="section-description" id="centerDescription">{{ section.settings.description }}</p>
+          {% if section.settings.show_benefits %}
+            <div class="benefit-points" id="benefitPoints">
+              <div class="benefit-item-infographic" id="benefit1">
+                <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="benefit-text" id="benefit1Text">Advanced molecular technology</span>
+              </div>
+              <div class="benefit-item-infographic" id="benefit2">
+                <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="benefit-text" id="benefit2Text">Superior skin penetration</span>
+              </div>
+              <div class="benefit-item-infographic" id="benefit3">
+                <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="benefit-text" id="benefit3Text">Cellular absorption boost</span>
+              </div>
+              <div class="benefit-item-infographic" id="benefit4" style="display: none;">
+                <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="benefit-text" id="benefit4Text"></span>
+              </div>
+              <div class="benefit-item-infographic" id="benefit5" style="display: none;">
+                <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="benefit-text" id="benefit5Text"></span>
+              </div>
             </div>
-            <div class="benefit-item-infographic" id="benefit2">
-              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span class="benefit-text" id="benefit2Text">Superior skin penetration</span>
-            </div>
-            <div class="benefit-item-infographic" id="benefit3">
-              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span class="benefit-text" id="benefit3Text">Cellular absorption boost</span>
-            </div>
-            <div class="benefit-item-infographic" id="benefit4" style="display: none;">
-              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span class="benefit-text" id="benefit4Text"></span>
-            </div>
-            <div class="benefit-item-infographic" id="benefit5" style="display: none;">
-              <svg class="benefit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 12L10 8L6 4" stroke="{{ section.settings.benefit_arrow_color | default: '#000000' }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span class="benefit-text" id="benefit5Text"></span>
-            </div>
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
 
-      <!-- Right Content -->
-      <div class="right-content-infographic">
-        <h3 class="main-heading-infographic" id="mainHeading">{{ section.settings.main_heading }}</h3>
+      <!-- Col 3 on desktop / Bottom frost panel on mobile -->
+      <div class="mobile-bottom-panel">
+        <div class="right-content-infographic">
+          <h3 class="main-heading-infographic" id="mainHeading">{{ section.settings.main_heading }}</h3>
+        </div>
+        <div class="button-row">
+          {% for block in section.blocks %}
+            <button
+              class="info-button {% if block.settings.is_active %}active{% endif %}"
+              data-heading="{{ block.settings.heading | default: block.settings.button_text }}"
+              data-description="{{ block.settings.description | default: 'Description for ' | append: block.settings.button_text }}"
+              data-benefit1="{{ block.settings.benefit_1 }}"
+              data-benefit2="{{ block.settings.benefit_2 }}"
+              data-benefit3="{{ block.settings.benefit_3 }}"
+              data-benefit4="{{ block.settings.benefit_4 }}"
+              data-benefit5="{{ block.settings.benefit_5 }}"
+              data-showbenefits="{{ block.settings.show_benefits }}"
+              onclick="switchContent(this)"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.button_text | default: 'Button' }}
+            </button>
+          {% endfor %}
+        </div>
       </div>
 
-      <!-- Bottom Buttons -->
-      <div class="button-row">
-        {% for block in section.blocks %}
-          <button
-            class="info-button {% if block.settings.is_active %}active{% endif %}"
-            data-heading="{{ block.settings.heading | default: block.settings.button_text }}"
-            data-description="{{ block.settings.description | default: 'Description for ' | append: block.settings.button_text }}"
-            data-benefit1="{{ block.settings.benefit_1 }}"
-            data-benefit2="{{ block.settings.benefit_2 }}"
-            data-benefit3="{{ block.settings.benefit_3 }}"
-            data-benefit4="{{ block.settings.benefit_4 }}"
-            data-benefit5="{{ block.settings.benefit_5 }}"
-            data-showbenefits="{{ block.settings.show_benefits }}"
-            onclick="switchContent(this)"
-            {{ block.shopify_attributes }}
-          >
-            {{ block.settings.button_text | default: 'Button' }}
-          </button>
-        {% endfor %}
-      </div>
     </div>
   </div>
 </section>
 <style>
+   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
    .product-infographic-section {
      padding: {{ section.settings.section_padding_top | default: 80 }}px 0 {{ section.settings.section_padding_bottom | default: 80 }}px;
      background: {{ section.settings.background_color | default: '#ffffff' }};
@@ -103,7 +97,6 @@
        background-repeat: no-repeat;
        background-attachment: {{ section.settings.background_attachment | default: 'scroll' }};
      {% endif %}
-     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
    }
 
    .infographic-container {
@@ -140,7 +133,6 @@
      padding-top: {{ section.settings.image_vertical_position | default: 20 }}px;
      box-sizing: border-box;
      width: 100%;
-     height: 240px;
      position: relative;
    }
 
@@ -157,13 +149,10 @@
    .image-placeholder-infographic {
      width: 220px;
      height: 300px;
-     display: flex;
-     align-items: center;
-     justify-content: left;
-     background: rgba(0, 212, 255, 0.08);
-     border: 2px dashed rgba(0, 212, 255, 0.3);
-     border-radius: 20px;
      flex-shrink: 0;
+     border: 1px solid rgba(0, 212, 255, 0.6);
+     border-radius: {{ section.settings.image_border_radius | default: 16 }}px;
+     box-sizing: border-box;
    }
 
    .center-content {
@@ -287,106 +276,402 @@
 
    .product-infographic-section .info-button {
      padding: {{ section.settings.button_padding_vertical | default: 8 }}px {{ section.settings.button_padding_horizontal | default: 28 }}px;
-     border: {{ section.settings.button_border_width | default: 2 }}px solid {{ section.settings.button_border_color | default: '#000000' }};
+     border: 1px solid rgba(0,0,0,0.18);
      border-radius: {{ section.settings.button_border_radius | default: 50 }}px;
-     background: {{ section.settings.button_background | default: 'transparent' }};
-     color: {{ section.settings.button_text_color | default: '#000000' }};
+     background: rgba(255,255,255,0.35);
+     backdrop-filter: blur(8px);
+     -webkit-backdrop-filter: blur(8px);
+     color: {{ section.settings.button_text_color | default: '#222222' }};
      font-size: {{ section.settings.button_font_size | default: 0.9 }}rem;
-     font-weight: {{ section.settings.button_font_weight | default: 500 }};
+     font-weight: {{ section.settings.button_font_weight | default: 600 }};
      cursor: pointer;
-     /* transition: all 0.3s ease; */
-     text-transform: {{ section.settings.button_text_transform | default: 'none' }};
-     letter-spacing: {{ section.settings.button_letter_spacing | default: 0.3 }}px;
+     text-transform: uppercase;
+     letter-spacing: 1.2px;
      width: {{ section.settings.button_width | default: 180 }}px;
      white-space: nowrap;
      text-align: center;
    }
 
    .product-infographic-section .info-button:hover {
-     background: {{ section.settings.button_hover_background | default: 'rgba(0, 0, 0, 0.05)' }};
-     /* transform: translateY(-2px); */
-     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+     background: rgba(255,255,255,0.5);
+     box-shadow: none;
    }
 
    .product-infographic-section .info-button.active {
-     background: {{ section.settings.button_active_background | default: '#000000' }};
-     color: {{ section.settings.button_active_text_color | default: '#ffffff' }};
-     border-color: {{ section.settings.button_active_border_color | default: '#00d4ff' }};
-     border-width: 3px;
+     border: 1.5px solid rgba(0, 180, 210, 0.7);
+     background: rgba(255,255,255,0.45);
+     color: #111;
    }
 
    .product-infographic-section .info-button.active:hover {
-     background: {{ section.settings.button_active_hover_background | default: '#1a1a1a' }};
+     background: rgba(255,255,255,0.55);
    }
 
-   @media (max-width: 1024px) {
-     .frosted-glass-card {
-       grid-template-columns: 1fr;
-       gap: 32px;
-       padding: 40px;
-       height: auto;
-       min-height: 600px;
-     }
-
-     .center-content,
-     .right-content-infographic {
-       text-align: center;
-       position: static;
-       transform: none;
-       padding-bottom: 20px;
-     }
-
-     .main-heading-infographic {
-       position: static;
-       transform: none;
-       margin-top: 20px;
-     }
-
-     .title-underline {
-       margin-left: auto;
-       margin-right: auto;
-     }
-
-     .button-row {
-       position: static;
-       margin-top: 60px;
-       justify-content: center;
-       left: auto;
-       right: auto;
-       bottom: auto;
-     }
-
-     .main-heading-infographic {
-       font-size: 2.2rem;
-     }
-   }
-
-   @media (max-width: 768px) {
+   @media (min-width: 768px) and (max-width: 1199px) {
      .product-infographic-section {
-       padding: 60px 0;
+       padding: 40px 0;
+     }
+
+     .infographic-container {
+       padding: 0 20px;
      }
 
      .frosted-glass-card {
-       padding: 32px 24px;
-       border-radius: 24px;
-       min-height: 500px;
+       grid-template-columns: 22% 36% 42%;
+       gap: 16px;
+       padding: 28px 28px 20px;
+       height: auto;
+       min-height: 0;
+       margin: 0;
+       overflow: hidden;
      }
 
+     /* Tighter content — no giant top offset, reduced bottom spacing */
+     .center-content {
+       padding-top: 8px;
+       padding-bottom: 56px;
+     }
+
+     /* Title in one line — smaller font, no wrap */
      .section-title {
-       font-size: 1.4rem;
+       font-size: 1.1rem;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+     } 
+ 
+     .section-description {
+       font-size: 0.8rem;
+       line-height: 1.45;
+     }
+
+     .benefit-text {
+       font-size: 0.78rem;
+     }
+
+     .benefit-item-infographic:last-child {
+       margin-bottom: 0;
+     }
+
+     /* Right heading: contained within column, no overflow tricks */
+     .right-content-infographic {
+       position: relative;
+       height: 100%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       overflow: hidden;
      }
 
      .main-heading-infographic {
-       font-size: 1.8rem;
+       position: static;
+       transform: none;
+       font-size: clamp(1.4rem, 3vw, 2.8rem);
+       width: 100%;
+       right: auto;
+       text-align: center;
+       white-space: normal;
+       line-height: 1.0;
+       word-break: break-word;
+     } 
+
+     /* Image: smaller to match tighter layout */
+     .product-image-wrapper {
+       padding-top: 8px;
      }
 
-     .button-row {
-       gap: 12px;
+     .product-image-infographic {
+       width: 100%;
+       height: 200px;
+       object-fit: cover;
+     }
+
+     .image-placeholder-infographic {
+       width: 100%;
+       height: 200px;
+     }
+
+     /* 4 buttons in one row */
+      .button-row {
+       position: absolute;
+       bottom: 16px;
+       left: 28px;
+       right: 28px;
+       display: flex;
+       flex-direction: row;
+       flex-wrap: nowrap;
+       justify-content: center;
+       gap: 8px;
      }
 
      .product-infographic-section .info-button {
-       padding: 12px 24px;
-       font-size: 0.85rem;
+       width: auto;
+       flex: 1 1 0;
+       min-width: 0;
+       white-space: nowrap;
+       padding: 8px 10px;
+       font-size: 0.7rem;
+       letter-spacing: 0.8px;
+     }
+   } 
+
+   /* Desktop: panels are invisible block wrappers — grid ignores them via subgrid workaround */
+   .mobile-top-panel {
+     display: contents;
+   }
+   .mobile-bottom-panel {
+     display: contents;
+   }
+
+   /* Montserrat for entire section on all screens
+   
+   */
+    .product-infographic-section,
+   .product-infographic-section * {
+     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+   } 
+
+   @media (max-width: 767px) {
+     .product-infographic-section {
+       padding: {{ section.settings.mobile_section_padding_top | default: 24 }}px 0 {{ section.settings.mobile_section_padding_bottom | default: 24 }}px 0;
+       overflow: visible !important;
+       box-sizing: border-box;
+     }
+
+     .infographic-container {
+       padding: 0;
+       max-width: 100%;
+       width: 100%;
+       overflow: visible;
+     }
+
+     /* Outer card: transparent flex wrapper */
+     .frosted-glass-card {
+       display: flex;
+       flex-direction: column;
+       align-items: stretch;
+       padding: 0;
+       border-radius: 0;
+       height: auto;
+       min-height: unset;
+       margin: 20px 20px;
+       gap: 0;
+       overflow: visible;
+       box-sizing: border-box;
+       background: transparent;
+       backdrop-filter: none;
+       -webkit-backdrop-filter: none;
+       border: none;
+       box-shadow: none;
+     }
+
+     /* Top frosted glass panel — order 1 */
+     .mobile-top-panel {
+       display: block;
+       order: 1;
+       border-radius: 20px;
+       background: rgba(255, 255, 255, 0.28);
+       backdrop-filter: blur(24px);
+       -webkit-backdrop-filter: blur(24px);
+       border: 1px solid rgba(255, 255, 255, 0.5);
+       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+       overflow: hidden;
+       margin-bottom: 12px;
+     }
+
+     /* Image — order 2, sits between panels with gaps */
+     .product-image-wrapper {
+       order: 2;
+       width: 100%;
+       height: auto;
+       padding: 0;
+       margin: 12px 0 20px 0;
+       display: block;
+       box-sizing: border-box;
+     }
+
+     .product-image-infographic {
+       width: 100%;
+       height: {{ section.settings.mobile_image_height | default: 200 }}px;
+       object-fit: cover;
+       border-radius: 16px;
+       display: block;
+     }
+
+     .image-placeholder-infographic {
+       width: 100%;
+       height: {{ section.settings.mobile_image_height | default: 200 }}px;
+       border-radius: 16px;
+     }
+
+     /* Bottom frosted glass panel — order 3 */
+     .mobile-bottom-panel {
+       display: block;
+       order: 3;
+       border-radius: 20px;
+       background: rgba(255, 255, 255, 0.28);
+       backdrop-filter: blur(24px);
+       -webkit-backdrop-filter: blur(24px);
+       border: 1px solid rgba(255, 255, 255, 0.5);
+       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+       overflow: hidden;
+       margin-top: 16px;
+     }
+
+     /* Shared horizontal padding for content inside panels */
+     .center-content,
+     .right-content-infographic,
+     .button-row {
+       padding-left: 16px;
+       padding-right: 16px;
+       box-sizing: border-box;
+     }
+
+     /* 1. Text block — order 1 */
+     .center-content {
+       width: 100%;
+       text-align: center;
+       padding-top: 18px;
+       padding-bottom: 16px;
+       order: 1;
+     }
+
+     /* Title — largest */
+     .section-title {
+       font-size: {{ section.settings.mobile_title_size | default: 1.3 }}rem;
+       font-weight: 700;
+       text-align: center;
+       margin: 0 0 5px 0;
+       letter-spacing: 0.4px;
+       color: #111;
+     }
+
+     .title-underline {
+       margin: 0 auto 8px auto;
+       width: 40px;
+       height: 2px;
+     }
+
+     /* Description — medium */
+     .section-description {
+       font-size: {{ section.settings.mobile_description_size | default: 0.88 }}rem;
+       text-align: center;
+       margin-bottom: 0;
+       line-height: 1.5;
+       font-weight: 400;
+       color: #555;
+     }
+
+     /* Bullets: centered block, left-aligned items */
+     .benefit-points {
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+       width: fit-content;
+       margin: 10px auto 0 auto;
+     }
+
+     .benefit-item-infographic {
+       display: flex;
+       justify-content: flex-start;
+       align-items: center;
+       margin-bottom: 4px;
+       gap: 5px;
+       width: 100%;
+     }
+
+     .benefit-item-infographic:last-child {
+       margin-bottom: 0;
+     }
+
+     .benefit-arrow {
+       width: 12px;
+       height: 12px;
+       flex-shrink: 0;
+       opacity: 0.6;
+     }
+
+     /* Bullet text — smallest */
+     .benefit-text {
+       font-size: 0.75rem;
+       font-weight: 400;
+       text-align: left;
+       line-height: 1.3;
+       color: #555;
+     }
+
+     /* 3. Big heading — inside bottom panel, fixed 2-line height */
+     .right-content-infographic {
+       width: 100%;
+       position: static;
+       padding: 16px 16px 8px 16px;
+       order: 3;
+       display: block;
+       box-sizing: border-box;
+     }
+
+     .main-heading-infographic {
+       font-size: {{ section.settings.mobile_main_heading_size | default: 1.8 }}rem;
+       font-weight: 800;
+       position: static;
+       transform: none;
+       width: 100%;
+       text-align: center;
+       right: auto;
+       margin: 0;
+       /* Fixed 2-line height: font-size × line-height × 2 lines */
+       line-height: 1.15;
+       height: calc({{ section.settings.mobile_main_heading_size | default: 1.8 }}rem * 1.15 * 2);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       letter-spacing: 0.5px;
+       color: #111;
+       word-break: normal;
+       white-space: normal;
+       overflow: hidden;
+     }
+
+     /* 4. Buttons — inside bottom panel */
+     .button-row {
+       position: static;
+       width: 100%;
+       flex-direction: column;
+       align-items: stretch;
+       gap: {{ section.settings.mobile_button_gap | default: 8 }}px;
+       padding-top: 8px;
+       padding-bottom: 16px;
+       left: auto;
+       right: auto;
+       bottom: auto;
+       order: 4;
+     }
+
+     .product-infographic-section .info-button {
+       width: 100%;
+       padding: {{ section.settings.mobile_button_padding_vertical | default: 12 }}px {{ section.settings.mobile_button_padding_horizontal | default: 20 }}px;
+       font-size: {{ section.settings.mobile_button_font_size | default: 0.82 }}rem;
+       font-weight: 600;
+       letter-spacing: 1.2px;
+       box-sizing: border-box;
+       text-transform: uppercase;
+       border: 1px solid rgba(0, 0, 0, 0.18);
+       background: rgba(255, 255, 255, 0.35);
+       color: #222;
+       border-radius: 50px;
+       backdrop-filter: blur(8px);
+       -webkit-backdrop-filter: blur(8px);
+     }
+
+     .product-infographic-section .info-button.active {
+       border: 1.5px solid rgba(0, 180, 210, 0.7);
+       background: rgba(255, 255, 255, 0.45);
+       color: #111;
+     }
+
+     .product-infographic-section .info-button:hover {
+       background: rgba(255, 255, 255, 0.5);
+       box-shadow: none;
      }
    }
 </style>
@@ -432,13 +717,16 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     const activeButton = document.querySelector('.product-infographic-section .info-button.active');
+    const firstButton = document.querySelector('.product-infographic-section .info-button');
     if (activeButton) {
       switchContent(activeButton);
+    } else if (firstButton) {
+      firstButton.classList.add('active');
+      switchContent(firstButton);
     } else {
       const benefit1El = document.getElementById('benefit1');
       const benefit2El = document.getElementById('benefit2');
       const benefit3El = document.getElementById('benefit3');
-
       if (benefit1El) benefit1El.style.display = 'flex';
       if (benefit2El) benefit2El.style.display = 'flex';
       if (benefit3El) benefit3El.style.display = 'flex';
@@ -1170,6 +1458,187 @@
       "id": "button_active_hover_background",
       "label": "Active button hover background",
       "default": "transparent"
+    },
+    { "type": "header", "content": "Mobile Settings (≤767px)" },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile section padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile section padding bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_padding",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile horizontal padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile card padding (top/bottom)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding_horizontal",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile card padding (left/right)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile card border radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_gap",
+      "min": 4,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile content gap",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "min": 1,
+      "max": 2.5,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Mobile title font size",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_size",
+      "min": 0.7,
+      "max": 1.2,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Mobile description font size",
+      "default": 0.8
+    },
+    {
+      "type": "range",
+      "id": "mobile_benefits_margin_top",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile benefits margin top",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "min": 120,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Mobile image height",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_border_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile image border radius",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_main_heading_size",
+      "min": 1,
+      "max": 5,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Mobile main heading size",
+      "default": 1.8
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_gap",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile button gap",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_margin_top",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile button row margin top",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_vertical",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile button vertical padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_horizontal",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile button horizontal padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_font_size",
+      "min": 0.7,
+      "max": 1.1,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "Mobile button font size",
+      "default": 0.9
     }
   ],
   "blocks": [
@@ -1241,7 +1710,7 @@
           "settings": {
             "button_text": "Quality",
             "heading": "PREMIUM QUALITY",
-            "description": "Manufactured to the highest standards with premium ingredients and rigorous quality control.",
+            "description": "Manufactured to the highest standards with premium ingredients and rigorous .",
             "show_benefits": true,
             "benefit_1": "GMP certified facility",
             "benefit_2": "Third-party tested",

@@ -3,6 +3,11 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+  /* Hide mobile-only button set on desktop */
+  .lifestyle-buttons-mobile {
+    display: none;
+  }
+
   .lifestyle-showcase {
     font-family: 'Montserrat', sans-serif;
     background: #000000;
@@ -163,49 +168,201 @@
     box-shadow: 0 0 30px rgba(79, 255, 255, 0.5);
   }
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .lifestyle-showcase {
+      min-height: unset !important;
+      height: 85vw;
+      max-height: 580px;
+    }
+
     .lifestyle-left {
-      padding: 20px;
-      padding-top: calc(10vh + 20px);
+      padding: 30px 30px 0 30px;
+      padding-top: 30px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      /* Card sits at top, not stretching to fill */
+      flex: 0 0 auto;
     }
 
     .lifestyle-card {
-      padding: 20px 15px;
-      max-width: 100%;
-      min-height: 60vh;
+      max-width: auto;
+      min-height: unset;
+      padding: 22px 20px;
+      border-radius: 16px;
     }
 
-    .lifestyle-right {
-      position: relative;
-      bottom: auto;
-      left: auto;
-      transform: none;
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .lifestyle-buttons-container {
-      gap: 8px;
-      max-width: 100%;
-      flex-wrap: wrap;
-    }
-
-    .lifestyle-button {
-      padding: 10px 15px;
-      font-size: 11px;
-      min-width: 80px;
+    .lifestyle-card:hover {
+      transform: translateY(-3px);
     }
 
     .lifestyle-heading {
-      font-size: 24px;
+      font-size: 26px;
+      margin-bottom: 14px;
     }
 
     .lifestyle-description {
-      font-size: 14px;
+      font-size: 18px;
+      margin-bottom: 18px;
     }
 
     .lifestyle-points li {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    /* Buttons pinned to bottom with 30px gap from card */
+    .lifestyle-right {
+      bottom: 24px;
+      padding: 0 30px;
+    }
+
+    .lifestyle-container {
+      /* Ensure card and buttons don't collapse together */
+      justify-content: space-between;
+      min-height: unset;
+      height: 100%;
+    }
+
+    .lifestyle-buttons-container--desktop {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .lifestyle-button--desktop {
+      min-width: unset;
+      flex: 1 1 calc(33.333% - 10px);
+      max-width: calc(33.333% - 10px);
+      padding: 12px 14px;
       font-size: 13px;
+      letter-spacing: 0.4px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    /* Stack: image on top half, card overlapping from middle down */
+    .lifestyle-showcase {
+      flex-direction: column;
+      min-height: 100svh;
+      position: relative;
+    }
+
+    .lifestyle-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .lifestyle-background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .lifestyle-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100svh;
+      position: relative;
+      z-index: 2;
+      padding-bottom: 10;
+    
+    }
+
+    /* Single unified glass panel: card + buttons together */
+    .lifestyle-left {
+      padding: 0 14px 0 14px;
+      padding-top: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .lifestyle-card {
+      background: rgba(160, 148, 132, 0.45);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-bottom: none;
+      border-radius: 18px 18px 18px 18px;
+      padding: 22px 18px 20px 18px;
+      width: 100%;
+      max-width: 100%;
+      min-height: unset;
+      box-shadow: 0 -8px 32px rgba(0,0,0,0.18);
+        margin-bottom: 20px;
+    }
+
+    .lifestyle-card:hover {
+      transform: none;
+      box-shadow: 0 -8px 32px rgba(0,0,0,0.18);
+    }
+
+    .lifestyle-heading {
+      font-size: {{ section.settings.mobile_heading_size | default: 20 }}px !important;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .lifestyle-description {
+      font-size: {{ section.settings.mobile_description_size | default: 13 }}px !important;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .lifestyle-points {
+      margin-bottom: 24px;
+    }
+
+    .lifestyle-points li {
+      font-size: {{ section.settings.mobile_points_size | default: 13 }}px !important;
+      margin-bottom: 8px;
+      padding-left: 18px;
+    }
+
+    .lifestyle-points li:before {
+      content: "•";
+      color: #4fffff;
+      font-size: 16px;
+    }
+
+    /* Show mobile buttons inside card, hide desktop button panel */
+    .lifestyle-buttons-mobile {
+      display: block;
+    }
+
+    .lifestyle-right {
+      display: none;
+    }
+
+    .lifestyle-buttons-container--mobile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .lifestyle-button--mobile {
+      padding: 11px 8px;
+      font-size: {{ section.settings.mobile_button_size | default: 11 }}px !important;
+      min-width: unset;
+      width: 100%;
+      white-space: normal;
+      border-radius: 50px;
+      letter-spacing: 0.3px;
+    }
+
+    .lifestyle-button--mobile:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
     }
   }
 </style>
@@ -240,13 +397,24 @@
           <li>{{ section.settings.default_point_2 | default: 'Sustainable Practices' }}</li>
           <li>{{ section.settings.default_point_3 | default: 'Transparent Process' }}</li>
         </ul>
+
+        {%- comment -%} Mobile: buttons live inside the card so it's one unified glass panel {%- endcomment -%}
+        <div class="lifestyle-buttons-mobile">
+          <div class="lifestyle-buttons-container lifestyle-buttons-container--mobile">
+            {% for block in section.blocks %}
+              <button class="lifestyle-button lifestyle-button--mobile{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
+                {{ block.settings.button_text | default: 'Button ' | append: forloop.index }}
+              </button>
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="lifestyle-right">
-      <div class="lifestyle-buttons-container">
+      <div class="lifestyle-buttons-container lifestyle-buttons-container--desktop">
         {% for block in section.blocks %}
-          <button class="lifestyle-button{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
+          <button class="lifestyle-button lifestyle-button--desktop{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}">
             {{ block.settings.button_text | default: 'Button ' | append: forloop.index }}
           </button>
         {% endfor %}
@@ -257,7 +425,9 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.lifestyle-button');
+    const desktopButtons = document.querySelectorAll('.lifestyle-button--desktop');
+    const mobileButtons = document.querySelectorAll('.lifestyle-button--mobile');
+    const allButtons = document.querySelectorAll('.lifestyle-button');
     const heading = document.getElementById('lifestyle-heading');
     const description = document.getElementById('lifestyle-description');
     const pointsList = document.getElementById('lifestyle-points');
@@ -279,28 +449,22 @@
     let currentIndex = 0;
 
     function updateContent(index) {
-      // Remove active class from all buttons
-      buttons.forEach(btn => btn.classList.remove('active'));
-
-      // Add active class to current button
-      if (buttons[index]) {
-        buttons[index].classList.add('active');
-      }
+      // Sync active state on ALL buttons (both desktop and mobile sets)
+      allButtons.forEach(btn => btn.classList.remove('active'));
+      desktopButtons[index] && desktopButtons[index].classList.add('active');
+      mobileButtons[index] && mobileButtons[index].classList.add('active');
 
       const data = contentData[index];
       if (!data) return;
 
-      // Fade out content
       heading.style.opacity = '0';
       description.style.opacity = '0';
       pointsList.style.opacity = '0';
 
       setTimeout(() => {
-        // Update content
         heading.textContent = data.heading;
         description.textContent = data.description;
 
-        // Update points
         pointsList.innerHTML = '';
         data.points.forEach(point => {
           if (point.trim()) {
@@ -310,22 +474,29 @@
           }
         });
 
-        // Fade in content
         heading.style.opacity = '1';
         description.style.opacity = '1';
         pointsList.style.opacity = '1';
       }, 200);
     }
 
-    // Button hover handlers
-    buttons.forEach((button, index) => {
+    // Desktop: hover triggers update
+    desktopButtons.forEach((button, index) => {
       button.addEventListener('mouseenter', function () {
         currentIndex = index;
         updateContent(index);
       });
     });
 
-    // Initialize with first content if available
+    // Mobile: tap triggers update
+    mobileButtons.forEach((button, index) => {
+      button.addEventListener('click', function () {
+        currentIndex = index;
+        updateContent(index);
+      });
+    });
+
+    // Initialize
     if (contentData.length > 0) {
       updateContent(0);
     }
@@ -423,6 +594,50 @@
       "max": 18,
       "step": 1,
       "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Typography (320px–767px)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile Heading Size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_size",
+      "label": "Mobile Description Size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_points_size",
+      "label": "Mobile Points Size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_size",
+      "label": "Mobile Button Font Size",
+      "min": 9,
+      "max": 16,
+      "step": 1,
+      "default": 11,
       "unit": "px"
     }
   ],
@@ -545,3 +760,4 @@
   ]
 }
 {% endschema %}
+

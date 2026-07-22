@@ -33,7 +33,6 @@
     height: 100%;
   }
 
-  /* ── LEFT slide track — reel/film strip ── */
   .pds-rtn-track {
     position: relative;
     width: 100%;
@@ -45,7 +44,6 @@
     display: flex;
     height: 100%;
     will-change: transform;
-    /* transition set by JS only — never by CSS default to avoid flash */
   }
 
   .pds-rtn-slide {
@@ -64,25 +62,27 @@
     backface-visibility: hidden;
   }
 
-  /* ── RIGHT image — reel slide in from right ── */
+  /* ── RIGHT image ── */
   .pds-rtn-right-img-wrap {
     flex: 1;
-    width: 60%;
-    border-radius: 16px;
-    overflow: hidden;
+    width: 68%;
+    border-radius: 20px;
+    overflow: visible;
     position: relative;
     min-height: 0;
+    padding: 0 16px 16px;
+    box-sizing: border-box;
   }
 
   .pds-rtn-next-img {
     width: 100%;
-    height: 90%;
-    border-radius: 16px;
+    height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 20px;
   }
 
-  /* frost glass card — top/bottom offsets define height, centered */
+  /* ── Desktop frost glass card ── */
   .pds-rtn-card {
     position: absolute;
     top: 50px;
@@ -90,17 +90,17 @@
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
-    height:80% ;
+    height: 75%;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: none;
     border-radius: 16px;
-    padding: 24px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     cursor: pointer;
     text-decoration: none;
     transition: opacity 0.45s ease;
@@ -114,15 +114,15 @@
   }
 
   .pds-rtn-card-img {
-    width: {{ section.settings.card_img_size }}px;
-    height: {{ section.settings.card_img_size }}px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 14px;
     flex-shrink: 0;
   }
 
   .pds-rtn-card-heading {
-    font-size: {{ section.settings.card_heading_size }}px;
+    font-size: 16px;
     font-weight: 700;
     color: #fff;
     margin: 0;
@@ -131,15 +131,15 @@
   }
 
   .pds-rtn-card-desc {
-    font-size: {{ section.settings.card_desc_size }}px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.9);
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.4;
     text-align: left;
   }
 
   .pds-rtn-card-sub {
-    font-size: {{ section.settings.card_desc_size }}px;
+    font-size: 11px;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.95);
     margin: 0;
@@ -147,7 +147,7 @@
     width: 100%;
   }
 
-  /* toggle — on the image, outside frost card, bottom-right of left panel */
+  /* ── Toggle ── */
   .pds-rtn-toggle-wrap {
     position: absolute;
     bottom: 18px;
@@ -171,12 +171,12 @@
     inset: 0;
     background: rgba(180, 180, 180, 0.55);
     border-radius: 999px;
+    border: 1.5px solid #4fffff;
     transition: background 0.3s ease;
+    box-sizing: border-box;
   }
 
-  .pds-rtn-toggle input:checked ~ .pds-rtn-toggle-track {
-    background: #4fffff;
-  }
+  .pds-rtn-toggle input:checked ~ .pds-rtn-toggle-track { background: #4fffff; }
 
   .pds-rtn-toggle-thumb {
     position: absolute;
@@ -195,12 +195,9 @@
     background: #000;
   }
 
-  /* ── RIGHT 40% ── */
+  /* ── RIGHT panel ── */
   .pds-rtn-right {
     flex: 1;
-    background: {{ section.settings.right_bg }};
-    border-radius: 24px;
-    border: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -208,7 +205,7 @@
     padding: 0;
     box-sizing: border-box;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     height: 100%;
   }
 
@@ -216,8 +213,8 @@
     font-size: {{ section.settings.right_heading_size }}px;
     font-weight: 700;
     color: {{ section.settings.right_heading_color }};
-    margin: 0 0 26px 0;
-    /* padding-top: {{ section.settings.card_top }}px; */
+    margin: 0;
+    padding: 0 16px 20px;
     line-height: 1.2;
     width: 100%;
     text-align: center;
@@ -225,7 +222,7 @@
     flex-shrink: 0;
   }
 
-  /* single forward arrow — floats between panels, 5% higher */
+  /* ── Desktop arrow ── */
   .pds-rtn-arrow-btn {
     position: absolute;
     left: 65%;
@@ -253,7 +250,7 @@
   .pds-rtn-arrow-btn img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
   }
 
@@ -261,32 +258,434 @@
     width: {{ section.settings.arrow_img_size }}px;
     height: {{ section.settings.arrow_img_size }}px;
     color: {{ section.settings.accent_color }};
+    stroke-width: 5;
   }
 
-  @media (max-width: 768px) {
+  /* ── Mobile secondary arrow (hidden on desktop) ── */
+  .pds-rtn-secondary-arrow {
+    display: none !important;
+  }
+
+  /* ── Mobile card (hidden on desktop) ── */
+  .pds-rtn-mobile-card {
+    display: none;
+  }
+
+  /* ── Mobile info button (hidden on desktop) ── */
+  .pds-rtn-info-btn {
+    /* display: none; */
+  }
+
+  /* ── Mobile toggle wrap (hidden on desktop) ── */
+  .pds-rtn-mobile-toggle-wrap {
+    display: none;
+  }
+
+  /* ── Between-images label (hidden on desktop) ── */
+  .pds-rtn-mobile-between-label {
+    display: none;
+  }
+
+  /* ── Mobile dots (hidden on desktop) ── */
+  .pds-rtn-dots {
+    display: none;
+  }
+
+  /* ════════════════════════════════
+     TABLET STYLES (769px – 1024px)
+     Same two-column layout as desktop,
+     scaled down to fit tablet viewport
+  ════════════════════════════════ */
+  @media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Keep mobile-only elements hidden */
+    .pds-rtn-mobile-card  { display: none !important; }
+    .pds-rtn-info-btn     { display: none !important; }
+    .pds-rtn-dots         { display: none !important; }
+    .pds-rtn-secondary-arrow { display: none !important; }
+    .pds-rtn-toggle-wrap  { display: block; }
+
+    /* Wrapper — two columns, reduced height, wider gap for arrow */
+    .pds-rtn-wrapper {
+      flex-direction: row;
+      height: 420px;
+      gap: 56px;
+      padding: 0 24px;
+    }
+
+    /* Left — fixed width, not stretching full remaining space */
+    .pds-rtn-left {
+      flex: 0 0 52%;
+      height: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .pds-rtn-track {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Desktop frost card — scale sizes down for tablet */
+    .pds-rtn-card {
+      top: 32px;
+      width: 56%;
+      height: 76%;
+      padding: 16px;
+      gap: 12px;
+      border-radius: 14px;
+    }
+
+    .pds-rtn-card-img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .pds-rtn-card-heading { font-size: 16px; }
+    .pds-rtn-card-desc    { font-size: 11px; }
+    .pds-rtn-card-sub     { font-size: 11px; }
+
+    /* Right panel — takes remaining space, narrower feel */
+    .pds-rtn-right {
+      flex: 1;
+      height: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      max-width: 34%;
+    }
+
+    .pds-rtn-next-heading {
+      font-size: 20px;
+      margin: 0;
+      padding: 0 12px 16px;
+    }
+
+    .pds-rtn-right-img-wrap {
+      width: 90%;
+      flex: 1;
+      border-radius: 16px;
+      overflow: visible;
+      min-height: 0;
+      padding: 0 12px 12px;
+      box-sizing: border-box;
+    }
+
+    .pds-rtn-next-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    /* Arrow — sits in the gap, 20px from bottom of left image, centered in gap */
+    .pds-rtn-arrow-btn {
+      width: 56px;
+      height: 56px;
+      left: calc(52% + 28px);
+      top: auto;
+      bottom: 20px;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 4px 16px rgba(79, 255, 255, 0.6));
+    }
+
+    .pds-rtn-arrow-btn:hover {
+      transform: translateX(-50%) scale(1.12);
+      opacity: 0.9;
+    }
+
+    .pds-rtn-arrow-btn img,
+    .pds-rtn-arrow-svg {
+      width: 56px;
+      height: 56px;
+    }
+  }
+
+
+  /* ════════════════════════════════
+     MOBILE STYLES
+  ════════════════════════════════ */
+  @media (max-width: 767px) {
+
     .pds-rtn-wrapper {
       flex-direction: column;
       height: auto;
+      padding:30px;
+      gap: 20px;
     }
+
+    /* Main image — full width, fixed height, clips children */
     .pds-rtn-left {
       flex: unset;
       width: 100%;
-      height: 420px;
+      height: {{ section.settings.mobile_main_height }}px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
     }
+
+    .pds-rtn-track {
+      height: 100%;
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    /* ── Hide desktop toggle on mobile ── */
+    .pds-rtn-toggle-wrap { display: none !important; }
+
+    /* ── Mobile toggle — top-left of main image, cyan border always ── */
+    .pds-rtn-mobile-toggle-wrap {
+      display: flex;
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 20;
+      cursor: pointer;
+    }
+
+    .pds-rtn-mobile-toggle-wrap .pds-rtn-toggle {
+      width: 46px;
+      height: 26px;
+    }
+
+    .pds-rtn-mobile-toggle-wrap .pds-rtn-toggle-track {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1.5px solid #4fffff;
+      box-sizing: border-box;
+    }
+
+    .pds-rtn-mobile-toggle-wrap .pds-rtn-toggle input:checked ~ .pds-rtn-toggle-track {
+      background: #4fffff;
+      border-color: #4fffff;
+    }
+
+    .pds-rtn-mobile-toggle-wrap .pds-rtn-toggle-thumb {
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      background: transparent;
+      border: 2px solid #4fffff;
+      box-sizing: border-box;
+      transition: background 0.3s ease, border 0.3s ease;
+    }
+
+    .pds-rtn-mobile-toggle-wrap .pds-rtn-toggle:hover .pds-rtn-toggle-thumb {
+      background: transparent;
+    }
+
+    .pds-rtn-mobile-toggle-wrap .pds-rtn-toggle input:checked ~ .pds-rtn-toggle-thumb {
+      transform: translateX(20px);
+      background: #000;
+      border-color: #000;
+    }
+
+    /* Hide desktop frost card on mobile */
+    .pds-rtn-card { display: none !important; }
+
+    /* Hide desktop arrow on mobile */
+    .pds-rtn-arrow-btn { display: none; }
+
+    /* ── Mobile frost card — wider overlay at bottom of main image ── */
+    .pds-rtn-mobile-card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 10px 50px 10px 10px;
+      box-sizing: border-box;
+      text-decoration: none;
+      z-index: 10;
+      transition: visibility 0.3s ease, transform 0.3s ease;
+      transform: translateY(0);
+      border: 1px solid rgba(255,255,255,0.6);
+      min-height: 0;
+      height: 100px;
+    }
+
+    .pds-rtn-mobile-card-img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 10px;
+      flex-shrink: 0;
+      background: #f0f0f0;
+      min-width: 90px;
+      display: block;
+    }
+
+    .pds-rtn-mobile-card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .pds-rtn-mobile-card-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .pds-rtn-mobile-card-desc {
+      font-size: 11px;
+      color: #555;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    /* Teal circle arrow — right-center of card, inside padding area */
+    .pds-rtn-mobile-arrow {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: {{ section.settings.accent_color }};
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      padding: 0;
+    }
+
+    .pds-rtn-mobile-arrow:hover { transform: translateY(-50%) scale(1.1); opacity: 0.9; }
+
+    .pds-rtn-mobile-arrow svg {
+      width: 20px;
+      height: 20px;
+      color: #fff;
+    }
+
+    /* mobile card hidden state */
+    .pds-rtn-mobile-card.pds-rtn-mobile-card-hidden {
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: visibility 0.3s ease, transform 0.3s ease;
+    }
+
+    .pds-rtn-mobile-card {
+      transition: visibility 0.3s ease, transform 0.3s ease;
+      transform: translateY(0);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .pds-rtn-mobile-card:not(.pds-rtn-mobile-card-hidden) {
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* ── Info button — hidden on mobile (toggle replaces it) ── */
+    .pds-rtn-info-btn { display: none !important; }
+
+    /* Secondary image below — rounded card with image only */
     .pds-rtn-right {
       flex: unset;
       width: 100%;
-      height: 420px;
+      height: {{ section.settings.mobile_secondary_height }}px;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-top: 0;
+      background: transparent;
+      justify-content: flex-start;
+      position: relative;
     }
+
+    /* Product name label between images */
+    .pds-rtn-mobile-between-label {
+      display: block;
+      font-size: {{ section.settings.right_heading_size }}px;
+      font-weight: 700;
+      color: {{ section.settings.right_heading_color }};
+      text-align: center;
+      padding: 16px 4px 12px;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .pds-rtn-next-heading { display: none; }
+
+    .pds-rtn-right-img-wrap {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .pds-rtn-next-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+    }
+
+    /* ── Secondary arrow — thick bold chevron, left-center with glow, moved down 10% ── */
+    .pds-rtn-secondary-arrow {
+      display: flex !important;
+      position: absolute;
+      top: 60%;
+      left: 20px;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 56px;
+      height: 56px;
+      border-radius: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      filter: drop-shadow(0 4px 16px rgba(79, 255, 255, 0.6));
+    }
+
+    .pds-rtn-secondary-arrow:hover { transform: translateY(-50%) scale(1.12); opacity: 0.9; }
+
+    .pds-rtn-secondary-arrow svg {
+      width: 56px;
+      height: 56px;
+      stroke-width: 5;
+      color: #4fffff;
+    }
+
+    .pds-rtn-secondary-arrow img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ── Dots hidden ── */
+    .pds-rtn-dots { display: none; }
   }
 </style>
+
 
 {%- assign total = section.blocks.size -%}
 {%- assign fb = section.blocks.first -%}
 
 <section class="pds-rtn-section full-width">
   <div class="pds-rtn-wrapper">
-    <!-- LEFT -->
+
+    <!-- LEFT — main image strip -->
     <div class="pds-rtn-left" id="pds-rtn-left">
       <div class="pds-rtn-track" id="pds-rtn-track">
         <div class="pds-rtn-strip" id="pds-rtn-strip">
@@ -296,8 +695,7 @@
                 <img
                   src="{{ block.settings.main_image | image_url: width: 1400 }}"
                   alt="{{ block.settings.card_heading | default: 'Product' }}"
-                  width="1400"
-                  height="900"
+                  width="1400" height="900"
                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
                 >
               {%- endif -%}
@@ -306,31 +704,22 @@
         </div>
       </div>
 
-      <!-- frost glass card -->
+      <!-- Desktop frost glass card -->
       <a class="pds-rtn-card pds-rtn-card-hidden" id="pds-rtn-card" href="{{ fb.settings.product_url | default: '#' }}">
         {%- if fb.settings.card_image -%}
-          <img
-            class="pds-rtn-card-img"
-            id="pds-rtn-card-img"
+          <img class="pds-rtn-card-img" id="pds-rtn-card-img"
             src="{{ fb.settings.card_image | image_url: width: 400 }}"
             alt="{{ fb.settings.card_heading | default: 'Product' }}"
-            width="200"
-            height="200"
-            loading="eager"
-          >
+            width="200" height="200" loading="eager">
         {%- endif -%}
-        <p class="pds-rtn-card-heading" id="pds-rtn-card-heading">
-          {{ fb.settings.card_heading | default: 'Product Name' }}
-        </p>
-        <p class="pds-rtn-card-desc" id="pds-rtn-card-desc">
-          {{ fb.settings.card_description | default: 'Add a description here.' }}
-        </p>
+        <p class="pds-rtn-card-heading" id="pds-rtn-card-heading">{{ fb.settings.card_heading | default: 'Product Name' }}</p>
+        <p class="pds-rtn-card-desc" id="pds-rtn-card-desc">{{ fb.settings.card_description | default: 'Add a description here.' }}</p>
         {%- if fb.settings.card_sub -%}
           <p class="pds-rtn-card-sub" id="pds-rtn-card-sub">{{ fb.settings.card_sub }}</p>
         {%- endif -%}
       </a>
 
-      <!-- toggle lives on the image, outside the card -->
+      <!-- Desktop toggle -->
       <div class="pds-rtn-toggle-wrap" id="pds-rtn-toggle-wrap">
         <label class="pds-rtn-toggle">
           <input type="checkbox" id="pds-rtn-toggle-input">
@@ -338,76 +727,114 @@
           <span class="pds-rtn-toggle-thumb"></span>
         </label>
       </div>
-    </div>
 
-    <!-- RIGHT -->
+      <!-- Mobile frost card — overlay on main image, visible only when toggle ON -->
+      <a class="pds-rtn-mobile-card pds-rtn-mobile-card-hidden" id="pds-rtn-mobile-card" href="{{ fb.settings.product_url | default: '#' }}">
+        {%- if fb.settings.card_image -%}
+          <img class="pds-rtn-mobile-card-img" id="pds-rtn-mobile-card-img"
+            src="{{ fb.settings.card_image | image_url: width: 400 }}"
+            alt="{{ fb.settings.card_heading | default: 'Product' }}"
+            width="200" height="200" loading="eager">
+        {%- endif -%}
+        <div class="pds-rtn-mobile-card-body">
+          <p class="pds-rtn-mobile-card-heading" id="pds-rtn-mobile-card-heading">{{ fb.settings.card_heading | default: 'Product Name' }}</p>
+          <p class="pds-rtn-mobile-card-desc" id="pds-rtn-mobile-card-desc">{{ fb.settings.card_description | default: 'Add a little bit of body text here.' }}</p>
+        </div>
+        <button class="pds-rtn-mobile-arrow" id="pds-rtn-mobile-next-btn" aria-label="Next product">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </a>
+      <!-- Mobile toggle — top-left, cyan border always, toggles frost card -->
+      <div class="pds-rtn-mobile-toggle-wrap" id="pds-rtn-mobile-toggle-wrap">
+        <label class="pds-rtn-toggle">
+          <input type="checkbox" id="pds-rtn-mobile-toggle-input">
+          <span class="pds-rtn-toggle-track"></span>
+          <span class="pds-rtn-toggle-thumb"></span>
+        </label>
+      </div>
+
+      <!-- Mobile info button — bottom-left corner, toggles frost card -->
+      <button class="pds-rtn-info-btn" id="pds-rtn-info-btn" aria-label="Product info">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 11v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="7.5" r="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Product name label between images (mobile only) -->
+    <p class="pds-rtn-mobile-between-label" id="pds-rtn-between-label">
+      {%- if total > 1 -%}{{ section.blocks[1].settings.card_heading | default: 'Next Product' }}
+      {%- else -%}{{ fb.settings.card_heading | default: 'Product' }}{%- endif -%}
+    </p>
+
+    <!-- RIGHT — secondary image -->
     <div class="pds-rtn-right" id="pds-rtn-right">
       <h3 class="pds-rtn-next-heading" id="pds-rtn-next-heading">
-        {%- if total > 1 -%}
-          {{ section.blocks[1].settings.card_heading | default: 'Next Product' }}
-        {%- else -%}
-          {{ fb.settings.card_heading | default: 'Product' }}
-        {%- endif -%}
+        {%- if total > 1 -%}{{ section.blocks[1].settings.card_heading | default: 'Next Product' }}
+        {%- else -%}{{ fb.settings.card_heading | default: 'Product' }}{%- endif -%}
       </h3>
       <div class="pds-rtn-right-img-wrap">
         {%- if total > 1 and section.blocks[1].settings.main_image -%}
-          <img
-            class="pds-rtn-next-img"
-            id="pds-rtn-next-img"
+          <img class="pds-rtn-next-img" id="pds-rtn-next-img"
             src="{{ section.blocks[1].settings.main_image | image_url: width: 800 }}"
             alt="{{ section.blocks[1].settings.card_heading | default: 'Next product' }}"
-            width="800"
-            height="600"
-            loading="lazy"
-          >
+            width="800" height="600" loading="lazy">
         {%- elsif fb.settings.main_image -%}
-          <img
-            class="pds-rtn-next-img"
-            id="pds-rtn-next-img"
+          <img class="pds-rtn-next-img" id="pds-rtn-next-img"
             src="{{ fb.settings.main_image | image_url: width: 800 }}"
             alt="{{ fb.settings.card_heading | default: 'Product' }}"
-            width="800"
-            height="600"
+            width="800" height="600" loading="lazy">
+        {%- else -%}
+          <img class="pds-rtn-next-img" id="pds-rtn-next-img"
+            src="{{ fb.settings.main_image | image_url: width: 800 }}"
+            alt="Next product" width="800" height="600" loading="lazy">
+        {%- endif -%}
+      </div>
+      <!-- Mobile secondary arrow — overlaid bottom-left of secondary image -->
+      <!-- Mobile secondary arrow — uses same image as desktop arrow -->
+      <button class="pds-rtn-secondary-arrow" id="pds-rtn-secondary-next-btn" aria-label="Next product">
+        {%- if section.settings.arrow_image -%}
+          <img
+            src="{{ section.settings.arrow_image | image_url: width: 120 }}"
+            alt="Next"
+            width="{{ section.settings.arrow_img_size }}"
+            height="{{ section.settings.arrow_img_size }}"
             loading="lazy"
           >
         {%- else -%}
-          <img
-            class="pds-rtn-next-img"
-            id="pds-rtn-next-img"
-            src="{{ fb.settings.main_image | image_url: width: 800 }}"
-            alt="Next product"
-            width="800"
-            height="600"
-            loading="lazy"
-          >
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 8L36 24L16 40" stroke="{{ section.settings.accent_color }}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         {%- endif -%}
-      </div>
+      </button>
     </div>
 
-    <!-- single forward arrow — floats between panels -->
+    <!-- Desktop arrow — floats between panels -->
     <button class="pds-rtn-arrow-btn" id="pds-rtn-next-btn" aria-label="Next product">
       {%- if section.settings.arrow_image -%}
-        <img
-          src="{{ section.settings.arrow_image | image_url: width: 120 }}"
-          alt="Next"
-          width="{{ section.settings.arrow_img_size }}"
-          height="{{ section.settings.arrow_img_size }}"
-          loading="lazy"
-        >
+        <img src="{{ section.settings.arrow_image | image_url: width: 120 }}" alt="Next"
+          width="{{ section.settings.arrow_img_size }}" height="{{ section.settings.arrow_img_size }}" loading="lazy">
       {%- else -%}
-        <svg
-          class="pds-rtn-arrow-svg"
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
+        <svg class="pds-rtn-arrow-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M18 10L34 24L18 38" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       {%- endif -%}
     </button>
+
   </div>
+
+  <!-- Mobile dots -->
+  <div class="pds-rtn-dots" id="pds-rtn-dots">
+    {%- for block in section.blocks -%}
+      <button class="pds-rtn-dot{% if forloop.first %} active{% endif %}" data-idx="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
+    {%- endfor -%}
+  </div>
+
 </section>
+
 
 <script>
   (function () {
@@ -416,10 +843,10 @@
       {
         mainImagePreview: "{% if block.settings.main_image %}{{ block.settings.main_image | image_url: width: 800 }}{% endif %}",
         cardImage: "{% if block.settings.card_image %}{{ block.settings.card_image | image_url: width: 400 }}{% endif %}",
-        heading: {{ block.settings.card_heading | default: 'Product' | json }},
+        heading:     {{ block.settings.card_heading | default: 'Product' | json }},
         description: {{ block.settings.card_description | default: '' | json }},
-        sub: {{ block.settings.card_sub | default: '' | json }},
-        url: {{ block.settings.product_url | default: '#' | json }}
+        sub:         {{ block.settings.card_sub | default: '' | json }},
+        url:         {{ block.settings.product_url | default: '#' | json }}
       }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ];
@@ -427,115 +854,172 @@
     var total = data.length;
     if (total === 0) return;
 
-    var strip    = document.getElementById('pds-rtn-strip');
-    var card     = document.getElementById('pds-rtn-card');
-    var cardImg  = document.getElementById('pds-rtn-card-img');
-    var cardHead = document.getElementById('pds-rtn-card-heading');
-    var cardDesc = document.getElementById('pds-rtn-card-desc');
-    var cardSub  = document.getElementById('pds-rtn-card-sub');
-    var nextHead = document.getElementById('pds-rtn-next-heading');
-    var nextImg  = document.getElementById('pds-rtn-next-img');
-    var nextBtn  = document.getElementById('pds-rtn-next-btn');
-    var toggleIn = document.getElementById('pds-rtn-toggle-input');
+    /* ── DOM refs ── */
+    var strip         = document.getElementById('pds-rtn-strip');
+    var card          = document.getElementById('pds-rtn-card');
+    var cardImg       = document.getElementById('pds-rtn-card-img');
+    var cardHead      = document.getElementById('pds-rtn-card-heading');
+    var cardDesc      = document.getElementById('pds-rtn-card-desc');
+    var cardSub       = document.getElementById('pds-rtn-card-sub');
+    var nextHead      = document.getElementById('pds-rtn-next-heading');
+    var nextImg       = document.getElementById('pds-rtn-next-img');
+    var nextBtn       = document.getElementById('pds-rtn-next-btn');       /* desktop arrow */
+    var toggleIn      = document.getElementById('pds-rtn-toggle-input');
+    var toggleWrap    = document.getElementById('pds-rtn-toggle-wrap');
+    var mobileCard    = document.getElementById('pds-rtn-mobile-card');
+    var mobileCardImg = document.getElementById('pds-rtn-mobile-card-img');
+    var mobileHead    = document.getElementById('pds-rtn-mobile-card-heading');
+    var mobileDesc    = document.getElementById('pds-rtn-mobile-card-desc');
+    var mobileNextBtn    = document.getElementById('pds-rtn-mobile-next-btn');
+    var secondaryNextBtn = document.getElementById('pds-rtn-secondary-next-btn');
+    var dotsWrap         = document.getElementById('pds-rtn-dots');
+    var dots          = dotsWrap ? dotsWrap.querySelectorAll('.pds-rtn-dot') : [];
+    var infoBtn       = document.getElementById('pds-rtn-info-btn');
+    var betweenLabel  = document.getElementById('pds-rtn-between-label');
+    var mobileToggleIn   = document.getElementById('pds-rtn-mobile-toggle-input');
+    var mobileToggleWrap = document.getElementById('pds-rtn-mobile-toggle-wrap');
 
-    /* ── Build infinite strip: clone first slide to end ── */
+    /* ── Fade references for simultaneous image transitions ── */
+    var pdsTrack = document.getElementById('pds-rtn-track');
+
+    /* ── Infinite strip setup: clone first slide to end ── */
     var realSlides = strip.querySelectorAll('.pds-rtn-slide');
-    var cloneFirst = realSlides[0].cloneNode(true);
-    strip.appendChild(cloneFirst);
-    /* DOM: [0][1][2]...[n-1][clone-of-0]  total+1 items */
+    strip.appendChild(realSlides[0].cloneNode(true));
 
-    var DURATION = 680; /* ms — feel of a smooth reel pull */
+    var DURATION = 680;
     var EASE     = 'cubic-bezier(0.4, 0, 0.2, 1)';
-
-    var pos      = 0;   /* strip position index */
-    var current  = 0;   /* logical slide index */
+    var pos      = 0;
+    var current  = 0;
     var busy     = false;
 
-    /* position strip instantly (no animation) */
     function snapTo(idx) {
       strip.style.transition = 'none';
       strip.style.transform  = 'translateX(-' + (idx * 100) + '%)';
-      /* force reflow so next transition applies */
-      strip.getBoundingClientRect();
+      strip.getBoundingClientRect(); /* force reflow */
     }
 
-    /* slide strip with animation */
     function slideTo(idx) {
       strip.style.transition = 'transform ' + DURATION + 'ms ' + EASE;
       strip.style.transform  = 'translateX(-' + (idx * 100) + '%)';
     }
 
-    /* update card + right panel content */
+    function updateDots(idx) {
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.toggle('active', i === idx);
+      }
+    }
+
     function updateContent(idx) {
       var d = data[idx];
 
-      /* card */
+      /* ── Desktop card ── */
       if (cardImg) {
         if (d.cardImage) { cardImg.src = d.cardImage; cardImg.style.display = ''; }
         else { cardImg.style.display = 'none'; }
       }
-      cardHead.textContent = d.heading;
-      cardDesc.textContent = d.description;
-      if (cardSub) cardSub.textContent = d.sub;
-      card.href = d.url;
+      if (cardHead) cardHead.textContent = d.heading;
+      if (cardDesc) cardDesc.textContent = d.description;
+      if (cardSub)  cardSub.textContent  = d.sub;
+      if (card)     card.href = d.url;
+      if (card && toggleIn) card.classList.toggle('pds-rtn-card-hidden', !toggleIn.checked);
 
-      /* preserve current toggle state — don't force card visible */
-      card.classList.toggle('pds-rtn-card-hidden', !toggleIn.checked);
+      /* ── Mobile card ── */
+      if (mobileCardImg) {
+        if (d.cardImage) { mobileCardImg.src = d.cardImage; mobileCardImg.style.display = ''; }
+        else { mobileCardImg.style.display = 'none'; }
+      }
+      if (mobileHead) mobileHead.textContent = d.heading;
+      if (mobileDesc) mobileDesc.textContent = d.description;
+      if (mobileCard) mobileCard.href = d.url;
 
-      /* right panel — instant swap, no animation */
+      /* ── Right panel (secondary preview) — instant update ── */
       var ni = (idx + 1) % total;
       var nd = data[ni];
-      nextHead.textContent = nd.heading;
-      if (nd.mainImagePreview) nextImg.src = nd.mainImagePreview;
+      if (nextHead) nextHead.textContent = nd.heading;
+      if (betweenLabel) betweenLabel.textContent = nd.heading;
+      if (nextImg && nd.mainImagePreview) nextImg.src = nd.mainImagePreview;
+
+      updateDots(idx);
     }
 
     function goNext() {
       if (busy) return;
       busy = true;
-
-      pos += 1;
+      pos    += 1;
       current = pos % total;
-
       slideTo(pos);
       updateContent(current);
-
-      /* after animation: if we're on the clone, snap back silently */
       setTimeout(function () {
-        if (pos === total) {
-          pos = 0;
-          snapTo(0);
-        }
+        if (pos === total) { pos = 0; snapTo(0); }
         busy = false;
       }, DURATION + 20);
     }
 
-    /* init */
+    /* ── Init ── */
     snapTo(0);
     updateContent(0);
 
-    nextBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      goNext();
-    });
+    /* Desktop arrow */
+    if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); goNext(); });
 
-    /* ── Toggle ── */
-    var toggleWrap = document.getElementById('pds-rtn-toggle-wrap');
+    /* Mobile card arrow */
+    if (mobileNextBtn) {
+      mobileNextBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        goNext();
+      });
+    }
 
-    toggleIn.addEventListener('change', function () {
-      card.classList.toggle('pds-rtn-card-hidden', !this.checked);
-    });
+    /* Secondary image arrow (mobile) */
+    if (secondaryNextBtn) {
+      secondaryNextBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        goNext();
+      });
+    }
 
-    toggleWrap.addEventListener('click', function (e) {
-      e.stopPropagation();
-    });
+    /* Dot clicks */
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].addEventListener('click', (function (dotIdx) {
+        return function () {
+          if (busy || dotIdx === current) return;
+          busy    = true;
+          pos     = dotIdx;
+          current = dotIdx;
+          slideTo(pos);
+          updateContent(current);
+          setTimeout(function () { busy = false; }, DURATION + 20);
+        };
+      })(i));
+    }
 
-    /* init right panel */
+    /* Toggle (desktop only) */
+    if (toggleIn) {
+      toggleIn.addEventListener('change', function () {
+        if (card) card.classList.toggle('pds-rtn-card-hidden', !this.checked);
+      });
+    }
+    if (toggleWrap) toggleWrap.addEventListener('click', function (e) { e.stopPropagation(); });
+
+    /* ── Mobile toggle — top-left, toggles frost card only (no image fade) ── */
+    if (mobileToggleIn && mobileCard) {
+      mobileToggleIn.addEventListener('change', function () {
+        mobileCard.classList.toggle('pds-rtn-mobile-card-hidden', !this.checked);
+      });
+    }
+    if (mobileToggleWrap) mobileToggleWrap.addEventListener('click', function (e) { e.stopPropagation(); });
+
+    /* ── Info button — unused on mobile (toggle replaces it) ── */
+
+    /* Init right panel */
     if (total > 1) {
-      nextHead.textContent = data[1].heading;
-      if (data[1].mainImagePreview) nextImg.src = data[1].mainImagePreview;
+      if (nextHead) nextHead.textContent = data[1].heading;
+      if (nextImg && data[1].mainImagePreview) nextImg.src = data[1].mainImagePreview;
     }
   }());
 </script>
+
 
 {% schema %}
 {
@@ -543,228 +1027,51 @@
   "tag": "section",
   "class": "section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "range",
-      "id": "max_width",
-      "label": "Max Width (px)",
-      "min": 900,
-      "max": 1800,
-      "step": 20,
-      "default": 1400
-    },
-    {
-      "type": "range",
-      "id": "section_height",
-      "label": "Section Height (px)",
-      "min": 400,
-      "max": 900,
-      "step": 20,
-      "default": 580
-    },
-    {
-      "type": "range",
-      "id": "section_padding",
-      "label": "Section Vertical Padding (px)",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "gap",
-      "label": "Gap Between Panels (px)",
-      "min": 8,
-      "max": 60,
-      "step": 4,
-      "default": 24
-    },
-    {
-      "type": "header",
-      "content": "Frost Card Position"
-    },
-    {
-      "type": "range",
-      "id": "card_top",
-      "label": "Card Top Offset (px)",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "card_left",
-      "label": "Card Left Offset (px)",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "card_right",
-      "label": "Card Right Offset (px)",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "card_bottom",
-      "label": "Card Bottom Offset (px)",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "default": 28
-    },
-    {
-      "type": "header",
-      "content": "Frost Card Typography"
-    },
-    {
-      "type": "range",
-      "id": "card_img_size",
-      "label": "Card Image Size (px)",
-      "min": 80,
-      "max": 300,
-      "step": 10,
-      "default": 180
-    },
-    {
-      "type": "range",
-      "id": "card_heading_size",
-      "label": "Card Heading Size (px)",
-      "min": 14,
-      "max": 40,
-      "step": 1,
-      "default": 22
-    },
-    {
-      "type": "range",
-      "id": "card_desc_size",
-      "label": "Card Description Size (px)",
-      "min": 10,
-      "max": 20,
-      "step": 1,
-      "default": 13
-    },
-    {
-      "type": "header",
-      "content": "Colors"
-    },
-    {
-      "type": "color",
-      "id": "section_bg",
-      "label": "Section Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "right_bg",
-      "label": "Right Panel Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "right_heading_color",
-      "label": "Right Heading Color",
-      "default": "#111111"
-    },
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "Accent Color",
-      "default": "#00e5e5"
-    },
-    {
-      "type": "header",
-      "content": "Right Panel"
-    },
-    {
-      "type": "range",
-      "id": "right_heading_size",
-      "label": "Heading Size (px)",
-      "min": 16,
-      "max": 56,
-      "step": 2,
-      "default": 32
-    },
-    {
-      "type": "header",
-      "content": "Arrow"
-    },
-    {
-      "type": "image_picker",
-      "id": "arrow_image",
-      "label": "Arrow Image (upload your custom arrow)"
-    },
-    {
-      "type": "range",
-      "id": "arrow_img_size",
-      "label": "Arrow Size (px)",
-      "min": 24,
-      "max": 152,
-      "step": 4,
-      "default": 100
-    },
-    {
-      "type": "color",
-      "id": "accent_color_arrow",
-      "label": "Fallback Arrow Color (if no image)",
-      "default": "#00e5e5"
-    }
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "max_width", "label": "Max Width (px)", "min": 900, "max": 1800, "step": 20, "default": 1400 },
+    { "type": "range", "id": "section_height", "label": "Section Height (px)", "min": 400, "max": 900, "step": 20, "default": 580 },
+    { "type": "range", "id": "section_padding", "label": "Section Vertical Padding (px)", "min": 0, "max": 100, "step": 4, "default": 40 },
+    { "type": "range", "id": "gap", "label": "Gap Between Panels (px)", "min": 8, "max": 60, "step": 4, "default": 24 },
+    { "type": "header", "content": "Frost Card Position (Desktop)" },
+    { "type": "range", "id": "card_top", "label": "Card Top Offset (px)", "min": 0, "max": 200, "step": 4, "default": 28 },
+    { "type": "range", "id": "card_left", "label": "Card Left Offset (px)", "min": 0, "max": 200, "step": 4, "default": 28 },
+    { "type": "range", "id": "card_right", "label": "Card Right Offset (px)", "min": 0, "max": 200, "step": 4, "default": 28 },
+    { "type": "range", "id": "card_bottom", "label": "Card Bottom Offset (px)", "min": 0, "max": 200, "step": 4, "default": 28 },
+    { "type": "header", "content": "Frost Card Typography" },
+    { "type": "range", "id": "card_img_size", "label": "Card Image Size (px)", "min": 80, "max": 300, "step": 10, "default": 180 },
+    { "type": "range", "id": "card_heading_size", "label": "Card Heading Size (px)", "min": 14, "max": 40, "step": 1, "default": 22 },
+    { "type": "range", "id": "card_desc_size", "label": "Card Description Size (px)", "min": 10, "max": 20, "step": 1, "default": 13 },
+    { "type": "header", "content": "Mobile Card" },
+    { "type": "range", "id": "mobile_main_height", "label": "Mobile Main Image Height (px)", "min": 300, "max": 600, "step": 10, "default": 420 },
+    { "type": "range", "id": "mobile_secondary_height", "label": "Mobile Secondary Image Height (px)", "min": 140, "max": 340, "step": 10, "default": 200},
+    { "type": "range", "id": "mobile_card_img_size", "label": "Mobile Card Product Image Size (px)", "min": 60, "max": 160, "step": 4, "default": 120 },
+    { "type": "range", "id": "mobile_card_heading_size", "label": "Mobile Card Heading Size (px)", "min": 14, "max": 32, "step": 1, "default": 22 },
+    { "type": "range", "id": "mobile_card_desc_size", "label": "Mobile Card Desc Size (px)", "min": 10, "max": 18, "step": 1, "default": 13 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "section_bg", "label": "Section Background", "default": "#ffffff" },
+    { "type": "color", "id": "right_bg", "label": "Right Panel Background", "default": "#ffffff" },
+    { "type": "color", "id": "right_heading_color", "label": "Right Heading Color", "default": "#111111" },
+    { "type": "color", "id": "accent_color", "label": "Accent / Arrow Color", "default": "#00e5e5" },
+    { "type": "header", "content": "Right Panel (Desktop)" },
+    { "type": "range", "id": "right_heading_size", "label": "Heading Size (px)", "min": 16, "max": 56, "step": 2, "default": 32 },
+    { "type": "header", "content": "Arrow (Desktop)" },
+    { "type": "image_picker", "id": "arrow_image", "label": "Arrow Image" },
+    { "type": "range", "id": "arrow_img_size", "label": "Arrow Size (px)", "min": 24, "max": 152, "step": 4, "default": 100 },
+    { "type": "color", "id": "accent_color_arrow", "label": "Fallback Arrow Color", "default": "#00e5e5" }
   ],
   "blocks": [
     {
       "type": "product_slide",
       "name": "Product Slide",
       "settings": [
-        {
-          "type": "header",
-          "content": "Background"
-        },
-        {
-          "type": "image_picker",
-          "id": "main_image",
-          "label": "Main Background Image (Left)"
-        },
-        {
-          "type": "header",
-          "content": "Frost Card"
-        },
-        {
-          "type": "image_picker",
-          "id": "card_image",
-          "label": "Product Image"
-        },
-        {
-          "type": "text",
-          "id": "card_heading",
-          "label": "Product Name",
-          "default": "Product Name"
-        },
-        {
-          "type": "textarea",
-          "id": "card_description",
-          "label": "Description",
-          "default": "Add a little bit of body text here."
-        },
-        {
-          "type": "text",
-          "id": "card_sub",
-          "label": "Sub-line (bold, below description)"
-        },
-        {
-          "type": "url",
-          "id": "product_url",
-          "label": "Product Page Link"
-        }
+        { "type": "header", "content": "Background" },
+        { "type": "image_picker", "id": "main_image", "label": "Main Background Image" },
+        { "type": "header", "content": "Card" },
+        { "type": "image_picker", "id": "card_image", "label": "Product Image" },
+        { "type": "text", "id": "card_heading", "label": "Product Name", "default": "Product Name" },
+        { "type": "textarea", "id": "card_description", "label": "Description", "default": "Add a little bit of body text here." },
+        { "type": "text", "id": "card_sub", "label": "Sub-line (bold, below description)" },
+        { "type": "url", "id": "product_url", "label": "Product Page Link" }
       ]
     }
   ],

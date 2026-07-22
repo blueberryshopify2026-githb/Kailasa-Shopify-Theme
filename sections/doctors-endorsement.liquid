@@ -1,12 +1,14 @@
 {% comment %}
   Luxury Skincare Doctor Endorsement Section
-  60% left main card, 4Left margin0% right cascading cards with doctor details
+  60% left main card, 40% right cascading cards with doctor details
 {% endcomment %}
 
 <section class="doctor-endorsement-section full-width">
   <div class="container">
+
+    <!-- Desktop Layout -->
     <div class="endorsement-layout">
-      <!-- Left Side: Main Hero Card (60%) -->
+      <!-- Left Side: Main Hero Card (70%) -->
       <div class="hero-section">
         <div class="hero-card" id="mainHeroCard">
           {% assign current_block = section.blocks.first %}
@@ -26,7 +28,6 @@
             </div>
           {% endif %}
 
-          <!-- Main Card Overlay Content -->
           <div class="main-card-overlay-content">
             <div class="main-doctor-info">
               <h3 class="main-doctor-name" id="mainDoctorName">
@@ -35,7 +36,6 @@
               <p class="main-doctor-specialty" id="mainDoctorSpecialty">
                 {{ current_block.settings.specialty | default: 'Dermatologist' }}
               </p>
-
               {% if current_block.settings.rating %}
                 <div class="main-rating" id="mainRating">
                   {% assign rating = current_block.settings.rating | times: 1 %}
@@ -45,22 +45,25 @@
                   <span class="rating-text">({{ current_block.settings.rating }}/5)</span>
                 </div>
               {% endif %}
-
               {% if current_block.settings.quote %}
                 <blockquote class="main-doctor-quote" id="mainDoctorQuote">
                   "{{ current_block.settings.quote }}"
                 </blockquote>
               {% endif %}
-
               {% if current_block.settings.experience %}
-                <p class="main-experience" id="mainExperience">{{ current_block.settings.experience }}</p>
+                <div class="main-experience-pills" id="mainExperience">
+                  {% assign exp_parts = current_block.settings.experience | split: '•' %}
+                  {% for part in exp_parts limit: 3 %}
+                    <div class="main-exp-pill">{{ part | strip }}</div>
+                  {% endfor %}
+                </div>
               {% endif %}
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Right Side: Cascading Cards -->
+      <!-- Right Side: Cascading Cards (30%) -->
       <div class="cascading-cards-section">
         <div class="cards-stack" id="cardsStack">
           {% for block in section.blocks limit: 5 %}
@@ -74,13 +77,10 @@
                   height="300"
                   loading="lazy"
                 >
-
-                <!-- Only show overlay content when image is uploaded -->
                 <div class="card-overlay-content">
                   <div class="doctor-info">
                     <h3 class="doctor-name">{{ block.settings.doctor_name | default: 'Dr. Name' }}</h3>
                     <p class="doctor-specialty">{{ block.settings.specialty | default: 'Specialty' }}</p>
-
                     {% if block.settings.rating %}
                       <div class="rating">
                         {% assign rating = block.settings.rating | times: 1 %}
@@ -90,18 +90,15 @@
                         <span class="rating-text">({{ block.settings.rating }}/5)</span>
                       </div>
                     {% endif %}
-
                     {% if block.settings.quote %}
                       <blockquote class="doctor-quote">"{{ block.settings.quote }}"</blockquote>
                     {% endif %}
-
                     {% if block.settings.experience %}
                       <p class="experience">{{ block.settings.experience }}</p>
                     {% endif %}
                   </div>
                 </div>
               {% else %}
-                <!-- Empty placeholder - no text content -->
                 <div class="card-placeholder-empty">
                   <span class="upload-text"></span>
                 </div>
@@ -112,7 +109,7 @@
       </div>
     </div>
 
-    <!-- Bottom CTA -->
+    <!-- Desktop CTA -->
     <div class="cta-section">
       <div class="cta-pill">
         <span class="current-doctor-name" id="currentDoctorName">
@@ -125,16 +122,152 @@
         </button>
       </div>
     </div>
+
+    <!-- Tablet Slider (shown only on tablet via CSS) -->
+    <div class="tablet-slider-wrapper">
+      <div class="tablet-cards-track" id="tabletCardsTrack">
+        {% for block in section.blocks limit: 5 %}
+          {% assign rating_val = block.settings.rating | times: 1 %}
+          {% assign cred_parts = block.settings.experience | split: '•' %}
+          <div class="tablet-doctor-card" data-tablet-index="{{ forloop.index0 }}">
+            {% if block.settings.doctor_image %}
+              <img
+                src="{{ block.settings.doctor_image | image_url: width: 900, height: 600 }}"
+                alt="{{ block.settings.doctor_name }}"
+                class="tablet-card-img"
+                width="900"
+                height="600"
+                loading="lazy"
+              >
+            {% else %}
+              <div class="tablet-card-placeholder"></div>
+            {% endif %}
+
+            <div class="tablet-card-content">
+              {% if block.settings.specialty %}
+                <div class="tablet-specialty-tag">
+                  <span class="tablet-tag-plus">+</span>
+                  {{ block.settings.specialty | upcase }}
+                </div>
+              {% endif %}
+
+              <h3 class="tablet-doctor-name">{{ block.settings.doctor_name | default: 'Dr. Name' }}</h3>
+              <p class="tablet-doctor-specialty">{{ block.settings.specialty | default: 'Specialty' }}</p>
+
+              {% if block.settings.rating %}
+                <div class="tablet-rating">
+                  {% for i in (1..5) %}
+                    <span class="tablet-star {% if i <= rating_val %}filled{% endif %}">★</span>
+                  {% endfor %}
+                  <span class="tablet-rating-text">({{ block.settings.rating }}/5)</span>
+                </div>
+              {% endif %}
+
+              {% if block.settings.quote %}
+                <p class="tablet-quote">"{{ block.settings.quote }}"</p>
+              {% endif %}
+
+              {% if block.settings.experience %}
+                <div class="tablet-credentials">
+                  {% for part in cred_parts limit: 2 %}
+                    <div class="tablet-cred-item">
+                      <svg class="tablet-cred-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                      <span>{{ part | strip }}</span>
+                    </div>
+                    {% unless forloop.last %}<div class="tablet-cred-divider"></div>{% endunless %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="tablet-dots" id="tabletDots">
+        {% for block in section.blocks limit: 5 %}
+          <button
+            class="tablet-dot {% if forloop.first %}active{% endif %}"
+            data-tablet-dot-index="{{ forloop.index0 }}"
+            aria-label="Go to doctor {{ forloop.index }}"
+          ></button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Mobile Slider (shown only on mobile via CSS) -->
+    <div class="mobile-slider-wrapper">
+      <div class="mobile-cards-track" id="mobileCardsTrack">
+        {% for block in section.blocks limit: 5 %}
+          {% assign rating_val = block.settings.rating | times: 1 %}
+          <div class="mobile-doctor-card" data-mobile-index="{{ forloop.index0 }}">
+            {% if block.settings.doctor_image %}
+              <img
+                src="{{ block.settings.doctor_image | image_url: width: 600, height: 800 }}"
+                alt="{{ block.settings.doctor_name }}"
+                class="mobile-card-img"
+                width="600"
+                height="800"
+                loading="lazy"
+              >
+            {% else %}
+              <div class="mobile-card-placeholder"></div>
+            {% endif %}
+
+            <div class="mobile-card-overlay">
+              <h3 class="mobile-doctor-name">{{ block.settings.doctor_name | default: 'Dr. Name' }}</h3>
+              <p class="mobile-doctor-specialty">{{ block.settings.specialty | default: 'Specialty' }}</p>
+
+              {% if block.settings.rating %}
+                <div class="mobile-rating">
+                  {% for i in (1..5) %}
+                    <span class="mobile-star {% if i <= rating_val %}filled{% endif %}">★</span>
+                  {% endfor %}
+                  <span class="mobile-rating-text">({{ block.settings.rating }}/5)</span>
+                </div>
+              {% endif %}
+
+              {% if block.settings.quote %}
+                <p class="mobile-quote">"{{ block.settings.quote }}"</p>
+              {% endif %}
+
+              {% if block.settings.experience %}
+                <div class="mobile-credentials">
+                  {% assign cred_parts = block.settings.experience | split: '•' %}
+                  {% for part in cred_parts limit: 2 %}
+                    <div class="mobile-cred-pill">{{ part | strip }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="mobile-dots" id="mobileDots">
+        {% for block in section.blocks limit: 5 %}
+          <button
+            class="mobile-dot {% if forloop.first %}active{% endif %}"
+            data-dot-index="{{ forloop.index0 }}"
+            aria-label="Go to doctor {{ forloop.index }}"
+          ></button>
+        {% endfor %}
+      </div>
+    </div>
+
   </div>
 </section>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
   .doctor-endorsement-section {
     padding: 80px 0;
     background: #ffffff;
     font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden; /* Prevent horizontal scroll at section level */
+    overflow-x: hidden;
   }
 
   .container {
@@ -142,27 +275,27 @@
     margin: 0 auto;
     padding: 0 24px;
     margin-left: {{ section.settings.left_margin | default: 6 }}%;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
   }
 
+  /* ---- Desktop Layout ---- */
   .endorsement-layout {
     display: grid;
-    grid-template-columns: 70% 30%; /* Increased left side by 10%, reduced right side */
-    gap: {{ section.settings.cards_gap | default: 20 }}px; /* Adjustable gap */
+    grid-template-columns: 70% 30%;
+    gap: {{ section.settings.cards_gap | default: 20 }}px;
     align-items: flex-start;
     margin-bottom: 20px;
-    position: relative; /* Add positioning context for absolute children */
+    position: relative;
   }
 
-  /* Hero Section (60%) */
   .hero-section {
     width: 100%;
-    margin-left: {{ section.settings.main_card_left_position | default: 5 }}%; /* Additional left positioning */
+    margin-left: {{ section.settings.main_card_left_position | default: 5 }}%;
   }
 
   .hero-card {
     border-radius: {{ section.settings.main_card_border_radius | default: 32 }}px;
-    aspect-ratio: 5.5/3; /* Reduced height by 10% (wider aspect ratio) */
+    aspect-ratio: 5.5/3;
     overflow: hidden;
     position: relative;
   }
@@ -181,29 +314,17 @@
     height: 100%;
     color: #ffffff;
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
   }
 
-
-
-  /* Main Card Overlay Content - Professional Medical UI */
   .main-card-overlay-content {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /* background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, {{ section.settings.main_card_overlay_opacity | default: 0.9 }}) 100%); */
+    bottom: 0; left: 0; right: 0;
     padding: 32px 28px 24px;
     color: {{ section.settings.text_color | default: '#ffffff' }};
-
   }
 
-  .main-doctor-info {
-    text-align: left;
-  }
+  .main-doctor-info { text-align: left; }
 
   .main-doctor-name {
     font-size: 1.9rem;
@@ -222,8 +343,6 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.2px;
-    opacity: 1;
-    /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); */
   }
 
   .main-rating {
@@ -233,16 +352,10 @@
     margin-bottom: 5px;
   }
 
-  .main-rating .star {
-    font-size: 1rem;
-    color: #333;
-    transition: color 0.2s ease;
-
-  }
-
+  .main-rating .star { font-size: 1rem; color: #333; }
   .main-rating .star.filled {
     color: {{ section.settings.star_color | default: '#ffd700' }};
-    filter: drop-shadow(0 1px 3px rgba(255, 215, 0, 0.4));
+    filter: drop-shadow(0 1px 3px rgba(255,215,0,0.4));
   }
 
   .main-rating .rating-text {
@@ -250,7 +363,6 @@
     color: #ffffff;
     margin-left: 6px;
     font-weight: 500;
-    opacity: 0.95;
   }
 
   .main-doctor-quote {
@@ -259,32 +371,31 @@
     font-style: italic;
     margin: 0 0 6px 0;
     color: #ffffff;
-    opacity: 0.95;
     font-weight: 500;
-    /* text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); */
     font-family: 'Montserrat', sans-serif;
   }
 
-  .main-doctor-quote::before {
-    content: '';
-    font-size: 1.6em;
-    color: #4fffff;
-    opacity: 0.7;
-    margin-right: 2px;
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1;
+  .main-experience-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
   }
 
-  .main-experience {
-    font-size: 15px;
+  .main-exp-pill {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
     color: #ffffff;
-    margin: 0;
-    line-height: 1;
-    font-weight: 500;
-    opacity: 0.9;
+    font-weight: 600;
+    white-space: nowrap;
   }
 
-  /* Cascading Cards Section (40%) */
   .cascading-cards-section {
     width: 100%;
     position: relative;
@@ -293,15 +404,15 @@
     justify-content: flex-start;
     padding-top: {{ section.settings.right_card_vertical_gap | default: 20 }}px;
     padding-bottom: {{ section.settings.right_card_vertical_gap | default: 20 }}px;
-    overflow: hidden; /* Prevent cards from overflowing */
+    overflow: hidden;
   }
 
   .cards-stack {
     position: relative;
     width: 100%;
     max-width: 100%;
-    overflow: hidden; /* Prevent horizontal overflow */
-    min-height: 400px; /* Ensure container has height for absolutely positioned cards */
+    overflow: hidden;
+    min-height: 400px;
   }
 
   .doctor-card {
@@ -310,58 +421,29 @@
     overflow: hidden;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); */
-    width: {{ section.settings.right_card_width | default: 70 }}%; /* Adjustable width */
-    aspect-ratio: {{ section.settings.right_card_aspect_width | default: 2.5 }}/{{ section.settings.right_card_aspect_height | default: 4 }}; /* Much taller cards */
-  }
-
-  .doctor-card:hover {
-    /* No hover effects - only click interactions */
-    cursor: pointer;
+    width: {{ section.settings.right_card_width | default: 70 }}%;
+    aspect-ratio: {{ section.settings.right_card_aspect_width | default: 2.5 }}/{{ section.settings.right_card_aspect_height | default: 4 }};
   }
 
   .doctor-card .card-bg-image {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .doctor-card .card-placeholder {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 3rem;
-    opacity: 0.7;
+    position: absolute; top: 0; left: 0;
   }
 
   .doctor-card .card-overlay-content {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /* background: linear-gradient(transparent, rgba(0, 0, 0, {{ section.settings.right_card_overlay_opacity | default: 0.8 }}) 30%, rgba(0, 0, 0, {{ section.settings.right_card_overlay_opacity | default: 0.8 }}) 100%); */
+    bottom: 0; left: 0; right: 0;
     padding: 20px 16px 16px;
     color: {{ section.settings.text_color | default: '#ffffff' }};
   }
 
-  .doctor-card .doctor-info {
-    text-align: left;
-  }
+  .doctor-card .doctor-info { text-align: left; }
 
   .doctor-card .doctor-name {
     font-size: 1rem;
     font-weight: 700;
     margin: 0 0 2px 0;
-    letter-spacing: -0.01em;
     color: #ffffff;
     line-height: 1.1;
   }
@@ -375,7 +457,6 @@
     letter-spacing: 0.5px;
   }
 
-
   .doctor-card .rating {
     display: flex;
     align-items: center;
@@ -383,14 +464,8 @@
     margin-bottom: 6px;
   }
 
-  .doctor-card .star {
-    font-size: 0.75rem;
-    color: #333;
-  }
-
-  .doctor-card .star.filled {
-    color: {{ section.settings.star_color | default: '#ffd700' }};
-  }
+  .doctor-card .star { font-size: 0.75rem; color: #333; }
+  .doctor-card .star.filled { color: {{ section.settings.star_color | default: '#ffd700' }}; }
 
   .doctor-card .rating-text {
     font-size: 0.6rem;
@@ -405,7 +480,6 @@
     font-style: italic;
     margin: 0 0 4px 0;
     color: #ffffff;
-    opacity: 0.95;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -416,7 +490,6 @@
     font-size: 0.55rem;
     color: #cccccc;
     margin: 0;
-    line-height: 1.05;
     font-weight: 500;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -424,36 +497,22 @@
     overflow: hidden;
   }
 
-  /* Empty Card Placeholder Styling */
   .card-placeholder-empty {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     background: transparent;
     border: 2px dashed {{ section.settings.placeholder_border | default: '#cccccc' }};
     border-radius: {{ section.settings.right_card_border_radius | default: 32 }}px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: absolute; top: 0; left: 0;
   }
 
-  /* .card-placeholder-empty .upload-text {
-    color: {{ section.settings.placeholder_text_color | default: '#999999' }};
-    font-size: {{ section.settings.placeholder_text_size | default: 14 }}px;
-    font-weight: 500;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-  } */
-
-  /* CTA Section */
+  /* CTA */
   .cta-section {
     display: flex;
-    justify-content: flex-start; /* Align to left side (below main card) */
-    /* margin-top: {{ section.settings.cta_button_gap | default: 5 }}px; Adjustable gap */
-    padding-left: calc(70% / 2 - 120px); /* Center below the main card */
-
+    justify-content: flex-start;
+    padding-left: calc(70% / 2 - 120px);
   }
 
   .cta-pill {
@@ -465,32 +524,30 @@
     padding: {{ section.settings.pill_padding_vertical | default: 8 }}px {{ section.settings.pill_padding_horizontal | default: 16 }}px;
     gap: {{ section.settings.name_button_gap | default: 15 }}px;
     transition: all 0.3s ease;
-    min-width: {{ section.settings.pill_min_width | default: 280 }}px; /* Minimum width regardless of name length */
-    max-width: {{ section.settings.pill_max_width | default: 400 }}px; /* Maximum width to prevent overflow */
-    width: auto; /* Auto width based on content */
-    box-shadow: {{ section.settings.pill_shadow | default: '0 4px 12px rgba(0, 188, 212, 0.2)' }};
+    min-width: {{ section.settings.pill_min_width | default: 280 }}px;
+    max-width: {{ section.settings.pill_max_width | default: 400 }}px;
+    box-shadow: {{ section.settings.pill_shadow | default: '0 4px 12px rgba(0,188,212,0.2)' }};
   }
 
   .cta-pill:hover {
     border-color: {{ section.settings.pill_hover_border_color | default: '#00acc1' }};
     transform: translateY(-2px);
-    box-shadow: {{ section.settings.pill_hover_shadow | default: '0 6px 20px rgba(0, 188, 212, 0.3)' }};
+    box-shadow: {{ section.settings.pill_hover_shadow | default: '0 6px 20px rgba(0,188,212,0.3)' }};
   }
 
   .current-doctor-name {
-    font-size: {{ section.settings.doctor_name_font_size | default: 18 }}px; /* Increased font size */
+    font-size: {{ section.settings.doctor_name_font_size | default: 18 }}px;
     font-weight: {{ section.settings.doctor_name_font_weight | default: 600 }};
     color: {{ section.settings.doctor_name_color | default: '#1a1a1a' }};
-    letter-spacing: 0.01em;
-    flex: 1; /* Take available space */
-    white-space: nowrap; /* Prevent text wrapping */
+    flex: 1;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis for very long names */
+    text-overflow: ellipsis;
   }
 
   .cta-button-doctor-endo {
-    width: {{ section.settings.cta_button_size | default: 35 }}px; /* Reduced button size */
-    height: {{ section.settings.cta_button_size | default: 35 }}px; /* Reduced button size */
+    width: {{ section.settings.cta_button_size | default: 35 }}px;
+    height: {{ section.settings.cta_button_size | default: 35 }}px;
     background: {{ section.settings.cta_bg_color | default: '#000000' }};
     border: none;
     border-radius: 50%;
@@ -499,7 +556,7 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    flex-shrink: 0; /* Prevent button from shrinking */
+    flex-shrink: 0;
   }
 
   .cta-button-doctor-endo:hover {
@@ -508,90 +565,456 @@
   }
 
   .arrow-icon {
-    width: {{ section.settings.arrow_icon_size | default: 20 }}px; /* Increased icon size */
-    height: {{ section.settings.arrow_icon_size | default: 20 }}px; /* Increased icon size */
+    width: {{ section.settings.arrow_icon_size | default: 20 }}px;
+    height: {{ section.settings.arrow_icon_size | default: 20 }}px;
     color: {{ section.settings.arrow_icon_color | default: '#ffffff' }};
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
+  /* =============================================
+     TABLET SLIDER - hidden on mobile and desktop
+     ============================================= */
+  .tablet-slider-wrapper {
+    display: none;
+  }
+
+  .tablet-cards-track {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-left: 5%;
+    padding-right: 20px;
+    gap: {{ section.settings.tablet_cards_gap | default: 16 }}px;
+  }
+
+  .tablet-cards-track::-webkit-scrollbar { display: none; }
+
+  .tablet-doctor-card {
+    flex: 0 0 {{ section.settings.tablet_card_width_vw | default: 78 }}vw;
+    max-width: 560px;
+    scroll-snap-align: start;
+    border-radius: {{ section.settings.tablet_card_border_radius | default: 28 }}px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16/10;
+    background: #1a1a1a;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    flex-shrink: 0;
+  }
+
+  .tablet-card-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .tablet-card-placeholder {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #2a2a2a;
+  }
+
+  .tablet-card-content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 24px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(transparent 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.55) 100%);
+    z-index: 2;
+  }
+
+  .tablet-specialty-tag { display: none; }
+  .tablet-tag-plus { display: none; }
+
+  .tablet-doctor-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 2px 0;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .tablet-doctor-specialty {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+    font-weight: 700;
+    color: {{ section.settings.specialty_color | default: '#4fffff' }};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 6px 0;
+  }
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+
+  .tablet-star {
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    color: #555;
+  }
+
+  .tablet-star.filled {
+    color: {{ section.settings.star_color | default: '#ffd700' }};
+  }
+
+  .tablet-rating-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+    color: #ffffff;
+    margin-left: 5px;
+    font-weight: 500;
+  }
+
+  .tablet-quote {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.65rem, 1.6vw, 0.8rem);
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+    opacity: 0.95;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .tablet-quote::before {
+    content: '\201C';
+    font-size: 1.2em;
+    color: {{ section.settings.specialty_color | default: '#4fffff' }};
+    font-style: normal;
+    margin-right: 2px;
+  }
+
+  .tablet-credentials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  .tablet-cred-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.58rem, 1.4vw, 0.7rem);
+    color: #ffffff;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .tablet-cred-icon {
+    width: clamp(14px, 2.5vw, 20px);
+    height: clamp(14px, 2.5vw, 20px);
+    color: {{ section.settings.specialty_color | default: '#4fffff' }};
+    flex-shrink: 0;
+  }
+
+  .tablet-cred-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+
+  .tablet-dots {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .tablet-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d0d0d0;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .tablet-dot.active {
+    background: {{ section.settings.specialty_color | default: '#4fffff' }};
+    transform: scale(1.2);
+  }
+
+  /* =============================================
+     MOBILE SLIDER - hidden on desktop
+     ============================================= */
+  .mobile-slider-wrapper {
+    display: none;
+  }
+
+  .mobile-cards-track {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: {{ section.settings.mobile_cards_gap | default: 12 }}px;
+  }
+
+  .mobile-cards-track::-webkit-scrollbar { display: none; }
+
+  .mobile-doctor-card {
+    flex: 0 0 72vw;
+    max-width: 320px;
+    scroll-snap-align: start;
+    border-radius: {{ section.settings.mobile_card_border_radius | default: 24 }}px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 3/4.2;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: none;
+    outline: none;
+    border: none;
+  }
+
+  .mobile-doctor-card .mobile-card-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: absolute; top: 0; left: 0;
+  }
+
+  .mobile-card-placeholder {
+    width: 100%; height: 100%;
+    background: #2a2a2a;
+    position: absolute; top: 0; left: 0;
+  }
+
+  .mobile-doctor-card .mobile-card-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.55) 100%);
+    padding: 24px 18px 18px;
+  }
+
+  .mobile-doctor-card .mobile-doctor-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.1rem, 5.5vw, 1.35rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 2px 0;
+    line-height: 1.1;
+  }
+
+  .mobile-doctor-card .mobile-doctor-specialty {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.6rem, 2.8vw, 0.7rem);
+    font-weight: 700;
+    color: {{ section.settings.specialty_color | default: '#4fffff' }};
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin: 0 0 6px 0;
+  }
+
+  .mobile-doctor-card .mobile-rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+
+  .mobile-doctor-card .mobile-star { font-size: clamp(0.75rem, 3.5vw, 0.9rem); color: #555; }
+  .mobile-doctor-card .mobile-star.filled { color: {{ section.settings.star_color | default: '#ffd700' }}; }
+
+  .mobile-doctor-card .mobile-rating-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.65rem, 2.8vw, 0.75rem);
+    color: #ffffff;
+    margin-left: 5px;
+    font-weight: 500;
+  }
+
+  .mobile-doctor-card .mobile-quote {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.7rem, 3vw, 0.8rem);
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .mobile-doctor-card .mobile-credentials {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .mobile-doctor-card .mobile-cred-pill {
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.58rem, 2.4vw, 0.65rem);
+    color: #ffffff;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+  }
+
+  .mobile-dots {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 0 20px;
+  }
+
+  .mobile-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d0d0d0;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .mobile-dot.active {
+    background: {{ section.settings.specialty_color | default: '#4fffff' }};
+    transform: scale(1.2);
+  }
+
+  /* =============================================
+     TABLET BREAKPOINT (769px - 1024px)
+     ============================================= */
+  @media (min-width: 769px) and (max-width: 1024px) {
     .doctor-endorsement-section {
-      padding: 60px 0;
+      padding: 50px 0;
     }
 
     .container {
-      padding: 0 20px;
-      margin-left: {{ section.settings.left_margin | times: 0.5 | default: 5 }}%; /* Half the left margin on mobile */
+      padding: 0;
+      margin-left: 0;
+      max-width: 100%;
+      overflow: visible;
     }
 
+    .tablet-slider-wrapper {
+      padding: 0 16px;
+    }
+
+    .tablet-cards-track {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* Hide desktop and mobile */
     .endorsement-layout {
-      grid-template-columns: 1fr;
-      gap: {{ section.settings.cards_gap | default: 20 }}px;
-      margin-bottom: 20px;
-    }
-
-    .hero-section {
-      margin-left: 0; /* Reset additional positioning on mobile */
+      display: none !important;
     }
 
     .cta-section {
-      justify-content: center; /* Center on mobile */
+      display: none !important;
+    }
+
+    .mobile-slider-wrapper {
+      display: none !important;
+    }
+
+    /* Show tablet slider */
+    .tablet-slider-wrapper {
+      display: block;
+    }
+
+    .tablet-dots {
+      display: flex;
+    }
+  }
+
+  /* =============================================
+     MOBILE BREAKPOINT
+     ============================================= */
+  @media (max-width: 768px) {
+    .doctor-endorsement-section {
+      padding: 40px 0;
+    }
+
+    .container {
+      padding: 0;
+      margin-left: 0;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    /* Hide desktop elements */
+    .endorsement-layout {
+      display: none !important;
+    }
+
+    .cta-section {
+      display: none !important;
+    }
+
+    /* Show mobile slider */
+    .mobile-slider-wrapper {
+      display: block;
+      padding: 0 16px;
+    }
+
+    .mobile-cards-track {
       padding-left: 0;
+      padding-right: 0;
     }
 
-    .hero-card {
-      border-radius: {{ section.settings.main_card_border_radius | times: 0.75 | default: 24 }}px; /* 75% of desktop radius */
-    }
-
-    .main-card-overlay-content {
-      padding: 40px 24px 24px;
-    }
-
-    .main-doctor-name {
-      font-size: 1.5rem;
-    }
-
-    .doctor-card {
-      border-radius: {{ section.settings.right_card_border_radius | times: 0.75 | default: 24 }}px; /* 75% of desktop radius */
-    }
-
-    .doctor-card {
-      width: 80%; /* Slightly larger on mobile for better visibility */
-    }
-
-    .cta-pill {
-      padding: 5px 5px 5px 16px;
-    }
-
-    .current-doctor-name {
-      font-size: 0.8rem;
-    }
-
-    .cta-button-doctor-endo {
-      width: 24px;
-      height: 18px;
-    }
-
-    .arrow-icon {
-      width: 12px;
-      height: 12px;
+    .mobile-dots {
+      display: flex;
     }
   }
 
   @media (max-width: 480px) {
-    .container {
-      margin-left: {{ section.settings.left_margin | times: 0.2 | default: 2 }}%; /* Even smaller left margin on small mobile */
+    .mobile-doctor-card {
+      flex: 0 0 72vw;
+      max-width: 300px;
     }
 
-    .main-doctor-name {
-      font-size: 1.3rem;
+    .mobile-doctor-card .mobile-doctor-name {
+      font-size: clamp(1rem, 5vw, 1.35rem);
     }
 
-    .doctor-card {
-      /* No max-width restriction on mobile */
+    .mobile-doctor-card .mobile-doctor-specialty {
+      font-size: clamp(0.55rem, 2.5vw, 0.7rem);
+    }
+
+    .mobile-doctor-card .mobile-rating-text {
+      font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+    }
+
+    .mobile-doctor-card .mobile-quote {
+      font-size: clamp(0.65rem, 2.8vw, 0.8rem);
+    }
+
+    .mobile-doctor-card .mobile-cred-pill {
+      font-size: clamp(0.55rem, 2.2vw, 0.65rem);
+      padding: 4px 8px;
     }
   }
 </style>
+
 <script>
   let currentIndex = 0;
   let doctorCards = [];
@@ -608,15 +1031,12 @@
     const currentDoctorName = document.getElementById('currentDoctorName');
 
     const cardImage = cardData.querySelector('.card-bg-image');
-    const cardPlaceholder = cardData.querySelector('.card-placeholder');
 
     if (cardImage) {
-      mainImage.src = cardImage.src;
-      mainImage.alt = cardImage.alt;
-      mainImage.style.display = 'block';
+      if (mainImage) { mainImage.src = cardImage.src; mainImage.alt = cardImage.alt; mainImage.style.display = 'block'; }
       if (mainPlaceholder) mainPlaceholder.style.display = 'none';
     } else {
-      mainImage.style.display = 'none';
+      if (mainImage) mainImage.style.display = 'none';
       if (mainPlaceholder) mainPlaceholder.style.display = 'flex';
     }
 
@@ -626,314 +1046,188 @@
     const quote = cardData.querySelector('.doctor-quote')?.textContent || '';
     const experience = cardData.querySelector('.experience')?.textContent || '';
 
-    mainName.textContent = name;
-    mainSpecialty.textContent = specialty;
+    if (mainName) mainName.textContent = name;
+    if (mainSpecialty) mainSpecialty.textContent = specialty;
     if (mainRating) mainRating.innerHTML = rating;
     if (mainQuote) mainQuote.textContent = quote;
-    if (mainExperience) mainExperience.textContent = experience;
-    currentDoctorName.textContent = name;
+    if (mainExperience) {
+      const parts = experience.split('•').map(p => p.trim()).filter(Boolean);
+      mainExperience.innerHTML = parts.map(p => `<div class="main-exp-pill">${p}</div>`).join('');
+    }
+    if (currentDoctorName) currentDoctorName.textContent = name;
   }
 
-  function updateDisplay(animate = false) {
-    if (doctorCards.length === 0) return;
+  function positionCardsStatic() {
+    doctorCards.forEach((card) => {
+      card.style.display = 'none';
+      card.style.width = '{{ section.settings.right_card_width | default: 70 }}%';
+    });
 
+    let cascadeIndex = 0;
+    const totalCards = doctorCards.length;
+
+    for (let i = 1; i < totalCards; i++) {
+      const cardIndex = (currentIndex + i) % totalCards;
+      const card = doctorCards[cardIndex];
+      card.style.display = 'block';
+      card.style.transform = `translateY(${cascadeIndex * 8}px) translateX(${cascadeIndex * 40}px)`;
+      card.style.opacity = 1;
+      card.style.zIndex = 10 - cascadeIndex;
+      card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      cascadeIndex++;
+    }
+  }
+
+  function updateDisplay(animate) {
+    if (doctorCards.length === 0) return;
     if (animate) {
-      // Always use slide animation for consistency
       animateCardSlide();
     } else {
-      // Static positioning (initial load)
       updateMainCard(doctorCards[currentIndex]);
       positionCardsStatic();
     }
   }
 
-  function positionCardsStatic() {
-    // Hide all cards first
-    doctorCards.forEach((card) => {
-      card.style.display = 'none';
-      card.style.width = '{{ section.settings.right_card_width | default: 70 }}%'; // Reset to right card width
-    });
-
-    // Show and position other doctors in rotated order
-    // Cards should appear in sequence: next card first, then following cards, then previous cards at the end
-    let cascadeIndex = 0;
-    const totalCards = doctorCards.length;
-    
-    for (let i = 1; i < totalCards; i++) {
-      const cardIndex = (currentIndex + i) % totalCards;
-      const card = doctorCards[cardIndex];
-      
-      card.style.display = 'block';
-
-      // Apply flashcard stack effect - show more of each card behind
-      const translateY = cascadeIndex * 8;
-      const translateX = cascadeIndex * 40;
-      const opacity = 1;
-      const zIndex = 10 - cascadeIndex;
-
-      card.style.transform = `translateY(${translateY}px) translateX(${translateX}px)`;
-      card.style.opacity = opacity;
-      card.style.zIndex = zIndex;
-      card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-
-      cascadeIndex++;
-    }
-  }
-
   function animateCardSlide() {
-    // Arrow click - slide animation (right to left)
     if (isAnimating) return;
     isAnimating = true;
 
     const newMainCard = doctorCards[currentIndex];
     const heroCard = document.getElementById('mainHeroCard');
     const heroSection = document.querySelector('.hero-section');
-    const animationDuration = {{ section.settings.card_animation_duration | default: 600 }}; // Configurable duration
+    const animationDuration = {{ section.settings.card_animation_duration | default: 600 }};
 
-    // Disable interactions
     const ctaButton = document.querySelector('.cta-button-doctor-endo');
-    if (ctaButton) {
-      ctaButton.style.pointerEvents = 'none';
-      ctaButton.style.opacity = '0.8';
-    }
-    doctorCards.forEach((card) => {
-      card.style.pointerEvents = 'none';
-    });
+    if (ctaButton) { ctaButton.style.pointerEvents = 'none'; ctaButton.style.opacity = '0.8'; }
+    doctorCards.forEach((card) => { card.style.pointerEvents = 'none'; });
 
-    // Create sliding cards with proper containment
     const incomingCard = newMainCard.cloneNode(true);
-    incomingCard.style.position = 'absolute';
-    incomingCard.style.top = heroCard.offsetTop + 'px';
-    incomingCard.style.left = heroCard.offsetLeft + heroCard.offsetWidth + 30 + 'px';
-    incomingCard.style.width = heroCard.offsetWidth + 'px';
-    incomingCard.style.height = heroCard.offsetHeight + 'px';
-    incomingCard.style.aspectRatio = '5.5/3';
-    incomingCard.style.zIndex = '1001';
-    incomingCard.style.borderRadius = '32px';
-    incomingCard.style.transition = `all ${animationDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-    incomingCard.style.boxShadow = 'none';
+    incomingCard.style.cssText = `position:absolute;top:${heroCard.offsetTop}px;left:${heroCard.offsetLeft + heroCard.offsetWidth + 30}px;width:${heroCard.offsetWidth}px;height:${heroCard.offsetHeight}px;aspect-ratio:5.5/3;z-index:1001;border-radius:32px;transition:all ${animationDuration}ms cubic-bezier(0.25,0.46,0.45,0.94);box-shadow:none;`;
 
     const outgoingCard = heroCard.cloneNode(true);
-    outgoingCard.style.position = 'absolute';
-    outgoingCard.style.top = heroCard.offsetTop + 'px';
-    outgoingCard.style.left = heroCard.offsetLeft + 'px';
-    outgoingCard.style.width = heroCard.offsetWidth + 'px';
-    outgoingCard.style.height = heroCard.offsetHeight + 'px';
-    outgoingCard.style.aspectRatio = '5.5/3';
-    outgoingCard.style.zIndex = '999';
-    outgoingCard.style.borderRadius = '32px';
-    outgoingCard.style.transition = `all ${animationDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-    outgoingCard.style.boxShadow = 'none';
+    outgoingCard.style.cssText = `position:absolute;top:${heroCard.offsetTop}px;left:${heroCard.offsetLeft}px;width:${heroCard.offsetWidth}px;height:${heroCard.offsetHeight}px;aspect-ratio:5.5/3;z-index:999;border-radius:32px;transition:all ${animationDuration}ms cubic-bezier(0.25,0.46,0.45,0.94);box-shadow:none;`;
 
     heroSection.appendChild(incomingCard);
     heroSection.appendChild(outgoingCard);
     heroCard.style.opacity = '0';
 
-    // Start slide animation with proper bounds checking
     setTimeout(() => {
       incomingCard.style.left = heroCard.offsetLeft + 'px';
-      outgoingCard.style.left = Math.max(0, heroCard.offsetLeft - heroCard.offsetWidth - 30) + 'px'; // Prevent negative positioning
+      outgoingCard.style.left = Math.max(0, heroCard.offsetLeft - heroCard.offsetWidth - 30) + 'px';
       outgoingCard.style.opacity = '0.7';
     }, 60);
 
-    // Complete animation
     setTimeout(() => {
       updateMainCard(newMainCard);
       heroCard.style.opacity = '1';
-
       if (incomingCard.parentNode) incomingCard.parentNode.removeChild(incomingCard);
       if (outgoingCard.parentNode) outgoingCard.parentNode.removeChild(outgoingCard);
-
       positionCardsStatic();
-
-      if (ctaButton) {
-        ctaButton.style.pointerEvents = 'auto';
-        ctaButton.style.opacity = '1';
-      }
-      doctorCards.forEach((card) => {
-        card.style.pointerEvents = 'auto';
-      });
-
-      isAnimating = false;
-    }, animationDuration + 60);
-  }
-
-  function animateCardMove(clickedCardIndex) {
-    // Card click - smooth move animation without stretching, contained within section
-    if (isAnimating) return;
-    isAnimating = true;
-
-    const clickedCard = doctorCards[clickedCardIndex];
-    const heroCard = document.getElementById('mainHeroCard');
-    const container = document.querySelector('.endorsement-layout');
-    const animationDuration = {{ section.settings.card_animation_duration | default: 600 }};
-
-    // Disable interactions
-    const ctaButton = document.querySelector('.cta-button-doctor-endo');
-    if (ctaButton) {
-      ctaButton.style.pointerEvents = 'none';
-      ctaButton.style.opacity = '0.8';
-    }
-    doctorCards.forEach((card) => {
-      card.style.pointerEvents = 'none';
-    });
-
-    // Get container bounds for relative positioning
-    const containerRect = container.getBoundingClientRect();
-    const cardRect = clickedCard.getBoundingClientRect();
-    const heroRect = heroCard.getBoundingClientRect();
-    
-    // Calculate positions relative to container
-    const startX = cardRect.left - containerRect.left;
-    const startY = cardRect.top - containerRect.top;
-    const endX = heroRect.left - containerRect.left;
-    const endY = heroRect.top - containerRect.top;
-
-    // Create a clone of the clicked card
-    const movingCard = clickedCard.cloneNode(true);
-    
-    // Position the clone at the clicked card's current position (relative to container)
-    movingCard.style.position = 'absolute';
-    movingCard.style.top = startY + 'px';
-    movingCard.style.left = startX + 'px';
-    movingCard.style.width = cardRect.width + 'px';
-    movingCard.style.height = cardRect.height + 'px';
-    movingCard.style.zIndex = '1000';
-    movingCard.style.borderRadius = '32px';
-    movingCard.style.transition = `all ${animationDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-    movingCard.style.boxShadow = 'none';
-
-    // Update the moving card's content to use main card styling
-    const movingCardOverlay = movingCard.querySelector('.card-overlay-content');
-    if (movingCardOverlay) {
-      movingCardOverlay.style.padding = '32px 28px 24px';
-    }
-    
-    const movingCardName = movingCard.querySelector('.doctor-name');
-    if (movingCardName) {
-      movingCardName.style.fontSize = '1.9rem';
-      movingCardName.style.lineHeight = '1.05';
-      movingCardName.style.marginBottom = '1px';
-    }
-    
-    const movingCardSpecialty = movingCard.querySelector('.doctor-specialty');
-    if (movingCardSpecialty) {
-      movingCardSpecialty.style.fontSize = '0.95rem';
-      movingCardSpecialty.style.marginBottom = '6px';
-    }
-    
-    const movingCardQuote = movingCard.querySelector('.doctor-quote');
-    if (movingCardQuote) {
-      movingCardQuote.style.fontSize = '0.95rem';
-      movingCardQuote.style.lineHeight = '1.4';
-      movingCardQuote.style.marginBottom = '6px';
-      movingCardQuote.style.display = 'block';
-      movingCardQuote.style.webkitLineClamp = 'unset';
-    }
-    
-    const movingCardExperience = movingCard.querySelector('.experience');
-    if (movingCardExperience) {
-      movingCardExperience.style.fontSize = '0.8rem';
-      movingCardExperience.style.lineHeight = '1.1';
-      movingCardExperience.style.display = 'block';
-      movingCardExperience.style.webkitLineClamp = 'unset';
-    }
-
-    // Append to container instead of body to keep it contained
-    container.appendChild(movingCard);
-    
-    // Hide the original clicked card
-    clickedCard.style.opacity = '0';
-    
-    // Fade main card content
-    const mainCardOverlay = document.querySelector('.main-card-overlay-content');
-    if (mainCardOverlay) {
-      mainCardOverlay.style.transition = `opacity ${animationDuration * 0.3}ms ease`;
-      mainCardOverlay.style.opacity = '0.3';
-    }
-
-    // Hide other cards temporarily
-    doctorCards.forEach((card, index) => {
-      if (index !== clickedCardIndex) {
-        card.style.transition = `opacity ${animationDuration * 0.5}ms ease`;
-        card.style.opacity = '0.3';
-      }
-    });
-
-    // Start the animation to hero position
-    setTimeout(() => {
-      movingCard.style.top = endY + 'px';
-      movingCard.style.left = endX + 'px';
-      movingCard.style.width = heroRect.width + 'px';
-      movingCard.style.height = heroRect.height + 'px';
-    }, 60);
-
-    // Complete animation
-    setTimeout(() => {
-      // Update main card with new content
-      updateMainCard(clickedCard);
-      currentIndex = clickedCardIndex;
-
-      // Remove the moving card
-      if (movingCard.parentNode) {
-        movingCard.parentNode.removeChild(movingCard);
-      }
-
-      // Restore main card content
-      if (mainCardOverlay) {
-        mainCardOverlay.style.opacity = '1';
-      }
-
-      // Reposition all cards
-      positionCardsStatic();
-
-      // Restore interactions
-      if (ctaButton) {
-        ctaButton.style.pointerEvents = 'auto';
-        ctaButton.style.opacity = '1';
-      }
-      doctorCards.forEach((card) => {
-        card.style.pointerEvents = 'auto';
-        card.style.opacity = '1';
-      });
-
+      if (ctaButton) { ctaButton.style.pointerEvents = 'auto'; ctaButton.style.opacity = '1'; }
+      doctorCards.forEach((card) => { card.style.pointerEvents = 'auto'; });
       isAnimating = false;
     }, animationDuration + 60);
   }
 
   function nextCard() {
     if (doctorCards.length === 0) return;
-    // Move to next card in sequence
     currentIndex = (currentIndex + 1) % doctorCards.length;
-    updateDisplay(true); // Use slide animation
+    updateDisplay(true);
   }
 
   function goToCard(targetIndex) {
     if (doctorCards.length === 0 || targetIndex === currentIndex) return;
     currentIndex = targetIndex;
-    updateDisplay(true); // Use slide animation same as CTA button
+    updateDisplay(true);
   }
 
-  // Initialize on page load
   document.addEventListener('DOMContentLoaded', function () {
     doctorCards = Array.from(document.querySelectorAll('.doctor-card'));
-
-    // Add click handlers to cards
     doctorCards.forEach((card, index) => {
-      card.addEventListener('click', () => {
-        goToCard(index);
+      card.addEventListener('click', () => { goToCard(index); });
+    });
+    if (doctorCards.length > 0) updateDisplay(false);
+  });
+
+  window.addEventListener('resize', function () { updateDisplay(false); });
+
+  // Tablet Slider Logic
+  (function () {
+    var track = document.getElementById('tabletCardsTrack');
+    var dots = document.querySelectorAll('.tablet-dot');
+    if (!track || !dots.length) return;
+
+    function getActiveIndex() {
+      var cards = track.querySelectorAll('.tablet-doctor-card');
+      if (!cards.length) return 0;
+      var trackLeft = track.getBoundingClientRect().left;
+      var closest = 0, minDist = Infinity;33  
+      cards.forEach(function (card, i) {
+        var dist = Math.abs(card.getBoundingClientRect().left - trackLeft);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      return closest;
+    }
+
+    function updateDots(index) {
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    track.addEventListener('scroll', function () {
+      updateDots(getActiveIndex());
+    }, { passive: true });
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var idx = parseInt(dot.getAttribute('data-tablet-dot-index'), 10);
+        var cards = track.querySelectorAll('.tablet-doctor-card');
+        if (cards[idx]) {
+          cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
       });
     });
+  })();
 
-    if (doctorCards.length > 0) {
-      updateDisplay(false); // No animation on initial load
+  // Mobile Slider Logic
+  (function () {
+    var track = document.getElementById('mobileCardsTrack');
+    var dots = document.querySelectorAll('.mobile-dot');
+    if (!track || !dots.length) return;
+
+    function getActiveIndex() {
+      var cards = track.querySelectorAll('.mobile-doctor-card');
+      if (!cards.length) return 0;
+      var trackLeft = track.getBoundingClientRect().left;
+      var closest = 0, minDist = Infinity;
+      cards.forEach(function (card, i) {
+        var dist = Math.abs(card.getBoundingClientRect().left - trackLeft);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      return closest;
     }
-  });
 
-  // Handle window resize
-  window.addEventListener('resize', function () {
-    updateDisplay();
-  });
+    function updateDots(index) {
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    track.addEventListener('scroll', function () {
+      updateDots(getActiveIndex());
+    }, { passive: true });
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var idx = parseInt(dot.getAttribute('data-dot-index'), 10);
+        var cards = track.querySelectorAll('.mobile-doctor-card');
+        if (cards[idx]) {
+          cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+      });
+    });
+  })();
 </script>
 
 {% schema %}
@@ -944,18 +1238,6 @@
   "settings": [
     {
       "type": "header",
-      "content": "Section Settings"
-    },
-    {
-      "type": "text",
-      "id": "section_title",
-      "label": "Section Title",
-      "default": "Doctor Endorsements",
-      "info": "Optional section title"
-    },
-
-    {
-      "type": "header",
       "content": "Layout Settings"
     },
     {
@@ -963,11 +1245,11 @@
       "id": "left_margin",
       "min": 0,
       "max": 20,
+
       "step": 1,
       "unit": "%",
       "label": "Left margin",
-      "default": 5,
-      "info": "Space on the left side of the main card"
+      "default": 5
     },
     {
       "type": "range",
@@ -977,8 +1259,7 @@
       "step": 2,
       "unit": "%",
       "label": "Main card left position",
-      "default": 0,
-      "info": "Additional left spacing for the main card"
+      "default": 0
     },
     {
       "type": "range",
@@ -988,19 +1269,7 @@
       "step": 5,
       "unit": "px",
       "label": "Gap between main and side cards",
-      "default": 50,
-      "info": "Horizontal space between main card and right cards"
-    },
-    {
-      "type": "range",
-      "id": "cta_button_gap",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "label": "CTA button gap from main card",
-      "default": 5,
-      "info": "Vertical space between main card and CTA button below"
+      "default": 50
     },
     {
       "type": "header",
@@ -1017,30 +1286,13 @@
       "default": 32
     },
     {
-      "type": "color",
-      "id": "main_card_overlay_color",
-      "label": "Main card overlay color",
-      "default": "#000000"
-    },
-    {
       "type": "range",
       "id": "main_card_overlay_opacity",
-      "min": 0.0,
+      "min": 0,
       "max": 1,
       "step": 0.1,
       "label": "Main card overlay opacity",
-      "default": 0.1,
-      "info": "Controls the darkness of the overlay on main card (lower = less dark)"
-    },
-    {
-      "type": "range",
-      "id": "right_card_overlay_opacity",
-      "min": 0.1,
-      "max": 1,
-      "step": 0.1,
-      "label": "Right cards overlay opacity",
-      "default": 0.1,
-      "info": "Controls the darkness of the overlay on right cards (lower = less dark)"
+      "default": 0.1
     },
     {
       "type": "header",
@@ -1054,8 +1306,7 @@
       "step": 5,
       "unit": "%",
       "label": "Right cards width",
-      "default": 70,
-      "info": "Width of right side cards relative to their container"
+      "default": 70
     },
     {
       "type": "range",
@@ -1064,8 +1315,7 @@
       "max": 5,
       "step": 0.5,
       "label": "Right cards aspect ratio - width",
-      "default": 2.5,
-      "info": "Width part of aspect ratio (width/height)"
+      "default": 2.5
     },
     {
       "type": "range",
@@ -1074,8 +1324,7 @@
       "max": 5,
       "step": 0.5,
       "label": "Right cards aspect ratio - height",
-      "default": 4,
-      "info": "Height part of aspect ratio (width/height)"
+      "default": 4
     },
     {
       "type": "range",
@@ -1095,22 +1344,11 @@
       "step": 1,
       "unit": "px",
       "label": "Vertical gap from main card",
-      "default": 20,
-      "info": "Gap between right cards and main card height"
+      "default": 20
     },
     {
       "type": "header",
       "content": "Typography Settings"
-    },
-    {
-      "type": "range",
-      "id": "main_doctor_name_size",
-      "min": 1.2,
-      "max": 3,
-      "step": 0.1,
-      "unit": "rem",
-      "label": "Main doctor name size",
-      "default": 1.8
     },
     {
       "type": "range",
@@ -1120,16 +1358,6 @@
       "step": 0.1,
       "unit": "rem",
       "label": "Main specialty size",
-      "default": 1
-    },
-    {
-      "type": "range",
-      "id": "main_quote_size",
-      "min": 0.8,
-      "max": 1.5,
-      "step": 0.1,
-      "unit": "rem",
-      "label": "Main quote size",
       "default": 1
     },
     {
@@ -1152,12 +1380,6 @@
       "type": "color",
       "id": "text_color",
       "label": "Main text color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "secondary_text_color",
-      "label": "Secondary text color",
       "default": "#ffffff"
     },
     {
@@ -1184,8 +1406,7 @@
       "step": 5,
       "unit": "px",
       "label": "CTA button size",
-      "default": 35,
-      "info": "Size of the circular button"
+      "default": 35
     },
     {
       "type": "range",
@@ -1195,8 +1416,7 @@
       "step": 2,
       "unit": "px",
       "label": "Arrow icon size",
-      "default": 20,
-      "info": "Size of the arrow inside the button"
+      "default": 20
     },
     {
       "type": "color",
@@ -1211,8 +1431,7 @@
       "max": 1.3,
       "step": 0.1,
       "label": "Button hover scale",
-      "default": 1.1,
-      "info": "Scale factor when hovering over button"
+      "default": 1.1
     },
     {
       "type": "header",
@@ -1284,8 +1503,7 @@
       "step": 10,
       "unit": "px",
       "label": "Pill minimum width",
-      "default": 280,
-      "info": "Minimum width regardless of doctor name length"
+      "default": 280
     },
     {
       "type": "range",
@@ -1295,26 +1513,23 @@
       "step": 10,
       "unit": "px",
       "label": "Pill maximum width",
-      "default": 400,
-      "info": "Maximum width to prevent overflow"
+      "default": 400
     },
     {
       "type": "text",
       "id": "pill_shadow",
       "label": "Pill shadow",
-      "default": "0 4px 12px rgba(0, 188, 212, 0.2)",
-      "info": "CSS box-shadow property"
+      "default": "0 4px 12px rgba(0, 188, 212, 0.2)"
     },
     {
       "type": "text",
       "id": "pill_hover_shadow",
       "label": "Pill hover shadow",
-      "default": "0 6px 20px rgba(0, 188, 212, 0.3)",
-      "info": "CSS box-shadow property on hover"
+      "default": "0 6px 20px rgba(0, 188, 212, 0.3)"
     },
     {
       "type": "header",
-      "content": "Doctor Name Settings"
+      "content": "Doctor Name in Pill"
     },
     {
       "type": "range",
@@ -1352,10 +1567,74 @@
       "default": 15
     },
     {
-      "type": "color",
-      "id": "cta_border_color",
-      "label": "CTA pill border color (legacy)",
-      "default": "#e5e5e5"
+      "type": "header",
+      "content": "Tablet Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_width_vw",
+      "min": 50,
+      "max": 90,
+      "step": 2,
+      "unit": "vw",
+      "label": "Tablet card width",
+      "default": 78,
+      "info": "Lower value = more peek of next card"
+    },
+    {
+      "type": "range",
+      "id": "tablet_cards_gap",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Tablet cards gap",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_border_radius",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Tablet card border radius",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Mobile Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_width_vw",
+      "min": 60,
+      "max": 92,
+      "step": 2,
+      "unit": "vw",
+      "label": "Mobile card width",
+      "default": 82,
+      "info": "Lower value = more peek of next card"
+    },
+    {
+      "type": "range",
+      "id": "mobile_cards_gap",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile cards gap",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_border_radius",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile card border radius",
+      "default": 24
     },
     {
       "type": "header",
@@ -1369,34 +1648,11 @@
       "step": 50,
       "unit": "ms",
       "label": "Card Animation Duration",
-      "default": 600,
-      "info": "Speed of card transitions (lower = faster)"
+      "default": 600
     },
     {
       "type": "header",
-      "content": "Empty Card Placeholder"
-    },
-    {
-      "type": "color",
-      "id": "placeholder_bg",
-      "label": "Placeholder Background",
-      "default": "#f5f5f5"
-    },
-    {
-      "type": "color",
-      "id": "placeholder_text_color",
-      "label": "Placeholder Text Color",
-      "default": "#999999"
-    },
-    {
-      "type": "range",
-      "id": "placeholder_text_size",
-      "min": 12,
-      "max": 18,
-      "step": 1,
-      "unit": "px",
-      "label": "Placeholder Text Size",
-      "default": 14
+      "content": "Placeholder Settings"
     },
     {
       "type": "color",
@@ -1410,10 +1666,6 @@
       "type": "doctor",
       "name": "Doctor Profile",
       "settings": [
-        {
-          "type": "header",
-          "content": "Doctor Information"
-        },
         {
           "type": "text",
           "id": "doctor_name",
@@ -1438,22 +1690,19 @@
           "max": 5,
           "step": 0.1,
           "label": "Rating",
-          "default": 5,
-          "info": "Doctor rating out of 5 stars"
+          "default": 5
         },
         {
           "type": "textarea",
           "id": "quote",
-          "label": "Doctor Quote/Testimonial",
-          "default": "I recommend this skincare line to all my patients for its proven results and gentle formulation.",
-          "info": "What the doctor says about your product"
+          "label": "Doctor Quote",
+          "default": "I recommend this skincare line to all my patients for its proven results."
         },
         {
           "type": "textarea",
           "id": "experience",
           "label": "Experience & Credentials",
-          "default": "15+ years experience • Board Certified • Harvard Medical School",
-          "info": "Doctor's experience, certifications, education"
+          "default": "15+ Years Exp. • Board Certified • Harvard Medical School"
         }
       ]
     }
@@ -1468,8 +1717,8 @@
             "doctor_name": "Dr. Sarah Johnson",
             "specialty": "Dermatologist",
             "rating": 5,
-            "quote": "I recommend this skincare line to all my patients for its proven results and gentle formulation.",
-            "experience": "15+ years experience • Board Certified • Harvard Medical School"
+            "quote": "I recommend this skincare line to all my patients for its proven results.",
+            "experience": "15+ Years Exp. • Board Certified • Harvard Medical School"
           }
         },
         {
@@ -1478,8 +1727,8 @@
             "doctor_name": "Dr. Michael Chen",
             "specialty": "Cosmetic Surgeon",
             "rating": 4.9,
-            "quote": "The anti-aging properties of these products are remarkable. I've seen incredible transformations.",
-            "experience": "12+ years experience • Board Certified • Johns Hopkins"
+            "quote": "The anti-aging properties of these products are remarkable. I've seen real results with my patients.",
+            "experience": "14+ Years Exp. • Board Certified • Johns Hopkins"
           }
         },
         {
@@ -1489,7 +1738,7 @@
             "specialty": "Aesthetic Medicine",
             "rating": 5,
             "quote": "This is the only skincare line I trust for my most discerning patients.",
-            "experience": "10+ years experience • Board Certified • Mayo Clinic"
+            "experience": "10+ Years Exp. • Board Certified • Mayo Clinic"
           }
         },
         {
@@ -1499,7 +1748,7 @@
             "specialty": "Plastic Surgeon",
             "rating": 4.8,
             "quote": "Outstanding results with minimal irritation. Perfect for post-procedure care.",
-            "experience": "18+ years experience • Board Certified • Stanford Medical"
+            "experience": "18+ Years Exp. • Board Certified • Stanford Medical"
           }
         }
       ]

@@ -118,6 +118,7 @@
   .result-timeline__scroll-content {
     height: 500%;
     position: relative;
+    
   }
 
   .result-timeline__line-container {
@@ -132,11 +133,12 @@
     align-items: center;
     pointer-events: none;
     z-index: 10;
+    
   }
-
+ 
   .result-timeline__line {
-    width: 2px;
-    background-color: #e0e0e0;
+    width: 0.5px;
+    background-color: #000;
     height: 100%;
     position: relative;
   }
@@ -247,49 +249,312 @@
     left: 0;
   }
 
-  @media (max-width: 768px) {
-    .result-timeline__content {
-      flex-direction: column;
-      min-height: auto;
+  /* Desktop only / Mobile only / Tablet only visibility */
+  .result-timeline__desktop-only { display: flex; }
+  .result-timeline__mobile-only  { display: none; }
+  .result-timeline__tablet-only  { display: none; }
+
+  /* =============================================
+     TABLET STYLES (768px - 1024px)
+     Desktop and mobile code is untouched
+     ============================================= */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .result-timeline__desktop-only { display: none !important; }
+    .result-timeline__tablet-only  { display: block; }
+
+    /* Section padding */
+    .result-timeline {
+      padding: {{ section.settings.tablet_section_padding_top }}px 0 {{ section.settings.tablet_section_padding_bottom }}px;
     }
 
-    .result-timeline__left-side,
-    .result-timeline__right-side {
-      flex: none;
-      width: 100%;
+    /* Header */
+    .result-timeline__title {
+      font-size: {{ section.settings.tablet_title_font_size }}px;
+      font-weight: {{ section.settings.tablet_title_font_weight }};
+      color: {{ section.settings.tablet_title_color }};
+      font-style: {{ section.settings.tablet_title_font_style }};
+      text-align: center;
+      padding: 0 24px;
     }
 
-    .result-timeline__left-side {
-      flex-direction: column;
-      gap: 15px;
+    .result-timeline__subtitle {
+      font-size: {{ section.settings.tablet_subtitle_font_size }}px;
+      font-weight: {{ section.settings.tablet_subtitle_font_weight }};
+      color: {{ section.settings.tablet_subtitle_color }};
+      font-style: {{ section.settings.tablet_subtitle_font_style }};
+      text-align: center;
+      padding: 0 24px;
+      max-width: 100%;
     }
 
-    .result-timeline__small-images {
+    /* Tablet wrapper: full width, no timeline */
+    .result-timeline__tablet-only {
+      display: block;
+      padding: 0 24px;
+    }
+
+    /* Top row: left stacked images + right text/tabs */
+    .result-timeline__tablet-top-row {
+      display: flex;
       flex-direction: row;
-      gap: 15px;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    /* Left stacked images column */
+    .result-timeline__tablet-images-col {
+      flex: 0 0 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .result-timeline__tablet-small-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    /* Right column: tabs + week content */
+    .result-timeline__tablet-text-col {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    /* ---- Tablet week tab buttons ---- */
+    .result-timeline__tablet-tabs {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: nowrap;
+    }
+
+    .result-timeline__tablet-tab {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1 1 0;
+      justify-content: center;
+      padding: 8px 6px;
+      border-radius: {{ section.settings.tablet_tab_border_radius }}px;
+      border: 1.5px solid #000;
+      background-color: #fff;
+      color: #000;
+      font-family: {{ section.settings.font_family }}, sans-serif;
+      font-size: {{ section.settings.tablet_badge_font_size }}px;
+      font-weight: {{ section.settings.tablet_badge_font_weight }};
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .result-timeline__tablet-tab.active {
+      background-color: #000;
+      color: #fff;
+      border-color: #000;
+    }
+
+    .result-timeline__tablet-tab-dot {
+      display: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #4fffff;
+      flex-shrink: 0;
+    }
+
+    .result-timeline__tablet-tab.active .result-timeline__tablet-tab-dot {
+      display: inline-block;
+    }
+
+    /* ---- Tablet week content ---- */
+    .result-timeline__tablet-week-item {
+      display: none;
+    }
+
+    .result-timeline__tablet-week-item.active {
+      display: block;
+    }
+
+    .result-timeline__week-title {
+      font-size: {{ section.settings.tablet_week_title_font_size }}px;
+      font-weight: {{ section.settings.tablet_week_title_font_weight }};
+      color: {{ section.settings.tablet_week_title_color }};
+      font-style: {{ section.settings.tablet_week_title_font_style }};
+      margin-bottom: 14px;
+    }
+
+    .result-timeline__week-list li {
+      font-size: {{ section.settings.tablet_list_font_size }}px;
+      font-weight: {{ section.settings.tablet_list_font_weight }};
+      color: {{ section.settings.tablet_list_color }};
+      font-style: {{ section.settings.tablet_list_font_style }};
+      margin-bottom: 14px;
+    }
+
+    /* Bottom large image — full width */
+    .result-timeline__tablet-bottom-image {
+      margin-top: 24px;
+    }
+
+    .result-timeline__tablet-bottom-image img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+  }
+
+  /* =============================================
+     MOBILE STYLES (max-width: 767px)
+     Desktop and tablet code above is untouched
+     ============================================= */
+  @media (max-width: 767px) {
+    .result-timeline__desktop-only { display: none !important; }
+
+    /* Section padding override for mobile */
+    .result-timeline {
+      padding: {{ section.settings.mobile_section_padding_top }}px 0 {{ section.settings.mobile_section_padding_bottom }}px;
+    }
+
+    /* Header */
+    .result-timeline__title {
+      font-size: {{ section.settings.mobile_title_font_size }}px;
+      font-weight: {{ section.settings.mobile_title_font_weight }};
+      color: {{ section.settings.mobile_title_color }};
+      font-style: {{ section.settings.mobile_title_font_style }};
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .result-timeline__subtitle {
+      font-size: {{ section.settings.mobile_subtitle_font_size }}px;
+      font-weight: {{ section.settings.mobile_subtitle_font_weight }};
+      color: {{ section.settings.mobile_subtitle_color }};
+      font-style: {{ section.settings.mobile_subtitle_font_style }};
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    /* Mobile wrapper: full width, no timeline column */
+    .result-timeline__mobile-only {
+      display: block;
+      padding: 0 16px;
+    }
+
+    /* ---- Two side-by-side images ---- */
+    .result-timeline__small-images {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      width: 100%;
     }
 
     .result-timeline__small-image {
-      width: 120px;
-      height: 120px;
+      flex: 1 1 0;
+      width: 0;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
     }
 
+    /* Hide large image in desktop left-side */
     .result-timeline__large-image {
-      width: 100%;
-      max-width: 300px;
-      height: 300px;
-    }
-
-    .result-timeline__right-side {
-      padding: 30px 20px;
-    }
-
-    .result-timeline__text-content {
-      padding-right: 0;
-    }
-
-    .result-timeline__line-container {
       display: none;
+    }
+
+    /* ---- Week tab buttons row ---- */
+    .result-timeline__mobile-tabs {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      margin: 28px 0 0;
+      flex-wrap: nowrap;
+    }
+
+    .result-timeline__mobile-tab {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1 1 0;
+      justify-content: center;
+      padding: 8px 6px;
+      border-radius: {{ section.settings.mobile_tab_border_radius }}px;
+      border: 1.5px solid #000;
+      background-color: #fff;
+      color: #000;
+      font-family: {{ section.settings.font_family }}, sans-serif;
+      font-size: {{ section.settings.mobile_badge_font_size }}px;
+      font-weight: {{ section.settings.mobile_badge_font_weight }};
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .result-timeline__mobile-tab.active {
+      background-color: #000;
+      color: #fff;
+      border-color: #000;
+    }
+
+    .result-timeline__mobile-tab-dot {
+      display: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #4fffff;
+      flex-shrink: 0;
+    }
+
+    .result-timeline__mobile-tab.active .result-timeline__mobile-tab-dot {
+      display: inline-block;
+    }
+
+    /* ---- Week content blocks ---- */
+    .result-timeline__mobile-weeks {
+      padding: 20px 0 0;
+    }
+
+    .result-timeline__mobile-week-item {
+      display: none;
+    }
+
+    .result-timeline__mobile-week-item.active {
+      display: block;
+    }
+
+    .result-timeline__week-title {
+      font-size: {{ section.settings.mobile_week_title_font_size }}px;
+      font-weight: {{ section.settings.mobile_week_title_font_weight }};
+      color: {{ section.settings.mobile_week_title_color }};
+      font-style: {{ section.settings.mobile_week_title_font_style }};
+      margin-bottom: 16px;
+    }
+
+    .result-timeline__week-list li {
+      font-size: {{ section.settings.mobile_list_font_size }}px;
+      font-weight: {{ section.settings.mobile_list_font_weight }};
+      color: {{ section.settings.mobile_list_color }};
+      font-style: {{ section.settings.mobile_list_font_style }};
+      margin-bottom: 10px;
+    }
+
+    /* ---- Bottom large image ---- */
+    .result-timeline__mobile-bottom-image {
+      padding: 20px 0 0;
+    }
+
+    .result-timeline__mobile-bottom-image img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
     }
   }
 </style>
@@ -307,7 +572,8 @@
       </div>
     {% endif %}
 
-    <div class="result-timeline__content">
+    <!-- ===================== DESKTOP LAYOUT ===================== -->
+    <div class="result-timeline__content result-timeline__desktop-only">
       <!-- LEFT SIDE - 50% - 3 Images -->
       <div class="result-timeline__left-side">
         <!-- Small Images Column -->
@@ -378,6 +644,142 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- ===================== TABLET LAYOUT ===================== -->
+    <div class="result-timeline__tablet-only" id="tablet-layout-{{ section.id }}">
+
+      <!-- Top row: left stacked images + right tabs/content -->
+      <div class="result-timeline__tablet-top-row">
+
+        <!-- Left: two stacked images -->
+        <div class="result-timeline__tablet-images-col">
+          {% if section.settings.left_image_1 != blank %}
+            <img src="{{ section.settings.left_image_1 | image_url: width: 500 }}"
+                 alt="{{ section.settings.left_image_1.alt | default: 'Product image 1' }}"
+                 class="result-timeline__tablet-small-image"
+                 width="240" height="190">
+          {% endif %}
+          {% if section.settings.left_image_2 != blank %}
+            <img src="{{ section.settings.left_image_2 | image_url: width: 500 }}"
+                 alt="{{ section.settings.left_image_2.alt | default: 'Product image 2' }}"
+                 class="result-timeline__tablet-small-image"
+                 width="240" height="190">
+          {% endif %}
+        </div>
+
+        <!-- Right: tab buttons + week content -->
+        <div class="result-timeline__tablet-text-col">
+
+          <!-- Tab buttons -->
+          <div class="result-timeline__tablet-tabs" id="tablet-tabs-{{ section.id }}">
+            {% for block in section.blocks %}
+              <button class="result-timeline__tablet-tab {% if forloop.first %}active{% endif %}"
+                      data-week="{{ forloop.index }}"
+                      type="button">
+                <span class="result-timeline__tablet-tab-dot"></span>
+                {{ block.settings.week_label }}
+              </button>
+            {% endfor %}
+          </div>
+
+          <!-- Week content -->
+          <div id="tablet-weeks-{{ section.id }}">
+            {% for block in section.blocks %}
+              <div class="result-timeline__tablet-week-item {% if forloop.first %}active{% endif %}"
+                   data-week="{{ forloop.index }}"
+                   {{ block.shopify_attributes }}>
+                <h3 class="result-timeline__week-title">{{ block.settings.week_title }}</h3>
+                {% if block.settings.week_description != blank %}
+                  <ul class="result-timeline__week-list">
+                    {% assign descriptions = block.settings.week_description | split: '|' %}
+                    {% for description in descriptions %}
+                      {% if description != blank %}
+                        <li>{{ description | strip }}</li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+        </div><!-- end right col -->
+
+      </div><!-- end top row -->
+
+      <!-- Bottom: large full-width image -->
+      {% if section.settings.center_image != blank %}
+        <div class="result-timeline__tablet-bottom-image">
+          <img src="{{ section.settings.center_image | image_url: width: 1200 }}"
+               alt="{{ section.settings.center_image.alt | default: 'Main product image' }}"
+               width="1200" height="280">
+        </div>
+      {% endif %}
+
+    </div>
+
+    <!-- ===================== MOBILE LAYOUT ===================== -->
+    <div class="result-timeline__mobile-only" id="mobile-layout-{{ section.id }}">
+
+      <!-- Two side-by-side images -->
+      <div class="result-timeline__small-images">
+        {% if section.settings.left_image_1 != blank %}
+          <img src="{{ section.settings.left_image_1 | image_url: width: 400 }}" 
+               alt="{{ section.settings.left_image_1.alt | default: 'Product image 1' }}" 
+               class="result-timeline__small-image"
+               width="400" height="160">
+        {% endif %}
+        {% if section.settings.left_image_2 != blank %}
+          <img src="{{ section.settings.left_image_2 | image_url: width: 400 }}" 
+               alt="{{ section.settings.left_image_2.alt | default: 'Product image 2' }}" 
+               class="result-timeline__small-image"
+               width="400" height="160">
+        {% endif %}
+      </div>
+
+      <!-- Week tab buttons -->
+      <div class="result-timeline__mobile-tabs" id="mobile-tabs-{{ section.id }}">
+        {% for block in section.blocks %}
+          <button class="result-timeline__mobile-tab {% if forloop.first %}active{% endif %}"
+                  data-week="{{ forloop.index }}"
+                  type="button">
+            <span class="result-timeline__mobile-tab-dot"></span>
+            {{ block.settings.week_label }}
+          </button>
+        {% endfor %}
+      </div>
+
+      <!-- Week content -->
+      <div class="result-timeline__mobile-weeks" id="mobile-weeks-{{ section.id }}">
+        {% for block in section.blocks %}
+          <div class="result-timeline__mobile-week-item {% if forloop.first %}active{% endif %}"
+               data-week="{{ forloop.index }}"
+               {{ block.shopify_attributes }}>
+            <h3 class="result-timeline__week-title">{{ block.settings.week_title }}</h3>
+            {% if block.settings.week_description != blank %}
+              <ul class="result-timeline__week-list">
+                {% assign descriptions = block.settings.week_description | split: '|' %}
+                {% for description in descriptions %}
+                  {% if description != blank %}
+                    <li>{{ description | strip }}</li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Large bottom image -->
+      {% if section.settings.center_image != blank %}
+        <div class="result-timeline__mobile-bottom-image">
+          <img src="{{ section.settings.center_image | image_url: width: 800 }}" 
+               alt="{{ section.settings.center_image.alt | default: 'Main product image' }}"
+               width="800" height="220">
+        </div>
+      {% endif %}
+
     </div>
   </div>
 </div>
@@ -493,6 +895,68 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize
   generateCircles();
   updateActiveStates();
+});
+</script>
+
+<script>
+/* ===================== MOBILE TAB JS ===================== */
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileLayout = document.getElementById('mobile-layout-{{ section.id }}');
+  if (!mobileLayout) return;
+  if (window.innerWidth > 767) return;
+
+  const tabs = mobileLayout.querySelectorAll('.result-timeline__mobile-tab');
+  const weekItems = mobileLayout.querySelectorAll('.result-timeline__mobile-week-item');
+
+  if (tabs.length === 0) return;
+
+  function setActiveWeek(weekNum) {
+    tabs.forEach((tab, idx) => {
+      tab.classList.toggle('active', idx + 1 === weekNum);
+    });
+    weekItems.forEach((item, idx) => {
+      item.classList.toggle('active', idx + 1 === weekNum);
+    });
+  }
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      setActiveWeek(parseInt(tab.dataset.week));
+    });
+  });
+
+  setActiveWeek(1);
+});
+</script>
+
+<script>
+/* ===================== TABLET TAB JS ===================== */
+document.addEventListener('DOMContentLoaded', function() {
+  const tabletLayout = document.getElementById('tablet-layout-{{ section.id }}');
+  if (!tabletLayout) return;
+  if (window.innerWidth < 768 || window.innerWidth > 1024) return;
+
+  const tabs = tabletLayout.querySelectorAll('.result-timeline__tablet-tab');
+  const weekItems = tabletLayout.querySelectorAll('.result-timeline__tablet-week-item');
+
+  if (tabs.length === 0) return;
+
+  function setActiveWeek(weekNum) {
+    tabs.forEach((tab, idx) => {
+      tab.classList.toggle('active', idx + 1 === weekNum);
+    });
+    weekItems.forEach((item, idx) => {
+      item.classList.toggle('active', idx + 1 === weekNum);
+    });
+  }
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      setActiveWeek(parseInt(tab.dataset.week));
+    });
+  });
+
+  setActiveWeek(1);
 });
 </script>
 
@@ -804,6 +1268,508 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       ],
       "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "── MOBILE SETTINGS ──"
+    },
+    {
+      "type": "range",
+      "id": "mobile_timeline_right_offset",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Timeline Column Width",
+      "info": "Controls how wide the timeline column is on the right. Smaller = less space taken. Default 30px.",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_border_radius",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Tab Border Radius",
+      "info": "Controls the roundness of the week tab buttons. Lower = more square, higher = more pill-shaped.",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Bottom Padding",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Mobile Title"
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "min": 20,
+      "max": 52,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 34
+    },
+    {
+      "type": "select",
+      "id": "mobile_title_font_weight",
+      "label": "Mobile Title Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "color",
+      "id": "mobile_title_color",
+      "label": "Mobile Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "mobile_title_font_style",
+      "label": "Mobile Title Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Subtitle"
+    },
+    {
+      "type": "range",
+      "id": "mobile_subtitle_font_size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Subtitle Font Size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "mobile_subtitle_font_weight",
+      "label": "Mobile Subtitle Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "mobile_subtitle_color",
+      "label": "Mobile Subtitle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "mobile_subtitle_font_style",
+      "label": "Mobile Subtitle Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Week Badge"
+    },
+    {
+      "type": "range",
+      "id": "mobile_badge_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Badge Font Size",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "mobile_badge_font_weight",
+      "label": "Mobile Badge Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "mobile_badge_font_style",
+      "label": "Mobile Badge Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Week Title"
+    },
+    {
+      "type": "range",
+      "id": "mobile_week_title_font_size",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Week Title Font Size",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "mobile_week_title_font_weight",
+      "label": "Mobile Week Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "mobile_week_title_color",
+      "label": "Mobile Week Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "mobile_week_title_font_style",
+      "label": "Mobile Week Title Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Bullet Points"
+    },
+    {
+      "type": "range",
+      "id": "mobile_list_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile List Font Size",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "mobile_list_font_weight",
+      "label": "Mobile List Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "mobile_list_color",
+      "label": "Mobile List Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "select",
+      "id": "mobile_list_font_style",
+      "label": "Mobile List Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "── TABLET SETTINGS ──"
+    },
+    {
+      "type": "range",
+      "id": "tablet_timeline_col_width",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Tablet Timeline Column Width",
+      "info": "Controls space for the timeline bar on the right. Default 40px.",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "tablet_tab_border_radius",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Tab Border Radius",
+      "info": "Controls the roundness of the week tab buttons on tablet.",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "tablet_section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Tablet Top Padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "tablet_section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Tablet Bottom Padding",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Tablet Title"
+    },
+    {
+      "type": "range",
+      "id": "tablet_title_font_size",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Title Font Size",
+      "default": 45
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_font_weight",
+      "label": "Tablet Title Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "color",
+      "id": "tablet_title_color",
+      "label": "Tablet Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_font_style",
+      "label": "Tablet Title Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Subtitle"
+    },
+    {
+      "type": "range",
+      "id": "tablet_subtitle_font_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Subtitle Font Size",
+      "default": 19
+    },
+    {
+      "type": "select",
+      "id": "tablet_subtitle_font_weight",
+      "label": "Tablet Subtitle Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "tablet_subtitle_color",
+      "label": "Tablet Subtitle Color",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "tablet_subtitle_font_style",
+      "label": "Tablet Subtitle Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Week Badge"
+    },
+    {
+      "type": "range",
+      "id": "tablet_badge_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Badge Font Size",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "tablet_badge_font_weight",
+      "label": "Tablet Badge Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "tablet_badge_font_style",
+      "label": "Tablet Badge Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Week Title"
+    },
+    {
+      "type": "range",
+      "id": "tablet_week_title_font_size",
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Week Title Font Size",
+      "default": 25
+    },
+    {
+      "type": "select",
+      "id": "tablet_week_title_font_weight",
+      "label": "Tablet Week Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "tablet_week_title_color",
+      "label": "Tablet Week Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "tablet_week_title_font_style",
+      "label": "Tablet Week Title Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Bullet Points"
+    },
+    {
+      "type": "range",
+      "id": "tablet_list_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet List Font Size",
+      "default": 17
+    },
+    {
+      "type": "select",
+      "id": "tablet_list_font_weight",
+      "label": "Tablet List Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "tablet_list_color",
+      "label": "Tablet List Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "select",
+      "id": "tablet_list_font_style",
+      "label": "Tablet List Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
     }
   ],
   "blocks": [
@@ -828,7 +1794,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "textarea",
           "id": "week_description",
           "label": "Week Description",
-          "default": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function|Shields against environmental stress.|Fuels microbial metabolism of nutrients|Shields against environmental stress.",
+          "default": "Fuels microbial metabolism of nutrients|Shields against environmental stress.|Provides antioxidants for healthy barrier function.",
           "info": "Separate each bullet point with a | (pipe) character"
         }
       ]

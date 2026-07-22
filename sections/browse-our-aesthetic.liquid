@@ -205,40 +205,247 @@
     background: linear-gradient(135deg, #ccc 0%, #aaa 100%);
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
+  /* Mobile-only elements — hidden on desktop & tablet */
+  .mobile-big-image-boam,
+  .mobile-card-overlap-boam {
+    display: none;
+  }
+
+  /* ── MOBILE (max 480px) ── */
+  @media (max-width: 480px) {
+    .section-boam {
+      background-color: {{ section.settings.bg_color }};
+    }
+
     .layout-boam {
-      flex-direction: column;
-      padding: 24px 20px;
+      display: block;
+      padding: 28px 16px 24px 16px;
       min-height: auto;
     }
 
+    /* Hide the left big-image column — on mobile it's shown differently */
     .big-image-col-boam {
-      flex: none;
-      width: 100%;
-      height: 280px;
-      border-radius: 14px;
+      display: none;
     }
 
-    .big-image-placeholder-boam { min-height: 280px; }
+    /* Show mobile-only elements */
+    .mobile-big-image-boam,
+    .mobile-card-overlap-boam {
+      display: block;
+    }
 
     .right-col-boam {
-      flex: none;
+      display: block;
       width: 100%;
       padding: 0;
     }
 
-    .text-block-boam { padding: 24px 0 20px 0; }
+    /* Title block */
+    .text-block-boam {
+      padding: 0 0 18px 0;
+      text-align: center;
+    }
 
-    .card-row-boam { min-height: 200px; }
+    .heading-boam {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      font-weight: {{ section.settings.mobile_heading_weight }};
+      color: {{ section.settings.mobile_heading_color }};
+      font-style: {{ section.settings.mobile_heading_style }};
+      text-align: center;
+      line-height: 1.05;
+      margin: 0 0 12px 0;
+    }
+
+    .description-boam {
+      font-size: {{ section.settings.mobile_desc_size }}px;
+      font-weight: {{ section.settings.mobile_desc_weight }};
+      color: {{ section.settings.mobile_desc_color }};
+      font-style: {{ section.settings.mobile_desc_style }};
+      text-align: center;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Mobile big image — shown as a stacked block */
+    .mobile-big-image-boam {
+      display: block;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      height: {{ section.settings.mobile_big_image_height }}px;
+    }
+
+    .mobile-big-image-boam img,
+    .mobile-big-image-boam .big-image-placeholder-boam {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 20px;
+    }
+
+    /* Center card overlaps bottom-right of the mobile big image */
+    .mobile-card-overlap-boam {
+      position: relative;
+      margin-top: -{{ section.settings.mobile_card_overlap }}px;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 8px;
+    }
 
     .center-card-boam {
       position: relative;
       left: 0;
-      width: 100%;
+      width: {{ section.settings.mobile_card_width }}%;
+      height: {{ section.settings.mobile_card_height }}px;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
 
-    .carousel-row-boam { padding: 20px 0 0 0; justify-content: center; }
+    /* Hide default card-row on mobile */
+    .card-row-boam {
+      display: none;
+    }
+
+    /* Carousel */
+    .carousel-row-boam {
+      padding: 20px 0 0 0;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .thumb-circle-boam {
+      width: 60px;
+      height: 60px;
+    }
+
+    .carousel-arrow-boam {
+      opacity: 0.55;
+    }
+
+    .carousel-arrow-boam svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  /* ── TABLET (481px – 900px) ── */
+  @media (min-width: 481px) and (max-width: 900px) {
+    .layout-boam {
+      display: block;
+      padding: 40px 32px 36px 32px;
+      min-height: auto;
+    }
+
+    /* Hide desktop left image column */
+    .big-image-col-boam {
+      display: none;
+    }
+
+    /* Show tablet/mobile-only elements */
+    .mobile-big-image-boam,
+    .mobile-card-overlap-boam {
+      display: block;
+    }
+
+    .right-col-boam {
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+
+    /* Title block — centered */
+    .text-block-boam {
+      padding: 0 0 24px 0;
+      text-align: center;
+    }
+
+    .heading-boam {
+      font-size: {{ section.settings.tablet_heading_size }}px;
+      font-weight: {{ section.settings.tablet_heading_weight }};
+      color: {{ section.settings.tablet_heading_color }};
+      font-style: {{ section.settings.tablet_heading_style }};
+      text-align: center;
+      line-height: 1.05;
+      margin: 0 0 16px 0;
+      letter-spacing: -0.3px;
+    }
+
+    .description-boam {
+      font-size: {{ section.settings.tablet_desc_size }}px;
+      font-weight: {{ section.settings.tablet_desc_weight }};
+      color: {{ section.settings.tablet_desc_color }};
+      font-style: {{ section.settings.tablet_desc_style }};
+      text-align: center;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Big image — full width, taller on tablet */
+    .mobile-big-image-boam {
+      display: block;
+      width: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      height: {{ section.settings.tablet_big_image_height }}px;
+    }
+
+    .mobile-big-image-boam img,
+    .mobile-big-image-boam .big-image-placeholder-boam {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 22px;
+    }
+
+    /* Overlapping card — bottom-right, larger on tablet */
+    .mobile-card-overlap-boam {
+      position: relative;
+      margin-top: -{{ section.settings.tablet_card_overlap }}px;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 12px;
+    }
+
+    .center-card-boam {
+      position: relative;
+      left: 0;
+      width: {{ section.settings.tablet_card_width }}%;
+      height: {{ section.settings.tablet_card_height }}px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+    }
+
+    /* Hide desktop card-row */
+    .card-row-boam {
+      display: none;
+    }
+
+    /* Carousel */
+    .carousel-row-boam {
+      padding: 28px 0 0 0;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .thumb-circle-boam {
+      width: 75px;
+      height: 75px;
+    }
+
+    .carousel-arrow-boam {
+      opacity: 0.55;
+    }
+
+    .carousel-arrow-boam svg {
+      width: 25px;
+      height: 25px;
+    }
   }
 </style>
 
@@ -274,6 +481,45 @@
         {% if section.settings.description != blank %}
           <p class="description-boam">{{ section.settings.description }}</p>
         {% endif %}
+      </div>
+
+      <!-- MOBILE ONLY: big image + overlapping card -->
+      <div class="mobile-big-image-boam" aria-hidden="true">
+        {% if section.settings.big_image %}
+          <img
+            src="{{ section.settings.big_image | image_url: width: 800 }}"
+            alt="{{ section.settings.big_image.alt | default: '' }}"
+            width="{{ section.settings.big_image.width }}"
+            height="{{ section.settings.big_image.height }}"
+            loading="eager"
+          >
+        {% else %}
+          <div class="big-image-placeholder-boam">BIG IMAGE</div>
+        {% endif %}
+      </div>
+      <div class="mobile-card-overlap-boam">
+        <div class="center-card-boam" id="boam-card-mobile-{{ section.id }}">
+          {% assign mob_has_img = false %}
+          {% for i in (1..10) %}
+            {% assign key = 'carousel_image_' | append: i %}
+            {% assign img = section.settings[key] %}
+            {% if img %}
+              {% assign mob_has_img = true %}
+              <img
+                class="center-card-img-boam{% if forloop.first %} active-boam{% endif %}"
+                src="{{ img | image_url: width: 500 }}"
+                alt="{{ img.alt | default: '' }}"
+                width="{{ img.width }}"
+                height="{{ img.height }}"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                data-boam-index="{{ forloop.index0 }}"
+              >
+            {% endif %}
+          {% endfor %}
+          {% unless mob_has_img %}
+            <div class="center-card-placeholder-boam">CENTER IMAGE</div>
+          {% endunless %}
+        </div>
       </div>
 
       <!-- Center card (overlaps big image) -->
@@ -361,12 +607,14 @@
 (function () {
   var sid = '{{ section.id }}';
   var card = document.getElementById('boam-card-' + sid);
+  var mobileCard = document.getElementById('boam-card-mobile-' + sid);
   var thumbsWrap = document.getElementById('boam-thumbs-' + sid);
   var prevBtn = document.getElementById('boam-prev-' + sid);
   var nextBtn = document.getElementById('boam-next-' + sid);
   if (!card || !thumbsWrap) return;
 
   var cardImgs = Array.from(card.querySelectorAll('.center-card-img-boam'));
+  var mobileCardImgs = mobileCard ? Array.from(mobileCard.querySelectorAll('.center-card-img-boam')) : [];
   var allThumbs = Array.from(thumbsWrap.querySelectorAll('.thumb-circle-boam'));
   var total = cardImgs.length || allThumbs.length;
   if (total === 0) return;
@@ -379,6 +627,8 @@
   function showCard(index) {
     cardImgs.forEach(function (img) { img.classList.remove('active-boam'); });
     if (cardImgs[index]) cardImgs[index].classList.add('active-boam');
+    mobileCardImgs.forEach(function (img) { img.classList.remove('active-boam'); });
+    if (mobileCardImgs[index]) mobileCardImgs[index].classList.add('active-boam');
   }
 
   /* Render which 3 thumbs are visible and mark active */
@@ -471,7 +721,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Skincare-Focused"
+      "default": "Skincare Focused"
     },
     {
       "type": "range",
@@ -624,6 +874,262 @@
       "type": "image_picker",
       "id": "carousel_image_10",
       "label": "Carousel Image 10"
+    },
+    {
+      "type": "header",
+      "content": "Mobile — Big Image"
+    },
+    {
+      "type": "range",
+      "id": "mobile_big_image_height",
+      "label": "Mobile Big Image Height (px)",
+      "min": 200,
+      "max": 600,
+      "step": 10,
+      "default": 470
+    },
+    {
+      "type": "header",
+      "content": "Mobile — Center Card Size"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_width",
+      "label": "Mobile Card Width (%)",
+      "min": 30,
+      "max": 90,
+      "step": 5,
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_height",
+      "label": "Mobile Card Height (px)",
+      "min": 80,
+      "max": 400,
+      "step": 5,
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_overlap",
+      "label": "Mobile Card Overlap on Big Image (px)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Mobile — Title"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile Heading Font Size (px)",
+      "min": 20,
+      "max": 72,
+      "step": 2,
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "mobile_heading_weight",
+      "label": "Mobile Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-Bold (800)" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "color",
+      "id": "mobile_heading_color",
+      "label": "Mobile Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "mobile_heading_style",
+      "label": "Mobile Heading Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Mobile — Subtitle / Description"
+    },
+    {
+      "type": "range",
+      "id": "mobile_desc_size",
+      "label": "Mobile Description Font Size (px)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "mobile_desc_weight",
+      "label": "Mobile Description Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-Bold (800)" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "color",
+      "id": "mobile_desc_color",
+      "label": "Mobile Description Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "mobile_desc_style",
+      "label": "Mobile Description Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Tablet — Big Image"
+    },
+    {
+      "type": "range",
+      "id": "tablet_big_image_height",
+      "label": "Tablet Big Image Height (px)",
+      "min": 200,
+      "max": 700,
+      "step": 10,
+      "default": 460
+    },
+    {
+      "type": "header",
+      "content": "Tablet — Center Card Size"
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_width",
+      "label": "Tablet Card Width (%)",
+      "min": 30,
+      "max": 90,
+      "step": 5,
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_height",
+      "label": "Tablet Card Height (px)",
+      "min": 80,
+      "max": 500,
+      "step": 5,
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_overlap",
+      "label": "Tablet Card Overlap on Big Image (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 120
+    },
+    {
+      "type": "header",
+      "content": "Tablet — Title"
+    },
+    {
+      "type": "range",
+      "id": "tablet_heading_size",
+      "label": "Tablet Heading Font Size (px)",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 56
+    },
+    {
+      "type": "select",
+      "id": "tablet_heading_weight",
+      "label": "Tablet Heading Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-Bold (800)" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "color",
+      "id": "tablet_heading_color",
+      "label": "Tablet Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "tablet_heading_style",
+      "label": "Tablet Heading Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Tablet — Subtitle / Description"
+    },
+    {
+      "type": "range",
+      "id": "tablet_desc_size",
+      "label": "Tablet Description Font Size (px)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "tablet_desc_weight",
+      "label": "Tablet Description Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semi-Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra-Bold (800)" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "tablet_desc_color",
+      "label": "Tablet Description Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "tablet_desc_style",
+      "label": "Tablet Description Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
     }
   ],
   "presets": [

@@ -178,31 +178,10 @@
             "designation": "Clinical Advisor"
           }
         },
-        "team_member_6DVffb": {
+        "team_member_zHEGHm": {
           "type": "team_member",
           "settings": {
             "image": "shopify://shop_images/pexels-tima-miroshnichenko-5407222.jpg",
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_76R3ri": {
-          "type": "team_member",
-          "settings": {
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_V4nWQh": {
-          "type": "team_member",
-          "settings": {
-            "name": "Dr. John Doe, MD",
-            "designation": "Clinical Advisor"
-          }
-        },
-        "team_member_fBjQXg": {
-          "type": "team_member",
-          "settings": {
             "name": "Dr. John Doe, MD",
             "designation": "Clinical Advisor"
           }
@@ -210,10 +189,7 @@
       },
       "block_order": [
         "team_member_VGyAFA",
-        "team_member_6DVffb",
-        "team_member_76R3ri",
-        "team_member_V4nWQh",
-        "team_member_fBjQXg"
+        "team_member_zHEGHm"
       ],
       "name": "Medical Team",
       "settings": {

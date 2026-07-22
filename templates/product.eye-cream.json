@@ -214,11 +214,110 @@
         "tab_frost_name_size": 20,
         "tab_frost_desig_size": 14
       }
+    },
+    "ugc_content_section_zfURVr": {
+      "type": "ugc-content-section",
+      "blocks": {
+        "ugc_content_n7rpwk": {
+          "type": "ugc_content",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/072c5d6d38ad4dcaaddc5cadf207a23a.mp4",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_title": "Age Repair Moisturizer",
+            "product_price": "$456",
+            "product_url": "shopify://products/infinite-youth-concentrate"
+          }
+        },
+        "ugc_content_ExpmyK": {
+          "type": "ugc_content",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/072c5d6d38ad4dcaaddc5cadf207a23a.mp4",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_title": "Age Repair Moisturizer",
+            "product_price": "$456",
+            "product_url": "shopify://products/infinite-youth-concentrate"
+          }
+        },
+        "ugc_content_mdgUMf": {
+          "type": "ugc_content",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/072c5d6d38ad4dcaaddc5cadf207a23a.mp4",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_title": "Age Repair Moisturizer",
+            "product_price": "$456",
+            "product_url": "shopify://products/infinite-youth-concentrate"
+          }
+        },
+        "ugc_content_FgpFdA": {
+          "type": "ugc_content",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/072c5d6d38ad4dcaaddc5cadf207a23a.mp4",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_title": "Age Repair Moisturizer",
+            "product_price": "$456",
+            "product_url": "shopify://products/infinite-youth-concentrate"
+          }
+        },
+        "ugc_content_9tY6EF": {
+          "type": "ugc_content",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/2c92f637195245b4a762d3df000ae34b.mp4",
+            "redirect_url": "",
+            "product_image": "shopify://shop_images/Gemini_Generated_Image_3fwgcf3fwgcf3fwg_1.png",
+            "product_title": "Age Repair Moisturizer",
+            "product_price": "$456",
+            "product_url": "shopify://products/infinite-youth-concentrate"
+          }
+        }
+      },
+      "block_order": [
+        "ugc_content_n7rpwk",
+        "ugc_content_ExpmyK",
+        "ugc_content_mdgUMf",
+        "ugc_content_FgpFdA",
+        "ugc_content_9tY6EF"
+      ],
+      "name": "UGC Content Section",
+      "settings": {
+        "section_background": "#ffffff",
+        "side_card_width": 220,
+        "side_card_height": 300,
+        "card_gap": 20,
+        "section_title": "User Generated Content",
+        "section_description": "Discover authentic experiences from our community",
+        "title_font_size": 42,
+        "title_color": "#000000",
+        "description_font_size": 16,
+        "description_color": "#666666",
+        "button_bg_color": "#00d4aa",
+        "button_text_color": "#ffffff",
+        "button_hover_color": "#00b894",
+        "mob_title_font_size": 28,
+        "mob_description_font_size": 14,
+        "mob_center_card_width": 68,
+        "mob_center_card_height": 85,
+        "mob_side_card_width": 28,
+        "mob_side_card_height": 42,
+        "mob_card_radius": 18,
+        "mob_card_gap": 12,
+        "mob_carousel_padding_top": 20,
+        "mob_panel_padding": 10,
+        "mob_product_title_size": 14,
+        "mob_product_price_size": 16,
+        "mob_product_image_size": 50,
+        "mob_buy_button_size": 11,
+        "mob_dot_active_color": "#333333"
+      }
     }
   },
   "order": [
     "main",
     "professional_panel_iDFanP",
-    "medical_team_WFTnw9"
+    "medical_team_WFTnw9",
+    "ugc_content_section_zfURVr"
   ]
 }

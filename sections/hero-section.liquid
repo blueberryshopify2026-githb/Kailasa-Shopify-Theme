@@ -3,6 +3,7 @@
   Features: Auto-rotating content blocks, clickable circles, cyan highlight
 {% endcomment %}
 
+
 <style>
   .circle-hero-section {
     font-family: 'Montserrat', sans-serif;
@@ -17,6 +18,7 @@
     margin-top: 4%;
   }
 
+
   .circle-hero-container {
     max-width: 1400px;
     width: 100%;
@@ -26,6 +28,7 @@
     gap: 0;
     align-items: center; /* This centers both columns vertically */
   }
+
 
   /* Left Side - Text Content */
   .circle-hero-content {
@@ -40,12 +43,14 @@
     align-self: center; /* Center align with the image container */
   }
 
+
   .circle-hero-text-top {
     display: flex;
     flex-direction: column;
     gap: 20px; /* Space between title and description */
     padding-top: 20px; /* Small padding to keep title within image bounds */
   }
+
 
   .circle-hero-title {
     font-size: {{ section.settings.title_font_size }}px;
@@ -56,6 +61,7 @@
     font-family: 'Montserrat', sans-serif;
   }
 
+
   .circle-hero-description {
     font-size: {{ section.settings.description_font_size }}px;
     color: {{ section.settings.description_color | default: '#ffffff' }};
@@ -63,7 +69,7 @@
     margin: 0; /* Remove margin for tight spacing */
     font-family: 'Montserrat', sans-serif;
   }
-  
+ 
   .circle-hero-buttons {
     display: flex;
     flex-direction: column;
@@ -72,6 +78,7 @@
     flex-shrink: 0; /* Keep buttons at bottom */
     padding-bottom: 20px; /* Small padding to keep buttons within image bounds */
   }
+
 
   .circle-hero-btn {
     padding: 12px 36px;
@@ -89,9 +96,11 @@
     text-align: center;
   }
 
+
   .circle-hero-btn span {
     grid-column: 2;
   }
+
 
   .circle-hero-btn svg {
     width: 24px;
@@ -102,16 +111,19 @@
     justify-self: end;
   }
 
+
   .circle-hero-btn-primary {
     background: {{ section.settings.primary_btn_bg | default: '#ffffff' }};
     color: {{ section.settings.primary_btn_text | default: '#000000' }};
     border-color: {{ section.settings.primary_btn_bg | default: '#ffffff' }};
   }
 
+
   .circle-hero-btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
   }
+
 
   .circle-hero-btn-secondary {
     background: {{ section.settings.secondary_btn_bg | default: '#4FFFFF' }};
@@ -119,16 +131,19 @@
     border-color: {{ section.settings.secondary_btn_bg | default: '#4FFFFF' }};
   }
 
+
   .circle-hero-btn-secondary:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(79, 255, 255, 0.3);
   }
+
 
   .circle-hero-btn svg {
     width: 20px;
     height: 20px;
     fill: currentColor;
   }
+
 
   /* Right Side - Image with Circles */
   .circle-hero-image-container {
@@ -140,6 +155,7 @@
     height: 100vh; /* Keep full viewport height for container */
   }
 
+
   .circle-hero-main-image {
     width: 700px;
     max-width: 800px;
@@ -149,6 +165,7 @@
     overflow: visible;
     position: relative;
   }
+
 
   .circle-hero-image-item {
     width: 100%;
@@ -161,10 +178,12 @@
     position: relative;
   }
 
+
   .circle-hero-image-item.active {
     display: block;
     opacity: 1;
   }
+
 
   .circle-hero-image-item img,
   .circle-hero-image-item video {
@@ -174,6 +193,7 @@
     object-fit: cover;
     display: block;
   }
+
 
   /* Circular Thumbnails */
   .circle-hero-circles {
@@ -186,6 +206,7 @@
     gap: 20px;
     z-index: 3;
   }
+
 
   .circle-hero-circle {
     width: 80px;
@@ -201,9 +222,11 @@
     user-select: none;
   }
 
+
   .circle-hero-circle * {
     cursor: pointer !important;
   }
+
 
   .circle-hero-circle.active {
     border-color: {{ section.settings.active_circle_color | default: '#4FFFFF' }};
@@ -212,11 +235,13 @@
     z-index: 11;
   }
 
+
   .circle-hero-circle:hover:not(.active) {
     transform: scale(1.05);
     border-color: rgba(79, 255, 255, 0.5);
     z-index: 11;
   }
+
 
   .circle-hero-circle img {
     width: 100%;
@@ -224,6 +249,29 @@
     object-fit: cover;
     pointer-events: none;
     user-select: none;
+  }
+
+  /* Hide mobile circles on desktop */
+  .mobile-circles {
+    display: none;
+  }
+
+  /* Ensure desktop circles are always visible */
+  @media (min-width: 1025px) {
+    .mobile-circles {
+      display: none !important;
+    }
+    
+    .circle-hero-circles {
+      display: flex !important;
+    }
+    
+    .circle-hero-circle.active {
+      border-color: {{ section.settings.active_circle_color | default: '#4FFFFF' }} !important;
+      transform: scale(1.1) !important;
+      box-shadow: 0 0 20px {{ section.settings.active_circle_color | default: '#4FFFFF' }} !important;
+      z-index: 11 !important;
+    }
   }
 
   /* Responsive Design */
@@ -235,11 +283,13 @@
 
     .circle-hero-content {
       padding-right: 0;
-      height: auto; /* Allow flexible height on mobile */
+      height: auto;
+      order: 2;
     }
 
-    .circle-hero-text-top {
-      gap: 16px; /* Smaller gap on mobile */
+    .circle-hero-image-container {
+      order: 1;
+      height: auto;
     }
 
     .circle-hero-circles {
@@ -258,34 +308,453 @@
     }
   }
 
-  @media (max-width: 768px) {
+  /* Tablet Responsive Design */
+  @media (max-width: 1024px) and (min-width: 769px) {
     .circle-hero-section {
-      padding: 40px 20px;
+      padding: 0;
+      min-height: 100vh;
+      height: 100vh;
+      margin-top: 0;
+      position: relative;
+      display: block;
+    }
+
+    .circle-hero-container {
+      display: block;
+      position: relative;
+      height: 100%;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    .circle-hero-image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circle-hero-main-image {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
+    }
+
+    .circle-hero-image-item {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .circle-hero-image-item img,
+    .circle-hero-image-item video {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    /* Hide desktop circles on tablet */
+    .circle-hero-image-container .circle-hero-circles {
+      display: none;
+    }
+
+    .circle-hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      padding: 0 40px 80px 40px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(transparent, rgba(0,0,0,0.5));
+      padding-top: 80px;
     }
 
     .circle-hero-text-top {
-      gap: 12px; /* Even smaller gap on mobile */
+      gap: 20px;
+      text-align: center;
+      margin-bottom: 24px;
     }
 
     .circle-hero-title {
-      font-size: {{ section.settings.title_font_size | minus: 10 }}px;
+      font-size: {{ section.settings.tablet_title_font_size | default: 42 }}px !important;
+      font-weight: {{ section.settings.tablet_title_font_weight | default: '700' }} !important;
+      font-style: {{ section.settings.tablet_title_font_style | default: 'normal' }} !important;
+      color: {{ section.settings.tablet_title_color | default: '#ffffff' }} !important;
+      line-height: 1.2;
+      margin: 0;
     }
 
     .circle-hero-description {
-      font-size: {{ section.settings.description_font_size | minus: 2 }}px;
+      font-size: {{ section.settings.tablet_description_font_size | default: 18 }}px !important;
+      font-weight: {{ section.settings.tablet_description_font_weight | default: '400' }} !important;
+      font-style: {{ section.settings.tablet_description_font_style | default: 'normal' }} !important;
+      color: {{ section.settings.tablet_description_color | default: '#ffffff' }} !important;
+      line-height: 1.5;
+      margin: 0;
     }
 
     .circle-hero-buttons {
       max-width: 100%;
-      margin-top: 30px; /* Add space between text and buttons on mobile */
+      margin-top: 0;
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
     }
 
-    .circle-hero-circle {
+    .circle-hero-btn {
+      font-size: {{ section.settings.tablet_button_font_size | default: 15 }}px !important;
+      font-weight: {{ section.settings.tablet_button_font_weight | default: '600' }} !important;
+      font-style: {{ section.settings.tablet_button_font_style | default: 'normal' }} !important;
+      padding: 14px 28px;
+      border-radius: 30px;
+      flex: 1;
+      min-width: 240px;
+      max-width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      grid-template-columns: none;
+      box-sizing: border-box;
+    }
+
+    .circle-hero-btn span {
+      font-size: {{ section.settings.tablet_button_font_size | default: 15 }}px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+      text-align: left;
+      margin-right: 12px;
+    }
+
+    .circle-hero-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .circle-hero-btn-primary {
+      background: {{ section.settings.tablet_primary_btn_bg | default: '#ffffff' }} !important;
+      color: {{ section.settings.tablet_primary_btn_text | default: '#000000' }} !important;
+      border-color: {{ section.settings.tablet_primary_btn_bg | default: '#ffffff' }} !important;
+    }
+
+    .circle-hero-btn-secondary {
+      background: {{ section.settings.tablet_secondary_btn_bg | default: '#4FFFFF' }} !important;
+      color: {{ section.settings.tablet_secondary_btn_text | default: '#000000' }} !important;
+      border-color: {{ section.settings.tablet_secondary_btn_bg | default: '#4FFFFF' }} !important;
+    }
+
+    /* Tablet circles - visible only on tablet */
+    .mobile-circles {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    /* Tablet specific circle sizing */
+    .mobile-circles .circle-hero-circle {
+      width: 80px !important;
+      height: 80px !important;
+      border-width: 3px !important;
+    }
+
+    .mobile-circles .circle-hero-circle.active {
+      transform: scale(1.1) !important;
+      border-color: {{ section.settings.active_circle_color | default: '#4FFFFF' }} !important;
+      box-shadow: 0 0 15px {{ section.settings.active_circle_color | default: '#4FFFFF' }} !important;
+    }
+
+    .mobile-circles .circle-hero-circle:hover:not(.active) {
+      transform: scale(1.05) !important;
+      border-color: rgba(79, 255, 255, 0.5) !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .circle-hero-section {
+      padding: 0;
+      min-height: 100vh;
+      height: 100vh;
+      margin-top: 0;
+      position: relative;
+      display: block;
+    }
+
+    .circle-hero-container {
+      display: block;
+      position: relative;
+      height: 100%;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    .circle-hero-image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Fixed gradient overlay at bottom */
+    .circle-hero-image-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .circle-hero-main-image {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
+      position: relative;
+      z-index: 0;
+    }
+
+    .circle-hero-image-item {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .circle-hero-image-item img,
+    .circle-hero-image-item video {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    /* Hide desktop circles */
+    .circle-hero-image-container .circle-hero-circles {
+      display: none;
+    }
+
+    .circle-hero-content {
+      position: absolute;
+      bottom: 120px;
+      left: 0;
+      width: 100%;
+      height: auto;
+      padding: 0 20px 0 20px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: none;
+    }
+
+    .circle-hero-text-top {
+      gap: 14px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .circle-hero-title {
+      font-size: {{ section.settings.mobile_title_font_size | default: 32 }}px !important;
+      font-weight: {{ section.settings.mobile_title_font_weight | default: '700' }} !important;
+      font-style: {{ section.settings.mobile_title_font_style | default: 'normal' }} !important;
+      color: {{ section.settings.mobile_title_color | default: '#ffffff' }} !important;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .circle-hero-description {
+      font-size: {{ section.settings.mobile_description_font_size | default: 16 }}px !important;
+      font-weight: {{ section.settings.mobile_description_font_weight | default: '400' }} !important;
+      font-style: {{ section.settings.mobile_description_font_style | default: 'normal' }} !important;
+      color: {{ section.settings.mobile_description_color | default: '#ffffff' }} !important;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .circle-hero-buttons {
+      max-width: 100%;
+      margin-top: 0;
+      margin-bottom: 14px;
+      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+
+    .circle-hero-btn {
+      font-size: {{ section.settings.mobile_button_font_size | default: 14 }}px !important;
+      font-weight: {{ section.settings.mobile_button_font_weight | default: '600' }} !important;
+      font-style: {{ section.settings.mobile_button_font_style | default: 'normal' }} !important;
+      padding: 14px 24px;
+      border-radius: 30px;
+      width: 100%;
+      max-width: 320px;
+      min-width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      grid-template-columns: none;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .circle-hero-btn span {
+      font-size: {{ section.settings.mobile_button_font_size | default: 14 }}px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+      text-align: center;
+      padding-right: 24px;
+    }
+
+    .circle-hero-btn svg {
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      right: 20px;
+      flex-shrink: 0;
+    }
+
+    .circle-hero-btn-primary {
+      background: {{ section.settings.mobile_primary_btn_bg | default: '#ffffff' }} !important;
+      color: {{ section.settings.mobile_primary_btn_text | default: '#000000' }} !important;
+      border-color: {{ section.settings.mobile_primary_btn_bg | default: '#ffffff' }} !important;
+    }
+
+    .circle-hero-btn-secondary {
+      background: {{ section.settings.mobile_secondary_btn_bg | default: '#4FFFFF' }} !important;
+      color: {{ section.settings.mobile_secondary_btn_text | default: '#000000' }} !important;
+      border-color: {{ section.settings.mobile_secondary_btn_bg | default: '#4FFFFF' }} !important;
+    }
+
+    /* Mobile circles - visible only on mobile */
+    .mobile-circles {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    /* Hide mobile circles on desktop */
+    @media (min-width: 769px) {
+      .mobile-circles {
+        display: none;
+      }
+    }
+
+    .mobile-circles .circle-hero-circle {
       width: 50px;
       height: 50px;
+      border-width: 2px;
+    }
+
+    .mobile-circles .circle-hero-circle.active {
+      transform: scale(1.1);
+    }
+
+    .mobile-circles .circle-hero-circle:hover:not(.active) {
+      transform: scale(1.05);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .circle-hero-content {
+      padding: 0 16px 0 16px;
+      bottom: 100px;
+    }
+
+    .circle-hero-image-container::after {
+      height: 60%;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    }
+
+    .circle-hero-title {
+      font-size: {{ section.settings.mobile_title_font_size | minus: 4 | default: 28 }}px !important;
+    }
+
+    .circle-hero-description {
+      font-size: {{ section.settings.mobile_description_font_size | minus: 1 | default: 15 }}px !important;
+    }
+
+    .circle-hero-text-top {
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .circle-hero-buttons {
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .circle-hero-btn {
+      font-size: {{ section.settings.mobile_button_font_size | minus: 1 | default: 13 }}px !important;
+      padding: 12px 20px;
+      min-width: 260px;
+      max-width: 300px;
+    }
+
+    .circle-hero-btn span {
+      font-size: {{ section.settings.mobile_button_font_size | minus: 1 | default: 13 }}px;
+      padding-right: 20px;
+    }
+
+    .circle-hero-btn svg {
+      width: 16px;
+      height: 16px;
+      right: 16px;
+    }
+
+    .mobile-circles {
+      gap: 8px;
+    }
+
+    .mobile-circles .circle-hero-circle {
+      width: 60px;
+      height: 60px;
     }
   }
 </style>
+
 
 <section class="circle-hero-section">
   <div class="circle-hero-container">
@@ -296,7 +765,7 @@
         <h1 class="circle-hero-title" id="circle-hero-title">{{ section.blocks.first.settings.title }}</h1>
         <p class="circle-hero-description" id="circle-hero-description">{{ section.blocks.first.settings.description }}</p>
       </div>
-      
+     
       <!-- Bottom Section - Buttons stay at bottom -->
       <div class="circle-hero-buttons">
         {% if section.settings.button_1_text != blank %}
@@ -307,7 +776,7 @@
             </svg>
           </a>
         {% endif %}
-        
+       
         {% if section.settings.button_2_text != blank %}
           <a href="{{ section.settings.button_2_link }}" class="circle-hero-btn circle-hero-btn-secondary">
             <span>{{ section.settings.button_2_text }}</span>
@@ -317,7 +786,27 @@
           </a>
         {% endif %}
       </div>
+
+      <!-- Mobile Circles (only visible on mobile) -->
+      <div class="mobile-circles">
+        {% for block in section.blocks %}
+          {% if block.type == 'content_block' %}
+            <div class="circle-hero-circle {% if forloop.first %}active{% endif %}"
+                 data-block-id="{{ forloop.index0 }}"
+                 onclick="switchCircleContent({{ forloop.index0 }})"
+                 {{ block.shopify_attributes }}>
+              {% if block.settings.thumbnail_image %}
+                <img src="{{ block.settings.thumbnail_image | image_url: width: 160 }}"
+                     alt="{{ block.settings.title }}"
+                     width="160"
+                     height="160">
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
+
 
     <!-- Right Side: Image with Circles -->
     <div class="circle-hero-image-container">
@@ -325,7 +814,7 @@
       <div class="circle-hero-main-image">
         {% for block in section.blocks %}
           {% if block.type == 'content_block' %}
-            <div class="circle-hero-image-item {% if forloop.first %}active{% endif %}" 
+            <div class="circle-hero-image-item {% if forloop.first %}active{% endif %}"
                  data-block-id="{{ forloop.index0 }}"
                  data-title="{{ block.settings.title }}"
                  data-description="{{ block.settings.description }}">
@@ -334,7 +823,7 @@
                   <source src="{{ block.settings.video_url }}" type="video/mp4">
                 </video>
               {% elsif block.settings.main_image %}
-                <img src="{{ block.settings.main_image | image_url: width: 800 }}" 
+                <img src="{{ block.settings.main_image | image_url: width: 800 }}"
                      alt="{{ block.settings.title }}"
                      width="800"
                      height="800">
@@ -343,16 +832,17 @@
           {% endif %}
         {% endfor %}
 
+
         <!-- Circular Thumbnails -->
         <div class="circle-hero-circles">
           {% for block in section.blocks %}
             {% if block.type == 'content_block' %}
-              <div class="circle-hero-circle {% if forloop.first %}active{% endif %}" 
+              <div class="circle-hero-circle {% if forloop.first %}active{% endif %}"
                    data-block-id="{{ forloop.index0 }}"
                    onclick="switchCircleContent({{ forloop.index0 }})"
                    {{ block.shopify_attributes }}>
                 {% if block.settings.thumbnail_image %}
-                  <img src="{{ block.settings.thumbnail_image | image_url: width: 160 }}" 
+                  <img src="{{ block.settings.thumbnail_image | image_url: width: 160 }}"
                        alt="{{ block.settings.title }}"
                        width="160"
                        height="160">
@@ -366,17 +856,19 @@
   </div>
 </section>
 
+
 <script>
 let currentCircleBlock = 0;
 const totalCircleBlocks = {{ section.blocks.size }};
 let circleAutoRotateInterval;
 let isHovering = false;
 
+
 function switchCircleContent(blockId) {
   // Clear auto-rotate when manually clicking
   clearInterval(circleAutoRotateInterval);
-  
-  // Remove active class from all
+ 
+  // Remove active class from ALL circles (both desktop and mobile)
   document.querySelectorAll('.circle-hero-circle').forEach(circle => {
     circle.classList.remove('active');
   });
@@ -384,24 +876,28 @@ function switchCircleContent(blockId) {
     item.classList.remove('active');
   });
 
-  // Add active class to selected
-  const selectedCircle = document.querySelector(`.circle-hero-circle[data-block-id="${blockId}"]`);
+  // Add active class to ALL circles with the selected block ID (both desktop and mobile)
+  const selectedCircles = document.querySelectorAll(`.circle-hero-circle[data-block-id="${blockId}"]`);
   const selectedImage = document.querySelector(`.circle-hero-image-item[data-block-id="${blockId}"]`);
+ 
+  // Activate all circles with this block ID (desktop and mobile versions)
+  selectedCircles.forEach(circle => {
+    circle.classList.add('active');
+  });
   
-  if (selectedCircle) selectedCircle.classList.add('active');
   if (selectedImage) {
     selectedImage.classList.add('active');
-    
+   
     // Update title and description
     const title = selectedImage.getAttribute('data-title');
     const description = selectedImage.getAttribute('data-description');
-    
+   
     const titleEl = document.getElementById('circle-hero-title');
     const descEl = document.getElementById('circle-hero-description');
-    
+   
     if (titleEl) titleEl.textContent = title;
     if (descEl) descEl.textContent = description;
-    
+   
     // Play video if it's a video
     const video = selectedImage.querySelector('video');
     if (video) {
@@ -410,31 +906,35 @@ function switchCircleContent(blockId) {
   }
 
   currentCircleBlock = blockId;
-  
+ 
   // Restart auto-rotate only if not hovering
   if (!isHovering) {
     startCircleAutoRotate();
   }
 }
 
+
 function circleAutoRotate() {
   currentCircleBlock = (currentCircleBlock + 1) % totalCircleBlocks;
   switchCircleContent(currentCircleBlock);
 }
+
 
 function startCircleAutoRotate() {
   clearInterval(circleAutoRotateInterval);
   circleAutoRotateInterval = setInterval(circleAutoRotate, 7000); // 7 seconds
 }
 
+
 function stopCircleAutoRotate() {
   clearInterval(circleAutoRotateInterval);
 }
 
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
   startCircleAutoRotate();
-  
+ 
   // Add hover listeners to all circles
   const circles = document.querySelectorAll('.circle-hero-circle');
   circles.forEach(circle => {
@@ -442,7 +942,7 @@ document.addEventListener('DOMContentLoaded', function() {
       isHovering = true;
       stopCircleAutoRotate();
     });
-    
+   
     circle.addEventListener('mouseleave', function() {
       isHovering = false;
       startCircleAutoRotate();
@@ -450,6 +950,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
 
 {% schema %}
 {
@@ -600,6 +1101,284 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "active_circle_color",
       "label": "Active Circle Border Color",
       "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "mobile_title_font_weight",
+      "label": "Mobile Title Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "mobile_title_font_style",
+      "label": "Mobile Title Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "mobile_title_color",
+      "label": "Mobile Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Font Size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "mobile_description_font_weight",
+      "label": "Mobile Description Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "mobile_description_font_style",
+      "label": "Mobile Description Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "mobile_description_color",
+      "label": "Mobile Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "mobile_button_font_weight",
+      "label": "Mobile Button Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "mobile_button_font_style",
+      "label": "Mobile Button Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "mobile_primary_btn_bg",
+      "label": "Mobile Button 1 Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "mobile_primary_btn_text",
+      "label": "Mobile Button 1 Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "mobile_secondary_btn_bg",
+      "label": "Mobile Button 2 Background",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "mobile_secondary_btn_text",
+      "label": "Mobile Button 2 Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings"
+    },
+    {
+      "type": "range",
+      "id": "tablet_title_font_size",
+      "min": 28,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "label": "Tablet Title Font Size",
+      "default": 42
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_font_weight",
+      "label": "Tablet Title Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_font_style",
+      "label": "Tablet Title Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "tablet_title_color",
+      "label": "Tablet Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "tablet_description_font_size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Description Font Size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "tablet_description_font_weight",
+      "label": "Tablet Description Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "tablet_description_font_style",
+      "label": "Tablet Description Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "tablet_description_color",
+      "label": "Tablet Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "tablet_button_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Button Font Size",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "tablet_button_font_weight",
+      "label": "Tablet Button Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "tablet_button_font_style",
+      "label": "Tablet Button Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "tablet_primary_btn_bg",
+      "label": "Tablet Button 1 Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tablet_primary_btn_text",
+      "label": "Tablet Button 1 Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tablet_secondary_btn_bg",
+      "label": "Tablet Button 2 Background",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "tablet_secondary_btn_text",
+      "label": "Tablet Button 2 Text Color",
+      "default": "#000000"
     }
   ],
   "blocks": [
@@ -671,3 +1450,6 @@ document.addEventListener('DOMContentLoaded', function() {
   ]
 }
 {% endschema %}
+
+
+

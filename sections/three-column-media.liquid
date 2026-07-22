@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   Three Column Media Section - 30% Video | 40% Text | 30% Image
   Layout matches reference design with video, centered text content, and product image
 {% endcomment %}
@@ -258,35 +258,186 @@
     line-height: 1.3;
   }
 
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .three-column-container {
-      grid-template-columns: 1fr;
-      gap: 0;
-      text-align: center;
-      min-height: 100vh;
-      height: 100vh;
+  /* ─── TABLET ONLY: 769px – 1024px ─── */
+  /* Hide desktop grid, show tablet wrapper instead */
+  .three-col-tab-wrapper { display: none; }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+
+    /* Hide desktop grid at tablet */
+    .three-column-media-section .three-column-container {
+      display: none !important;
     }
 
-    .content-column {
-      padding: 30px 20px;
-      text-align: center;
+    /* Mobile wrapper also hidden at tablet */
+    .three-column-media-section .three-col-mob-wrapper {
+      display: none !important;
     }
 
-    .step-number {
-      justify-content: center;
+    /* Section: sized purely by content, top/bottom padding for breathing room */
+    .three-column-media-section {
+      height: auto !important;
+      min-height: unset !important;
+      overflow: visible !important;
+      display: block !important;
+      padding: {{ section.settings.tab_section_padding_v | default: 20 }}px 0 !important;
+      background: {{ section.settings.section_background }} !important;
     }
 
-    .three-col-cta-button {
-      align-self: center;
+    /* Tablet wrapper: the ONLY element with a fixed height.
+       All columns are children of this — they get their height from it via align-items:stretch */
+    .three-col-tab-wrapper {
+      display: grid !important;
+      grid-template-columns: {{ section.settings.tab_grid_columns | default: '45% 30% 25%' }} !important;
+      width: 100% !important;
+      height: {{ section.settings.tab_video_min_height | default: 500 }}px !important;
+      align-items: stretch !important;
+      gap: 0 !important;
     }
 
-    .three-col-video-column,
-    .three-col-image-column {
-      height: 33.33vh;
+    /* ── Left: video column — no independent height, fills grid row via stretch ── */
+    .three-col-tab-video {
+      padding: {{ section.settings.tab_video_padding | default: 20 }}px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: stretch !important;
+    }
+
+    /* inner wrapper: takes all space inside the padded column, clips corners */
+    .three-col-tab-video-wrapper {
+      flex: 1 !important;
+      min-height: 0 !important;
+      border-radius: {{ section.settings.tab_video_border_radius | default: 16 }}px !important;
+      overflow: hidden !important;
+      background: #000 !important;
+      position: relative !important;
+    }
+
+    /* video/img fill the wrapper absolutely — overrides critical.css height:auto */
+    .three-col-tab-video-wrapper video,
+    .three-col-tab-video-wrapper img {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+
+    /* ── Center: text + CTA — fills grid row, content vertically centred ── */
+    .three-col-tab-text {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+      padding: {{ section.settings.tab_text_padding_v | default: 40 }}px {{ section.settings.tab_text_padding_h | default: 16 }}px !important;
+      box-sizing: border-box !important;
+      overflow: visible !important;
+      word-break: break-word !important;
+    }
+
+    .three-col-tab-step {
+      display: flex !important;
+      align-items: baseline !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      margin: 0 0 {{ section.settings.tab_step_margin_b | default: 16 }}px !important;
+    }
+
+    .three-col-tab-step-label {
+      font-size: {{ section.settings.tab_step_label_size | default: 20 }}px !important;
+      font-weight: 700 !important;
+      color: {{ section.settings.tab_step_label_color | default: '#000000' }} !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .three-col-tab-step-num {
+      font-size: {{ section.settings.tab_step_num_size | default: 80 }}px !important;
+      font-weight: 900 !important;
+      color: {{ section.settings.tab_step_num_color | default: '#4FFFFF' }} !important;
+      line-height: 0.8 !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .three-col-tab-heading {
+      font-size: {{ section.settings.tab_heading_size | default: 28 }}px !important;
+      font-weight: 700 !important;
+      color: {{ section.settings.tab_heading_color | default: '#000000' }} !important;
+      line-height: 1.2 !important;
+      margin: 0 0 {{ section.settings.tab_heading_margin_b | default: 16 }}px !important;
+      text-align: center !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .three-col-tab-desc {
+      font-size: {{ section.settings.tab_desc_size | default: 15 }}px !important;
+      color: {{ section.settings.tab_desc_color | default: '#666666' }} !important;
+      line-height: 1.5 !important;
+      margin: 0 0 {{ section.settings.tab_desc_margin_b | default: 24 }}px !important;
+      text-align: center !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .three-col-tab-cta {
+      background: {{ section.settings.tab_cta_bg | default: 'transparent' }} !important;
+      color: {{ section.settings.tab_cta_color | default: '#000000' }} !important;
+      border: 2px solid {{ section.settings.tab_cta_border | default: '#4FFFFF' }} !important;
+      border-radius: {{ section.settings.tab_cta_radius | default: 24 }}px !important;
+      padding: {{ section.settings.tab_cta_pad_v | default: 12 }}px {{ section.settings.tab_cta_pad_h | default: 32 }}px !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-size: {{ section.settings.tab_cta_font_size | default: 14 }}px !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+      transition: all 0.3s ease !important;
+      align-self: center !important;
+    }
+
+    .three-col-tab-cta:hover {
+      background: {{ section.settings.tab_cta_hover_bg | default: '#4FFFFF' }} !important;
+      color: {{ section.settings.tab_cta_hover_color | default: '#000000' }} !important;
+      border-color: {{ section.settings.tab_cta_hover_border | default: '#4FFFFF' }} !important;
+    }
+
+    /* ── Right: product image — same padded structure as video column ── */
+    .three-col-tab-image {
+      padding: {{ section.settings.tab_image_padding_v | default: 20 }}px {{ section.settings.tab_image_padding_h | default: 20 }}px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: stretch !important;
+      overflow: hidden !important;
+    }
+
+    /* inner container fills padded space exactly, same as video wrapper */
+    .three-col-tab-image-inner {
+      flex: 1 !important;
+      min-height: 0 !important;
+      min-width: 0 !important;
+      position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* image fills the inner container height — overrides critical.css height:auto */
+    .three-col-tab-image-inner img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      display: block !important;
+      transform: scale({{ section.settings.tab_image_scale | default: 1.6 }}) !important;
+      transform-origin: center center !important;
     }
   }
+  /* ─── END TABLET ─── */
 
+  /* ─── MOBILE: max-width 768px ─── */
   @media (max-width: 768px) {
     .three-column-container {
       gap: 0;
@@ -331,9 +482,185 @@
       font-size: {{ section.settings.step_number_size | minus: 30 }}px;
     }
   }
+
+  /* =============================================
+     MOBILE ONLY — max-width: 768px
+     Desktop layout above is NOT touched.
+     New classes use prefix: three-col-mob-
+     ============================================= */
+
+  /* Hide mobile wrapper on desktop/tablet */
+  .three-col-mob-wrapper {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+
+    /* Hide the entire desktop 3-column container */
+    .three-column-media-section .three-column-container {
+      display: none !important;
+    }
+
+    /* Allow the section itself to size to content */
+    .three-column-media-section {
+      height: auto !important;
+      min-height: auto !important;
+      align-items: flex-start !important;
+      padding: {{ section.settings.mob_section_padding_v | default: 40 }}px 0 !important;
+      overflow: visible !important;
+    }
+
+    /* Mobile wrapper — single visible column, full-width */
+    .three-col-mob-wrapper {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      width: 100% !important;
+      padding: {{ section.settings.mob_section_padding_v | default: 40 }}px {{ section.settings.mob_side_padding | default: 16 }}px !important;
+      box-sizing: border-box !important;
+      gap: 0 !important;
+      background: {{ section.settings.section_background }} !important;
+    }
+
+    /* ── Top unit: video + circle overlay ── */
+    .three-col-mob-top-unit {
+      width: 100% !important;
+      position: relative !important;
+      /* extra bottom padding = half circle height so circle hangs below */
+      padding-bottom: {{ section.settings.mob_circle_size | default: 80 | divided_by: 2 }}px !important;
+    }
+
+    /* ── 1. Video block ── */
+    .three-col-mob-video-block {
+      width: 100% !important;
+      border-radius: {{ section.settings.mob_video_border_radius | default: 16 }}px !important;
+      overflow: hidden !important;
+      position: relative !important;
+      aspect-ratio: {{ section.settings.mob_video_aspect_ratio | default: '4/3' }} !important;
+      background: #000 !important;
+    }
+
+    .three-col-mob-video {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+
+    /* ── 2. Step circle — centered, half over video bottom, half over text ── */
+    .three-col-mob-step-wrap {
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      z-index: 10 !important;
+      display: flex !important;
+      justify-content: center !important;
+    }
+
+    .three-col-mob-step-circle {
+      width: {{ section.settings.mob_circle_size | default: 80 }}px !important;
+      height: {{ section.settings.mob_circle_size | default: 80 }}px !important;
+      border-radius: 50% !important;
+      background: {{ section.settings.mob_circle_bg | default: '#ffffff' }} !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0 !important;
+    }
+
+    .three-col-mob-step-label {
+      font-size: {{ section.settings.mob_step_label_size | default: 13 }}px !important;
+      font-weight: 700 !important;
+      color: {{ section.settings.mob_step_label_color | default: '#333333' }} !important;
+      line-height: 1.1 !important;
+      font-family: 'Montserrat', sans-serif !important;
+      text-transform: lowercase !important;
+    }
+
+    .three-col-mob-step-num {
+      font-size: {{ section.settings.mob_step_num_size | default: 36 }}px !important;
+      font-weight: 900 !important;
+      color: {{ section.settings.mob_step_num_color | default: '#4FFFFF' }} !important;
+      line-height: 1 !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    /* ── 3. Text block ── */
+    .three-col-mob-text-block {
+      width: 100% !important;
+      padding-top: {{ section.settings.mob_text_gap | default: 16 }}px !important;
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: {{ section.settings.mob_text_gap | default: 10 }}px !important;
+    }
+
+    .three-col-mob-heading {
+      font-size: {{ section.settings.mob_heading_size | default: 22 }}px !important;
+      font-weight: 700 !important;
+      color: {{ section.settings.mob_heading_color | default: '#000000' }} !important;
+      margin: 0 !important;
+      line-height: 1.25 !important;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .three-col-mob-desc {
+      font-size: {{ section.settings.mob_desc_size | default: 14 }}px !important;
+      color: {{ section.settings.mob_desc_color | default: '#666666' }} !important;
+      margin: 0 !important;
+      line-height: 1.5 !important;
+      font-family: 'Montserrat', sans-serif !important;
+      max-width: 320px !important;
+      text-align: center !important;
+    }
+
+    .three-col-mob-cta {
+      background: {{ section.settings.mob_cta_bg | default: 'transparent' }} !important;
+      color: {{ section.settings.mob_cta_color | default: '#000000' }} !important;
+      border: 2px solid {{ section.settings.mob_cta_border | default: '#4FFFFF' }} !important;
+      border-radius: {{ section.settings.mob_cta_radius | default: 24 }}px !important;
+      padding: {{ section.settings.mob_cta_pad_v | default: 9 }}px {{ section.settings.mob_cta_pad_h | default: 28 }}px !important;
+      font-size: {{ section.settings.mob_cta_font_size | default: 13 }}px !important;
+      font-weight: 600 !important;
+      font-family: 'Montserrat', sans-serif !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+      transition: all 0.3s ease !important;
+      cursor: pointer !important;
+    }
+
+    .three-col-mob-cta:hover {
+      background: {{ section.settings.mob_cta_hover_bg | default: '#4FFFFF' }} !important;
+      color: {{ section.settings.mob_cta_hover_color | default: '#000000' }} !important;
+    }
+
+    /* ── 4. Product image block ── */
+    .three-col-mob-image-block {
+      width: 100% !important;
+      margin-top: {{ section.settings.mob_image_margin_top | default: 20 }}px !important;
+      border-radius: {{ section.settings.mob_image_border_radius | default: 16 }}px !important;
+      overflow: hidden !important;
+      background: {{ section.settings.mob_image_bg | default: '#f5f5f5' }} !important;
+      aspect-ratio: {{ section.settings.mob_video_aspect_ratio | default: '4/3' }} !important;
+    }
+
+    .three-col-mob-product-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: {{ section.settings.mob_image_fit | default: 'contain' }} !important;
+      object-position: center !important;
+      display: block !important;
+    }
+
+  }
+  /* ── END MOBILE ONLY ─────────────────────────── */
 </style>
 
-<section class="three-column-media-section">
+<section class="three-column-media-section full-width">
   <div class="three-column-container">
     <!-- Left Column - Video (30%) -->
     <div class="three-col-video-column">
@@ -410,6 +737,124 @@
         </div>
       {% endif %}
     </div>
+  </div>
+
+  {% comment %}── TABLET LAYOUT (769px–1024px) — own wrapper, desktop grid hidden at this breakpoint ──{% endcomment %}
+  <div class="three-col-tab-wrapper">
+
+    {% comment %} Left: video with padding and fully rounded corners {% endcomment %}
+    <div class="three-col-tab-video">
+      <div class="three-col-tab-video-wrapper">
+        {% if section.settings.video_url != blank %}
+          <video autoplay muted loop playsinline preload="metadata"
+                 {% if section.settings.video_poster %}poster="{{ section.settings.video_poster | image_url: width: 800 }}"{% endif %}>
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+          </video>
+        {% elsif section.settings.video_poster %}
+          <img src="{{ section.settings.video_poster | image_url: width: 800 }}"
+               alt="Video preview" width="800" height="1000">
+        {% else %}
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#f5f7fa,#c3cfe2);display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;font-family:'Montserrat',sans-serif;">Add video URL</div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% comment %} Center: step + heading + description + CTA {% endcomment %}
+    <div class="three-col-tab-text">
+      {% if section.settings.step_text != blank or section.settings.step_number != blank %}
+        <div class="three-col-tab-step">
+          {% if section.settings.step_text != blank %}
+            <span class="three-col-tab-step-label">{{ section.settings.step_text }}</span>
+          {% endif %}
+          {% if section.settings.step_number != blank %}
+            <span class="three-col-tab-step-num">{{ section.settings.step_number }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if section.settings.main_heading != blank %}
+        <h2 class="three-col-tab-heading">{{ section.settings.main_heading }}</h2>
+      {% endif %}
+      {% if section.settings.main_description != blank %}
+        <p class="three-col-tab-desc">{{ section.settings.main_description }}</p>
+      {% endif %}
+      {% if section.settings.cta_text != blank %}
+        <a href="{{ section.settings.cta_link }}" class="three-col-tab-cta">{{ section.settings.cta_text }}</a>
+      {% endif %}
+    </div>
+
+    {% comment %} Right: product image, object-fit contain {% endcomment %}
+    <div class="three-col-tab-image">
+      {% if section.settings.product_image != blank %}
+        <div class="three-col-tab-image-inner">
+          <img src="{{ section.settings.product_image | image_url: width: 600 }}"
+               alt="{{ section.settings.main_heading | default: 'Product' }}"
+               width="600" height="600">
+        </div>
+      {% else %}
+        <div class="three-col-tab-image-inner" style="width:100%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;font-family:'Montserrat',sans-serif;">Add product image</div>
+      {% endif %}
+    </div>
+
+  </div>
+
+  {% comment %}── MOBILE LAYOUT (≤768px) — Desktop grid above is NOT modified ──{% endcomment %}
+  <div class="three-col-mob-wrapper" id="three-col-mob-{{ section.id }}">
+
+    {% comment %} 1. Video + step circle as one unit {% endcomment %}
+    <div class="three-col-mob-top-unit">
+      <div class="three-col-mob-video-block">
+        {% if section.settings.video_url != blank %}
+          <video class="three-col-mob-video"
+                 autoplay muted loop playsinline
+                 preload="metadata"
+                 {% if section.settings.video_poster %}poster="{{ section.settings.video_poster | image_url: width: 600 }}"{% endif %}>
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+          </video>
+        {% elsif section.settings.video_poster %}
+          <img src="{{ section.settings.video_poster | image_url: width: 600 }}"
+               alt="Video preview" width="600" height="450"
+               style="width:100%;height:100%;object-fit:cover;display:block;">
+        {% else %}
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#f5f7fa,#c3cfe2);display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;font-family:'Montserrat',sans-serif;">Add video URL</div>
+        {% endif %}
+      </div>
+
+      {% comment %} Step circle — absolutely positioned at bottom-center of top-unit {% endcomment %}
+      <div class="three-col-mob-step-wrap">
+        <div class="three-col-mob-step-circle">
+          {% if section.settings.step_text != blank %}
+            <span class="three-col-mob-step-label">{{ section.settings.step_text }}</span>
+          {% endif %}
+          {% if section.settings.step_number != blank %}
+            <span class="three-col-mob-step-num">{{ section.settings.step_number }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% comment %} 3. Text + CTA {% endcomment %}
+    <div class="three-col-mob-text-block">
+      {% if section.settings.main_heading != blank %}
+        <h2 class="three-col-mob-heading">{{ section.settings.main_heading }}</h2>
+      {% endif %}
+      {% if section.settings.main_description != blank %}
+        <p class="three-col-mob-desc">{{ section.settings.main_description }}</p>
+      {% endif %}
+      {% if section.settings.cta_text != blank %}
+        <a href="{{ section.settings.cta_link }}" class="three-col-mob-cta">{{ section.settings.cta_text }}</a>
+      {% endif %}
+    </div>
+
+    {% comment %} 4. Product image {% endcomment %}
+    {% if section.settings.product_image != blank %}
+      <div class="three-col-mob-image-block">
+        <img src="{{ section.settings.product_image | image_url: width: 600 }}"
+             alt="{{ section.settings.main_heading | default: 'Product' }}"
+             class="three-col-mob-product-img"
+             width="600" height="600">
+      </div>
+    {% endif %}
+
   </div>
 </section>
 
@@ -761,6 +1206,431 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Image Height",
       "default": 100,
       "info": "Control the height of the product image (30% - 150%)"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings (769px–1024px)"
+    },
+    {
+      "type": "range",
+      "id": "tab_section_padding_v",
+      "label": "Tablet Section Vertical Padding",
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
+    },
+    {
+      "type": "select",
+      "id": "tab_grid_columns",
+      "label": "Tablet Column Widths",
+      "options": [
+        { "value": "45% 30% 25%",  "label": "45:30:25" },
+        { "value": "50% 25% 25%",  "label": "50:25:25 (wide video)" },
+        { "value": "40% 30% 30%",  "label": "40:30:30" },
+        { "value": "30% 40% 30%",  "label": "30:40:30 (wide text)" },
+        { "value": "1fr 1fr 1fr",  "label": "Equal thirds (1:1:1)" }
+      ],
+      "default": "45% 30% 25%"
+    },
+    {
+      "type": "header",
+      "content": "Tablet — Video"
+    },
+    {
+      "type": "range",
+      "id": "tab_video_border_radius",
+      "label": "Tablet Video Border Radius",
+      "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_video_padding",
+      "label": "Tablet Video Padding (all sides)",
+      "min": 0, "max": 40, "step": 4, "unit": "px", "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tab_video_min_height",
+      "label": "Tablet Section Height (Video & Image)",
+      "min": 300, "max": 900, "step": 20, "unit": "px", "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Tablet — Text Block"
+    },
+    {
+      "type": "range",
+      "id": "tab_text_padding_v",
+      "label": "Tablet Text Vertical Padding",
+      "min": 16, "max": 80, "step": 4, "unit": "px", "default": 48
+    },
+    {
+      "type": "range",
+      "id": "tab_text_padding_h",
+      "label": "Tablet Text Horizontal Padding",
+      "min": 8, "max": 60, "step": 4, "unit": "px", "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_step_label_size",
+      "label": "Tablet Step Label Font Size",
+      "min": 12, "max": 28, "step": 1, "unit": "px", "default": 20
+    },
+    {
+      "type": "color",
+      "id": "tab_step_label_color",
+      "label": "Tablet Step Label Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "tab_step_num_size",
+      "label": "Tablet Step Number Font Size",
+      "min": 40, "max": 140, "step": 4, "unit": "px", "default": 80
+    },
+    {
+      "type": "color",
+      "id": "tab_step_num_color",
+      "label": "Tablet Step Number Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "range",
+      "id": "tab_step_margin_b",
+      "label": "Tablet Step Bottom Margin",
+      "min": 4, "max": 32, "step": 2, "unit": "px", "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "label": "Tablet Heading Font Size",
+      "min": 18, "max": 48, "step": 2, "unit": "px", "default": 28
+    },
+    {
+      "type": "color",
+      "id": "tab_heading_color",
+      "label": "Tablet Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_margin_b",
+      "label": "Tablet Heading Bottom Margin",
+      "min": 4, "max": 32, "step": 2, "unit": "px", "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_desc_size",
+      "label": "Tablet Description Font Size",
+      "min": 12, "max": 20, "step": 1, "unit": "px", "default": 15
+    },
+    {
+      "type": "color",
+      "id": "tab_desc_color",
+      "label": "Tablet Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "tab_desc_margin_b",
+      "label": "Tablet Description Bottom Margin",
+      "min": 8, "max": 40, "step": 2, "unit": "px", "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Tablet — CTA Button"
+    },
+    {
+      "type": "range",
+      "id": "tab_cta_font_size",
+      "label": "Tablet CTA Font Size",
+      "min": 11, "max": 18, "step": 1, "unit": "px", "default": 14
+    },
+    {
+      "type": "color",
+      "id": "tab_cta_bg",
+      "label": "Tablet CTA Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_cta_color",
+      "label": "Tablet CTA Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_cta_border",
+      "label": "Tablet CTA Border Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "range",
+      "id": "tab_cta_radius",
+      "label": "Tablet CTA Border Radius",
+      "min": 0, "max": 50, "step": 2, "unit": "px", "default": 24
+    },
+    {
+      "type": "range",
+      "id": "tab_cta_pad_v",
+      "label": "Tablet CTA Vertical Padding",
+      "min": 6, "max": 20, "step": 1, "unit": "px", "default": 12
+    },
+    {
+      "type": "range",
+      "id": "tab_cta_pad_h",
+      "label": "Tablet CTA Horizontal Padding",
+      "min": 12, "max": 60, "step": 2, "unit": "px", "default": 32
+    },
+    {
+      "type": "color",
+      "id": "tab_cta_hover_bg",
+      "label": "Tablet CTA Hover Background",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "tab_cta_hover_color",
+      "label": "Tablet CTA Hover Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_cta_hover_border",
+      "label": "Tablet CTA Hover Border Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Tablet — Product Image"
+    },
+    {
+      "type": "range",
+      "id": "tab_image_scale",
+      "label": "Tablet Product Image Scale",
+      "min": 1.0,
+      "max": 3.0,
+      "step": 0.1,
+      "default": 1.7,
+      "info": "Scale up the product image to fill white space around it"
+    },
+    {
+      "type": "range",
+      "id": "tab_image_padding_v",
+      "label": "Tablet Image Vertical Padding",
+      "min": 0, "max": 60, "step": 4, "unit": "px", "default": 24
+    },
+    {
+      "type": "range",
+      "id": "tab_image_padding_h",
+      "label": "Tablet Image Horizontal Padding",
+      "min": 0, "max": 40, "step": 4, "unit": "px", "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings (≤768px)"
+    },
+    {
+      "type": "range",
+      "id": "mob_section_padding_v",
+      "label": "Mobile Section Vertical Padding",
+      "min": 0, "max": 60, "step": 4, "unit": "px", "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mob_side_padding",
+      "label": "Mobile Side Padding",
+      "min": 0, "max": 40, "step": 4, "unit": "px", "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Mobile — Video"
+    },
+    {
+      "type": "range",
+      "id": "mob_video_border_radius",
+      "label": "Mobile Video Border Radius",
+      "min": 0, "max": 30, "step": 2, "unit": "px", "default": 16
+    },
+    {
+      "type": "select",
+      "id": "mob_video_aspect_ratio",
+      "label": "Mobile Video Aspect Ratio",
+      "options": [
+        { "value": "4/3",  "label": "4:3" },
+        { "value": "16/9", "label": "16:9" },
+        { "value": "1/1",  "label": "1:1 (Square)" },
+        { "value": "3/4",  "label": "3:4 (Portrait)" }
+      ],
+      "default": "4/3"
+    },
+    {
+      "type": "header",
+      "content": "Mobile — Step Circle"
+    },
+    {
+      "type": "range",
+      "id": "mob_circle_size",
+      "label": "Step Circle Size",
+      "min": 60, "max": 200, "step": 10, "unit": "px", "default": 140
+    },
+    {
+      "type": "color",
+      "id": "mob_circle_bg",
+      "label": "Step Circle Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "mob_step_label_size",
+      "label": "Step Label Font Size (e.g. 'step')",
+      "min": 10, "max": 28, "step": 1, "unit": "px", "default": 20
+    },
+    {
+      "type": "color",
+      "id": "mob_step_label_color",
+      "label": "Step Label Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "mob_step_num_size",
+      "label": "Step Number Font Size",
+      "min": 24, "max": 80, "step": 2, "unit": "px", "default": 60
+    },
+    {
+      "type": "color",
+      "id": "mob_step_num_color",
+      "label": "Step Number Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Mobile — Text Block"
+    },
+    {
+      "type": "range",
+      "id": "mob_text_gap",
+      "label": "Gap Between Text Elements",
+      "min": 4, "max": 24, "step": 2, "unit": "px", "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mob_heading_size",
+      "label": "Mobile Heading Font Size",
+      "min": 16, "max": 36, "step": 2, "unit": "px", "default": 22
+    },
+    {
+      "type": "color",
+      "id": "mob_heading_color",
+      "label": "Mobile Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "mob_desc_size",
+      "label": "Mobile Description Font Size",
+      "min": 12, "max": 18, "step": 1, "unit": "px", "default": 14
+    },
+    {
+      "type": "color",
+      "id": "mob_desc_color",
+      "label": "Mobile Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Mobile — CTA Button"
+    },
+    {
+      "type": "range",
+      "id": "mob_cta_font_size",
+      "label": "Mobile CTA Font Size",
+      "min": 11, "max": 18, "step": 1, "unit": "px", "default": 13
+    },
+    {
+      "type": "color",
+      "id": "mob_cta_bg",
+      "label": "Mobile CTA Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "mob_cta_color",
+      "label": "Mobile CTA Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "mob_cta_border",
+      "label": "Mobile CTA Border Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "range",
+      "id": "mob_cta_radius",
+      "label": "Mobile CTA Border Radius",
+      "min": 0, "max": 50, "step": 2, "unit": "px", "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mob_cta_pad_v",
+      "label": "Mobile CTA Vertical Padding",
+      "min": 6, "max": 20, "step": 1, "unit": "px", "default": 9
+    },
+    {
+      "type": "range",
+      "id": "mob_cta_pad_h",
+      "label": "Mobile CTA Horizontal Padding",
+      "min": 12, "max": 60, "step": 2, "unit": "px", "default": 28
+    },
+    {
+      "type": "color",
+      "id": "mob_cta_hover_bg",
+      "label": "Mobile CTA Hover Background",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "mob_cta_hover_color",
+      "label": "Mobile CTA Hover Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Mobile — Product Image"
+    },
+    {
+      "type": "range",
+      "id": "mob_image_margin_top",
+      "label": "Mobile Image Margin Top",
+      "min": 0, "max": 40, "step": 4, "unit": "px", "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mob_image_border_radius",
+      "label": "Mobile Image Border Radius",
+      "min": 0, "max": 30, "step": 2, "unit": "px", "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mob_image_height",
+      "label": "Mobile Product Image Height",
+      "min": 160, "max": 480, "step": 20, "unit": "px", "default": 280
+    },
+    {
+      "type": "select",
+      "id": "mob_image_fit",
+      "label": "Mobile Product Image Fit",
+      "options": [
+        { "value": "contain", "label": "Contain (show full image)" },
+        { "value": "cover",   "label": "Cover (fill area)" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "color",
+      "id": "mob_image_bg",
+      "label": "Mobile Product Image Background",
+      "default": "#ffffff"
     }
   ],
   "presets": [

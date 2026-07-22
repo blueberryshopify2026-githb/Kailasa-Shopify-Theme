@@ -38,7 +38,7 @@
     opacity: 1;
   }
 
-  .background-media.image {
+  .background-media.dls-media-image {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -96,13 +96,14 @@
     width: {{ calculated_width }}px;
     max-width: {{ calculated_width }}px;
     min-width: {{ calculated_width }}px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: none;
   }
 
   .description-content {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    justify-content: center;
   }
 
   .description-title {
@@ -111,7 +112,7 @@
     color: {{ section.settings.description_title_color | default: '#1a1a1a' }};
     margin: 0;
     line-height: 1.3;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease;
   }
 
   .description-text {
@@ -121,7 +122,7 @@
     margin: 0;
     line-height: 1.5;
     opacity: 0.9;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease;
   }
 
   /* Glassmorphism Navigation Container */
@@ -462,12 +463,265 @@
       right: 20px;
     }
   }
+
+  /* Hide mobile chapter label on desktop */
+  .dls-mobile-chapter-label {
+    display: none;
+  }
+
+  /* Mobile-specific backgrounds: hidden on desktop */
+  .dls-mobile-bg {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    /* Show mobile backgrounds, hide desktop ones when mobile version exists */
+    .dls-mobile-bg {
+      display: block;
+    }
+  }
+
+  /* =============================================
+     TABLET ONLY - 769px to 1024px
+     Desktop code above is NOT touched
+     Mobile code below is NOT touched
+     ============================================= */
+  @media (min-width: 769px) and (max-width: 1024px) {
+
+    .dot-line-section {
+      height: 100vh;
+      min-height: 700px;
+    }
+
+    /* Navigation anchored bottom-left, larger */
+    .dot-navigation {
+      bottom: {{ section.settings.tablet_nav_bottom | default: 50 }}px !important;
+      left: {{ section.settings.tablet_nav_left | default: 50 }}px !important;
+      gap: 20px !important;
+      align-items: flex-start !important;
+      transform: none !important;
+      width: auto !important;
+      max-width: 65vw !important;
+    }
+
+    /* Description glass box: larger text, left-aligned */
+    .description-container {
+      width: 60vw !important;
+      max-width: 600px !important;
+      min-width: 400px !important;
+      padding: 32px 40px !important;
+      border-radius: 24px !important;
+      text-align: left !important;
+      box-sizing: border-box !important;
+    }
+
+    .description-content {
+      align-items: flex-start !important;
+      gap: 16px !important;
+    }
+
+    .description-title {
+      font-size: {{ section.settings.tablet_title_font_size | default: 30 }}px !important;
+      font-weight: {{ section.settings.tablet_title_font_weight | default: '700' }} !important;
+      color: {{ section.settings.tablet_title_color | default: '#1a1a1a' }} !important;
+      font-style: {{ section.settings.tablet_title_font_style | default: 'normal' }} !important;
+      text-align: left !important;
+      line-height: 1.3 !important;
+    }
+
+    .description-text {
+      font-size: {{ section.settings.tablet_desc_font_size | default: 18 }}px !important;
+      font-weight: {{ section.settings.tablet_desc_font_weight | default: '400' }} !important;
+      color: {{ section.settings.tablet_desc_color | default: '#4a4a4a' }} !important;
+      font-style: {{ section.settings.tablet_desc_font_style | default: 'normal' }} !important;
+      text-align: left !important;
+      line-height: 1.6 !important;
+    }
+
+    /* Nav container: matches description width exactly so dots never overflow */
+    .nav-container {
+      width: 60vw !important;
+      max-width: 600px !important;
+      min-width: 400px !important;
+      padding: 14px 24px !important;
+      box-sizing: border-box !important;
+      justify-content: space-between !important;
+      overflow: hidden !important;
+    }
+
+    /* Dots: larger on tablet, spread evenly */
+    .nav-dot {
+      width: 28px !important;
+      height: 28px !important;
+      min-width: 28px !important;
+      max-width: 28px !important;
+      margin: 0 !important;
+      flex-shrink: 0 !important;
+      transition: none !important;
+    }
+
+    /* Active dot: fixed width, no expansion animation */
+    .nav-dot.active,
+    .nav-dot.active:hover {
+      width: 160px !important;
+      min-width: 160px !important;
+      max-width: 160px !important;
+      height: 36px !important;
+      padding: 0 16px !important;
+      margin: 0 !important;
+      border-radius: 18px !important;
+      transition: none !important;
+      transform: none !important;
+    }
+
+    .nav-dot.active .dot-content {
+      opacity: 1 !important;
+    }
+
+    .dot-content {
+      font-size: {{ section.settings.tablet_dot_font_size | default: 14 }}px !important;
+      color: {{ section.settings.tablet_dot_color | default: '#1a1a1a' }} !important;
+    }
+
+    .connecting-line {
+      left: 24px !important;
+      right: 24px !important;
+    }
+
+  }
+
+  /* =============================================
+     MOBILE ONLY - max-width: 768px
+     Desktop code above is NOT touched
+     ============================================= */
+  @media (max-width: 768px) {
+
+    /* Section height */
+    .dot-line-section {
+      height: {{ section.settings.mobile_section_height | default: 100 }}vh !important;
+      min-height: 500px !important;
+    }
+
+    /* Stack dot-navigation centered at bottom */
+    .dot-navigation {
+      bottom: {{ section.settings.mobile_nav_bottom | default: 24 }}px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      align-items: center !important;
+      width: calc(100vw - 32px) !important;
+      max-width: 420px !important;
+      gap: 12px !important;
+    }
+
+    /* Description glass box: full width, centered text */
+    .description-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: unset !important;
+      padding: {{ section.settings.mobile_glass_padding | default: 20 }}px !important;
+      border-radius: 20px !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+
+    .description-content {
+      align-items: center !important;
+      gap: 10px !important;
+      width: 100% !important;
+    }
+
+    .description-title {
+      font-size: {{ section.settings.mobile_title_font_size | default: 20 }}px !important;
+      font-weight: 700 !important;
+      text-align: center !important;
+      transition: opacity 0.35s ease !important;
+    }
+
+    .description-text {
+      font-size: {{ section.settings.mobile_desc_font_size | default: 14 }}px !important;
+      text-align: center !important;
+      transition: opacity 0.35s ease !important;
+    }
+
+    /* Nav container: full width, dots spread edge to edge */
+    .nav-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: unset !important;
+      padding: 14px 20px !important;
+      box-sizing: border-box !important;
+      justify-content: space-between !important;
+    }
+
+    /* All dots: same circle size, no transitions on mobile */
+    .nav-dot,
+    .nav-dot:hover {
+      margin: 0 !important;
+      width: 18px !important;
+      height: 18px !important;
+      min-width: 18px !important;
+      max-width: 18px !important;
+      flex-shrink: 0 !important;
+      transition: none !important;
+      transform: none !important;
+    }
+
+    /* Active dot: filled cyan circle */
+    .nav-dot.active,
+    .nav-dot.active:hover {
+      width: 20px !important;
+      min-width: 20px !important;
+      max-width: 20px !important;
+      height: 20px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border-radius: 50% !important;
+      background: {{ section.settings.dot_color | default: '#4FFFFF' }} !important;
+      border: 2px solid rgba(255, 255, 255, 0.9) !important;
+      box-shadow: 0 0 8px {{ section.settings.dot_color | default: '#4FFFFF' }}80, 0 0 0 3px rgba(255, 255, 255, 0.3) !important;
+      transform: none !important;
+      transition: none !important;
+      flex-shrink: 0 !important;
+    }
+
+    .dot-content {
+      font-size: 11px !important;
+    }
+
+    /* Hide text inside active dot */
+    .nav-dot.active .dot-content {
+      display: none !important;
+    }
+
+    /* Chapter pill — separate element below the nav glass */
+    .dls-mobile-chapter-label {
+      display: flex !important;
+      justify-content: center !important;
+      width: 100% !important;
+    }
+
+    .dls-mobile-chapter-pill {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 1px solid rgba(255, 255, 255, 0.7) !important;
+      border-radius: 50px !important;
+      padding: 11px 40px !important;
+      font-size: {{ section.settings.mobile_chapter_font_size | default: 14 }}px !important;
+      font-weight: 600 !important;
+      color: #1a1a1a !important;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      white-space: nowrap !important;
+      letter-spacing: 0.01em !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+    }
+
+  }
 </style>
 
 <div class="dot-line-section full-width">
   <!-- Background Media Container -->
   <div class="background-media-container">
     {% for block in section.blocks %}
+      {% comment %} Desktop/tablet background {% endcomment %}
       {% if block.settings.media_type == 'image' %}
         {% assign image_src = '' %}
         {% if block.settings.background_image %}
@@ -477,13 +731,13 @@
         {% endif %}
         
         {% if image_src != blank %}
-          <div class="background-media image {% if forloop.first %}active{% endif %}" 
+          <div class="background-media dls-media-image {% if forloop.first %}active{% endif %}" 
                data-block-id="{{ block.id }}"
                style="background-image: url('{{ image_src }}');">
           </div>
         {% else %}
           <!-- Fallback for blocks without media -->
-          <div class="background-media image {% if forloop.first %}active{% endif %}" 
+          <div class="background-media dls-media-image {% if forloop.first %}active{% endif %}" 
                data-block-id="{{ block.id }}"
                style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
           </div>
@@ -537,11 +791,54 @@
         {% endif %}
       {% else %}
         <!-- Fallback for blocks without media -->
-        <div class="background-media image {% if forloop.first %}active{% endif %}" 
+        <div class="background-media dls-media-image {% if forloop.first %}active{% endif %}" 
              data-block-id="{{ block.id }}"
              style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
         </div>
       {% endif %}
+
+      {% comment %} Mobile-specific background (shown only on mobile if set) {% endcomment %}
+      {% assign has_mobile_media = false %}
+      {% if block.settings.mobile_background_image or block.settings.mobile_video_url != blank %}
+        {% assign has_mobile_media = true %}
+      {% endif %}
+      {% if has_mobile_media %}
+        {% if block.settings.mobile_media_type == 'video' and block.settings.mobile_video_url != blank %}
+          {% assign m_url = block.settings.mobile_video_url %}
+          {% if m_url contains 'youtube.com' or m_url contains 'youtu.be' %}
+            {% if m_url contains 'youtu.be/' %}
+              {% assign m_vid_id = m_url | split: 'youtu.be/' | last | split: '?' | first %}
+            {% else %}
+              {% assign m_vid_id = m_url | split: 'watch?v=' | last | split: '&' | first %}
+            {% endif %}
+            <div class="background-media video-embed dls-mobile-bg {% if forloop.first %}active{% endif %}"
+                 data-block-id="{{ block.id }}" data-mobile="true">
+              <iframe src="https://www.youtube.com/embed/{{ m_vid_id }}?autoplay=1&mute=1&loop=1&playlist={{ m_vid_id }}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          {% elsif m_url contains 'vimeo.com' %}
+            {% assign m_vid_id = m_url | split: 'vimeo.com/' | last | split: '?' | first %}
+            <div class="background-media video-embed dls-mobile-bg {% if forloop.first %}active{% endif %}"
+                 data-block-id="{{ block.id }}" data-mobile="true">
+              <iframe src="https://player.vimeo.com/video/{{ m_vid_id }}?autoplay=1&muted=1&loop=1&background=1&controls=0"
+                      frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+          {% else %}
+            <video class="background-media dls-media-video dls-mobile-bg {% if forloop.first %}active{% endif %}"
+                   data-block-id="{{ block.id }}" data-mobile="true"
+                   autoplay muted loop playsinline preload="auto"
+                   {% if block.settings.mobile_video_poster %}poster="{{ block.settings.mobile_video_poster | image_url: width: 800, height: 1200 }}"{% endif %}>
+              <source src="{{ m_url }}" type="video/mp4">
+            </video>
+          {% endif %}
+        {% elsif block.settings.mobile_background_image %}
+          <div class="background-media dls-media-image dls-mobile-bg {% if forloop.first %}active{% endif %}"
+               data-block-id="{{ block.id }}" data-mobile="true"
+               style="background-image: url('{{ block.settings.mobile_background_image | image_url: width: 800, height: 1200 }}');">
+          </div>
+        {% endif %}
+      {% endif %}
+
     {% endfor %}
   </div>
 
@@ -589,6 +886,15 @@
           </div>
         {% endfor %}
       </div>
+
+      <!-- Mobile Chapter Label (hidden on desktop via CSS) -->
+      <div class="dls-mobile-chapter-label" id="dls-mobile-chapter-label">
+        <span class="dls-mobile-chapter-pill" id="dls-mobile-chapter-pill">
+          {{ section.blocks.first.settings.dot_label }}
+        </span>
+      </div>
+
+
     </div>
   {% endif %}
 
@@ -606,14 +912,27 @@
     const dots = section.querySelectorAll('.nav-dot');
     const backgroundMedia = section.querySelectorAll('.background-media');
     const loadingOverlay = section.querySelector('.loading-overlay');
-    
+
     let currentActiveIndex = 0;
     let isTransitioning = false;
+    
+    // ── Mobile dot style helper ───────────────────────────────────
+    function isMobileDot() { return window.innerWidth <= 768; }
+    function isTabletDot() { return window.innerWidth >= 769 && window.innerWidth <= 1024; }
+
+    function resetDotStylesForMobile() {
+      if (!isMobileDot() && !isTabletDot()) return;
+      dots.forEach(dot => {
+        dot.removeAttribute('style');
+        dot.style.transition = 'none';
+      });
+    }
+    // ── End helper ────────────────────────────────────────────────
 
     // Preload images for smooth transitions
     function preloadImages() {
       backgroundMedia.forEach(media => {
-        if (media.classList.contains('image')) {
+        if (media.classList.contains('dls-media-image')) {
           const img = new Image();
           const bgImage = media.style.backgroundImage;
           const url = bgImage.slice(4, -1).replace(/"/g, "");
@@ -625,102 +944,115 @@
     // Switch active background
     function switchBackground(targetIndex) {
       if (isTransitioning || targetIndex === currentActiveIndex) return;
-      
+
       isTransitioning = true;
       loadingOverlay.classList.add('show');
 
-      // Safety timeout to prevent stuck loading overlay
       const safetyTimeout = setTimeout(() => {
         loadingOverlay.classList.remove('show');
         isTransitioning = false;
-        console.log('Safety timeout: Loading overlay force-hidden');
       }, 2000);
 
-      // Instantly remove active class and reset previous dot
-      if (backgroundMedia[currentActiveIndex]) {
-        backgroundMedia[currentActiveIndex].classList.remove('active');
-      }
+      // Determine which media set to use
+      const isMobileView = window.innerWidth <= 768;
+      const mobileMedia = section.querySelectorAll('.background-media[data-mobile="true"]');
+      const hasMobileMedia = mobileMedia.length > 0;
+
+      // Deactivate ALL background media (both mobile and desktop versions)
+      backgroundMedia.forEach(m => {
+        m.classList.remove('active');
+        if (m.tagName === 'VIDEO') m.pause();
+      });
       dots[currentActiveIndex].classList.remove('active');
       
       // Instantly reset previous dot to simple state
       const prevDot = dots[currentActiveIndex];
-      if (prevDot) {
-        prevDot.style.transition = 'none';
-        prevDot.style.width = '16px';
-        prevDot.style.height = '16px';
-        prevDot.style.minWidth = '16px';
-        prevDot.style.maxWidth = '16px';
-        prevDot.style.padding = '0';
-        prevDot.style.borderRadius = '50%';
-        prevDot.style.margin = '0 8px';
-        // Restore transition for hover effects only
-        setTimeout(() => {
-          prevDot.style.transition = 'transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease';
-        }, 10);
+      if (window.innerWidth > 1024) {
+        if (prevDot) {
+          prevDot.style.transition = 'none';
+          prevDot.style.width = '16px';
+          prevDot.style.height = '16px';
+          prevDot.style.minWidth = '16px';
+          prevDot.style.maxWidth = '16px';
+          prevDot.style.padding = '0';
+          prevDot.style.borderRadius = '50%';
+          prevDot.style.margin = '0 8px';
+          setTimeout(() => {
+            prevDot.style.transition = 'transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease';
+          }, 10);
+        }
+      } else {
+        // Mobile & tablet: CSS takes full control
+        if (prevDot) prevDot.removeAttribute('style');
       }
 
       // Instantly activate new dot
       dots[targetIndex].classList.add('active');
       const activeDot = dots[targetIndex];
-      if (activeDot) {
-        activeDot.style.transition = 'none';
-        activeDot.style.width = '200px';
-        activeDot.style.minWidth = '200px';
-        activeDot.style.maxWidth = '200px';
-        activeDot.style.height = '32px';
-        activeDot.style.padding = '0 16px';
-        activeDot.style.borderRadius = '16px';
-        activeDot.style.margin = '0 16px';
+      if (window.innerWidth > 1024) {
+        if (activeDot) {
+          activeDot.style.transition = 'none';
+          activeDot.style.width = '200px';
+          activeDot.style.minWidth = '200px';
+          activeDot.style.maxWidth = '200px';
+          activeDot.style.height = '32px';
+          activeDot.style.padding = '0 16px';
+          activeDot.style.borderRadius = '16px';
+          activeDot.style.margin = '0 16px';
+        }
+      } else {
+        if (activeDot) activeDot.removeAttribute('style');
       }
 
       // Update description content
       const targetDot = dots[targetIndex];
       const descriptionTitle = section.querySelector('#description-title');
       const descriptionText = section.querySelector('#description-text');
-      
+
       if (descriptionTitle && descriptionText) {
-        const newTitle = targetDot.dataset.title || '';
-        const newDescription = targetDot.dataset.description || '';
-        
-        // Fade out current content
         descriptionTitle.style.opacity = '0';
         descriptionText.style.opacity = '0';
-        
+
         setTimeout(() => {
-          descriptionTitle.textContent = newTitle;
-          descriptionText.textContent = newDescription;
+          descriptionTitle.textContent = targetDot.dataset.title || '';
+          descriptionText.textContent = targetDot.dataset.description || '';
           descriptionTitle.style.opacity = '1';
           descriptionText.style.opacity = '1';
-        }, 200);
+        }, 400);
       }
 
       // Activate background media immediately
-      if (backgroundMedia[targetIndex]) {
-        backgroundMedia[targetIndex].classList.add('active');
-        
-        // Handle video autoplay
-        const targetMedia = backgroundMedia[targetIndex];
+      const targetBlockId = dots[targetIndex].dataset.blockId;
+      const isMobileView2 = window.innerWidth <= 768;
+      const mobileMedia2 = section.querySelectorAll('.background-media[data-mobile="true"]');
+      const hasMobileMedia2 = mobileMedia2.length > 0;
+
+      let targetMedia = null;
+      if (isMobileView2 && hasMobileMedia2) {
+        targetMedia = section.querySelector(`.background-media[data-block-id="${targetBlockId}"][data-mobile="true"]`);
+      }
+      if (!targetMedia) {
+        targetMedia = section.querySelector(`.background-media[data-block-id="${targetBlockId}"]:not([data-mobile="true"])`);
+      }
+
+      if (targetMedia) {
+        targetMedia.classList.add('active');
         if (targetMedia.tagName === 'VIDEO') {
           targetMedia.currentTime = 0;
           targetMedia.play().catch(e => console.log('Video autoplay prevented:', e));
         } else if (targetMedia.classList.contains('video-embed')) {
-          // For embedded videos, they should autoplay via URL parameters
           const iframe = targetMedia.querySelector('iframe');
           if (iframe) {
-            // Refresh iframe src to restart video
             const src = iframe.src;
             iframe.src = '';
-            setTimeout(() => {
-              iframe.src = src;
-            }, 50);
+            setTimeout(() => { iframe.src = src; }, 50);
           }
         }
       }
 
-      // Pause previous video if it was active
-      if (backgroundMedia[currentActiveIndex] && backgroundMedia[currentActiveIndex].tagName === 'VIDEO') {
-        backgroundMedia[currentActiveIndex].pause();
-      }
+      // Pause previous video
+      const prevMedia = section.querySelector(`.background-media[data-block-id="${dots[currentActiveIndex].dataset.blockId}"].active`);
+      if (prevMedia && prevMedia.tagName === 'VIDEO') prevMedia.pause();
 
       currentActiveIndex = targetIndex;
       
@@ -729,6 +1061,7 @@
       setTimeout(() => {
         loadingOverlay.classList.remove('show');
         isTransitioning = false;
+        resetDotStylesForMobile();
       }, 200);
     }
 
@@ -739,15 +1072,15 @@
         switchBackground(index);
       });
 
-      // Add hover effects
+      // Add hover effects (desktop only)
       dot.addEventListener('mouseenter', () => {
-        if (!dot.classList.contains('active')) {
+        if (window.innerWidth > 768 && !dot.classList.contains('active')) {
           dot.style.transform = 'scale(1.2)';
         }
       });
 
       dot.addEventListener('mouseleave', () => {
-        if (!dot.classList.contains('active')) {
+        if (window.innerWidth > 768 && !dot.classList.contains('active')) {
           dot.style.transform = 'scale(1)';
         }
       });
@@ -794,19 +1127,23 @@
 
     // Reset all dots to simple state first
     dots.forEach((dot, index) => {
-      if (!dot.classList.contains('active')) {
-        dot.style.width = '16px';
-        dot.style.height = '16px';
-        dot.style.minWidth = '16px';
-        dot.style.maxWidth = '16px';
-        dot.style.padding = '0';
-        dot.style.borderRadius = '50%';
+      if (window.innerWidth > 1024) {
+        if (!dot.classList.contains('active')) {
+          dot.style.width = '16px';
+          dot.style.height = '16px';
+          dot.style.minWidth = '16px';
+          dot.style.maxWidth = '16px';
+          dot.style.padding = '0';
+          dot.style.borderRadius = '50%';
+        }
+      } else {
+        dot.removeAttribute('style');
       }
     });
 
-    // Force initial active dot sizing
+    // Force initial active dot sizing (desktop only)
     const initialActiveDot = section.querySelector('.nav-dot.active');
-    if (initialActiveDot) {
+    if (initialActiveDot && window.innerWidth > 1024) {
       initialActiveDot.style.transition = 'none';
       initialActiveDot.style.width = '200px';
       initialActiveDot.style.minWidth = '200px';
@@ -816,6 +1153,9 @@
       initialActiveDot.style.borderRadius = '16px';
       initialActiveDot.style.margin = '0 16px';
     }
+
+    // On mobile: clear all inline styles so CSS controls everything
+    resetDotStylesForMobile();
 
     // Ensure first video plays if it's the active media
     const firstMedia = backgroundMedia[0];
@@ -827,6 +1167,18 @@
         console.log('Embedded video initialized');
       }
     }
+
+    // ── MOBILE: update chapter pill text on dot switch ───────────
+    const dlsChapterPill = section.querySelector('#dls-mobile-chapter-pill');
+    if (dlsChapterPill) {
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const content = dot.querySelector('.dot-content');
+          if (content) dlsChapterPill.textContent = content.textContent.trim();
+        });
+      });
+    }
+    // ── END MOBILE CHAPTER PILL ───────────────────────────────────
 
     // Handle visibility change (pause videos when tab is not active)
     document.addEventListener('visibilitychange', () => {
@@ -953,6 +1305,187 @@
       "label": "Auto-Advance Delay",
       "default": 5000,
       "info": "Time between automatic transitions"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_height",
+      "min": 70,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Mobile Section Height",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_nav_bottom",
+      "min": 12,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Nav Distance From Bottom",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_glass_padding",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Glass Box Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "min": 16,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_desc_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_chapter_font_size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Chapter Pill Font Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings"
+    },
+    {
+      "type": "range",
+      "id": "tablet_nav_bottom",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Tablet Nav Distance From Bottom",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "tablet_nav_left",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Tablet Nav Distance From Left",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "tablet_title_font_size",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Title Font Size",
+      "default": 35
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_font_weight",
+      "label": "Tablet Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_font_style",
+      "label": "Tablet Title Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "tablet_title_color",
+      "label": "Tablet Title Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "tablet_desc_font_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Description Font Size",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "tablet_desc_font_weight",
+      "label": "Tablet Description Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "tablet_desc_font_style",
+      "label": "Tablet Description Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "color",
+      "id": "tablet_desc_color",
+      "label": "Tablet Description Color",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "range",
+      "id": "tablet_dot_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Active Dot Label Font Size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "tablet_dot_color",
+      "label": "Tablet Active Dot Label Color",
+      "default": "#1a1a1a"
     }
   ],
   "blocks": [
@@ -1020,6 +1553,39 @@
           "id": "video_poster",
           "label": "Video Poster Image",
           "info": "Thumbnail image shown before video loads (optional)"
+        },
+        {
+          "type": "header",
+          "content": "Mobile Background (optional)"
+        },
+        {
+          "type": "select",
+          "id": "mobile_media_type",
+          "label": "Mobile Media Type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video" }
+          ],
+          "default": "image",
+          "info": "Choose media type for mobile screens"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_background_image",
+          "label": "Mobile Background Image",
+          "info": "Portrait image shown on mobile (overrides desktop image)"
+        },
+        {
+          "type": "text",
+          "id": "mobile_video_url",
+          "label": "Mobile Video URL",
+          "info": "MP4, WebM, YouTube or Vimeo URL for mobile screens"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_video_poster",
+          "label": "Mobile Video Poster",
+          "info": "Thumbnail shown before mobile video loads"
         }
       ]
     }

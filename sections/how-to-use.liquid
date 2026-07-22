@@ -1,7 +1,8 @@
-{% comment %}
+﻿{% comment %}
   How To Use Section - Interactive tabs with video backgrounds and progress steps
   Features: AM/PM/PM Light/Exfoliate tabs, synced video backgrounds, progress bar, product images
 {% endcomment %}
+
 
 <style>
   .how-to-use-section {
@@ -13,6 +14,7 @@
     background: #000000;
   }
 
+
   /* Video Background Container */
   .how-to-use-video-bg {
     position: absolute;
@@ -23,6 +25,7 @@
     z-index: 1;
   }
 
+
   .how-to-use-video {
     position: absolute;
     top: 0;
@@ -30,18 +33,21 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
   }
+
 
   .how-to-use-video.active {
     opacity: 1;
   }
+
 
   .how-to-use-video video {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
 
   /* Content Container */
   .how-to-use-content {
@@ -55,6 +61,7 @@
     padding: 0;
   }
 
+
   /* Frosted Glass Strip - Full width at bottom with curved top edges */
   .how-to-use-strip-wrapper {
     position: relative;
@@ -67,6 +74,7 @@
     box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.1);
   }
 
+
   /* Tab Content */
   .how-to-use-tab-content {
     display: none;
@@ -74,9 +82,11 @@
     overflow: visible;
   }
 
+
   .how-to-use-tab-content.active {
     display: block;
   }
+
 
   /* Product Display - Separate image and name positioning */
   .how-to-use-product {
@@ -87,11 +97,13 @@
     z-index: 20;
   }
 
+
   .how-to-use-product.active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
+
 
   .how-to-use-product-image {
     position: absolute;
@@ -106,10 +118,12 @@
     transition: transform 0.3s ease, filter 0.3s ease;
   }
 
+
   .how-to-use-product-image:hover {
     transform: translateY(-5px);
     filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.3));
   }
+
 
   .how-to-use-product-info {
     position: absolute;
@@ -125,10 +139,12 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
+
   .how-to-use-product-info:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
   }
+
 
   .how-to-use-product-name {
     font-size: 24px;
@@ -138,6 +154,7 @@
     line-height: 1.3;
     margin: 0 0 8px 0;
   }
+
 
   .how-to-use-product-description {
     font-size: 14px;
@@ -149,16 +166,18 @@
     opacity: 0.9;
   }
 
+
   /* Tabs - Positioned between video and strip */
   .how-to-use-tabs {
     position: relative;
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-    margin-bottom: -20px;
+    margin-bottom: -10px;
     padding-right: 80px;
     z-index: 25;
   }
+
 
   .how-to-use-tab {
     padding: 12px 28px;
@@ -172,16 +191,19 @@
     transition: all 0.3s ease;
   }
 
+
   .how-to-use-tab:hover {
     background: rgba(255, 255, 255, 0.8);
     border-color: rgba(0, 0, 0, 0.2);
   }
+
 
   .how-to-use-tab.active {
     background: #fff;
     border-color: #4fffff;
     color: #000;
   }
+
 
   /* Progress Bar Container */
   .how-to-use-progress {
@@ -192,6 +214,7 @@
     margin-bottom: 0;
     padding-bottom: 0;
   }
+
 
   /* Progress Line */
   .how-to-use-progress-line {
@@ -207,6 +230,7 @@
     pointer-events: none;
   }
 
+
   .how-to-use-progress-fill {
     position: absolute;
     top: 0;
@@ -219,6 +243,7 @@
     pointer-events: none;
   }
 
+
   /* Progress Steps */
   .how-to-use-step {
     position: relative;
@@ -229,6 +254,7 @@
     cursor: pointer !important;
     pointer-events: auto !important;
   }
+
 
   .how-to-use-step-circle {
     width: 40px;
@@ -251,16 +277,19 @@
     user-select: none;
   }
 
+
   .how-to-use-step-circle:hover {
     transform: scale(1.05);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
+
 
   .how-to-use-step.completed .how-to-use-step-circle {
     background: {{ section.settings.accent_color | default: '#4FFFFF' }};
     border-color: {{ section.settings.accent_color | default: '#4FFFFF' }};
     color: #ffffff;
   }
+
 
   .how-to-use-step.active .how-to-use-step-circle {
     background: {{ section.settings.accent_color | default: '#4FFFFF' }};
@@ -270,20 +299,24 @@
     box-shadow: 0 4px 12px rgba(79, 255, 255, 0.4);
   }
 
+
   @keyframes blink-pulse {
-    0%, 100% { 
+    0%, 100% {
       transform: scale(1.15);
       box-shadow: 0 4px 12px rgba(79, 255, 255, 0.4);
     }
-    50% { 
+    50% {
       transform: scale(1.3);
       box-shadow: 0 6px 20px rgba(79, 255, 255, 0.7);
     }
   }
 
-  .how-to-use-step.active.blink .how-to-use-step-circle {
-    animation: blink-pulse 0.6s ease-in-out 2;
+
+  /* Hide mobile chapter label on desktop — desktop handles its own tab positioning */
+  .htu-mobile-tabs-wrapper .htu-mobile-product-overlay {
+    display: none;
   }
+
 
   .how-to-use-step-label {
     font-size: 12px;
@@ -295,12 +328,15 @@
 
 
 
+
+
+
   /* Responsive */
   @media (max-width: 1024px) {
     .how-to-use-strip-wrapper {
       padding: 20px 60px 20px;
     }
-    
+   
     .how-to-use-tabs {
       position: static;
       justify-content: center;
@@ -310,20 +346,24 @@
       top: auto;
     }
 
+
     .how-to-use-tab {
       padding: 8px 20px;
       font-size: 13px;
     }
+
 
     .how-to-use-product {
       top: -90px;
       gap: 15px;
     }
 
+
     .how-to-use-product-image {
       width: 130px;
       height: 180px;
     }
+
 
     .how-to-use-product-info {
       padding: 15px 20px;
@@ -331,15 +371,18 @@
       border-radius: 16px;
     }
 
+
     .how-to-use-product-name {
       font-size: 16px;
       margin-bottom: 6px;
     }
 
+
     .how-to-use-product-description {
       font-size: 12px;
     }
   }
+
 
   @media (max-width: 768px) {
     .how-to-use-strip-wrapper {
@@ -347,16 +390,19 @@
       border-radius: 24px 24px 0 0;
     }
 
+
     .how-to-use-tabs {
       flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 12px;
     }
 
+
     .how-to-use-tab {
       padding: 6px 14px;
       font-size: 12px;
     }
+
 
     .how-to-use-step-circle {
       width: 32px;
@@ -364,10 +410,12 @@
       font-size: 14px;
     }
 
+
     .how-to-use-step-label {
       font-size: 11px;
       max-width: 70px;
     }
+
 
     .how-to-use-product {
       position: relative;
@@ -379,10 +427,12 @@
       margin: 20px auto 30px;
     }
 
+
     .how-to-use-product-image {
       width: 100px;
       height: 140px;
     }
+
 
     .how-to-use-product-info {
       padding: 12px 16px;
@@ -390,16 +440,390 @@
       border-radius: 14px;
     }
 
+
     .how-to-use-product-name {
       font-size: 13px;
       margin-bottom: 4px;
     }
 
+
     .how-to-use-product-description {
       font-size: 11px;
     }
   }
+
+
+  /* =============================================
+     MOBILE ONLY - max-width: 768px
+     Desktop code above is NOT touched
+     ============================================= */
+  @media (max-width: 768px) {
+
+
+    /* Section: size to content, no extra black space */
+    .how-to-use-section {
+      min-height: unset !important;
+    }
+
+    /* Video background: reduced height on mobile */
+    .how-to-use-video-bg {
+      height: {{ section.settings.mob_video_height | default: 75 }}vh !important;
+      min-height: unset !important;
+    }
+
+    /* Content: matches video height so tabs land at the boundary */
+    .how-to-use-content {
+      justify-content: flex-end !important;
+      min-height: {{ section.settings.mob_video_height | default: 75 }}vh !important;
+      height: {{ section.settings.mob_video_height | default: 75 }}vh !important;
+    }
+
+
+    /* Tabs: centered, straddling video/strip boundary */
+    .how-to-use-tabs {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: {{ section.settings.mobile_tab_gap | default: 8 }}px !important;
+      margin-bottom: -20px !important;
+      padding: 0 16px !important;
+      position: relative !important;
+      z-index: 25 !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+    }
+
+
+    .how-to-use-tabs::-webkit-scrollbar { display: none !important; }
+
+
+    .how-to-use-tab {
+      padding: {{ section.settings.mobile_tab_padding_v | default: 10 }}px {{ section.settings.mobile_tab_padding_h | default: 18 }}px !important;
+      font-size: {{ section.settings.mobile_tab_font_size | default: 13 }}px !important;
+      font-weight: 600 !important;
+      background: #fff !important;
+      border: 2px solid rgba(0,0,0,0.1) !important;
+      border-radius: 50px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+
+
+    .how-to-use-tab.active {
+      border-color: {{ section.settings.accent_color | default: '#4fffff' }} !important;
+    }
+
+
+    /* Strip: white area, straight top edge */
+    .how-to-use-strip-wrapper {
+      padding: 30px {{ section.settings.mobile_strip_padding_h | default: 20 }}px {{ section.settings.mobile_strip_padding_h | default: 20 }}px !important;
+      border-radius: 0 !important;
+      background: #fff !important;
+    }
+
+
+    /* Hide desktop-positioned product images inside strip on mobile */
+    .how-to-use-product {
+      display: none !important;
+    }
+
+
+    /* Progress steps */
+    .how-to-use-step-circle {
+      width: {{ section.settings.mobile_step_circle_size | default: 36 }}px !important;
+      height: {{ section.settings.mobile_step_circle_size | default: 36 }}px !important;
+      font-size: {{ section.settings.mobile_step_font_size | default: 14 }}px !important;
+      margin-bottom: 6px !important;
+    }
+
+
+    .how-to-use-step-label {
+      font-size: {{ section.settings.mobile_step_label_size | default: 11 }}px !important;
+      max-width: 70px !important;
+    }
+
+
+    .how-to-use-progress-line {
+      top: {{ section.settings.mobile_step_circle_size | default: 36 | divided_by: 2 }}px !important;
+    }
+
+
+    /* Wrapper so overlay positions relative to tabs row */
+    .htu-mobile-tabs-wrapper {
+      position: relative !important;
+      width: 100% !important;
+      z-index: 25 !important;
+    }
+
+
+    /* Mobile product overlay — sits directly above tabs row */
+    .htu-mobile-product-overlay {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      position: absolute !important;
+      bottom: 100% !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 20 !important;
+      pointer-events: none !important;
+      padding: 0 16px 8px 16px !important;
+      align-items: flex-end !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      box-sizing: border-box !important;
+    }
+
+    .htu-mobile-product-img-wrap {
+      flex: 0 0 {{ section.settings.mobile_product_img_width | default: 160 }}px !important;
+      width: {{ section.settings.mobile_product_img_width | default: 160 }}px !important;
+      pointer-events: auto !important;
+      align-self: flex-end !important;
+      overflow: visible !important;
+    }
+
+    .htu-mobile-product-img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.25)) !important;
+      display: block !important;
+    }
+
+    .htu-mobile-product-info {
+      background: rgba(255, 255, 255, 0.82) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(255,255,255,0.3) !important;
+      border-radius: 16px !important;
+      padding: {{ section.settings.mobile_info_padding | default: 16 }}px !important;
+      flex: 0 0 {{ section.settings.mob_info_max_width | default: 240 }}px !important;
+      width: {{ section.settings.mob_info_max_width | default: 240 }}px !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      pointer-events: auto !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+      margin-bottom: 16px !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+
+
+    .htu-mobile-product-name {
+      font-size: {{ section.settings.mobile_product_name_size | default: 18 }}px !important;
+      font-weight: 700 !important;
+      color: #000 !important;
+      margin: 0 0 6px 0 !important;
+      line-height: 1.3 !important;
+      font-family: 'Montserrat', sans-serif !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+
+    .htu-mobile-product-desc {
+      font-size: {{ section.settings.mobile_product_desc_size | default: 13 }}px !important;
+      color: #333 !important;
+      margin: 0 !important;
+      line-height: 1.4 !important;
+      font-family: 'Montserrat', sans-serif !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+
+  }
+
+
+  /* =============================================
+     TABLET ONLY - 769px to 1024px
+     Same layout as mobile. Desktop & mobile NOT touched.
+     ============================================= */
+  @media (min-width: 769px) and (max-width: 1024px) {
+
+
+    .how-to-use-section {
+      min-height: unset !important;
+    }
+
+    /* Video background: reduced height on tablet */
+    .how-to-use-video-bg {
+      height: {{ section.settings.tab_video_height | default: 70 }}vh !important;
+      min-height: unset !important;
+    }
+
+    .how-to-use-content {
+      justify-content: flex-end !important;
+      min-height: {{ section.settings.tab_video_height | default: 70 }}vh !important;
+      height: {{ section.settings.tab_video_height | default: 70 }}vh !important;
+    }
+
+
+    /* Tabs: centered row */
+    .how-to-use-tabs {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 12px !important;
+      margin-bottom: -20px !important;
+      padding: 0 20px !important;
+      position: relative !important;
+      z-index: 25 !important;
+    }
+
+
+    .how-to-use-tab {
+      padding: 12px 24px !important;
+      font-size: {{ section.settings.tablet_tab_font_size | default: 15 }}px !important;
+      font-weight: 600 !important;
+      background: #fff !important;
+      border: 2px solid rgba(0,0,0,0.1) !important;
+      border-radius: 50px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+
+
+    .how-to-use-tab.active {
+      border-color: {{ section.settings.accent_color | default: '#4fffff' }} !important;
+    }
+
+
+    /* Strip: white, straight top edge */
+    .how-to-use-strip-wrapper {
+      padding: 40px {{ section.settings.tablet_strip_padding_h | default: 40 }}px 24px !important;
+      border-radius: 0 !important;
+      background: #fff !important;
+    }
+
+
+    /* Hide desktop-positioned products inside strip */
+    .how-to-use-product {
+      display: none !important;
+    }
+
+
+    /* Progress steps */
+    .how-to-use-step-circle {
+      width: {{ section.settings.tablet_step_circle_size | default: 44 }}px !important;
+      height: {{ section.settings.tablet_step_circle_size | default: 44 }}px !important;
+      font-size: {{ section.settings.tablet_step_font_size | default: 16 }}px !important;
+      margin-bottom: 8px !important;
+    }
+
+
+    .how-to-use-step-label {
+      font-size: {{ section.settings.tablet_step_label_size | default: 13 }}px !important;
+      max-width: 90px !important;
+    }
+
+
+    .how-to-use-progress-line {
+      top: {{ section.settings.tablet_step_circle_size | default: 44 | divided_by: 2 }}px !important;
+    }
+
+
+    /* Tablet tabs wrapper — centered flex column */
+    .htu-mobile-tabs-wrapper {
+      position: relative !important;
+      width: 100% !important;
+      z-index: 25 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+
+    /* Tablet product overlay — centered, matches tab row width */
+    .htu-mobile-product-overlay {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      position: absolute !important;
+      bottom: 100% !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: calc(100% - 40px) !important;
+      max-width: 680px !important;
+      z-index: 20 !important;
+      pointer-events: none !important;
+      padding: 0 0 10px 0 !important;
+      align-items: flex-end !important;
+      gap: 10px !important;
+      box-sizing: border-box !important;
+    }
+
+    .htu-mobile-product-img-wrap {
+      flex: 0 0 {{ section.settings.tablet_product_img_width | default: 200 }}px !important;
+      width: {{ section.settings.tablet_product_img_width | default: 200 }}px !important;
+      pointer-events: auto !important;
+      align-self: flex-end !important;
+      overflow: visible !important;
+    }
+
+    .htu-mobile-product-img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.25)) !important;
+      display: block !important;
+    }
+
+    .htu-mobile-product-info {
+      background: rgba(255, 255, 255, 0.82) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(255,255,255,0.3) !important;
+      border-radius: 20px !important;
+      padding: {{ section.settings.tablet_info_padding | default: 22 }}px !important;
+      flex: 0 0 {{ section.settings.tab_info_max_width | default: 360 }}px !important;
+      width: {{ section.settings.tab_info_max_width | default: 360 }}px !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      pointer-events: auto !important;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1) !important;
+      margin-bottom: 20px !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+
+
+    .htu-mobile-product-name {
+      font-size: {{ section.settings.tablet_product_name_size | default: 24 }}px !important;
+      font-weight: 700 !important;
+      color: #000 !important;
+      margin: 0 0 8px 0 !important;
+      line-height: 1.3 !important;
+      font-family: 'Montserrat', sans-serif !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+
+    .htu-mobile-product-desc {
+      font-size: {{ section.settings.tablet_product_desc_size | default: 15 }}px !important;
+      color: #333 !important;
+      margin: 0 !important;
+      line-height: 1.5 !important;
+      font-family: 'Montserrat', sans-serif !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+
+  }
 </style>
+
 
 <section class="how-to-use-section full-width" id="how-to-use-{{ section.id }}">
   <!-- Video Backgrounds -->
@@ -414,8 +838,8 @@
           {% endif %}
         {% endif %}
       {% endfor %}
-      
-      <div class="how-to-use-video {% if forloop.first %}active{% endif %}" 
+     
+      <div class="how-to-use-video {% if forloop.first %}active{% endif %}"
            data-tab="{{ block.settings.tab_id }}"
            data-step="{{ step_in_tab }}"
            id="video-{{ section.id }}-{{ forloop.index }}">
@@ -428,65 +852,88 @@
     {% endfor %}
   </div>
 
+
   <!-- Content -->
   <div class="how-to-use-content">
-    <!-- Tabs - Positioned between video and strip -->
-    <div class="how-to-use-tabs">
+
+
+    <!-- Tabs + product overlay wrapper -->
+    <div class="htu-mobile-tabs-wrapper">
+
+
+      <!-- Mobile product overlay (hidden on desktop via CSS) -->
+      <div class="htu-mobile-product-overlay" id="htu-mobile-overlay-{{ section.id }}" style="display:none;">
+        <div class="htu-mobile-product-img-wrap" id="htu-mobile-img-wrap-{{ section.id }}"></div>
+        <div class="htu-mobile-product-info" id="htu-mobile-info-{{ section.id }}">
+          <div class="htu-mobile-product-name" id="htu-mobile-name-{{ section.id }}"></div>
+          <div class="htu-mobile-product-desc" id="htu-mobile-desc-{{ section.id }}"></div>
+        </div>
+      </div>
+
+
+      <!-- Tabs - Positioned between video and strip -->
+      <div class="how-to-use-tabs">
       <button class="how-to-use-tab active" data-tab="am" onclick="switchTab('am', '{{ section.id }}')">AM</button>
       <button class="how-to-use-tab" data-tab="pm" onclick="switchTab('pm', '{{ section.id }}')">PM</button>
       <button class="how-to-use-tab" data-tab="pm-light" onclick="switchTab('pm-light', '{{ section.id }}')">PM + Light</button>
       <button class="how-to-use-tab" data-tab="exfoliate" onclick="switchTab('exfoliate', '{{ section.id }}')">Exfoliate</button>
     </div>
 
+
+    </div><!-- end htu-mobile-tabs-wrapper -->
+
+
     <!-- Frosted Glass Strip Wrapper - Contains progress only -->
     <div class="how-to-use-strip-wrapper">
+
 
       <!-- Tab Contents -->
       {% assign tabs = "am,pm,pm-light,exfoliate" | split: "," %}
       {% for tab in tabs %}
         <div class="how-to-use-tab-content {% if forloop.first %}active{% endif %}" data-tab="{{ tab }}">
-          
+         
           <!-- Progress Bar -->
           <div class="how-to-use-progress">
             <div class="how-to-use-progress-line">
               <div class="how-to-use-progress-fill" id="progress-fill-{{ section.id }}-{{ tab }}"></div>
             </div>
-            
+           
             {% assign step_count = 0 %}
             {% for block in section.blocks %}
               {% if block.settings.tab_id == tab %}
                 {% assign step_count = step_count | plus: 1 %}
               {% endif %}
             {% endfor %}
-            
+           
             {% assign current_step = 0 %}
             {% for block in section.blocks %}
               {% if block.settings.tab_id == tab %}
                 {% assign current_step = current_step | plus: 1 %}
-                <div class="how-to-use-step {% if current_step == 1 %}active{% endif %}" 
+                <div class="how-to-use-step {% if current_step == 1 %}active{% endif %}"
                      data-step="{{ current_step }}"
                      onclick="forceGoToStep({{ current_step }}, '{{ tab }}', '{{ section.id }}');">
-                  <div class="how-to-use-step-circle" 
+                  <div class="how-to-use-step-circle"
                        onclick="forceGoToStep({{ current_step }}, '{{ tab }}', '{{ section.id }}');">{{ current_step }}</div>
-                  <div class="how-to-use-step-label" 
+                  <div class="how-to-use-step-label"
                        onclick="forceGoToStep({{ current_step }}, '{{ tab }}', '{{ section.id }}');">{{ block.settings.step_label }}</div>
                 </div>
               {% endif %}
             {% endfor %}
           </div>
 
+
           <!-- Product Images - Positioned relative to strip-wrapper -->
           {% assign product_step = 0 %}
           {% for block in section.blocks %}
             {% if block.settings.tab_id == tab %}
               {% assign product_step = product_step | plus: 1 %}
-              <div class="how-to-use-product {% if product_step == 1 %}active{% endif %}" 
+              <div class="how-to-use-product {% if product_step == 1 %}active{% endif %}"
                    data-step="{{ product_step }}"
                    data-tab="{{ tab }}">
                 {% if block.settings.product_image %}
                   {% if block.settings.product_link != blank %}
                     <a href="{{ block.settings.product_link }}">
-                      <img src="{{ block.settings.product_image | image_url: width: 400 }}" 
+                      <img src="{{ block.settings.product_image | image_url: width: 400 }}"
                            alt="{{ block.settings.product_name }}"
                            class="how-to-use-product-image"
                            style="left: {{ block.settings.image_position_x | default: -50 }}px; top: {{ block.settings.image_position_y | default: -250 }}px;"
@@ -494,7 +941,7 @@
                            height="480">
                     </a>
                   {% else %}
-                    <img src="{{ block.settings.product_image | image_url: width: 400 }}" 
+                    <img src="{{ block.settings.product_image | image_url: width: 400 }}"
                          alt="{{ block.settings.product_name }}"
                          class="how-to-use-product-image"
                          style="left: {{ block.settings.image_position_x | default: -50 }}px; top: {{ block.settings.image_position_y | default: -250 }}px;"
@@ -504,7 +951,7 @@
                 {% endif %}
                 {% if block.settings.product_link != blank %}
                   <a href="{{ block.settings.product_link }}" style="text-decoration: none;">
-                    <div class="how-to-use-product-info" 
+                    <div class="how-to-use-product-info"
                          style="left: {{ block.settings.name_position_x | default: 250 }}px; top: {{ block.settings.name_position_y | default: -100 }}px;">
                       <div class="how-to-use-product-name">{{ block.settings.product_name }}</div>
                       {% if block.settings.product_description != blank %}
@@ -513,7 +960,7 @@
                     </div>
                   </a>
                 {% else %}
-                  <div class="how-to-use-product-info" 
+                  <div class="how-to-use-product-info"
                        style="left: {{ block.settings.name_position_x | default: 250 }}px; top: {{ block.settings.name_position_y | default: -100 }}px;">
                     <div class="how-to-use-product-name">{{ block.settings.product_name }}</div>
                     {% if block.settings.product_description != blank %}
@@ -525,528 +972,445 @@
             {% endif %}
           {% endfor %}
 
+
         </div>
       {% endfor %}
     </div>
   </div>
 </section>
 
+
 <script>
-window.howToUseData = window.howToUseData || {};
+(function () {
+  'use strict';
+  window.howToUseData = window.howToUseData || {};
 
-function initHowToUse(sectionId) {
-  window.howToUseData[sectionId] = {
-    currentTab: 'am',
-    currentStep: 1,
-    previousStep: 1,
-    isPlaying: false,
-    videoEndedListener: null,
-    manualClick: false,
-    isProgressing: false
-  };
-  
-  // FORCE reset all progress bars to 0% on initialization
-  const allProgressFills = document.querySelectorAll(`[id^="progress-fill-${sectionId}"]`);
-  allProgressFills.forEach(fill => {
-    fill.style.width = '0%';
-  });
-  console.log(`INIT: All progress bars reset to 0%`);
-  
-  // Start first video
-  playCurrentVideo(sectionId);
-}
-
-function switchTab(tabId, sectionId) {
-  const data = window.howToUseData[sectionId];
-  
-  // Stop current video
-  stopAllVideos(sectionId);
-  
-  // Update tab state
-  data.currentTab = tabId;
-  data.currentStep = 1;
-  
-  // Update UI
-  document.querySelectorAll('.how-to-use-tab').forEach(tab => {
-    tab.classList.toggle('active', tab.dataset.tab === tabId);
-  });
-  
-  document.querySelectorAll('.how-to-use-tab-content').forEach(content => {
-    content.classList.toggle('active', content.dataset.tab === tabId);
-  });
-  
-  // FORCE reset progress to 0% for step 1
-  const progressFill = document.getElementById(`progress-fill-${sectionId}-${tabId}`);
-  if (progressFill) {
-    progressFill.style.width = '0%';
-    console.log(`TAB SWITCH: Progress bar reset to 0% for step 1`);
+  // ── Cached DOM refs per section — built once, reused everywhere ──────────
+  var _cache = {};
+  function getCache(sid) {
+    if (_cache[sid]) return _cache[sid];
+    var root = document.getElementById('how-to-use-' + sid);
+    if (!root) return null;
+    var c = {
+      root: root,
+      videos: {},    // keyed by tab+step: "am-1"
+      fills: {},     // keyed by tabId
+      tabContents: {},
+      stepCounts: {}
+    };
+    // Index all video divs once
+    root.querySelectorAll('.how-to-use-video').forEach(function(div) {
+      c.videos[div.dataset.tab + '-' + div.dataset.step] = div;
+    });
+    // Index fills
+    root.querySelectorAll('[id^="progress-fill-"]').forEach(function(el) {
+      var parts = el.id.split('-');
+      c.fills[parts[parts.length - 1]] = el;
+    });
+    // Index tab contents
+    root.querySelectorAll('.how-to-use-tab-content').forEach(function(el) {
+      c.tabContents[el.dataset.tab] = el;
+      c.stepCounts[el.dataset.tab] = el.querySelectorAll('.how-to-use-step').length;
+    });
+    _cache[sid] = c;
+    return c;
   }
-  
-  // Reset progress
-  updateProgress(sectionId, tabId, 1);
-  
-  // Play new video
-  playCurrentVideo(sectionId);
-}
 
-function forceGoToStep(stepNumber, tabId, sectionId) {
-  console.log(`FORCE: Going to step ${stepNumber} in tab ${tabId} - CLICK DETECTED`);
-  
-  const data = window.howToUseData[sectionId];
-  
-  // Track previous step for smooth animation
-  data.previousStep = data.currentStep;
-  
-  // Special handling for step 1 to ensure it always works
-  if (stepNumber === 1) {
-    console.log(`FORCE: Special handling for step 1 - RESETTING TO 0%`);
-    // Immediately reset progress bar to 0% for step 1
-    const progressFill = document.getElementById(`progress-fill-${sectionId}-${tabId}`);
-    if (progressFill) {
-      progressFill.style.width = '0%';
-      console.log(`FORCE: Progress bar immediately set to 0% for step 1`);
+  // ── Preload a single video — no-op if already loading/loaded ─────────────
+  function preloadVideo(vid) {
+    if (!vid) return;
+    if (vid.preload === 'auto') return;
+    vid.preload = 'auto';
+    vid.load();
+  }
+
+  // ── Stop current video only (not all) ───────────────────────────────────
+  function stopCurrent(sid) {
+    var d = window.howToUseData[sid];
+    if (!d) return;
+    if (d.rafId) { cancelAnimationFrame(d.rafId); d.rafId = null; }
+    var c = getCache(sid);
+    if (!c) return;
+    var key = d.currentTab + '-' + d.currentStep;
+    var div = c.videos[key];
+    if (div) {
+      var v = div.querySelector('video');
+      if (v) { v.pause(); v.currentTime = 0; }
     }
   }
-  
-  // Force stop all videos immediately
-  const allVideos = document.querySelectorAll(`#how-to-use-${sectionId} video`);
-  allVideos.forEach(video => {
-    video.pause();
-    video.currentTime = 0;
-    // Remove all event listeners
-    video.removeEventListener('ended', data.videoEndedListener);
-  });
-  
-  // Force update the data
-  data.currentStep = stepNumber;
-  data.isPlaying = false;
-  data.manualClick = true;
-  data.isProgressing = false;
-  
-  console.log(`FORCE: Data updated - currentStep: ${data.currentStep}, previousStep: ${data.previousStep}`);
-  
-  // Force update progress immediately
-  forceUpdateProgress(sectionId, tabId, stepNumber);
-  
-  // Force play video after a short delay
-  setTimeout(() => {
-    forcePlayVideo(sectionId, tabId, stepNumber);
-  }, 100);
-  
-  // Reset manual click flag
-  setTimeout(() => {
-    data.manualClick = false;
-  }, 2000);
-}
 
-function forceUpdateProgress(sectionId, tabId, stepNumber) {
-  console.log(`FORCE UPDATE: Step ${stepNumber} in tab ${tabId}`);
-  
-  const tabContent = document.querySelector(`.how-to-use-tab-content[data-tab="${tabId}"]`);
-  if (!tabContent) {
-    console.log(`FORCE: No tab content found for ${tabId}`);
-    return;
+  // ── Stop all videos (used on tab switch / reset) ─────────────────────────
+  function stopAllVideos(sid) {
+    var d = window.howToUseData[sid];
+    if (!d) return;
+    if (d.rafId) { cancelAnimationFrame(d.rafId); d.rafId = null; }
+    var c = getCache(sid);
+    if (!c) return;
+    Object.values(c.videos).forEach(function(div) {
+      var v = div.querySelector('video');
+      if (v && !v.paused) { v.pause(); v.currentTime = 0; }
+    });
   }
-  
-  const steps = tabContent.querySelectorAll('.how-to-use-step');
-  const totalSteps = steps.length;
-  
-  // Force clear and update all step states
-  steps.forEach((step, index) => {
-    const stepNum = index + 1;
-    
-    // Remove all classes
-    step.classList.remove('active', 'blink', 'completed');
-    
-    // Apply correct classes
-    if (stepNum < stepNumber) {
-      step.classList.add('completed');
-    } else if (stepNum === stepNumber) {
-      step.classList.add('active');
-      // Don't add completed to step 1
-      if (stepNumber > 1) {
-        step.classList.add('completed');
+
+  // ── Update progress circles + fill bar ───────────────────────────────────
+  function updateProgress(sid, tabId, stepNumber) {
+    var c = getCache(sid);
+    if (!c) return;
+    var tabContent = c.tabContents[tabId];
+    if (!tabContent) return;
+    var totalSteps = c.stepCounts[tabId];
+
+    tabContent.querySelectorAll('.how-to-use-step').forEach(function(step, i) {
+      var n = i + 1;
+      step.classList.remove('active', 'blink', 'completed');
+      if (n < stepNumber) step.classList.add('completed');
+      else if (n === stepNumber) {
+        step.classList.add('active');
+        if (stepNumber > 1) step.classList.add('completed');
       }
-    }
-    
-    console.log(`FORCE: Step ${stepNum} classes: ${step.className}`);
-  });
-  
-  // Force update progress bar - ALWAYS 0% for step 1
-  const progressFill = document.getElementById(`progress-fill-${sectionId}-${tabId}`);
-  if (progressFill) {
-    let percentage = 0;
-    
-    // Step 1 should ALWAYS be 0%
-    if (stepNumber === 1) {
-      percentage = 0;
-    } else if (totalSteps > 1) {
-      percentage = ((stepNumber - 1) / (totalSteps - 1)) * 100;
-    }
-    
-    progressFill.style.width = percentage + '%';
-    console.log(`FORCE: Progress bar set to ${percentage}% for step ${stepNumber}`);
-  }
-  
-  // Force update products
-  const products = tabContent.querySelectorAll('.how-to-use-product');
-  products.forEach((product, index) => {
-    if ((index + 1) === stepNumber) {
-      product.classList.add('active');
-    } else {
-      product.classList.remove('active');
-    }
-  });
-}
+    });
 
-function forcePlayVideo(sectionId, tabId, stepNumber) {
-  console.log(`FORCE PLAY: Step ${stepNumber} in tab ${tabId}`);
-  
-  const videos = document.querySelectorAll('.how-to-use-video');
-  let targetVideo = null;
-  
-  // Find the correct video
-  videos.forEach((videoDiv) => {
-    const videoTab = videoDiv.dataset.tab;
-    const videoStep = parseInt(videoDiv.dataset.step);
-    
-    if (videoTab === tabId && videoStep === stepNumber) {
-      targetVideo = videoDiv;
-      console.log(`FORCE: Found video for tab=${videoTab}, step=${videoStep}`);
+    var fill = c.fills[tabId];
+    if (fill && totalSteps > 1) {
+      var pct = stepNumber === 1 ? 0 : ((stepNumber - 1) / (totalSteps - 1)) * 100;
+      fill.style.width = pct + '%';
     }
-  });
-  
-  if (!targetVideo) {
-    console.log(`FORCE: No video found for tab=${tabId}, step=${stepNumber}`);
-    return;
+
+    tabContent.querySelectorAll('.how-to-use-product').forEach(function(p, i) {
+      p.classList.toggle('active', i + 1 === stepNumber);
+    });
   }
-  
-  // Hide all videos and show target
-  videos.forEach(v => v.classList.remove('active'));
-  targetVideo.classList.add('active');
-  
-  const video = targetVideo.querySelector('video');
-  if (video) {
+
+  // ── Play the current step's video ────────────────────────────────────────
+  function playCurrentVideo(sid) {
+    var d = window.howToUseData[sid];
+    if (!d) return;
+    var tabId = d.currentTab;
+    var stepNumber = d.currentStep;
+    var c = getCache(sid);
+    if (!c) return;
+
+    if (d.rafId) { cancelAnimationFrame(d.rafId); d.rafId = null; }
+
+    // Hide all video divs; show only target
+    var key = tabId + '-' + stepNumber;
+    Object.keys(c.videos).forEach(function(k) {
+      c.videos[k].classList.toggle('active', k === key);
+    });
+
+    var target = c.videos[key];
+    if (!target) return;
+    var video = target.querySelector('video');
+    if (!video) return;
+
+    // Ensure buffered
+    preloadVideo(video);
+    // Preload next step ahead of time
+    preloadVideo((c.videos[tabId + '-' + (stepNumber + 1)] || {querySelector: function(){}}).querySelector('video'));
+
+    if (video.readyState < 3) {
+      var onReady = function() {
+        video.removeEventListener('canplaythrough', onReady);
+        video.currentTime = 0;
+        video.play().then(function() {
+          d.rafId = requestAnimationFrame(updateBar);
+        }).catch(function(){});
+      };
+      video.addEventListener('canplaythrough', onReady);
+      return;
+    }
+
     video.currentTime = 0;
-    video.play().then(() => {
-      console.log(`FORCE: Video playing for step ${stepNumber}`);
-      const data = window.howToUseData[sectionId];
-      data.isPlaying = true;
-      
-      // Add ended listener
-      video.addEventListener('ended', () => {
-        if (!data.manualClick) {
-          onVideoEnded(sectionId);
+
+    // Progress bar rAF loop — cached refs, throttled to 100ms
+    var fill = c.fills[tabId];
+    var totalSteps = c.stepCounts[tabId] || 1;
+    var lastUpdate = 0;
+
+    function updateBar(ts) {
+      if (!d.rafId) return;
+      if (ts - lastUpdate > 100) {
+        lastUpdate = ts;
+        if (fill && video.duration > 0 && totalSteps > 1) {
+          var stepProg = video.currentTime / video.duration;
+          var base  = stepNumber === 1 ? 0 : ((stepNumber - 1) / (totalSteps - 1)) * 100;
+          var range = (1 / (totalSteps - 1)) * 100;
+          fill.style.width = Math.min(base + stepProg * range, 100) + '%';
         }
+      }
+      d.rafId = requestAnimationFrame(updateBar);
+    }
+
+    // Clean up old ended listener
+    if (video._htuEnded) video.removeEventListener('ended', video._htuEnded);
+    video._htuEnded = function () {
+      if (d.rafId) { cancelAnimationFrame(d.rafId); d.rafId = null; }
+      onVideoEnded(sid);
+    };
+    video.addEventListener('ended', video._htuEnded);
+
+    video.play().then(function () {
+      d.rafId = requestAnimationFrame(updateBar);
+    }).catch(function () {});
+  }
+
+  // ── Advance to next step when video ends ────────────────────────────────
+  function onVideoEnded(sid) {
+    var d = window.howToUseData[sid];
+    if (!d || d.isProgressing) return;
+    d.isProgressing = true;
+    var tabId = d.currentTab;
+    var c = getCache(sid);
+    var totalSteps = c ? c.stepCounts[tabId] : 0;
+    d.currentStep = d.currentStep < totalSteps ? d.currentStep + 1 : 1;
+    updateProgress(sid, tabId, d.currentStep);
+    playCurrentVideo(sid);
+    setTimeout(function () { d.isProgressing = false; }, 300);
+  }
+
+  // ── Public API ────────────────────────────────────────────────────────────
+  window.initHowToUse = function (sid) {
+    window.howToUseData[sid] = { currentTab: 'am', currentStep: 1, isProgressing: false, rafId: null };
+    // Pre-buffer AM videos with stagger — playback starts via IntersectionObserver
+    var c = getCache(sid);
+    if (c) {
+      var amVids = Object.keys(c.videos)
+        .filter(function(k) { return k.indexOf('am-') === 0; })
+        .sort()
+        .map(function(k) { return c.videos[k].querySelector('video'); });
+      amVids.forEach(function(v, i) {
+        setTimeout(function() { preloadVideo(v); }, i * 150);
       });
-    }).catch(error => {
-      console.log(`FORCE: Video play failed:`, error);
+      // Pre-buffer step 1 of the other tabs so they're ready before the user switches
+      var otherTabs = ['pm', 'pm-light', 'exfoliate'];
+      otherTabs.forEach(function(tab, ti) {
+        setTimeout(function() {
+          var firstKey = tab + '-1';
+          var div = c.videos[firstKey];
+          if (div) preloadVideo(div.querySelector('video'));
+        }, 2000 + ti * 2000);
+      });
+    }
+  };
+
+  window.switchTab = function (tabId, sid) {
+    var d = window.howToUseData[sid];
+    if (!d) return;
+    stopAllVideos(sid);
+    d.currentTab = tabId;
+    d.currentStep = 1;
+    var c = getCache(sid);
+    if (!c) return;
+    // Update tab buttons
+    c.root.querySelectorAll('.how-to-use-tab').forEach(function(t) {
+      t.classList.toggle('active', t.dataset.tab === tabId);
     });
-  }
-}
+    // Update tab content panels
+    Object.keys(c.tabContents).forEach(function(t) {
+      c.tabContents[t].classList.toggle('active', t === tabId);
+    });
+    // Pre-buffer new tab's videos
+    var newVids = Object.keys(c.videos)
+      .filter(function(k) { return k.indexOf(tabId + '-') === 0; })
+      .sort()
+      .map(function(k) { return c.videos[k].querySelector('video'); });
+    newVids.forEach(function(v, i) {
+      setTimeout(function() { preloadVideo(v); }, i * 150);
+    });
+    updateProgress(sid, tabId, 1);
+    playCurrentVideo(sid);
+    if (window.innerWidth <= 1024) htuUpdateMobileOverlay(tabId, 1, sid);
+  };
 
-function goToStep(stepNumber, tabId, sectionId) {
-  // Use the force function for all steps now
-  forceGoToStep(stepNumber, tabId, sectionId);
-}
+  window.forceGoToStep = function (stepNumber, tabId, sid) {
+    var d = window.howToUseData[sid];
+    if (!d || d.currentTab !== tabId) return;
+    stopCurrent(sid);
+    d.currentStep = stepNumber;
+    d.isProgressing = false;
+    updateProgress(sid, tabId, stepNumber);
+    playCurrentVideo(sid);
+    if (window.innerWidth <= 1024) htuUpdateMobileOverlay(tabId, stepNumber, sid);
+  };
 
-function updateProgress(sectionId, tabId, stepNumber, shouldBlink = false) {
-  console.log(`Updating progress to step ${stepNumber} in tab ${tabId}`);
-  
-  const tabContent = document.querySelector(`.how-to-use-tab-content[data-tab="${tabId}"]`);
-  if (!tabContent) {
-    console.log(`No tab content found for tab: ${tabId}`);
-    return;
-  }
-  
-  const steps = tabContent.querySelectorAll('.how-to-use-step');
-  const totalSteps = steps.length;
-  
-  // Update step circles - mark completed and active
-  steps.forEach((step, index) => {
-    const stepNum = index + 1;
-    
-    // Clear all classes first
-    step.classList.remove('active', 'blink', 'completed');
-    
-    // Apply appropriate classes
-    if (stepNum < stepNumber) {
-      step.classList.add('completed');
-    } else if (stepNum === stepNumber) {
-      step.classList.add('active');
-      // Only add completed class if it's not step 1
-      if (stepNumber > 1) {
-        step.classList.add('completed');
-      }
-      if (shouldBlink) {
-        step.classList.add('blink');
-      }
-    }
-  });
-  
-  // Update progress bar - ALWAYS 0% for step 1
-  const progressFill = document.getElementById(`progress-fill-${sectionId}-${tabId}`);
-  if (progressFill && totalSteps > 1) {
-    let percentage = 0;
-    
-    // Step 1 should ALWAYS be 0%
-    if (stepNumber === 1) {
-      percentage = 0;
-    } else {
-      percentage = ((stepNumber - 1) / (totalSteps - 1)) * 100;
-    }
-    
-    console.log(`Setting progress bar to ${percentage}% for step ${stepNumber}`);
-    progressFill.style.width = percentage + '%';
-  }
-  
-  // Update product display
-  const products = tabContent.querySelectorAll('.how-to-use-product');
-  products.forEach((product, index) => {
-    product.classList.toggle('active', (index + 1) === stepNumber);
-  });
-}
+  // ── Mobile/tablet product overlay ─────────────────────────────────────────
+  var HTU_MOBILE_DATA = {
+    {% assign tabs_list = "am,pm,pm-light,exfoliate" | split: "," %}
+    {% for tab in tabs_list %}
+    "{{ tab }}": [
+      {% assign s = 0 %}
+      {% for block in section.blocks %}
+        {% if block.settings.tab_id == tab %}
+          {% assign s = s | plus: 1 %}
+          {
+            step: {{ s }},
+            name: {{ block.settings.product_name | default: '' | json }},
+            desc: {{ block.settings.product_description | default: '' | json }},
+            link: {{ block.settings.product_link | default: '' | json }},
+            img: "{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 300 }}{% endif %}",
+            mobileImgX: {{ block.settings.mobile_image_x | default: 0 }},
+            mobileImgY: {{ block.settings.mobile_image_y | default: 0 }},
+            mobileInfoX: {{ block.settings.mobile_info_x | default: 0 }},
+            mobileInfoY: {{ block.settings.mobile_info_y | default: 0 }},
+            tabletImgX: {{ block.settings.tablet_image_x | default: 0 }},
+            tabletImgY: {{ block.settings.tablet_image_y | default: 0 }},
+            tabletInfoX: {{ block.settings.tablet_info_x | default: 0 }},
+            tabletInfoY: {{ block.settings.tablet_info_y | default: 0 }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endif %}
+      {% endfor %}
+    ]{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
 
-function playCurrentVideo(sectionId) {
-  const data = window.howToUseData[sectionId];
-  const tabId = data.currentTab;
-  const stepNumber = data.currentStep;
-  
-  console.log(`Playing video for tab: ${tabId}, step: ${stepNumber}`);
-  
-  // Find the video for current tab and step
-  const videos = document.querySelectorAll('.how-to-use-video');
-  let videoElement = null;
-  
-  console.log(`Found ${videos.length} total videos`);
-  
-  videos.forEach((videoDiv, index) => {
-    const videoTab = videoDiv.dataset.tab;
-    const videoStep = parseInt(videoDiv.dataset.step);
-    console.log(`Video ${index}: tab=${videoTab}, step=${videoStep}`);
-    
-    if (videoTab === tabId && videoStep === stepNumber) {
-      videoElement = videoDiv;
-      console.log(`Found matching video at index ${index}`);
-    }
-  });
-  
-  if (!videoElement) {
-    console.log(`No video found for tab: ${tabId}, step: ${stepNumber}`);
-    return;
+  // Cache overlay DOM refs — queried once
+  var _overlayCache = null;
+  function getOverlayEls(sid) {
+    if (_overlayCache) return _overlayCache;
+    _overlayCache = {
+      overlay: document.getElementById('htu-mobile-overlay-' + sid),
+      imgWrap: document.getElementById('htu-mobile-img-wrap-' + sid),
+      nameEl:  document.getElementById('htu-mobile-name-' + sid),
+      descEl:  document.getElementById('htu-mobile-desc-' + sid),
+      infoEl:  document.getElementById('htu-mobile-info-' + sid)
+    };
+    return _overlayCache;
   }
-  
-  // Show video
-  videos.forEach(v => v.classList.remove('active'));
-  videoElement.classList.add('active');
-  
-  const video = videoElement.querySelector('video');
-  if (video) {
-    video.currentTime = 0;
-    video.play();
-    data.isPlaying = true;
-    
-    // Update progress bar as video plays - but NOT for step 1
-    const updateProgressBar = () => {
-      if (!data.isPlaying) return;
-      
-      const currentTime = video.currentTime;
-      const duration = video.duration;
-      
-      if (duration > 0) {
-        const tabContent = document.querySelector(`.how-to-use-tab-content[data-tab="${tabId}"]`);
-        const steps = tabContent ? tabContent.querySelectorAll('.how-to-use-step') : [];
-        const totalSteps = steps.length;
-        
-        if (totalSteps > 1) {
-          // Calculate progress within current step
-          const stepProgress = currentTime / duration;
-          const baseProgress = ((stepNumber - 1) / (totalSteps - 1)) * 100;
-          const stepRange = (1 / (totalSteps - 1)) * 100;
-          let currentProgress = baseProgress + (stepProgress * stepRange);
-          
-          // Special handling for step 1 - keep at 0% until video ends
-          if (stepNumber === 1) {
-            currentProgress = stepProgress * stepRange;
-          }
-          
-          // Cap at 100%
-          currentProgress = Math.min(currentProgress, 100);
-          
-          const progressFill = document.getElementById(`progress-fill-${sectionId}-${tabId}`);
-          if (progressFill) {
-            progressFill.style.width = currentProgress + '%';
-          }
+
+  // Track last rendered overlay state to skip redundant DOM writes
+  var _lastOverlay = { tabId: null, stepNumber: null };
+
+  function htuUpdateMobileOverlay(tabId, stepNumber, sid) {
+    if (window.innerWidth > 1024) return;
+    // Skip if nothing changed
+    if (_lastOverlay.tabId === tabId && _lastOverlay.stepNumber === stepNumber) return;
+    _lastOverlay.tabId = tabId;
+    _lastOverlay.stepNumber = stepNumber;
+
+    var els = getOverlayEls(sid || '{{ section.id }}');
+    if (!els.overlay) return;
+    els.overlay.style.display = 'flex';
+
+    var steps = HTU_MOBILE_DATA[tabId] || [];
+    var step = null;
+    for (var i = 0; i < steps.length; i++) { if (steps[i].step === stepNumber) { step = steps[i]; break; } }
+    if (!step) step = steps[0];
+    if (!step) return;
+
+    var isTablet = window.innerWidth >= 769 && window.innerWidth <= 1024;
+    var imgX  = isTablet ? step.tabletImgX  : step.mobileImgX;
+    var imgY  = isTablet ? step.tabletImgY  : step.mobileImgY;
+    var infoX = isTablet ? step.tabletInfoX : step.mobileInfoX;
+    var infoY = isTablet ? step.tabletInfoY : step.mobileInfoY;
+
+    els.imgWrap.style.transform = 'translate(' + imgX + 'px,' + imgY + 'px)';
+
+    // Only rebuild image DOM if src changed
+    var existingImg = els.imgWrap.querySelector('img');
+    if (!existingImg || existingImg.src !== step.img) {
+      els.imgWrap.innerHTML = '';
+      if (step.img) {
+        var img = document.createElement('img');
+        img.src = step.img;
+        img.alt = step.name || '';
+        img.className = 'htu-mobile-product-img';
+        if (step.link) {
+          var a = document.createElement('a');
+          a.href = step.link;
+          a.appendChild(img);
+          els.imgWrap.appendChild(a);
+        } else {
+          els.imgWrap.appendChild(img);
         }
       }
-      
-      if (data.isPlaying) {
-        requestAnimationFrame(updateProgressBar);
-      }
-    };
-    
-    requestAnimationFrame(updateProgressBar);
-    
-    // Listen for video end
-    if (data.videoEndedListener) {
-      video.removeEventListener('ended', data.videoEndedListener);
     }
-    
-    data.videoEndedListener = () => {
-      onVideoEnded(sectionId);
-    };
-    
-    video.addEventListener('ended', data.videoEndedListener);
-  }
-}
 
-function stopAllVideos(sectionId) {
-  const videos = document.querySelectorAll(`#how-to-use-${sectionId} video`);
-  videos.forEach(video => {
-    video.pause();
-    video.currentTime = 0;
-  });
-  
-  const data = window.howToUseData[sectionId];
-  data.isPlaying = false;
-}
+    if (els.infoEl) els.infoEl.style.transform = 'translate(' + infoX + 'px,' + infoY + 'px)';
+    if (els.nameEl) els.nameEl.textContent = step.name || '';
+    if (els.descEl) els.descEl.textContent = step.desc || '';
+  }
 
-function onVideoEnded(sectionId) {
-  const data = window.howToUseData[sectionId];
-  
-  // Don't auto-progress if user just clicked manually
-  if (data.manualClick) {
-    console.log('Skipping auto-progression due to manual click');
-    return;
+  // ── Tablet overlay width sync — debounced ─────────────────────────────────
+  var _syncTimer = null;
+  function htuSyncTabletOverlayWidth(sid) {
+    if (window.innerWidth < 769 || window.innerWidth > 1024) return;
+    var tabsRow = document.querySelector('#how-to-use-' + sid + ' .how-to-use-tabs');
+    var overlay = document.getElementById('htu-mobile-overlay-' + sid);
+    if (!tabsRow || !overlay) return;
+    var tabsRect = tabsRow.getBoundingClientRect();
+    overlay.style.width = tabsRect.width + 'px';
+    overlay.style.left = (tabsRect.left - tabsRow.parentElement.getBoundingClientRect().left) + 'px';
+    overlay.style.transform = 'none';
   }
-  
-  // Prevent multiple rapid calls
-  if (data.isProgressing) {
-    console.log('Already progressing, skipping duplicate call');
-    return;
-  }
-  
-  data.isProgressing = true;
-  
-  const tabId = data.currentTab;
-  console.log(`Video ended for tab: ${tabId}, current step: ${data.currentStep}`);
-  
-  // Count total steps for current tab
-  const tabContent = document.querySelector(`.how-to-use-tab-content[data-tab="${tabId}"]`);
-  const totalSteps = tabContent ? tabContent.querySelectorAll('.how-to-use-step').length : 0;
-  
-  console.log(`Total steps in tab ${tabId}: ${totalSteps}`);
-  
-  // Move to next step
-  if (data.currentStep < totalSteps) {
-    const nextStep = data.currentStep + 1;
-    console.log(`Moving from step ${data.currentStep} to step ${nextStep}`);
-    data.currentStep = nextStep;
-    updateProgress(sectionId, tabId, data.currentStep, false);
-    playCurrentVideo(sectionId);
-  } else {
-    // Loop back to first step with blink animation
-    console.log(`Looping back from step ${data.currentStep} to step 1`);
-    data.currentStep = 1;
-    updateProgress(sectionId, tabId, data.currentStep, true);
-    playCurrentVideo(sectionId);
-  }
-  
-  // Reset progression flag after a short delay
-  setTimeout(() => {
-    data.isProgressing = false;
-  }, 500);
-}
 
-function smoothAutoProgress(sectionId, tabId, targetStep, previousStep, shouldBlink = false) {
-  console.log(`AUTO SMOOTH: From step ${previousStep} to step ${targetStep}`);
-  
-  const tabContent = document.querySelector(`.how-to-use-tab-content[data-tab="${tabId}"]`);
-  if (!tabContent) return;
-  
-  const steps = tabContent.querySelectorAll('.how-to-use-step');
-  const totalSteps = steps.length;
-  const progressFill = document.getElementById(`progress-fill-${sectionId}-${tabId}`);
-  
-  if (!progressFill || totalSteps <= 1) return;
-  
-  // Calculate target percentage
-  let targetPercentage = 0;
-  if (targetStep > 1) {
-    targetPercentage = ((targetStep - 1) / (totalSteps - 1)) * 100;
-  }
-  
-  // Immediately update step states for smooth progression
-  steps.forEach((step, index) => {
-    const stepNum = index + 1;
-    step.classList.remove('active', 'blink', 'completed');
-    
-    if (stepNum < targetStep) {
-      step.classList.add('completed');
-    } else if (stepNum === targetStep) {
-      step.classList.add('active');
-      if (targetStep > 1) {
-        step.classList.add('completed');
-      }
-      if (shouldBlink) {
-        step.classList.add('blink');
-      }
+  // ── Init on DOMContentLoaded ──────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    var sid = '{{ section.id }}';
+    window.initHowToUse(sid);
+
+    // IntersectionObserver: start from step 1 when section enters viewport
+    var htuEl = document.getElementById('how-to-use-' + sid);
+    if (htuEl && 'IntersectionObserver' in window) {
+      var isVisible = false;
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !isVisible) {
+            isVisible = true;
+            var d = window.howToUseData[sid];
+            if (d) {
+              stopAllVideos(sid);
+              d.currentStep = 1;
+              d.isProgressing = false;
+              updateProgress(sid, d.currentTab, 1);
+              playCurrentVideo(sid);
+              if (window.innerWidth <= 1024) htuUpdateMobileOverlay(d.currentTab, 1, sid);
+            }
+          } else if (!entry.isIntersecting && isVisible) {
+            isVisible = false;
+            var d = window.howToUseData[sid];
+            if (d) {
+              stopAllVideos(sid);
+              d.currentStep = 1;
+              d.isProgressing = false;
+              updateProgress(sid, d.currentTab, 1);
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+      obs.observe(htuEl);
+    }
+
+    // MutationObserver for overlay sync — single observer, debounced handler
+    if (window.innerWidth <= 1024 && htuEl) {
+      var lastMutStep = 0;
+      var mobObs = new MutationObserver(function () {
+        var d = window.howToUseData[sid];
+        if (!d || d.currentStep === lastMutStep) return;
+        lastMutStep = d.currentStep;
+        htuUpdateMobileOverlay(d.currentTab, d.currentStep, sid);
+      });
+      htuEl.querySelectorAll('.how-to-use-step').forEach(function (el) {
+        mobObs.observe(el, { attributes: true, attributeFilter: ['class'] });
+      });
+
+      htuUpdateMobileOverlay('am', 1, sid);
+    }
+
+    // Tablet overlay width sync
+    if (window.innerWidth >= 769 && window.innerWidth <= 1024) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { htuSyncTabletOverlayWidth(sid); });
+      });
+      var resizeTimer = null;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () { htuSyncTabletOverlayWidth(sid); }, 150);
+      });
     }
   });
-  
-  // Animate progress bar
-  progressFill.style.width = targetPercentage + '%';
-  
-  // Update products
-  const products = tabContent.querySelectorAll('.how-to-use-product');
-  products.forEach((product, index) => {
-    product.classList.toggle('active', (index + 1) === targetStep);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  initHowToUse('{{ section.id }}');
-  
-  // Add aggressive click listeners for all step circles, especially step 1
-  setTimeout(() => {
-    const allSteps = document.querySelectorAll('.how-to-use-step');
-    allSteps.forEach(step => {
-      const stepNumber = parseInt(step.dataset.step);
-      const circle = step.querySelector('.how-to-use-step-circle');
-      const label = step.querySelector('.how-to-use-step-label');
-      
-      if (circle) {
-        // Remove any existing listeners
-        circle.removeEventListener('click', handleStepClick);
-        // Add new listener
-        circle.addEventListener('click', function(e) {
-          console.log(`DIRECT CLICK: Step ${stepNumber} circle clicked`);
-          const tabContent = step.closest('.how-to-use-tab-content');
-          const tabId = tabContent ? tabContent.dataset.tab : 'am';
-          forceGoToStep(stepNumber, tabId, '{{ section.id }}');
-        }, true); // Use capture phase
-        
-        // Also add mousedown for extra reliability
-        circle.addEventListener('mousedown', function(e) {
-          console.log(`MOUSEDOWN: Step ${stepNumber} circle`);
-          const tabContent = step.closest('.how-to-use-tab-content');
-          const tabId = tabContent ? tabContent.dataset.tab : 'am';
-          forceGoToStep(stepNumber, tabId, '{{ section.id }}');
-        }, true);
-      }
-      
-      if (label) {
-        label.addEventListener('click', function(e) {
-          console.log(`DIRECT CLICK: Step ${stepNumber} label clicked`);
-          const tabContent = step.closest('.how-to-use-tab-content');
-          const tabId = tabContent ? tabContent.dataset.tab : 'am';
-          forceGoToStep(stepNumber, tabId, '{{ section.id }}');
-        }, true);
-      }
-    });
-  }, 500);
-});
+})();
 </script>
+
 
 {% schema %}
 {
@@ -1063,6 +1427,196 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "accent_color",
       "label": "Accent Color",
       "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mob_video_height",
+      "label": "Mobile Video Height",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "vh",
+      "default": 80,
+      "info": "Height of the background video on mobile as percentage of viewport height"
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_font_size",
+      "min": 10, "max": 18, "step": 1, "unit": "px",
+      "label": "Mobile Tab Font Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_padding_v",
+      "min": 6, "max": 16, "step": 1, "unit": "px",
+      "label": "Mobile Tab Vertical Padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_padding_h",
+      "min": 10, "max": 30, "step": 2, "unit": "px",
+      "label": "Mobile Tab Horizontal Padding",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_tab_gap",
+      "min": 4, "max": 16, "step": 2, "unit": "px",
+      "label": "Mobile Tab Gap",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "mobile_strip_padding_h",
+      "min": 12, "max": 40, "step": 2, "unit": "px",
+      "label": "Mobile Strip Horizontal Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_step_circle_size",
+      "min": 28, "max": 48, "step": 2, "unit": "px",
+      "label": "Mobile Step Circle Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_step_font_size",
+      "min": 10, "max": 18, "step": 1, "unit": "px",
+      "label": "Mobile Step Number Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_step_label_size",
+      "min": 9, "max": 14, "step": 1, "unit": "px",
+      "label": "Mobile Step Label Font Size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_img_width",
+      "min": 60, "max": 300, "step": 5, "unit": "px",
+      "label": "Mobile Product Image Width",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "mob_info_max_width",
+      "min": 120, "max": 400, "step": 10, "unit": "px",
+      "label": "Mobile Info Box Max Width",
+      "info": "Maximum width of the glassmorphism info box on mobile",
+      "default": 220
+    },
+    {
+      "type": "range",
+      "id": "mobile_info_padding",
+      "min": 10, "max": 28, "step": 2, "unit": "px",
+      "label": "Mobile Info Box Padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_name_size",
+      "min": 14, "max": 26, "step": 1, "unit": "px",
+      "label": "Mobile Product Name Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_desc_size",
+      "min": 10, "max": 18, "step": 1, "unit": "px",
+      "label": "Mobile Product Description Font Size",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings"
+    },
+    {
+      "type": "range",
+      "id": "tab_video_height",
+      "label": "Tablet Video Height",
+      "min": 30, "max": 90, "step": 5, "unit": "vh",
+      "default": 70,
+      "info": "Height of the background video on tablet as percentage of viewport height"
+    },
+    {
+      "type": "range",
+      "id": "tablet_tab_font_size",
+      "min": 12, "max": 50, "step": 1, "unit": "px",
+      "label": "Tablet Tab Font Size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "tablet_strip_padding_h",
+      "min": 20, "max": 80, "step": 5, "unit": "px",
+      "label": "Tablet Strip Horizontal Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "tablet_step_circle_size",
+      "min": 30, "max": 100, "step": 1, "unit": "px",
+      "label": "Tablet Step Circle Size",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "tablet_step_font_size",
+      "min": 12, "max": 20, "step": 1, "unit": "px",
+      "label": "Tablet Step Number Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tablet_step_label_size",
+      "min": 10, "max": 16, "step": 1, "unit": "px",
+      "label": "Tablet Step Label Font Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "tablet_product_img_width",
+      "min": 100, "max": 500, "step": 10, "unit": "px",
+      "label": "Tablet Product Image Width",
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "tab_info_max_width",
+      "min": 160, "max": 900, "step": 10, "unit": "px",
+      "label": "Tablet Info Box Width",
+      "info": "Direct width of the glassmorphism info box on tablet",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "tablet_info_padding",
+      "min": 12, "max": 36, "step": 2, "unit": "px",
+      "label": "Tablet Info Box Padding",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "tablet_product_name_size",
+      "min": 16, "max": 100, "step": 1, "unit": "px",
+      "label": "Tablet Product Name Font Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "tablet_product_desc_size",
+      "min": 12, "max": 100, "step": 1, "unit": "px",
+      "label": "Tablet Product Description Font Size",
+      "default": 15
     }
   ],
   "blocks": [
@@ -1167,6 +1721,110 @@ document.addEventListener('DOMContentLoaded', function() {
           "default": -300,
           "unit": "px",
           "info": "Move glassmorphism box up (negative) or down (positive)"
+        },
+        {
+          "type": "header",
+          "content": "Mobile — Product Image Position"
+        },
+        {
+          "type": "range",
+          "id": "mobile_image_x",
+          "label": "Mobile Image Horizontal Position (X-axis)",
+          "min": -300,
+          "max": 300,
+          "step": 10,
+          "default": -30,
+          "unit": "px",
+          "info": "Move image left (negative) or right (positive) on mobile"
+        },
+        {
+          "type": "range",
+          "id": "mobile_image_y",
+          "label": "Mobile Image Vertical Position (Y-axis)",
+          "min": -500,
+          "max": 200,
+          "step": 10,
+          "default": 0,
+          "unit": "px",
+          "info": "Move image up (negative) or down (positive) on mobile"
+        },
+        {
+          "type": "header",
+          "content": "Mobile — Info Box Position"
+        },
+        {
+          "type": "range",
+          "id": "mobile_info_x",
+          "label": "Mobile Info Box Horizontal Position (X-axis)",
+          "min": -300,
+          "max": 300,
+          "step": 10,
+          "default": -80,
+          "unit": "px",
+          "info": "Move info box left (negative) or right (positive) on mobile"
+        },
+        {
+          "type": "range",
+          "id": "mobile_info_y",
+          "label": "Mobile Info Box Vertical Position (Y-axis)",
+          "min": -300,
+          "max": 200,
+          "step": 5,
+          "default": 0,
+          "unit": "px",
+          "info": "Move info box up (negative) or down (positive) on mobile"
+        },
+        {
+          "type": "header",
+          "content": "Tablet — Product Image Position"
+        },
+        {
+          "type": "range",
+          "id": "tablet_image_x",
+          "label": "Tablet Image Horizontal Position (X-axis)",
+          "min": -400,
+          "max": 400,
+          "step": 10,
+          "default": -150,
+          "unit": "px",
+          "info": "Move image left (negative) or right (positive) on tablet"
+        },
+        {
+          "type": "range",
+          "id": "tablet_image_y",
+          "label": "Tablet Image Vertical Position (Y-axis)",
+          "min": -600,
+          "max": 200,
+          "step": 10,
+          "default": 20,
+          "unit": "px",
+          "info": "Move image up (negative) or down (positive) on tablet"
+        },
+        {
+          "type": "header",
+          "content": "Tablet — Info Box Position"
+        },
+        {
+          "type": "range",
+          "id": "tablet_info_x",
+          "label": "Tablet Info Box Horizontal Position (X-axis)",
+          "min": -400,
+          "max": 400,
+          "step": 10,
+          "default": -250,
+          "unit": "px",
+          "info": "Move info box left (negative) or right (positive) on tablet"
+        },
+        {
+          "type": "range",
+          "id": "tablet_info_y",
+          "label": "Tablet Info Box Vertical Position (Y-axis)",
+          "min": -400,
+          "max": 200,
+          "step": 10,
+          "default": 0,
+          "unit": "px",
+          "info": "Move info box up (negative) or down (positive) on tablet"
         }
       ]
     }
@@ -1174,32 +1832,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "presets": [
     {
       "name": "How To Use",
-      "blocks": [
-        {
-          "type": "step",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Cleanser",
-            "product_name": "BHA & Tea Tree"
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Toner",
-            "product_name": "Hydrating Tonic"
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "tab_id": "am",
-            "step_label": "Moisturiser",
-            "product_name": "PM Moisturiser"
-          }
-        }
-      ]
+      "blocks": []
     }
   ]
 }

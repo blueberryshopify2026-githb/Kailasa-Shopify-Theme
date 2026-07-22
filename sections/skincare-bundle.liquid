@@ -3,6 +3,7 @@
   Features glassmorphism info panels, customizable positioning, and luxury aesthetic
 {% endcomment %}
 
+
 <style>
   .skincare-bundle-section {
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -13,6 +14,7 @@
     min-height: 600px;
   }
 
+
   .skincare-bundle-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -21,8 +23,9 @@
     grid-template-columns: 20% 80%;
     gap: 40px;
     align-items: center;
-    min-height: 600px;
+    min-height: 900px;
   }
+
 
   /* Left Content Area (25%) */
   .bundle-content {
@@ -35,6 +38,7 @@
     height: 100%;
   }
 
+
   .bundle-title {
     font-size: {{ section.settings.title_font_size }}px;
     font-weight: 700;
@@ -43,6 +47,7 @@
     margin: 0 0 20px 0;
     letter-spacing: -0.02em;
   }
+
 
   .bundle-description {
     font-size: {{ section.settings.description_font_size }}px;
@@ -60,12 +65,13 @@
     {% endif %}
   }
 
+
   .bundle-cta {
     background: {{ section.settings.cta_bg_color }};
     color: {{ section.settings.cta_text_color }};
     border: none;
     border-radius: {{ section.settings.cta_border_radius }}px;
-    padding: 14px 25px;
+    padding: 14px 50px 14px 25px;
     font-size: {{ section.settings.cta_font_size }}px;
     font-weight: 600;
     text-decoration: none;
@@ -75,13 +81,28 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
+    min-width: 200px;
+    text-align: center;
   }
+
+
+  .bundle-cta::after {
+    content: '→';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: 400;
+  }
+
 
   .bundle-cta:hover {
     background: {{ section.settings.cta_hover_color }};
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   }
+
 
   .bundle-cta::before {
     content: '';
@@ -94,19 +115,22 @@
     transition: left 0.5s;
   }
 
+
   .bundle-cta:hover::before {
     left: 100%;
   }
 
+
   /* Right Product Area (75%) */
   .bundle-products {
     position: relative;
-    height: 600px;
+    height: 900px;
     background: {{ section.settings.products_background }};
     border-radius: 0;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
   }
+
 
   .skincare-bundle-products-image {
     width: 100%;
@@ -114,6 +138,7 @@
     object-fit: cover;
     display: block;
   }
+
 
   /* Hotspot Styling */
   .product-hotspot {
@@ -125,9 +150,11 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+
   .product-hotspot.active {
     z-index: 999;
   }
+
 
   .hotspot-dot {
     width: 100%;
@@ -138,6 +165,7 @@
     box-shadow: 0 0 20px {{ section.settings.hotspot_color }}40;
     animation: pulse 2s infinite;
   }
+
 
   .hotspot-dot::before {
     content: '';
@@ -150,6 +178,7 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
   }
+
 
   .hotspot-dot::after {
     content: '';
@@ -165,15 +194,18 @@
     animation: ripple 2s infinite;
   }
 
+
   @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
   }
 
+
   @keyframes ripple {
     0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
     100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
   }
+
 
   /* Glassmorphism Info Panel */
   .product-info-panel {
@@ -194,12 +226,14 @@
     overflow: hidden;
   }
 
+
   .product-info-panel.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: auto;
   }
+
 
   /* Panel positioning with proper distance for pointer lines */
   .product-info-panel.position-top {
@@ -209,9 +243,11 @@
     transform: translateX(-50%) translateY(15px) scale(0.9);
   }
 
+
   .product-info-panel.position-top.show {
     transform: translateX(-50%) translateY(0) scale(1);
   }
+
 
   .product-info-panel.position-bottom {
     top: 100%;
@@ -220,9 +256,11 @@
     transform: translateX(-50%) translateY(-15px) scale(0.9);
   }
 
+
   .product-info-panel.position-bottom.show {
     transform: translateX(-50%) translateY(0) scale(1);
   }
+
 
   .product-info-panel.position-left {
     right: 100%;
@@ -231,9 +269,11 @@
     transform: translateY(-50%) translateX(15px) scale(0.9);
   }
 
+
   .product-info-panel.position-left.show {
     transform: translateY(-50%) translateX(0) scale(1);
   }
+
 
   .product-info-panel.position-right {
     left: 100%;
@@ -242,9 +282,11 @@
     transform: translateY(-50%) translateX(-15px) scale(0.9);
   }
 
+
   .product-info-panel.position-right.show {
     transform: translateY(-50%) translateX(0) scale(1);
   }
+
 
   /* Panel Content */
   .panel-content {
@@ -254,8 +296,9 @@
     align-items: flex-start;
   }
 
+
   .panel-image {
-    width: 140px;
+    width: 180px;
     height: 180px;
     border-radius: 12px;
     object-fit: cover;
@@ -264,6 +307,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     flex-basis: 40%;
   }
+
 
   .panel-info {
     flex: 1;
@@ -274,6 +318,7 @@
     text-align: left;
   }
 
+
   .panel-title {
     font-size: 20px;
     font-weight: 700;
@@ -282,6 +327,7 @@
     line-height: 1.2;
     text-align: left;
   }
+
 
   .panel-description {
     font-size: 14px;
@@ -295,46 +341,221 @@
     text-align: left;
   }
 
+
   .panel-actions {
     margin-top: 10px;
-    display: block;
+    display: flex;
     width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
+
 
   .panel-learn-more {
     background: {{ section.settings.hotspot_color }};
     color: #1a1a1a;
     border: none;
     border-radius: 25px;
-    padding: 12px 24px;
+    padding: 7px 14px;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
-    text-align: left;
-    display: block;
+    text-align: center;
+    display: inline-block;
     white-space: nowrap;
     margin: 0;
-    width: fit-content;
-    align-self: flex-start;
+    width: auto;
+    margin-right: auto;
   }
+
 
   .panel-learn-more:hover {
     background: #ffffff;
     transform: translateY(-1px);
   }
 
+
   /* Responsive Design */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .skincare-bundle-section {
+      min-height: auto;
+      padding: 0;
+    }
+
+
+    .skincare-bundle-container {
+      max-width: 100%;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: auto;
+    }
+
+
+    .bundle-content {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      z-index: 10;
+      {% comment %} padding: 10px; {% endcomment %}
+      text-align: center;
+      align-items: center;
+      width: 100%;
+      max-width: none;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      order: 2;
+    }
+
+
+    .bundle-title {
+      font-size: {{ section.settings.tablet_title_font_size | default: 36 }}px !important;
+      color: {{ section.settings.tablet_title_color | default: '#1a1a1a' }} !important;
+      margin: 0 0 15px 0 !important;
+      text-align: center;
+    }
+
+
+    .bundle-description {
+      font-size: {{ section.settings.tablet_description_font_size | default: 16 }}px !important;
+      color: {{ section.settings.tablet_description_color | default: '#666666' }} !important;
+      margin: 0 0 25px 0 !important;
+      text-align: center;
+      max-width: none;
+    }
+
+
+    .bundle-cta {
+      font-size: {{ section.settings.tablet_cta_font_size | default: 16 }}px !important;
+      background: {{ section.settings.tablet_cta_bg_color | default: '#1a1a1a' }} !important;
+      color: {{ section.settings.tablet_cta_text_color | default: '#ffffff' }} !important;
+      padding: 12px 50px 12px 30px !important;
+      margin: 0 !important;
+    }
+
+
+    .bundle-products {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 100%;
+      height: 60vh;
+      border-radius: 0;
+      box-shadow: none;
+      order: 1;
+    }
+
+
+    .skincare-bundle-products-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+    .product-hotspot {
+      width: 20px;
+      height: 20px;
+    }
+
+
+    .hotspot-dot {
+      background: {{ section.settings.hotspot_color | default: '#4FFFFF' }};
+      box-shadow: 0 0 25px {{ section.settings.hotspot_color | default: '#4FFFFF' }}60;
+    }
+
+
+    .hotspot-dot::after {
+      width: 60px;
+      height: 60px;
+      border: 3px solid {{ section.settings.hotspot_color | default: '#4FFFFF' }};
+    }
+
+
+    .product-info-panel {
+      width: 350px !important;
+      max-width: 350px !important;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+
+    .panel-content {
+      padding: 0;
+      gap: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      min-height: 140px;
+      width: 100%;
+    }
+
+
+    .panel-image {
+      width: 90%;
+      height: 100%;
+      flex-shrink: 0;
+      flex-basis: 70%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+
+    .panel-info {
+      flex: 1;
+      flex-basis: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      text-align: left;
+      padding: 16px 12px 16px 8px;
+      background: transparent;
+      min-height: 100%;
+    }
+
+
+    .panel-title {
+      font-size: {{ section.settings.tablet_panel_title_font_size | default: 18 }}px !important;
+      color: {{ section.settings.tablet_panel_title_color | default: '#1a1a1a' }} !important;
+    }
+
+
+    .panel-description {
+      font-size: {{ section.settings.tablet_panel_description_font_size | default: 14 }}px !important;
+      color: {{ section.settings.tablet_panel_description_color | default: '#4a4a4a' }} !important;
+    }
+
+
+    .panel-learn-more {
+      font-size: {{ section.settings.tablet_learn_more_font_size | default: 14 }}px !important;
+      background: {{ section.settings.tablet_learn_more_bg_color | default: section.settings.hotspot_color }} !important;
+      color: {{ section.settings.tablet_learn_more_text_color | default: '#1a1a1a' }} !important;
+      padding: 8px 16px;
+    }
+  }
+
+
   @media (max-width: 1024px) {
     .skincare-bundle-container {
       grid-template-columns: 30% 70%;
       gap: 30px;
     }
 
+
     .bundle-products {
-      height: 500px;
+      height: 900px;
     }
+
 
     .product-info-panel {
       width: 240px;
@@ -342,88 +563,186 @@
     }
   }
 
+
   @media (max-width: 768px) {
+    .skincare-bundle-section {
+      padding: 0 !important;
+      min-height: auto !important;
+    }
+
+
     .skincare-bundle-container {
       grid-template-columns: 1fr;
-      gap: 40px;
-      min-height: auto;
+      gap: 0 !important;
+      min-height: auto !important;
+      padding: 0 !important;
     }
+
 
     .bundle-content {
-      padding: 20px;
+      padding: 20px 20px 15px 20px !important;
       text-align: center;
       align-items: center;
+      margin-bottom: 0 !important;
     }
 
+
+    .bundle-title {
+      font-size: {{ section.settings.mobile_title_font_size | default: 28 }}px !important;
+      margin: 0 0 8px 0 !important;
+    }
+
+
     .bundle-description {
+      font-size: {{ section.settings.mobile_description_font_size | default: 14 }}px !important;
+      margin: 0 0 8px 0 !important;
       margin-left: auto;
       margin-right: auto;
     }
 
+
+    .bundle-cta {
+      font-size: {{ section.settings.mobile_cta_font_size | default: 14 }}px !important;
+      padding: 10px 40px 10px 20px !important;
+      margin: 10px 0 30px 0 !important;
+      min-width: 180px !important;
+    }
+
+
+    .bundle-cta::after {
+      right: 15px !important;
+      font-size: 16px !important;
+    }
+
+
     .bundle-products {
-      height: 400px;
+      height: 460px;
       order: -1;
     }
 
     .product-info-panel {
-      width: 280px;
+      width: 200px !important;
+      max-width: 85vw !important;
     }
+
 
     .panel-content {
-      padding: 20px;
-      gap: 16px;
+      padding: 0;
+      gap: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      min-height: 80px;
     }
+
 
     .panel-image {
-      width: 100px;
-      height: 100px;
+      width: 90% !important;
+      height: 100% !important;
+      flex-shrink: 0;
+      flex-basis: 70%;
+      object-fit: cover !important;
+      border-radius: 8px;
     }
+
+
+    .panel-info {
+      flex: 1;
+      flex-basis: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 4px;
+      text-align: left !important;
+      min-height: 100%;
+      padding: 8px 4px 8px 2px;
+    }
+
 
     .panel-title {
-      font-size: 18px;
+      font-size: {{ section.settings.mobile_panel_title_font_size | default: 16 }}px !important;
+      text-align: left !important;
+      margin: 0;
+      line-height: 1.2;
     }
+
 
     .panel-description {
-      font-size: 13px;
+      font-size: {{ section.settings.mobile_panel_description_font_size | default: 12 }}px !important;
+      -webkit-line-clamp: 2;
+      text-align: left !important;
+      margin: 0;
+      line-height: 1.3;
     }
+
 
     .panel-actions {
-      margin-top: 12px;
+      margin-top: 4px;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
-    .panel-add-to-cart {
-      padding: 10px 20px;
-      font-size: 13px;
+
+    .panel-learn-more {
+      font-size: {{ section.settings.mobile_learn_more_font_size | default: 12 }}px !important;
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin: 0;
+    }
+
+        .product-hotspot {
+      width: 15px;
+      height: 15px;
+    }
+
+
+    .hotspot-dot {
+      background: {{ section.settings.hotspot_color | default: '#4FFFFF' }};
+      box-shadow: 0 0 25px {{ section.settings.hotspot_color | default: '#4FFFFF' }}60;
+    }
+
+
+    .hotspot-dot::after {
+      width: 30px;
+      height: 30px;
+      border: 3px solid {{ section.settings.hotspot_color | default: '#4FFFFF' }};
     }
   }
+
 
   @media (max-width: 480px) {
     .skincare-bundle-section {
       padding: 40px 0;
     }
 
+
     .skincare-bundle-container {
       padding: 0 15px;
     }
 
+
     .bundle-products {
-      height: 300px;
+      height: 360px;
     }
+
 
     .product-info-panel {
       width: 200px;
       padding: 12px;
     }
 
+
     .hotspot-dot {
       animation: none;
     }
+
 
     .hotspot-dot::after {
       animation: none;
     }
   }
 </style>
+
 
 <div class="skincare-bundle-section full-width">
   <div class="skincare-bundle-container">
@@ -432,25 +751,26 @@
       {% if section.settings.bundle_title != blank %}
         <h2 class="bundle-title">{{ section.settings.bundle_title }}</h2>
       {% endif %}
-      
+     
       {% if section.settings.bundle_description != blank %}
         <p class="bundle-description">{{ section.settings.bundle_description }}</p>
       {% endif %}
-      
+     
       {% if section.settings.cta_text != blank %}
         <a href="{{ section.settings.cta_link | default: '#' }}" class="bundle-cta">
-          {{ section.settings.cta_text }}
+          {{ section.settings.cta_text | replace: '→', '' | replace: '→', '' | strip }}
         </a>
       {% endif %}
     </div>
 
+
     <!-- Right Products Area (70%) -->
     <div class="bundle-products">
       {% if section.settings.bundle_image %}
-        <img src="{{ section.settings.bundle_image | image_url: width: 1200, height: 800 }}" 
-             alt="{{ section.settings.bundle_title | default: 'Skincare Bundle' }}" 
+        <img src="{{ section.settings.bundle_image | image_url: width: 1200, height: 800 }}"
+             alt="{{ section.settings.bundle_title | default: 'Skincare Bundle' }}"
              class="skincare-bundle-products-image"
-             width="1200" 
+             width="1200"
              height="800">
       {% else %}
         <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); display: flex; align-items: center; justify-content: center; color: #666; font-size: 18px;">
@@ -458,34 +778,35 @@
         </div>
       {% endif %}
 
+
       <!-- Product Hotspots -->
       {% for block in section.blocks %}
-        <div class="product-hotspot" 
+        <div class="product-hotspot"
              data-product-id="{{ block.id }}"
              style="left: {{ block.settings.hotspot_x | default: 50 }}%; top: {{ block.settings.hotspot_y | default: 50 }}%;">
           <div class="hotspot-dot"></div>
-            
-            <div class="product-info-panel position-{{ block.settings.panel_position }}" 
+           
+            <div class="product-info-panel position-{{ block.settings.panel_position }}"
                  id="panel-{{ block.id }}">
               <div class="panel-content">
                 <div class="panel-image-container">
                   {% if block.settings.hotspot_image %}
-                    <img src="{{ block.settings.hotspot_image | image_url: width: 240, height: 240 }}" 
-                         alt="{{ block.settings.product_title | default: 'Product' }}" 
+                    <img src="{{ block.settings.hotspot_image | image_url: width: 240, height: 240 }}"
+                         alt="{{ block.settings.product_title | default: 'Product' }}"
                          class="panel-image"
-                         width="120" 
+                         width="120"
                          height="120">
                   {% elsif block.settings.product_image %}
-                    <img src="{{ block.settings.product_image | image_url: width: 240, height: 240 }}" 
-                         alt="{{ block.settings.product_title | default: 'Product' }}" 
+                    <img src="{{ block.settings.product_image | image_url: width: 240, height: 240 }}"
+                         alt="{{ block.settings.product_title | default: 'Product' }}"
                          class="panel-image"
-                         width="120" 
+                         width="120"
                          height="120">
                   {% elsif block.settings.product and block.settings.product.featured_image %}
-                    <img src="{{ block.settings.product.featured_image | image_url: width: 240, height: 240 }}" 
-                         alt="{{ block.settings.product.title | default: 'Product' }}" 
+                    <img src="{{ block.settings.product.featured_image | image_url: width: 240, height: 240 }}"
+                         alt="{{ block.settings.product.title | default: 'Product' }}"
                          class="panel-image"
-                         width="120" 
+                         width="120"
                          height="120">
                   {% else %}
                     <div class="panel-image" style="display: flex; align-items: center; justify-content: center; font-size: 12px; color: #999;">
@@ -493,20 +814,20 @@
                     </div>
                   {% endif %}
                 </div>
-                
+               
                 <div class="panel-info">
                   {% if block.settings.product_title != blank %}
                     <h3 class="panel-title">{{ block.settings.product_title }}</h3>
                   {% elsif block.settings.product %}
                     <h3 class="panel-title">{{ block.settings.product.title }}</h3>
                   {% endif %}
-                  
+                 
                   {% if block.settings.product_description != blank %}
                     <p class="panel-description">{{ block.settings.product_description }}</p>
                   {% elsif block.settings.product and block.settings.product.description %}
                     <p class="panel-description">{{ block.settings.product.description | strip_html | truncate: 120 }}</p>
                   {% endif %}
-                  
+                 
                   <div class="panel-actions">
                     {% if block.settings.product_link != blank %}
                       <a href="{{ block.settings.product_link }}" class="panel-learn-more">Learn more</a>
@@ -525,6 +846,7 @@
   </div>
 </div>
 
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const hotspots = document.querySelectorAll('.product-hotspot');
@@ -532,34 +854,36 @@
     let hoverTimeout = null;
     let isTransitioning = false;
 
+
     function showPanel(hotspot) {
       // Clear any pending hide timeout
       clearTimeout(hoverTimeout);
       isTransitioning = false;
-      
+     
       // If this is already the active hotspot, do nothing
       if (activeHotspot === hotspot) return;
-      
+     
       // Hide all other panels first
       hideAllPanels();
-      
+     
       const panel = hotspot.querySelector('.product-info-panel');
       if (!panel) return;
-      
+     
       // Set as active and add active class for higher z-index
       activeHotspot = hotspot;
       hotspot.classList.add('active');
-      
+     
       // Show panel with slight delay for smooth transition
       setTimeout(() => {
         panel.classList.add('show');
       }, 50);
     }
 
+
     function hidePanel(hotspot, immediate = false) {
       // Only hide if this is the active hotspot
       if (activeHotspot !== hotspot) return;
-      
+     
       if (immediate) {
         const panel = hotspot.querySelector('.product-info-panel');
         if (panel) panel.classList.remove('show');
@@ -568,10 +892,10 @@
         isTransitioning = false;
         return;
       }
-      
+     
       // Set transitioning flag to prevent interference
       isTransitioning = true;
-      
+     
       // Use timeout to allow smooth cursor movement between hotspot and panel
       hoverTimeout = setTimeout(() => {
         // Only hide if still transitioning (not interrupted by mouseenter)
@@ -585,10 +909,11 @@
       }, 200);
     }
 
+
     function hideAllPanels() {
       clearTimeout(hoverTimeout);
       isTransitioning = false;
-      
+     
       hotspots.forEach(hotspot => {
         const panel = hotspot.querySelector('.product-info-panel');
         if (panel) panel.classList.remove('show');
@@ -597,17 +922,19 @@
       activeHotspot = null;
     }
 
+
     // Create hover zones that include both hotspot and panel
     hotspots.forEach((hotspot, index) => {
       const panel = hotspot.querySelector('.product-info-panel');
       if (!panel) return;
-      
+     
       // Create a combined hover area
       const hoverZone = {
         hotspot: hotspot,
         panel: panel,
         isHovered: false
       };
+
 
       // Hotspot events
       hotspot.addEventListener('mouseenter', function(e) {
@@ -618,10 +945,11 @@
         showPanel(hotspot);
       });
 
+
       hotspot.addEventListener('mouseleave', function(e) {
         e.stopPropagation();
         hoverZone.isHovered = false;
-        
+       
         // Small delay to check if cursor moved to panel
         setTimeout(() => {
           if (!hoverZone.isHovered) {
@@ -630,23 +958,25 @@
         }, 50);
       });
 
+
       // Panel events
       panel.addEventListener('mouseenter', function(e) {
         e.stopPropagation();
         clearTimeout(hoverTimeout);
         isTransitioning = false;
         hoverZone.isHovered = true;
-        
+       
         // Ensure this panel is active
         if (activeHotspot !== hotspot) {
           showPanel(hotspot);
         }
       });
 
+
       panel.addEventListener('mouseleave', function(e) {
         e.stopPropagation();
         hoverZone.isHovered = false;
-        
+       
         // Small delay to check if cursor moved back to hotspot
         setTimeout(() => {
           if (!hoverZone.isHovered) {
@@ -654,6 +984,7 @@
           }
         }, 50);
       });
+
 
       // Handle clicks on panel buttons
       const buttons = panel.querySelectorAll('a, button');
@@ -665,12 +996,14 @@
       });
     });
 
+
     // Close all panels when clicking outside
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.product-hotspot')) {
         hideAllPanels();
       }
     });
+
 
     // Handle escape key to close panels
     document.addEventListener('keydown', function(e) {
@@ -680,6 +1013,7 @@
     });
   });
 </script>
+
 
 {% schema %}
 {
@@ -813,7 +1147,7 @@
       "type": "text",
       "id": "cta_text",
       "label": "CTA Button Text",
-      "default": "Explore the full routine →"
+      "default": "Explore the full routine"
     },
     {
       "type": "url",
@@ -882,6 +1216,182 @@
       "id": "hotspot_color",
       "label": "Hotspot Color",
       "default": "#4FFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_font_size",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_cta_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile CTA Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_panel_title_font_size",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Panel Title Font Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_panel_description_font_size",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Panel Description Font Size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_learn_more_font_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Learn More Button Font Size",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings"
+    },
+    {
+      "type": "range",
+      "id": "tablet_title_font_size",
+      "min": 24,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Tablet Title Font Size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "tablet_title_color",
+      "label": "Tablet Title Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "tablet_description_font_size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "tablet_description_color",
+      "label": "Tablet Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "tablet_cta_font_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet CTA Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "tablet_cta_bg_color",
+      "label": "Tablet CTA Background Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "tablet_cta_text_color",
+      "label": "Tablet CTA Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "tablet_panel_title_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Panel Title Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "tablet_panel_title_color",
+      "label": "Tablet Panel Title Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "tablet_panel_description_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Panel Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "tablet_panel_description_color",
+      "label": "Tablet Panel Description Color",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "range",
+      "id": "tablet_learn_more_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Tablet Learn More Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "tablet_learn_more_bg_color",
+      "label": "Tablet Learn More Background Color",
+      "default": "#4FFFFF"
+    },
+    {
+      "type": "color",
+      "id": "tablet_learn_more_text_color",
+      "label": "Tablet Learn More Text Color",
+      "default": "#1a1a1a"
     }
   ],
   "blocks": [
@@ -889,18 +1399,6 @@
       "type": "product_hotspot",
       "name": "Product Hotspot",
       "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_hotspot",
-          "label": "Show Hotspot",
-          "default": true
-        },
-        {
-          "type": "image_picker",
-          "id": "hotspot_image",
-          "label": "Hotspot Image",
-          "info": "Image to display in the info panel"
-        },
         {
           "type": "product",
           "id": "product",
@@ -1071,3 +1569,7 @@
   ]
 }
 {% endschema %}
+
+
+
+

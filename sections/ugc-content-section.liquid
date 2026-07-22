@@ -1,10 +1,7 @@
 {% comment %}
-  UGC Content Section - Exact match to reference image
-  Features: Large center card, small side cards, infinite conveyor belt scroll
+  UGC Content Section
+  Features: Large center card, small side cards, seamless infinite loop (2-clone pattern)
 {% endcomment %}
-
-
-
 
 <style>
   .ucs {
@@ -20,25 +17,16 @@
     justify-content: center;
   }
 
-
-
-
   .ucs__container {
     width: 100%;
-    padding: 0; /* Remove padding for full width */
+    padding: 0;
   }
-
-
-
 
   /* Header */
   .ucs__header {
     text-align: center;
-    padding: 0 20px; /* Only header has padding */
+    padding: 0 20px;
   }
-
-
-
 
   .ucs__title {
     font-size: {{ section.settings.title_font_size | default: 42 }}px;
@@ -49,9 +37,6 @@
     font-family: 'Montserrat', sans-serif;
   }
 
-
-
-
   .ucs__description {
     font-size: {{ section.settings.description_font_size | default: 16 }}px;
     color: {{ section.settings.description_color | default: '#666666' }};
@@ -61,10 +46,7 @@
     font-family: 'Montserrat', sans-serif;
   }
 
-
-
-
-  /* Main Carousel Container - FULL WIDTH with better edge spacing */
+  /* Desktop Carousel — >1024px only */
   .ucs__carousel {
     position: relative;
     height: 550px;
@@ -74,47 +56,34 @@
     overflow: hidden;
     width: 100vw; /* Full viewport width */
     margin-left: calc(-50vw + 50%); /* Center full width in any container */
-    padding: 0 50px; /* Add padding to prevent cards from touching edges */
+    padding: 0 50px;
   }
-
-
-
 
   .ucs__viewport {
     flex: 1;
     overflow: visible;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 550px;
   }
-
-
-
 
   .ucs__track {
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
-    gap: 20px;
-    position: relative;
+    gap: {{ section.settings.card_gap | default: 20 }}px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(0) translateY(-50%);
     opacity: 0;
     visibility: hidden;
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-
-
-
 
   .ucs__track.initialized {
     opacity: 1;
     visibility: visible;
   }
-
-
-
 
   /* Card Base Styles */
   .ucs__card {
@@ -127,20 +96,14 @@
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-
-
-
   /* ALL SIDE CARDS - Same size, grayscale */
   .ucs__card:not(.ucs__card--center) {
-    width: 200px;
-    height: 280px;
+    width: {{ section.settings.side_card_width | default: 220 }}px;
+    height: {{ section.settings.side_card_height | default: 300 }}px;
     opacity: 0.7;
     filter: grayscale(100%);
     transform: scale(0.9);
   }
-
-
-
 
   .ucs__card:not(.ucs__card--center):hover {
     opacity: 0.85;
@@ -344,7 +307,7 @@
       height: 550px;
       padding: 0 30px;
     }
-   
+
     .ucs__card:not(.ucs__card--center) {
       width: 160px;
       height: 220px;
@@ -415,7 +378,7 @@
       height: 450px;
       padding: 0 20px;
     }
-   
+
     .ucs__card:not(.ucs__card--center) {
       width: 120px;
       height: 160px;
@@ -485,8 +448,9 @@
     .ucs__carousel {
       height: 400px;
       padding: 0 15px;
+      display: none !important; /* hide desktop carousel — mobile uses ucs__mob-carousel */
     }
-   
+
     .ucs__card:not(.ucs__card--center) {
       width: 80px;
       height: 120px;
@@ -548,10 +512,349 @@
       font-size: 9px;
     }
   }
+
+  /* ── MOBILE ONLY ≤480px — center card large, side cards peek, dots nav ──────
+     Existing desktop/tablet code above is NOT modified.
+     All rules use !important to isolate from desktop styles.
+  ────────────────────────────────────────────────────────────────────────────── */
+  @media (max-width: 480px) {
+
+    /* Hide the desktop carousel entirely — already done in existing 480px block above */
+
+    /* Section: remove min-height, overflow so carousel isn't clipped */
+    .ucs {
+      min-height: unset !important;
+      padding-bottom: 0 !important;
+      overflow: visible !important;
+    }
+
+    /* Hide desktop carousel container so browser skips rendering it */
+    .ucs__carousel {
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    /* Show mobile carousel — full width, no margin tricks needed */
+    .ucs__mob-carousel {
+      display: block !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      position: relative !important;
+      padding-top: {{ section.settings.mob_carousel_padding_top | default: 8 }}px !important;
+    }
+
+    .ucs__mob-track-wrapper {
+      overflow: hidden !important;
+      width: 100% !important;
+      position: relative !important;
+      height: {{ section.settings.mob_center_card_height | default: 85 }}vw !important;
+    }
+
+    .ucs__mob-track {
+      display: flex !important;
+      align-items: center !important;
+      gap: {{ section.settings.mob_card_gap | default: 12 }}px !important;
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      will-change: transform !important;
+    }
+
+    /* Side cards — bigger peek, grayscale */
+    .ucs__mob-card {
+      flex: 0 0 {{ section.settings.mob_side_card_width | default: 28 }}vw !important;
+      width: {{ section.settings.mob_side_card_width | default: 28 }}vw !important;
+      height: {{ section.settings.mob_side_card_height | default: 42 }}vw !important;
+      border-radius: {{ section.settings.mob_card_radius | default: 18 }}px !important;
+      overflow: hidden !important;
+      position: relative !important;
+      filter: grayscale(100%) !important;
+      opacity: 0.65 !important;
+      transition: filter 0.35s ease, opacity 0.35s ease !important;
+      background: #e0e0e0 !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+    }
+
+    .ucs__mob-card img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: top center !important;
+      display: block !important;
+    }
+
+    /* Video fills card same as image */
+    .ucs__mob-card .ucs__card-video,
+    .ucs__mob-card .ucs__card-image {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      border: none !important;
+    }
+
+    /* Active center card — full color, larger */
+    .ucs__mob-card.ucs__mob-card--active {
+      flex: 0 0 {{ section.settings.mob_center_card_width | default: 68 }}vw !important;
+      width: {{ section.settings.mob_center_card_width | default: 68 }}vw !important;
+      height: {{ section.settings.mob_center_card_height | default: 85 }}vw !important;
+      filter: grayscale(0) !important;
+      opacity: 1 !important;
+      z-index: 5 !important;
+    }
+
+    /* Product panel — larger image, smaller button, text wraps */
+    .ucs__mob-card.ucs__mob-card--active .ucs__product-panel {
+      opacity: 1 !important;
+      transform: translateY(0) scale(1) !important;
+      pointer-events: auto !important;
+      bottom: 12px !important;
+      left: 10px !important;
+      right: 10px !important;
+      padding: 10px 8px !important;
+      gap: 8px !important;
+      align-items: center !important;
+      flex-wrap: nowrap !important;
+    }
+
+    .ucs__mob-card:not(.ucs__mob-card--active) .ucs__product-panel {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(30px) scale(0.9) !important;
+      transition: none !important;
+    }
+
+    /* Larger product image — fixed size, doesn't grow */
+    .ucs__mob-card .ucs__product-image {
+      flex: 0 0 56px !important;
+      width: 56px !important;
+      height: 56px !important;
+      flex-shrink: 0 !important;
+      border-radius: 10px !important;
+    }
+
+    /* Product info — takes all available middle space */
+    .ucs__mob-card .ucs__product-info {
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+    }
+
+    .ucs__mob-card .ucs__product-title {
+      font-size: {{ section.settings.mob_product_title_size | default: 13 }}px !important;
+      white-space: normal !important;
+      line-height: 1.3 !important;
+      word-break: break-word !important;
+    }
+
+    .ucs__mob-card .ucs__product-price {
+      font-size: {{ section.settings.mob_product_price_size | default: 15 }}px !important;
+      margin-top: 3px !important;
+    }
+
+    /* Button — fixed width just enough for "BUY NOW" text */
+    .ucs__mob-card .ucs__buy-button {
+      flex: 0 0 auto !important;
+      min-width: 72px !important;
+      font-size: {{ section.settings.mob_buy_button_size | default: 11 }}px !important;
+      padding: 10px 10px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      border-radius: 8px !important;
+      text-align: center !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Dots pagination */
+    .ucs__mob-dots {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 16px 0 8px !important;
+    }
+
+    .ucs__mob-dot {
+      width: 8px !important;
+      height: 8px !important;
+      border-radius: 50% !important;
+      background: #cccccc !important;
+      cursor: pointer !important;
+      transition: background 0.3s ease, transform 0.3s ease !important;
+      flex-shrink: 0 !important;
+    }
+
+    .ucs__mob-dot.ucs__mob-dot--active {
+      background: {{ section.settings.mob_dot_active_color | default: '#333333' }} !important;
+      transform: scale(1.3) !important;
+    }
+
+    /* Header sizing on mobile */
+    .ucs__title {
+      font-size: {{ section.settings.mob_title_font_size | default: 28 }}px !important;
+    }
+
+    .ucs__description {
+      font-size: {{ section.settings.mob_description_font_size | default: 14 }}px !important;
+    }
+  }
+
+  @media (min-width: 481px) {
+    .ucs__mob-carousel {
+      display: none !important;
+    }
+  }
+
+  /* ── TABLET ONLY: 481px – 1024px ──────────────────────────────────────────
+     Same layout as mobile: center card wider, 1 full + half side cards each side.
+     Desktop (>1024px) and mobile (≤480px) NOT touched.
+  ────────────────────────────────────────────────────────────────────────────── */
+  @media (min-width: 481px) and (max-width: 1024px) {
+
+    /* Hide desktop carousel on tablet */
+    .ucs__carousel { display: none !important; visibility: hidden !important; }
+
+    /* Section */
+    .ucs {
+      min-height: unset !important;
+      overflow: visible !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Header */
+    .ucs__title {
+      font-size: {{ section.settings.tab_title_font_size | default: 36 }}px !important;
+    }
+    .ucs__description {
+      font-size: {{ section.settings.tab_description_font_size | default: 16 }}px !important;
+    }
+
+    /* Tablet carousel wrapper */
+    .ucs__tab-carousel {
+      display: block !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      position: relative !important;
+      padding-top: {{ section.settings.tab_carousel_padding_top | default: 16 }}px !important;
+    }
+
+    .ucs__tab-track-wrapper {
+      overflow: hidden !important;
+      width: 100% !important;
+      position: relative !important;
+      height: {{ section.settings.tab_center_card_height | default: 52 }}vw !important;
+    }
+
+    .ucs__tab-track {
+      display: flex !important;
+      align-items: center !important;
+      gap: {{ section.settings.tab_card_gap | default: 16 }}px !important;
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      will-change: transform !important;
+    }
+
+    /* Side cards */
+    .ucs__tab-card {
+      flex: 0 0 {{ section.settings.tab_side_card_width | default: 22 }}vw !important;
+      width: {{ section.settings.tab_side_card_width | default: 22 }}vw !important;
+      height: {{ section.settings.tab_side_card_height | default: 46 }}vw !important;
+      border-radius: {{ section.settings.tab_card_radius | default: 20 }}px !important;
+      overflow: hidden !important;
+      position: relative !important;
+      filter: grayscale(100%) !important;
+      opacity: 0.65 !important;
+      transition: filter 0.35s ease, opacity 0.35s ease !important;
+      background: #e0e0e0 !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+    }
+
+    .ucs__tab-card img,
+    .ucs__tab-card .ucs__card-video,
+    .ucs__tab-card .ucs__card-image {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      border: none !important;
+    }
+
+    /* Active center card */
+    .ucs__tab-card.ucs__tab-card--active {
+      flex: 0 0 {{ section.settings.tab_center_card_width | default: 42 }}vw !important;
+      width: {{ section.settings.tab_center_card_width | default: 42 }}vw !important;
+      height: {{ section.settings.tab_center_card_height | default: 52 }}vw !important;
+      filter: grayscale(0) !important;
+      opacity: 1 !important;
+      z-index: 5 !important;
+      border-radius: {{ section.settings.tab_card_radius | default: 20 }}px !important;
+    }
+
+    /* Product panel — hidden on non-active */
+    .ucs__tab-card:not(.ucs__tab-card--active) .ucs__product-panel {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(30px) scale(0.9) !important;
+      transition: none !important;
+    }
+
+    .ucs__tab-card .ucs__product-title {
+      font-size: {{ section.settings.tab_product_title_size | default: 15 }}px !important;
+      white-space: normal !important;
+      line-height: 1.3 !important;
+    }
+    .ucs__tab-card .ucs__product-price {
+      font-size: {{ section.settings.tab_product_price_size | default: 17 }}px !important;
+    }
+    .ucs__tab-card .ucs__product-image {
+      width: {{ section.settings.tab_product_image_size | default: 70 }}px !important;
+      height: {{ section.settings.tab_product_image_size | default: 70 }}px !important;
+      flex-shrink: 0 !important;
+    }
+    .ucs__tab-card .ucs__buy-button {
+      font-size: {{ section.settings.tab_buy_button_size | default: 12 }}px !important;
+      padding: 10px 14px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Dots pagination */
+    .ucs__tab-dots {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 16px 0 8px !important;
+    }
+
+    .ucs__tab-dot {
+      width: 8px !important;
+      height: 8px !important;
+      border-radius: 50% !important;
+      background: #cccccc !important;
+      cursor: pointer !important;
+      transition: background 0.3s ease, transform 0.3s ease !important;
+      flex-shrink: 0 !important;
+    }
+
+    .ucs__tab-dot.ucs__tab-dot--active {
+      background: {{ section.settings.tab_dot_active_color | default: '#333333' }} !important;
+      transform: scale(1.3) !important;
+    }
+  }
+
+  /* Hide tablet carousel outside tablet range */
+  .ucs__tab-carousel { display: none; }
+  @media (min-width: 481px) and (max-width: 1024px) {
+    .ucs__tab-carousel { display: block; }
+  }
 </style>
-
-
-
 
 <section class="ucs full-width" id="ucs-{{ section.id }}">
   <div class="ucs__container">
@@ -567,9 +870,6 @@
       </div>
     {% endif %}
 
-
-
-
     <!-- Carousel -->
     <div class="ucs__carousel">
       <div class="ucs__viewport">
@@ -580,505 +880,841 @@
               <div style="font-size: 14px;">Add UGC content blocks to get started</div>
             </div>
           {% else %}
-            <!-- Clone sets before for infinite loop (50 sets) -->
-            {% assign card_index = 0 %}
-            {% for i in (1..50) %}
-              {% for block in section.blocks %}
-                <div class="ucs__card clone-card"
-                     data-original-index="{{ forloop.index0 }}"
-                     data-card-index="{{ card_index }}"
-                     data-video-url="{{ block.settings.video_url }}"
-                     data-image-url="{% if block.settings.fallback_image %}{{ block.settings.fallback_image | image_url: width: 350 }}{% endif %}"
-                     data-product-image="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
-                     data-product-title="{{ block.settings.product_title }}"
-                     data-product-price="{{ block.settings.product_price }}"
-                     data-product-url="{{ block.settings.product_url }}"
-                     data-redirect-url="{{ block.settings.redirect_url }}"
-                     onclick="handleUCSCardClick(this, '{{ section.id }}')">
-                  <div class="ucs__card-media">
-                    <!-- Content loaded by JavaScript -->
-                  </div>
-                </div>
-                {% assign card_index = card_index | plus: 1 %}
-              {% endfor %}
-            {% endfor %}
-
-
-
-
-            <!-- Original cards -->
+            <!-- Real cards only — JS prepends clone-last and appends clone-first for seamless loop -->
             {% for block in section.blocks %}
-              <div class="ucs__card original-card {% if forloop.first %}ucs__card--center{% endif %}"
-                   data-index="{{ forloop.index0 }}"
-                   data-card-index="{{ card_index }}"
-                   data-video-url="{{ block.settings.video_url }}"
-                   data-image-url="{% if block.settings.fallback_image %}{{ block.settings.fallback_image | image_url: width: 350 }}{% endif %}"
-                   data-product-image="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
-                   data-product-title="{{ block.settings.product_title }}"
-                   data-product-price="{{ block.settings.product_price }}"
-                   data-product-url="{{ block.settings.product_url }}"
-                   data-redirect-url="{{ block.settings.redirect_url }}"
-                   onclick="handleUCSCardClick(this, '{{ section.id }}')">
-               
-                {% if forloop.first %}
-                  <!-- Center Active Card -->
-                  <div class="ucs__card-media">
-                    {% if block.settings.video_url %}
-                      {% assign video_source = block.settings.video_url %}
-                      {% if video_source contains 'instagram.com' %}
-                        {% assign post_id = video_source | split: '/reel/' | last | split: '/' | first %}
-                        {% if post_id == blank %}
-                          {% assign post_id = video_source | split: '/p/' | last | split: '/' | first %}
-                        {% endif %}
-                        <iframe class="ucs__card-video" src="https://www.instagram.com/p/{{ post_id }}/embed/" frameborder="0" allowfullscreen></iframe>
-                      {% elsif video_source contains 'tiktok.com' %}
-                        <iframe class="ucs__card-video" src="{{ video_source | replace: '/video/', '/embed/v2/' }}" frameborder="0" allowfullscreen></iframe>
-                      {% elsif video_source contains 'youtube.com' or video_source contains 'youtu.be' %}
-                        {% assign video_id = '' %}
-                        {% if video_source contains 'youtu.be/' %}
-                          {% assign video_id = video_source | split: 'youtu.be/' | last | split: '?' | first %}
-                        {% elsif video_source contains 'youtube.com/watch' %}
-                          {% assign video_id = video_source | split: 'v=' | last | split: '&' | first %}
-                        {% elsif video_source contains 'youtube.com/shorts/' %}
-                          {% assign video_id = video_source | split: '/shorts/' | last | split: '?' | first %}
-                        {% endif %}
-                        {% if video_id != blank %}
-                          <iframe class="ucs__card-video" src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1&loop=1&playlist={{ video_id }}&controls=0" frameborder="0" allowfullscreen></iframe>
-                        {% endif %}
-                      {% else %}
-                        <video class="ucs__card-video" autoplay muted loop playsinline preload="metadata">
-                          <source src="{{ video_source }}" type="video/mp4">
-                        </video>
-                      {% endif %}
-                    {% elsif block.settings.fallback_image %}
-                      <img class="ucs__card-image" src="{{ block.settings.fallback_image | image_url: width: 350 }}" alt="UGC Content" width="350" height="450">
-                    {% else %}
-                      <div class="ucs__placeholder">
-                        <div style="font-size: 14px; font-weight: 600;">No Media</div>
-                      </div>
-                    {% endif %}
-                   
-                    {% if block.settings.product_title or block.settings.product_price or block.settings.product_image %}
-                      <div class="ucs__product-panel">
-                        {% if block.settings.product_image %}
-                          <div class="ucs__product-image">
-                            <img src="{{ block.settings.product_image | image_url: width: 100 }}" alt="{{ block.settings.product_title | default: 'Product' }}" width="100" height="100">
-                          </div>
-                        {% endif %}
-                        <div class="ucs__product-info">
-                          {% if block.settings.product_title %}
-                            <div class="ucs__product-title">{{ block.settings.product_title }}</div>
-                          {% endif %}
-                          {% if block.settings.product_price %}
-                            <div class="ucs__product-price">{{ block.settings.product_price }}</div>
-                          {% endif %}
-                        </div>
-                        {% if block.settings.product_url %}
-                          <a href="{{ block.settings.product_url }}" class="ucs__buy-button" target="_blank">BUY NOW</a>
-                        {% endif %}
-                      </div>
-                    {% endif %}
-                  </div>
-                {% else %}
-                  <!-- Side Card -->
-                  <div class="ucs__card-media">
-                    {% if block.settings.fallback_image %}
-                      <img class="ucs__card-image" src="{{ block.settings.fallback_image | image_url: width: 350 }}" alt="UGC Content" width="350" height="450">
-                    {% else %}
-                      <div class="ucs__placeholder">
-                        <div style="font-size: 14px; font-weight: 600;">No Media</div>
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endif %}
-              </div>
-              {% assign card_index = card_index | plus: 1 %}
-            {% endfor %}
-
-
-
-
-            <!-- Clone sets after for infinite loop (50 sets) -->
-            {% for i in (1..50) %}
-              {% for block in section.blocks %}
-                <div class="ucs__card clone-card"
-                     data-original-index="{{ forloop.index0 }}"
-                     data-card-index="{{ card_index }}"
-                     data-video-url="{{ block.settings.video_url }}"
-                     data-image-url="{% if block.settings.fallback_image %}{{ block.settings.fallback_image | image_url: width: 350 }}{% endif %}"
-                     data-product-image="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
-                     data-product-title="{{ block.settings.product_title }}"
-                     data-product-price="{{ block.settings.product_price }}"
-                     data-product-url="{{ block.settings.product_url }}"
-                     data-redirect-url="{{ block.settings.redirect_url }}"
-                     onclick="handleUCSCardClick(this, '{{ section.id }}')">
-                  <div class="ucs__card-media">
-                    <!-- Content loaded by JavaScript -->
-                  </div>
+              <div
+                class="ucs__card original-card"
+                data-index="{{ forloop.index0 }}"
+                data-video-url="{{ block.settings.video_url }}"
+                data-image-url="{% if block.settings.fallback_image %}{{ block.settings.fallback_image | image_url: width: 350 }}{% endif %}"
+                data-product-image="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
+                data-product-title="{{ block.settings.product_title }}"
+                data-product-price="{{ block.settings.product_price }}"
+                data-product-url="{{ block.settings.product_url }}"
+                data-redirect-url="{{ block.settings.redirect_url }}"
+              >
+                <div class="ucs__card-media">
+                  <!-- Content injected by initializeUCS JS -->
                 </div>
-                {% assign card_index = card_index | plus: 1 %}
-              {% endfor %}
+              </div>
             {% endfor %}
           {% endif %}
         </div>
       </div>
     </div>
   </div>
+
+  {% comment %}── MOBILE CAROUSEL (≤480px) — data-only cards, JS injects media ──{% endcomment %}
+  <div class="ucs__mob-carousel" id="ucs-mob-{{ section.id }}">
+    <div class="ucs__mob-track-wrapper">
+      <div class="ucs__mob-track" id="ucs-mob-track-{{ section.id }}">
+        {% for block in section.blocks %}
+          {% comment %}Compute video embed URL server-side, store in data attribute{% endcomment %}
+          {% assign mob_media_type = 'image' %}
+          {% assign mob_media_src = '' %}
+          {% if block.settings.video_url %}
+            {% assign mob_vid = block.settings.video_url %}
+            {% if mob_vid contains 'instagram.com' %}
+              {% assign mob_pid = mob_vid | split: '/reel/' | last | split: '/' | first %}
+              {% if mob_pid == blank -%}
+                {%- assign mob_pid = mob_vid | split: '/p/' | last | split: '/' | first -%}
+              {%- endif %}
+              {% assign mob_media_type = 'iframe' %}
+              {% assign mob_media_src = 'https://www.instagram.com/p/' | append: mob_pid | append: '/embed/' %}
+            {% elsif mob_vid contains 'tiktok.com' %}
+              {% assign mob_media_type = 'iframe' %}
+              {% assign mob_media_src = mob_vid | replace: '/video/', '/embed/v2/' %}
+            {% elsif mob_vid contains 'youtube.com' or mob_vid contains 'youtu.be' %}
+              {% assign mob_ytid = '' %}
+              {% if mob_vid contains 'youtu.be/' -%}
+                {%- assign mob_ytid = mob_vid | split: 'youtu.be/' | last | split: '?' | first %}
+              {% elsif mob_vid contains 'youtube.com/watch' -%}
+                {%- assign mob_ytid = mob_vid | split: 'v=' | last | split: '&' | first %}
+              {% elsif mob_vid contains 'youtube.com/shorts/' -%}
+                {%- assign mob_ytid = mob_vid | split: '/shorts/' | last | split: '?' | first %}
+              {% endif %}
+              {% if mob_ytid != blank %}
+                {% assign mob_media_type = 'iframe' %}
+                {% assign mob_media_src = 'https://www.youtube.com/embed/'
+                  | append: mob_ytid
+                  | append: '?autoplay=1&mute=1&loop=1&playlist='
+                  | append: mob_ytid
+                  | append: '&controls=0'
+                %}
+              {% endif %}
+            {% else %}
+              {% assign mob_media_type = 'video' %}
+              {% assign mob_media_src = mob_vid %}
+            {% endif %}
+          {% elsif block.settings.fallback_image %}
+            {% assign mob_media_type = 'image' %}
+            {% assign mob_media_src = block.settings.fallback_image | image_url: width: 600 %}
+          {% endif %}
+
+          <div
+            class="ucs__mob-card"
+            data-mob-index="{{ forloop.index0 }}"
+            data-media-type="{{ mob_media_type }}"
+            data-media-src="{{ mob_media_src }}"
+            data-redirect-url="{{ block.settings.redirect_url }}"
+            data-product-title="{{ block.settings.product_title | escape }}"
+            data-product-price="{{ block.settings.product_price | escape }}"
+            data-product-url="{{ block.settings.product_url }}"
+            data-product-img="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
+          >
+            {% comment %}No media HTML here — JS injects only for visible cards{% endcomment %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if section.blocks.size > 1 %}
+      <div class="ucs__mob-dots" id="ucs-mob-dots-{{ section.id }}">
+        {% for block in section.blocks %}
+          <div
+            class="ucs__mob-dot {% if forloop.first %}ucs__mob-dot--active{% endif %}"
+            data-dot-index="{{ forloop.index0 }}"
+          ></div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% comment %}── TABLET CAROUSEL (481px–1024px) — same lazy pattern as mobile ──{% endcomment %}
+  <div class="ucs__tab-carousel" id="ucs-tab-{{ section.id }}">
+    <div class="ucs__tab-track-wrapper">
+      <div class="ucs__tab-track" id="ucs-tab-track-{{ section.id }}">
+        {% for block in section.blocks %}
+          {% assign tab_media_type = 'image' %}
+          {% assign tab_media_src = '' %}
+          {% if block.settings.video_url %}
+            {% assign tab_vid = block.settings.video_url %}
+            {% if tab_vid contains 'instagram.com' %}
+              {% assign tab_pid = tab_vid | split: '/reel/' | last | split: '/' | first %}
+              {% if tab_pid == blank -%}
+                {%- assign tab_pid = tab_vid | split: '/p/' | last | split: '/' | first -%}
+              {%- endif %}
+              {% assign tab_media_type = 'iframe' %}
+              {% assign tab_media_src = 'https://www.instagram.com/p/' | append: tab_pid | append: '/embed/' %}
+            {% elsif tab_vid contains 'tiktok.com' %}
+              {% assign tab_media_type = 'iframe' %}
+              {% assign tab_media_src = tab_vid | replace: '/video/', '/embed/v2/' %}
+            {% elsif tab_vid contains 'youtube.com' or tab_vid contains 'youtu.be' %}
+              {% assign tab_ytid = '' %}
+              {% if tab_vid contains 'youtu.be/' -%}
+                {%- assign tab_ytid = tab_vid | split: 'youtu.be/' | last | split: '?' | first %}
+              {% elsif tab_vid contains 'youtube.com/watch' -%}
+                {%- assign tab_ytid = tab_vid | split: 'v=' | last | split: '&' | first %}
+              {% elsif tab_vid contains 'youtube.com/shorts/' -%}
+                {%- assign tab_ytid = tab_vid | split: '/shorts/' | last | split: '?' | first %}
+              {% endif %}
+              {% if tab_ytid != blank %}
+                {% assign tab_media_type = 'iframe' %}
+                {% assign tab_media_src = 'https://www.youtube.com/embed/'
+                  | append: tab_ytid
+                  | append: '?autoplay=1&mute=1&loop=1&playlist='
+                  | append: tab_ytid
+                  | append: '&controls=0'
+                %}
+              {% endif %}
+            {% else %}
+              {% assign tab_media_type = 'video' %}
+              {% assign tab_media_src = tab_vid %}
+            {% endif %}
+          {% elsif block.settings.fallback_image %}
+            {% assign tab_media_src = block.settings.fallback_image | image_url: width: 800 %}
+          {% endif %}
+          <div
+            class="ucs__tab-card"
+            data-tab-index="{{ forloop.index0 }}"
+            data-media-type="{{ tab_media_type }}"
+            data-media-src="{{ tab_media_src }}"
+            data-redirect-url="{{ block.settings.redirect_url }}"
+            data-product-title="{{ block.settings.product_title | escape }}"
+            data-product-price="{{ block.settings.product_price | escape }}"
+            data-product-url="{{ block.settings.product_url }}"
+            data-product-img="{% if block.settings.product_image %}{{ block.settings.product_image | image_url: width: 100 }}{% endif %}"
+          ></div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if section.blocks.size > 1 %}
+      <div class="ucs__tab-dots" id="ucs-tab-dots-{{ section.id }}">
+        {% for block in section.blocks %}
+          <div
+            class="ucs__tab-dot {% if forloop.first %}ucs__tab-dot--active{% endif %}"
+            data-dot-index="{{ forloop.index0 }}"
+          ></div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 </section>
 
-
-
-
 <script>
-// UGC Content Section - Smooth Conveyor Belt Animation (Based on Medical Team)
-window.ucsData = window.ucsData || {};
+  // ── DESKTOP CAROUSEL JS (>1024px) — identical structure to mobile/tablet ───
+  (function() {
+    var SIDE_PX = {{ section.settings.side_card_width | default: 220 }};
+    var CTR_PX  = 380;
+    var GAP_PX  = {{ section.settings.card_gap | default: 20 }};
 
+    window.initializeUCS = function(sectionId) {
+      var track = document.getElementById('ucs-track-' + sectionId);
+      if (!track) return;
 
-function initializeUCS(sectionId) {
-  try {
-    const originalBlocksCount = parseInt('{{ section.blocks.size }}');
-    if (originalBlocksCount === 0) return;
-   
-    // Start at the first card of the original set (after 50 clone sets)
-    const currentIndex = 50 * originalBlocksCount;
+      var origCards = Array.from(track.querySelectorAll('.ucs__card.original-card'));
+      var N = origCards.length;
+      if (N === 0) return;
 
+      // ── 2 clones each side — identical to mobile/tablet ──────────────────
+      var PREPEND = 2, APPEND = 2;
 
-    window.ucsData[sectionId] = {
-      originalBlocksCount: originalBlocksCount,
-      currentIndex: currentIndex,
-      previousIndex: currentIndex,
-      isTransitioning: false
+      for (var p = PREPEND; p >= 1; p--) {
+        var cl = origCards[(N - p + N) % N].cloneNode(true);
+        cl.classList.add('ucs__card--clone');
+        track.insertBefore(cl, track.firstChild);
+      }
+      for (var a = 0; a < APPEND; a++) {
+        var cl = origCards[a % N].cloneNode(true);
+        cl.classList.add('ucs__card--clone');
+        track.appendChild(cl);
+      }
+
+      var cards     = Array.from(track.querySelectorAll('.ucs__card'));
+      var current   = PREPEND;
+      var animating = false;
+
+      // Inject media into all N+4 cards
+      cards.forEach(function(card) {
+        var videoUrl     = card.getAttribute('data-video-url')     || '';
+        var imageUrl     = card.getAttribute('data-image-url')     || '';
+        var productImage = card.getAttribute('data-product-image') || '';
+        var productTitle = card.getAttribute('data-product-title') || '';
+        var productPrice = card.getAttribute('data-product-price') || '';
+        var productUrl   = card.getAttribute('data-product-url')   || '';
+        card.innerHTML = buildCardHTML(videoUrl, imageUrl, productImage, productTitle, productPrice, productUrl);
+      });
+
+      // ── centerDesk: same formula as mobile/tablet ─────────────────────────
+      // Track is position:absolute left:50% → origin = viewport center
+      // translateX = -(index × (sideW+gap) + ctrW/2)
+      function centerDesk(idx, anim) {
+        var tx = -(idx * (SIDE_PX + GAP_PX) + CTR_PX / 2);
+        track.style.transition = anim
+          ? 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)'
+          : 'none';
+        track.style.transform = 'translateX(' + tx + 'px) translateY(-50%)';
+        if (!anim) {
+          requestAnimationFrame(function() {
+            track.style.transition = 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
+          });
+        }
+      }
+
+      function applyCenterClass(idx) {
+        cards.forEach(function(c, i) {
+          var on = i === idx;
+          c.classList.toggle('ucs__card--center', on);
+          c.classList.remove('centered');
+          var v = c.querySelector('video');
+          if (v) { if (on) v.play().catch(function(){}); else v.pause(); }
+        });
+      }
+
+      function showPanel(idx) {
+        var card = cards[idx];
+        if (!card) return;
+        card.classList.add('centered');
+        var v = card.querySelector('video');
+        if (v) v.play().catch(function(){});
+      }
+
+      // ── go: pre-jump pattern — identical to mobile/tablet ────────────────
+      function go(dir) {
+        if (animating) return;
+        animating = true;
+
+        // Pre-jump: silently move track to clone position (no class change = no blink)
+        if (dir === 1 && current === PREPEND + N - 1) {
+          var jumpTo = current - N;
+          var jumpTx = -(jumpTo * (SIDE_PX + GAP_PX) + CTR_PX / 2);
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+          track.getBoundingClientRect();
+          current = jumpTo;
+        } else if (dir === -1 && current === PREPEND) {
+          var jumpTo = current + N;
+          var jumpTx = -(jumpTo * (SIDE_PX + GAP_PX) + CTR_PX / 2);
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+          track.getBoundingClientRect();
+          current = jumpTo;
+        }
+
+        // Advance and animate
+        current += dir;
+        applyCenterClass(current);
+        track.style.transition = 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)';
+        centerDesk(current, true);
+
+        setTimeout(function() { showPanel(current); animating = false; }, 420);
+      }
+
+      // Click
+      track.addEventListener('click', function(e) {
+        var card = e.target.closest('.ucs__card');
+        if (!card) return;
+        var idx = cards.indexOf(card);
+        if (idx === -1 || animating) return;
+        if (idx === current) {
+          var url = card.getAttribute('data-redirect-url');
+          if (url) window.open(url, '_blank');
+        } else go(idx > current ? 1 : -1);
+      });
+
+      // Init — identical to mobile/tablet
+      applyCenterClass(current);
+      centerDesk(current, false);
+      setTimeout(function() {
+        track.classList.add('initialized');
+        showPanel(current);
+      }, 100);
     };
 
-
-    const track = document.getElementById(`ucs-track-${sectionId}`);
-    if (!track) return;
-   
-    const cards = track.querySelectorAll('.ucs__card');
-    if (cards.length === 0) return;
-
-
-    track.style.transition = 'none';
-
-
-    // Pre-load ALL cards with their content - NEVER rebuild during animation
-    cards.forEach((card, i) => {
-      const videoUrl = card.getAttribute('data-video-url') || '';
-      const imageUrl = card.getAttribute('data-image-url') || '';
-      const productImage = card.getAttribute('data-product-image') || '';
-      const productTitle = card.getAttribute('data-product-title') || '';
-      const productPrice = card.getAttribute('data-product-price') || '';
-      const productUrl = card.getAttribute('data-product-url') || '';
-     
-      // ALL cards get the same content structure - only CSS classes change
-      card.innerHTML = createUniversalCardHTML(videoUrl, imageUrl, productImage, productTitle, productPrice, productUrl);
-     
-      // Set initial states and video controls
-      const video = card.querySelector('video');
-     
-      if (i === currentIndex) {
-        card.classList.add('ucs__card--center');
-        // Play video for center card
-        if (video) {
-          video.play().catch(e => console.log('Initial video play failed:', e));
+    // ── Media helpers ─────────────────────────────────────────────────────────
+    function buildCardHTML(videoUrl, imageUrl, productImage, productTitle, productPrice, productUrl) {
+      var media = '';
+      if (videoUrl) {
+        var vs = getVideoSource(videoUrl);
+        if (vs && vs.type === 'direct') {
+          media = '<video class="ucs__card-video" muted loop playsinline preload="metadata"><source src="' + vs.src + '" type="video/mp4"></video>';
+        } else if (vs) {
+          media = '<iframe class="ucs__card-video" src="' + vs.embed.replace('autoplay=1','autoplay=0') + '" frameborder="0" allowfullscreen></iframe>';
         }
+      } else if (imageUrl) {
+        media = '<img class="ucs__card-image" src="' + imageUrl + '" alt="UGC Content" loading="lazy">';
       } else {
-        card.classList.remove('ucs__card--center');
-        // Pause videos for side cards
-        if (video) {
-          video.pause();
-        }
+        media = '<div class="ucs__placeholder"><div>No Media</div></div>';
       }
-    });
-
-
-    // Position immediately without delay
-    centerUCSCard(currentIndex, sectionId, false);
-   
-    // Show the track after positioning
-    setTimeout(() => {
-      track.classList.add('initialized');
-      // Add centered class to initial card to show product panel
-      const initialCard = cards[currentIndex];
-      if (initialCard && initialCard.classList.contains('ucs__card--center')) {
-        initialCard.classList.add('centered');
+      var panel = '';
+      if (productTitle || productPrice || productImage) {
+        panel = '<div class="ucs__product-panel">'
+          + (productImage ? '<div class="ucs__product-image"><img src="' + productImage + '" alt="' + (productTitle||'') + '" width="100" height="100"></div>' : '')
+          + '<div class="ucs__product-info">'
+          + (productTitle ? '<div class="ucs__product-title">' + productTitle + '</div>' : '')
+          + (productPrice ? '<div class="ucs__product-price">' + productPrice + '</div>' : '')
+          + '</div>'
+          + (productUrl ? '<a href="' + productUrl + '" class="ucs__buy-button" target="_blank">BUY NOW</a>' : '')
+          + '</div>';
       }
-    }, 100);
-   
-  } catch (error) {
-    console.error('Error initializing UCS:', error);
-  }
-}
-
-
-function createUniversalCardHTML(videoUrl, imageUrl, productImage, productTitle, productPrice, productUrl) {
-  let mediaHTML = '';
- 
-  if (videoUrl) {
-    const videoSource = getVideoSource(videoUrl);
-    if (videoSource && videoSource.type === 'direct') {
-      // Direct video - no autoplay, will be controlled by JavaScript
-      mediaHTML = `<video class="ucs__card-video" muted loop playsinline preload="metadata">
-        <source src="${videoSource.src}" type="video/mp4">
-      </video>`;
-    } else if (videoSource) {
-      // Embedded video - remove autoplay, will be controlled by JavaScript
-      const embedUrl = videoSource.embed.replace('autoplay=1', 'autoplay=0');
-      mediaHTML = `<iframe class="ucs__card-video" src="${embedUrl}" frameborder="0" allowfullscreen></iframe>`;
+      return '<div class="ucs__card-media">' + media + panel + '</div>';
     }
-  } else if (imageUrl) {
-    mediaHTML = `<img class="ucs__card-image" src="${imageUrl}" alt="UGC Content" width="450" height="600">`;
-  } else {
-    mediaHTML = `<div class="ucs__placeholder"><div>No Media</div></div>`;
-  }
 
-
-  // Include product panel for ALL cards - CSS will control visibility
-  let productPanelHTML = '';
-  if (productTitle || productPrice || productImage) {
-    productPanelHTML = `
-      <div class="ucs__product-panel">
-        ${productImage ? `<div class="ucs__product-image"><img src="${productImage}" alt="${productTitle || 'Product'}" width="100" height="100"></div>` : ''}
-        <div class="ucs__product-info">
-          ${productTitle ? `<div class="ucs__product-title">${productTitle}</div>` : ''}
-          ${productPrice ? `<div class="ucs__product-price">${productPrice}</div>` : ''}
-        </div>
-        ${productUrl ? `<a href="${productUrl}" class="ucs__buy-button" target="_blank">BUY NOW</a>` : ''}
-      </div>
-    `;
-  }
-
-
-  return `<div class="ucs__card-media">${mediaHTML}${productPanelHTML}</div>`;
-}
-
-
-function getVideoSource(url) {
-  if (!url) return null;
- 
-  if (url.match(/\.(mp4|webm|ogg|mov)(\?.*)?$/i)) {
-    return { type: 'direct', src: url };
-  }
- 
-  if (url.includes('instagram.com')) {
-    const postId = url.match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/);
-    if (postId) return { type: 'instagram', embed: `https://www.instagram.com/p/${postId[1]}/embed/` };
-  }
- 
-  if (url.includes('tiktok.com')) {
-    return { type: 'tiktok', embed: url.replace('/video/', '/embed/v2/') };
-  }
- 
-  if (url.includes('youtube.com') || url.includes('youtu.be')) {
-    let videoId = null;
-    if (url.includes('youtu.be/')) videoId = url.split('youtu.be/')[1].split('?')[0];
-    else if (url.includes('youtube.com/watch')) videoId = url.split('v=')[1]?.split('&')[0];
-    else if (url.includes('youtube.com/shorts/')) videoId = url.split('/shorts/')[1].split('?')[0];
-   
-    if (videoId) {
-      return { type: 'youtube', embed: `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0` };
+    function getVideoSource(url) {
+      if (!url) return null;
+      if (url.match(/\.(mp4|webm|ogg|mov)(\?.*)?$/i)) return { type: 'direct', src: url };
+      if (url.includes('instagram.com')) {
+        var m = url.match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/);
+        if (m) return { type: 'instagram', embed: 'https://www.instagram.com/p/' + m[1] + '/embed/' };
+      }
+      if (url.includes('tiktok.com')) return { type: 'tiktok', embed: url.replace('/video/', '/embed/v2/') };
+      if (url.includes('youtube.com') || url.includes('youtu.be')) {
+        var vid = null;
+        if (url.includes('youtu.be/')) vid = url.split('youtu.be/')[1].split('?')[0];
+        else if (url.includes('youtube.com/watch')) vid = (url.split('v=')[1]||'').split('&')[0];
+        else if (url.includes('youtube.com/shorts/')) vid = url.split('/shorts/')[1].split('?')[0];
+        if (vid) return { type: 'youtube', embed: 'https://www.youtube.com/embed/' + vid + '?autoplay=1&mute=1&loop=1&playlist=' + vid + '&controls=0' };
+      }
+      return { type: 'direct', src: url };
     }
-  }
- 
-  return { type: 'direct', src: url };
-}
+  })();
 
-
-function selectUCSCard(index, sectionId, animate = true) {
-  const track = document.getElementById(`ucs-track-${sectionId}`);
-  const cards = track.querySelectorAll('.ucs__card');
-
-
-  const data = window.ucsData[sectionId];
-  if (data.currentIndex === index && animate) return;
-
-
-  const previousIndex = data.currentIndex;
-
-
-  // Remove centered class from all cards first
-  cards.forEach(card => {
-    card.classList.remove('centered');
+  // Initialize all carousels on DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth > 1024) {
+      setTimeout(function() { initializeUCS('{{ section.id }}'); }, 100);
+    }
+    initUCSMobCarousel('{{ section.id }}');
+    initUCSTabCarousel('{{ section.id }}');
   });
-
-
-  // ONLY UPDATE CSS CLASSES AND VIDEO STATES - NEVER REBUILD CONTENT
-  cards.forEach((card, i) => {
-    const video = card.querySelector('video');
-   
-    if (i === index) {
-      // New active card - add center class and play video
-      card.classList.add('ucs__card--center');
-      if (video) {
-        video.play().catch(e => console.log('Video play failed:', e));
-      }
-    } else {
-      // All other cards - remove center class and pause video
-      card.classList.remove('ucs__card--center');
-      if (video) {
-        video.pause();
-      }
-    }
-  });
-
-
-  data.currentIndex = index;
- 
-  // Start slide animation immediately
-  requestAnimationFrame(() => {
-    centerUCSCard(index, sectionId, animate);
-   
-    // Add centered class after transition completes for product panel
-    setTimeout(() => {
-      const activeCard = cards[index];
-      if (activeCard && activeCard.classList.contains('ucs__card--center')) {
-        activeCard.classList.add('centered');
-      }
-    }, animate ? 450 : 100);
-  });
-}
-
-
-function centerUCSCard(index, sectionId, animate = true) {
-  const track = document.getElementById(`ucs-track-${sectionId}`);
-  const cards = track.querySelectorAll('.ucs__card');
-  const container = track.parentElement;
-
-
-  if (cards.length === 0) return;
-
-
-  const activeCard = cards[index];
-  if (!activeCard) return;
-
-
-  const data = window.ucsData[sectionId];
-
-
-  const containerWidth = container.offsetWidth;
-  const containerCenter = containerWidth / 2;
-
-
-  const sideCardWidth = 200;
-  const activeCardWidth = 380; // Updated for above the fold optimization
-  const gap = 20; // Reduced for above-the-fold optimization
-
-
-  // Calculate the left edge position of the active card
-  let leftEdgePosition = 0;
- 
-  for (let i = 0; i < index; i++) {
-    // All cards before the active one are side cards
-    leftEdgePosition += sideCardWidth + gap;
-  }
-
-
-  // Add half of the active card width to get to its center
-  const activeCardCenter = leftEdgePosition + (activeCardWidth / 2);
-
-
-  // Calculate how much to shift to center the active card
-  const targetTransform = containerCenter - activeCardCenter;
-
-
-  if (!animate) {
-    track.style.transition = 'none';
-  } else {
-    track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-  }
-
-
-  track.style.transform = `translateX(${targetTransform}px)`;
-
-
-  if (!animate) {
-    requestAnimationFrame(() => {
-      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    });
-  }
-
-
-  data.previousIndex = index;
-}
-
-
-function handleUCSCardClick(cardElement, sectionId) {
-  const data = window.ucsData[sectionId];
-  if (data.isTransitioning) return;
-
-
-  const track = document.getElementById(`ucs-track-${sectionId}`);
-  const cards = track.querySelectorAll('.ucs__card');
-  const clickedIndex = Array.from(cards).indexOf(cardElement);
-
-
-  if (clickedIndex === -1) return;
-
-
-  if (clickedIndex === data.currentIndex) {
-    // Center card clicked - redirect
-    const redirectUrl = cardElement.getAttribute('data-redirect-url');
-    if (redirectUrl) window.open(redirectUrl, '_blank');
-  } else {
-    // Side card clicked - slide to center
-    data.isTransitioning = true;
-   
-    // Remove centered class from all cards during transition (like UGC video carousel)
-    cards.forEach(card => {
-      card.classList.remove('centered');
-    });
-   
-    // Handle infinite loop boundaries
-    const originalBlocksCount = data.originalBlocksCount;
-    let actualIndex = clickedIndex;
-    let needsLoop = false;
-    let jumpToIndex = clickedIndex;
-
-
-    // Check if we need to loop for infinite effect
-    if (clickedIndex < 25 * originalBlocksCount) {
-      // Too far left, jump to equivalent position in original set after animation
-      needsLoop = true;
-      jumpToIndex = (50 * originalBlocksCount) + (clickedIndex % originalBlocksCount);
-    } else if (clickedIndex >= (101 * originalBlocksCount)) {
-      // Too far right, jump to equivalent position in original set after animation
-      needsLoop = true;
-      jumpToIndex = (50 * originalBlocksCount) + (clickedIndex % originalBlocksCount);
-    }
-
-
-    // Perform the slide
-    selectUCSCard(clickedIndex, sectionId, true);
-
-
-    if (needsLoop) {
-      // After animation completes, jump to equivalent position
-      setTimeout(() => {
-        track.style.transition = 'none';
-        selectUCSCard(jumpToIndex, sectionId, false);
-       
-        requestAnimationFrame(() => {
-          track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          data.isTransitioning = false;
-        });
-      }, 400);
-    } else {
-      setTimeout(() => {
-        data.isTransitioning = false;
-      }, 450);
-    }
-  }
-}
-
-
-// Initialize
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(() => initializeUCS('{{ section.id }}'), 100);
-});
 </script>
 
+<script>
+  // ── MOBILE CAROUSEL JS (≤480px) — mirrors desktop pattern exactly ──────────
+  (function() {
+    var SIDE_VW = {{ section.settings.mob_side_card_width | default: 28 }} / 100;
+    var CTR_VW  = {{ section.settings.mob_center_card_width | default: 68 }} / 100;
+    var GAP_PX  = {{ section.settings.mob_card_gap | default: 12 }};
 
+    window.initUCSMobCarousel = function(sid) {
+      if (window.innerWidth > 480) return;
 
+      var track    = document.getElementById('ucs-mob-track-' + sid);
+      var dotsWrap = document.getElementById('ucs-mob-dots-' + sid);
+      if (!track) return;
+
+      var orig = Array.from(track.querySelectorAll('.ucs__mob-card'));
+      var N = orig.length;
+      if (N === 0) return;
+
+      // ── 2 clones each side — same as desktop ─────────────────────────────
+      var PREPEND = 2, APPEND = 2;
+
+      var dataArr = orig.map(function(c) {
+        return {
+          mediaType:    c.getAttribute('data-media-type')    || 'image',
+          mediaSrc:     c.getAttribute('data-media-src')     || '',
+          redirectUrl:  c.getAttribute('data-redirect-url')  || '',
+          productTitle: c.getAttribute('data-product-title') || '',
+          productPrice: c.getAttribute('data-product-price') || '',
+          productUrl:   c.getAttribute('data-product-url')   || '',
+          productImg:   c.getAttribute('data-product-img')   || ''
+        };
+      });
+
+      function buildPanel(d) {
+        if (!d.productTitle && !d.productPrice) return '';
+        return '<div class="ucs__product-panel" style="transition:none;opacity:0;visibility:hidden;transform:translateY(30px) scale(0.9);pointer-events:none;">'
+          + (d.productImg ? '<div class="ucs__product-image"><img src="' + d.productImg + '" alt="' + d.productTitle + '" width="100" height="100" loading="lazy"></div>' : '')
+          + '<div class="ucs__product-info">'
+          + (d.productTitle ? '<div class="ucs__product-title">' + d.productTitle + '</div>' : '')
+          + (d.productPrice ? '<div class="ucs__product-price">' + d.productPrice + '</div>' : '')
+          + '</div>'
+          + (d.productUrl ? '<a href="' + d.productUrl + '" class="ucs__buy-button" target="_blank">BUY NOW</a>' : '')
+          + '</div>';
+      }
+
+      function makeCard(realIdx) {
+        var d  = dataArr[((realIdx % N) + N) % N];
+        var el = document.createElement('div');
+        el.className = 'ucs__mob-card';
+        el.setAttribute('data-media-type',    d.mediaType);
+        el.setAttribute('data-media-src',     d.mediaSrc);
+        el.setAttribute('data-redirect-url',  d.redirectUrl);
+        el.setAttribute('data-product-title', d.productTitle);
+        el.setAttribute('data-product-price', d.productPrice);
+        el.setAttribute('data-product-url',   d.productUrl);
+        el.setAttribute('data-product-img',   d.productImg);
+        return el;
+      }
+
+      // Inject media into a card (called lazily only for visible cards)
+      function loadMedia(el) {
+        if (el.getAttribute('data-media-loaded')) return;
+        el.setAttribute('data-media-loaded', '1');
+        var type  = el.getAttribute('data-media-type') || 'image';
+        var src   = el.getAttribute('data-media-src')  || '';
+        var title = el.getAttribute('data-product-title') || 'UGC';
+        var isActive = el.classList.contains('ucs__mob-card--active');
+        var media = '';
+        if (src) {
+          if (type === 'image') {
+            media = '<img class="ucs__card-image" src="' + src + '" alt="' + title + '" loading="' + (isActive ? 'eager' : 'lazy') + '">';
+          } else if (type === 'video') {
+            media = '<video class="ucs__card-video" muted loop playsinline preload="' + (isActive ? 'auto' : 'metadata') + '"' + (isActive ? ' autoplay' : '') + '><source src="' + src + '" type="video/mp4"></video>';
+          } else if (type === 'iframe') {
+            media = '<iframe class="ucs__card-video" src="' + src + '" frameborder="0" allowfullscreen loading="lazy"></iframe>';
+          }
+        }
+        // Find real data index from track position
+        var pos = Array.from(track.querySelectorAll('.ucs__mob-card')).indexOf(el);
+        var ri  = ((pos - PREPEND) % N + N) % N;
+        el.innerHTML = media + buildPanel(dataArr[ri] || {});
+        if (isActive) {
+          setTimeout(function() {
+            var v = el.querySelector('video');
+            if (v) { v.muted = true; v.play().catch(function() { v.setAttribute('autoplay',''); v.load(); }); }
+          }, 80);
+        }
+      }
+
+      function loadNearby(idx) {
+        [idx-2, idx-1, idx, idx+1, idx+2].forEach(function(i) {
+          if (i >= 0 && i < cards.length) loadMedia(cards[i]);
+        });
+      }
+
+      function hidePanel(el) {
+        var p = el.querySelector('.ucs__product-panel');
+        if (p) p.style.cssText = 'transition:none;opacity:0;visibility:hidden;transform:translateY(30px) scale(0.9);pointer-events:none;';
+      }
+
+      function showPanel(el) {
+        var p = el.querySelector('.ucs__product-panel');
+        if (!p) return;
+        p.style.cssText = 'transition:none;opacity:0;visibility:hidden;transform:translateY(30px) scale(0.9);pointer-events:none;';
+        setTimeout(function() {
+          p.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+          p.style.opacity    = '1';
+          p.style.visibility = 'visible';
+          p.style.transform  = 'translateY(0) scale(1)';
+          p.style.pointerEvents = 'auto';
+        }, 50);
+      }
+
+      // Build N+4 cards: [clone(N-2),clone(N-1), real0…realN-1, clone(0),clone(1)]
+      track.innerHTML = '';
+      var cards = [];
+      for (var p = PREPEND; p >= 1; p--) { var c = makeCard(N - p); track.appendChild(c); cards.push(c); }
+      for (var i = 0; i < N; i++)         { var c = makeCard(i);     track.appendChild(c); cards.push(c); }
+      for (var a = 0; a < APPEND; a++)    { var c = makeCard(a);     track.appendChild(c); cards.push(c); }
+
+      var current   = PREPEND; // index of real card 0
+      var animating = false;
+
+      function updateDots(idx) {
+        if (!dotsWrap) return;
+        var dots = dotsWrap.querySelectorAll('.ucs__mob-dot');
+        var realIdx = idx - PREPEND;
+        dots.forEach(function(d, i) { d.classList.toggle('ucs__mob-dot--active', i === realIdx); });
+      }
+
+      // ── centerMob: track is position:absolute left:50% (origin = viewport center)
+      // translateX = -(index × (sideW+gap) + ctrW/2) — exactly like desktop
+      function centerMob(idx, anim) {
+        var sideW = Math.round(window.innerWidth * SIDE_VW);
+        var ctrW  = Math.round(window.innerWidth * CTR_VW);
+        var tx    = -(idx * (sideW + GAP_PX) + ctrW / 2);
+        track.style.transition = anim
+          ? 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)'
+          : 'none';
+        track.style.transform = 'translateX(' + tx + 'px) translateY(-50%)';
+        if (!anim) {
+          requestAnimationFrame(function() {
+            track.style.transition = 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)';
+          });
+        }
+      }
+
+      function applyCenterClass(idx) {
+        cards.forEach(function(c, i) {
+          var on = i === idx;
+          c.classList.toggle('ucs__mob-card--active', on);
+          if (!on) hidePanel(c);
+          var v = c.querySelector('video');
+          if (v) { if (on) v.play().catch(function(){}); else v.pause(); }
+        });
+        loadNearby(idx);
+        updateDots(idx);
+      }
+
+      // ── go: pre-jump pattern identical to desktop ucsGo ──────────────────
+      function go(dir) {
+        if (animating) return;
+        animating = true;
+
+        if (dir === 1 && current === PREPEND + N - 1) {
+          var jumpTo = current - N;
+          var jumpTx = -(jumpTo * (Math.round(window.innerWidth * SIDE_VW) + GAP_PX) + Math.round(window.innerWidth * CTR_VW) / 2);
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+          track.getBoundingClientRect();
+          current = jumpTo;
+        } else if (dir === -1 && current === PREPEND) {
+          var jumpTo = current + N;
+          var jumpTx = -(jumpTo * (Math.round(window.innerWidth * SIDE_VW) + GAP_PX) + Math.round(window.innerWidth * CTR_VW) / 2);
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+          track.getBoundingClientRect();
+          current = jumpTo;
+        }
+
+        current += dir;
+        applyCenterClass(current);
+        track.style.transition = 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)';
+        centerMob(current, true);
+
+        setTimeout(function() { showPanel(cards[current]); animating = false; }, 370);
+      }
+
+      // Click
+      track.addEventListener('click', function(e) {
+        var card = e.target.closest('.ucs__mob-card');
+        if (!card) return;
+        var idx = cards.indexOf(card);
+        if (idx === -1 || animating) return;
+        if (idx === current) {
+          var url = card.getAttribute('data-redirect-url');
+          if (url) window.open(url, '_blank');
+        } else go(idx > current ? 1 : -1);
+      });
+
+      // Dots
+      if (dotsWrap) {
+        dotsWrap.addEventListener('click', function(e) {
+          var dot = e.target.closest('.ucs__mob-dot');
+          if (!dot || animating) return;
+          var dotIdx   = parseInt(dot.getAttribute('data-dot-index'), 10);
+          var currReal = current - PREPEND;
+          if (dotIdx !== currReal) go(dotIdx > currReal ? 1 : -1);
+        });
+      }
+
+      // Swipe
+      var sx = 0, sy = 0, swDir = null;
+      track.parentElement.addEventListener('touchstart', function(e) {
+        sx = e.touches[0].clientX; sy = e.touches[0].clientY; swDir = null;
+      }, { passive: true });
+      track.parentElement.addEventListener('touchmove', function(e) {
+        if (swDir === 'v') return;
+        var dx = Math.abs(e.touches[0].clientX - sx), dy = Math.abs(e.touches[0].clientY - sy);
+        if (!swDir && dx < 5 && dy < 5) return;
+        if (!swDir) swDir = dx >= dy ? 'h' : 'v';
+        if (swDir === 'h') e.preventDefault();
+      }, { passive: false });
+      track.parentElement.addEventListener('touchend', function(e) {
+        if (swDir !== 'h' || animating) return;
+        if (Math.abs(e.changedTouches[0].clientX - sx) > 35)
+          go(e.changedTouches[0].clientX < sx ? 1 : -1);
+      }, { passive: true });
+
+      // Init — position instantly then reveal (same as desktop)
+      applyCenterClass(current);
+      centerMob(current, false);
+      setTimeout(function() { showPanel(cards[current]); }, 100);
+    };
+  })();
+</script>
+
+<script>
+  // ── TABLET CAROUSEL JS (481px–1024px) — same pattern as mobile ──────────────
+  (function() {
+    var SIDE_VW = {{ section.settings.tab_side_card_width | default: 22 }} / 100;
+    var CTR_VW  = {{ section.settings.tab_center_card_width | default: 42 }} / 100;
+    var GAP     = {{ section.settings.tab_card_gap | default: 16 }};
+
+    window.initUCSTabCarousel = function(sid) {
+      var w = window.innerWidth;
+      if (w <= 480 || w > 1024) return;
+
+      var track    = document.getElementById('ucs-tab-track-' + sid);
+      var dotsWrap = document.getElementById('ucs-tab-dots-' + sid);
+      if (!track) return;
+
+      var orig = Array.from(track.querySelectorAll('.ucs__tab-card'));
+      var N = orig.length;
+      if (N === 0) return;
+
+      var dataArr = orig.map(function(c) {
+        return {
+          mediaType:    c.getAttribute('data-media-type') || 'image',
+          mediaSrc:     c.getAttribute('data-media-src')  || '',
+          redirectUrl:  c.getAttribute('data-redirect-url') || '',
+          productTitle: c.getAttribute('data-product-title') || '',
+          productPrice: c.getAttribute('data-product-price') || '',
+          productUrl:   c.getAttribute('data-product-url') || '',
+          productImg:   c.getAttribute('data-product-img') || ''
+        };
+      });
+
+      function buildPanel(d) {
+        if (!d.productTitle && !d.productPrice) return '';
+        return '<div class="ucs__product-panel" style="transition:none;opacity:0;visibility:hidden;transform:translateY(30px) scale(0.9);pointer-events:none;">'
+          + (d.productImg ? '<div class="ucs__product-image"><img src="' + d.productImg + '" alt="' + d.productTitle + '" width="100" height="100" loading="lazy"></div>' : '')
+          + '<div class="ucs__product-info">'
+          + (d.productTitle ? '<div class="ucs__product-title">' + d.productTitle + '</div>' : '')
+          + (d.productPrice ? '<div class="ucs__product-price">' + d.productPrice + '</div>' : '')
+          + '</div>'
+          + (d.productUrl ? '<a href="' + d.productUrl + '" class="ucs__buy-button" target="_blank">BUY NOW</a>' : '')
+          + '</div>';
+      }
+
+      function loadMedia(el, d) {
+        if (el.getAttribute('data-media-loaded')) return;
+        el.setAttribute('data-media-loaded', '1');
+        var isActive = el.classList.contains('ucs__tab-card--active');
+        var media = '';
+        if (d.mediaSrc) {
+          if (d.mediaType === 'image') media = '<img class="ucs__card-image" src="' + d.mediaSrc + '" alt="' + d.productTitle + '" width="800" height="1000" loading="' + (isActive ? 'eager' : 'lazy') + '">';
+          else if (d.mediaType === 'video') {
+            var autoplayAttr = isActive ? ' autoplay' : '';
+            media = '<video class="ucs__card-video" muted loop playsinline preload="' + (isActive ? 'auto' : 'metadata') + '"' + autoplayAttr + '><source src="' + d.mediaSrc + '" type="video/mp4"></video>';
+          }
+          else media = '<iframe class="ucs__card-video" src="' + d.mediaSrc + '" frameborder="0" allowfullscreen loading="lazy"></iframe>';
+        }
+        el.innerHTML = media + buildPanel(d);
+        if (isActive) {
+          setTimeout(function() {
+            var video = el.querySelector('video');
+            if (video) {
+              video.muted = true;
+              video.play().catch(function() {
+                video.setAttribute('autoplay', '');
+                video.load();
+              });
+            }
+          }, 100);
+        }
+      }
+
+      function makeCard(d) {
+        var el = document.createElement('div');
+        el.className = 'ucs__tab-card';
+        Object.keys(d).forEach(function(k) { el.setAttribute('data-' + k.replace(/[A-Z]/g, function(c) { return '-' + c.toLowerCase(); }), d[k]); });
+        return el;
+      }
+
+      function hidePanel(el) {
+        var p = el.querySelector('.ucs__product-panel');
+        if (p) p.style.cssText = 'transition:none;opacity:0;visibility:hidden;transform:translateY(30px) scale(0.9);pointer-events:none;';
+      }
+
+      function showPanel(el) {
+        var p = el.querySelector('.ucs__product-panel');
+        if (!p) return;
+        p.style.cssText = 'transition:none;opacity:0;visibility:hidden;transform:translateY(30px) scale(0.9);pointer-events:none;';
+        setTimeout(function() {
+          p.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+          p.style.opacity = '1'; p.style.visibility = 'visible';
+          p.style.transform = 'translateY(0) scale(1)'; p.style.pointerEvents = 'auto';
+        }, 50);
+      }
+
+      // Build: 2 clones each side → N+4 total (same as mobile/desktop)
+      // Layout: [clone(N-2), clone(N-1), real0…realN-1, clone(0), clone(1)]
+      track.innerHTML = '';
+      var cards = [];
+      var PREPEND = 2, APPEND = 2;
+
+      for (var p = PREPEND; p >= 1; p--) {
+        var cl = makeCard(dataArr[(N - p + N) % N]); track.appendChild(cl); cards.push(cl);
+      }
+      dataArr.forEach(function(d) { var c = makeCard(d); track.appendChild(c); cards.push(c); });
+      for (var a = 0; a < APPEND; a++) {
+        var cl = makeCard(dataArr[a % N]); track.appendChild(cl); cards.push(cl);
+      }
+
+      var current   = PREPEND; // index of real card 0
+      var animating = false;
+
+      function loadNearby(idx) {
+        [idx-2, idx-1, idx, idx+1, idx+2].forEach(function(i) {
+          if (i >= 0 && i < cards.length) {
+            var realI = ((i - PREPEND) % N + N) % N;
+            loadMedia(cards[i], dataArr[realI]);
+          }
+        });
+      }
+
+      function updateDots(idx) {
+        if (!dotsWrap) return;
+        var dots = dotsWrap.querySelectorAll('.ucs__tab-dot');
+        var realIdx = idx - PREPEND;
+        dots.forEach(function(d, i) { d.classList.toggle('ucs__tab-dot--active', i === realIdx); });
+      }
+
+      // ── centerTab: same formula as mobile/desktop ─────────────────────────
+      // Track is position:absolute left:50% → origin = viewport center
+      // translateX = -(index × (sideW+gap) + ctrW/2)
+      function centerTab(idx, anim) {
+        var sideW = Math.round(window.innerWidth * SIDE_VW);
+        var ctrW  = Math.round(window.innerWidth * CTR_VW);
+        var tx    = -(idx * (sideW + GAP) + ctrW / 2);
+        track.style.transition = anim
+          ? 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)'
+          : 'none';
+        track.style.transform = 'translateX(' + tx + 'px) translateY(-50%)';
+        if (!anim) {
+          requestAnimationFrame(function() {
+            track.style.transition = 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)';
+          });
+        }
+      }
+
+      function applyCenterClass(idx) {
+        cards.forEach(function(c, i) {
+          var on = i === idx;
+          c.classList.toggle('ucs__tab-card--active', on);
+          if (!on) hidePanel(c);
+          var v = c.querySelector('video');
+          if (v) {
+            if (on) {
+              v.preload = 'auto';
+              if (v.readyState >= 2) v.play().catch(function(){});
+              else v.addEventListener('canplay', function() { v.play().catch(function(){}); }, { once: true });
+            } else {
+              v.pause();
+              v.preload = 'metadata';
+            }
+          }
+        });
+        loadNearby(idx);
+        updateDots(idx);
+      }
+
+      // ── go: pre-jump pattern identical to mobile/desktop ─────────────────
+      function go(dir) {
+        if (animating) return;
+        animating = true;
+
+        if (dir === 1 && current === PREPEND + N - 1) {
+          var jumpTo = current - N;
+          var jumpTx = -(jumpTo * (Math.round(window.innerWidth * SIDE_VW) + GAP) + Math.round(window.innerWidth * CTR_VW) / 2);
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+          track.getBoundingClientRect();
+          current = jumpTo;
+        } else if (dir === -1 && current === PREPEND) {
+          var jumpTo = current + N;
+          var jumpTx = -(jumpTo * (Math.round(window.innerWidth * SIDE_VW) + GAP) + Math.round(window.innerWidth * CTR_VW) / 2);
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(' + jumpTx + 'px) translateY(-50%)';
+          track.getBoundingClientRect();
+          current = jumpTo;
+        }
+
+        current += dir;
+        applyCenterClass(current);
+        track.style.transition = 'transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94)';
+        centerTab(current, true);
+
+        setTimeout(function() { showPanel(cards[current]); animating = false; }, 370);
+      }
+
+      track.addEventListener('click', function(e) {
+        var card = e.target.closest('.ucs__tab-card');
+        if (!card) return;
+        var idx = cards.indexOf(card);
+        if (idx === -1 || animating) return;
+        if (idx === current) {
+          var url = card.getAttribute('data-redirect-url');
+          if (url) window.open(url, '_blank');
+        } else go(idx > current ? 1 : -1);
+      });
+
+      if (dotsWrap) {
+        dotsWrap.addEventListener('click', function(e) {
+          var dot = e.target.closest('.ucs__tab-dot');
+          if (!dot || animating) return;
+          var dotIdx   = parseInt(dot.getAttribute('data-dot-index'), 10);
+          var currReal = current - PREPEND;
+          if (dotIdx !== currReal) go(dotIdx > currReal ? 1 : -1);
+        });
+      }
+
+      var sx = 0, sy = 0, swDir = null;
+      track.parentElement.addEventListener('touchstart', function(e) {
+        sx = e.touches[0].clientX; sy = e.touches[0].clientY; swDir = null;
+      }, { passive: true });
+      track.parentElement.addEventListener('touchmove', function(e) {
+        if (swDir === 'v') return;
+        var dx = Math.abs(e.touches[0].clientX - sx), dy = Math.abs(e.touches[0].clientY - sy);
+        if (!swDir && dx < 5 && dy < 5) return;
+        if (!swDir) swDir = dx >= dy ? 'h' : 'v';
+        if (swDir === 'h') e.preventDefault();
+      }, { passive: false });
+      track.parentElement.addEventListener('touchend', function(e) {
+        if (swDir !== 'h' || animating) return;
+        if (Math.abs(e.changedTouches[0].clientX - sx) > 35)
+          go(e.changedTouches[0].clientX < sx ? 1 : -1);
+      }, { passive: true });
+
+      // Init — same as mobile/desktop
+      applyCenterClass(current);
+      centerTab(current, false);
+      setTimeout(function() { showPanel(cards[current]); }, 100);
+    };
+  })();
+</script>
 
 {% schema %}
 {
@@ -1095,6 +1731,40 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "section_background",
       "label": "Section Background",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Card Sizes"
+    },
+    {
+      "type": "range",
+      "id": "side_card_width",
+      "min": 80,
+      "max": 400,
+      "step": 5,
+      "unit": "px",
+      "label": "Side Card Width (Desktop)",
+      "default": 220
+    },
+    {
+      "type": "range",
+      "id": "side_card_height",
+      "min": 120,
+      "max": 380,
+      "step": 5,
+      "unit": "px",
+      "label": "Side Card Height (Desktop)",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "card_gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Card Gap (Desktop)",
+      "default": 20
     },
     {
       "type": "header",
@@ -1165,8 +1835,159 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "button_hover_color",
       "label": "Button Hover Color",
       "default": "#00b894"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings (≤480px)"
+    },
+    {
+      "type": "range",
+      "id": "mob_title_font_size",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Title Font Size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mob_description_font_size",
+      "min": 11,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Description Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mob_center_card_width",
+      "min": 50,
+      "max": 85,
+      "step": 1,
+      "unit": "vw",
+      "label": "Mobile Center Card Width",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "mob_center_card_height",
+      "min": 60,
+      "max": 120,
+      "step": 1,
+      "unit": "vw",
+      "label": "Mobile Center Card Height",
+      "default": 85
+    },
+    {
+      "type": "range",
+      "id": "mob_side_card_width",
+      "min": 10,
+      "max": 35,
+      "step": 1,
+      "unit": "vw",
+      "label": "Mobile Side Card Width",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mob_side_card_height",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "vw",
+      "label": "Mobile Side Card Height",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "mob_card_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Card Border Radius",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mob_card_gap",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Card Gap",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mob_carousel_padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Carousel Top Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mob_panel_padding",
+      "min": 6,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Product Panel Padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mob_product_title_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Product Title Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mob_product_price_size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Product Price Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mob_product_image_size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Product Image Size",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mob_buy_button_size",
+      "min": 9,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Buy Button Font Size",
+      "default": 11
+    },
+    {
+      "type": "color",
+      "id": "mob_dot_active_color",
+      "label": "Mobile Active Dot Color",
+      "default": "#333333"
     }
   ],
+  "max_blocks": 15,
   "blocks": [
     {
       "type": "ugc_content",
@@ -1233,8 +2054,5 @@ document.addEventListener('DOMContentLoaded', function() {
   ]
 }
 {% endschema %}
-
-
-
 
 

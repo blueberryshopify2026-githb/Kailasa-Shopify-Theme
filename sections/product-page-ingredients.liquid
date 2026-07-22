@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   Product Page Ingredients Section - Dynamic tiles with conveyor belt animation
   Features: Background image with content on left (70%), moving tiles on right (30%)
 {% endcomment %}
@@ -13,6 +13,7 @@
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     display: flex;
     align-items: center;
+    background: #000000;
   }
 
 
@@ -26,9 +27,10 @@
   }
 
 
-  /* Left side - Background image with content */
+  /* Left side - Background image with content — rounded card matching right side */
   .ppis__content-section {
     position: relative;
+    background-color: #000000;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -36,6 +38,9 @@
     align-items: center;
     padding: 40px;
     overflow: hidden;
+    border-radius: {{ section.settings.card_border_radius | default: 20 }}px;
+    margin: 20px 10px 20px 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   }
 
 
@@ -60,7 +65,7 @@
 
   .ppis__heading {
     font-size: {{ section.settings.heading_size | default: 48 }}px;
-    font-weight: 600;
+    font-weight: 800;
     color: {{ section.settings.heading_color | default: '#ffffff' }};
     line-height: 1.1;
     margin: 0 0 30px 0;
@@ -101,10 +106,10 @@
     width: calc(100% - 40px);
     height: calc(100% - 40px);
     background: #ffffff;
-    border-radius: 20px;
+    border-radius: {{ section.settings.card_border_radius | default: 20 }}px;
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    margin: 20px;
+    margin: 20px 20px 20px 10px;
   }
 
   .ppis__tiles-container::before,
@@ -141,10 +146,6 @@
     padding: 0 20px;
     will-change: transform;
   }
-
-
-
-
 
   .ppis__tile {
     border-radius: 18px;
@@ -346,6 +347,290 @@
       font-size: 12px;
     }
   }
+
+  /* ── TABLET ONLY: 481px – 1024px ───────────────────────────────
+     Desktop and mobile code NOT changed.
+     Uses existing ppis__ prefix for all classes.
+     Tiles remain horizontal conveyor belt, same JS functionality.
+  ─────────────────────────────────────────────────────────────── */
+  @media (min-width: 481px) and (max-width: 1024px) {
+
+    /* Section: auto height, black background */
+    .ppis {
+      min-height: unset !important;
+    }
+
+    /* Stack: content card top, tiles card below — equal 16px outer padding */
+    .ppis__container {
+      display: flex !important;
+      flex-direction: column !important;
+      height: auto !important;
+      min-height: unset !important;
+      padding: 16px !important;
+      gap: 16px !important;
+      box-sizing: border-box !important;
+      background: #000000 !important;
+    }
+
+    /* ── Left: content card — center-aligned text ── */
+    .ppis__content-section {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: {{ section.settings.tab_content_padding | default: 40 }}px !important;
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+      min-height: {{ section.settings.tab_content_height | default: 400 }}px !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .ppis__content-wrapper {
+      text-align: center !important;
+      max-width: 680px !important;
+      margin: 0 auto !important;
+    }
+
+    .ppis__heading {
+      font-size: {{ section.settings.tab_heading_size | default: 36 }}px !important;
+      margin-bottom: 20px !important;
+      text-align: center !important;
+    }
+
+    .ppis__description {
+      font-size: {{ section.settings.tab_description_size | default: 17 }}px !important;
+      text-align: center !important;
+    }
+
+    /* ── Right: tiles card — horizontal conveyor, square tiles ── */
+    .ppis__tiles-section {
+      width: 100% !important;
+      height: {{ section.settings.tab_tile_size | default: 220 | plus: 32 }}px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      flex-shrink: 0 !important;
+    }
+
+    .ppis__tiles-container {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Track: horizontal, JS translateX still works with left:0 */
+    .ppis__tiles-track {
+      flex-direction: row !important;
+      height: calc(100% - 32px) !important;
+      width: auto !important;
+      top: 16px !important;
+      left: 0 !important;
+      padding: 0 16px !important;
+      gap: 16px !important;
+      align-items: center !important;
+    }
+
+    /* Square tiles with curved corners */
+    .ppis__tile {
+      flex: 0 0 {{ section.settings.tab_tile_size | default: 220 }}px !important;
+      width: {{ section.settings.tab_tile_size | default: 220 }}px !important;
+      min-width: {{ section.settings.tab_tile_size | default: 220 }}px !important;
+      max-width: {{ section.settings.tab_tile_size | default: 220 }}px !important;
+      height: {{ section.settings.tab_tile_size | default: 220 }}px !important;
+      min-height: {{ section.settings.tab_tile_size | default: 220 }}px !important;
+      max-height: {{ section.settings.tab_tile_size | default: 220 }}px !important;
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+      overflow: hidden !important;
+    }
+
+    .ppis__tile-image {
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+    }
+
+    .ppis__tile-overlay {
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+      padding: 14px !important;
+    }
+
+    .ppis__tile-title {
+      font-size: {{ section.settings.tab_tile_title_size | default: 14 }}px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .ppis__tile-description {
+      font-size: {{ section.settings.tab_tile_desc_size | default: 12 }}px !important;
+    }
+
+    /* Left/right white masks — same as mobile */
+    .ppis__tiles-container::before,
+    .ppis__tiles-container::after {
+      display: block !important;
+      content: '' !important;
+      position: absolute !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      width: 16px !important;
+      height: 100% !important;
+      background: #ffffff !important;
+      z-index: 20 !important;
+      pointer-events: none !important;
+      border-radius: 0 !important;
+    }
+    .ppis__tiles-container::before {
+      left: 0 !important;
+      right: unset !important;
+    }
+    .ppis__tiles-container::after {
+      right: 0 !important;
+      left: unset !important;
+      bottom: unset !important;
+    }
+  }
+  /* ── END TABLET ─────────────────────────────────────────────── */
+
+  /* ── MOBILE ONLY: max-width 480px ──────────────────────────────
+     Desktop code above is NOT changed.
+     All new classes use the existing ppis__ prefix.
+     The conveyor belt animation/JS is preserved — only sizes and spacing adjusted.
+  ─────────────────────────────────────────────────────────────── */
+  @media (max-width: 480px) {
+
+    /* Remove excess black space — section fills content height */
+    .ppis {
+      min-height: unset !important;
+    }
+
+    /* Stack: content card on top, tiles card below */
+    .ppis__container {
+      display: flex !important;
+      flex-direction: column !important;
+      height: auto !important;
+      min-height: unset !important;
+      padding: 16px !important;
+      gap: 12px !important;
+      box-sizing: border-box !important;
+      background: #000000 !important;
+    }
+
+    /* ── Left: content card ── */
+    .ppis__content-section {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: {{ section.settings.mob_content_padding | default: 24 }}px {{ section.settings.mob_content_padding | default: 20 }}px !important;
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+      min-height: {{ section.settings.mob_content_height | default: 480 }}px !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+      background-image: var(--mob-bg, none) !important;
+    }
+
+    /* Hide overlay if no mobile background */
+    .ppis__content-section:not([style*="--mob-bg: url"]) .ppis__content-overlay {
+      display: none !important;
+    }
+
+    .ppis__content-wrapper {
+      text-align: center !important;
+    }
+
+    .ppis__heading {
+      font-size: {{ section.settings.mob_heading_size | default: 26 }}px !important;
+      margin-bottom: 16px !important;
+    }
+
+    .ppis__description {
+      font-size: {{ section.settings.mob_description_size | default: 15 }}px !important;
+    }
+
+    /* ── Right: tiles card — fixed height so conveyor belt has room ── */
+    .ppis__tiles-section {
+      width: 100% !important;
+      height: {{ section.settings.mob_tile_size | default: 130 | plus: 32 }}px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      flex-shrink: 0 !important;
+    }
+
+    .ppis__tiles-container {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Track stays position:absolute for JS conveyor — only change direction to horizontal */
+    .ppis__tiles-track {
+      flex-direction: row !important;
+      height: calc(100% - 32px) !important;
+      width: auto !important;
+      top: 16px !important;
+      left: 0 !important;
+      padding: 0 16px !important;
+      gap: 12px !important;
+      align-items: center !important;
+    }
+
+    /* Tiles: square, fixed size */
+    .ppis__tile {
+      flex: 0 0 {{ section.settings.mob_tile_size | default: 130 }}px !important;
+      width: {{ section.settings.mob_tile_size | default: 130 }}px !important;
+      min-width: {{ section.settings.mob_tile_size | default: 130 }}px !important;
+      max-width: {{ section.settings.mob_tile_size | default: 130 }}px !important;
+      height: {{ section.settings.mob_tile_size | default: 130 }}px !important;
+      min-height: {{ section.settings.mob_tile_size | default: 130 }}px !important;
+      max-height: {{ section.settings.mob_tile_size | default: 130 }}px !important;
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+      overflow: hidden !important;
+    }
+
+    .ppis__tile-image {
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+    }
+
+    .ppis__tile-overlay {
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px !important;
+      padding: 8px !important;
+    }
+
+    .ppis__tile-title {
+      font-size: {{ section.settings.mob_tile_title_size | default: 11 }}px !important;
+      margin-bottom: 4px !important;
+    }
+
+    .ppis__tile-description {
+      font-size: {{ section.settings.mob_tile_desc_size | default: 9 }}px !important;
+    }
+
+    /* Left/right white padding strips — fixed position, always visible regardless of JS transform */
+    .ppis__tiles-container::before,
+    .ppis__tiles-container::after {
+      display: block !important;
+      content: '' !important;
+      position: absolute !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      width: 16px !important;
+      height: 100% !important;
+      background: #ffffff !important;
+      z-index: 20 !important;
+      pointer-events: none !important;
+    }
+    .ppis__tiles-container::before {
+      left: 0 !important;
+      right: unset !important;
+      border-radius: {{ section.settings.card_border_radius | default: 20 }}px 0 0 {{ section.settings.card_border_radius | default: 20 }}px !important;
+    }
+    .ppis__tiles-container::after {
+      right: 0 !important;
+      left: unset !important;
+      border-radius: 0 {{ section.settings.card_border_radius | default: 20 }}px {{ section.settings.card_border_radius | default: 20 }}px 0 !important;
+    }
+  }
 </style>
 
 
@@ -360,8 +645,10 @@
       <!-- Left side - Content with background -->
       <div
         class="ppis__content-section"
-        {% if section.settings.background_image %}
-          style="background-image: url('{{ section.settings.background_image | image_url: width: 1200 }}');"
+        {% if section.settings.mob_background_image %}
+          style="background-image: url('{{ section.settings.background_image | image_url: width: 1200 }}'); --mob-bg: url('{{ section.settings.mob_background_image | image_url: width: 800 }}');"
+        {% elsif section.settings.background_image %}
+          style="background-image: url('{{ section.settings.background_image | image_url: width: 1200 }}'); --mob-bg: none;"
         {% endif %}
       >
         <div class="ppis__content-overlay"></div>
@@ -404,7 +691,11 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       image: {% if block.settings.tile_image %}'{{ block.settings.tile_image | image_url: width: 300 }}'{% else %}null{% endif %},
       title: {{ block.settings.tile_title | json }},
-      description: {{ block.settings.tile_description | json }}
+      titleColor: {{ block.settings.tile_title_color | default: '#ffffff' | json }},
+      titleSize: {{ block.settings.tile_title_size | default: 16 }},
+      description: {{ block.settings.tile_description | json }},
+      descColor: {{ block.settings.tile_desc_color | default: '#cccccc' | json }},
+      descSize: {{ block.settings.tile_desc_size | default: 14 }}
     }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ];
@@ -435,8 +726,8 @@ document.addEventListener('DOMContentLoaded', function() {
           >
         ` : ''}
         <div class="ppis__tile-overlay">
-          ${data.title ? `<h3 class="ppis__tile-title">${data.title}</h3>` : ''}
-          ${data.description ? `<p class="ppis__tile-description">${data.description}</p>` : ''}
+          ${data.title ? `<h3 class="ppis__tile-title" style="color:${data.titleColor};font-size:${data.titleSize}px">${data.title}</h3>` : ''}
+          ${data.description ? `<p class="ppis__tile-description" style="color:${data.descColor};font-size:${data.descSize}px">${data.description}</p>` : ''}
         </div>
       </div>
     `;
@@ -548,6 +839,21 @@ document.addEventListener('DOMContentLoaded', function() {
   "settings": [
     {
       "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20,
+      "info": "Applies to both left content card and right tiles card"
+    },
+    {
+      "type": "header",
       "content": "Background & Content"
     },
     {
@@ -620,6 +926,137 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Animation Speed",
       "default": 6000,
       "info": "Lower numbers = faster animation (time per tile movement)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings (<=480px)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob_background_image",
+      "label": "Mobile Background Image",
+      "info": "If set, shows this image on mobile. If empty, no background image is shown on mobile (black background only)."
+    },
+    {
+      "type": "range",
+      "id": "mob_content_height",
+      "label": "Mobile Content Card Height",
+      "min": 280,
+      "max": 700,
+      "step": 20,
+      "unit": "px",
+      "default": 480
+    },
+    {
+      "type": "range",
+      "id": "mob_content_padding",
+      "label": "Mobile Content Card Padding",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mob_heading_size",
+      "label": "Mobile Heading Font Size",
+      "min": 18,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mob_description_size",
+      "label": "Mobile Description Font Size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mob_tile_size",
+      "label": "Mobile Tile Size (square)",
+      "min": 100,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 130,
+      "info": "Width and height of each ingredient tile on mobile"
+    },
+    {
+      "type": "range",
+      "id": "mob_tile_title_size",
+      "label": "Mobile Tile Title Font Size",
+      "min": 8, "max": 18, "step": 1, "unit": "px", "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mob_tile_desc_size",
+      "label": "Mobile Tile Description Font Size",
+      "min": 7, "max": 14, "step": 1, "unit": "px", "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings (481px-1024px)"
+    },
+    {
+      "type": "range",
+      "id": "tab_content_height",
+      "label": "Tablet Content Card Height",
+      "min": 280, "max": 900, "step": 20, "unit": "px", "default": 680
+    },
+    {
+      "type": "range",
+      "id": "tab_content_padding",
+      "label": "Tablet Content Card Padding",
+      "min": 16, "max": 80, "step": 4, "unit": "px", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "label": "Tablet Heading Font Size",
+      "min": 20, "max": 60, "step": 2, "unit": "px", "default": 48
+    },
+    {
+      "type": "range",
+      "id": "tab_description_size",
+      "label": "Tablet Description Font Size",
+      "min": 12, "max": 24, "step": 1, "unit": "px", "default": 22
+    },
+    {
+      "type": "range",
+      "id": "tab_tile_size",
+      "label": "Tablet Tile Size (square)",
+      "min": 140, "max": 320, "step": 10, "unit": "px", "default": 260,
+      "info": "Width and height of each ingredient tile on tablet"
+    },
+    {
+      "type": "range",
+      "id": "tab_tile_title_size",
+      "label": "Tablet Tile Title Font Size",
+      "min": 10, "max": 50, "step": 1, "unit": "px", "default": 30
+    },
+    {
+      "type": "range",
+      "id": "tab_tile_desc_size",
+      "label": "Tablet Tile Description Font Size",
+      "min": 8, "max": 25, "step": 1, "unit": "px", "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mob_section_padding",
+      "label": "Mobile Section Padding",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "default": 16,
+      "info": "Padding around the whole section on mobile (black border)"
     }
   ],
   "blocks": [
@@ -641,11 +1078,43 @@ document.addEventListener('DOMContentLoaded', function() {
           "info": "Name of the ingredient"
         },
         {
+          "type": "color",
+          "id": "tile_title_color",
+          "label": "Title Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "tile_title_size",
+          "label": "Title Font Size",
+          "min": 10,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
           "type": "textarea",
           "id": "tile_description",
           "label": "Tile Description",
           "default": "Brief description of the ingredient and its benefits.",
           "info": "Short description of the ingredient"
+        },
+        {
+          "type": "color",
+          "id": "tile_desc_color",
+          "label": "Description Color",
+          "default": "#cccccc"
+        },
+        {
+          "type": "range",
+          "id": "tile_desc_size",
+          "label": "Description Font Size",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 14
         }
       ]
     }

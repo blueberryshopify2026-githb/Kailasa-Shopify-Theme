@@ -7,7 +7,7 @@
 >
 
 <section
-  class="tab-section"
+  class="sts-tab-section"
   data-section-id="{{ section.id }}"
   style="
     --tab-bg-color: {{ section.settings.background_color }};
@@ -18,21 +18,28 @@
     --title-font-weight: {{ section.settings.title_font_weight }};
     --title-font-style: {{ section.settings.title_font_style }};
     --title-font-size-desktop: {{ section.settings.title_font_size_desktop }}px;
+    --title-font-size-tablet: {{ section.settings.title_font_size_tablet }}px;
     --title-font-size-mobile: {{ section.settings.title_font_size_mobile }}px;
     --tab-font-family: {{ section.settings.tab_font_family }};
     --tab-font-weight: {{ section.settings.tab_font_weight }};
     --tab-font-style: {{ section.settings.tab_font_style }};
     --tab-font-size-desktop: {{ section.settings.tab_font_size_desktop }}px;
+    --tab-font-size-tablet: {{ section.settings.tab_font_size_tablet }}px;
     --tab-font-size-mobile: {{ section.settings.tab_font_size_mobile }}px;
     --tab-height-desktop: {{ section.settings.height_desktop }}px;
+    --tab-height-tablet: {{ section.settings.height_tablet }}px;
     --tab-height-mobile: {{ section.settings.height_mobile }}px;
     --tab-title-padding-desktop: {{ section.settings.title_padding_desktop }}px;
+    --tab-title-padding-tablet: {{ section.settings.title_padding_tablet }}px;
     --tab-title-padding-mobile: {{ section.settings.title_padding_mobile }}px;
     --tab-arrow-padding-desktop: {{ section.settings.arrow_padding_desktop }}px;
+    --tab-arrow-padding-tablet: {{ section.settings.arrow_padding_tablet }}px;
     --tab-arrow-padding-mobile: {{ section.settings.arrow_padding_mobile }}px;
     --tab-arrow-size-desktop: {{ section.settings.arrow_size_desktop }}px;
+    --tab-arrow-size-tablet: {{ section.settings.arrow_size_tablet }}px;
     --tab-arrow-size-mobile: {{ section.settings.arrow_size_mobile }}px;
     --tab-arrow-stroke-desktop: {{ section.settings.arrow_stroke_desktop }}px;
+    --tab-arrow-stroke-tablet: {{ section.settings.arrow_stroke_tablet }}px;
     --tab-arrow-stroke-mobile: {{ section.settings.arrow_stroke_mobile }}px;
     --inner-tab-active-bg: {{ section.settings.inner_tab_active_bg }};
     --inner-tab-active-text: {{ section.settings.inner_tab_active_text }};
@@ -46,14 +53,14 @@
   "
 >
   <button
-    class="tab-button"
+    class="sts-tab-button"
     aria-expanded="false"
     data-no-focus-ring
     onclick="toggleTabContent(this)"
   >
-    <h2 class="tab-title">{{ section.settings.title | default: 'Photon Youth™ Pro LED Mask' }}</h2>
+    <h2 class="sts-tab-title">{{ section.settings.title | default: 'Photon Youth™ Pro' }}</h2>
 
-    <div class="tab-arrow">
+    <div class="sts-tab-arrow">
       {% if section.settings.arrow_style == 'filled' %}
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M7 10l5 5 5-5z"/>
@@ -66,33 +73,33 @@
     </div>
   </button>
 
-  <div class="tab-content">
-    <div class="tab-content-inner" style="display: none;">
+  <div class="sts-tab-content">
+    <div class="sts-tab-content-inner" style="display: none;">
       <!-- Inner Tab Navigation -->
-      <div class="inner-tab-navigation">
+      <div class="sts-inner-tab-navigation">
         {% for block in section.blocks %}
           <button
-            class="inner-tab-nav-button {% if forloop.first %}active{% endif %}"
+            class="sts-inner-tab-nav-button {% if forloop.first %}active{% endif %}"
             data-tab="{{ forloop.index0 }}"
             onclick="switchInnerTab(this, {{ forloop.index0 }})"
             {{ block.shopify_attributes }}
           >
-            <div class="tab-content-wrapper">
-              <span class="inner-tab-dot"></span>
-              <span class="tab-text">{{ block.settings.tab_name }}</span>
+            <div class="sts-tab-content-wrapper">
+              <span class="sts-inner-tab-dot"></span>
+              <span class="sts-tab-text">{{ block.settings.tab_name }}</span>
             </div>
           </button>
         {% endfor %}
       </div>
 
       <!-- Inner Tab Content -->
-      <div class="inner-tab-content-wrapper">
+      <div class="sts-inner-tab-content-wrapper">
         {% for block in section.blocks %}
-          <div class="inner-tab-content {% if forloop.first %}active{% endif %}" data-tab="{{ forloop.index0 }}">
+          <div class="sts-inner-tab-content {% if forloop.first %}active{% endif %}" data-tab="{{ forloop.index0 }}">
             {% if block.type == 'ingredient-block' %}
               <!-- Ingredient Block Content -->
               <div
-                class="ingredient-block"
+                class="sts-ingredient-block"
                 style="
                   display: flex;
                   align-items: stretch;
@@ -106,7 +113,7 @@
               >
                 <!-- Ingredients Section (Left Side - 50%) -->
                 <div
-                  class="ingredients-section"
+                  class="sts-ingredients-section"
                   style="
                     flex: 1;
                     width: 50%;
@@ -117,7 +124,7 @@
                 >
                   {% if block.settings.ingredients_title != blank %}
                     <div
-                      class="ingredients-header"
+                      class="sts-ingredients-header"
                       style="
                         display: flex;
                         justify-content: space-between;
@@ -140,7 +147,7 @@
                       </h3>
 
                       <div
-                        class="scroll-arrows"
+                        class="sts-scroll-arrows"
                         style="
                           display: flex;
                           gap: 0.5rem;
@@ -149,7 +156,7 @@
                         "
                       >
                         <button
-                          class="scroll-arrow scroll-up"
+                          class="sts-scroll-arrow sts-scroll-up"
                           onclick="scrollIngredients(this, 'up')"
                           style="
                             background: none;
@@ -167,7 +174,7 @@
                           &#8249;
                         </button>
                         <button
-                          class="scroll-arrow scroll-down"
+                          class="sts-scroll-arrow sts-scroll-down"
                           onclick="scrollIngredients(this, 'down')"
                           style="
                             background: none;
@@ -189,7 +196,7 @@
                   {% endif %}
 
                   <div
-                    class="ingredients-list-container"
+                    class="sts-ingredients-list-container"
                     style="
                       max-height: 500px;
                       overflow-y: auto;
@@ -199,7 +206,7 @@
                     "
                   >
                     <div
-                      class="ingredients-list"
+                      class="sts-ingredients-list"
                       style="
                         display: flex;
                         flex-direction: column;
@@ -214,7 +221,7 @@
 
                         {% if block.settings[ingredient_image] != blank or block.settings[ingredient_title] != blank %}
                           <div
-                            class="ingredient-item"
+                            class="sts-ingredient-item"
                             style="
                               display: flex;
                               align-items: center;
@@ -227,7 +234,7 @@
                           >
                             {% if block.settings[ingredient_image] != blank %}
                               <div
-                                class="tab-section-ingredient-image"
+                                class="sts-ingredient-image"
                                 style="
                                   width: {{ block.settings.ingredient_image_size | default: 60 }}px;
                                   height: {{ block.settings.ingredient_image_size | default: 60 }}px;
@@ -249,7 +256,7 @@
                             {% endif %}
 
                             <div
-                              class="ingredient-content"
+                              class="sts-ingredient-content"
                               style="
                                 flex: 1;
                                 min-width: 0;
@@ -300,7 +307,7 @@
                 </div>
 
                 <!-- Main Image Section -->
-                <div class="main-image-section" style="flex: 1; padding: 1rem;">
+                <div class="sts-main-image-section" style="flex: 1; padding: 1rem;">
                   {% if block.settings.main_image != blank %}
                     <img
                       src="{{ block.settings.main_image | image_url: width: 600, height: 600 }}"
@@ -315,7 +322,7 @@
             {% elsif block.type == 'faq-block' %}
               <!-- FAQ Block Content -->
               <div
-                class="faq-content {% if block.settings.layout == 'faq-image' %}reverse{% endif %}"
+                class="sts-faq-content {% if block.settings.layout == 'faq-image' %}reverse{% endif %}"
                 style="
                   --faq-bg-color: {{ block.settings.faq_bg_color }};
                   --question-text-color: {{ block.settings.question_text_color }};
@@ -324,7 +331,7 @@
                   --faq-max-height: {{ block.settings.faq_max_height }}px;
                 "
               >
-                <div class="faq-image">
+                <div class="sts-faq-image">
                   {% if block.settings.image %}
                     <img
                       src="{{ block.settings.image | image_url: width: 600, height: 600 }}"
@@ -334,7 +341,7 @@
                       height="600"
                     >
                   {% else %}
-                    <div class="tab-section-placeholder-image">
+                    <div class="sts-placeholder-image">
                       <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
                         <rect width="100" height="100" fill="#f0f0f0"/>
                         <path d="M30 70L50 50L70 70M40 40H40.01" stroke="#ccc" stroke-width="2" stroke-linecap="round"/>
@@ -342,66 +349,11 @@
                     </div>
                   {% endif %}
                 </div>
-                <div class="faq-section">
+                <div class="sts-faq-section">
                   <div
-                    class="faq-header"
+                    class="sts-faq-list-container"
                     style="
-                      align-items: left;
-                      margin-bottom: 0.5rem;
-                      padding: 10px 30px;
-                    "
-                  >
-                    <div
-                      class="faq-scroll-arrows"
-                      style="
-                        display: flex;
-                        gap: 0.5rem;
-                        align-items: center;
-                      "
-                    >
-                      <button
-                        class="faq-scroll-arrow faq-scroll-up"
-                        onclick="scrollFAQs(this, 'up')"
-                        style="
-                          background: none;
-                          border: none;
-                          cursor: pointer;
-                          padding: 4px;
-                          color: #999999;
-                          font-size: 35px;
-                          line-height: 1;
-                          transition: opacity 0.2s ease;
-                        "
-                        onmouseover="this.style.opacity='0.6'"
-                        onmouseout="this.style.opacity='1'"
-                      >
-                        &#8249;
-                      </button>
-                      <button
-                        class="faq-scroll-arrow faq-scroll-down"
-                        onclick="scrollFAQs(this, 'down')"
-                        style="
-                          background: none;
-                          border: none;
-                          cursor: pointer;
-                          padding: 4px;
-                          color: #999999;
-                          font-size: 35px;
-                          line-height: 1;
-                          transition: opacity 0.2s ease;
-                        "
-                        onmouseover="this.style.opacity='0.6'"
-                        onmouseout="this.style.opacity='1'"
-                      >
-                        &#8250;
-                      </button>
-                    </div>
-                  </div>
-
-                  <div
-                    class="faq-list-container"
-                    style="
-                      max-height: 550px;
+                      max-height: var(--faq-max-height, 550px);
                       overflow-y: auto;
                       overflow-x: hidden;
                       scrollbar-width: none;
@@ -409,7 +361,7 @@
                     "
                   > 
                     <div
-                      class="faq-list"
+                      class="sts-faq-list"
                       data-block-id="{{ block.id }}"
                       style="padding-right: 30px;"
                     >
@@ -418,13 +370,13 @@
                         {% assign faq_answer = 'faq' | append: i | append: '_answer' %}
 
                         {% if block.settings[faq_question] != blank %}
-                          <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFAQ(this)">
-                              <span class="question-text">{{ block.settings[faq_question] }}</span>
-                              <span class="faq-icon">+</span>
+                          <div class="sts-faq-item">
+                            <button class="sts-faq-question" onclick="stsToggleFAQ(this)">
+                              <span class="sts-question-text">{{ block.settings[faq_question] }}</span>
+                              <span class="sts-faq-icon">+</span>
                             </button>
-                            <div class="faq-answer">
-                              <div class="answer-content">
+                            <div class="sts-faq-answer">
+                              <div class="sts-answer-content">
                                 {{ block.settings[faq_answer] }}
                               </div>
                             </div>
@@ -437,8 +389,8 @@
               </div>
             {% else %}
               <!-- Image Text Block Content -->
-              <div class="image-text-content {% if block.settings.layout == 'text-image' %}reverse{% endif %}">
-                <div class="content-image">
+              <div class="sts-image-text-content {% if block.settings.layout == 'text-image' %}reverse{% endif %}">
+                <div class="sts-content-image">
                   {% if block.settings.image %}
                     <img
                       src="{{ block.settings.image | image_url: width: 600, height: 600 }}"
@@ -448,7 +400,7 @@
                       height="600"
                     >
                   {% else %}
-                    <div class="tab-section-placeholder-image">
+                    <div class="sts-placeholder-image">
                       <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
                         <rect width="100" height="100" fill="#f0f0f0"/>
                         <path d="M30 70L50 50L70 70M40 40H40.01" stroke="#ccc" stroke-width="2" stroke-linecap="round"/>
@@ -456,8 +408,8 @@
                     </div>
                   {% endif %}
                 </div>
-                <div class="content-text">
-                  <div class="text-content">
+                <div class="sts-content-text">
+                  <div class="sts-text-content">
                     {{ block.settings.text_content }}
                   </div>
                 </div>
@@ -472,7 +424,7 @@
 
 <style>
   /* Main Dropdown Section */
-  .tab-section {
+  .sts-tab-section {
     width: 100%;
     max-width: 100%;
     border: var(--tab-border-width) solid var(--tab-border-color);
@@ -480,7 +432,7 @@
     margin-top: 20px;
   }
 
-  .tab-button {
+  .sts-tab-button {
     width: 100%;
     display: flex;
     align-items: center;
@@ -494,21 +446,21 @@
     font-family: var(--tab-font-family);
     font-weight: var(--tab-font-weight);
     font-style: var(--tab-font-style);
-    height: var(--tab-height-desktop);
+    height: var(--tab-height-mobile); /* base fallback */
   }
 
-  .tab-button:hover {
+  .sts-tab-button:hover {
     opacity: 0.8;
   }
 
-  .tab-button:focus {
+  .sts-tab-button:focus {
     outline: none;
   }
 
-  .tab-title {
+  .sts-tab-title {
     margin: 0;
-    padding-left: var(--tab-title-padding-desktop);
-    font-size: var(--title-font-size-desktop);
+    padding-left: var(--tab-title-padding-mobile);
+    font-size: var(--title-font-size-mobile); /* base fallback */
     font-family: var(--title-font-family);
     font-weight: var(--title-font-weight);
     font-style: var(--title-font-style);
@@ -516,45 +468,45 @@
     text-align: left;
   }
 
-  .tab-arrow {
-    padding-right: var(--tab-arrow-padding-desktop);
+  .sts-tab-arrow {
+    padding-right: var(--tab-arrow-padding-mobile);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.2s ease;
   }
 
-  .tab-arrow svg {
-    width: var(--tab-arrow-size-desktop);
-    height: var(--tab-arrow-size-desktop);
-    stroke-width: var(--tab-arrow-stroke-desktop);
+  .sts-tab-arrow svg {
+    width: var(--tab-arrow-size-mobile);
+    height: var(--tab-arrow-size-mobile);
+    stroke-width: var(--tab-arrow-stroke-mobile);
   }
 
-  .tab-button[aria-expanded='true'] .tab-arrow {
+  .sts-tab-button[aria-expanded='true'] .sts-tab-arrow {
     transform: rotate(180deg);
   }
 
-  .tab-content {
+  .sts-tab-content {
     background-color: transparent;
     border: none;
   }
 
-  .tab-content-inner {
+  .sts-tab-content-inner {
     color: var(--tab-text-color);
   }
 
   /* Inner Tab System */
-  .inner-tab-navigation {
+  .sts-inner-tab-navigation {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0 0 0;
+    margin: 20px 0 20px 0;
     gap: 8px;
     padding: 0 10px;
     border: none;
   }
 
-  .inner-tab-nav-button {
+  .sts-inner-tab-nav-button {
     flex: 1;
     max-width: 25%;
     min-height: 44px;
@@ -577,14 +529,15 @@
     text-align: center;
   }
 
-  .inner-tab-nav-button .tab-content-wrapper {
+  .sts-inner-tab-nav-button .sts-tab-content-wrapper {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 0;
     max-width: 100%;
   }
 
-  .inner-tab-nav-button .tab-text {
+  .sts-inner-tab-nav-button .sts-tab-text {
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
@@ -592,50 +545,42 @@
     white-space: normal;
   }
 
-  .inner-tab-nav-button:hover {
+  .sts-inner-tab-nav-button:hover {
     background-color: var(--inner-tab-hover-bg);
     color: var(--inner-tab-hover-text);
   }
 
-  .inner-tab-nav-button.active {
+  .sts-inner-tab-nav-button.active {
     background-color: var(--inner-tab-active-bg);
     color: var(--inner-tab-active-text);
   }
 
-  .inner-tab-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: transparent;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
+  .sts-inner-tab-dot {
+    display: none;
   }
 
-  .inner-tab-nav-button.active .inner-tab-dot {
-    background-color: var(--inner-tab-active-dot);
-  }
-
-  .inner-tab-nav-button:focus {
+  .sts-inner-tab-nav-button:focus {
     outline: none;
   }
 
-  .inner-tab-content-wrapper {
+  .sts-inner-tab-content-wrapper {
     position: relative;
     min-height: 400px;
+    overflow: hidden;
   }
 
-  .inner-tab-content {
+  .sts-inner-tab-content {
     display: none;
     padding: 0;
     background-color: var(--inner-tab-inactive-bg);
     border: none;
   }
 
-  .inner-tab-content.active {
+  .sts-inner-tab-content.active {
     display: block;
   }
 
-  .image-text-content {
+  .sts-image-text-content {
     display: flex;
     align-items: stretch;
     gap: 0;
@@ -643,18 +588,18 @@
     width: 100%;
   }
 
-  .image-text-content.reverse {
+  .sts-image-text-content.reverse {
     flex-direction: row-reverse;
   }
 
-  .content-image,
-  .content-text {
+  .sts-content-image,
+  .sts-content-text {
     flex: 1;
     width: 50%;
     min-width: 0; /* Allows flex items to shrink below their content size */
   }
 
-  .content-image {
+  .sts-content-image {
     display: flex;
     align-items: stretch;
     justify-content: stretch;
@@ -662,7 +607,7 @@
     margin: 0;
   }
 
-  .content-image img {
+  .sts-content-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -671,7 +616,7 @@
     padding: 0;
   }
 
-  .tab-section-placeholder-image {
+  .sts-placeholder-image {
     width: 100%;
     height: 300px;
     display: flex;
@@ -682,13 +627,13 @@
     border-radius: 8px;
   }
 
-  .content-text {
+  .sts-content-text {
     display: flex;
     padding: 30px;
     overflow: hidden; /* Prevents text from overflowing */
   }
 
-  .text-content {
+  .sts-text-content {
     font-family: var(--content-font-family, var(--tab-font-family));
     font-weight: var(--content-font-weight, 400);
     font-style: var(--content-font-style, normal);
@@ -702,118 +647,212 @@
   }
 
   /* Mobile Styles */
-  @media (max-width: 768px) {
-    .tab-button {
+  @media (max-width: 767px) {
+    .shopify-section:has(.sts-tab-section) {
+      --page-margin: 0px;
+    }
+
+    .sts-tab-button {
       height: var(--tab-height-mobile);
     }
 
-    .tab-title {
+    .sts-tab-title {
       padding-left: var(--tab-title-padding-mobile);
       font-size: var(--title-font-size-mobile);
     }
 
-    .tab-arrow {
+    .sts-tab-arrow {
       padding-right: var(--tab-arrow-padding-mobile);
     }
 
-    .tab-arrow svg {
+    .sts-tab-arrow svg {
       width: var(--tab-arrow-size-mobile);
       height: var(--tab-arrow-size-mobile);
       stroke-width: var(--tab-arrow-stroke-mobile);
     }
 
-    .inner-tab-navigation {
+    .sts-inner-tab-navigation {
       gap: 6px;
       padding: 0 5px;
     }
 
-    .inner-tab-nav-button {
+    .sts-inner-tab-nav-button {
       font-size: var(--tab-font-size-mobile);
       padding: 6px 10px;
       min-height: 40px;
       border-radius: 6px;
     }
 
-    .inner-tab-nav-button .tab-content-wrapper {
+    .sts-inner-tab-nav-button .sts-tab-content-wrapper {
       gap: 6px;
     }
 
-    .inner-tab-content {
+    .sts-inner-tab-content {
       padding: 0;
     }
 
-    .content-text {
+    .sts-content-text {
       padding: 20px;
     }
 
-    .image-text-content {
+    .sts-image-text-content {
       flex-direction: column;
-      gap: 20px;
-    }
-
-    .image-text-content.reverse {
-      flex-direction: column;
-    }
-
-    .text-content {
-      font-size: var(--content-font-size-mobile, 14px);
-    }
-
-    .faq-content {
-      flex-direction: row;
       gap: 0;
     }
 
-    .faq-content.reverse {
-      flex-direction: row-reverse;
+    .sts-image-text-content.reverse {
+      flex-direction: column;
     }
 
-    .faq-section,
-    .faq-image {
-      flex: 1;
-      width: 50%;
-      max-width: 50%;
+    .sts-content-image,
+    .sts-content-text {
+      width: 100%;
+      flex: none;
     }
 
-    .faq-list {
-      max-height: 300px;
-      padding: 15px;
+    .sts-content-image img {
+      max-height: 260px;
+      object-fit: cover;
     }
 
-    .faq-question {
+    .sts-text-content {
+      font-size: var(--content-font-size-mobile, 14px);
+    }
+
+    .sts-inner-tab-content-wrapper {
+      min-height: auto;
+    }
+
+    .sts-main-image-section,
+    .sts-faq-image {
+      display: none !important;
+    }
+
+    .sts-faq-content {
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    .sts-faq-section {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex: none;
+    }
+
+    .sts-faq-list {
+      padding: 15px 15px 20px 15px;
+      background-color: transparent;
+    }
+
+    .sts-faq-question {
       font-size: 14px;
-      padding: 12px 15px;
+      padding: 18px 0;
     }
 
-    .answer-content {
-      padding: 10px 15px;
-      font-size: 12px;
+    .sts-answer-content {
+      padding: 0 0 15px 0;
+      font-size: 14px;
+    }
+  }
+
+  /* Tablet: 768px - 1023px */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .shopify-section:has(.sts-tab-section) {
+      --page-margin: 0px;
+    }
+
+    .sts-tab-button {
+      height: var(--tab-height-tablet);
+    }
+
+    .sts-tab-title {
+      padding-left: var(--tab-title-padding-tablet);
+      font-size: var(--title-font-size-tablet);
+    }
+
+    .sts-tab-arrow {
+      padding-right: var(--tab-arrow-padding-tablet);
+    }
+
+    .sts-tab-arrow svg {
+      width: var(--tab-arrow-size-tablet);
+      height: var(--tab-arrow-size-tablet);
+      stroke-width: var(--tab-arrow-stroke-tablet);
+    }
+
+    .sts-inner-tab-nav-button {
+      font-size: var(--tab-font-size-tablet);
+    }
+
+    /* Control ingredient list height on tablet */
+    .sts-ingredients-list-container {
+      max-height: 330px !important;
+      overflow-y: auto !important;
+    }
+  }
+
+  /* Desktop: 1024px+ */
+  @media (min-width: 1024px) {
+    .shopify-section:has(.sts-tab-section) {
+      --page-margin: 0px;
+    }
+
+    .sts-tab-button {
+      height: var(--tab-height-desktop);
+    }
+
+    .sts-tab-title {
+      padding-left: var(--tab-title-padding-desktop);
+      font-size: var(--title-font-size-desktop);
+    }
+
+    .sts-tab-arrow {
+      padding-right: var(--tab-arrow-padding-desktop);
+    }
+
+    .sts-tab-arrow svg {
+      width: var(--tab-arrow-size-desktop);
+      height: var(--tab-arrow-size-desktop);
+      stroke-width: var(--tab-arrow-stroke-desktop);
+    }
+
+    .sts-inner-tab-nav-button {
+      font-size: var(--tab-font-size-desktop);
+    }
+
+    /* Control ingredient list height on desktop */
+    .sts-ingredients-list-container {
+      max-height: 330px !important;
+      overflow-y: auto !important;
     }
   }
 
   /* FAQ Specific Styles */
-  .faq-content {
+  .sts-faq-content {
     display: flex;
     flex-direction: row;
     align-items: stretch;
     gap: 0;
-    min-height: 400px;
+    /* ↓ edit this value to control the overall FAQ section height */
+    height: 460px;
     width: 100%;
   }
 
-  .faq-content.reverse {
+  .sts-faq-content.reverse {
     flex-direction: row-reverse;
   }
 
-  .faq-section,
-  .faq-image {
+  .sts-faq-section,
+  .sts-faq-image {
     flex: 1;
     width: 50%;
     min-width: 0;
     max-width: 50%;
+    height: 100%;
+    overflow: hidden;
   }
 
-  .faq-image {
+  .sts-faq-image {
     display: flex;
     align-items: stretch;
     justify-content: stretch;
@@ -821,53 +860,35 @@
     margin: 0;
   }
 
-  .faq-image img {
+  .sts-faq-image img {
     width: 100%;
     height: 100%;
+    max-height: 100%; /* fills whatever height .sts-faq-content is set to */
     object-fit: cover;
     border-radius: 0;
     margin: 0;
     padding: 0;
   }
 
-  .faq-list {
-    max-height: 100%;
+  .sts-faq-list {
+    height: 100%;
     overflow-y: auto;
-    padding: 30px;
+    /* ↓ top padding = gap from top. Match with .sts-faq-image padding-top (currently 20px) */
+    padding: 20px 30px 30px 30px;
     background-color: var(--faq-bg-color);
-
-    /* Custom scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
+    box-sizing: border-box;
   }
 
-  .faq-list::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .faq-list::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .faq-list::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 3px;
-  }
-
-  .faq-list::-webkit-scrollbar-thumb:hover {
-    background-color: #999;
-  }
-
-  .faq-item {
+  .sts-faq-item {
     border-bottom: 1px solid var(--faq-border-color);
     margin-bottom: 0;
   }
 
-  .faq-item:last-child {
+  .sts-faq-item:last-child {
     border-bottom: none;
   }
 
-  .faq-question {
+  .sts-faq-question {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -884,39 +905,39 @@
     transition: all 0.3s ease;
   }
 
-  .faq-question:hover {
+  .sts-faq-question:hover {
     opacity: 0.8;
   }
 
-  .question-text {
+  .sts-question-text {
     flex: 1;
     margin-right: 15px;
   }
 
-  .faq-icon {
-    font-size: 20px;
-    font-weight: 300;
+  .sts-faq-icon {
+    font-size: 25px;
+    font-weight: 400;
     color: var(--question-text-color);
     transition: transform 0.3s ease;
     min-width: 20px;
     text-align: center;
   }
 
-  .faq-question.active .faq-icon {
+  .sts-faq-question.active .sts-faq-icon {
     transform: rotate(45deg);
   }
 
-  .faq-answer {
+  .sts-faq-answer {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
 
-  .faq-answer.active {
+  .sts-faq-answer.active {
     max-height: 500px;
   }
 
-  .answer-content {
+  .sts-answer-content {
     padding: 0 0 20px 0;
     font-family: var(--tab-font-family);
     font-size: 14px;
@@ -926,138 +947,144 @@
   }
 
   /* Ingredient Block Styles */
-  .ingredient-block {
+  .sts-ingredient-block {
     width: 100%;
     max-width: 100%;
     overflow: hidden;
   }
 
-  .ingredients-section {
+  .sts-ingredients-section {
     box-sizing: border-box;
   }
 
-  .ingredient-content {
+  .sts-ingredient-content {
     overflow: hidden;
   }
 
   /* Hide scrollbars */
-  .ingredients-list-container::-webkit-scrollbar {
+  .sts-ingredients-list-container::-webkit-scrollbar {
     display: none;
   }
 
-  .ingredients-list-container {
+  .sts-ingredients-list-container {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
   /* Scroll arrows */
-  .scroll-arrows {
+  .sts-scroll-arrows {
     opacity: 1;
     transition: opacity 0.3s ease;
   }
 
-  .scroll-arrow {
+  .sts-scroll-arrow {
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
   }
 
-  .scroll-arrow:focus {
+  .sts-scroll-arrow:focus {
     outline: none;
   }
 
   /* FAQ Scroll Styles */
-  .faq-list-container::-webkit-scrollbar {
+  .sts-faq-list-container::-webkit-scrollbar {
     display: none;
   }
 
-  .faq-list-container {
+  .sts-faq-list-container {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
-  .faq-scroll-arrows {
+  .sts-faq-scroll-arrows {
     opacity: 1;
     transition: opacity 0.3s ease;
   }
 
-  .faq-scroll-arrow {
+  .sts-faq-scroll-arrow {
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
   }
 
-  .faq-scroll-arrow:focus {
+  .sts-faq-scroll-arrow:focus {
     outline: none;
   }
 
-  @media (max-width: 768px) {
-    .ingredient-block {
+  @media (max-width: 767px) {
+    .sts-ingredient-block {
       flex-direction: column !important;
       min-height: auto !important;
     }
 
-    .ingredients-section {
+    .sts-ingredients-section {
       width: 100% !important;
       padding: 1.5rem !important;
     }
 
-    .ingredients-list {
+    .sts-ingredients-list {
       gap: 1.25rem !important;
     }
 
-    .ingredient-item {
+    .sts-ingredient-item {
       gap: 0.75rem !important;
     }
 
-    .tab-section-ingredient-image {
+    .sts-ingredient-image {
       width: 50px !important;
       height: 50px !important;
     }
 
-    .ingredient-content {
+    .sts-ingredient-content {
       max-width: calc(100% - 60px) !important;
     }
 
-    .ingredient-content h4 {
+    .sts-ingredient-content h4 {
       font-size: 15px !important;
     }
 
-    .ingredient-content p {
+    .sts-ingredient-content p {
       font-size: 12px !important;
+    }
+
+    /* Control ingredient list height on mobile */
+    .sts-ingredients-list-container {
+      max-height: 330px !important;
+      overflow-y: auto !important;
     }
   }
 
   @media (max-width: 480px) {
-    .ingredients-section {
+    .sts-ingredients-section {
       padding: 1rem !important;
     }
 
-    .ingredients-list {
+    .sts-ingredients-list {
       gap: 1rem !important;
     }
 
-    .ingredient-item {
+    .sts-ingredient-item {
       gap: 0.5rem !important;
     }
 
-    .tab-section-ingredient-image {
+    .sts-ingredient-image {
       width: 45px !important;
       height: 45px !important;
     }
 
-    .ingredient-content {
+    .sts-ingredient-content {
       max-width: calc(100% - 55px) !important;
     }
 
-    .ingredient-content h4 {
+    .sts-ingredient-content h4 {
       font-size: 14px !important;
       margin-bottom: 0.25rem !important;
     }
 
-    .ingredient-content p {
+    .sts-ingredient-content p {
       font-size: 11px !important;
       line-height: 1.4 !important;
     }
@@ -1066,7 +1093,7 @@
 
 <script>
   function toggleTabContent(button) {
-    const contentInner = button.nextElementSibling.querySelector('.tab-content-inner');
+    const contentInner = button.nextElementSibling.querySelector('.sts-tab-content-inner');
     const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
     button.setAttribute('aria-expanded', !isExpanded);
@@ -1074,27 +1101,27 @@
   }
 
   function switchInnerTab(button, tabIndex) {
-    const section = button.closest('.tab-section');
+    const section = button.closest('.sts-tab-section');
 
     // Remove active class from all inner tab buttons and content
-    section.querySelectorAll('.inner-tab-nav-button').forEach((btn) => btn.classList.remove('active'));
-    section.querySelectorAll('.inner-tab-content').forEach((content) => content.classList.remove('active'));
+    section.querySelectorAll('.sts-inner-tab-nav-button').forEach((btn) => btn.classList.remove('active'));
+    section.querySelectorAll('.sts-inner-tab-content').forEach((content) => content.classList.remove('active'));
 
     // Add active class to clicked button and corresponding content
     button.classList.add('active');
-    section.querySelector(`.inner-tab-content[data-tab="${tabIndex}"]`).classList.add('active');
+    section.querySelector(`.sts-inner-tab-content[data-tab="${tabIndex}"]`).classList.add('active');
   }
 
-  function toggleFAQ(button) {
-    const faqItem = button.closest('.faq-item');
-    const faqList = button.closest('.faq-list');
-    const answer = faqItem.querySelector('.faq-answer');
+  function stsToggleFAQ(button) {
+    const faqItem = button.closest('.sts-faq-item');
+    const faqList = button.closest('.sts-faq-list');
+    const answer = faqItem.querySelector('.sts-faq-answer');
     const isActive = button.classList.contains('active');
 
     // Close all other FAQs in the same list
-    faqList.querySelectorAll('.faq-question').forEach((q) => {
+    faqList.querySelectorAll('.sts-faq-question').forEach((q) => {
       q.classList.remove('active');
-      q.closest('.faq-item').querySelector('.faq-answer').classList.remove('active');
+      q.closest('.sts-faq-item').querySelector('.sts-faq-answer').classList.remove('active');
     });
 
     // Toggle current FAQ
@@ -1105,8 +1132,8 @@
   }
 
   function scrollIngredients(button, direction) {
-    const ingredientsSection = button.closest('.ingredients-section');
-    const scrollContainer = ingredientsSection.querySelector('.ingredients-list-container');
+    const ingredientsSection = button.closest('.sts-ingredients-section');
+    const scrollContainer = ingredientsSection.querySelector('.sts-ingredients-list-container');
 
     if (!scrollContainer) return;
 
@@ -1127,8 +1154,8 @@
   }
 
   function scrollFAQs(button, direction) {
-    const faqSection = button.closest('.faq-section');
-    const scrollContainer = faqSection.querySelector('.faq-list-container');
+    const faqSection = button.closest('.sts-faq-section');
+    const scrollContainer = faqSection.querySelector('.sts-faq-list-container');
 
     if (!scrollContainer) return;
 
@@ -1152,7 +1179,7 @@
   if (window.Shopify && window.Shopify.designMode) {
     document.addEventListener('shopify:section:load', function (event) {
       // Re-initialize dropdown functionality
-      const dropdownButtons = event.target.querySelectorAll('.tab-button');
+      const dropdownButtons = event.target.querySelectorAll('.sts-tab-button');
       dropdownButtons.forEach((button) => {
         button.addEventListener('click', function () {
           toggleTabContent(this);
@@ -1160,7 +1187,7 @@
       });
 
       // Re-initialize inner tab functionality
-      const innerTabButtons = event.target.querySelectorAll('.inner-tab-nav-button');
+      const innerTabButtons = event.target.querySelectorAll('.sts-inner-tab-nav-button');
       innerTabButtons.forEach((button, index) => {
         button.addEventListener('click', function () {
           switchInnerTab(this, index);
@@ -1168,10 +1195,10 @@
       });
 
       // Re-initialize FAQ functionality
-      const faqButtons = event.target.querySelectorAll('.faq-question');
+      const faqButtons = event.target.querySelectorAll('.sts-faq-question');
       faqButtons.forEach((button) => {
         button.addEventListener('click', function () {
-          toggleFAQ(this);
+          stsToggleFAQ(this);
         });
       });
     });
@@ -1186,7 +1213,7 @@
       "type": "text",
       "id": "title",
       "label": "Title",
-      "default": "Photon Youth™ Pro LED Mask"
+      "default": "Photon Youth™ Pro"
     },
     {
       "type": "header",
@@ -1217,7 +1244,7 @@
       "min": 0,
       "max": 10,
       "step": 1,
-      "default": 2
+      "default": 4
     },
     {
       "type": "header",
@@ -1345,10 +1372,20 @@
       "id": "title_font_size_desktop",
       "label": "Title Font Size (Desktop)",
       "min": 16,
-      "max": 72,
+      "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 50
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_tablet",
+      "label": "Title Font Size (Tablet)",
+      "min": 14,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 33
     },
     {
       "type": "range",
@@ -1416,6 +1453,16 @@
       "max": 24,
       "step": 1,
       "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size_tablet",
+      "label": "Tab Font Size (Tablet)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
       "default": 16
     },
     {
@@ -1430,7 +1477,7 @@
     },
     {
       "type": "header",
-      "content": "Desktop Settings (>768px)"
+      "content": "Desktop Settings (≥1024px)"
     },
     {
       "type": "range",
@@ -1467,10 +1514,10 @@
       "id": "arrow_size_desktop",
       "label": "Arrow Size",
       "min": 10,
-      "max": 100,
+      "max": 200,
       "step": 2,
       "unit": "px",
-      "default": 70
+      "default": 100
     },
     {
       "type": "range",
@@ -1484,7 +1531,7 @@
     },
     {
       "type": "header",
-      "content": "Mobile Settings (≤768px)"
+      "content": "Mobile Settings (≤767px)"
     },
     {
       "type": "range",
@@ -1504,7 +1551,7 @@
       "max": 100,
       "step": 5,
       "unit": "px",
-      "default": 20
+      "default": 10
     },
     {
       "type": "range",
@@ -1524,7 +1571,7 @@
       "max": 100,
       "step": 2,
       "unit": "px",
-      "default": 18
+      "default": 36
     },
     {
       "type": "range",
@@ -1534,7 +1581,61 @@
       "max": 10,
       "step": 0.5,
       "unit": "px",
-      "default": 2
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Tablet Settings (768px–1023px)"
+    },
+    {
+      "type": "range",
+      "id": "height_tablet",
+      "label": "Section Height",
+      "min": 40,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "title_padding_tablet",
+      "label": "Title Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "arrow_padding_tablet",
+      "label": "Arrow Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "arrow_size_tablet",
+      "label": "Arrow Size",
+      "min": 10,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "arrow_stroke_tablet",
+      "label": "Arrow Stroke Weight",
+      "min": 1,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "default": 3
     },
     {
       "type": "header",
@@ -1571,7 +1672,7 @@
           "type": "text",
           "id": "text_content",
           "label": "Text Content",
-          "default": "<p>Add your content here. This text will appear alongside the image in a 50-50 layout.</p>"
+          "default": "<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>"
         },
         {
           "type": "select",
@@ -1820,7 +1921,7 @@
           "type": "textarea",
           "id": "ingredient_description_1",
           "label": "Ingredient 1 Description",
-          "default": "An AHA from sugarcane, it exfoliates, brightens, reduces wrinkles, fades hyperpigmentation, and prevents blackheads. It boosts cell renewal but increases sun sensitivity, so sunscreen is essential."
+          "default": "An AHA from sugarcane, it exfoliates, brightens, reduces wrinkles, fades hyperpigmentation, and prevents blackheads."
         },
         {
           "type": "header",

@@ -1,258 +1,373 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-.vip-section {
-  padding: 0;
-  background-color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  min-height: 100vh;
-  display: flex;
-}
-
-.vip-container-md {
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100vh;
-}
-
-.vip-content-md {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  height: 100vh;
-}
-
-.vip-text-content {
-  flex: 0 0 55%;
-  padding: 80px 60px 80px 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.vip-image-content {
-  flex: 0 0 45%;
-  padding: 0;
-  margin: 0;
-}
-
-.vip-title-m {
-  color: #2c2c2c;
-  line-height: 1.2;
-  margin: 0 0 20px 0;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.vip-subtitle-m {
-  color: #666666;
-  line-height: 1.5;
-  margin: 0 0 30px 0;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.vip-points {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px 0;
-}
-
-.vip-point {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 16px;
-  color: #2c2c2c;
-  line-height: 1.5;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.vip-point::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #2c2c2c;
-  font-weight: bold;
-  font-size: 1.2em;
-  line-height: 1;
-}
-
-.vip-point:hover {
-  transform: translateX(5px);
-  font-size: 1.1em;
-  color: #000000;
-}
-
-.vip-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background-color: #2c2c2c;
-  color: #ffffff;
-  padding: 12px 24px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  width: auto;
-  max-width: 270px;
-}
-
-.vip-button:hover {
-  background-color: #4fffff;
-  color: #000000;
-  transform: translateY(-2px);
-}
-
-.vip-button .button-arrow {
-  transition: all 0.3s ease;
-}
-
-.vip-button:hover .button-arrow {
-  transform: translateX(3px);
-}
-
-.vip-image-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  border-radius: 0;
-}
-
-.vip-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.vip-image.active {
-  opacity: 1;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .vip-section {
-    min-height: auto;
+  .vip-section-md {
+    padding: 0;
+    background-color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    margin-top: 60px;
   }
-  
+
   .vip-container-md {
-    height: auto;
-  }
-  
-  .vip-content-md {
-    flex-direction: column;
-    height: auto;
-  }
-  
-  .vip-text-content {
-    flex: none;
-    padding: 40px 20px;
-  }
-  
-  .vip-image-content {
-    flex: none;
+    max-width: none;
+    margin: 0;
+    padding: 0;
     width: 100%;
+    height: 100vh;
   }
-  
-  .vip-image-container {
-    height: 60vh;
-  }
-  
-  .vip-title-m {
-    font-size: 32px !important;
-  }
-  
-  .vip-subtitle-m {
-    font-size: 16px !important;
-  }
-  
-  .vip-point {
-    font-size: 14px !important;
-  }
-}
 
-@media (max-width: 480px) {
-  .vip-container-md {
-    padding: 0 15px;
+  .vip-content-md {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    height: 100vh;
   }
-  
-  .vip-title-m {
-    font-size: 28px !important;
+
+  .vip-text-content-md {
+    flex: 0 0 55%;
+    padding: 80px 60px 80px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  
-  .vip-button {
-    padding: 14px 28px;
-    font-size: 14px;
+
+  .vip-image-content-md {
+    flex: 0 0 45%;
+    padding: 0;
+    margin: 0;
   }
-}
+
+  .vip-title-md {
+    color: #2c2c2c;
+    line-height: 1.1;
+    margin: 0 0 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em; /* DESKTOP letter-spacing — change this value e.g. -0.02em (tighter) or 0.05em (wider) */
+  }
+
+  .vip-subtitle-md {
+    color: #666666;
+    line-height: 1.5;
+    margin: 0 0 30px 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .vip-points-md {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+
+  .vip-point-md {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 16px;
+    color: #2c2c2c;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .vip-point-md::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2c2c2c;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1;
+  }
+
+  .vip-point-md:hover {
+    transform: translateX(5px);
+    font-size: 1.1em;
+    color: #000000;
+  }
+
+  .vip-button-md {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: #2c2c2c;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    width: auto;
+    max-width: 270px;
+  }
+
+  .vip-button-md:hover {
+    background-color: #4fffff;
+    color: #000000;
+    transform: translateY(-2px);
+  }
+
+  .vip-button-md .vip-button-arrow-md {
+    transition: all 0.3s ease;
+  }
+
+  .vip-button-md:hover .vip-button-arrow-md {
+    transform: translateX(3px);
+  }
+
+  .vip-image-container-md {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  .vip-image-md {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .vip-image-md.active {
+    opacity: 1;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .vip-section-md { min-height: auto; }
+    .vip-container-md { height: auto; }
+    .vip-content-md { flex-direction: column; height: auto; }
+    .vip-text-content-md { flex: none; padding: 40px 20px; }
+    .vip-image-content-md { flex: none; width: 100%; }
+    .vip-image-container-md { height: 60vh; }
+    .vip-title-md { font-size: 32px !important; }
+    .vip-subtitle-md { font-size: 16px !important; }
+    .vip-point-md { font-size: 14px !important; }
+  }
+
+  @media (max-width: 480px) {
+    .vip-container-md { padding: 0 15px; }
+    .vip-title-md { font-size: 28px !important; }
+    .vip-button-md { padding: 14px 28px; font-size: 14px; }
+  }
+
+  /* =============================================
+     MOBILE & TABLET RESPONSIVE LAYOUT
+     (max-width: 1024px — does NOT affect desktop)
+     ============================================= */
+
+  @media (max-width: 1024px) {
+
+    .vip-section-md { min-height: 100vh; display: block; }
+    .vip-container-md { height: auto; padding: 0; }
+    .vip-content-md { flex-direction: column; height: auto; }
+
+    .vip-image-content-md {
+      order: -1;
+      width: 100%;
+      flex: none;
+      padding: {{ section.settings.mobile_image_side_padding }}px;
+      padding-bottom: 0;
+      box-sizing: border-box;
+    }
+
+    .vip-image-container-md {
+      height: 45vw;
+      min-height: 220px;
+      max-height: 380px;
+      border-radius: {{ section.settings.mobile_image_border_radius }}px;
+    }
+
+    .vip-text-content-md {
+      flex: none;
+      padding: 32px 20px 24px;
+      justify-content: flex-start;
+    }
+
+    .vip-title-md {
+      font-size: {{ section.settings.mobile_title_font_size }}px !important;
+      font-weight: {{ section.settings.mobile_title_font_weight }} !important;
+      font-style: {{ section.settings.mobile_title_font_style }} !important;
+      letter-spacing: -0.02em !important; /* MOBILE letter-spacing — change this value e.g. -0.02em or 0.05em */
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .vip-subtitle-md {
+      font-size: {{ section.settings.mobile_subtitle_font_size }}px !important;
+      font-weight: {{ section.settings.mobile_subtitle_font_weight }} !important;
+      font-style: {{ section.settings.mobile_subtitle_font_style }} !important;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .vip-points-md {
+      margin: 0 0 28px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .vip-point-md {
+      padding-left: 0;
+      margin-bottom: 0;
+      background: #ffffff;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-size: {{ section.settings.mobile_points_font_size }}px !important;
+      font-weight: {{ section.settings.mobile_points_font_weight }} !important;
+      font-style: {{ section.settings.mobile_points_font_style }} !important;
+      color: #000000;
+      /* CHANGE 2: center-align tile text on mobile/tablet */
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
+    }
+
+    .vip-point-md::before { display: none; }
+
+    .vip-point-md.vip-point-md--active {
+      border-color: #4fffff;
+      border-width: 2px;
+      box-shadow: 0 2px 20px rgba(78, 255, 255, 0.25);
+    }
+
+    .vip-point-md:hover {
+      transform: none;
+      font-size: {{ section.settings.mobile_points_font_size }}px !important;
+      color: #000000;
+    }
+
+    .vip-point-md.vip-point-md--active:hover { transform: translateY(-2px); }
+
+    .vip-button-md {
+      display: flex;
+      width: 100%;
+      max-width: 100%;
+      padding: 16px 24px;
+      font-size: 16px;
+      border-radius: 50px;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .vip-button-md:active,
+    .vip-button-md.vip-button-md--touched {
+      background-color: #4fffff;
+      color: #000000;
+      transform: translateY(0);
+    }
+  }
+
+  /* Tablet-specific tweaks (769px – 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .vip-text-content-md { padding: 40px 48px 36px; }
+
+    .vip-title-md {
+      font-size: {{ section.settings.tablet_title_font_size }}px !important;
+      font-weight: {{ section.settings.tablet_title_font_weight }} !important;
+      font-style: {{ section.settings.tablet_title_font_style }} !important;
+      letter-spacing: -0.02em !important; /* TABLET letter-spacing — change this value e.g. -0.02em or 0.05em */
+    }
+
+    .vip-subtitle-md {
+      font-size: {{ section.settings.tablet_subtitle_font_size }}px !important;
+      font-weight: {{ section.settings.tablet_subtitle_font_weight }} !important;
+      font-style: {{ section.settings.tablet_subtitle_font_style }} !important;
+    }
+
+    .vip-image-container-md { height: 40vw; max-height: 420px; }
+
+    .vip-point-md {
+      font-size: {{ section.settings.tablet_points_font_size }}px !important;
+      font-weight: {{ section.settings.tablet_points_font_weight }} !important;
+      font-style: {{ section.settings.tablet_points_font_style }} !important;
+      padding: 14px 20px;
+    }
+
+    .vip-button-md { max-width: 360px; margin: 0 auto; }
+  }
 </style>
 
-<div class="vip-section full-width">
+<div class="vip-section-md full-width">
   <div class="vip-container-md">
     <div class="vip-content-md">
-      <div class="vip-text-content">
-        <h2 class="vip-title-m" style="font-size: {{ section.settings.title_font_size }}px; font-weight: {{ section.settings.title_font_weight }};">
+      <div class="vip-text-content-md">
+        <h2
+          class="vip-title-md"
+          style="font-size: {{ section.settings.title_font_size }}px; font-weight: {{ section.settings.title_font_weight }}; font-style: {{ section.settings.title_font_style }};"
+        >
           {{ section.settings.title }}
         </h2>
-        
-        <p class="vip-subtitle-m" style="font-size: {{ section.settings.subtitle_font_size }}px; font-weight: {{ section.settings.subtitle_font_weight }};">
+
+        <p
+          class="vip-subtitle-md"
+          style="font-size: {{ section.settings.subtitle_font_size }}px; font-weight: {{ section.settings.subtitle_font_weight }}; font-style: {{ section.settings.subtitle_font_style }};"
+        >
           {{ section.settings.subtitle }}
         </p>
-        
-        <ul class="vip-points">
+
+        <ul class="vip-points-md">
           {% for block in section.blocks %}
             {% if block.type == 'point' %}
-              <li class="vip-point" 
-                  data-point-index="{{ forloop.index0 }}"
-                  style="font-size: {{ section.settings.points_font_size }}px; font-weight: {{ section.settings.points_font_weight }};">
+              <li
+                class="vip-point-md"
+                data-point-index="{{ forloop.index0 }}"
+                style="font-size: {{ section.settings.points_font_size }}px; font-weight: {{ section.settings.points_font_weight }}; font-style: {{ section.settings.points_font_style }};"
+              >
                 {{ block.settings.point_text }}
               </li>
             {% endif %}
           {% endfor %}
         </ul>
-        
-        <a href="{{ section.settings.button_link }}" class="vip-button">
-          <span class="button-text">{{ section.settings.button_text }}</span>
-          <svg class="button-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+
+        <a href="{{ section.settings.button_link }}" class="vip-button-md">
+          <span class="vip-button-text-md">{{ section.settings.button_text }}</span>
+          <svg class="vip-button-arrow-md" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
       </div>
-      
-      <div class="vip-image-content">
-        <div class="vip-image-container">
+
+      <div class="vip-image-content-md">
+        <div class="vip-image-container-md">
           {% if section.settings.default_image %}
-            <img id="vip-main-image" 
-                 src="{{ section.settings.default_image | image_url }}" 
-                 alt="{{ section.settings.default_image.alt | default: 'VIP Section Image' }}"
-                 width="{{ section.settings.default_image.width | default: 600 }}"
-                 height="{{ section.settings.default_image.height | default: 500 }}"
-                 class="vip-image active">
+            <img
+              id="vip-main-image"
+              src="{{ section.settings.default_image | image_url }}"
+              alt="{{ section.settings.default_image.alt | default: 'VIP Section Image' }}"
+              width="{{ section.settings.default_image.width | default: 600 }}"
+              height="{{ section.settings.default_image.height | default: 500 }}"
+              class="vip-image-md active"
+            >
           {% endif %}
-          
+
           {% for block in section.blocks %}
             {% if block.type == 'point' and block.settings.point_image %}
-              <img src="{{ block.settings.point_image | image_url }}" 
-                   alt="{{ block.settings.point_image.alt | default: block.settings.point_text }}"
-                   width="{{ block.settings.point_image.width | default: 600 }}"
-                   height="{{ block.settings.point_image.height | default: 500 }}"
-                   class="vip-image hover-image"
-                   data-point="{{ forloop.index0 }}">
+              <img
+                src="{{ block.settings.point_image | image_url }}"
+                alt="{{ block.settings.point_image.alt | default: block.settings.point_text }}"
+                width="{{ block.settings.point_image.width | default: 600 }}"
+                height="{{ block.settings.point_image.height | default: 500 }}"
+                class="vip-image-md vip-hover-image-md"
+                data-point="{{ forloop.index0 }}"
+              >
             {% endif %}
           {% endfor %}
         </div>
@@ -262,39 +377,96 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const points = document.querySelectorAll('.vip-point');
-  const images = document.querySelectorAll('.vip-image');
-  const defaultImage = document.getElementById('vip-main-image');
-  
-  // Set default image as active
-  if (defaultImage) {
-    defaultImage.classList.add('active');
-  }
-  
-  points.forEach((point, index) => {
-    point.addEventListener('mouseenter', function() {
-      // Hide all images
-      images.forEach(img => img.classList.remove('active'));
-      
-      // Show corresponding hover image
-      const hoverImage = document.querySelector(`[data-point="${index}"]`);
-      if (hoverImage) {
-        hoverImage.classList.add('active');
-      }
+  document.addEventListener('DOMContentLoaded', function () {
+    const points = document.querySelectorAll('.vip-point-md');
+    const images = document.querySelectorAll('.vip-image-md');
+    const defaultImage = document.getElementById('vip-main-image');
+
+    if (defaultImage) {
+      defaultImage.classList.add('active');
+    }
+
+    points.forEach((point, index) => {
+      point.addEventListener('mouseenter', function () {
+        images.forEach((img) => img.classList.remove('active'));
+        const hoverImage = document.querySelector(`[data-point="${index}"]`);
+        if (hoverImage) {
+          hoverImage.classList.add('active');
+        }
+      });
+      point.addEventListener('mouseleave', function () {
+        images.forEach((img) => img.classList.remove('active'));
+        if (defaultImage) {
+          defaultImage.classList.add('active');
+        }
+      });
     });
-    
-    point.addEventListener('mouseleave', function() {
-      // Hide all images
-      images.forEach(img => img.classList.remove('active'));
-      
-      // Show default image
-      if (defaultImage) {
-        defaultImage.classList.add('active');
+  });
+</script>
+
+<script>
+  /* MOBILE / TABLET — tap-to-activate points */
+  document.addEventListener('DOMContentLoaded', function () {
+    function isMobileTablet() {
+      return window.innerWidth <= 1024;
+    }
+
+    const points = document.querySelectorAll('.vip-point-md');
+    const images = document.querySelectorAll('.vip-image-md');
+    const defaultImage = document.getElementById('vip-main-image');
+    const button = document.querySelector('.vip-button-md');
+
+    points.forEach(function (point, index) {
+      point.addEventListener('click', function () {
+        if (!isMobileTablet()) return;
+        points.forEach(function (p) {
+          p.classList.remove('vip-point-md--active');
+        });
+        point.classList.add('vip-point-md--active');
+        images.forEach(function (img) {
+          img.classList.remove('active');
+        });
+        var targetImage = document.querySelector('.vip-image-md[data-point="' + index + '"]');
+        if (targetImage) {
+          targetImage.classList.add('active');
+        } else if (defaultImage) {
+          defaultImage.classList.add('active');
+        }
+      });
+    });
+
+    if (button) {
+      button.addEventListener(
+        'touchstart',
+        function () {
+          button.classList.add('vip-button-md--touched');
+        },
+        { passive: true }
+      );
+      button.addEventListener(
+        'touchend',
+        function () {
+          setTimeout(function () {
+            button.classList.remove('vip-button-md--touched');
+          }, 300);
+        },
+        { passive: true }
+      );
+    }
+
+    window.addEventListener('resize', function () {
+      if (!isMobileTablet()) {
+        points.forEach(function (p) {
+          p.classList.remove('vip-point-md--active');
+        });
+        if (button) button.classList.remove('vip-button-md--touched');
+        images.forEach(function (img) {
+          img.classList.remove('active');
+        });
+        if (defaultImage) defaultImage.classList.add('active');
       }
     });
   });
-});
 </script>
 
 {% schema %}
@@ -311,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "We formulated AG1 Next Gen to support your health with advanced nutrition in every scoop.* It's a match if you:"
+      "default": "We formulated AG1 Next Gen to support your health with advanced."
     },
     {
       "type": "text",
@@ -331,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       "type": "header",
-      "content": "Typography Settings"
+      "content": "Desktop Typography"
     },
     {
       "type": "font_picker",
@@ -342,7 +514,7 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "range",
       "id": "title_font_size",
-      "label": "Title Font Size",
+      "label": "Title Font Size (Desktop)",
       "min": 24,
       "max": 72,
       "step": 2,
@@ -351,20 +523,32 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "select",
       "id": "title_font_weight",
-      "label": "Title Font Weight",
+      "label": "Title Font Weight (Desktop)",
       "options": [
         { "value": "300", "label": "Light" },
         { "value": "400", "label": "Normal" },
         { "value": "500", "label": "Medium" },
         { "value": "600", "label": "Semi Bold" },
-        { "value": "700", "label": "Bold" }
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
       ],
-      "default": "700"
+      "default": "800"
+    },
+    {
+      "type": "select",
+      "id": "title_font_style",
+      "label": "Title Font Style (Desktop)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
     },
     {
       "type": "range",
       "id": "subtitle_font_size",
-      "label": "Subtitle Font Size",
+      "label": "Subtitle Font Size (Desktop)",
       "min": 14,
       "max": 32,
       "step": 1,
@@ -373,20 +557,32 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "select",
       "id": "subtitle_font_weight",
-      "label": "Subtitle Font Weight",
+      "label": "Subtitle Font Weight (Desktop)",
       "options": [
         { "value": "300", "label": "Light" },
         { "value": "400", "label": "Normal" },
         { "value": "500", "label": "Medium" },
         { "value": "600", "label": "Semi Bold" },
-        { "value": "700", "label": "Bold" }
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
       ],
       "default": "400"
     },
     {
+      "type": "select",
+      "id": "subtitle_font_style",
+      "label": "Subtitle Font Style (Desktop)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
       "type": "range",
       "id": "points_font_size",
-      "label": "Points Font Size",
+      "label": "Points Font Size (Desktop)",
       "min": 12,
       "max": 24,
       "step": 1,
@@ -395,15 +591,263 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "select",
       "id": "points_font_weight",
-      "label": "Points Font Weight",
+      "label": "Points Font Weight (Desktop)",
       "options": [
         { "value": "300", "label": "Light" },
         { "value": "400", "label": "Normal" },
         { "value": "500", "label": "Medium" },
         { "value": "600", "label": "Semi Bold" },
-        { "value": "700", "label": "Bold" }
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "points_font_style",
+      "label": "Points Font Style (Desktop)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Tablet Typography"
+    },
+    {
+      "type": "range",
+      "id": "tablet_title_font_size",
+      "label": "Title Font Size (Tablet)",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "default": 34
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_font_weight",
+      "label": "Title Font Weight (Tablet)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "tablet_title_font_style",
+      "label": "Title Font Style (Tablet)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "tablet_subtitle_font_size",
+      "label": "Subtitle Font Size (Tablet)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "tablet_subtitle_font_weight",
+      "label": "Subtitle Font Weight (Tablet)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
       ],
       "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "tablet_subtitle_font_style",
+      "label": "Subtitle Font Style (Tablet)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "tablet_points_font_size",
+      "label": "Points Font Size (Tablet)",
+      "min": 11,
+      "max": 22,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "tablet_points_font_weight",
+      "label": "Points Font Weight (Tablet)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "tablet_points_font_style",
+      "label": "Points Font Style (Tablet)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Typography"
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "label": "Title Font Size (Mobile)",
+      "min": 18,
+      "max": 48,
+      "step": 2,
+      "default": 28
+    },
+    {
+      "type": "select",
+      "id": "mobile_title_font_weight",
+      "label": "Title Font Weight (Mobile)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "mobile_title_font_style",
+      "label": "Title Font Style (Mobile)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "mobile_subtitle_font_size",
+      "label": "Subtitle Font Size (Mobile)",
+      "min": 11,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "mobile_subtitle_font_weight",
+      "label": "Subtitle Font Weight (Mobile)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "mobile_subtitle_font_style",
+      "label": "Subtitle Font Style (Mobile)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "mobile_points_font_size",
+      "label": "Points Font Size (Mobile)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "mobile_points_font_weight",
+      "label": "Points Font Weight (Mobile)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "mobile_points_font_style",
+      "label": "Points Font Style (Mobile)",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Mobile & Tablet Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_side_padding",
+      "label": "Image Side Padding (px)",
+      "info": "Space on left and right of the image on mobile/tablet",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_border_radius",
+      "label": "Image Corner Radius (px)",
+      "info": "Rounded corners on the image on mobile/tablet. Set 0 for sharp edges.",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16
     }
   ],
   "blocks": [
@@ -429,35 +873,16 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "name": "VIP Section",
       "blocks": [
+        { "type": "point", "settings": { "point_text": "Want an easy way to support your daily nutrition" } },
+        { "type": "point", "settings": { "point_text": "Are juggling a busy life and need nutrition that keeps up" } },
+        { "type": "point", "settings": { "point_text": "Care about improving gut health and digestion" } },
         {
           "type": "point",
-          "settings": {
-            "point_text": "Want an easy way to support your daily nutrition"
-          }
+          "settings": { "point_text": "Are getting back into fitness and want to support your energy levels" }
         },
         {
           "type": "point",
-          "settings": {
-            "point_text": "Are juggling a busy life and need nutrition that keeps up"
-          }
-        },
-        {
-          "type": "point",
-          "settings": {
-            "point_text": "Care about improving gut health and digestion"
-          }
-        },
-        {
-          "type": "point",
-          "settings": {
-            "point_text": "Are getting back into fitness and want to support your energy levels"
-          }
-        },
-        {
-          "type": "point",
-          "settings": {
-            "point_text": "Are on GLP-1s and want additional nutritional support"
-          }
+          "settings": { "point_text": "Are on GLP-1s and want additional nutritional support to fitness" }
         }
       ]
     }

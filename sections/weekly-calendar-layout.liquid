@@ -6,7 +6,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+>
 
 <style>
   /* ── STICKY WRAPPER ── */
@@ -313,7 +316,6 @@
       aria-label="Weekly Calendar Layout"
     >
       <div class="layout-wcl">
-
         <!-- LEFT: text slides -->
         <div class="left-panel-wcl" id="wcl-left-{{ section.id }}">
           {% for block in section.blocks %}
@@ -329,16 +331,31 @@
               {% endif %}
 
               {% assign has_list = false %}
-              {% if block.settings.list_item_1 != blank or block.settings.list_item_2 != blank or block.settings.list_item_3 != blank or block.settings.list_item_4 != blank or block.settings.list_item_5 != blank %}
+              {% if block.settings.list_item_1 != blank
+                or block.settings.list_item_2 != blank
+                or block.settings.list_item_3 != blank
+                or block.settings.list_item_4 != blank
+                or block.settings.list_item_5 != blank
+              %}
                 {% assign has_list = true %}
               {% endif %}
               {% if has_list %}
                 <ul class="left-list-wcl">
-                  {% if block.settings.list_item_1 != blank %}<li>{{ block.settings.list_item_1 }}</li>{% endif %}
-                  {% if block.settings.list_item_2 != blank %}<li>{{ block.settings.list_item_2 }}</li>{% endif %}
-                  {% if block.settings.list_item_3 != blank %}<li>{{ block.settings.list_item_3 }}</li>{% endif %}
-                  {% if block.settings.list_item_4 != blank %}<li>{{ block.settings.list_item_4 }}</li>{% endif %}
-                  {% if block.settings.list_item_5 != blank %}<li>{{ block.settings.list_item_5 }}</li>{% endif %}
+                  {% if block.settings.list_item_1 != blank %}
+                    <li>{{ block.settings.list_item_1 }}</li>
+                  {% endif %}
+                  {% if block.settings.list_item_2 != blank %}
+                    <li>{{ block.settings.list_item_2 }}</li>
+                  {% endif %}
+                  {% if block.settings.list_item_3 != blank %}
+                    <li>{{ block.settings.list_item_3 }}</li>
+                  {% endif %}
+                  {% if block.settings.list_item_4 != blank %}
+                    <li>{{ block.settings.list_item_4 }}</li>
+                  {% endif %}
+                  {% if block.settings.list_item_5 != blank %}
+                    <li>{{ block.settings.list_item_5 }}</li>
+                  {% endif %}
                 </ul>
               {% endif %}
             </div>
@@ -394,80 +411,81 @@
                 <span
                   class="badge-num-val-wcl{% if forloop.first %} wcl-active{% endif %}"
                   data-wcl-badge-num="{{ forloop.index0 }}"
-                >{{ block.settings.badge_number | default: forloop.index }}</span>
+                >
+                  {{- block.settings.badge_number | default: forloop.index -}}
+                </span>
               {% else %}
                 <span class="badge-num-val-wcl wcl-active">1</span>
               {% endfor %}
             </div>
           </div>
         </div>
-
       </div>
     </section>
   </div>
 </div>
 
 <script>
-(function () {
-  var id = '{{ section.id }}';
-  var blockCount = {{ block_count }};
-  if (blockCount < 2) return;
+  (function () {
+    var id = '{{ section.id }}';
+    var blockCount = {{ block_count }};
+    if (blockCount < 2) return;
 
-  var outer    = document.getElementById('wcl-outer-' + id);
-  var sectionH = {{ section.settings.section_height }};
+    var outer    = document.getElementById('wcl-outer-' + id);
+    var sectionH = {{ section.settings.section_height }};
 
-  /* 300px of scroll per block — snappy, one normal scroll gesture = next week */
-  var scrollPerBlock = 300;
-  var totalExtra     = scrollPerBlock * (blockCount - 1);
+    /* 300px of scroll per block — snappy, one normal scroll gesture = next week */
+    var scrollPerBlock = 300;
+    var totalExtra     = scrollPerBlock * (blockCount - 1);
 
-  outer.style.height = (sectionH + totalExtra) + 'px';
+    outer.style.height = (sectionH + totalExtra) + 'px';
 
-  var currentIndex = 0;
+    var currentIndex = 0;
 
-  function getSlides()      { return outer.querySelectorAll('.wcl-slide'); }
-  function getImgSlides()   { return outer.querySelectorAll('.wcl-img-slide'); }
-  function getBadgeLabels() { return outer.querySelectorAll('[data-wcl-badge-label]'); }
-  function getBadgeNums()   { return outer.querySelectorAll('[data-wcl-badge-num]'); }
-  function activateIndex(idx) {
-    if (idx === currentIndex) return;
-    var prev = currentIndex;
-    currentIndex = idx;
+    function getSlides()      { return outer.querySelectorAll('.wcl-slide'); }
+    function getImgSlides()   { return outer.querySelectorAll('.wcl-img-slide'); }
+    function getBadgeLabels() { return outer.querySelectorAll('[data-wcl-badge-label]'); }
+    function getBadgeNums()   { return outer.querySelectorAll('[data-wcl-badge-num]'); }
+    function activateIndex(idx) {
+      if (idx === currentIndex) return;
+      var prev = currentIndex;
+      currentIndex = idx;
 
-    /* Text slides */
-    getSlides().forEach(function (s, i) {
-      s.classList.remove('wcl-active', 'wcl-exit');
-      if (i === idx)  s.classList.add('wcl-active');
-      else if (i === prev) s.classList.add('wcl-exit');
-    });
+      /* Text slides */
+      getSlides().forEach(function (s, i) {
+        s.classList.remove('wcl-active', 'wcl-exit');
+        if (i === idx)  s.classList.add('wcl-active');
+        else if (i === prev) s.classList.add('wcl-exit');
+      });
 
-    /* Image slides */
-    getImgSlides().forEach(function (s, i) {
-      s.classList.toggle('wcl-active', i === idx);
-    });
+      /* Image slides */
+      getImgSlides().forEach(function (s, i) {
+        s.classList.toggle('wcl-active', i === idx);
+      });
 
-    /* Badge numbers — slide up animation */
-    getBadgeNums().forEach(function (s) {
-      var i = parseInt(s.getAttribute('data-wcl-badge-num'), 10);
-      s.classList.remove('wcl-active', 'wcl-exit');
-      if (i === idx)  s.classList.add('wcl-active');
-      else if (i === prev) s.classList.add('wcl-exit');
-    });
-  }
+      /* Badge numbers — slide up animation */
+      getBadgeNums().forEach(function (s) {
+        var i = parseInt(s.getAttribute('data-wcl-badge-num'), 10);
+        s.classList.remove('wcl-active', 'wcl-exit');
+        if (i === idx)  s.classList.add('wcl-active');
+        else if (i === prev) s.classList.add('wcl-exit');
+      });
+    }
 
-  function onScroll() {
-    var rect = outer.getBoundingClientRect();
-    var scrolledInto = -rect.top;
+    function onScroll() {
+      var rect = outer.getBoundingClientRect();
+      var scrolledInto = -rect.top;
 
-    if (scrolledInto < 0) { activateIndex(0); return; }
-    if (scrolledInto >= totalExtra) { activateIndex(blockCount - 1); return; }
+      if (scrolledInto < 0) { activateIndex(0); return; }
+      if (scrolledInto >= totalExtra) { activateIndex(blockCount - 1); return; }
 
-    var idx = Math.min(Math.floor(scrolledInto / scrollPerBlock), blockCount - 1);
-    activateIndex(idx);
-  }
+      var idx = Math.min(Math.floor(scrolledInto / scrollPerBlock), blockCount - 1);
+      activateIndex(idx);
+    }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
 </script>
 
 {% schema %}
@@ -765,10 +783,7 @@
   "presets": [
     {
       "name": "Weekly Calendar Layout",
-      "blocks": [
-        { "type": "week" },
-        { "type": "week" }
-      ]
+      "blocks": [{ "type": "week" }, { "type": "week" }]
     }
   ]
 }

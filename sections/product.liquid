@@ -11,6 +11,9 @@
 {% assign selected_product = blank %}
 {% if section.settings.product != blank %}
   {% assign selected_product = all_products[section.settings.product] %}
+{% elsif product != blank %}
+  {% comment %}Use the page's product when no specific product is selected in settings{% endcomment %}
+  {% assign selected_product = product %}
 {% endif %}
 
 
@@ -36,10 +39,7 @@
     max-width: {{ section.settings.max_width }}px;
     margin: 0 auto;
   }
-
-
-
-
+  
   /* Left Side - Product Info */
   .product-info-side {
     padding: 30px 40px;
@@ -498,6 +498,12 @@
 
 
 
+  /* First image/dot — only show on mobile (hidden on desktop) */
+  .media-item--first-mobile,
+  .media-dot--first-mobile {
+    display: none;
+  }
+
   .media-item {
     position: absolute;
     top: 0;
@@ -540,48 +546,46 @@
     position: absolute;
     left: 30px;
     top: 50%;
-    {% comment %} transform: translateY(-50%); {% endcomment %}
+    transform: translateY(-50%);
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     background: rgba(255, 255, 255, 0.95);
-    padding: 8px 4px;
+    padding: 12px 8px;
     border-radius: 50px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
 
-
-
-
   .media-dot {
-    width: 8px;
-    height: 8px;
-    background: #000000;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    background: transparent;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, border 0.3s ease;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
 
-
-
-
-  /* Inactive Video Dot - Just Play Icon (no circle) */
-  .media-dot.is-video:not(.active) {
-    width: 8px;
-    height: 8px;
-    background: transparent;
-    border: none;
+  /* Inactive dot — small black circle drawn via ::before */
+  .media-dot:not(.active)::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #000000;
+    border-radius: 50%;
   }
 
-
-
-
+  /* Inactive video dot — small play triangle */
   .media-dot.is-video:not(.active)::after {
     content: '';
     position: absolute;
@@ -594,36 +598,32 @@
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
   }
-
-
-
-
-  .media-dot:hover:not(.active) {
-    transform: scale(1.2);
+  .media-dot.is-video:not(.active)::before {
+    display: none;
   }
 
 
 
 
+  .media-dot:hover:not(.active) {
+    opacity: 0.7;
+  }
+
   /* Active Image Dot - Circle with Dot Inside */
   .media-dot.active.is-image {
     width: 18px;
     height: 18px;
+    min-width: 18px;
+    min-height: 18px;
     border-radius: 50%;
     background: #ffffff;
     border: 2px solid #4fffff;
     transform: none;
   }
 
-
-
-
   .media-dot.active.is-image:hover {
     transform: none;
   }
-
-
-
 
   .media-dot.active.is-image::after {
     content: '';
@@ -637,28 +637,21 @@
     border-radius: 50%;
   }
 
-
-
-
   /* Active Video Dot - Play Icon */
   .media-dot.active.is-video {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
     border-radius: 50%;
     background: #ffffff;
     border: 1px solid #4fffff;
     transform: none;
   }
 
-
-
-
   .media-dot.active.is-video:hover {
     transform: none;
   }
-
-
-
 
   .media-dot.active.is-video::after {
     content: '';
@@ -668,9 +661,9 @@
     transform: translate(-40%, -50%);
     width: 0;
     height: 0;
-    border-left: 8px solid #4fffff;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
+    border-left: 11px solid #4fffff;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
   }
 
 
@@ -789,6 +782,282 @@
       min-width: 60px;
       width: 60px;
       height: 60px;
+    }
+  }
+</style>
+
+<!-- ── MOBILE ONLY ≤768px — media top, info bottom, dots centered at media bottom ── -->
+<style>
+  @media (max-width: 768px) {
+
+    /* Black section background with padding so cards have gap from edges and each other */
+    .product-buy-box {
+      padding: 12px !important;
+      background: {{ section.settings.outer_bg_color | default: '#000000' }} !important;
+    }
+
+    /* Stack: media on top, info below — both full width */
+    .buy-box-container {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
+      max-width: 100% !important;
+      min-height: unset !important;
+    }
+
+    /* Media card — fully rounded, tall height */
+    .media-gallery-side {
+      order: 1 !important;
+      width: 100% !important;
+      min-height: 85vw !important;
+      max-height: 90vw !important;
+      border-radius: 20px !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+
+    /* Info card — fully rounded white card below media */
+    .product-info-side {
+      order: 2 !important;
+      width: 100% !important;
+      border-radius: 20px !important;
+      padding: 14px 14px !important;
+      gap: 6px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+
+    /* Media dot navigation — horizontal row, centered at bottom of media */
+    .media-dot-navigation {
+      position: absolute !important;
+      bottom: 14px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 14px !important;
+      top: auto !important;
+      right: auto !important;
+      z-index: 5 !important;
+    }
+
+    /* Dots size on mobile — override desktop 24px fixed size */
+    .media-dot {
+      width: 10px !important;
+      height: 10px !important;
+      min-width: 10px !important;
+      min-height: 10px !important;
+      background: #000000 !important;
+    }
+    /* Remove the ::before inactive circle used on desktop */
+    .media-dot:not(.active)::before {
+      display: none !important;
+    }
+    /* Inactive video dot on mobile — show small play icon */
+    .media-dot.is-video:not(.active) {
+      background: transparent !important;
+    }
+    .media-dot.is-video:not(.active)::after {
+      content: '' !important;
+      display: block !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-40%, -50%) !important;
+      width: 0 !important;
+      height: 0 !important;
+      border-left: 7px solid #000000 !important;
+      border-top: 4px solid transparent !important;
+      border-bottom: 4px solid transparent !important;
+    }
+    /* Restore simple black dot for inactive on mobile */
+    .media-dot:not(.active) {
+      background: #000000 !important;
+      border: none !important;
+    }
+
+    /* Active IMAGE dot on mobile — smaller cyan filled circle with white ring */
+    .media-dot.active.is-image {
+      width: 12px !important;
+      height: 12px !important;
+      min-width: 12px !important;
+      min-height: 12px !important;
+      background: #4fffff !important;
+      border: none !important;
+      border-radius: 50% !important;
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #4fffff !important;
+    }
+    .media-dot.active.is-image::after {
+      display: none !important;
+    }
+
+    /* Active VIDEO dot on mobile — same 12px size, cyan border circle + play icon via box-shadow */
+    .media-dot.active.is-video {
+      width: 18px !important;
+      height: 18px !important;
+      min-width: 12px !important;
+      min-height: 12px !important;
+      background: #ffffff !important;
+      border: 2px solid #4fffff !important;
+      border-radius: 50% !important;
+    }
+    .media-dot.active.is-video::after {
+      content: '' !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 55% !important;
+      transform: translate(-50%, -50%) !important;
+      width: 0 !important;
+      height: 0 !important;
+      border-left: 10px solid #4fffff !important;
+      border-top: 8px solid transparent !important;
+      border-bottom: 8px solid transparent !important;
+      background: none !important;
+      border-radius: 0 !important;
+    }
+
+    /* Show first-mobile dot on mobile — move it to first position visually */
+    .media-dot--first-mobile {
+      display: block !important;
+      order: -1 !important;
+    }
+
+    /* Prevent text/element selection on tap — stops the blue highlight */
+    .media-gallery-side,
+    .media-dot-navigation,
+    .main-media-container,
+    .media-item,
+    .media-item img,
+    .media-item video {
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    /* Media fills the gallery */
+    .main-media-container {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .media-item {
+      width: 100% !important;
+      height: 85vw !important;
+    }
+
+    .media-item img,
+    .media-item video {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+
+    /* Hide thumbnail — all images in media gallery */
+    .product-thumbnail-wrapper {
+      display: none !important;
+    }
+
+    /* Show first image slide on mobile — just make it visible, JS handles active states */
+    .media-item--first-mobile {
+      display: block !important;
+    }
+
+    /* Show first-mobile dot on mobile */
+    .media-dot--first-mobile {
+      display: block !important;
+    }
+
+    /* Product selection area — flex column, full width */
+    .product-selection-area {
+      display: flex !important;
+      flex-direction: column !important;
+      grid-template-columns: unset !important;
+      gap: 6px !important;
+      width: 100% !important;
+    }
+
+    /* All direct children of selection area full width */
+    .product-selection-area > * {
+      width: 100% !important;
+      grid-column: unset !important;
+      grid-row: unset !important;
+    }
+
+    /* Variants full width */
+    .variant-options {
+      width: 100% !important;
+      grid-column: unset !important;
+      grid-row: unset !important;
+    }
+
+    .variant-option,
+    .variant-label {
+      width: 100% !important;
+    }
+
+    /* ATC button — full width, centered, at bottom of info card */
+    .add-to-cart-btn {
+      width: 100% !important;
+      font-size: 18px !important;
+      padding: 16px 20px !important;
+      text-align: center !important;
+      justify-content: center !important;
+    }
+
+    /* Button group full width, below variants */
+    .button-group {
+      width: 100% !important;
+      grid-column: unset !important;
+      grid-row: unset !important;
+      margin-top: 0 !important;
+    }
+
+    /* Product title size */
+    .product-title {
+      font-size: 20px !important;
+      line-height: 1.2 !important;
+      margin-bottom: 4px !important;
+    }
+
+    /* Smaller review/description text */
+    .stars-container {
+      font-size: 13px !important;
+    }
+    .review-text,
+    .review-author {
+      font-size: 12px !important;
+      line-height: 1.3 !important;
+      margin-bottom: 2px !important;
+    }
+    .product-description {
+      font-size: 12px !important;
+      line-height: 1.4 !important;
+      margin-bottom: 4px !important;
+    }
+
+    /* Tighter variant labels */
+    .variant-label {
+      padding: 10px 12px !important;
+    }
+    .variant-name {
+      font-size: 13px !important;
+    }
+    .variant-features {
+      font-size: 11px !important;
+    }
+    .variant-price {
+      font-size: 13px !important;
+    }
+
+    /* ATC button — full width, centered, compact */
+    .add-to-cart-btn {
+      width: 100% !important;
+      font-size: 16px !important;
+      padding: 13px 16px !important;
+      text-align: center !important;
+      justify-content: center !important;
     }
   }
 </style>
@@ -1072,9 +1341,10 @@
         {% assign has_media = false %}
         {% assign media_count = 0 %}
        
-        <!-- Dynamic Product Media (Skip first image - it's used as thumbnail) -->
+        <!-- Dynamic Product Media (Skip first image - it's used as thumbnail on desktop) -->
         {% if selected_product and selected_product.media.size > 1 %}
           {% assign has_media = true %}
+          {% assign media_count = 0 %}
           {% for media in selected_product.media %}
             {% unless forloop.first %}
               {% assign media_count = media_count | plus: 1 %}
@@ -1089,6 +1359,18 @@
               </div>
             {% endunless %}
           {% endfor %}
+          {% comment %}Mobile-only: first image as first slide (hidden on desktop via inline style){% endcomment %}
+          {% assign first_media = selected_product.media | first %}
+          <div class="media-item media-item--first-mobile"
+               style="display:none"
+               data-media-id="product-media-{{ first_media.id }}"
+               data-media-type="{% if first_media.media_type == 'video' %}video{% else %}image{% endif %}">
+            {% if first_media.media_type == 'video' %}
+              {{ first_media | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+            {% else %}
+              {{ first_media | image_url: width: 1200 | image_tag: alt: first_media.alt, width: 1200, height: 1200 }}
+            {% endif %}
+          </div>
         {% endif %}
        
         <!-- Fallback to static media blocks if no additional product media -->
@@ -1146,7 +1428,7 @@
       <!-- Vertical Dot Navigation - Overlaid on Image -->
       {% if has_media %}
         <div class="media-dot-navigation">
-          <!-- Dynamic Product Media Dots (Skip first image) -->
+          <!-- Dynamic Product Media Dots (Skip first image on desktop, show on mobile) -->
           {% if selected_product and selected_product.media.size > 1 %}
             {% assign dot_count = 0 %}
             {% for media in selected_product.media %}
@@ -1159,6 +1441,14 @@
                 </div>
               {% endunless %}
             {% endfor %}
+            {% comment %}Mobile-only: first image dot (hidden on desktop via inline style){% endcomment %}
+            {% assign first_media = selected_product.media | first %}
+            <div class="media-dot media-dot--first-mobile is-{% if first_media.media_type == 'video' %}video{% else %}image{% endif %}"
+                 style="display:none"
+                 data-media-id="product-media-{{ first_media.id }}"
+                 data-media-type="{% if first_media.media_type == 'video' %}video{% else %}image{% endif %}"
+                 onclick="switchMedia('product-media-{{ first_media.id }}', '{% if first_media.media_type == 'video' %}video{% else %}image{% endif %}')">
+            </div>
           {% else %}
             <!-- Fallback to static media blocks -->
             {% for block in section.blocks %}
@@ -1190,29 +1480,42 @@
 <script>
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', function() {
-    // Reset all media items first
-    document.querySelectorAll('.media-item').forEach(item => {
+    // Reset ALL media items and dots (clears any Liquid-rendered active classes)
+    document.querySelectorAll('.media-item').forEach(function(item) {
       item.classList.remove('active');
-      item.style.zIndex = '0';
-      item.style.opacity = '0';
-      item.style.visibility = 'hidden';
+      item.style.zIndex      = '0';
+      item.style.opacity     = '0';
+      item.style.visibility  = 'hidden';
+    });
+    document.querySelectorAll('.media-dot').forEach(function(dot) {
+      dot.classList.remove('active');
     });
 
-
-
-
-    // Ensure first media item is active
-    const firstMediaItem = document.querySelector('.media-item');
-    const firstMediaDot = document.querySelector('.media-dot');
-   
-    if (firstMediaItem) {
-      firstMediaItem.classList.add('active');
-      firstMediaItem.style.zIndex = '2';
-      firstMediaItem.style.opacity = '1';
-      firstMediaItem.style.visibility = 'visible';
-     
-      const mediaType = firstMediaItem.dataset.mediaType;
-      if (firstMediaDot && mediaType) {
+    // On mobile (≤768px): activate the first-mobile item/dot
+    if (window.innerWidth <= 768) {
+      var firstMobileItem = document.querySelector('.media-item--first-mobile');
+      var firstMobileDot  = document.querySelector('.media-dot--first-mobile');
+      if (firstMobileItem) {
+        firstMobileItem.classList.add('active');
+        firstMobileItem.style.zIndex     = '2';
+        firstMobileItem.style.opacity    = '1';
+        firstMobileItem.style.visibility = 'visible';
+      }
+      if (firstMobileDot) {
+        firstMobileDot.classList.add('active');
+      }
+    } else {
+      // Desktop: activate first non-first-mobile media item and its dot
+      var firstMediaItem = document.querySelector('.media-item:not(.media-item--first-mobile)');
+      var firstMediaDot  = document.querySelector('.media-dot:not(.media-dot--first-mobile)');
+      if (firstMediaItem) {
+        firstMediaItem.classList.add('active');
+        firstMediaItem.style.zIndex     = '2';
+        firstMediaItem.style.opacity    = '1';
+        firstMediaItem.style.visibility = 'visible';
+      }
+      if (firstMediaDot) {
+        var mediaType = firstMediaItem ? firstMediaItem.dataset.mediaType : 'image';
         firstMediaDot.classList.add('active', 'is-' + mediaType);
       }
     }
